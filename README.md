@@ -2,6 +2,8 @@
 
 当前已完成第一阶段单卡 FP16 推理基线、第二阶段 Prompt Prefill Attention，以及 Phase 2.1 的 Question Token / Answer-start / Teacher-forced Answer Prediction Attention 分析。
 
+Phase 3 全局逐层 Visual Attention Knockout 已实现并通过 CPU 小型随机 LLaVA 测试，9 条小样本的真实 Processor 输入已审计；**7B GPU 正确性验证与 Cutoff Sweep 尚未执行，受其他任务显存占用阻塞**。状态、证据和续跑命令见 [Phase 3 报告](vlm_research/results/phase3_knockout/phase3_report.md)。不把随机模型测试当作 7B 科研结论。
+
 工程位于 [`vlm_research/`](vlm_research/)。环境安装、权重下载和常见问题见 [工程说明](vlm_research/README.md)，真实耗时、显存和回答见 [第一阶段实测报告](vlm_research/results/phase1_report.md)。
 
 第二阶段结果见 [实验报告](vlm_research/results/phase2_attention/phase2_report.md)：32 层 Attention、逐 Head 统计、24×24 Patch 热图与两个问题的比较。原有环境、模型配置与第一阶段脚本未改变。

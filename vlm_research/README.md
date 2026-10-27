@@ -1,8 +1,8 @@
-# LLaVA：单卡推理与 Question / Answer Prediction Attention
+# LLaVA：单卡推理、Attention 分析与 Visual Attention Knockout
 
 本工程用于验证 `llava-hf/llava-1.5-7b-hf` 在 RTX 4090 上的正常推理、结构和输入长度。使用 `LlavaForConditionalGeneration`、`AutoProcessor`、FP16、`eager` Attention、`eval()` 和 `torch.inference_mode()`。所有参数必须位于同一张 GPU；加载后会检查参数的设备和精度。
 
-第一阶段推理基线、第二阶段 Prompt Prefill Attention 与 Phase 2.1 Query Position 分析已完成。复用第一阶段加载和输入处理函数，通过 `outputs.attentions` 提取语言模型注意力。Phase 2.1 研究问题 Token、Answer-start 与 Teacher Forcing 的答案预测位置；没有注册 Hook，没有实现自由生成 Decode Attention、Attention Knockout、Token Pruning、量化或训练。环境与第一、第二阶段既有代码/结果保持原样。
+第一阶段推理基线、第二阶段 Prompt Prefill Attention 与 Phase 2.1 Query Position 分析已完成。复用第一阶段加载和输入处理函数，通过 `outputs.attentions` 提取语言模型注意力。Phase 2.1 研究问题 Token、Answer-start 与 Teacher Forcing 的答案预测位置，该阶段没有注册 Hook。新增 Phase 3 为全局逐层 Text→Visual Attention Knockout：CPU 实现测试和真实输入审计已通过，**7B GPU 实验因显存被其他任务占用而尚未执行**。没有实施自由生成 Decode Attention、Token Pruning、量化或训练。环境与前三阶段既有代码/结果保持原样。
 
 ## 文件
 
@@ -22,6 +22,8 @@ vlm_research/
 ├── attention_position_probe.py # Phase 2.1：问题 Token 定位、答案预测偏移、因果分组及前向对照
 ├── compare_query_positions.py  # 离线位置热图、语义目标空间图与问题间对比
 ├── test_attention_positions.py # 真实 Tokenizer 离线对齐与因果/偏移测试
+├── knockout_probe.py           # Phase 3：全局逐层视觉注意力阻断、teacher-forced NLL/KL/候选评分
+├── test_knockout.py            # 当前 Transformers 小型随机 LLaVA + 真实 Tokenizer 的 CPU 测试
 ├── test_images/
 │   ├── example.jpg
 │   └── SOURCE.md
@@ -30,6 +32,50 @@ vlm_research/
 ```
 
 模型文件保存在用户缓存目录，不放入 Git。当前主工程目录之外的 AFAC 文件未因本任务修改。
+
+## Phase 3：逐层 Visual Attention Knockout（GPU 运行待资源空闲）
+
+当前状态和限制见 [Phase 3 报告](results/phase3_knockout/phase3_report.md)。本阶段已获用户授权，但目前只完成代码、CPU 测试、样本整理与真实 Processor 输入审计，不能声称完成 7B Cutoff Sweep 或找到融合饱和深度。
+
+`knockout_probe.py` 继续调用 `vlm_common.load_model()` / `prepare_inputs()`，并复用 Phase 2.1 的 Question 定位、答案编码和直接追加 IDs。输入中的 576 个视觉位置由实际 `input_ids == image_token_index` 定位。对所有层安装 `register_forward_pre_hook(with_kwargs=True)`，层索引 ≥ K 时克隆原始 `[1,1,S,S]` additive mask，将所有后图像文本 Query→视觉 Key 的原合法连接置为 `-inf`；保留非目标连接、因果性及原位置。K=32 安装 no-op Hook，以便与未安装 Hook 的 Baseline 比较。Hook 始终在 context manager 退出时移除，拒绝 KV cache、Decode、非 eager backend 和不符合预期的 Mask。
+
+先做单层阻断验证，再检查 K=32、K=0、K=16，全部 Attention 行的有限性/非负性/归一化、未来与 padding Key 为零、视觉 Query 不变、cutoff 之前层不变、Hook 清理及 output_attentions 开关等价。只保存统计和张量摘要，不保存完整 Attention 矩阵。CPU 随机小模型通过这些检查不等于 7B GPU 通过。
+
+激活原环境，在本目录执行（不安装或下载任何依赖/权重）：
+
+```bash
+# 纯 CPU：本机已缓存 Processor 的真实输入、候选词和 Phase 2.1 前缀审计
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python knockout_probe.py --audit-inputs-only
+
+# 纯 CPU：17 项新测试；加上前两阶段共 34 项
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m unittest \
+  test_attention_probe test_attention_positions test_knockout -v
+
+# GPU 预检：不足 16000 MiB 可用显存时以退出码 2 停止，不尝试加载模型
+CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
+  python knockout_probe.py --preflight-only
+
+# 显存空闲后先完成原颜色问题的校验及全部 8 个 cutoff
+CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
+  python knockout_probe.py --sample-ids street_color \
+  --output-dir ./results/phase3_knockout_color_run
+
+# 或一次加载、先颜色/描述，再执行全部 9 条相关样本
+CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
+  python knockout_probe.py --output-dir ./results/phase3_knockout_gpu_run
+
+# 完成之后从 JSON 离线重绘，不加载模型、不需要 GPU
+python knockout_probe.py --replot-only \
+  --output-dir ./results/phase3_knockout_gpu_run
+```
+
+`configs/phase3_samples.json` 固定 K=[0,8,12,16,20,24,28,32]：2 条原始任务加 7 条补充 QA。新增答案按用户指示由 AI 目视复核，明确 `human_verified=false`。数据只来自一张街景及其水平镜像，不是 9 张独立图片；镜像用于同问题、左右答案相反的空间配对，不用于 OCR。汽车颜色有黑/蓝反光歧义；原生成描述的 fire hydrant 不当作已验证事实。
+
+所有 K 使用同一个 teacher-forced 输入，取 P−1+i 的 logits 预测 a_i；`red` 仍为 Query 598、Target 599。只对答案计算 mean/sum NLL 和 ΔNLL，逐 Token 保存 log P 与全词表 KL(Full || Knockout)。候选词在完整替换答案中重新分词并核对先前 Token 相同；多 Token 候选累加完整条件 log P，记录目标与最强竞争词的差值。不同候选统一右 padding 到相同长度并遮蔽 padding，避免候选间长度变化；这一候选专用长度可能与主参考答案 Forward 不同，候选分数只在候选控制内比较。不同长度候选的 joint log P 本身也带长度偏好，额外保存 Token 数与 mean log P。
+
+GPU 执行后每个 `samples/<id>/` 输出 `correctness_validation.json`（首样本）、Question/Answer mapping、`metrics.json`、`token_statistics.csv`、`sample_statistics.csv`、候选评分与 Margin CSV，以及 NLL/关键 Token/候选 Margin/逐 Token 敏感性四类图。无候选词的任务不生成 Margin 图。JSON 保存每次同步 Forward 时间、allocated/reserved 峰值和 Hook 审计；CSV 也保存正式 Forward 时间和峰值。计时包括 Hook 的 Mask 检查/克隆，不能解释为推理加速。
+
+程序不覆盖已有 `run.json` 或 `samples/`；复跑或部分失败续做应使用新的 output-dir。每个 cutoff 完成后写入 `completed=false` 检查点，全部完成才置 true。GPU 被占用时不会清理其他任务、量化或 offload。16000 MiB 是基于旧阶段约 14.5 GiB 峰值的保守启动门槛，不保证竞争任务变化或其他输入下绝不 OOM；异常记录具体阶段并保留已完成结果。
 
 ## 环境创建
 
