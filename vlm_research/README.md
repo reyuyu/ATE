@@ -1,8 +1,8 @@
-# LLaVA 第一阶段：单卡 FP16 推理基线
+# LLaVA：单卡 FP16 推理与 Prompt Prefill Attention
 
 本工程用于验证 `llava-hf/llava-1.5-7b-hf` 在 RTX 4090 上的正常推理、结构和输入长度。使用 `LlavaForConditionalGeneration`、`AutoProcessor`、FP16、`eager` Attention、`eval()` 和 `torch.inference_mode()`。所有参数必须位于同一张 GPU；加载后会检查参数的设备和精度。
 
-仅实现第一阶段。没有 Attention Hook、Attention Probability 提取、Token Pruning、量化或训练代码。结构记录中的模块路径供后续阶段参考。
+第一阶段推理基线与第二阶段 Prompt Prefill Attention 实验均已完成。第二阶段复用第一阶段加载和输入处理函数，通过 `outputs.attentions` 提取语言模型注意力；没有注册 Hook，没有实现 Decode Attention、Attention Knockout、Token Pruning、量化或训练。环境和第一阶段代码保持原样。
 
 ## 文件
 
@@ -16,6 +16,9 @@ vlm_research/
 ├── inference.py
 ├── inspect_model.py
 ├── validate.py               # A/B/C；同一进程内重复三次
+├── attention_probe.py        # 第二阶段：完整 Prompt Forward、验证、逐层逐 Head 统计和空间图
+├── compare_attention.py      # 读取两个问题的保存结果，离线比较，不加载模型
+├── test_attention_probe.py   # 统计量与空间距离的解析测试，不需要 GPU/权重
 ├── test_images/
 │   ├── example.jpg
 │   └── SOURCE.md
@@ -26,6 +29,8 @@ vlm_research/
 模型文件保存在用户缓存目录，不放入 Git。当前主工程目录之外的 AFAC 文件未因本任务修改。
 
 ## 环境创建
+
+本机已有 `vlm_research` 环境，继续实验只需激活，不要重复创建、下载或升级。下列安装步骤保留为第一阶段和新机器的复现记录。
 
 ```bash
 conda create -n vlm_research python=3.11 -y
@@ -160,6 +165,79 @@ CUDA_VISIBLE_DEVICES=0 python validate.py
 A/B 后进行 C，C 的三次调用之间不执行 `empty_cache()`，不重新加载模型。允许活跃显存波动 1 MiB，检查后两次预留显存是否稳定。三次短测只能说明本次运行的稳定性，不能证明长时间运行绝无泄漏。单个正确回答不作为视觉能力评测。
 
 完整结果保存在 `results/validation.json`，执行输出见 `results/validation.log`；人工核对图像相关性的结论与实测摘要见 `results/phase1_report.md`。
+
+## 第二阶段：Text-to-Visual Attention
+
+实测报告：[phase2_report.md](results/phase2_attention/phase2_report.md)。只分析 batch=1、单图、完整 Prompt 的最后一个 Token Query，**不进行答案生成或 Decode Attention 提取**。这两个 Prompt 的末尾 Token 都是 `ASSISTANT:` 中的 `:`，不是问题中的目标词，也不是生成答案的 Token。
+
+```bash
+source /anaconda3/etc/profile.d/conda.sh
+conda activate vlm_research
+cd /home/zsy/ATE/vlm_research
+
+# 根目录保存颜色问题；description/ 保存图像描述问题。
+CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
+  python attention_probe.py \
+  --image ./test_images/example.jpg \
+  --question "What color is the stop sign?" \
+  --output-dir ./results/phase2_attention
+
+CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
+  python attention_probe.py \
+  --image ./test_images/example.jpg \
+  --question "What is in this image?" \
+  --output-dir ./results/phase2_attention/description
+
+# 以下命令读取已保存的小型结果，不加载模型或运行 GPU Forward。
+python compare_attention.py \
+  --first ./results/phase2_attention/description \
+  --second ./results/phase2_attention \
+  --output-dir ./results/phase2_attention/comparison
+
+python -m unittest -v test_attention_probe.py
+```
+
+`attention_probe.py` 使用现有 `load_model()` / `prepare_inputs()`，保持 FP16、eager、eval、inference_mode 和整模型 cuda:0。对完全相同输入，先执行 `output_attentions=False`，再执行 `True`，两次都设 `use_cache=False, return_dict=True`。比较完整 Prompt logits 和最后位置的下一 Token argmax，不通过 Decode 序列来间接比较。同步计时不含模型加载；对照第一次 Forward 是冷启动，不能把它与后一次 Forward 的时间差解释为 Attention 开关带来的加速。
+
+精确视觉索引来自 `input_ids == model.config.image_token_index`。可访问 Key 同时满足非 padding 和 `key_index <= query_index`。本次所有 576 个图像 Token 都可访问；实际输入长度为 594/595，不写死序列长度。每层检查 `[1,32,S,S]`、完整矩阵有限且非负、当前 Query 的可访问权重和在 `1 ± 0.002` 内，并检查图像占位和实际投影视觉特征 `[1,576,4096]` 一致。
+
+每层每个 Head 保存以下指标（CSV 共 32×32=1024 行）：
+
+| 字段 | 定义 |
+| --- | --- |
+| `visual_attention_mass` | 原始视觉 Key 权重之和 Mv |
+| `nonvisual_attention_mass` | 所有可访问非视觉 Key 权重之和 Mn；包含 BOS、模板与 Query 自身 |
+| `uniform_visual_baseline` | Nv / (Nv + Nn)；本次约 0.970/0.968 |
+| `visual_attention_density_vs_uniform` | D = Mv / baseline；等于视觉每 Token 密度相对于全体均匀分布的比值 |
+| `visual_nonvisual_density_ratio` | R = (Mv/Nv) / (Mn/Nn + 1e-12) |
+| `visual_entropy_nats` | 对视觉内部条件分布 p=a/Mv 计算 -Σp ln p；额外保存除以 ln(Nv) 的归一化值 |
+| `top10_visual_attention_mass` | 最大 ceil(0.1×Nv)=58 个 Patch 的原始权重之和；另存除以 Mv 的条件份额 |
+
+D=1 和 R=1 分别是相应的等密度参考值。层曲线是逐 Head 指标的算术平均，**mean(R_head) 不等于先平均质量后求 R**；阴影为跨 Head 标准差，不是统计置信区间。视觉质量为 0 时，条件熵的存储值为 0，并以 `visual_entropy_defined=False` 标为未定义。
+
+每个问题的输出目录均包含：
+
+```text
+attention_statistics.csv/json              # 逐 Head 指标、输入索引、定义、形状/数值验证、时间与显存
+layer_statistics.csv                      # 逐层平均/标准差
+layer_visual_attention_mass.png            # 原始视觉质量与 Token 数量均匀基线
+layer_normalized_attention.png             # D 与 R 曲线，R 使用对数纵轴
+head_layer_attention_heatmap.png            # Layer×Head 的质量、D、R（R 对数色标）
+clip_processed_image.png                   # 实际 FP16 pixel_values 反归一化后的 336×336 RGB
+spatial_attention_layer_XX.png             # 原始质量标注 + 24×24 图 + 336×336 叠图
+spatial_attention_grid_layer_XX.png         # 不叠加图像、精确 24×24 像素的彩色 Grid
+spatial_attention_layer_XX.npy              # Head 平均的原始 24×24 Patch 权重
+query_visual_attention.npy                 # [32,32,576]，仅最后 Query 的视觉权重
+query_nonvisual_attention.npy              # [32,32,Nn]，非视觉权重；Key 顺序见 JSON
+```
+
+空间层为 `[0,4,8,12,16,20,24,28,31]`（从 0 编号）。CLIP 对原图先按短边 Resize，再 Center Crop；叠图直接反归一化真实输入张量，包含 FP16 和 uint8 的舍入误差，不使用原图坐标。Patch 按 CLIP 卷积输出的行优先顺序恢复，CLS 已移除。空间图仅在显示时除以本层最大值，原始质量在面板标题中标注，原始概率另存 NPY；单独 24×24 PNG 的质量与色标应参照同层面板和统计表，不能独立比较亮度。
+
+`comparison/` 保存两个问题的质量/D/R 曲线、空间叠图并排图、共享色标的条件空间差值图，以及每层 TV、JS 散度、余弦相似度的 CSV/JSON。空间比较先将每个 Head 平均的视觉图除以各自视觉总质量，方向为第二个问题减第一个问题；它只比较视觉内部空间分布，不替代原始质量。两个问题的 Token 数也不同，不能将差异完全归因于问题语义。
+
+不向磁盘保存完整 S×S Attention。Forward 返回全部层后移除 ModelOutput 的引用，逐层只复制最后 Query 的小型向量到 CPU，聚合后释放该层 GPU 矩阵。记录 Forward 和验证阶段的 PyTorch allocated/reserved 峰值，驱动进程显存只是采样值。若 OOM，会在 `failure.json` 记录发生阶段和显存；先排查 GPU 占用/输入，再评估逐层提取，不自动量化或 CPU offload。
+
+本阶段结论只描述最后模板 Token 的 Attention。BOS 集中与背景 Patch 热点不证明信息被文本吸收，也不证明任何层之后可安全删除视觉 Token。第二阶段完成后停止，未开展 Attention Knockout。
 
 ## 常见问题
 

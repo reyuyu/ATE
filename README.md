@@ -1,8 +1,10 @@
 # ATE：视觉语言模型 Attention 与视觉信息流研究
 
-当前完成第一阶段：在单张 RTX 4090 上验证 LLaVA 1.5 的完整 FP16 图文推理，并记录后续分析所需的模型结构。第二阶段尚未开始。
+当前已完成第一阶段单卡 FP16 推理基线，以及第二阶段两个问题的 Prompt Prefill Text-to-Visual Attention 提取、数值校验和可视化。
 
 工程位于 [`vlm_research/`](vlm_research/)。环境安装、权重下载和常见问题见 [工程说明](vlm_research/README.md)，真实耗时、显存和回答见 [第一阶段实测报告](vlm_research/results/phase1_report.md)。
+
+第二阶段结果见 [实验报告](vlm_research/results/phase2_attention/phase2_report.md)：32 层 Attention、逐 Head 统计、24×24 Patch 热图与两个问题的比较。原有环境、模型配置与第一阶段脚本未改变。
 
 ## 已验证基线
 
@@ -33,4 +35,4 @@ CUDA_VISIBLE_DEVICES=0 python inspect_model.py
 CUDA_VISIBLE_DEVICES=0 python validate.py
 ```
 
-测试图片来源见 [SOURCE.md](vlm_research/test_images/SOURCE.md)。阶段一只验证推理流程，不把单张图片回答作为能力评测。没有实现 Attention Hook、Token Pruning 或训练；逐层 Attention 提取等待用户确认后再开展。
+测试图片来源见 [SOURCE.md](vlm_research/test_images/SOURCE.md)。阶段一只验证推理流程，不把单张图片回答作为能力评测。阶段二只做描述性 Attention 观察，没有实现 Attention Hook、Knockout、Token Pruning 或训练；不据此宣称视觉信息已被文本吸收或视觉 Token 可以安全删除。
