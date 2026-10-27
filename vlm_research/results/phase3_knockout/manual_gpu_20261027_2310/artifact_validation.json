@@ -1,0 +1,76 @@
+{
+  "passed": true,
+  "checks": "Completed manifest, FP16 single GPU, all cutoffs, per-layer hook audit, finite token metrics, next-token alignment, exact K32 token metrics, expected plots",
+  "samples": [
+    {
+      "sample": "street_color",
+      "cutoffs": 8,
+      "token_rows": 48,
+      "candidate_rows": 40
+    },
+    {
+      "sample": "street_description",
+      "cutoffs": 8,
+      "token_rows": 400,
+      "candidate_rows": 0
+    },
+    {
+      "sample": "street_animal",
+      "cutoffs": 8,
+      "token_rows": 32,
+      "candidate_rows": 0
+    },
+    {
+      "sample": "street_letters_color",
+      "cutoffs": 8,
+      "token_rows": 16,
+      "candidate_rows": 32
+    },
+    {
+      "sample": "street_ocr",
+      "cutoffs": 8,
+      "token_rows": 24,
+      "candidate_rows": 0
+    },
+    {
+      "sample": "street_spatial_left",
+      "cutoffs": 8,
+      "token_rows": 32,
+      "candidate_rows": 16
+    },
+    {
+      "sample": "street_car_color",
+      "cutoffs": 8,
+      "token_rows": 16,
+      "candidate_rows": 32
+    },
+    {
+      "sample": "street_sign_shape",
+      "cutoffs": 8,
+      "token_rows": 32,
+      "candidate_rows": 0
+    },
+    {
+      "sample": "street_spatial_right_mirrored",
+      "cutoffs": 8,
+      "token_rows": 32,
+      "candidate_rows": 16
+    }
+  ],
+  "gpu_after_process_exit": "index, memory.used [MiB], memory.free [MiB], utilization.gpu [%]\n0, 75 MiB, 24006 MiB, 0 %\n1, 22951 MiB, 1132 MiB, 100 %\n",
+  "prior_phase_results_changed": false,
+  "protected_tracked_paths_checked": [
+    "vlm_common.py",
+    "inference.py",
+    "inspect_model.py",
+    "attention_probe.py",
+    "attention_position_probe.py",
+    "requirements.txt",
+    "requirements-lock.txt",
+    "configs/model.json",
+    "results/phase2_attention",
+    "results/phase2_1_attention",
+    "results/validation.json",
+    "results/phase1_report.md"
+  ]
+}

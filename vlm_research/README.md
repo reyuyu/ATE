@@ -33,13 +33,15 @@ vlm_research/
 
 模型文件保存在用户缓存目录，不放入 Git。当前主工程目录之外的 AFAC 文件未因本任务修改。
 
-## Phase 3：逐层 Visual Attention Knockout（GPU 运行待资源空闲）
+## Phase 3：逐层 Visual Attention Knockout（小规模 GPU 实测完成）
 
 2026-10-27 18:17（Asia/Shanghai），应用户要求取消自动轮询，改为用户手动检查 GPU。已执行 `phase3_watch.py --disable`，确认状态为 `disabled`，本任务 cron 条目已移除，其他定时任务保留。取消时尚未自动启动 Phase 3；后续不会自动检查 GPU 或触发实验。轮询代码保留，但不得自行重新启用。
 
 状态记录：`/home/zsy/.local/state/ate-phase3-watch/status.json`；[最新运行入口](results/phase3_knockout/LATEST.md)。
 
-当前状态和限制见 [Phase 3 报告](results/phase3_knockout/phase3_report.md)。本阶段已获用户授权，但目前只完成代码、CPU 测试、样本整理与真实 Processor 输入审计，不能声称完成 7B Cutoff Sweep 或找到融合饱和深度。
+2026-10-27 23:10，用户明确要求继续后，在 GPU 0 手动执行现有全部 9 条 QA × 8 个 cutoff，真实 7B 正确性与 K=32 基线等价通过（logits 最大绝对差 0），44 项回归测试通过。峰值 allocated 14344.958 MiB，正式 Forward 峰值 allocated 13649.285 MiB，reserved 峰值 14544 MiB；包含加载/校验/绘图的完整实验 42.201 秒。没有更改环境、权重或旧阶段结果。
+
+实测数据在 [manual_gpu_20261027_2310](results/phase3_knockout/manual_gpu_20261027_2310/phase3_report.md)，分析与解释边界见 [Phase 3 报告](results/phase3_knockout/phase3_report.md)。描述任务 K=16 的 Δmean NLL=0.509531，K=28 为 0.002213，但 stop Token 在 K=28 仍增加 0.435381 nats；各样本存在明显非单调变化。没有确定通用融合饱和深度，不能据此宣称安全删除视觉 Token。新增标注仍为 AI 复核，样本实际仅一张街景及其镜像。完成后停在 Phase 3，自动轮询保持关闭。
 
 `knockout_probe.py` 继续调用 `vlm_common.load_model()` / `prepare_inputs()`，并复用 Phase 2.1 的 Question 定位、答案编码和直接追加 IDs。输入中的 576 个视觉位置由实际 `input_ids == image_token_index` 定位。对所有层安装 `register_forward_pre_hook(with_kwargs=True)`，层索引 ≥ K 时克隆原始 `[1,1,S,S]` additive mask，将所有后图像文本 Query→视觉 Key 的原合法连接置为 `-inf`；保留非目标连接、因果性及原位置。K=32 安装 no-op Hook，以便与未安装 Hook 的 Baseline 比较。Hook 始终在 context manager 退出时移除，拒绝 KV cache、Decode、非 eager backend 和不符合预期的 Mask。
 
@@ -80,6 +82,15 @@ python knockout_probe.py --replot-only \
 GPU 执行后每个 `samples/<id>/` 输出 `correctness_validation.json`（首样本）、Question/Answer mapping、`metrics.json`、`token_statistics.csv`、`sample_statistics.csv`、候选评分与 Margin CSV，以及 NLL/关键 Token/候选 Margin/逐 Token 敏感性四类图。无候选词的任务不生成 Margin 图。JSON 保存每次同步 Forward 时间、allocated/reserved 峰值和 Hook 审计；CSV 也保存正式 Forward 时间和峰值。计时包括 Hook 的 Mask 检查/克隆，不能解释为推理加速。
 
 程序不覆盖已有 `run.json` 或 `samples/`；复跑或部分失败续做应使用新的 output-dir。每个 cutoff 完成后写入 `completed=false` 检查点，全部完成才置 true。GPU 被占用时不会清理其他任务、量化或 offload。16000 MiB 是基于旧阶段约 14.5 GiB 峰值的保守启动门槛，不保证竞争任务变化或其他输入下绝不 OOM；异常记录具体阶段并保留已完成结果。
+
+离线汇总已完成运行（不加载模型、不使用 GPU）：
+
+```bash
+python compare_knockout.py \
+  --run-dir ./results/phase3_knockout/manual_gpu_20261027_2310
+```
+
+输出跨样本 NLL 热图、颜色/描述逐 Token 对比、真实资源汇总 JSON，以及与历史 Phase 2.1 同 Query Attention 的对照 CSV。后缀各层 Attention Mass 求和仅作描述，不是概率或单层因果效应。准备阶段原报告完整保存在 `results/phase3_knockout/phase3_preparation_report.md`。
 
 ## 环境创建
 

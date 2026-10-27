@@ -1,0 +1,228 @@
+{
+  "completed": true,
+  "loading": {
+    "python": "3.11.18",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "cuda_runtime": "12.4",
+    "cudnn": 90100,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "cuda_visible_devices": "0",
+    "model_id": "llava-hf/llava-1.5-7b-hf",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_path": "/home/zsy/.cache/huggingface/manual/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "load_seconds": 4.660386545001529,
+    "parameter_devices": [
+      "cuda:0"
+    ],
+    "parameter_dtypes": [
+      "torch.float16"
+    ],
+    "hf_device_map": {
+      "": "cuda:0"
+    },
+    "memory_after_load": {
+      "allocated_mib": 13473.64794921875,
+      "reserved_mib": 13490.0,
+      "peak_allocated_mib": 13473.64794921875,
+      "peak_reserved_mib": 13490.0,
+      "device_free_mib": 10059.6875,
+      "device_total_mib": 24079.875,
+      "nvidia_smi_process_mib": 13938
+    }
+  },
+  "manifest": {
+    "schema_version": 1,
+    "cutoffs": [
+      0,
+      8,
+      12,
+      16,
+      20,
+      24,
+      28,
+      32
+    ],
+    "annotation_policy": "No new human verification is claimed. User delegated answer checks to the assistant. One original natural image plus one mirrored derivative; correlated questions are not independent test images.",
+    "original_image_source": "https://www.ilankelman.org/stopsigns/australia.jpg",
+    "samples": [
+      {
+        "id": "street_color",
+        "category": "color_attribute",
+        "image": "test_images/example.jpg",
+        "question": "What color is the stop sign?",
+        "answer": "The stop sign is red.",
+        "key_phrases": [
+          "red"
+        ],
+        "candidate_phrase": "red",
+        "candidates": [
+          "blue",
+          "green",
+          "yellow",
+          "light blue"
+        ],
+        "annotation_source": "user_supplied_reference_assistant_visual_review",
+        "human_verified": false,
+        "phase2_1_reference": "results/phase2_1_attention",
+        "notes": "Canonical stop-sign color is a language prior; not standalone evidence of image dependence."
+      },
+      {
+        "id": "street_description",
+        "category": "description",
+        "image": "test_images/example.jpg",
+        "question": "What is in this image?",
+        "answer": "The image features a city street with a stop sign, a lion statue, and a red building. There is a black car driving down the street, and a person is walking nearby. The scene also includes a tree and a fire hydrant.",
+        "key_phrases": [
+          "stop sign",
+          "lion statue",
+          "red",
+          "black"
+        ],
+        "annotation_source": "phase1_model_generated_trajectory",
+        "human_verified": false,
+        "phase2_1_reference": "results/phase2_1_attention/description",
+        "notes": "Original generated trajectory retained for exact Phase 2.1 comparison. Fire hydrant is not visually established; this is NOT a factual ground-truth description."
+      },
+      {
+        "id": "street_animal",
+        "category": "object_recognition",
+        "image": "test_images/example.jpg",
+        "question": "What animal is represented by the stone statue?",
+        "answer": "A lion.",
+        "key_phrases": [
+          "lion"
+        ],
+        "annotation_source": "assistant_visual_review_user_delegated",
+        "human_verified": false,
+        "review_basis": "Assistant inspected original 1300x876 and actual Phase 2.1 CLIP 336x336 image; user explicitly delegated confirmation."
+      },
+      {
+        "id": "street_letters_color",
+        "category": "color_attribute",
+        "image": "test_images/example.jpg",
+        "question": "What color are the letters on the large stop sign?",
+        "answer": "White.",
+        "key_phrases": [
+          "White"
+        ],
+        "annotation_source": "assistant_visual_review_user_delegated",
+        "human_verified": false,
+        "review_basis": "Assistant inspected original 1300x876 and actual Phase 2.1 CLIP 336x336 image; user explicitly delegated confirmation.",
+        "candidate_phrase": "White",
+        "candidates": [
+          "Red",
+          "Black",
+          "Green"
+        ]
+      },
+      {
+        "id": "street_ocr",
+        "category": "ocr",
+        "image": "test_images/example.jpg",
+        "question": "What word is written on the large traffic sign?",
+        "answer": "STOP.",
+        "key_phrases": [
+          "STOP"
+        ],
+        "annotation_source": "assistant_visual_review_user_delegated",
+        "human_verified": false,
+        "review_basis": "Assistant inspected original 1300x876 and actual Phase 2.1 CLIP 336x336 image; user explicitly delegated confirmation."
+      },
+      {
+        "id": "street_spatial_left",
+        "category": "spatial_relation",
+        "image": "test_images/example.jpg",
+        "question": "Is the large stop sign to the left or right of the black car?",
+        "answer": "To the left.",
+        "key_phrases": [
+          "left"
+        ],
+        "annotation_source": "assistant_visual_review_user_delegated",
+        "human_verified": false,
+        "review_basis": "Assistant inspected original 1300x876 and actual Phase 2.1 CLIP 336x336 image; user explicitly delegated confirmation.",
+        "pair_id": "street_spatial_flip",
+        "candidate_phrase": "left",
+        "candidates": [
+          "right"
+        ]
+      },
+      {
+        "id": "street_car_color",
+        "category": "color_attribute",
+        "image": "test_images/example.jpg",
+        "question": "What color is the car?",
+        "answer": "Black.",
+        "key_phrases": [
+          "Black"
+        ],
+        "annotation_source": "assistant_visual_review_user_delegated",
+        "human_verified": false,
+        "review_basis": "Assistant inspected original 1300x876 and actual Phase 2.1 CLIP 336x336 image; user explicitly delegated confirmation.",
+        "candidate_phrase": "Black",
+        "candidates": [
+          "Blue",
+          "White",
+          "Red"
+        ],
+        "notes": "Paint appears black/dark with blue reflections; black-vs-blue label ambiguity must be considered; no human annotation certification."
+      },
+      {
+        "id": "street_sign_shape",
+        "category": "shape_attribute",
+        "image": "test_images/example.jpg",
+        "question": "What shape is the large stop sign?",
+        "answer": "An octagon.",
+        "key_phrases": [
+          "octagon"
+        ],
+        "annotation_source": "assistant_visual_review_user_delegated",
+        "human_verified": false,
+        "review_basis": "Assistant inspected original 1300x876 and actual Phase 2.1 CLIP 336x336 image; user explicitly delegated confirmation.",
+        "notes": "The CLIP center crop clips the far-left edge of the sign; original image shows an octagon."
+      },
+      {
+        "id": "street_spatial_right_mirrored",
+        "category": "spatial_relation",
+        "image": "test_images/phase3/street_mirrored.png",
+        "question": "Is the large stop sign to the left or right of the black car?",
+        "answer": "To the right.",
+        "key_phrases": [
+          "right"
+        ],
+        "annotation_source": "assistant_visual_review_user_delegated",
+        "human_verified": false,
+        "review_basis": "Assistant inspected original 1300x876 and actual Phase 2.1 CLIP 336x336 image; user explicitly delegated confirmation.",
+        "pair_id": "street_spatial_flip",
+        "notes": "Deterministic horizontal mirror, NOT an independent natural image. OCR is mirrored too; only spatial-relation QA is used.",
+        "candidate_phrase": "right",
+        "candidates": [
+          "left"
+        ]
+      }
+    ]
+  },
+  "cutoffs": [
+    0,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32
+  ],
+  "samples_completed": [
+    "street_color",
+    "street_description",
+    "street_animal",
+    "street_letters_color",
+    "street_ocr",
+    "street_spatial_left",
+    "street_car_color",
+    "street_sign_shape",
+    "street_spatial_right_mirrored"
+  ],
+  "git_base": "22dbd898bdf4deb52010247cb760d0ff576b5e46",
+  "total_wall_seconds_including_load": 42.2006171689718
+}
