@@ -1,0 +1,56 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:00<00:01,  1.04it/s]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:02<00:01,  1.04s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.00s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:03<00:00,  1.01s/it]
+{
+  "model_id": "llava-hf/llava-1.5-7b-hf",
+  "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "model_class": "LlavaForConditionalGeneration",
+  "checkpoint_transformers_version": "4.36.0.dev0",
+  "runtime_transformers_version": "4.49.0",
+  "parameters_total": 7063427072,
+  "parameters_vision": 303507456,
+  "parameters_projector": 20979712,
+  "parameters_language_model": 6738939904,
+  "parameter_bytes": 14126854144,
+  "vision_encoder_class": "CLIPVisionModel",
+  "vision_model_type": "clip_vision_model",
+  "vision_layers": 24,
+  "vision_hidden_size": 1024,
+  "vision_feature_dimension_before_projector": 1024,
+  "vision_feature_dimension_after_projector": 4096,
+  "vision_feature_layer": -2,
+  "vision_feature_select_strategy": "default",
+  "vision_patch_size": 14,
+  "vision_image_size": 336,
+  "vision_cls_tokens_before_selection": 1,
+  "language_model_class": "LlamaForCausalLM",
+  "language_model_config_name": "lmsys/vicuna-7b-v1.5",
+  "language_model_type": "llama",
+  "llm_transformer_layers": 32,
+  "llm_hidden_size": 4096,
+  "llm_attention_heads": 32,
+  "llm_kv_heads": 32,
+  "llm_attention_implementation": "eager",
+  "vision_attention_implementation": "eager",
+  "image_token_id": 32000,
+  "max_position_embeddings": 4096,
+  "module_paths_for_future_reference": {
+    "vision": "vision_tower.vision_model.encoder.layers",
+    "projector": "multi_modal_projector",
+    "llm": "language_model.model.layers"
+  },
+  "question_for_token_counts": "What is in this image?",
+  "visual_tokens": 576,
+  "llm_input_tokens": 594,
+  "non_visual_tokens_including_special": 18,
+  "pixel_values_shape": [
+    1,
+    3,
+    336,
+    336
+  ],
+  "original_image_size": [
+    1300,
+    876
+  ]
+}
+Saved: ./results/model_structure_cli.json

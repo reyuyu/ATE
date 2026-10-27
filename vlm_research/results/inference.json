@@ -1,0 +1,129 @@
+{
+  "loading": {
+    "python": "3.11.18",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "cuda_runtime": "12.4",
+    "cudnn": 90100,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "cuda_visible_devices": "0",
+    "model_id": "llava-hf/llava-1.5-7b-hf",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_path": "/home/zsy/.cache/huggingface/manual/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "load_seconds": 4.270131707016844,
+    "parameter_devices": [
+      "cuda:0"
+    ],
+    "parameter_dtypes": [
+      "torch.float16"
+    ],
+    "hf_device_map": {
+      "": "cuda:0"
+    },
+    "memory_after_load": {
+      "allocated_mib": 13473.64794921875,
+      "reserved_mib": 13490.0,
+      "peak_allocated_mib": 13473.64794921875,
+      "peak_reserved_mib": 13490.0,
+      "device_free_mib": 10059.6875,
+      "device_total_mib": 24079.875,
+      "nvidia_smi_process_mib": 13938
+    }
+  },
+  "result": {
+    "image": "/home/zsy/AFAC/vlm_research/test_images/example.jpg",
+    "question": "What is in this image?",
+    "answer": "The image features a city street with a stop sign, a lion statue, and a red building. There is a black car driving down the street, and a person is walking nearby. The scene also includes a tree and a fire hydrant.",
+    "new_token_ids": [
+      450,
+      1967,
+      5680,
+      263,
+      4272,
+      11952,
+      411,
+      263,
+      5040,
+      1804,
+      29892,
+      263,
+      301,
+      291,
+      24870,
+      29892,
+      322,
+      263,
+      2654,
+      5214,
+      29889,
+      1670,
+      338,
+      263,
+      4628,
+      1559,
+      19500,
+      1623,
+      278,
+      11952,
+      29892,
+      322,
+      263,
+      2022,
+      338,
+      22049,
+      20810,
+      29889,
+      450,
+      9088,
+      884,
+      7805,
+      263,
+      5447,
+      322,
+      263,
+      3974,
+      27246,
+      21867,
+      29889,
+      2
+    ],
+    "new_tokens": 51,
+    "max_new_tokens": 64,
+    "do_sample": false,
+    "generation_seconds": 1.2416757789906114,
+    "preprocess_seconds": 0.020354850043077022,
+    "preprocess_and_generation_seconds": 1.2620306290336885,
+    "scores_all_finite": true,
+    "visual_tokens": 576,
+    "llm_input_tokens": 594,
+    "non_visual_tokens_including_special": 18,
+    "pixel_values_shape": [
+      1,
+      3,
+      336,
+      336
+    ],
+    "original_image_size": [
+      1300,
+      876
+    ],
+    "inference_memory": {
+      "allocated_mib": 13834.5595703125,
+      "reserved_mib": 13984.0,
+      "peak_allocated_mib": 13915.1015625,
+      "peak_reserved_mib": 13984.0,
+      "device_free_mib": 9521.6875,
+      "device_total_mib": 24079.875,
+      "nvidia_smi_process_mib": 14476
+    },
+    "memory_after_cleanup": {
+      "allocated_mib": 13505.64794921875,
+      "reserved_mib": 13984.0,
+      "peak_allocated_mib": 13915.1015625,
+      "peak_reserved_mib": 13984.0,
+      "device_free_mib": 9521.6875,
+      "device_total_mib": 24079.875,
+      "nvidia_smi_process_mib": 14476
+    }
+  }
+}
