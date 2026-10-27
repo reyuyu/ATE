@@ -35,9 +35,9 @@ vlm_research/
 
 ## Phase 3：逐层 Visual Attention Knockout（GPU 运行待资源空闲）
 
-用户已授权每 15 分钟自动检查 GPU 并在资源可用时继续 Phase 3。服务器 cron 调用 `phase3_watch.py`，独立检查两张 GPU；任一卡 NVML free ≥16000 MiB 时选择该卡，再由原程序执行 CUDA 显存预检。检查期间不导入 torch、不加载权重、不操作其他进程。实验固定为现有全部 9 条 QA 与 8 个 cutoff，首次样本先做真实 7B Hook/Mask 校验；成功后执行回归测试并提交/推送，失败则保存诊断并停止。文件锁防止重复执行；完成、失败或中断状态都会停止轮询并移除本任务的 cron 条目，其他定时任务保留。
+2026-10-27 18:17（Asia/Shanghai），应用户要求取消自动轮询，改为用户手动检查 GPU。已执行 `phase3_watch.py --disable`，确认状态为 `disabled`，本任务 cron 条目已移除，其他定时任务保留。取消时尚未自动启动 Phase 3；后续不会自动检查 GPU 或触发实验。轮询代码保留，但不得自行重新启用。
 
-实时状态：`/home/zsy/.local/state/ate-phase3-watch/status.json`；事件与推送日志在同目录。结果发布后更新 [最新运行入口](results/phase3_knockout/LATEST.md)。可用 `/usr/bin/python3 /home/zsy/ATE/vlm_research/phase3_watch.py --status` 查询；尚未触发时可用 `--disable` 停止轮询。机器须保持开机且 cron 服务运行，不依赖聊天窗口；支持重启后的继续检查。运行被中断时保留部分数据，不盲目重跑。
+状态记录：`/home/zsy/.local/state/ate-phase3-watch/status.json`；[最新运行入口](results/phase3_knockout/LATEST.md)。
 
 当前状态和限制见 [Phase 3 报告](results/phase3_knockout/phase3_report.md)。本阶段已获用户授权，但目前只完成代码、CPU 测试、样本整理与真实 Processor 输入审计，不能声称完成 7B Cutoff Sweep 或找到融合饱和深度。
 
