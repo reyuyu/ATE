@@ -1,0 +1,116 @@
+{
+  "teacher_vs_prompt_last_logits": {
+    "shape": [
+      32064
+    ],
+    "exact_equal": false,
+    "max_abs_difference": 0.015625,
+    "mean_abs_difference": 0.0024616575954173377,
+    "max_row_l1_difference": 78.93058913946152,
+    "atol": 0.02,
+    "rtol": 0.002,
+    "allclose": true
+  },
+  "teacher_vs_prompt_last_attention": {
+    "shape": [
+      32,
+      32,
+      595
+    ],
+    "exact_equal": false,
+    "max_abs_difference": 0.002197265625,
+    "mean_abs_difference": 1.1580485553175461e-06,
+    "max_row_l1_difference": 0.005699217319488525,
+    "atol": 0.003,
+    "rtol": 0.005,
+    "allclose": true
+  },
+  "strict_cross_length_diagnostic": {
+    "comparison": {
+      "shape": [
+        32,
+        32,
+        595
+      ],
+      "exact_equal": false,
+      "max_abs_difference": 0.002197265625,
+      "mean_abs_difference": 1.1580485553175461e-06,
+      "max_row_l1_difference": 0.005699217319488525,
+      "atol": 0.0005,
+      "rtol": 0.005,
+      "allclose": false
+    }
+  },
+  "first_target_argmax_equal": true,
+  "same_length_masked_prompt_vs_teacher_logits": {
+    "shape": [
+      32064
+    ],
+    "exact_equal": true,
+    "max_abs_difference": 0.0,
+    "mean_abs_difference": 0.0,
+    "max_row_l1_difference": 0.0,
+    "atol": 0,
+    "rtol": 0,
+    "allclose": true
+  },
+  "same_length_masked_prompt_vs_teacher_prefix_attention": {
+    "shape": [
+      32,
+      32,
+      595
+    ],
+    "exact_equal": true,
+    "max_abs_difference": 0.0,
+    "mean_abs_difference": 0.0,
+    "max_row_l1_difference": 0.0,
+    "atol": 0,
+    "rtol": 0,
+    "allclose": true
+  },
+  "equal_length_actual_prefix_causal_masks_equal": true,
+  "prompt_vs_phase2_visual": {
+    "shape": [
+      32,
+      32,
+      576
+    ],
+    "exact_equal": true,
+    "max_abs_difference": 0.0,
+    "mean_abs_difference": 0.0,
+    "max_row_l1_difference": 0.0,
+    "atol": 0.0005,
+    "rtol": 0.005,
+    "allclose": true
+  },
+  "teacher_vs_phase2_visual": {
+    "shape": [
+      32,
+      32,
+      576
+    ],
+    "exact_equal": false,
+    "max_abs_difference": 0.0003662109375,
+    "mean_abs_difference": 2.2339312029847255e-07,
+    "max_row_l1_difference": 0.0019683241844177246,
+    "atol": 0.003,
+    "rtol": 0.005,
+    "allclose": true
+  },
+  "teacher_vs_phase2_nonvisual": {
+    "shape": [
+      32,
+      32,
+      19
+    ],
+    "exact_equal": false,
+    "max_abs_difference": 0.002197265625,
+    "mean_abs_difference": 2.9492865953790514e-05,
+    "max_row_l1_difference": 0.004588067531585693,
+    "atol": 0.003,
+    "rtol": 0.005,
+    "allclose": true
+  },
+  "cross_length_row_l1_limit": 0.02,
+  "cross_length_row_l1_passed": true
+}

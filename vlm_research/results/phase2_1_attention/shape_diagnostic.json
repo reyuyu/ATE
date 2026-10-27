@@ -1,0 +1,71 @@
+{
+  "prompt_length": 595,
+  "teacher_length": 601,
+  "prompt_prefix_ids_equal": true,
+  "prefix_masks_equal": true,
+  "pixels_same_object": true,
+  "prefix_default_position_ids_equal": true,
+  "shape_matched_teacher_vs_padded_logits": {
+    "shape": [
+      1,
+      32064
+    ],
+    "exact_equal": true,
+    "max_abs_difference": 0.0,
+    "mean_abs_difference": 0.0,
+    "atol": 0,
+    "rtol": 0,
+    "allclose": true
+  },
+  "shape_matched_teacher_vs_padded_prefix_attention": {
+    "shape": [
+      32,
+      32,
+      1,
+      595
+    ],
+    "exact_equal": true,
+    "max_abs_difference": 0.0,
+    "mean_abs_difference": 0.0,
+    "atol": 0,
+    "rtol": 0,
+    "allclose": true
+  },
+  "actual_prefix_causal_masks_equal": true,
+  "all_selected_future_attention_zero": true,
+  "unmatched_shape_logits": {
+    "shape": [
+      1,
+      32064
+    ],
+    "exact_equal": false,
+    "max_abs_difference": 0.015625,
+    "mean_abs_difference": 0.0024616575954173377,
+    "atol": 0.02,
+    "rtol": 0.002,
+    "allclose": true
+  },
+  "unmatched_shape_attention": {
+    "shape": [
+      32,
+      32,
+      595
+    ],
+    "exact_equal": false,
+    "max_abs_difference": 0.002197265625,
+    "mean_abs_difference": 1.1580485553175461e-06,
+    "atol": 0.0005,
+    "rtol": 0.005,
+    "allclose": false
+  },
+  "max_diff_location_layer_head_key": [
+    27,
+    7,
+    591
+  ],
+  "max_diff_key_token": "SS",
+  "prompt_weight": 0.26171875,
+  "teacher_weight": 0.263916015625,
+  "max_prefix_row_l1_difference": 0.005699217319488525,
+  "causal_masks_source": "Installed Transformers 4.49.0 LlamaModel static mask builder; no hooks or source edits"
+}

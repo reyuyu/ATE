@@ -1,8 +1,8 @@
-# LLaVA：单卡 FP16 推理与 Prompt Prefill Attention
+# LLaVA：单卡推理与 Question / Answer Prediction Attention
 
 本工程用于验证 `llava-hf/llava-1.5-7b-hf` 在 RTX 4090 上的正常推理、结构和输入长度。使用 `LlavaForConditionalGeneration`、`AutoProcessor`、FP16、`eager` Attention、`eval()` 和 `torch.inference_mode()`。所有参数必须位于同一张 GPU；加载后会检查参数的设备和精度。
 
-第一阶段推理基线与第二阶段 Prompt Prefill Attention 实验均已完成。第二阶段复用第一阶段加载和输入处理函数，通过 `outputs.attentions` 提取语言模型注意力；没有注册 Hook，没有实现 Decode Attention、Attention Knockout、Token Pruning、量化或训练。环境和第一阶段代码保持原样。
+第一阶段推理基线、第二阶段 Prompt Prefill Attention 与 Phase 2.1 Query Position 分析已完成。复用第一阶段加载和输入处理函数，通过 `outputs.attentions` 提取语言模型注意力。Phase 2.1 研究问题 Token、Answer-start 与 Teacher Forcing 的答案预测位置；没有注册 Hook，没有实现自由生成 Decode Attention、Attention Knockout、Token Pruning、量化或训练。环境与第一、第二阶段既有代码/结果保持原样。
 
 ## 文件
 
@@ -19,6 +19,9 @@ vlm_research/
 ├── attention_probe.py        # 第二阶段：完整 Prompt Forward、验证、逐层逐 Head 统计和空间图
 ├── compare_attention.py      # 读取两个问题的保存结果，离线比较，不加载模型
 ├── test_attention_probe.py   # 统计量与空间距离的解析测试，不需要 GPU/权重
+├── attention_position_probe.py # Phase 2.1：问题 Token 定位、答案预测偏移、因果分组及前向对照
+├── compare_query_positions.py  # 离线位置热图、语义目标空间图与问题间对比
+├── test_attention_positions.py # 真实 Tokenizer 离线对齐与因果/偏移测试
 ├── test_images/
 │   ├── example.jpg
 │   └── SOURCE.md
@@ -238,6 +241,105 @@ query_nonvisual_attention.npy              # [32,32,Nn]，非视觉权重；Key 
 不向磁盘保存完整 S×S Attention。Forward 返回全部层后移除 ModelOutput 的引用，逐层只复制最后 Query 的小型向量到 CPU，聚合后释放该层 GPU 矩阵。记录 Forward 和验证阶段的 PyTorch allocated/reserved 峰值，驱动进程显存只是采样值。若 OOM，会在 `failure.json` 记录发生阶段和显存；先排查 GPU 占用/输入，再评估逐层提取，不自动量化或 CPU offload。
 
 本阶段结论只描述最后模板 Token 的 Attention。BOS 集中与背景 Patch 热点不证明信息被文本吸收，也不证明任何层之后可安全删除视觉 Token。第二阶段完成后停止，未开展 Attention Knockout。
+
+## Phase 2.1：Question 与 Answer Prediction
+
+报告：[phase2_1_report.md](results/phase2_1_attention/phase2_1_report.md)。新阶段不覆盖 `results/phase2_attention/`，直接导入已有 `key_masks()`、`summarize_rows()`、`layer_summary()`、`make_plots()` 和空间距离函数。无需修改或重装环境。
+
+```bash
+conda activate vlm_research
+cd /home/zsy/ATE/vlm_research
+
+CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
+  python attention_position_probe.py \
+  --image ./test_images/example.jpg \
+  --question "What color is the stop sign?" \
+  --answer "The stop sign is red." \
+  --answer-source ground_truth_teacher_forced \
+  --query-mode all \
+  --content-phrases color "stop sign" \
+  --semantic-answer-phrases red \
+  --output-dir ./results/phase2_1_attention
+
+HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
+  python -m unittest -v test_attention_probe.py test_attention_positions.py
+```
+
+分析类型：
+
+| `--query-mode` | 分析位置 |
+| --- | --- |
+| `all`（默认） | 全部问题 Token、Answer-start、全部答案预测 Query；需提供答案 |
+| `question_all` | 每个问题 Token，另存无权重平均的描述性汇总 |
+| `question_last` | 问题的最后 Token，通常是 `?`，不是模板末尾的 `:` |
+| `question_content` | `--content-phrases` 手动指定的片段，允许一个词拆为多个子词 |
+| `answer_start` | 原始 Prompt 最后位置 P−1，用于预测首个答案 Token |
+| `answer_prediction` | 预测答案 a_i 的位置 P−1+i；需提供答案 |
+
+问题模式可不传 `--answer`；即使只选择某一种模式，也会额外捕获 Answer-start 作一致性验证，并在 metadata 的 `validation_only` 标记。默认 `all` 会捕获所有问题 Token，因此原始需求中不含 `--content-phrases` 的命令也可运行；手动指定片段后才有 Content 视图。Answer-start 与预测 a0 是同一个物理 Query，只保存一份权重，允许属于多个分析视图。
+
+Question 定位步骤为：用占位标记确定真实模板的 Question 字符范围；对原模板取得 Fast Tokenizer offset mapping；按真实图像 Token 数展开单个 `<image>` 的 Token ID/offset；验证展开后的 **全部 ID** 与 `prepare_inputs()` 完全一致。只选择 Question 范围内的 Token，验证合并解码与原问题逐字符一致，并覆盖全部字符；不能靠英文空格或单词数量定位。首版对问题/答案的首尾空白或模板特殊 Token 显式报错，避免边界歧义。
+
+Teacher Forcing 只对 Answer 使用同一 Tokenizer、`add_special_tokens=False`，将答案 IDs 和全 1 mask 追加到已验证 Prompt 后。原 Prompt IDs/mask 前缀完全保留，`pixel_values` 是同一对象；不追加 BOS/EOS、不重复处理图像。默认位置编码和 `use_cache=False` 保持不变。
+
+例如 B 的 `red` 是第 4 个答案 Token，目标位置 599，对应 **Query 598，输入 Token 是 `is`**。Query 599 则是在 `red` 已输入后预测 `.`，两者不得混淆。CSV 同时记录 Query、目标 ID/文本和目标位置。
+
+答案来源必须正确标注：`ground_truth_teacher_forced` 表示使用调用方提供的参考答案，不意味着这里新增了人工标注或外部真值验证；`model_generated` 表示固定的模型输出轨迹。若与第一阶段归档匹配，脚本还会核对生成 ID（去掉归档 EOS）与重新编码后的 ID 完全相同。所有 Teacher Forcing 结果均限定于固定答案历史，不能直接称为自由生成 Decode 轨迹。
+
+复现 A 时直接读取第一阶段真实回答：
+
+```bash
+CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python - <<'PY'
+import json, subprocess, sys
+from pathlib import Path
+sample = json.loads(Path("results/validation.json").read_text())["tests"]["A_description"]
+subprocess.run([
+    sys.executable, "attention_position_probe.py",
+    "--image", "./test_images/example.jpg",
+    "--question", sample["question"], "--answer", sample["answer"],
+    "--answer-source", "model_generated", "--content-phrases", "image",
+    "--semantic-answer-phrases", "red", "stop sign",
+    "--output-dir", "./results/phase2_1_attention/description",
+], check=True)
+PY
+
+# 从已保存数据重绘，不加载模型。
+python compare_query_positions.py --input-dir ./results/phase2_1_attention
+python compare_query_positions.py \
+  --first ./results/phase2_1_attention/description \
+  --second ./results/phase2_1_attention \
+  --output-dir ./results/phase2_1_attention/comparison
+```
+
+每个 Query 的可访问 Key 被互斥且完备地划分为 **visual / bos / question / prompt_template / previous_answer**；BOS 不算普通文本。`previous_answer` 包含当前 Query 对应的已输入答案 Token，但不包含它正在预测的目标 Token。额外列 `prompt_text`、`other_text` 是派生小计，不能再与五组相加。质量、D、R、条件熵与 Top-58 Share 沿用 Phase 2，但每个 Query 有自己的基线 Nv/N_accessible；Content/All 的无权重平均仅是描述性汇总。
+
+一致性检查执行三次 Forward：原始 Prompt、完整 Teacher Forcing、与 Teacher Forcing 等长度但将答案全部替换为 padding 并遮蔽的 Prompt。B 的首次 Smoke Test 发现，跨序列长度比较的部分非视觉权重超过最初阈值。排查后：相同长度的两次 logits/Prompt Attention 完全一致，实际前缀因果 Mask 也相同；原始 Prompt 的视觉行与 Phase 2 完全一致，Teacher Forcing 的视觉与非视觉行均在误差检查范围内。这将该误差隔离到长度变化下的有限精度计算，而非答案泄漏。
+
+脚本保留最初 `atol=5e-4, rtol=5e-3` 的诊断结果；跨长度比较另要求 `atol=3e-3, rtol=5e-3`、每行总 L1 误差≤0.02、下一 Token argmax 不变，并且等长度对照必须逐元素一致。Logits 检查阈值 `atol=0.02, rtol=0.002`，实际差异完整记录。任何必需检查失败会停止并写 `failure.json`，不忽略差异、不修改第三方实现。
+
+主要输出（B 在根目录，A 在 `description/`）：
+
+```text
+position_metadata.json                  # 完整 Token/Query 映射、定义、输入与验收
+question_token_mapping.csv
+answer_prediction_mapping.csv           # 目标 Token 与前一位置 Query 的对齐
+head_statistics.csv                     # 每层×每 Head×每个唯一 Query；包含五组质量
+query_layer_statistics.csv              # 每个 Query 的 Head 平均与 SD
+query_group_layer_statistics.csv/json   # 分析视图的描述性均值
+selected_query_attention.npz            # FP16 [32,32,N_unique_query,N_sequence_keys]，只存选定行
+forward_consistency.json                 # 原始/Teacher/等长度对照及 Phase 2 比较
+layer_question_token_heatmap.png
+layer_answer_prediction_heatmap.png      # 横轴是被预测 Token，并标明 q→target
+question_last_vs_answer_start.png
+query_type_comparison.png
+query_spatial_comparison.png
+query_specificity_by_layer.csv/png       # Query 间质量范围、视觉内部平均两两 JS/TV
+semantic_answer_XX_word/                 # 每个匹配目标 Token 的九层空间图、原始 Grid、曲线
+```
+
+读取 Question→Visual 数组时可使用 `np.take` 保留轴顺序：先按 metadata 取得问题 Query 的 axis 索引，再对 `attention` 的 Query 轴（axis=2）及视觉 Key 轴（axis=3）执行 `np.take`，得到 `[32,32,Nq,576]`。未保存任何全层完整 S×S 矩阵。
+
+空间叠图继续复用 Phase 2 的真实 CLIP 输入恢复与绘图函数，原始 Visual Mass 明确标注，单独缩放颜色只供查看空间形状。Query 特异性的 JS/TV 基于 Head 平均视觉图的条件分布，它舍弃总视觉质量，必须结合质量曲线解读。不同 Token 的可见历史不同，跨问题还有长度与位置混杂因素。本阶段只建议后续对照设计，**完成后停止，不实施 Knockout、Pruning 或训练**。
 
 ## 常见问题
 

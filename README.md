@@ -1,10 +1,12 @@
 # ATE：视觉语言模型 Attention 与视觉信息流研究
 
-当前已完成第一阶段单卡 FP16 推理基线，以及第二阶段两个问题的 Prompt Prefill Text-to-Visual Attention 提取、数值校验和可视化。
+当前已完成第一阶段单卡 FP16 推理基线、第二阶段 Prompt Prefill Attention，以及 Phase 2.1 的 Question Token / Answer-start / Teacher-forced Answer Prediction Attention 分析。
 
 工程位于 [`vlm_research/`](vlm_research/)。环境安装、权重下载和常见问题见 [工程说明](vlm_research/README.md)，真实耗时、显存和回答见 [第一阶段实测报告](vlm_research/results/phase1_report.md)。
 
 第二阶段结果见 [实验报告](vlm_research/results/phase2_attention/phase2_report.md)：32 层 Attention、逐 Head 统计、24×24 Patch 热图与两个问题的比较。原有环境、模型配置与第一阶段脚本未改变。
+
+Phase 2.1 结果见 [位置分析报告](vlm_research/results/phase2_1_attention/phase2_1_report.md)：真实 Token 对齐、答案目标与预测 Query 的位置偏移、独立 BOS 统计、语义答案空间图与 Phase 2 数值一致性排查。第一、第二阶段既有结果保留。
 
 ## 已验证基线
 
