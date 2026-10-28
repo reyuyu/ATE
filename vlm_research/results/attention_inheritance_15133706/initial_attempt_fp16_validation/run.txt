@@ -1,0 +1,75 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:04,  2.50s/it]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:04<00:02,  2.17s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:05<00:00,  1.86s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:05<00:00,  1.98s/it]
+{"question_id": "15133706", "source_layer": 23, "lambda": 0, "target_first_layer": 24, "target_last_layer": 31, "answer_query": 602, "margin": -0.03125, "gain_vs_full": 0.0, "full_margin": -0.03125, "historical_physical_k24_margin": 0.0390625, "correct_candidate": "right", "predicted_candidate": "left", "correct_logp": -18.59919713772222, "wrong_logp": -18.56794713772222, "correct_logit": 8.2578125, "wrong_logit": 8.2890625, "correct_candidate_probability": 8.365103432069348e-09, "right_vs_left_probability": 0.4921881357207956, "forward_seconds_two_candidates": 1.01020633301232, "peak_allocated_mib": 13640.62451171875, "peak_reserved_mib": 13734.0, "all_local_checks_passed": true, "question_hidden_bitwise_full": true, "candidate_logits_bitwise_identical": true}
+Traceback (most recent call last):
+  File "/home/zsy/ATE/vlm_research/attention_inheritance_pilot.py", line 191, in <module>
+    try:main()
+        ^^^^^^
+  File "/home/zsy/ATE/vlm_research/attention_inheritance_pilot.py", line 153, in main
+    value=forward(model,x,qpos,apos)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/ATE/vlm_research/roi_sink_common.py", line 176, in forward
+    else:output=model(**inputs,output_attentions=False,use_cache=False,return_dict=True)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/transformers/models/llava/modeling_llava.py", line 433, in forward
+    outputs = self.language_model(
+              ^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py", line 842, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py", line 594, in forward
+    layer_outputs = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py", line 336, in forward
+    hidden_states, self_attn_weights = self.self_attn(
+                                       ^^^^^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py", line 292, in forward
+    attn_output, attn_weights = attention_interface(
+                                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/ATE/vlm_research/attention_inheritance.py", line 98, in local_eager
+    attn_weights = controller.replace(attn_weights, layer)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/zsy/ATE/vlm_research/attention_inheritance.py", line 83, in replace
+    raise AssertionError(f'Attention inheritance audit failed: {audit}')
+AssertionError: Attention inheritance audit failed: {'layer': 25, 'shape': [1, 32, 604, 604], 'query': 602, 'visual_keys': 576, 'other_queries_bitwise_exact': True, 'nonvisual_bitwise_exact': True, 'lambda_zero_tensor_exact': None, 'row_sum_max_abs_error': 0.0002422928810119629, 'visual_mass_max_abs_error': 7.808208465576172e-06, 'visual_mass_max_relative_error': 0.00010224158904748037, 'conditional_l1_max_error': 0.00429883785545826, 'finite_nonnegative': True, 'visual_mass_before': [0.16471433639526367, 0.08622974157333374, 0.062335848808288574, 0.0860053300857544, 0.11705607175827026, 0.016316592693328857, 0.1042245626449585, 0.04610961675643921, 0.08959943056106567, 0.06385272741317749, 0.029287397861480713, 0.03378450870513916, 0.04899698495864868, 0.07637017965316772, 0.048439860343933105, 0.0468827486038208, 0.03219693899154663, 0.06579309701919556, 0.0636671781539917, 0.031007766723632812, 0.055634498596191406, 0.1321321725845337, 0.021948575973510742, 0.09325230121612549, 0.041715025901794434, 0.043092191219329834, 0.10067284107208252, 0.022994399070739746, 0.002099931240081787, 0.051199495792388916, 0.07692885398864746, 0.031172454357147217], 'visual_mass_after': [0.1647164225578308, 0.08623659610748291, 0.062334418296813965, 0.0860060453414917, 0.11704933643341064, 0.01631563901901245, 0.10422152280807495, 0.04611092805862427, 0.08960270881652832, 0.06385308504104614, 0.029287099838256836, 0.033781468868255615, 0.0489993691444397, 0.0763779878616333, 0.048438191413879395, 0.04688382148742676, 0.03219705820083618, 0.06579673290252686, 0.0636681318283081, 0.031006991863250732, 0.05563485622406006, 0.13213813304901123, 0.021948158740997314, 0.09324973821640015, 0.04171192646026611, 0.04309111833572388, 0.10067421197891235, 0.0229952335357666, 0.002099931240081787, 0.05119919776916504, 0.07693225145339966, 0.03116995096206665], 'passed': False}

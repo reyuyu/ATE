@@ -1,0 +1,78 @@
+{
+  "task": "single_case_attention_inheritance",
+  "started": "2026-10-28T18:55:33.496042+08:00",
+  "question_id": "15133706",
+  "sample": {
+    "question_id": "15133706",
+    "img_id": "2324597",
+    "question": "Is the young girl to the left or to the right of the boy?",
+    "answer": "right",
+    "true option": "right",
+    "false option": "left",
+    "candidates": [
+      "left",
+      "right"
+    ],
+    "correct_candidate": "right",
+    "wrong_candidate": "left",
+    "image_path": "/data/wdy/datasets/MMEB-V2/image-tasks/MMEB/GQA/image_2324597.jpg",
+    "source_image_size": [
+      500,
+      375
+    ],
+    "source_row_sha256": "1bbc5a13b1180f0376e2d7e4d20ca41906a297756ab434925532ec3735082ce2",
+    "image_available": true,
+    "image_size": [
+      500,
+      375
+    ],
+    "image_sha256": "2f53ddd9704ade28f52d89f22eace4a6955a4ba9e0d780844e04ec01736610da"
+  },
+  "source_layers": [
+    23,
+    24
+  ],
+  "target_layers": [
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "lambdas": [
+    0,
+    0.5,
+    1
+  ],
+  "query": "P-1 only",
+  "tolerance_preregistered": {
+    "row_sum_atol": 0.002,
+    "visual_mass_atol": 2e-05,
+    "visual_mass_rtol": 0.001,
+    "conditional_l1_nominal": 0.002,
+    "rounding_bound_slack": 2e-06
+  },
+  "reference": "Frozen native Full per-head visual-conditional distributions, verified against Phase3.4 cache",
+  "formula": "m*((1-lambda)*a/m + lambda*p_full_reference)",
+  "historical_manifest_sha256": "93c518eb079c82124566ba7b41e9a5ccff3f4a41f38ed752fe20ea81516d4cc5",
+  "cache_sha256": "f193f228faffbeea9943833ce72e0873efda0e8a90f8d9d3c9cbb596c788ef61",
+  "library": {
+    "library_file": "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py",
+    "library_file_sha256": "d313bd9b9565638f0780fbd8158ddf69ff77334b38462f50945efdd64140bbfb",
+    "forward_source_sha256": "ae39a86a03eed7b83db273d0d62fb6297ff7a384999dbdcb88ce76e0b7b41caf",
+    "eager_source_sha256": "ad54bea90e61fbdb79597b5b3d964183317ca4d125b0f572d496a5b2458c7eac"
+  },
+  "code_sha256": {
+    "attention_inheritance.py": "b516630de3f0e63c5af0cbc6e8e29ef369fb5fcc4ca2fe06f7fb83d085283a52",
+    "attention_inheritance_pilot.py": "6258e7f99d9515ecdc8266aa016a0a5ed8bb8442f708b45949eb01570f32423b",
+    "test_attention_inheritance.py": "05fa8f43267cef196c665a749bd51cce03a0ef320e9a111db049a9d4464a5976",
+    "vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d",
+    "roi_sink_common.py": "ce2d694706a7e29eb0227330f3bc78dd417c86ae2201336632c27be190e60efb",
+    "roi_sink_probe.py": "965890cf3986bd87aa21650f9c49067abd2951fd9b875f3e9cb66521ba9ac88e",
+    "physical_exit_pilot.py": "743027a0f4713831709fbaafe7d117ef4ec77bbe40b215a6c118713d710f666b"
+  },
+  "previous_commit": "faf842cb82d05f86221a3a76dc05b972e842494b"
+}

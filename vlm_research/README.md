@@ -49,6 +49,12 @@ vlm_research/
 
 模型文件保存在用户缓存目录，不放入 Git。当前主工程目录之外的 AFAC 文件未因本任务修改。
 
+## 单案例15133706：逐Head视觉Attention继承（GPU实验未完成）
+
+新增`attention_inheritance.py`及`attention_inheritance_pilot.py`：仅在L24～L31、P−1→576视觉Keys，按λ=0/.5/1混合Full L23/L24的逐Head视觉条件分布，保留当前视觉Mass和非目标权重；实例局部包装在结束/异常时恢复，不改库或旧实验。7项新增CPU测试、全工程101项回归通过。
+
+[报告与重跑命令](results/attention_inheritance_15133706/report.md) · [对比图](results/attention_inheritance_15133706/margin_comparison.png) · [逐条件状态](results/attention_inheritance_15133706/per_condition_results.csv)。**真实7B只完成L23 λ0，Margin −0.03125，与Full全词表logits精确一致；历史Physical K24为+.0390625。没有非零λ的完整Margin，不能判断继承是否改善。** 首次非零条件因小视觉Mass下FP16条件L1固定阈值停止；原失败保留，验证补充逐元素舍入精确检查及dtype推导误差界，公式不变。修正后GPU0新增其他10GB进程、仅约6GB空闲，重跑在加载前被资源门槛阻止。校正版尚未通过真实7B非零λ验收，不启用轮询、不终止其他任务。`summarize_attention_inheritance.py`可纯CPU重建未完成摘要；恢复时按报告指定新的输出目录，拒绝覆盖已有尝试。
+
 ## Phase 3.5：Exit Boundary vs ROI Attention Alignment（离线完成）
 
 补充两案例全景图：[六图与说明](results/phase3_5_two_case_visualization/README.md)。`two_case_attention_viz.py`只读取04132006/15133706缓存，为Q和P−1分别输出4×8全32层ROI热图及配对曲线；四热图共用同一视觉条件概率对数色标并标注原始视觉Mass。此补图按要求先平均Head再条件化，曲线使用同一口径，旧逐Head条件化统计不变。`CUDA_VISIBLE_DEVICES='' python two_case_attention_viz.py --verify-existing`可核验六图及输入哈希；不使用GPU或补Forward。
