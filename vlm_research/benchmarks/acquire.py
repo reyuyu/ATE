@@ -22,7 +22,7 @@ REPOS = {
         'docs/Evaluation.md', 'llava/eval/eval_pope.py', 'llava/eval/eval_science_qa.py',
         'llava/eval/eval_textvqa.py', 'llava/eval/m4c_evaluator.py',
         'llava/eval/model_vqa_loader.py', 'llava/eval/model_vqa_science.py',
-        'scripts/convert_gqa_for_eval.py']),
+        'scripts/convert_gqa_for_eval.py', 'scripts/convert_sqa_to_llava.py', 'LICENSE']),
 }
 
 
@@ -89,6 +89,13 @@ def main():
         result = download(s, url, args.root/'preflight'/name)
         records.append(result)
         print(name, result['status'], result.get('bytes', result.get('error')), flush=True)
+    # The mirror builder is required to recover official ScienceQA PID mappings.
+    for file in ('tutorial/ScienceQA.py', 'README.md'):
+        revision = 'f18b0a70359ebfb41f658fd564208d0355b013f4'
+        url = f'https://hf-mirror.com/datasets/derek-thomas/ScienceQA/resolve/{revision}/{file}'
+        result = download(s, url, args.root/'scienceqa_hf'/file)
+        result.update(repository='derek-thomas/ScienceQA', revision=revision)
+        records.append(result)
     audit = args.root/'acquisition.json'
     previous = json.loads(audit.read_text()) if audit.exists() else []
     previous.append({'time_unix': time.time(), 'records': records})

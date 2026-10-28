@@ -39,6 +39,8 @@ loadable; POPE strategies deliberately share exactly the same 50 image groups.
 Use `metadata.cluster_id` (verified image SHA256) for paired cluster bootstrap.
 ScienceQA official PID/image-path count is not its count of independent image bytes.
 Do not treat multiple questions or heads/layers as independent images.
+`canonical_image_overlap_audit.json` is authoritative for cross-task overlap;
+the preserved preparation `overlap_audit.json` only compares literal ID strings.
 
 ## Scoring Boundaries
 
@@ -78,6 +80,9 @@ alter the pinned VLM environment. Historical acquisition failures remain audited
 `smoke`. Smoke only accepts its frozen18 sample plan, checks an idle physicalGPU0,
 and saves actual generated answers/full-vocabulary candidate logits. It refuses
 an existing attempt directory. Do not use this entry point as a full-run launcher.
+The original smoke used commit24523aef; later publication/download guards do not
+alter its data or measurements. `tests/pre_push_validation.json` records final
+source hashes and141 passing CPU tests. Read `operations.md` for the exact sequence.
 
 Future B4/C2 needs true Question boundaries separate from choices/hints, audited
 multi-token scoring and prefill/generation semantics. Physical Exit additionally

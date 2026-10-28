@@ -102,6 +102,7 @@ def fetch_textvqa(s, root, rows, records):
     reader = RangeReader(s, url)
     archive_record = dict(url=url, bytes=reader.size, etag=reader.etag, s3_version_id=reader.version,
                           archive_sha256=None, caveat='Only selected ZIP ranges downloaded; no full archive SHA256 claim')
+    freeze_json(root/'textvqa_archive_identity.json', {k: archive_record[k] for k in ('url', 'bytes', 'etag', 's3_version_id')})
     try:
         with zipfile.ZipFile(reader) as z:
             members = {Path(info.filename).name: info for info in z.infolist() if not info.is_dir()}
@@ -135,6 +136,8 @@ def fetch_scienceqa(s, root, selected, records):
     """HF mirror test split; match ALL public content fields to official test PID."""
     meta = json.loads((root/'sources/preflight/scienceqa_hf.json').read_text())
     rev, repo = meta['sha'], meta['id']
+    if rev != 'f18b0a70359ebfb41f658fd564208d0355b013f4' or repo != 'derek-thomas/ScienceQA':
+        raise ValueError('ScienceQA mirror revision changed; do not mix versions in this resource root')
     tree_url = f'https://hf-mirror.com/api/datasets/{repo}/tree/{rev}/data'
     r = s.get(tree_url, timeout=(5, 30))
     r.raise_for_status()

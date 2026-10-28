@@ -1,0 +1,2117 @@
+{
+  "passed": true,
+  "stage": "Native Full integration smoke, NOT benchmark performance",
+  "samples": 18,
+  "per_unit_samples": {
+    "gqa_chooseattr": 3,
+    "gqa_logicalobj": 2,
+    "gqa_queryattr": 2,
+    "pope_adversarial": 2,
+    "pope_popular": 2,
+    "pope_random": 2,
+    "scienceqa_img": 3,
+    "textvqa": 2
+  },
+  "exact_input_mappings": true,
+  "model_weights_buffers_before_sha256": "bee502c36d945a3552ca43065f899145aa34d60bfc64dd00da31a91cfa17b74c",
+  "model_weights_buffers_after_sha256": "bee502c36d945a3552ca43065f899145aa34d60bfc64dd00da31a91cfa17b74c",
+  "inputs_versions_hooks_unchanged": true,
+  "finite_logits_all": true,
+  "oom": false,
+  "official_pope_smoke_metrics": {
+    "pope_adversarial": {
+      "official_generation_accuracy": 0.5,
+      "official_generation_precision": 0.0,
+      "official_generation_recall": 0.0,
+      "official_generation_f1": 0.0,
+      "official_generation_yes_ratio": 0.0,
+      "tp": 0,
+      "tn": 1,
+      "fp": 0,
+      "fn": 1,
+      "undefined_denominators": {
+        "precision": true,
+        "recall": false
+      }
+    },
+    "pope_popular": {
+      "official_generation_accuracy": 0.5,
+      "official_generation_precision": 0.0,
+      "official_generation_recall": 0.0,
+      "official_generation_f1": 0.0,
+      "official_generation_yes_ratio": 0.0,
+      "tp": 0,
+      "tn": 1,
+      "fp": 0,
+      "fn": 1,
+      "undefined_denominators": {
+        "precision": true,
+        "recall": false
+      }
+    },
+    "pope_random": {
+      "official_generation_accuracy": 0.5,
+      "official_generation_precision": 0.0,
+      "official_generation_recall": 0.0,
+      "official_generation_f1": 0.0,
+      "official_generation_yes_ratio": 0.0,
+      "tp": 0,
+      "tn": 1,
+      "fp": 0,
+      "fn": 1,
+      "undefined_denominators": {
+        "precision": true,
+        "recall": false
+      }
+    }
+  },
+  "candidate_full_vocabulary_logits_saved": true,
+  "all_rows": [
+    {
+      "dataset": "gqa_chooseattr",
+      "question_id": "00145707",
+      "image_id": "2356967",
+      "image_sha256": "54b5fb1b17147f8194ffa60798f28d25a7cd3ab97a4e220cf5c25b378f222dd0",
+      "input_sha256": {
+        "input_ids": "56aab063252085085873748dd76ac6301ac48449599756f4666f60fa94ced0e8",
+        "attention_mask": "51360e6ccdcbe934184bdc7d20b04440d513651a10c07698bdf7c9bbe866f44f",
+        "pixel_values": "22105022dfbe7d10935280798236bcecbd34868bbeff7ffbf9c19ba1c0148616"
+      },
+      "prompt_length": 606,
+      "p_minus_1": 605,
+      "question_positions": [
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 606,
+        "non_visual_tokens_including_special": 30,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          500,
+          333
+        ]
+      },
+      "candidate_scores": [
+        {
+          "candidate": "gray",
+          "logp": -11.505992456933729,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 16749,
+              "token_text": "▁gray",
+              "decoded_token": "gray",
+              "answer_char_span": [
+                0,
+                4
+              ],
+              "source_text": "gray",
+              "target_token_position": 606,
+              "query_position": 605
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 607
+        },
+        {
+          "candidate": "red",
+          "logp": -14.763804956933729,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 2654,
+              "token_text": "▁red",
+              "decoded_token": "red",
+              "answer_char_span": [
+                0,
+                3
+              ],
+              "source_text": "red",
+              "target_token_position": 606,
+              "query_position": 605
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 607
+        }
+      ],
+      "generated_text": "Gray",
+      "generated_token_ids": [
+        18956,
+        2
+      ],
+      "generated_token_logp": [
+        -0.08287541733626383,
+        -1.0171201484609871e-05
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "mechanism_generation_literal_exact_match": true,
+        "diagnostic_candidate_margin": 3.2578125,
+        "diagnostic_candidate_correct": true,
+        "diagnostic_gold_sequence_logp": -11.505992456933729,
+        "diagnostic_all_candidate_sequence_logp": {
+          "gray": -11.505992456933729,
+          "red": -14.763804956933729
+        },
+        "diagnostic_margin_definition": "gold minus strongest wrong; sums over all answer tokens; no EOS"
+      },
+      "elapsed_seconds": 1.029038071166724,
+      "memory": {
+        "allocated_mib": 13810.0634765625,
+        "reserved_mib": 14010.0,
+        "peak_allocated_mib": 13923.4228515625,
+        "peak_reserved_mib": 14010.0,
+        "device_free_mib": 9772.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14350
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "83897810fbe3ae484be385a1f477d2249647273bf73a9dfbb9eb9738b351460e"
+    },
+    {
+      "dataset": "gqa_chooseattr",
+      "question_id": "00223668",
+      "image_id": "2360997",
+      "image_sha256": "2ef46c86e82f8398eb19dedb8b5ab1d56ffd65435663ea044bfc8caa288660bb",
+      "input_sha256": {
+        "input_ids": "0d7ed4da388d32d53d3038d1df01a7ce67d9ca0fe567e159e0a341628fdbc302",
+        "attention_mask": "b384ba3a3733a033317f9dab5e188f56a4f20ce8762b9fb1eb915ee383b74ab2",
+        "pixel_values": "6582eea497e6f2a28e1b243adea45ad16983efd6f6b5bc48300066706a61a592"
+      },
+      "prompt_length": 610,
+      "p_minus_1": 609,
+      "question_positions": [
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591,
+        592,
+        593
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 610,
+        "non_visual_tokens_including_special": 34,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          500,
+          500
+        ]
+      },
+      "candidate_scores": [
+        {
+          "candidate": "green",
+          "logp": -11.719959834795082,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 7933,
+              "token_text": "▁green",
+              "decoded_token": "green",
+              "answer_char_span": [
+                0,
+                5
+              ],
+              "source_text": "green",
+              "target_token_position": 610,
+              "query_position": 609
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 611
+        },
+        {
+          "candidate": "red",
+          "logp": -18.415272334795084,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 2654,
+              "token_text": "▁red",
+              "decoded_token": "red",
+              "answer_char_span": [
+                0,
+                3
+              ],
+              "source_text": "red",
+              "target_token_position": 610,
+              "query_position": 609
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 611
+        }
+      ],
+      "generated_text": "Green",
+      "generated_token_ids": [
+        7646,
+        2
+      ],
+      "generated_token_logp": [
+        -0.0012167497985849758,
+        -5.975820254308616e-05
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "mechanism_generation_literal_exact_match": true,
+        "diagnostic_candidate_margin": 6.695312500000002,
+        "diagnostic_candidate_correct": true,
+        "diagnostic_gold_sequence_logp": -11.719959834795082,
+        "diagnostic_all_candidate_sequence_logp": {
+          "green": -11.719959834795082,
+          "red": -18.415272334795084
+        },
+        "diagnostic_margin_definition": "gold minus strongest wrong; sums over all answer tokens; no EOS"
+      },
+      "elapsed_seconds": 0.6855974229983985,
+      "memory": {
+        "allocated_mib": 13814.8212890625,
+        "reserved_mib": 14010.0,
+        "peak_allocated_mib": 13930.13623046875,
+        "peak_reserved_mib": 14010.0,
+        "device_free_mib": 9772.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14350
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "4f5b3634aa6895ee5ba485be560b95d37fa3d015be445135d9d002c367dff423"
+    },
+    {
+      "dataset": "gqa_chooseattr",
+      "question_id": "0074716",
+      "image_id": "2391748",
+      "image_sha256": "fb72f87070ec7fe398ff5eba3e552f9c90e08ae219e0873dcaa75ea1fa71257a",
+      "input_sha256": {
+        "input_ids": "87d2543505d152fd4bfbfff499436180899ed4176c2136ddaae48463a50ceede",
+        "attention_mask": "ed1c8caf76c3f4e4c6655bc7d14099e688a42a021da6e426e93549f60e7b9bb7",
+        "pixel_values": "7e04722923f25499361de4cb6a9860141c2d64039c129a16fbf9342258b679ae"
+      },
+      "prompt_length": 608,
+      "p_minus_1": 607,
+      "question_positions": [
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 608,
+        "non_visual_tokens_including_special": 32,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          500,
+          334
+        ]
+      },
+      "candidate_scores": [
+        {
+          "candidate": "purple",
+          "logp": -13.254020016589353,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 3708,
+              "token_text": "▁pur",
+              "decoded_token": "pur",
+              "answer_char_span": [
+                0,
+                3
+              ],
+              "source_text": "pur",
+              "target_token_position": 608,
+              "query_position": 607
+            },
+            {
+              "answer_token_ordinal": 1,
+              "token_id": 552,
+              "token_text": "ple",
+              "decoded_token": "ple",
+              "answer_char_span": [
+                3,
+                6
+              ],
+              "source_text": "ple",
+              "target_token_position": 609,
+              "query_position": 608
+            }
+          ],
+          "length": 2,
+          "valid_input_tokens": 610
+        },
+        {
+          "candidate": "white",
+          "logp": -17.910266215494236,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 4796,
+              "token_text": "▁white",
+              "decoded_token": "white",
+              "answer_char_span": [
+                0,
+                5
+              ],
+              "source_text": "white",
+              "target_token_position": 608,
+              "query_position": 607
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 609
+        }
+      ],
+      "generated_text": "Purple",
+      "generated_token_ids": [
+        15247,
+        552,
+        2
+      ],
+      "generated_token_logp": [
+        -0.004018293668081516,
+        -4.196854718789142e-06,
+        -7.1965742177661165e-06
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "mechanism_generation_literal_exact_match": true,
+        "diagnostic_candidate_margin": 4.656246198904883,
+        "diagnostic_candidate_correct": true,
+        "diagnostic_gold_sequence_logp": -13.254020016589353,
+        "diagnostic_all_candidate_sequence_logp": {
+          "purple": -13.254020016589353,
+          "white": -17.910266215494236
+        },
+        "diagnostic_margin_definition": "gold minus strongest wrong; sums over all answer tokens; no EOS"
+      },
+      "elapsed_seconds": 0.7636125949211419,
+      "memory": {
+        "allocated_mib": 13814.52197265625,
+        "reserved_mib": 14010.0,
+        "peak_allocated_mib": 13930.13623046875,
+        "peak_reserved_mib": 14010.0,
+        "device_free_mib": 9772.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14350
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "443a9c79cb037d21fd0e41d49cbc43d3254cfa39d423053fcba8fc32ef168d70"
+    },
+    {
+      "dataset": "gqa_logicalobj",
+      "question_id": "00324589",
+      "image_id": "2378916",
+      "image_sha256": "c5fea42af8a9ae5c0226d4dc7c186bed170e10d4fb7fb4b87a6a86806bdf5293",
+      "input_sha256": {
+        "input_ids": "4bdc9dda1d63968a659bfa8c9c471d3205c25d8f1fb70c1e6c8ce07cf174ed6c",
+        "attention_mask": "c131f7214c2ee6afcc1f564add7110e65a30f33022ee1dfdfccf92b5aecd5d7e",
+        "pixel_values": "68ee7f95bd55cb97e46b5adcdce4390883cde09158fc51ebdc45452857fc922b"
+      },
+      "prompt_length": 612,
+      "p_minus_1": 611,
+      "question_positions": [
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591,
+        592,
+        593,
+        594,
+        595
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 612,
+        "non_visual_tokens_including_special": 36,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          500,
+          375
+        ]
+      },
+      "candidate_scores": [
+        {
+          "candidate": "no",
+          "logp": -21.62962827267585,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 694,
+              "token_text": "▁no",
+              "decoded_token": "no",
+              "answer_char_span": [
+                0,
+                2
+              ],
+              "source_text": "no",
+              "target_token_position": 612,
+              "query_position": 611
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 613
+        },
+        {
+          "candidate": "yes",
+          "logp": -14.758534522675847,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 4874,
+              "token_text": "▁yes",
+              "decoded_token": "yes",
+              "answer_char_span": [
+                0,
+                3
+              ],
+              "source_text": "yes",
+              "target_token_position": 612,
+              "query_position": 611
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 613
+        }
+      ],
+      "generated_text": "Yes",
+      "generated_token_ids": [
+        3869,
+        2
+      ],
+      "generated_token_logp": [
+        -0.0007113051421985349,
+        -9.91116900112597e-07
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "mechanism_generation_literal_exact_match": true,
+        "diagnostic_candidate_margin": 6.871093750000002,
+        "diagnostic_candidate_correct": true,
+        "diagnostic_gold_sequence_logp": -14.758534522675847,
+        "diagnostic_all_candidate_sequence_logp": {
+          "no": -21.62962827267585,
+          "yes": -14.758534522675847
+        },
+        "diagnostic_margin_definition": "gold minus strongest wrong; sums over all answer tokens; no EOS"
+      },
+      "elapsed_seconds": 0.6816652070265263,
+      "memory": {
+        "allocated_mib": 13815.6337890625,
+        "reserved_mib": 14010.0,
+        "peak_allocated_mib": 13931.3154296875,
+        "peak_reserved_mib": 14010.0,
+        "device_free_mib": 9772.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14350
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "5eb25e08268ffbed91bff2196a6a24a8ddeca9cd586ebc23bfffca9fc79c0e20"
+    },
+    {
+      "dataset": "gqa_logicalobj",
+      "question_id": "00359128",
+      "image_id": "2373121",
+      "image_sha256": "ad0fb9e5096b5e08b243b021e726d9843b7a99b5fa820b07658eea32afef60d3",
+      "input_sha256": {
+        "input_ids": "0bdb5a4f0403557e6d1f954cca5cfe7aef92876ab892124cd308507c19aa4b8d",
+        "attention_mask": "b5a59554b73820e64df397ae59f544493e138a50d4eab5e549352f3c61f93d09",
+        "pixel_values": "9c4d01c1052f90de9f7edda4584eabd97b4756917b55bc77b9fa0c96443ca1fc"
+      },
+      "prompt_length": 609,
+      "p_minus_1": 608,
+      "question_positions": [
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591,
+        592
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 609,
+        "non_visual_tokens_including_special": 33,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          500,
+          333
+        ]
+      },
+      "candidate_scores": [
+        {
+          "candidate": "no",
+          "logp": -24.148600347747923,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 694,
+              "token_text": "▁no",
+              "decoded_token": "no",
+              "answer_char_span": [
+                0,
+                2
+              ],
+              "source_text": "no",
+              "target_token_position": 609,
+              "query_position": 608
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 610
+        },
+        {
+          "candidate": "yes",
+          "logp": -15.101725347747923,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 4874,
+              "token_text": "▁yes",
+              "decoded_token": "yes",
+              "answer_char_span": [
+                0,
+                3
+              ],
+              "source_text": "yes",
+              "target_token_position": 609,
+              "query_position": 608
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 610
+        }
+      ],
+      "generated_text": "Yes",
+      "generated_token_ids": [
+        3869,
+        2
+      ],
+      "generated_token_logp": [
+        -0.00016494961616873825,
+        -3.118474398744663e-07
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "mechanism_generation_literal_exact_match": true,
+        "diagnostic_candidate_margin": 9.046875,
+        "diagnostic_candidate_correct": true,
+        "diagnostic_gold_sequence_logp": -15.101725347747923,
+        "diagnostic_all_candidate_sequence_logp": {
+          "no": -24.148600347747923,
+          "yes": -15.101725347747923
+        },
+        "diagnostic_margin_definition": "gold minus strongest wrong; sums over all answer tokens; no EOS"
+      },
+      "elapsed_seconds": 0.6806140949483961,
+      "memory": {
+        "allocated_mib": 13814.4150390625,
+        "reserved_mib": 14010.0,
+        "peak_allocated_mib": 13931.3154296875,
+        "peak_reserved_mib": 14010.0,
+        "device_free_mib": 9772.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14350
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "e24aee51251dff1939483d1e7a608d2c170b6d1b45d065be83363ff1ac72a08e"
+    },
+    {
+      "dataset": "gqa_queryattr",
+      "question_id": "001056218",
+      "image_id": "2412630",
+      "image_sha256": "e09a20b01599545bea01f42d4eb191b4a116734434f8e763ef61ecbd19246876",
+      "input_sha256": {
+        "input_ids": "7cb5434facdff4a5fd274493e598d520e40ffddf6d975bc017cd4d9c52feb30c",
+        "attention_mask": "ed1c8caf76c3f4e4c6655bc7d14099e688a42a021da6e426e93549f60e7b9bb7",
+        "pixel_values": "99bbe88673861b46dfe417b4f94101b1fa3baebe886d09b390f6faecce817139"
+      },
+      "prompt_length": 608,
+      "p_minus_1": 607,
+      "question_positions": [
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 608,
+        "non_visual_tokens_including_special": 32,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          500,
+          331
+        ]
+      },
+      "candidate_scores": [],
+      "generated_text": "Left",
+      "generated_token_ids": [
+        19941,
+        2
+      ],
+      "generated_token_logp": [
+        -0.03816904872848289,
+        -8.951974060824017e-07
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "mechanism_generation_literal_exact_match": true
+      },
+      "elapsed_seconds": 0.2945739689748734,
+      "memory": {
+        "allocated_mib": 13814.65478515625,
+        "reserved_mib": 14010.0,
+        "peak_allocated_mib": 13931.3154296875,
+        "peak_reserved_mib": 14010.0,
+        "device_free_mib": 9772.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14350
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "7454c33d734c63d4b2557de019472f73f5c2ab63f29532351968db7a31003754"
+    },
+    {
+      "dataset": "gqa_queryattr",
+      "question_id": "00248500",
+      "image_id": "2399658",
+      "image_sha256": "a5648184947bc1ed228c4a438ae15f2ddc71dff3ac3205a98ee6577123b716c2",
+      "input_sha256": {
+        "input_ids": "cbff02160aaea4cc862275c7ba3a4e182dcc6a036fe68668481e78b45ff0a74c",
+        "attention_mask": "5ceebfd50501e0584b78dc4ccbfc316123e0897788c323b208982dc34d3ec3c1",
+        "pixel_values": "a5b768cb5affd27a6fac463f74203f3f733733ef275b9f439f25344ce95ff152"
+      },
+      "prompt_length": 611,
+      "p_minus_1": 610,
+      "question_positions": [
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591,
+        592,
+        593,
+        594
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 611,
+        "non_visual_tokens_including_special": 35,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          426,
+          292
+        ]
+      },
+      "candidate_scores": [],
+      "generated_text": "Left",
+      "generated_token_ids": [
+        19941,
+        2
+      ],
+      "generated_token_logp": [
+        -0.04950551087169127,
+        -1.5777631097018338e-05
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "mechanism_generation_literal_exact_match": true
+      },
+      "elapsed_seconds": 0.2824708200059831,
+      "memory": {
+        "allocated_mib": 13815.87353515625,
+        "reserved_mib": 14010.0,
+        "peak_allocated_mib": 13931.4951171875,
+        "peak_reserved_mib": 14010.0,
+        "device_free_mib": 9772.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14350
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "5fd51e7a92747389beaa8649671304c083a5afa551c38c49080d3c49aa992aea"
+    },
+    {
+      "dataset": "pope_adversarial",
+      "question_id": "43",
+      "image_id": "COCO_val2014_000000461331.jpg",
+      "image_sha256": "ff8bde842ca6e7303ab3a04b67d317cf5da5638f0141fe5624b42838f05783bb",
+      "input_sha256": {
+        "input_ids": "488e2a39895254d1e1a499800e766f5993ab22843d3105c5dd686ac5b2c05bb8",
+        "attention_mask": "999b4311c0a6a99cbe52b8b1b18071f4cf3cdefcae56459ce3ff70a164d8130b",
+        "pixel_values": "83e2b7b795a23726ee4b0990767af2849b6dc3861f56471a50979c7d69066244"
+      },
+      "prompt_length": 607,
+      "p_minus_1": 606,
+      "question_positions": [
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 607,
+        "non_visual_tokens_including_special": 31,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          640,
+          480
+        ]
+      },
+      "candidate_scores": [
+        {
+          "candidate": "no",
+          "logp": -12.875835824611574,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 694,
+              "token_text": "▁no",
+              "decoded_token": "no",
+              "answer_char_span": [
+                0,
+                2
+              ],
+              "source_text": "no",
+              "target_token_position": 607,
+              "query_position": 606
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 608
+        },
+        {
+          "candidate": "yes",
+          "logp": -16.852398324611574,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 4874,
+              "token_text": "▁yes",
+              "decoded_token": "yes",
+              "answer_char_span": [
+                0,
+                3
+              ],
+              "source_text": "yes",
+              "target_token_position": 607,
+              "query_position": 606
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 608
+        }
+      ],
+      "generated_text": "No",
+      "generated_token_ids": [
+        1939,
+        2
+      ],
+      "generated_token_logp": [
+        -0.0398980524296135,
+        -2.320292818512569e-06
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "official_generation_correct": false,
+        "diagnostic_candidate_margin": -3.9765625,
+        "diagnostic_candidate_correct": false,
+        "diagnostic_gold_sequence_logp": -16.852398324611574,
+        "diagnostic_all_candidate_sequence_logp": {
+          "no": -12.875835824611574,
+          "yes": -16.852398324611574
+        },
+        "diagnostic_margin_definition": "gold minus strongest wrong; sums over all answer tokens; no EOS"
+      },
+      "elapsed_seconds": 0.7051193627994508,
+      "memory": {
+        "allocated_mib": 13810.5634765625,
+        "reserved_mib": 14010.0,
+        "peak_allocated_mib": 13931.4951171875,
+        "peak_reserved_mib": 14010.0,
+        "device_free_mib": 9772.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14350
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "f71617b960945c4cf8b85871500fde670f481e4b44e5e58865f9b39b9c814844"
+    },
+    {
+      "dataset": "pope_adversarial",
+      "question_id": "44",
+      "image_id": "COCO_val2014_000000461331.jpg",
+      "image_sha256": "ff8bde842ca6e7303ab3a04b67d317cf5da5638f0141fe5624b42838f05783bb",
+      "input_sha256": {
+        "input_ids": "a7900e1e84705c9a4c5ca89e36e5ed09a753f7cb5c34c55ebdf5120e0cf2c463",
+        "attention_mask": "999b4311c0a6a99cbe52b8b1b18071f4cf3cdefcae56459ce3ff70a164d8130b",
+        "pixel_values": "83e2b7b795a23726ee4b0990767af2849b6dc3861f56471a50979c7d69066244"
+      },
+      "prompt_length": 607,
+      "p_minus_1": 606,
+      "question_positions": [
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 607,
+        "non_visual_tokens_including_special": 31,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          640,
+          480
+        ]
+      },
+      "candidate_scores": [
+        {
+          "candidate": "no",
+          "logp": -11.776856347574487,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 694,
+              "token_text": "▁no",
+              "decoded_token": "no",
+              "answer_char_span": [
+                0,
+                2
+              ],
+              "source_text": "no",
+              "target_token_position": 607,
+              "query_position": 606
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 608
+        },
+        {
+          "candidate": "yes",
+          "logp": -16.331543847574487,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 4874,
+              "token_text": "▁yes",
+              "decoded_token": "yes",
+              "answer_char_span": [
+                0,
+                3
+              ],
+              "source_text": "yes",
+              "target_token_position": 607,
+              "query_position": 606
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 608
+        }
+      ],
+      "generated_text": "No",
+      "generated_token_ids": [
+        1939,
+        2
+      ],
+      "generated_token_logp": [
+        -0.04248117943857927,
+        -9.179180385061319e-06
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "official_generation_correct": true,
+        "diagnostic_candidate_margin": 4.5546875,
+        "diagnostic_candidate_correct": true,
+        "diagnostic_gold_sequence_logp": -11.776856347574487,
+        "diagnostic_all_candidate_sequence_logp": {
+          "no": -11.776856347574487,
+          "yes": -16.331543847574487
+        },
+        "diagnostic_margin_definition": "gold minus strongest wrong; sums over all answer tokens; no EOS"
+      },
+      "elapsed_seconds": 0.7048793490976095,
+      "memory": {
+        "allocated_mib": 13810.5634765625,
+        "reserved_mib": 14010.0,
+        "peak_allocated_mib": 13931.4951171875,
+        "peak_reserved_mib": 14010.0,
+        "device_free_mib": 9772.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14350
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "211a3cd5d4912f0df932c96a62b0c3f00bb8a72f41dc9dc40164a3601327bf0f"
+    },
+    {
+      "dataset": "pope_popular",
+      "question_id": "43",
+      "image_id": "COCO_val2014_000000461331.jpg",
+      "image_sha256": "ff8bde842ca6e7303ab3a04b67d317cf5da5638f0141fe5624b42838f05783bb",
+      "input_sha256": {
+        "input_ids": "488e2a39895254d1e1a499800e766f5993ab22843d3105c5dd686ac5b2c05bb8",
+        "attention_mask": "999b4311c0a6a99cbe52b8b1b18071f4cf3cdefcae56459ce3ff70a164d8130b",
+        "pixel_values": "83e2b7b795a23726ee4b0990767af2849b6dc3861f56471a50979c7d69066244"
+      },
+      "prompt_length": 607,
+      "p_minus_1": 606,
+      "question_positions": [
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 607,
+        "non_visual_tokens_including_special": 31,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          640,
+          480
+        ]
+      },
+      "candidate_scores": [
+        {
+          "candidate": "no",
+          "logp": -12.875835824611574,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 694,
+              "token_text": "▁no",
+              "decoded_token": "no",
+              "answer_char_span": [
+                0,
+                2
+              ],
+              "source_text": "no",
+              "target_token_position": 607,
+              "query_position": 606
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 608
+        },
+        {
+          "candidate": "yes",
+          "logp": -16.852398324611574,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 4874,
+              "token_text": "▁yes",
+              "decoded_token": "yes",
+              "answer_char_span": [
+                0,
+                3
+              ],
+              "source_text": "yes",
+              "target_token_position": 607,
+              "query_position": 606
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 608
+        }
+      ],
+      "generated_text": "No",
+      "generated_token_ids": [
+        1939,
+        2
+      ],
+      "generated_token_logp": [
+        -0.0398980524296135,
+        -2.320292818512569e-06
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "official_generation_correct": false,
+        "diagnostic_candidate_margin": -3.9765625,
+        "diagnostic_candidate_correct": false,
+        "diagnostic_gold_sequence_logp": -16.852398324611574,
+        "diagnostic_all_candidate_sequence_logp": {
+          "no": -12.875835824611574,
+          "yes": -16.852398324611574
+        },
+        "diagnostic_margin_definition": "gold minus strongest wrong; sums over all answer tokens; no EOS"
+      },
+      "elapsed_seconds": 0.7055377250071615,
+      "memory": {
+        "allocated_mib": 13810.5634765625,
+        "reserved_mib": 14010.0,
+        "peak_allocated_mib": 13931.4951171875,
+        "peak_reserved_mib": 14010.0,
+        "device_free_mib": 9772.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14350
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "f71617b960945c4cf8b85871500fde670f481e4b44e5e58865f9b39b9c814844"
+    },
+    {
+      "dataset": "pope_popular",
+      "question_id": "44",
+      "image_id": "COCO_val2014_000000461331.jpg",
+      "image_sha256": "ff8bde842ca6e7303ab3a04b67d317cf5da5638f0141fe5624b42838f05783bb",
+      "input_sha256": {
+        "input_ids": "a7900e1e84705c9a4c5ca89e36e5ed09a753f7cb5c34c55ebdf5120e0cf2c463",
+        "attention_mask": "999b4311c0a6a99cbe52b8b1b18071f4cf3cdefcae56459ce3ff70a164d8130b",
+        "pixel_values": "83e2b7b795a23726ee4b0990767af2849b6dc3861f56471a50979c7d69066244"
+      },
+      "prompt_length": 607,
+      "p_minus_1": 606,
+      "question_positions": [
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 607,
+        "non_visual_tokens_including_special": 31,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          640,
+          480
+        ]
+      },
+      "candidate_scores": [
+        {
+          "candidate": "no",
+          "logp": -11.776856347574487,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 694,
+              "token_text": "▁no",
+              "decoded_token": "no",
+              "answer_char_span": [
+                0,
+                2
+              ],
+              "source_text": "no",
+              "target_token_position": 607,
+              "query_position": 606
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 608
+        },
+        {
+          "candidate": "yes",
+          "logp": -16.331543847574487,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 4874,
+              "token_text": "▁yes",
+              "decoded_token": "yes",
+              "answer_char_span": [
+                0,
+                3
+              ],
+              "source_text": "yes",
+              "target_token_position": 607,
+              "query_position": 606
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 608
+        }
+      ],
+      "generated_text": "No",
+      "generated_token_ids": [
+        1939,
+        2
+      ],
+      "generated_token_logp": [
+        -0.04248117943857927,
+        -9.179180385061319e-06
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "official_generation_correct": true,
+        "diagnostic_candidate_margin": 4.5546875,
+        "diagnostic_candidate_correct": true,
+        "diagnostic_gold_sequence_logp": -11.776856347574487,
+        "diagnostic_all_candidate_sequence_logp": {
+          "no": -11.776856347574487,
+          "yes": -16.331543847574487
+        },
+        "diagnostic_margin_definition": "gold minus strongest wrong; sums over all answer tokens; no EOS"
+      },
+      "elapsed_seconds": 0.7069699589628726,
+      "memory": {
+        "allocated_mib": 13810.5634765625,
+        "reserved_mib": 14010.0,
+        "peak_allocated_mib": 13931.4951171875,
+        "peak_reserved_mib": 14010.0,
+        "device_free_mib": 9772.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14350
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "211a3cd5d4912f0df932c96a62b0c3f00bb8a72f41dc9dc40164a3601327bf0f"
+    },
+    {
+      "dataset": "pope_random",
+      "question_id": "43",
+      "image_id": "COCO_val2014_000000461331.jpg",
+      "image_sha256": "ff8bde842ca6e7303ab3a04b67d317cf5da5638f0141fe5624b42838f05783bb",
+      "input_sha256": {
+        "input_ids": "488e2a39895254d1e1a499800e766f5993ab22843d3105c5dd686ac5b2c05bb8",
+        "attention_mask": "999b4311c0a6a99cbe52b8b1b18071f4cf3cdefcae56459ce3ff70a164d8130b",
+        "pixel_values": "83e2b7b795a23726ee4b0990767af2849b6dc3861f56471a50979c7d69066244"
+      },
+      "prompt_length": 607,
+      "p_minus_1": 606,
+      "question_positions": [
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 607,
+        "non_visual_tokens_including_special": 31,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          640,
+          480
+        ]
+      },
+      "candidate_scores": [
+        {
+          "candidate": "no",
+          "logp": -12.875835824611574,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 694,
+              "token_text": "▁no",
+              "decoded_token": "no",
+              "answer_char_span": [
+                0,
+                2
+              ],
+              "source_text": "no",
+              "target_token_position": 607,
+              "query_position": 606
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 608
+        },
+        {
+          "candidate": "yes",
+          "logp": -16.852398324611574,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 4874,
+              "token_text": "▁yes",
+              "decoded_token": "yes",
+              "answer_char_span": [
+                0,
+                3
+              ],
+              "source_text": "yes",
+              "target_token_position": 607,
+              "query_position": 606
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 608
+        }
+      ],
+      "generated_text": "No",
+      "generated_token_ids": [
+        1939,
+        2
+      ],
+      "generated_token_logp": [
+        -0.0398980524296135,
+        -2.320292818512569e-06
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "official_generation_correct": false,
+        "diagnostic_candidate_margin": -3.9765625,
+        "diagnostic_candidate_correct": false,
+        "diagnostic_gold_sequence_logp": -16.852398324611574,
+        "diagnostic_all_candidate_sequence_logp": {
+          "no": -12.875835824611574,
+          "yes": -16.852398324611574
+        },
+        "diagnostic_margin_definition": "gold minus strongest wrong; sums over all answer tokens; no EOS"
+      },
+      "elapsed_seconds": 0.7085438349749893,
+      "memory": {
+        "allocated_mib": 13810.5634765625,
+        "reserved_mib": 14010.0,
+        "peak_allocated_mib": 13931.4951171875,
+        "peak_reserved_mib": 14010.0,
+        "device_free_mib": 9772.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14350
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "f71617b960945c4cf8b85871500fde670f481e4b44e5e58865f9b39b9c814844"
+    },
+    {
+      "dataset": "pope_random",
+      "question_id": "44",
+      "image_id": "COCO_val2014_000000461331.jpg",
+      "image_sha256": "ff8bde842ca6e7303ab3a04b67d317cf5da5638f0141fe5624b42838f05783bb",
+      "input_sha256": {
+        "input_ids": "b23e9069b05cc124edc8dc58d86d9d010b65cc4fbb55a5348b8217b57a6df6c3",
+        "attention_mask": "ed1c8caf76c3f4e4c6655bc7d14099e688a42a021da6e426e93549f60e7b9bb7",
+        "pixel_values": "83e2b7b795a23726ee4b0990767af2849b6dc3861f56471a50979c7d69066244"
+      },
+      "prompt_length": 608,
+      "p_minus_1": 607,
+      "question_positions": [
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 608,
+        "non_visual_tokens_including_special": 32,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          640,
+          480
+        ]
+      },
+      "candidate_scores": [
+        {
+          "candidate": "no",
+          "logp": -12.494324067311513,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 694,
+              "token_text": "▁no",
+              "decoded_token": "no",
+              "answer_char_span": [
+                0,
+                2
+              ],
+              "source_text": "no",
+              "target_token_position": 608,
+              "query_position": 607
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 609
+        },
+        {
+          "candidate": "yes",
+          "logp": -15.314636567311513,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 4874,
+              "token_text": "▁yes",
+              "decoded_token": "yes",
+              "answer_char_span": [
+                0,
+                3
+              ],
+              "source_text": "yes",
+              "target_token_position": 608,
+              "query_position": 607
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 609
+        }
+      ],
+      "generated_text": "No",
+      "generated_token_ids": [
+        1939,
+        2
+      ],
+      "generated_token_logp": [
+        -0.14276161030832948,
+        -4.006267709390441e-06
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "official_generation_correct": true,
+        "diagnostic_candidate_margin": 2.8203125,
+        "diagnostic_candidate_correct": true,
+        "diagnostic_gold_sequence_logp": -12.494324067311513,
+        "diagnostic_all_candidate_sequence_logp": {
+          "no": -12.494324067311513,
+          "yes": -15.314636567311513
+        },
+        "diagnostic_margin_definition": "gold minus strongest wrong; sums over all answer tokens; no EOS"
+      },
+      "elapsed_seconds": 0.6966506422031671,
+      "memory": {
+        "allocated_mib": 13814.0087890625,
+        "reserved_mib": 14010.0,
+        "peak_allocated_mib": 13931.4951171875,
+        "peak_reserved_mib": 14010.0,
+        "device_free_mib": 9772.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14350
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "556004bae153ddb26cdfe964fc24ed06f7d714e494e6069b1bf22c0cb2371ce0"
+    },
+    {
+      "dataset": "scienceqa_img",
+      "question_id": "10017",
+      "image_id": "10017",
+      "image_sha256": "7e7576cf72fe700a679534e352e1569d53842bb125580b4be1f719057955b5fb",
+      "input_sha256": {
+        "input_ids": "57b917778363703830090455b389dd03292a08fe1fb6a46ec98db66ea1139d08",
+        "attention_mask": "b90259de83e59a136cd23ae0d5c3823493364b2030643d8a8f239df722d584b0",
+        "pixel_values": "5ab7fb241000b6a0f841e5aba06547454748fb31a0a81ed150f08a10177cd451"
+      },
+      "prompt_length": 650,
+      "p_minus_1": 649,
+      "question_positions": [
+        595,
+        596,
+        597,
+        598,
+        599,
+        600,
+        601,
+        602,
+        603,
+        604,
+        605,
+        606,
+        607,
+        608,
+        609
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 650,
+        "non_visual_tokens_including_special": 74,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          448,
+          323
+        ]
+      },
+      "candidate_scores": [
+        {
+          "candidate": "A",
+          "logp": -0.2390900712109085,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 319,
+              "token_text": "▁A",
+              "decoded_token": "A",
+              "answer_char_span": [
+                0,
+                1
+              ],
+              "source_text": "A",
+              "target_token_position": 650,
+              "query_position": 649
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 651
+        },
+        {
+          "candidate": "B",
+          "logp": -3.3640900712109083,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 350,
+              "token_text": "▁B",
+              "decoded_token": "B",
+              "answer_char_span": [
+                0,
+                1
+              ],
+              "source_text": "B",
+              "target_token_position": 650,
+              "query_position": 649
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 651
+        },
+        {
+          "candidate": "C",
+          "logp": -1.7703400712109085,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 315,
+              "token_text": "▁C",
+              "decoded_token": "C",
+              "answer_char_span": [
+                0,
+                1
+              ],
+              "source_text": "C",
+              "target_token_position": 650,
+              "query_position": 649
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 651
+        }
+      ],
+      "generated_text": "A",
+      "generated_token_ids": [
+        319,
+        2
+      ],
+      "generated_token_logp": [
+        -0.23590073894034932,
+        -0.0005651370993426326
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "official_generation_correct": false,
+        "parsed_index": 0,
+        "diagnostic_candidate_margin": -1.53125,
+        "diagnostic_candidate_correct": false,
+        "diagnostic_gold_sequence_logp": -1.7703400712109085,
+        "diagnostic_all_candidate_sequence_logp": {
+          "A": -0.2390900712109085,
+          "B": -3.3640900712109083,
+          "C": -1.7703400712109085
+        },
+        "diagnostic_margin_definition": "gold minus strongest wrong; sums over all answer tokens; no EOS"
+      },
+      "elapsed_seconds": 1.0248880139552057,
+      "memory": {
+        "allocated_mib": 13833.67529296875,
+        "reserved_mib": 14062.0,
+        "peak_allocated_mib": 13962.03271484375,
+        "peak_reserved_mib": 14062.0,
+        "device_free_mib": 9720.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14402
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "bfa0c7acd75415010e0c81df3bab7ecb4d76a7714ffa2c0e0d717e9fad24253a"
+    },
+    {
+      "dataset": "scienceqa_img",
+      "question_id": "10053",
+      "image_id": "10053",
+      "image_sha256": "d931e80c8fac8dac140c187daecb9b58c3fe5ea759bfa17976081f9da3763c6e",
+      "input_sha256": {
+        "input_ids": "a7ebf9558c7b9e238cebfca72c42dfc67e3ea76dccdf412587ad571acb954cd0",
+        "attention_mask": "c4a2d2d1eb378d11511f2b337e9108d04920b6b6b892fd103340293a86be30d0",
+        "pixel_values": "2115c01e05e1d1f0aca0a2885d708cecc7e8017d0c05d46894b40d5c6864ea31"
+      },
+      "prompt_length": 697,
+      "p_minus_1": 696,
+      "question_positions": [
+        640,
+        641,
+        642,
+        643,
+        644,
+        645,
+        646,
+        647,
+        648,
+        649,
+        650,
+        651,
+        652,
+        653
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 697,
+        "non_visual_tokens_including_special": 121,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          732,
+          94
+        ]
+      },
+      "candidate_scores": [
+        {
+          "candidate": "A",
+          "logp": -1.4395714568527351,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 319,
+              "token_text": "▁A",
+              "decoded_token": "A",
+              "answer_char_span": [
+                0,
+                1
+              ],
+              "source_text": "A",
+              "target_token_position": 697,
+              "query_position": 696
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 698
+        },
+        {
+          "candidate": "B",
+          "logp": -0.28332145685273513,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 350,
+              "token_text": "▁B",
+              "decoded_token": "B",
+              "answer_char_span": [
+                0,
+                1
+              ],
+              "source_text": "B",
+              "target_token_position": 697,
+              "query_position": 696
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 698
+        }
+      ],
+      "generated_text": "B",
+      "generated_token_ids": [
+        350,
+        2
+      ],
+      "generated_token_logp": [
+        -0.2795928529577718,
+        -4.448479810324741e-05
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "official_generation_correct": false,
+        "parsed_index": 1,
+        "diagnostic_candidate_margin": -1.15625,
+        "diagnostic_candidate_correct": false,
+        "diagnostic_gold_sequence_logp": -1.4395714568527351,
+        "diagnostic_all_candidate_sequence_logp": {
+          "A": -1.4395714568527351,
+          "B": -0.28332145685273513
+        },
+        "diagnostic_margin_definition": "gold minus strongest wrong; sums over all answer tokens; no EOS"
+      },
+      "elapsed_seconds": 0.8080083890818059,
+      "memory": {
+        "allocated_mib": 13855.56591796875,
+        "reserved_mib": 14122.0,
+        "peak_allocated_mib": 14001.68701171875,
+        "peak_reserved_mib": 14122.0,
+        "device_free_mib": 9660.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14462
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "e2205ea1da4394836590551dfe5aaf0dfa0abfe6930b2c9ef52c541721d50341"
+    },
+    {
+      "dataset": "scienceqa_img",
+      "question_id": "11201",
+      "image_id": "11201",
+      "image_sha256": "021f1e222829ab39df1e38b829501934e13c7e0f1e818ef203ea66d4b45e47fb",
+      "input_sha256": {
+        "input_ids": "d4b7b502ec67b0f12b21bb1b852996ea04e68bfd435d7962e0538a40740eaaae",
+        "attention_mask": "6244f4865f1e4f5dfd6eb63336833d01e19819274745b66de613efc506e3b2db",
+        "pixel_values": "218e29f1a636e50b93f5e32b282eda65c3c69ecdbeeff58ce06842d82a1386ec"
+      },
+      "prompt_length": 844,
+      "p_minus_1": 843,
+      "question_positions": [
+        760,
+        761,
+        762,
+        763,
+        764,
+        765,
+        766,
+        767,
+        768,
+        769,
+        770,
+        771,
+        772,
+        773,
+        774,
+        775,
+        776,
+        777,
+        778,
+        779,
+        780,
+        781,
+        782,
+        783,
+        784,
+        785,
+        786,
+        787,
+        788,
+        789
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 844,
+        "non_visual_tokens_including_special": 268,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          248,
+          239
+        ]
+      },
+      "candidate_scores": [
+        {
+          "candidate": "A",
+          "logp": -0.5177100387295047,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 319,
+              "token_text": "▁A",
+              "decoded_token": "A",
+              "answer_char_span": [
+                0,
+                1
+              ],
+              "source_text": "A",
+              "target_token_position": 844,
+              "query_position": 843
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 845
+        },
+        {
+          "candidate": "B",
+          "logp": -3.2520850387295046,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 350,
+              "token_text": "▁B",
+              "decoded_token": "B",
+              "answer_char_span": [
+                0,
+                1
+              ],
+              "source_text": "B",
+              "target_token_position": 844,
+              "query_position": 843
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 845
+        },
+        {
+          "candidate": "C",
+          "logp": -1.4552100387295046,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 315,
+              "token_text": "▁C",
+              "decoded_token": "C",
+              "answer_char_span": [
+                0,
+                1
+              ],
+              "source_text": "C",
+              "target_token_position": 844,
+              "query_position": 843
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 845
+        },
+        {
+          "candidate": "D",
+          "logp": -2.2677100387295046,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 360,
+              "token_text": "▁D",
+              "decoded_token": "D",
+              "answer_char_span": [
+                0,
+                1
+              ],
+              "source_text": "D",
+              "target_token_position": 844,
+              "query_position": 843
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 845
+        },
+        {
+          "candidate": "E",
+          "logp": -3.5958350387295046,
+          "mapping": [
+            {
+              "answer_token_ordinal": 0,
+              "token_id": 382,
+              "token_text": "▁E",
+              "decoded_token": "E",
+              "answer_char_span": [
+                0,
+                1
+              ],
+              "source_text": "E",
+              "target_token_position": 844,
+              "query_position": 843
+            }
+          ],
+          "length": 1,
+          "valid_input_tokens": 845
+        }
+      ],
+      "generated_text": "A",
+      "generated_token_ids": [
+        319,
+        2
+      ],
+      "generated_token_logp": [
+        -0.5181576535238185,
+        -0.05110332049243941
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "official_generation_correct": false,
+        "parsed_index": 0,
+        "diagnostic_candidate_margin": -0.9374999999999999,
+        "diagnostic_candidate_correct": false,
+        "diagnostic_gold_sequence_logp": -1.4552100387295046,
+        "diagnostic_all_candidate_sequence_logp": {
+          "A": -0.5177100387295047,
+          "B": -3.2520850387295046,
+          "C": -1.4552100387295046,
+          "D": -2.2677100387295046,
+          "E": -3.5958350387295046
+        },
+        "diagnostic_margin_definition": "gold minus strongest wrong; sums over all answer tokens; no EOS"
+      },
+      "elapsed_seconds": 1.7796054258942604,
+      "memory": {
+        "allocated_mib": 13931.0576171875,
+        "reserved_mib": 14298.0,
+        "peak_allocated_mib": 14137.4169921875,
+        "peak_reserved_mib": 14298.0,
+        "device_free_mib": 9484.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14638
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "c7a1107e8ace6ce3c727a851ce8b0f8570e4cdc103f1fdb2ddf3d079962e0198"
+    },
+    {
+      "dataset": "textvqa",
+      "question_id": "38831",
+      "image_id": "0024fa464b466993",
+      "image_sha256": "d7c061e4e557d2ff2beb9aeeda56d5acde9c9e5e8a3f6f386a7b39c2b703a586",
+      "input_sha256": {
+        "input_ids": "bf7ef3f0b2f997569d61169042775efa0a83d4bc4fe04ed81e0e4b18c20a28fa",
+        "attention_mask": "51360e6ccdcbe934184bdc7d20b04440d513651a10c07698bdf7c9bbe866f44f",
+        "pixel_values": "a0584f50d4a743c7df0e75b40706d0e4b36266354cf71165762570a66dcf0aa5"
+      },
+      "prompt_length": 606,
+      "p_minus_1": 605,
+      "question_positions": [
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 606,
+        "non_visual_tokens_including_special": 30,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          679,
+          1024
+        ]
+      },
+      "candidate_scores": [],
+      "generated_text": "Man",
+      "generated_token_ids": [
+        2315,
+        2
+      ],
+      "generated_token_logp": [
+        -0.18754976945395435,
+        -0.0012875159315948253
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "official_generation_vqa_soft_accuracy": 0.0
+      },
+      "elapsed_seconds": 0.29634704417549074,
+      "memory": {
+        "allocated_mib": 13810.71337890625,
+        "reserved_mib": 14298.0,
+        "peak_allocated_mib": 14137.4169921875,
+        "peak_reserved_mib": 14298.0,
+        "device_free_mib": 9484.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14638
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "933ad543cbc9eff932bd450fbc371a6b81606ea79c7047b70083071391c2efcb"
+    },
+    {
+      "dataset": "textvqa",
+      "question_id": "36395",
+      "image_id": "002a1fb97133ae95",
+      "image_sha256": "f3d3d9b7a9272828bcdc9963aefb5f371a1ca2e0453f01344b12a818b58bc02e",
+      "input_sha256": {
+        "input_ids": "fe10acf60969b715b0c60ec1a926e784c171924e886191ca752f93ff873a25ee",
+        "attention_mask": "b5a59554b73820e64df397ae59f544493e138a50d4eab5e549352f3c61f93d09",
+        "pixel_values": "64496b6ee8a57512682b5b354bdabdaaaddd3b7216a2f324137d1fe2c6e9c2df"
+      },
+      "prompt_length": 609,
+      "p_minus_1": 608,
+      "question_positions": [
+        583,
+        584,
+        585,
+        586,
+        587,
+        588,
+        589,
+        590,
+        591,
+        592
+      ],
+      "counts": {
+        "visual_tokens": 576,
+        "llm_input_tokens": 609,
+        "non_visual_tokens_including_special": 33,
+        "pixel_values_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "original_image_size": [
+          955,
+          1024
+        ]
+      },
+      "candidate_scores": [],
+      "generated_text": "Karl fogel",
+      "generated_token_ids": [
+        8425,
+        16847,
+        295,
+        2
+      ],
+      "generated_token_logp": [
+        -0.6185293295304097,
+        -0.41302332974612727,
+        -0.005335182963224105,
+        -0.002146331525725074
+      ],
+      "eos_observed": true,
+      "length_limit_reached": false,
+      "metrics": {
+        "official_generation_vqa_soft_accuracy": 0.8999999999999998
+      },
+      "elapsed_seconds": 0.44521578308194876,
+      "memory": {
+        "allocated_mib": 13816.09130859375,
+        "reserved_mib": 14298.0,
+        "peak_allocated_mib": 14137.4169921875,
+        "peak_reserved_mib": 14298.0,
+        "device_free_mib": 9484.3125,
+        "device_total_mib": 24154.375,
+        "nvidia_smi_process_mib": 14638
+      },
+      "condition": "Native Full ONLY",
+      "raw_logits_npz_sha256": "8f9011244e18b5f4bf357f8b6d66678397a3934a24fc3d804eeaa52a8241a141"
+    }
+  ]
+}

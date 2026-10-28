@@ -1,0 +1,200 @@
+{
+  "passed": true,
+  "dataset_integrity": {
+    "passed": true,
+    "meaning": "Frozen data integrity, not a model-quality result or intervention acceptance",
+    "all_assets_ready": true,
+    "datasets": {
+      "gqa_chooseattr": {
+        "manifest_verified": true,
+        "samples": 240,
+        "verified_images_per_question": 240,
+        "blocked_question_ids": [],
+        "status": "ready_native_full"
+      },
+      "gqa_logicalobj": {
+        "manifest_verified": true,
+        "samples": 240,
+        "verified_images_per_question": 240,
+        "blocked_question_ids": [],
+        "status": "ready_native_full"
+      },
+      "gqa_queryattr": {
+        "manifest_verified": true,
+        "samples": 240,
+        "verified_images_per_question": 240,
+        "blocked_question_ids": [],
+        "status": "ready_native_full"
+      },
+      "pope_adversarial": {
+        "manifest_verified": true,
+        "samples": 300,
+        "verified_images_per_question": 300,
+        "blocked_question_ids": [],
+        "status": "ready_native_full"
+      },
+      "pope_popular": {
+        "manifest_verified": true,
+        "samples": 300,
+        "verified_images_per_question": 300,
+        "blocked_question_ids": [],
+        "status": "ready_native_full"
+      },
+      "pope_random": {
+        "manifest_verified": true,
+        "samples": 300,
+        "verified_images_per_question": 300,
+        "blocked_question_ids": [],
+        "status": "ready_native_full"
+      },
+      "scienceqa_img": {
+        "manifest_verified": true,
+        "samples": 500,
+        "verified_images_per_question": 500,
+        "blocked_question_ids": [],
+        "status": "ready_native_full"
+      },
+      "textvqa": {
+        "manifest_verified": true,
+        "samples": 500,
+        "verified_images_per_question": 500,
+        "blocked_question_ids": [],
+        "status": "ready_native_full"
+      }
+    }
+  },
+  "smoke_cases_independently_verified": [
+    {
+      "dataset": "gqa_chooseattr",
+      "question_id": "00145707",
+      "passed": true,
+      "candidate_count": 2,
+      "greedy_steps": 2
+    },
+    {
+      "dataset": "gqa_chooseattr",
+      "question_id": "00223668",
+      "passed": true,
+      "candidate_count": 2,
+      "greedy_steps": 2
+    },
+    {
+      "dataset": "gqa_chooseattr",
+      "question_id": "0074716",
+      "passed": true,
+      "candidate_count": 2,
+      "greedy_steps": 3
+    },
+    {
+      "dataset": "gqa_logicalobj",
+      "question_id": "00324589",
+      "passed": true,
+      "candidate_count": 2,
+      "greedy_steps": 2
+    },
+    {
+      "dataset": "gqa_logicalobj",
+      "question_id": "00359128",
+      "passed": true,
+      "candidate_count": 2,
+      "greedy_steps": 2
+    },
+    {
+      "dataset": "gqa_queryattr",
+      "question_id": "001056218",
+      "passed": true,
+      "candidate_count": 0,
+      "greedy_steps": 2
+    },
+    {
+      "dataset": "gqa_queryattr",
+      "question_id": "00248500",
+      "passed": true,
+      "candidate_count": 0,
+      "greedy_steps": 2
+    },
+    {
+      "dataset": "pope_adversarial",
+      "question_id": "43",
+      "passed": true,
+      "candidate_count": 2,
+      "greedy_steps": 2
+    },
+    {
+      "dataset": "pope_adversarial",
+      "question_id": "44",
+      "passed": true,
+      "candidate_count": 2,
+      "greedy_steps": 2
+    },
+    {
+      "dataset": "pope_popular",
+      "question_id": "43",
+      "passed": true,
+      "candidate_count": 2,
+      "greedy_steps": 2
+    },
+    {
+      "dataset": "pope_popular",
+      "question_id": "44",
+      "passed": true,
+      "candidate_count": 2,
+      "greedy_steps": 2
+    },
+    {
+      "dataset": "pope_random",
+      "question_id": "43",
+      "passed": true,
+      "candidate_count": 2,
+      "greedy_steps": 2
+    },
+    {
+      "dataset": "pope_random",
+      "question_id": "44",
+      "passed": true,
+      "candidate_count": 2,
+      "greedy_steps": 2
+    },
+    {
+      "dataset": "scienceqa_img",
+      "question_id": "10017",
+      "passed": true,
+      "candidate_count": 3,
+      "greedy_steps": 2
+    },
+    {
+      "dataset": "scienceqa_img",
+      "question_id": "10053",
+      "passed": true,
+      "candidate_count": 2,
+      "greedy_steps": 2
+    },
+    {
+      "dataset": "scienceqa_img",
+      "question_id": "11201",
+      "passed": true,
+      "candidate_count": 5,
+      "greedy_steps": 2
+    },
+    {
+      "dataset": "textvqa",
+      "question_id": "38831",
+      "passed": true,
+      "candidate_count": 0,
+      "greedy_steps": 2
+    },
+    {
+      "dataset": "textvqa",
+      "question_id": "36395",
+      "passed": true,
+      "candidate_count": 0,
+      "greedy_steps": 4
+    }
+  ],
+  "logp_max_abs_recomputation_error_nats": 2.6645352591003757e-14,
+  "comparison_atol_nats": 1e-10,
+  "purpose_of_atol": "Float64 NumPy-vs-PyTorch summation rounding only; not FP16/model equivalence tolerance",
+  "original_frozen_artifacts_unchanged": true,
+  "frozen_source_commit": "24523aef248f5bf1943d8e0d51d8febb187a105b",
+  "canonical_overlap_sha256": "6f92935badca8ac2b5419b46b48966a30a7661d5f723b08066042913f7311a5d"
+}

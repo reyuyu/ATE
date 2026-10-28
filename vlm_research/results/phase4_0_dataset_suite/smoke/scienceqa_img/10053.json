@@ -1,0 +1,123 @@
+{
+  "dataset": "scienceqa_img",
+  "question_id": "10053",
+  "image_id": "10053",
+  "image_sha256": "d931e80c8fac8dac140c187daecb9b58c3fe5ea759bfa17976081f9da3763c6e",
+  "input_sha256": {
+    "input_ids": "a7ebf9558c7b9e238cebfca72c42dfc67e3ea76dccdf412587ad571acb954cd0",
+    "attention_mask": "c4a2d2d1eb378d11511f2b337e9108d04920b6b6b892fd103340293a86be30d0",
+    "pixel_values": "2115c01e05e1d1f0aca0a2885d708cecc7e8017d0c05d46894b40d5c6864ea31"
+  },
+  "prompt_length": 697,
+  "p_minus_1": 696,
+  "question_positions": [
+    640,
+    641,
+    642,
+    643,
+    644,
+    645,
+    646,
+    647,
+    648,
+    649,
+    650,
+    651,
+    652,
+    653
+  ],
+  "counts": {
+    "visual_tokens": 576,
+    "llm_input_tokens": 697,
+    "non_visual_tokens_including_special": 121,
+    "pixel_values_shape": [
+      1,
+      3,
+      336,
+      336
+    ],
+    "original_image_size": [
+      732,
+      94
+    ]
+  },
+  "candidate_scores": [
+    {
+      "candidate": "A",
+      "logp": -1.4395714568527351,
+      "mapping": [
+        {
+          "answer_token_ordinal": 0,
+          "token_id": 319,
+          "token_text": "▁A",
+          "decoded_token": "A",
+          "answer_char_span": [
+            0,
+            1
+          ],
+          "source_text": "A",
+          "target_token_position": 697,
+          "query_position": 696
+        }
+      ],
+      "length": 1,
+      "valid_input_tokens": 698
+    },
+    {
+      "candidate": "B",
+      "logp": -0.28332145685273513,
+      "mapping": [
+        {
+          "answer_token_ordinal": 0,
+          "token_id": 350,
+          "token_text": "▁B",
+          "decoded_token": "B",
+          "answer_char_span": [
+            0,
+            1
+          ],
+          "source_text": "B",
+          "target_token_position": 697,
+          "query_position": 696
+        }
+      ],
+      "length": 1,
+      "valid_input_tokens": 698
+    }
+  ],
+  "generated_text": "B",
+  "generated_token_ids": [
+    350,
+    2
+  ],
+  "generated_token_logp": [
+    -0.2795928529577718,
+    -4.448479810324741e-05
+  ],
+  "eos_observed": true,
+  "length_limit_reached": false,
+  "metrics": {
+    "official_generation_correct": false,
+    "parsed_index": 1,
+    "diagnostic_candidate_margin": -1.15625,
+    "diagnostic_candidate_correct": false,
+    "diagnostic_gold_sequence_logp": -1.4395714568527351,
+    "diagnostic_all_candidate_sequence_logp": {
+      "A": -1.4395714568527351,
+      "B": -0.28332145685273513
+    },
+    "diagnostic_margin_definition": "gold minus strongest wrong; sums over all answer tokens; no EOS"
+  },
+  "elapsed_seconds": 0.8080083890818059,
+  "memory": {
+    "allocated_mib": 13855.56591796875,
+    "reserved_mib": 14122.0,
+    "peak_allocated_mib": 14001.68701171875,
+    "peak_reserved_mib": 14122.0,
+    "device_free_mib": 9660.3125,
+    "device_total_mib": 24154.375,
+    "nvidia_smi_process_mib": 14462
+  },
+  "condition": "Native Full ONLY",
+  "raw_logits_npz_sha256": "e2205ea1da4394836590551dfe5aaf0dfa0abfe6930b2c9ef52c541721d50341"
+}
