@@ -2,8 +2,8 @@
 
 ## 实际状态
 
-**cpu_passed_gpu_pending：真实GPU完成 0/144 条件。**
-
+**gpu_resource_blocked：真实GPU完成 0/144 条件。**
+Insufficient free GPU memory before loading; no model load was attempted
 
 历史Full Margin=−0.03125、历史Physical K24=+0.0390625，仅作旧对照。未完成时不得将它们写成新基线或推断任何层的预测收益。
 
@@ -39,3 +39,7 @@ CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
 固定代码Commit必须先于真实7B运行；运行中的源码不修改。资源门槛16,000MiB空闲。每次gpu默认新建尝试目录，保留失败/资源记录；`--resume-attempt`严格核验冻结协议、代码Commit、环境及逐条件文件SHA，拒绝不完整checkpoint覆盖或重复计数。若原尝试没有分数，直接新attempt即可。结果汇总仅在全部144条件及清理验证通过后画图；partial保留真实分数但不伪装完整。
 
 协议见[protocol.json](protocol.json)，状态见[status.json](status.json)，CPU记录见[cpu_tests.txt](cpu_tests.txt)。只推送独立实验分支，不合并main。
+
+## 此次执行凭据
+
+[2026-10-29资源阻塞及恢复说明](resource_blocked_20261029.md) · [独立核验](artifact_validation.json) · [118项全工程CPU回归](cpu_regression.txt)。真实GPU条件0/144，未完成GPU Smoke；没有新Margin曲线。
