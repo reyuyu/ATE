@@ -1,0 +1,74 @@
+{
+  "binding": "245280e872898f8c4aa05a26e086251a76b403ba6c12fd6549de23a01c745920",
+  "cpu_tests": 72,
+  "smoke_images": 8,
+  "production_images": 240,
+  "attention_forwards_audited": 192,
+  "attention_layers_audited": 6144,
+  "all_target_attention_exact_zero": true,
+  "max_attention_row_sum_error": 0.0004067420959472656,
+  "all_k32_valid_text_hidden_logits_exact": true,
+  "all_answer_only_question_hidden_exact_full": true,
+  "all_qa_question_hidden_exact_question_only": true,
+  "post_cleanup_native_full_exact": true,
+  "smoke_production_exact": [
+    {
+      "question_id": "1919718",
+      "exact": true
+    },
+    {
+      "question_id": "17156699",
+      "exact": true
+    },
+    {
+      "question_id": "02310173",
+      "exact": true
+    },
+    {
+      "question_id": "01979382",
+      "exact": true
+    },
+    {
+      "question_id": "0464509",
+      "exact": true
+    },
+    {
+      "question_id": "0216546",
+      "exact": true
+    },
+    {
+      "question_id": "05480434",
+      "exact": true
+    },
+    {
+      "question_id": "02904244",
+      "exact": true
+    }
+  ],
+  "global_history_candidate_logp_max_abs_error": 0.03044244302467547,
+  "global_history_margin_max_abs_error": 0.015625000000001776,
+  "global_history_classification_differences": [
+    {
+      "question_id": "04993832",
+      "cutoff": 16,
+      "history_physical_margin": 0.0078125,
+      "candidate_logp_max_abs_error": 0.023252771031952335,
+      "margin_abs_error": 0.0078125,
+      "history_physical_correct": true,
+      "global_vs_historical_classification_changed": true
+    }
+  ],
+  "gpu_global_physical_max_logit_error": 0.03515625,
+  "gpu_global_physical_max_text_cosine": 4.217429190322974e-06,
+  "gpu_global_physical_max_text_relative_rmse": 0.0030918219433504687,
+  "tolerances": {
+    "fp16_logit_atol": 0.1,
+    "fp16_logit_rtol": 0.003,
+    "max_text_cosine_distance": 0.0001,
+    "max_text_relative_rmse": 0.01,
+    "candidate_joint_logp_atol_nats": 0.1,
+    "candidate_margin_atol_nats": 0.15,
+    "cpu_fp32_atol": 2e-06,
+    "cpu_fp32_rtol": 2e-05
+  }
+}

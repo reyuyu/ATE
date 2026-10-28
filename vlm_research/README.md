@@ -2,7 +2,7 @@
 
 本工程用于验证 `llava-hf/llava-1.5-7b-hf` 在 RTX 4090 上的正常推理、结构和输入长度。使用 `LlavaForConditionalGeneration`、`AutoProcessor`、FP16、`eager` Attention、`eval()` 和 `torch.inference_mode()`。所有参数必须位于同一张 GPU；加载后会检查参数的设备和精度。
 
-第一阶段推理基线、第二阶段 Prompt Prefill Attention 与 Phase 2.1 Query Position 分析已完成。复用第一阶段加载和输入处理函数，通过 `outputs.attentions` 提取语言模型注意力。Phase 2.1 研究问题 Token、Answer-start 与 Teacher Forcing 的答案预测位置，该阶段没有注册 Hook。Phase 3 全局逐层 Text→Visual Attention Knockout 已完成真实 7B 小规模实测；Phase 3.1 新增物理视觉 Token 退出，已完成 12 张固定 GQA 图片的 Full/Mask/Physical 对照。没有实施自由生成 Decode Attention、Token Pruning、量化或训练。Phase 3.2 已扩展为 240 张新增独立图的固定 K 验证，详见下文；环境与旧阶段既有代码/结果保持原样。
+第一阶段推理基线、第二阶段 Prompt Prefill Attention 与 Phase 2.1 Query Position 分析已完成。复用第一阶段加载和输入处理函数，通过 `outputs.attentions` 提取语言模型注意力。Phase 2.1 研究问题 Token、Answer-start 与 Teacher Forcing 的答案预测位置，该阶段没有注册 Hook。Phase 3 全局逐层 Text→Visual Attention Knockout 已完成真实 7B 小规模实测；Phase 3.1 新增物理视觉 Token 退出，已完成 12 张固定 GQA 图片的 Full/Mask/Physical 对照。没有实施自由生成 Decode Attention、Token Pruning、量化或训练。Phase 3.2 已扩展为 240 张新增独立图的固定 K 验证，Phase 3.3 已完成同240图的定向后缀Mask诊断，详见下文；环境与旧阶段既有代码/结果保持原样。
 
 ## 文件
 
@@ -28,6 +28,10 @@ vlm_research/
 ├── physical_exit_pilot.py      # 固定12张GQA图的Full/Mask/Physical对照及两张曲线
 ├── prepare_physical_exit_data.py # 官方CSV确定性采样、图片与源文件哈希
 ├── test_physical_exit.py       # 物理长度、位置、RoPE、数值等价和多Token评分测试
+├── directed_suffix.py          # Phase 3.3：继承既有安全Mask Hook，定向Query→视觉Key阻断
+├── directed_suffix_probe.py    # 冻结240图、真实GPU校验、完整候选评分与严格断点续跑
+├── summarize_directed_suffix.py # 离线完整性校验、配对统计和三张核心图
+├── test_directed_suffix.py     # 定向Mask方向、因果不变量、P−1、清理和续跑测试
 ├── test_images/
 │   ├── example.jpg
 │   └── SOURCE.md
@@ -36,6 +40,37 @@ vlm_research/
 ```
 
 模型文件保存在用户缓存目录，不放入 Git。当前主工程目录之外的 AFAC 文件未因本任务修改。
+
+## Phase 3.3：Directed Suffix Visual Attention Knockout（完成）
+
+结果位于独立的 `results/phase3_3_directed_suffix/`；[完整报告](results/phase3_3_directed_suffix/report.md)、[测试记录](results/phase3_3_directed_suffix/test_report.md)、[配对汇总](results/phase3_3_directed_suffix/summary_by_condition.csv)。沿用Phase3.2冻结的同240张图片和Prompt/候选顺序，无重采样、无结果筛选。
+
+72项CPU回归、8图真实7B Smoke及全部240图验收通过，3120行完整结果。Full187/240；K16 Q-only/A-only/Q+A/Global分别189/184/188/186，Full-correct翻错1/3/2/3条；K24分别189/187/189/189，均无Full-correct损失。三个历史Global翻错中，两个单路径各保留2条，Q+A保留1条；A-only另有2条Global未翻错的损失，因此不能概括为单路径普遍更安全。A-only Question hidden精确Full仍可答案翻错，QA与Q-only Question hidden精确相同仍有答案差异。
+
+Global与历史Physical均通过既有容差；`04993832` K16的历史+0.0078125变为本轮0平局，造成Global比历史Physical少答对1条，报告单独保留，不能视为新的机制证据。正式1083.881秒、allocated峰值13778.161MiB；全Attention Smoke峰值14467.481MiB。所有条件保留602–613完整Token序列，不是加速实验。
+
+- K=[16,24,32]，从L_K持续到L31；K32为无干预控制，另有原生Full。
+- Q-only：真实Question Query→全部576视觉Key；A-only：**P−1**预测首个答案Token的Query→视觉Key，绝不是已输入答案P。
+- Q+A取二者并集；Global使用原Phase3的所有合法后图像文本Query。行是target Query，列是source Key。
+- 继承既有Causal Mask Clone和安全Hook清理，所有视觉Token/原始位置/32层计算保持不变；不是Physical Exit或加速实验。
+- 单Token left/right仍按完整候选序列条件logP评分，Margin>0才算正确，平局算错。Question Drift取最终RMSNorm状态，逐Token数据在检查点中。
+
+```bash
+cd /home/zsy/ATE/vlm_research
+conda activate vlm_research
+CUDA_VISIBLE_DEVICES='' HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
+  python -m unittest test_attention_probe test_attention_positions test_knockout \
+  test_phase3_watch test_physical_exit test_fixed_k_exit test_directed_suffix -v
+CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python directed_suffix_probe.py smoke
+CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python directed_suffix_probe.py run
+CUDA_VISIBLE_DEVICES='' HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python summarize_directed_suffix.py
+```
+
+续跑时使用相同命令：先校验冻结Manifest、图片/模型/旧阶段源码与新实现SHA256、配置和检查点校验和，已完成样本跳过，拒绝覆盖、重复或错配。必须先通过Smoke完成门才能正式运行。只有全部240图/3120行完整时，汇总程序才生成全队列图表。不要为恢复而修改绑定源码或选择性删除检查点。
+
+三张核心图为 `accuracy_and_flips.png`、`margin_drop_distribution.png`、`question_drift_answer_margin.png`。CSV/JSON记录全部样本及固定Full-correct子集；`historical_three_cases.csv`逐一对照用户指定的三个K16历史翻错问题；`global_vs_historical_physical.csv`单独记录FP16容差内可能存在的近零Margin分类差异。`compute_diagnostics.csv`仅为含Hook/检查开销的诊断计时，无独立预热重复、不宣称加速。
+
+本轮止于Phase3.3，不自动扩展ROI、Router、KV Cache、Decode、训练或其他数据集；自动GPU轮询保持关闭。
 
 ## Phase 3.2：240 图 Fixed-K Physical Exit（完成）
 

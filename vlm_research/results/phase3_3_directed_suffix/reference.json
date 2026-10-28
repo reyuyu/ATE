@@ -1,0 +1,21 @@
+{
+  "title": "Cross-modal Information Flow in Multimodal Large Language Models",
+  "authors": [
+    "Zhi Zhang",
+    "Srishti Yadav",
+    "Fengze Han",
+    "Ekaterina Shutova"
+  ],
+  "venue": "CVPR 2025",
+  "pdf_url": "https://arxiv.org/pdf/2411.18620",
+  "arxiv_version": "2411.18620v2, 25 March 2025",
+  "pdf_sha256": "74e0109c8f10ce47b29ba01cf75447b70c5df4b086fdd8ff658ad372017c9679",
+  "official_repository": "https://github.com/FightingFighting/cross-modal-information-flow-in-MLLM",
+  "repository_revision": "c9a1111dac4baa175f67716fab473789320187c0",
+  "reviewed": [
+    "Paper Section 3.2, experiments 1/2 and metric definition",
+    "Official methods.py directed row/column masks",
+    "Official scripts/informationFlow.sh: current_window=9"
+  ],
+  "protocol_difference": "Paper: 9-layer windows and relative probability change of baseline-predicted answer. Here: suffix K..31, gold-vs-wrong candidate logP margin, exact Question offsets and answer Query=P-1. Not a strict reproduction."
+}
