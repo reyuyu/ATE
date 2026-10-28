@@ -4,6 +4,10 @@
 
 第一阶段推理基线、第二阶段 Prompt Prefill Attention 与 Phase 2.1 Query Position 分析已完成。复用第一阶段加载和输入处理函数，通过 `outputs.attentions` 提取语言模型注意力。Phase 2.1 研究问题 Token、Answer-start 与 Teacher Forcing 的答案预测位置，该阶段没有注册 Hook。Phase 3 全局逐层 Text→Visual Attention Knockout 已完成真实 7B 小规模实测；Phase 3.1 新增物理视觉 Token 退出，已完成 12 张固定 GQA 图片的 Full/Mask/Physical 对照。没有实施自由生成 Decode Attention、Token Pruning、量化或训练。Phase 3.2 已扩展为 240 张新增独立图的固定 K 验证，Phase 3.3 已完成同240图的定向后缀Mask诊断；Phase 3.4 已完成240图ROI审计及48主样本+5独立案例的ROI/Sink小规模诊断，详见下文；环境与旧阶段既有代码/结果保持原样。
 
+## 跨服务器交接
+
+[完整交接](handoff/README.md) · [完整GQA数据/权重下载及路径适配](handoff/DATASET_SETUP.md) · [新服务器Codex提示词](handoff/CODEX_PROMPT.md)。涵盖当前单例未完成状态、240图/48主图统计基础与缓存；按252张冻结原图SHA256恢复，不重采样。交接不新增GPU实验。
+
 ## 文件
 
 ```text

@@ -1,8 +1,10 @@
 # ATE：视觉语言模型 Attention 与视觉信息流研究
 
-当前已完成第一阶段单卡 FP16 推理基线、第二阶段 Prompt Prefill Attention，以及 Phase 2.1 的 Question Token / Answer-start / Teacher-forced Answer Prediction Attention 分析。
+当前已完成 Phase1～Phase3.5：单卡FP16基线、逐层Attention/Token定位、全局及定向Mask、240图Fixed-K Physical Exit、ROI/Sink诊断与离线边界分析。历史报告及统计可直接复用。
 
-Phase 3 全局逐层 Visual Attention Knockout 已实现并通过 CPU 小型随机 LLaVA 测试，9 条小样本的真实 Processor 输入已审计；**7B GPU 正确性验证与 Cutoff Sweep 尚未执行，受其他任务显存占用阻塞**。状态、证据和续跑命令见 [Phase 3 报告](vlm_research/results/phase3_knockout/phase3_report.md)。不把随机模型测试当作 7B 科研结论。
+**当前待办是15133706单案例Attention继承**：101项CPU回归通过，但真实7B只完成L23 λ0；非零λ无完整Margin，修正版GPU验证受显存占用阻塞。详情见[未完成报告](vlm_research/results/attention_inheritance_15133706/report.md)。
+
+**新服务器接手从这里开始**：[交接文档](vlm_research/handoff/README.md) · [完整数据集/模型下载](vlm_research/handoff/DATASET_SETUP.md) · [Codex交接提示词](vlm_research/handoff/CODEX_PROMPT.md)。说明如何恢复全部GQA图片、校验252张冻结图、保留240图/48主图统计协议，以及继续当前未完成实验。
 
 工程位于 [`vlm_research/`](vlm_research/)。环境安装、权重下载和常见问题见 [工程说明](vlm_research/README.md)，真实耗时、显存和回答见 [第一阶段实测报告](vlm_research/results/phase1_report.md)。
 
