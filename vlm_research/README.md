@@ -6,7 +6,7 @@
 
 ## 跨服务器交接
 
-[完整交接](handoff/README.md) · [完整GQA数据/权重下载及路径适配](handoff/DATASET_SETUP.md) · [新服务器Codex提示词](handoff/CODEX_PROMPT.md)。涵盖当前单例未完成状态、240图/48主图统计基础与缓存；按252张冻结原图SHA256恢复，不重采样。交接不新增GPU实验。
+[完整交接](handoff/README.md) · [完整GQA数据/权重下载及路径适配](handoff/DATASET_SETUP.md) · [新服务器Codex提示词](handoff/CODEX_PROMPT.md)。涵盖已完成的单案例六条件结果、240图/48主图统计基础与缓存；按252张冻结原图SHA256恢复，不重采样。初始交接不新增GPU实验；后续单案例完成状态已同步。
 
 ## 文件
 
@@ -53,11 +53,13 @@ vlm_research/
 
 模型文件保存在用户缓存目录，不放入 Git。当前主工程目录之外的 AFAC 文件未因本任务修改。
 
-## 单案例15133706：逐Head视觉Attention继承（GPU实验未完成）
+## 单案例15133706：逐Head视觉Attention继承（真实GPU完成）
 
-新增`attention_inheritance.py`及`attention_inheritance_pilot.py`：仅在L24～L31、P−1→576视觉Keys，按λ=0/.5/1混合Full L23/L24的逐Head视觉条件分布，保留当前视觉Mass和非目标权重；实例局部包装在结束/异常时恢复，不改库或旧实验。7项新增CPU测试、全工程101项回归通过。
+`attention_inheritance.py`及`attention_inheritance_pilot.py`仅在L24～L31、P−1→576视觉Keys，按λ=0/.5/1混合Full L23/L24的逐Head视觉条件分布，保留当前视觉Mass和非目标权重；实例包装结束/异常时恢复，不改库或旧实验。7项专项测试和全工程101项CPU回归通过。
 
-[报告与重跑命令](results/attention_inheritance_15133706/report.md) · [对比图](results/attention_inheritance_15133706/margin_comparison.png) · [逐条件状态](results/attention_inheritance_15133706/per_condition_results.csv)。**真实7B只完成L23 λ0，Margin −0.03125，与Full全词表logits精确一致；历史Physical K24为+.0390625。没有非零λ的完整Margin，不能判断继承是否改善。** 首次非零条件因小视觉Mass下FP16条件L1固定阈值停止；原失败保留，验证补充逐元素舍入精确检查及dtype推导误差界，公式不变。修正后GPU0新增其他10GB进程、仅约6GB空闲，重跑在加载前被资源门槛阻止。校正版尚未通过真实7B非零λ验收，不启用轮询、不终止其他任务。`summarize_attention_inheritance.py`可纯CPU重建未完成摘要；恢复时按报告指定新的输出目录，拒绝覆盖已有尝试。
+[完成报告](results/attention_inheritance_15133706/completed_20261028_2245/report.md) · [对比图](results/attention_inheritance_15133706/completed_20261028_2245/margin_comparison.png) · [六条件CSV](results/attention_inheritance_15133706/completed_20261028_2245/per_condition_results.csv) · [验收](results/attention_inheritance_15133706/completed_20261028_2245/validation.json)。L23 λ0/.5/1 Margin为−.03125/+.0234375/+.0859375；L24为−.03125/−.03125/−.0390625。L23非零λ使right二选一预测转正，L24没有；历史Physical K24 +.0390625仅作旧对照，正确候选全词表绝对概率反而下降，不能视为一般能力改善。
+
+两source λ0全词表logits精确Full，96层级审计通过；所有条件Question最终hidden、非目标连接及运行后原生Full精确不变，无NaN/Inf/OOM、库文件未改。最大行和误差.0002965，最大Mass相对误差.0005598。8审计超过旧固定条件L1告警，但全部通过逐元素公式FP16舍入及dtype推导界；首次失败、资源阻塞与旧partial结果完整保留。峰值allocated13640.731MiB/reserved13734MiB，15次诊断forward合计2.743861秒，非稳定性能计时。完成后停止，无扩样/训练。`summarize_attention_inheritance.py`仅用于历史partial，勿覆盖完成结果；独立复验须指定全新输出目录。
 
 ## Phase 3.5：Exit Boundary vs ROI Attention Alignment（离线完成）
 

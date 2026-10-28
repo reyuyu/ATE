@@ -2,9 +2,9 @@
 
 当前已完成 Phase1～Phase3.5：单卡FP16基线、逐层Attention/Token定位、全局及定向Mask、240图Fixed-K Physical Exit、ROI/Sink诊断与离线边界分析。历史报告及统计可直接复用。
 
-**当前待办是15133706单案例Attention继承**：101项CPU回归通过，但真实7B只完成L23 λ0；非零λ无完整Margin，修正版GPU验证受显存占用阻塞。详情见[未完成报告](vlm_research/results/attention_inheritance_15133706/report.md)。
+**15133706单案例Attention继承已完成**：101项CPU回归及六条件真实7B验证通过。L23 λ.5/1使right Margin转正（+.02344/+.08594），L24未转正；单案例FP16观察，不作普遍机制结论。[完成报告](vlm_research/results/attention_inheritance_15133706/completed_20261028_2245/report.md)。
 
-**新服务器接手从这里开始**：[交接文档](vlm_research/handoff/README.md) · [完整数据集/模型下载](vlm_research/handoff/DATASET_SETUP.md) · [Codex交接提示词](vlm_research/handoff/CODEX_PROMPT.md)。说明如何恢复全部GQA图片、校验252张冻结图、保留240图/48主图统计协议，以及继续当前未完成实验。
+**新服务器接手从这里开始**：[交接文档](vlm_research/handoff/README.md) · [完整数据集/模型下载](vlm_research/handoff/DATASET_SETUP.md) · [Codex交接提示词](vlm_research/handoff/CODEX_PROMPT.md)。说明如何恢复全部GQA图片、校验252张冻结图、保留240图/48主图统计协议，以及读取已完成单案、按后续授权继续统计工作。
 
 工程位于 [`vlm_research/`](vlm_research/)。环境安装、权重下载和常见问题见 [工程说明](vlm_research/README.md)，真实耗时、显存和回答见 [第一阶段实测报告](vlm_research/results/phase1_report.md)。
 

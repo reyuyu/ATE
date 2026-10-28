@@ -1,8 +1,8 @@
 # ATE 跨服务器交接：当前状态与统计实验恢复
 
-交接日期：2026-10-28。仓库：[reyuyu/ATE](https://github.com/reyuyu/ATE)。当前实验代码基线：[`bcc3c3da2ff7d416cd988c83264fd3ffc18afaed`](https://github.com/reyuyu/ATE/commit/bcc3c3da2ff7d416cd988c83264fd3ffc18afaed)。此后的本次提交只新增交接与恢复资料，不产生新的模型结果。
+交接日期：2026-10-28。仓库：[reyuyu/ATE](https://github.com/reyuyu/ATE)。当前实验代码基线：[`bcc3c3da2ff7d416cd988c83264fd3ffc18afaed`](https://github.com/reyuyu/ATE/commit/bcc3c3da2ff7d416cd988c83264fd3ffc18afaed)。初始交接提交7970be9只新增恢复资料；后续2026-10-28已完成单案例六条件GPU实验，结果在独立`completed_20261028_2245/`，旧指纹清单保持不变。
 
-**先读本页 → [数据/模型下载与跨机路径适配](DATASET_SETUP.md) → [可直接发给新服务器 Codex 的提示词](CODEX_PROMPT.md)。** 不依赖旧聊天、旧机知识库或私钥。原图需要在新机下载完整GQA目录，不能仅拿案例图片替代统计数据。当前单案例 GPU 实验未完成；历史统计实验已有真实结果，不需要全部重跑。
+**先读本页 → [数据/模型下载与跨机路径适配](DATASET_SETUP.md) → [可直接发给新服务器 Codex 的提示词](CODEX_PROMPT.md)。** 不依赖旧聊天、旧机知识库或私钥。原图需要在新机下载完整GQA目录，不能仅拿案例图片替代统计数据。当前单案例六条件 GPU 实验已完成；历史统计实验已有真实结果，不需要全部重跑。
 
 ## 1. 项目目标与已经完成的阶段
 
@@ -18,11 +18,11 @@
 | Phase3.3 | 同240图定向后缀Mask完成，3120行 | `directed_suffix.py`、`directed_suffix_probe.py`；`results/phase3_3_directed_suffix/report.md` |
 | Phase3.4 | 240图ROI审计；48主图+5独立历史案例观察及小规模因果诊断完成 | `roi_sink_common.py`、`roi_sink_probe.py`；`results/phase3_4_roi_sink_diagnostic/report.md` |
 | Phase3.5 | 缓存离线边界统计与两案例全32层可视化完成 | `exit_boundary_analysis.py`、`two_case_attention_viz.py`；`results/phase3_5_exit_boundary_viz/`及`phase3_5_two_case_visualization/` |
-| 单案例Attention继承 | **未完成**。代码/101项CPU回归通过；真实7B只有L23 λ0完成 | `attention_inheritance.py`、`attention_inheritance_pilot.py`；`results/attention_inheritance_15133706/report.md` |
+| 单案例Attention继承 | **完成**。101项CPU回归、六条件7B及96层审计通过 | `attention_inheritance.py`、`attention_inheritance_pilot.py`；`results/attention_inheritance_15133706/completed_20261028_2245/report.md` |
 
 旧阶段commit与源码指纹在各结果配置/知识文献记录中。代码和历史结果只读；不要重复运行准备脚本来“恢复”已经冻结的样本。
 
-## 2. 当前唯一尚未完成的GPU实验
+## 2. 单案例GPU实验：已完成
 
 只研究 `question_id="15133706"`，`img_id="2324597"`，Girl/Boy。
 
@@ -34,16 +34,18 @@
 - 每Head：`m=sum(a_current_visual)`，`p_ref=a_full_source/sum(a_full_source)`，替换`m*((1−λ)*a_current_visual/m + λ*p_ref)`。只在Softmax后、乘当前层V前修改；保留当前视觉Mass、非视觉权重和其他Query。λ0跳过写入。
 - 保持FP16/eager、batch1、eval/inference_mode、use_cache=False。无训练、Decode、KV Cache、量化或Physical删除。
 
-| 实际获得的条件 | Margin=logP(right)−logP(left) | 证据 |
+[完整报告](../results/attention_inheritance_15133706/completed_20261028_2245/report.md) · [图](../results/attention_inheritance_15133706/completed_20261028_2245/margin_comparison.png) · [验收](../results/attention_inheritance_15133706/completed_20261028_2245/validation.json)。以下六条件来自同一次完成运行，非拼接旧尝试。
+
+| 条件 | Margin=logP(right)−logP(left) | 结果 |
 | --- | ---: | --- |
-| Native Full | −0.03125000 | 本轮真实7B，与历史logP精确相同 |
-| L23继承，λ0 | −0.03125000 | 两候选全词表P−1 logits和Question最终hidden精确Full，16层级审计通过 |
+| Native Full | −0.03125000 | 与历史精确一致，left错误 |
+| L23 λ0 / .5 / 1 | −0.03125000 / +0.02343750 / +0.08593750 | 非零λ转为right |
+| L24 λ0 / .5 / 1 | −0.03125000 / −0.03125000 / −0.03906250 | 未转正 |
 | Physical K24 | +0.03906250 | **Phase3.2历史**，本轮未重跑 |
-| L23 λ.5/1；L24 λ0/.5/1 | 未完成 | 不存在完整答案分数，不能插值、补零或声称提升 |
 
-首次L23 λ.5在L25因极小视觉Mass约.00210时条件L1=.00429884超过初始固定.002阈值停止；Mass和非目标检查通过。失败留在`initial_attempt_fp16_validation/`。公式/FP16计算不变，验证改为每元素等于公式FP16舍入值，并以dtype推导误差界检查：`u=eps/2,d=tiny*eps,E=uΣ|x|+576d/2; L1<=2E/Σround(x)+2e−6`。原.002留作告警；行和atol.002、视觉Mass atol2e−5+rtol.001不变。
+两source λ0全词表logits精确Full；所有条件Question最终hidden不变、非目标Attention局部bitwise不变；结束后原生Full精确，库源码hash未改。峰值allocated13640.731MiB/reserved13734MiB；15次诊断forward合计2.743861秒，不能当稳定速度基准。L23非零λ提高二候选相对Margin，但right绝对概率下降，单个FP16弱Margin案例不证明一般能力或Sink/Physical机制。
 
-**修正验证器只通过CPU，尚未通过7B非零λ验收**。重跑前GPU新增其他10GB任务、空闲约6GB，资源门槛16000MiB在加载前阻止运行。后续人工查询GPU占用持续变化，这些PID/空闲值是旧机历史，不能当作新机资源状态。不终止他人任务、不建自动轮询。
+历史首次L23 λ.5在L25因低Mass下FP16条件L1超过固定.002阈值停止，后续曾被显存资源门槛阻止；旧失败/partial完整保留。公式不变，校验改为逐元素等于公式FP16舍入值及dtype推导界：`u=eps/2,d=tiny*eps,E=uΣ|x|+576d/2; L1<=2E/Σround(x)+2e−6`；.002保留告警，行和及Mass容差不变。**校正版现已通过真实7B全部六条件**；8层审计超过旧告警，全部通过推导界。旧根`report.md/validation.json/CSV`只表示历史partial，不是当前完成状态；不要运行partial汇总器覆盖完成结果。
 
 `VisualAttentionInheritance`用模型实例私有forward/globals包装，finally恢复，无全局softmax替换、无第三方源码修改。局部“非目标不变”指**该层编辑前后**bitwise相同，非指后层权重始终等于Full；跨层Head编号对应也不证明语义对应。
 
@@ -53,7 +55,7 @@
 
 **Git未提供**：GQA原始图片、14.1GB模型权重、Conda环境、私钥。按[下载说明](DATASET_SETUP.md)恢复MMEB发行的完整GQA子目录（不是GQA全基准全集）、固定模型，并校验；只下载图片任务archive，不需要视频/训练数据。
 
-`handoff/artifact_manifest.json`记录交接时全部已跟踪Python源码、配置和结果数据（JSON/CSV/NPZ/gzip/TXT）的SHA256，不含PNG/PDF或交接文件本身。`verify_recovery.py`只用CPU校验这些文件，以及可选的252张原图/模型。交接资料中没有真实推理新增结果。工具实测见`handoff/validation.json`：1143文件指纹、252图历史SHA/尺寸、源CSV785图解码/尺寸、15个模型文件/三片权重SHA校验通过；缺图、覆盖旧审计及缺少必需参数的失败路径也已验证。源785中另外533图无历史哈希基准，不能当作已有785图模型实验。
+`handoff/artifact_manifest.json`记录交接时全部已跟踪Python源码、配置和结果数据（JSON/CSV/NPZ/gzip/TXT）的SHA256，不含PNG/PDF或交接文件本身。`verify_recovery.py`只用CPU校验这些文件，以及可选的252张原图/模型。初始交接没有新增推理；此后的完成子目录是新增真实结果，不在旧指纹清单中，旧清单不重写。工具实测见`handoff/validation.json`：1143文件指纹、252图历史SHA/尺寸、源CSV785图解码/尺寸、15个模型文件/三片权重SHA校验通过；缺图、覆盖旧审计及缺少必需参数的失败路径也已验证。源785中另外533图无历史哈希基准，不能当作已有785图模型实验。
 
 ## 4. 统计实验必须继承的数据划分与协议
 
@@ -94,7 +96,7 @@ Full left115/120、right72/120，明显左右偏好；K0/K8全部预测left，�
 
 Phase3.4主48的Full=33/48。中层Q→ROI有面积富集及相对匹配背景更大Margin损伤；深层SinkMask没有主样本准确率收益，也没有恢复K24两案例。Phase3.5不支持统一“更好的退出边界刚好ROI下降”规律，15133706 L23→L24的Q/A ROI反而上升。描述性相关、定向Mask效应、Physical整体效应不可互相替代。
 
-## 5. 新服务器执行顺序
+## 5. 新服务器恢复顺序（单案已完成，不默认重跑）
 
 1. clone仓库，确认包含bcc3c3d及当前交接提交；先读原报告/源码，再按数据页下载完整GQA目录和固定模型。
 2. 运行`verify_recovery.py`，保存新机审计。通过不代表GPU实验已完成。
@@ -102,7 +104,7 @@ Phase3.4主48的Full=33/48。中层Q→ROI有面积富集及相对匹配背景�
 4. 先跑7项新增CPU测试：`CUDA_VISIBLE_DEVICES='' HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python -m unittest test_attention_inheritance -v`。
 5. 全工程101项测试含真实Processor依赖，若模型目录不同，在**独立测试launcher中**先把`vlm_common.default_model`映射到实际同revision目录，再discover；不要为过测试重写历史配置。若依赖缺失，逐项列明，不能谎称全套通过。
 6. GPU手动预检：RTX4090/24GB为原基线；至少16000MiB空闲门槛。只暴露一张卡；物理GPU号可不同，通过`CUDA_VISIBLE_DEVICES`映射到cuda:0。不终止其他进程。
-7. 优先完成当前同一案例的Native Full、两source×三λ、末尾Full恢复检查。使用全新目录，如`results/attention_inheritance_15133706/remote_<server>_<timestamp>/`；不要使用默认旧根目录。
+7. 先读取已完成单案结果；只在用户明确要求独立复验时运行同案例的Native Full、两source×三λ、末尾Full恢复检查。使用全新目录，如`results/attention_inheritance_15133706/remote_<server>_<timestamp>/`；不要使用默认旧根目录。
 8. 当前runner是**逐条件落盘但不支持从已有配置目录自动续算**；它会拒绝覆盖。失败保留已完成数据，下次用新目录重新执行这个案例。不能把原1条件与新机结果无条件拼成完整六条件。
 9. 如果不同硬件使历史Full/cache严格bitwise检查失败，保留差异与机器环境，先调查、单独做跨机数值审计；不删除断言/改阈值来追求转正。新机λ0必须与**同机Native Full**精确一致，跨机历史一致性另报告，不能混为一项。
 10. 完成后保存六条件CSV/JSON、配置、rawlogits、各层审计、峰值allocated/reserved与真实耗时、对比图/report，更新索引、提交并push，核验远端commit与文件。未完成必须明确partial、原因与恢复方式。
@@ -134,8 +136,8 @@ CUDA_VISIBLE_DEVICES='' python exit_boundary_analysis.py --verify-existing
 CUDA_VISIBLE_DEVICES='' python two_case_attention_viz.py --verify-existing
 ```
 
-后续用户要求扩大继承实验时，数据已可恢复，但**尚未实现240图继承runner、也没有240图继承分数**。先完成单案正确性，再在新脚本/新目录冻结扩展协议：预先固定同240图或同48主图、source/λ/层范围、同图Full配对与量化容差；不要按单例正向结果选择有利图/Head/λ。新配置需绑定原Manifest、图片hash、环境、源码、权重及条件网格，检查断点兼容、去重、完整性。
+后续用户要求扩大继承实验时，数据已可恢复，但**尚未实现240图继承runner、也没有240图继承分数**。单案正确性已通过；收到扩展授权后，在新脚本/新目录冻结协议：预先固定同240图或同48主图、source/λ/层范围、同图Full配对与量化容差；不要按单例正向结果选择有利图/Head/λ。新配置需绑定原Manifest、图片hash、环境、源码、权重及条件网格，检查断点兼容、去重、完整性。
 
 统计最少保留：总体及left/right正确率、准确率变化、Full-correct保持率、原对→错/原错→对/tie、Margin Drop mean/median/P90/P95/max及正Drop比例、Q drift、低Mass敏感性、真实算力开销。Bootstrap按**图**重采样并保持所有条件配对，不把32Head或32层当作独立样本。原对/原错只作预定义子集，不能只报Full-correct；案例只单列。多个探索性条件的区间需说明未/如何多重比较校正；平均改善不掩盖尾部退化。
 
-本交接是让后续统计实验可继续，不代表本轮已经授权或执行240图新干预。当前先补完单案例；之后遵循用户在新会话给出的统计目标。无Router、Gate、GRPO、训练、Decode或其他数据集，除非用户另有明确指令。
+本交接是让后续统计实验可继续，不代表本轮已经授权或执行240图新干预。单案例现已完成，本轮到此停止；之后遵循用户在新会话给出的统计目标。无Router、Gate、GRPO、训练、Decode或其他数据集，除非用户另有明确指令。
