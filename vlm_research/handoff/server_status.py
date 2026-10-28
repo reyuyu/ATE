@@ -90,7 +90,7 @@ def main():
     result['units'] = {}
     for unit in ['ate-restore-data-range-20261028', 'ate-restore-model-range-20261028',
                  'ate-restore-data-modelscope-20261028', 'ate-restore-model-modelscope-20261028',
-                 'ate-environment-cpu-paths-20261028']:
+                 'ate-environment-cpu-paths-20261028', 'ate-environment-cpu-official-20261028']:
         state = subprocess.run(['systemctl', '--user', 'show', unit, '-p', 'ActiveState', '-p', 'SubState', '-p', 'Result'], capture_output=True, text=True)
         result['units'][unit] = state.stdout
     args.output.parent.mkdir(parents=True, exist_ok=True)

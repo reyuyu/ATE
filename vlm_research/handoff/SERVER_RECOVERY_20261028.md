@@ -2,12 +2,60 @@
 
 ## Scope and actual state
 
-Checkout: `/data/lk/深度学习/ATE`. Latest upstream main retrieved for this handoff:
+Checkout: `/data/lk/深度学习/ATE`. Initial upstream main retrieved for this handoff:
 `7970be981e3462560cb66d83e1014eaa1b1ebdae`, containing baseline
 `bcc3c3da2ff7d416cd988c83264fd3ffc18afaed`.
 Review branch: `codex/ate-server-handoff-20261028`.
 
-**Recovery is not finished; no new 7B experiment has run on this server.**
+## Current Update, 23:23 CST
+
+**Downloads and data/model acceptance are complete. The upstream single-case
+experiment is also complete; it was not rerun on this server.**
+
+- Latest upstream main `70e01e8` was fetched and merged into the review branch.
+  Its six-condition run lives in
+  `results/attention_inheritance_15133706/completed_20261028_2245/`.
+  The updated handoff explicitly says not to rerun the 7B case without a new
+  request. No 240-image inheritance extension or training has been started.
+- The ModelScope downloads finished successfully. The dataset archive passed
+  its fixed SHA256; all 20,469 GQA archive members were extracted at 23:05:35 CST.
+  The 15 model files passed their size checks and all three weight shards passed
+  the canonical HF SHA256 checks. Small HF configuration files were preserved.
+- Fresh CPU-only recovery acceptance passes: 1,143 original repository hashes,
+  all 252 frozen image hashes/dimensions/decodes, all 785 source image dimension
+  and decode checks, and all 15 model files. Only the frozen 252 have historical
+  image hashes; this is not a new 785-image model experiment.
+- The path-aware Phase3.5 audit now passes all 115 repository and seven image
+  checks. No original checksum inventory or frozen manifest was rewritten.
+- The upstream read-only `verify_results.py` was run locally and passes: six
+  CSV/JSON conditions match raw logits, 96 layer audits pass and seven original
+  implementation hashes match. Upstream L23 margins for lambda0/.5/1 are
+  -.03125/+.0234375/+.0859375; L24 are -.03125/-.03125/-.0390625. This is one
+  selected FP16 case, not evidence of general capability improvement.
+- Local fixed environment acceptance remains INCOMPLETE because the Triton
+  wheel transfer failed its hash check. AFAC was used only for resource and
+  read-only artifact checks. Local fixed-version 7/101 acceptance has not passed;
+  upstream 7/101 success is not counted as this server's own CPU acceptance.
+  A new CPU-only preparation attempt is running as
+  `ate-environment-cpu-official-20261028`, audit directory
+  `/data/lk/ATE-resources/audit/pinned_env_20261028_official_retry/`.
+  It resumes Triton from the official PyPI wheel URL, verifies SHA256
+  `8009a1fb093ee8546495e96731336a33fb8856a38e45bb4ab6affd6dbc3ba220`
+  (253,157,636 bytes), then installs the unchanged fixed dependencies and runs
+  the original 7/101 CPU suites. It does NOT launch any GPU run. Until its actual
+  reports pass, installation/CPU acceptance remain pending.
+
+New actual audits in `results/server_recovery_20261028/`:
+`recovery_complete_20261028_2319.json`, `history_complete_20261028_2319.json`,
+`upstream_completed_artifact_recheck.json`, `gqa_extraction_complete.json` and
+`model_files_verified_complete.json`. Historical snapshots below describe their
+collection time and remain unchanged.
+
+## Initial Recovery State (Historical)
+
+At the initial checkout, recovery was unfinished and this server had no new
+7B execution. The following bullets record that earlier state, not current
+download status or the latest upstream experiment status.
 
 - All 1,487 original tracked files were restored against their Git blob IDs.
   All 1,143 hashes in the handoff artifact manifest pass. Original tracked
@@ -110,14 +158,15 @@ systemctl --user status ate-restore-model-range-20261028 --no-pager
 systemctl --user status ate-restore-data-modelscope-20261028 --no-pager
 systemctl --user status ate-restore-model-modelscope-20261028 --no-pager
 systemctl --user status ate-environment-cpu-paths-20261028 --no-pager
+systemctl --user status ate-environment-cpu-official-20261028 --no-pager
 ```
 
 Logs are in `/data/lk/ATE-resources/audit/`, especially
 `download_data_range_20261028.txt`, `download_model_range_20261028.txt` and
 `pinned_env_20261028_retry_paths/environment_install.txt`. The environment job
 was intended to run the original 7 and 101 CPU suites after installing the fixed
-versions, but is currently failed as described above. A fresh successful install
-attempt and the actual CPU acceptance reports are still required.
+versions, but that attempt failed as described above. The new official-wheel
+attempt is running; successful install and actual CPU reports are still required.
 It will NOT start the GPU experiment. Download failures stay failures and
 partials are retained for a manual retry of the same pin.
 
@@ -130,7 +179,13 @@ all-file audit: `audit/checkout_hydration_final_20261028.json`.
 Earlier resource/environment units were explicitly stopped and superseded;
 their interrupted JSON `running` fields do not mean those units remain active.
 
-## Continue after resource completion
+## Continue After Resource Completion
+
+Read the completed upstream single-case report first. Do not rerun GPU
+inference unless the user explicitly requests an independent reproduction.
+The commands below describe the original reproduction path, not a queued task.
+The first outstanding acceptance item is the failed local environment install;
+resource and historical-image checks have already passed as recorded above.
 
 Use the fixed environment below, not AFAC, for experiment acceptance. First
 inspect the three preparation units and CPU reports. Do not run concurrently
@@ -150,7 +205,8 @@ CUDA_VISIBLE_DEVICES='' "$PY" handoff/verify_history_remote.py \
   --image-root "$GQA" \
   --output /data/lk/ATE-resources/audit/history_complete_001.json
 
-# Manual one-time GPU check: choose ONE free device with >=16000MiB free.
+# Only after an explicit request for independent GPU reproduction:
+# choose ONE free device with >=16000MiB free.
 nvidia-smi
 CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
   "$PY" attention_inheritance_remote.py --model-path "$MODEL" --image-root "$GQA"

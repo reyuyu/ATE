@@ -36,7 +36,16 @@ aria2c --no-conf=true --all-proxy= --continue=true --auto-file-renaming=false \
   --dir="$WHEELS" --out='torchvision-0.21.0+cu124-cp311-cp311-linux_x86_64.whl' \
   'https://download-r2.pytorch.org/whl/cu124/torchvision-0.21.0%2Bcu124-cp311-cp311-linux_x86_64.whl'
 
-"$PYTHON" -m pip install --constraint "$ROOT/requirements.txt" \
+# PyPI 3.2.0 metadata supplies this exact wheel hash; preserve partial ranges.
+aria2c --no-conf=true --all-proxy= --continue=true --auto-file-renaming=false \
+  --allow-overwrite=false --file-allocation=none --split=4 --max-connection-per-server=4 \
+  --max-tries=5 --retry-wait=15 --connect-timeout=20 --timeout=90 \
+  --show-console-readout=false --summary-interval=60 --console-log-level=warn \
+  --checksum=sha-256=8009a1fb093ee8546495e96731336a33fb8856a38e45bb4ab6affd6dbc3ba220 \
+  --dir="$WHEELS" --out='triton-3.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl' \
+  'https://files.pythonhosted.org/packages/a7/2e/757d2280d4fefe7d33af7615124e7e298ae7b8e3bc4446cdb8e88b0f9bab/triton-3.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl'
+
+"$PYTHON" -m pip install --find-links "$WHEELS" --constraint "$ROOT/requirements.txt" \
   --index-url https://pypi.tuna.tsinghua.edu.cn/simple \
   "$WHEELS/torch-2.6.0+cu124-cp311-cp311-linux_x86_64.whl" \
   "$WHEELS/torchvision-0.21.0+cu124-cp311-cp311-linux_x86_64.whl"
