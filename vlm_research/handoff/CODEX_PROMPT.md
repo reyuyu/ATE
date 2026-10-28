@@ -13,6 +13,7 @@
 1. vlm_research/handoff/README.md（全项目状态、统计口径及已完成单案）
 2. vlm_research/handoff/DATASET_SETUP.md（完整数据集/模型下载与路径适配）
 3. vlm_research/results/attention_inheritance_15133706/completed_20261028_2245/report.md、validation.json；根目录旧partial不代表当前状态
+3a. 最新 results/attention_sink_steering_case_15133706/README.md、report.md、protocol.json、per_condition_results.csv、paired_control_comparison.csv、heatmap_gallery.md；代码attention_sink_steering.py/attention_sink_steering_case.py/summarize_sink_steering_case.py
 4. vlm_research/attention_inheritance.py、attention_inheritance_pilot.py、test_attention_inheritance.py
 5. vlm_common.py、roi_sink_common.py、roi_sink_probe.py的inputs_and_history/score、attention_position_probe.py相关定位和physical_exit_pilot.py候选评分
 6. Phase3.2/3.3/3.4/3.5的manifest、关键CSV、报告；交接README已列出准确入口。
@@ -34,6 +35,7 @@ Gold=right，候选顺序left/right不变。
 
 真实状态，不得误报：
 - 历史统计阶段Phase1～3.5已完成，结果可直接复用，无需重跑240图来接手。
+- 后续Sink去偏/ROI增强单案31条件也已完成：108回归/396审计通过。A去偏变差，ROI增强仍错、深层Sink抑制未转正；仅早层L2～L4 Sink×.5/.1转正+.0078125/+.1015625。三背景对照未转正；注意交集Patch364的重分配和弱Margin/FP16单例限制，不默认重跑、不据此扩样本。
 - 单案已完成101项CPU回归、真实7B六条件与96层级审计。L23 λ0/.5/1 Margin为−.03125/+.0234375/+.0859375，L24为−.03125/−.03125/−.0390625。
 - Native Full−.03125；Physical K24+.0390625仅为历史Phase3.2对照。本轮没有重跑Physical。
 - 两source λ0全部P−1词表logits精确Full、Q hidden所有条件精确Full、非目标权重局部不变、收尾Native Full精确、库源码未改，无NaN/Inf/OOM。

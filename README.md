@@ -2,6 +2,8 @@
 
 当前已完成 Phase1～Phase3.5：单卡FP16基线、逐层Attention/Token定位、全局及定向Mask、240图Fixed-K Physical Exit、ROI/Sink诊断与离线边界分析。历史报告及统计可直接复用。
 
+**最新单案例Sink去偏/ROI增强已完成**：31条件真实7B、108项CPU回归和396审计通过。中层整体去偏变差，ROI增强微小改善仍错，深层Sink抑制未复现K24转正；仅L2～L4指定非ROI Sink抑制转正。单例FP16观察，[报告及全部图表](vlm_research/results/attention_sink_steering_case_15133706/README.md)。
+
 **15133706单案例Attention继承已完成**：101项CPU回归及六条件真实7B验证通过。L23 λ.5/1使right Margin转正（+.02344/+.08594），L24未转正；单案例FP16观察，不作普遍机制结论。[完成报告](vlm_research/results/attention_inheritance_15133706/completed_20261028_2245/report.md)。
 
 **新服务器接手从这里开始**：[交接文档](vlm_research/handoff/README.md) · [完整数据集/模型下载](vlm_research/handoff/DATASET_SETUP.md) · [Codex交接提示词](vlm_research/handoff/CODEX_PROMPT.md)。说明如何恢复全部GQA图片、校验252张冻结图、保留240图/48主图统计协议，以及读取已完成单案、按后续授权继续统计工作。

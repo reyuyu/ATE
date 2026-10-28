@@ -53,6 +53,14 @@ vlm_research/
 
 模型文件保存在用户缓存目录，不放入 Git。当前主工程目录之外的 AFAC 文件未因本任务修改。
 
+## 单案例15133706：Sink去偏与ROI增强（真实GPU完成）
+
+[完整报告](results/attention_sink_steering_case_15133706/report.md) · [31条件CSV](results/attention_sink_steering_case_15133706/per_condition_results.csv) · [空间相似性](results/attention_sink_steering_case_15133706/offline_spatial_comparison_clean.png) · [目标与三随机对照](results/attention_sink_steering_case_15133706/target_vs_matched_controls.png) · [全部关键层热图](results/attention_sink_steering_case_15133706/heatmap_gallery.md)。只用15133706，L2～L4逐Head条件分布B与冻结13个非ROI Sink/133个ROI，固定31条件、无结果调参。
+
+`attention_sink_steering.py`复用已验证的实例局部post-softmax/pre-V包装，做逐Head正向重分布并保留当前视觉Mass；`attention_sink_steering_case.py --stage prepare/gpu`固定协议并运行；`summarize_sink_steering_case.py`纯CPU复核/汇总。108项CPU回归、四窗口no-op和396层审计通过，非目标/Q hidden不变、原生Full收尾精确、库未改。峰值allocated13640.877MiB，69次诊断Forward合计8.94449秒，无稳定测速声明。
+
+P−1早→中/深平均图Cosine .9095/.9048、JS Distance .3902/.3831；Top58重合25/30，显示部分公共热点。中层B逆权重alpha.5/1 Margin−.1796875/−.265625；ROI×2为−.0234375仍错；深层两窗口Sink抑制均未复现历史Physical K24 +.0390625。仅早层L2～L4 Sink×.5/.1转正+.0078125/+.1015625，三背景对照未转正；强抑制将大量注意力重分配到未抑制ROI/Sink交集Patch364，不能视为消除全部Sink或普遍无损。单例、近零FP16与oracle ROI限制详见报告；本轮到此停止。
+
 ## 单案例15133706：逐Head视觉Attention继承（真实GPU完成）
 
 `attention_inheritance.py`及`attention_inheritance_pilot.py`仅在L24～L31、P−1→576视觉Keys，按λ=0/.5/1混合Full L23/L24的逐Head视觉条件分布，保留当前视觉Mass和非目标权重；实例包装结束/异常时恢复，不改库或旧实验。7项专项测试和全工程101项CPU回归通过。

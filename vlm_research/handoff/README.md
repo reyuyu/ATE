@@ -19,6 +19,7 @@
 | Phase3.4 | 240图ROI审计；48主图+5独立历史案例观察及小规模因果诊断完成 | `roi_sink_common.py`、`roi_sink_probe.py`；`results/phase3_4_roi_sink_diagnostic/report.md` |
 | Phase3.5 | 缓存离线边界统计与两案例全32层可视化完成 | `exit_boundary_analysis.py`、`two_case_attention_viz.py`；`results/phase3_5_exit_boundary_viz/`及`phase3_5_two_case_visualization/` |
 | 单案例Attention继承 | **完成**。101项CPU回归、六条件7B及96层审计通过 | `attention_inheritance.py`、`attention_inheritance_pilot.py`；`results/attention_inheritance_15133706/completed_20261028_2245/report.md` |
+| 单案例Sink去偏/ROI增强 | **完成**。同15133706、31条件、108回归与396层审计 | `attention_sink_steering.py`、`attention_sink_steering_case.py`、`summarize_sink_steering_case.py`；`results/attention_sink_steering_case_15133706/report.md` |
 
 旧阶段commit与源码指纹在各结果配置/知识文献记录中。代码和历史结果只读；不要重复运行准备脚本来“恢复”已经冻结的样本。
 
@@ -48,6 +49,14 @@
 历史首次L23 λ.5在L25因低Mass下FP16条件L1超过固定.002阈值停止，后续曾被显存资源门槛阻止；旧失败/partial完整保留。公式不变，校验改为逐元素等于公式FP16舍入值及dtype推导界：`u=eps/2,d=tiny*eps,E=uΣ|x|+576d/2; L1<=2E/Σround(x)+2e−6`；.002保留告警，行和及Mass容差不变。**校正版现已通过真实7B全部六条件**；8层审计超过旧告警，全部通过推导界。旧根`report.md/validation.json/CSV`只表示历史partial，不是当前完成状态；不要运行partial汇总器覆盖完成结果。
 
 `VisualAttentionInheritance`用模型实例私有forward/globals包装，finally恢复，无全局softmax替换、无第三方源码修改。局部“非目标不变”指**该层编辑前后**bitwise相同，非指后层权重始终等于Full；跨层Head编号对应也不证明语义对应。
+
+### 2.1 后续Sink去偏与ROI增强：也已完成
+
+`results/attention_sink_steering_case_15133706/`是独立最新单案结果，原继承/Phase1～3.5历史不覆盖。先读该目录README/report、protocol.json、31条件CSV、paired_control_comparison.csv、heatmap_gallery.md与GPU尝试验收；不默认重跑。
+
+固定B=Full L2～L4每Head视觉条件分布均值，A中层逆B alpha0/.5/1、B中层ROI×2、C两深层窗口非ROI Sink×.5/.1、D早层同13非ROI Sink×.5/.1；复用三组冻结等数量空间背景，不改Mask/非视觉/其他Query、不改库、不训练。108回归、四窗口no-op、396审计/收尾Full通过。A非零变差，ROI−.0234375仍错，深层全部仍错；早层两个强度+.0078125/+.1015625转正，随机对照未转正。但交集Patch364份额上升、FP16弱Margin与单例限制显著，不证明Sink普遍有害或可无损抑制，也未解释Physical整体改善。
+
+`attention_sink_steering_case.py --stage gpu`只在未完成状态重试且严格核验源指纹；本轮已完成会拒绝重跑。`summarize_sink_steering_case.py`纯CPU验证并重建最终报告/配对图，不运行模型。该postprocessor生成的clean图只调整色条/统一Mass求和，原始31个局部行NPZ及logits不变。后续扩展需用户新授权，不从单例挑成功条件扩样本。
 
 ## 3. 数据、缓存和权重：Git中有什么
 
