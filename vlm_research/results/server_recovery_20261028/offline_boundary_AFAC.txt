@@ -1,0 +1,16 @@
+Traceback (most recent call last):
+  File "/data/lk/深度学习/ATE/vlm_research/exit_boundary_analysis.py", line 549, in <module>
+    main()
+  File "/data/lk/深度学习/ATE/vlm_research/exit_boundary_analysis.py", line 434, in main
+    if sha(ROOT/path) != expected:
+       ^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/ATE/vlm_research/exit_boundary_analysis.py", line 47, in sha
+    return hashlib.sha256(Path(path).read_bytes()).hexdigest()
+                          ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/pathlib.py", line 1050, in read_bytes
+    with self.open(mode='rb') as f:
+         ^^^^^^^^^^^^^^^^^^^^
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/data/wdy/datasets/MMEB-V2/image-tasks/MMEB/GQA/image_2326282.jpg'
