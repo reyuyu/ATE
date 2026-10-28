@@ -55,6 +55,8 @@ vlm_research/
 
 ## 单案例15133706：Sink去偏与ROI增强（真实GPU完成）
 
+补充离线相减预览：[L22−L2、截断负值后的真实图像热图与逐候选对比](results/attention_subtraction_case_15133706/README.md)。仅P−1、逐Head视觉条件化/相减/截断/重归一化，非ROI Sink份额58.56%→39.91%，ROI15.47%→19.18%，部分热点仍在甚至升高；没有新Forward或干预后答案分数。`visualize_attention_subtraction.py`仅CPU绘图。
+
 补充离线直观图：[Sink捕捉核对及原始/增强横向对比](results/attention_sink_steering_case_15133706/intuitive_visualization/README.md)。只复用缓存，统一色标覆盖真实Processor图像，明确区分非ROI Sink、ROI内交集#364及局部Before/After；ROI增强并未消除Sink，早层抑制后的热点部分转移至未抑制交集。`visualize_sink_capture_case.py`不加载模型，不修改旧结果。
 
 [完整报告](results/attention_sink_steering_case_15133706/report.md) · [31条件CSV](results/attention_sink_steering_case_15133706/per_condition_results.csv) · [空间相似性](results/attention_sink_steering_case_15133706/offline_spatial_comparison_clean.png) · [目标与三随机对照](results/attention_sink_steering_case_15133706/target_vs_matched_controls.png) · [全部关键层热图](results/attention_sink_steering_case_15133706/heatmap_gallery.md)。只用15133706，L2～L4逐Head条件分布B与冻结13个非ROI Sink/133个ROI，固定31条件、无结果调参。

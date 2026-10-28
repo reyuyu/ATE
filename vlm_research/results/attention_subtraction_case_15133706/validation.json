@@ -1,0 +1,53 @@
+{
+  "question_id": "15133706",
+  "cpu_only": true,
+  "new_forward": false,
+  "answer_effect": "not measured",
+  "source_layer": 2,
+  "target_layer": 22,
+  "query": "P-1",
+  "beta": 1.0,
+  "heads": 32,
+  "patches": 576,
+  "layer_indexing": "zero-based: L2 is third transformer layer; L22 is twenty-third",
+  "formula": "p_l=raw_l/sum(raw_l); r_h=max(p22_h-p2_h,0); q_h=r_h/sum(r_h)",
+  "aggregation": "normalize/subtract/clip/renormalize per head, then mean all 32 heads",
+  "cross_layer_head_semantic_correspondence": "assumption, not verified",
+  "degenerate_heads": 0,
+  "positive_residual_mass_range": [
+    0.20689491303126312,
+    0.8970241280915394
+  ],
+  "row_normalization_passed": true,
+  "total_variation_identity_passed": true,
+  "hypothetical_visual_mass_restoration_passed": true,
+  "alternative_aggregation_sensitivity": {
+    "distribution": "Sensitivity: average heads before clipping",
+    "roi_share": 0.27374740286672433,
+    "sink_nonroi_share": 0.2793125581182121,
+    "overlap_share": 0.0,
+    "normalized_entropy": 0.7520437143762264,
+    "max_patch_share": 0.13264603021948912,
+    "zero_mean_patches": 121,
+    "nonroi_sinks_in_top58": 5
+  },
+  "shared_probability_color_range": [
+    1e-05,
+    0.17285630582096723
+  ],
+  "signed_color_range": [
+    -0.12132382002621402,
+    0.12132382002621402
+  ],
+  "inputs_sha256": {
+    "results/phase3_4_roi_sink_diagnostic/attention_rows/15133706_task.npz": "f193f228faffbeea9943833ce72e0873efda0e8a90f8d9d3c9cbb596c788ef61",
+    "results/attention_sink_steering_case_15133706/protocol.json": "b3b361b84f53ef4b6620e29b79813d433ba350fae5931603442dc73f286cc8b3",
+    "results/attention_sink_steering_case_15133706/roi_sink_positions.json": "c4e29c131af237d43d17eaf6edeff308dd2f2f70bcb4e12b48fc5e93d197d6df",
+    "results/attention_sink_steering_case_15133706/processor_crop.png": "c38c36801e4193dc37f7ee11a0f7a9cebaa8ad09a68269f4d415630ebed66078",
+    "visualize_attention_subtraction.py": "9f39f275a66c8a2c96281edbb57a119b291d5a765951f9db4d395f1a67ef4611",
+    "results/phase3_4_roi_sink_diagnostic/artifact_sha256.json": "2ffabfe9a01974a676e6594bd486e2209aceece5b981fdf45f1750f8ae8cc330"
+  },
+  "historical_files_unchanged": 163,
+  "independent_verification_passed": true,
+  "per_patch_csv_reconstructed": true
+}
