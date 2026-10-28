@@ -1,0 +1,90 @@
+{
+  "completed": true,
+  "samples_completed": [
+    "11805465",
+    "071031845",
+    "15776543",
+    "15735967",
+    "18501941",
+    "03538462",
+    "05323839",
+    "0947467",
+    "05579936",
+    "0330197",
+    "01777354",
+    "04812589"
+  ],
+  "preregistration": {
+    "frozen_at": "2026-10-28T13:16:07.981507+08:00",
+    "manifest_sha256": "b36fec1da78385e9b6041ad38f277e0b9f37edbb4cd54b3029ca5884d8922d06",
+    "cutoffs": [
+      0,
+      8,
+      16,
+      24,
+      32
+    ],
+    "tolerances": {
+      "fp16_logit_atol": 0.1,
+      "fp16_logit_rtol": 0.003,
+      "max_text_cosine_distance": 0.0001,
+      "max_text_relative_rmse": 0.01,
+      "candidate_joint_logp_atol_nats": 0.1,
+      "candidate_margin_atol_nats": 0.15,
+      "cpu_fp32_atol": 2e-06,
+      "cpu_fp32_rtol": 2e-05
+    },
+    "candidate_order": [
+      "left",
+      "right"
+    ],
+    "question_readout": "Final RMSNorm Question hidden states from first candidate forward; full causal mask prevents future-answer access",
+    "no_timing_claim": "No warmup/repeated trials. Diagnostic wall time includes frontend, decoder, size observers, mask validation/cloning and position hashing; not a stable acceleration benchmark.",
+    "scope": "12 images; full uncached prefill/teacher forcing only. CLIP/projector still run even for K0. No Router, decode, ROI or directed path sweep.",
+    "git_base": "8fbaa18c4de0aecaa05548d3f48968822ed2bd97"
+  },
+  "loading": {
+    "python": "3.11.18",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "cuda_runtime": "12.4",
+    "cudnn": 90100,
+    "gpu": "NVIDIA GeForce RTX 4090",
+    "cuda_visible_devices": "0",
+    "model_id": "llava-hf/llava-1.5-7b-hf",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_path": "/home/zsy/.cache/huggingface/manual/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "load_seconds": 9.45256597304251,
+    "parameter_devices": [
+      "cuda:0"
+    ],
+    "parameter_dtypes": [
+      "torch.float16"
+    ],
+    "hf_device_map": {
+      "": "cuda:0"
+    },
+    "memory_after_load": {
+      "allocated_mib": 13473.64794921875,
+      "reserved_mib": 13490.0,
+      "peak_allocated_mib": 13473.64794921875,
+      "peak_reserved_mib": 13490.0,
+      "device_free_mib": 10059.6875,
+      "device_total_mib": 24079.875,
+      "nvidia_smi_process_mib": 13938
+    }
+  },
+  "total_wall_seconds_including_load_plots": 50.527158136013895,
+  "full_correct_question_ids": [
+    "11805465",
+    "071031845",
+    "15776543",
+    "15735967",
+    "18501941",
+    "03538462",
+    "05579936",
+    "0330197",
+    "01777354",
+    "04812589"
+  ]
+}

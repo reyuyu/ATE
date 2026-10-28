@@ -1,0 +1,29 @@
+{
+  "frozen_at": "2026-10-28T13:16:07.981507+08:00",
+  "manifest_sha256": "b36fec1da78385e9b6041ad38f277e0b9f37edbb4cd54b3029ca5884d8922d06",
+  "cutoffs": [
+    0,
+    8,
+    16,
+    24,
+    32
+  ],
+  "tolerances": {
+    "fp16_logit_atol": 0.1,
+    "fp16_logit_rtol": 0.003,
+    "max_text_cosine_distance": 0.0001,
+    "max_text_relative_rmse": 0.01,
+    "candidate_joint_logp_atol_nats": 0.1,
+    "candidate_margin_atol_nats": 0.15,
+    "cpu_fp32_atol": 2e-06,
+    "cpu_fp32_rtol": 2e-05
+  },
+  "candidate_order": [
+    "left",
+    "right"
+  ],
+  "question_readout": "Final RMSNorm Question hidden states from first candidate forward; full causal mask prevents future-answer access",
+  "no_timing_claim": "No warmup/repeated trials. Diagnostic wall time includes frontend, decoder, size observers, mask validation/cloning and position hashing; not a stable acceleration benchmark.",
+  "scope": "12 images; full uncached prefill/teacher forcing only. CLIP/projector still run even for K0. No Router, decode, ROI or directed path sweep.",
+  "git_base": "8fbaa18c4de0aecaa05548d3f48968822ed2bd97"
+}

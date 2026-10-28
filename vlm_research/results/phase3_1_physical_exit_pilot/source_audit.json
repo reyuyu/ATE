@@ -1,0 +1,41 @@
+{
+  "LlamaModel": {
+    "path": "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py",
+    "file_sha256": "d313bd9b9565638f0780fbd8158ddf69ff77334b38462f50945efdd64140bbfb",
+    "forward_signature": "(self, input_ids: torch.LongTensor = None, attention_mask: Optional[torch.Tensor] = None, position_ids: Optional[torch.LongTensor] = None, past_key_values: Optional[transformers.cache_utils.Cache] = None, inputs_embeds: Optional[torch.FloatTensor] = None, use_cache: Optional[bool] = None, output_attentions: Optional[bool] = None, output_hidden_states: Optional[bool] = None, return_dict: Optional[bool] = None, cache_position: Optional[torch.LongTensor] = None, **flash_attn_kwargs: *<class 'transformers.modeling_flash_attention_utils.FlashAttentionKwargs'>) -> Union[Tuple, transformers.modeling_outputs.BaseModelOutputWithPast]",
+    "forward_sha256": "17d76bc99c2842f6262f4decafb816497b24fee1ba0e0f8d59b36c90253e2505"
+  },
+  "LlamaDecoderLayer": {
+    "path": "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py",
+    "file_sha256": "d313bd9b9565638f0780fbd8158ddf69ff77334b38462f50945efdd64140bbfb",
+    "forward_signature": "(self, hidden_states: torch.Tensor, attention_mask: Optional[torch.Tensor] = None, position_ids: Optional[torch.LongTensor] = None, past_key_value: Optional[transformers.cache_utils.Cache] = None, output_attentions: Optional[bool] = False, use_cache: Optional[bool] = False, cache_position: Optional[torch.LongTensor] = None, position_embeddings: Optional[Tuple[torch.Tensor, torch.Tensor]] = None, **kwargs: *<class 'transformers.modeling_flash_attention_utils.FlashAttentionKwargs'>) -> Tuple[torch.FloatTensor, Optional[Tuple[torch.FloatTensor, torch.FloatTensor]]]",
+    "forward_sha256": "cb0c6da721c57eda2676ead2c11c9c0ff67105cb5da20187018fc9a93e439340"
+  },
+  "LlamaAttention": {
+    "path": "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py",
+    "file_sha256": "d313bd9b9565638f0780fbd8158ddf69ff77334b38462f50945efdd64140bbfb",
+    "forward_signature": "(self, hidden_states: torch.Tensor, position_embeddings: Tuple[torch.Tensor, torch.Tensor], attention_mask: Optional[torch.Tensor], past_key_value: Optional[transformers.cache_utils.Cache] = None, cache_position: Optional[torch.LongTensor] = None, **kwargs: *<class 'transformers.modeling_flash_attention_utils.FlashAttentionKwargs'>) -> Tuple[torch.Tensor, Optional[torch.Tensor], Optional[Tuple[torch.Tensor]]]",
+    "forward_sha256": "ae39a86a03eed7b83db273d0d62fb6297ff7a384999dbdcb88ce76e0b7b41caf"
+  },
+  "LlavaForConditionalGeneration": {
+    "path": "/home/zsy/.conda/envs/vlm_research/lib/python3.11/site-packages/transformers/models/llava/modeling_llava.py",
+    "file_sha256": "ab4ea7eb5ee124fd0dace5e09eb0a93dcf332690d4cfb4b48d870bee79a44489",
+    "forward_signature": "(self, input_ids: torch.LongTensor = None, pixel_values: torch.FloatTensor = None, attention_mask: Optional[torch.Tensor] = None, position_ids: Optional[torch.LongTensor] = None, past_key_values: Optional[List[torch.FloatTensor]] = None, inputs_embeds: Optional[torch.FloatTensor] = None, vision_feature_layer: Union[int, List[int], NoneType] = None, vision_feature_select_strategy: Optional[str] = None, labels: Optional[torch.LongTensor] = None, use_cache: Optional[bool] = None, output_attentions: Optional[bool] = None, output_hidden_states: Optional[bool] = None, return_dict: Optional[bool] = None, cache_position: Optional[torch.LongTensor] = None, logits_to_keep: Union[int, torch.Tensor] = 0, image_sizes: torch.Tensor = None, **lm_kwargs) -> Union[Tuple, transformers.models.llava.modeling_llava.LlavaCausalLMOutputWithPast]",
+    "forward_sha256": "1dc407686dba9fb1071471775cf370eef5af30a50ddaa4d7622b6699d00dbcaf"
+  },
+  "references": [
+    {
+      "repository": "https://github.com/FightingFighting/cross-modal-information-flow-in-MLLM",
+      "revision": "c9a1111dac4baa175f67716fab473789320187c0"
+    },
+    {
+      "repository": "https://github.com/DoubtedSteam/DyVTE",
+      "revision": "b4a33966da27c913681754b99b2998a7cfaa4001"
+    }
+  ],
+  "implementation_files": {
+    "physical_exit.py": "b9d89dae88b7c9a7db21d5faa236ca39e4195094baf93d465a04991d59840e33",
+    "physical_exit_pilot.py": "743027a0f4713831709fbaafe7d117ef4ec77bbe40b215a6c118713d710f666b",
+    "prepare_physical_exit_data.py": "570dd824889fda1b11ac2ce1b63bc375b08531db79023caa0ed8176be0479703"
+  }
+}

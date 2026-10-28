@@ -1,0 +1,145 @@
+{
+  "passed": true,
+  "samples": 12,
+  "per_sample_K_mode_rows": 120,
+  "paired_candidate_comparisons": 120,
+  "native_K32_exact_control": "torch.equal(hidden,logits) asserted at runtime for every candidate in Mask and Physical, before each completed sample is saved; full tensors intentionally not serialized",
+  "layer_shapes_and_original_position_hashes_checked": true,
+  "max_mask_physical_logit_error": 0.0859375,
+  "max_mask_physical_text_cosine_distance": 3.2729025361888375e-05,
+  "max_mask_physical_text_relative_rmse": 0.008113965474548032,
+  "max_mask_physical_candidate_logp_error": 0.028958986321253377,
+  "max_mask_physical_margin_error": 0.015625,
+  "prior_phase_tracked_paths_unchanged": [
+    "vlm_common.py",
+    "inference.py",
+    "inspect_model.py",
+    "attention_probe.py",
+    "attention_position_probe.py",
+    "knockout_probe.py",
+    "requirements.txt",
+    "requirements-lock.txt",
+    "configs/model.json",
+    "configs/phase3_samples.json",
+    "results/phase1_report.md",
+    "results/validation.json",
+    "results/phase2_attention",
+    "results/phase2_1_attention",
+    "results/phase3_knockout"
+  ],
+  "installed_source_and_implementation_hashes_unchanged": true,
+  "formal_forwards_including_native_baselines": 264,
+  "additional_K0_pixel_control_forwards": 1,
+  "compute": [
+    {
+      "mode": "full",
+      "cutoff": 32,
+      "n": 24,
+      "mean_forward_seconds": 0.11581611329650816,
+      "min_forward_seconds": 0.083742268034257,
+      "max_forward_seconds": 0.5368313200306147,
+      "peak_allocated_mib": 13774.25390625,
+      "peak_reserved_mib": 13862.0
+    },
+    {
+      "mode": "mask",
+      "cutoff": 0,
+      "n": 24,
+      "mean_forward_seconds": 0.1361154118058039,
+      "min_forward_seconds": 0.10473816108424217,
+      "max_forward_seconds": 0.17571007111109793,
+      "peak_allocated_mib": 13774.96630859375,
+      "peak_reserved_mib": 13862.0
+    },
+    {
+      "mode": "mask",
+      "cutoff": 8,
+      "n": 24,
+      "mean_forward_seconds": 0.11857938740771108,
+      "min_forward_seconds": 0.09591510100290179,
+      "max_forward_seconds": 0.17001984897069633,
+      "peak_allocated_mib": 13774.96630859375,
+      "peak_reserved_mib": 13862.0
+    },
+    {
+      "mode": "mask",
+      "cutoff": 16,
+      "n": 24,
+      "mean_forward_seconds": 0.11808181711724804,
+      "min_forward_seconds": 0.09286887804046273,
+      "max_forward_seconds": 0.17478391295298934,
+      "peak_allocated_mib": 13774.96630859375,
+      "peak_reserved_mib": 13862.0
+    },
+    {
+      "mode": "mask",
+      "cutoff": 24,
+      "n": 24,
+      "mean_forward_seconds": 0.10817148966210273,
+      "min_forward_seconds": 0.0912092860089615,
+      "max_forward_seconds": 0.1520792649826035,
+      "peak_allocated_mib": 13774.96630859375,
+      "peak_reserved_mib": 13862.0
+    },
+    {
+      "mode": "mask",
+      "cutoff": 32,
+      "n": 24,
+      "mean_forward_seconds": 0.10622794778222062,
+      "min_forward_seconds": 0.08507375593762845,
+      "max_forward_seconds": 0.1481945120031014,
+      "peak_allocated_mib": 13774.26123046875,
+      "peak_reserved_mib": 13862.0
+    },
+    {
+      "mode": "physical",
+      "cutoff": 0,
+      "n": 24,
+      "mean_forward_seconds": 0.05767072087716466,
+      "min_forward_seconds": 0.037887418060563505,
+      "max_forward_seconds": 0.10397483897395432,
+      "peak_allocated_mib": 13566.01025390625,
+      "peak_reserved_mib": 13862.0
+    },
+    {
+      "mode": "physical",
+      "cutoff": 8,
+      "n": 24,
+      "mean_forward_seconds": 0.06605394542081437,
+      "min_forward_seconds": 0.04834080196451396,
+      "max_forward_seconds": 0.10022724699229002,
+      "peak_allocated_mib": 13623.09423828125,
+      "peak_reserved_mib": 13862.0
+    },
+    {
+      "mode": "physical",
+      "cutoff": 16,
+      "n": 24,
+      "mean_forward_seconds": 0.08094036942444897,
+      "min_forward_seconds": 0.06057763006538153,
+      "max_forward_seconds": 0.12055927806068212,
+      "peak_allocated_mib": 13623.09423828125,
+      "peak_reserved_mib": 13862.0
+    },
+    {
+      "mode": "physical",
+      "cutoff": 24,
+      "n": 24,
+      "mean_forward_seconds": 0.09199878378422,
+      "min_forward_seconds": 0.07407526695169508,
+      "max_forward_seconds": 0.13900556601583958,
+      "peak_allocated_mib": 13623.09423828125,
+      "peak_reserved_mib": 13862.0
+    },
+    {
+      "mode": "physical",
+      "cutoff": 32,
+      "n": 24,
+      "mean_forward_seconds": 0.09990727803475845,
+      "min_forward_seconds": 0.08405766799114645,
+      "max_forward_seconds": 0.1433878829702735,
+      "peak_allocated_mib": 13641.2216796875,
+      "peak_reserved_mib": 13862.0
+    }
+  ]
+}

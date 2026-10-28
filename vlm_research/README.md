@@ -1,8 +1,8 @@
-# LLaVA：单卡推理、Attention 分析与 Visual Attention Knockout
+# LLaVA：单卡推理、Attention 分析、Knockout 与 Physical Exit
 
 本工程用于验证 `llava-hf/llava-1.5-7b-hf` 在 RTX 4090 上的正常推理、结构和输入长度。使用 `LlavaForConditionalGeneration`、`AutoProcessor`、FP16、`eager` Attention、`eval()` 和 `torch.inference_mode()`。所有参数必须位于同一张 GPU；加载后会检查参数的设备和精度。
 
-第一阶段推理基线、第二阶段 Prompt Prefill Attention 与 Phase 2.1 Query Position 分析已完成。复用第一阶段加载和输入处理函数，通过 `outputs.attentions` 提取语言模型注意力。Phase 2.1 研究问题 Token、Answer-start 与 Teacher Forcing 的答案预测位置，该阶段没有注册 Hook。新增 Phase 3 为全局逐层 Text→Visual Attention Knockout：CPU 实现测试和真实输入审计已通过，**7B GPU 实验因显存被其他任务占用而尚未执行**。没有实施自由生成 Decode Attention、Token Pruning、量化或训练。环境与前三阶段既有代码/结果保持原样。
+第一阶段推理基线、第二阶段 Prompt Prefill Attention 与 Phase 2.1 Query Position 分析已完成。复用第一阶段加载和输入处理函数，通过 `outputs.attentions` 提取语言模型注意力。Phase 2.1 研究问题 Token、Answer-start 与 Teacher Forcing 的答案预测位置，该阶段没有注册 Hook。Phase 3 全局逐层 Text→Visual Attention Knockout 已完成真实 7B 小规模实测；Phase 3.1 新增物理视觉 Token 退出，已完成 12 张固定 GQA 图片的 Full/Mask/Physical 对照。没有实施自由生成 Decode Attention、Token Pruning、量化或训练。环境与前三阶段既有代码/结果保持原样。
 
 ## 文件
 
@@ -24,6 +24,10 @@ vlm_research/
 ├── test_attention_positions.py # 真实 Tokenizer 离线对齐与因果/偏移测试
 ├── knockout_probe.py           # Phase 3：全局逐层视觉注意力阻断、teacher-forced NLL/KL/候选评分
 ├── test_knockout.py            # 当前 Transformers 小型随机 LLaVA + 真实 Tokenizer 的 CPU 测试
+├── physical_exit.py            # Phase 3.1：保留原始位置/RoPE 的真实隐藏状态删除
+├── physical_exit_pilot.py      # 固定12张GQA图的Full/Mask/Physical对照及两张曲线
+├── prepare_physical_exit_data.py # 官方CSV确定性采样、图片与源文件哈希
+├── test_physical_exit.py       # 物理长度、位置、RoPE、数值等价和多Token评分测试
 ├── test_images/
 │   ├── example.jpg
 │   └── SOURCE.md
@@ -32,6 +36,40 @@ vlm_research/
 ```
 
 模型文件保存在用户缓存目录，不放入 Git。当前主工程目录之外的 AFAC 文件未因本任务修改。
+
+## Phase 3.1：Physical Visual Exit Pilot（完成）
+
+已完成 [12 张固定 GQA 图片的实测报告](results/phase3_1_physical_exit_pilot/report.md)。图片全部来自服务器已有 GQA 目录，没有下载图片包；种子 20261028，left/right 各 6 条，12 张不同图片，无结果筛选。来源与 SHA256 见 [固定数据 manifest](configs/phase3_1_data/manifest.json) 和 [官方参考](configs/phase3_1_data/SOURCES.md)。参考 Cross-modal Information Flow 与 DyVTE，本实验不主张首次提出 Visual Exit。
+
+K=[0,8,16,24,32]，在进入 L_K 前实际切除 576 个视觉 hidden states，随后 LLM 序列从 603–608 缩至 27–32；保留原始文本逻辑位置、RoPE cos/sin 和全部非视觉文本，裁剪 causal mask 及输出映射。仅无 KV Cache 的 Prefill/Teacher-forcing，不是 Decode 加速实现。Full 使用原生 Forward，Mask 复用 Phase 3，Physical 使用独立 Decoder 循环，不修改第三方源码或模型方法。
+
+全部 Mask/Physical 比较通过预先固定容差：最大文本 logits 差 0.0859375、cosine distance 3.273e-5、Margin 差 0.015625 nats；全部 K32 与原生 Full 的 hidden/logits 完全一致。12 项新增 CPU 测试、合计 56 项回归测试及 pip check 通过。Full 候选正确 10/12；Physical K0/8 为 6/12，K16/24 为 10/12，Full-correct 子集分别为 6/10 和 10/10。K16 的全部样本 Question mean cosine drift≈0.05563，不能把候选正确性保持当作表征或语义完全不变。
+
+[逐样本 CSV](results/phase3_1_physical_exit_pilot/per_sample_results.csv) · [完整 JSON 与位置/层长度](results/phase3_1_physical_exit_pilot/per_sample_results.json) · [Question 漂移图](results/phase3_1_physical_exit_pilot/question_representation_drift_vs_K.png) · [Answer Margin Drop 图](results/phase3_1_physical_exit_pilot/answer_margin_drop_vs_K.png)。JSON 同时保留全部12条和本次 Full 正确的10条，未丢弃原本错误样本。
+
+完整实验 50.527 秒，峰值 allocated 13774.966 MiB、reserved 13862 MiB。时间包含加载/诊断/绘图；未做合理预热与重复计时，各模式还有观测存储开销差异，不宣称稳定加速收益。模型/环境和 Phase 1–3 结果未改动，GPU 0 已释放，自动轮询未恢复。当前在 Phase 3.1 停止，无 Router、Directed Attention 完整扫描、逐生成步退出、ROI 或滑动窗口实验。
+
+CPU 测试（不需要 GPU）：
+
+```bash
+CUDA_VISIBLE_DEVICES='' HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
+  /home/zsy/.conda/envs/vlm_research/bin/python -m unittest test_physical_exit -v
+```
+
+本次实际执行命令（已完成的目录会拒绝覆盖，不要求原地重跑）：
+
+```bash
+# 取得指定官方仓库 revision 后，先固定数据；已有 manifest 不可替换
+python prepare_physical_exit_data.py --source-repo /path/to/cross-modal-information-flow-in-MLLM \
+  --image-root /data/wdy/datasets/MMEB-V2/image-tasks/MMEB/GQA \
+  --output-dir configs/phase3_1_data
+# 运行前固定选择哈希、容差与协议，再执行单卡离线实验
+python physical_exit_pilot.py --freeze-only
+CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 \
+  /home/zsy/.conda/envs/vlm_research/bin/python physical_exit_pilot.py
+```
+
+程序会验证图片哈希，缺图或变化时停止、不换样本。Mask/Physical 差异超出固定容差时保存 failure.json 并停止，不能解释成视觉机制或用 Mask 结果替代物理退出。
 
 ## Phase 3：逐层 Visual Attention Knockout（小规模 GPU 实测完成）
 
