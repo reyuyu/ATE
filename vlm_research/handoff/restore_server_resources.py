@@ -9,6 +9,8 @@ import shutil
 import subprocess
 import tarfile
 import traceback
+from urllib.parse import quote, urlencode
+from urllib.request import urlopen
 
 import huggingface_hub
 from huggingface_hub import HfApi, get_hf_file_metadata, hf_hub_download, hf_hub_url
@@ -22,6 +24,10 @@ DATA_REVISION = 'e7bbfeb69a70dfe32ff36da3d6d8dbe31fc36af1'
 ARCHIVE = 'image-tasks/mmeb_v1.tar.gz'
 ARCHIVE_BYTES = 7031608592
 ARCHIVE_SHA256 = 'feeaf4a8319cba587b982ec976fba225d13e134a3217e1cad5c251e64299346a'
+MODELSCOPE_PINS = {
+    ('model', MODEL_ID, MODEL_REVISION): '456d5355816bd34e90e7f882985f3b5499f2d484',
+    ('dataset', DATA_ID, DATA_REVISION): 'de0e137ddc5b7f12d2b84081d41b1a2ff53902a0',
+}
 
 
 def sha(path):
@@ -39,32 +45,76 @@ def save(path, value):
     temporary.replace(path)
 
 
+def modelscope_source(repo, filename, revision, expected_bytes, expected_sha256, repo_type=None):
+    kind = repo_type or 'model'
+    copy_revision = MODELSCOPE_PINS.get((kind, repo, revision))
+    if copy_revision is None or expected_sha256 is None:
+        raise ValueError('No hash-pinned ModelScope copy for this resource')
+    if kind == 'dataset':
+        route = f'datasets/{repo}/repo/tree'
+        parameters = dict(Revision=copy_revision, Root=str(PurePosixPath(filename).parent),
+                          Recursive='false', PageNumber=1, PageSize=100)
+    else:
+        route = f'models/{repo}/repo/files'
+        parameters = dict(Revision=copy_revision, Recursive='true')
+    api_url = f'https://modelscope.cn/api/v1/{route}?' + urlencode(parameters)
+    with urlopen(api_url, timeout=45) as response:
+        listing = json.load(response)
+    matches = [item for item in listing.get('Data', {}).get('Files', [])
+               if item.get('Path') == filename]
+    if listing.get('Code') != 200 or len(matches) != 1:
+        raise ValueError('ModelScope metadata did not identify exactly one pinned file')
+    item = matches[0]
+    if (item.get('Revision') != copy_revision or item.get('Size') != expected_bytes
+            or item.get('Sha256') != expected_sha256):
+        raise ValueError('ModelScope metadata disagrees with pinned size, SHA256 or revision')
+    url = f'https://modelscope.cn/{kind}s/{repo}/resolve/{copy_revision}/{quote(filename, safe="/")}'
+    return dict(provider='modelscope', canonical_repo=repo, canonical_revision=revision,
+                provider_revision=copy_revision, metadata_url=api_url, url=url,
+                expected_bytes=expected_bytes, expected_sha256=expected_sha256,
+                checked_metadata=item, checked_at=datetime.now(timezone.utc).isoformat())
+
+
 def retrieve(repo, filename, revision, folder, endpoint, expected_bytes, expected_sha256,
              repo_type=None, transport='hub'):
     if transport == 'hub' or expected_sha256 is None:
         return Path(hf_hub_download(repo, filename, revision=revision, repo_type=repo_type,
-                                    local_dir=folder, endpoint=endpoint))
+                                    local_dir=folder, endpoint=endpoint,
+                                    local_files_only=transport == 'modelscope'))
     path = folder / filename
     if path.exists():
         if path.stat().st_size == expected_bytes and sha(path) == expected_sha256:
             return path
         raise ValueError(f'Preserve mismatched existing file: {path}')
-    url = hf_hub_url(repo, filename, revision=revision, repo_type=repo_type, endpoint=endpoint)
-    metadata = get_hf_file_metadata(url)
-    if (metadata.commit_hash != revision or metadata.size != expected_bytes
-            or metadata.etag != expected_sha256):
-        raise ValueError('Pinned HF metadata disagrees with expected content; no transfer started')
+    source = None
+    if transport == 'modelscope':
+        source = modelscope_source(repo, filename, revision, expected_bytes, expected_sha256, repo_type)
+        url = source['url']
+    else:
+        url = hf_hub_url(repo, filename, revision=revision, repo_type=repo_type, endpoint=endpoint)
+        metadata = get_hf_file_metadata(url)
+        if (metadata.commit_hash != revision or metadata.size != expected_bytes
+                or metadata.etag != expected_sha256):
+            raise ValueError('Pinned HF metadata disagrees with expected content; no transfer started')
     path.parent.mkdir(parents=True, exist_ok=True)
     transfer = path.with_suffix(path.suffix + '.transfer')
     if not transfer.exists():
         partials = list((folder / '.cache/huggingface/download').rglob(f'*.{expected_sha256}.incomplete'))
         if len(partials) == 1:
             partials[0].rename(transfer)
+    if source is not None:
+        control = transfer.with_suffix(transfer.suffix + '.aria2')
+        source.update(transfer_path=str(transfer), resume_control_present=control.is_file(),
+                      resume_control_sha256=sha(control) if control.is_file() else None,
+                      transfer_size_not_progress=transfer.stat().st_size if transfer.exists() else 0)
+        save(folder / '.download-sources' / (filename + '.modelscope.json'), source)
+        print(json.dumps(dict(download_source=source)), flush=True)
     subprocess.run(['aria2c', '--no-conf=true', '--all-proxy=', '--continue=true',
                     '--auto-file-renaming=false', '--allow-overwrite=false', '--file-allocation=none',
                     '--split=4', '--max-connection-per-server=4', '--min-split-size=10M',
                     '--max-tries=5', '--retry-wait=15', '--connect-timeout=20', '--timeout=90',
-                    '--summary-interval=60', '--console-log-level=warn', '--download-result=hide',
+                    '--summary-interval=60', '--show-console-readout=false',
+                    '--console-log-level=warn', '--download-result=hide',
                     '--checksum=sha-256=' + expected_sha256, '--dir=' + str(path.parent),
                     '--out=' + transfer.name, url], check=True)
     if transfer.stat().st_size != expected_bytes or sha(transfer) != expected_sha256:
@@ -164,7 +214,7 @@ def main():
     parser.add_argument('--root', required=True, type=Path)
     parser.add_argument('--endpoint', default='https://hf-mirror.com')
     parser.add_argument('--resource', required=True, choices=['data', 'model'])
-    parser.add_argument('--transport', choices=['hub', 'aria2'], default='hub')
+    parser.add_argument('--transport', choices=['hub', 'aria2', 'modelscope'], default='hub')
     args = parser.parse_args()
     if huggingface_hub.__version__ != '0.29.3':
         raise RuntimeError('Use pinned huggingface_hub==0.29.3, not a different downloader')

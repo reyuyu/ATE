@@ -61,6 +61,45 @@ directory; AFAC itself was not downgraded. Aria2 performs four range connections
 per large file, with fixed revision, size, LFS metadata and final SHA256 checks.
 Sparse `.transfer` file length is NOT download progress or a verified weight.
 
+## ModelScope transfer switch, 22:58 CST
+
+The HF range jobs were stopped before starting the ModelScope jobs. Existing
+`.transfer` files and their `.aria2` range maps are reused, not deleted or
+treated as completed files. This changes transport only, not the canonical HF
+resource pins, `configs/model.json`, input data or any experiment condition.
+
+- Dataset copy: ModelScope `TIGER-Lab/MMEB-V2`, revision
+  `de0e137ddc5b7f12d2b84081d41b1a2ff53902a0`. The archive has the exact pinned
+  7,031,608,592-byte size and SHA256 above.
+- Weight copy: ModelScope `llava-hf/llava-1.5-7b-hf`, revision
+  `456d5355816bd34e90e7f882985f3b5499f2d484`. Each of the three shard metadata
+  entries must match the original HF shard size and SHA256 before transfer.
+  The 12 small HF files are reused offline from their existing local cache;
+  ModelScope configuration/tokenizer files are NOT substituted.
+- `--transport modelscope` still uses aria2 with four connections per large
+  file, the same range maps and final size/SHA256 checks. A file is renamed
+  from `.transfer` only after successful final verification. Metadata and
+  pre-transfer range-map SHA256 are recorded in each resource directory's
+  `.download-sources/` subdirectory. These are metadata/continuation audits,
+  NOT evidence that the full content has already passed its final hash check.
+- The separate utility suite now has 14 passing tests in AFAC, including
+  wrong-copy metadata rejection, retained partials after failure, resume-map
+  preservation, bad-content rejection and offline reuse of original HF small
+  files. This does NOT replace the original 7/101 acceptance suites.
+- The fixed environment job failed at 22:50:56 CST: the Triton 3.2.0 wheel
+  transfer was truncated and rejected by pip's expected SHA256. The check
+  must not be bypassed. Environment installation and original 7/101 CPU tests
+  remain incomplete; no GPU experiment has started.
+
+Current transfer units and logs:
+
+```bash
+systemctl --user status ate-restore-data-modelscope-20261028 --no-pager
+systemctl --user status ate-restore-model-modelscope-20261028 --no-pager
+# /data/lk/ATE-resources/audit/download_data_modelscope_20261028.txt
+# /data/lk/ATE-resources/audit/download_model_modelscope_20261028.txt
+```
+
 ## Background resource jobs
 
 These are preparation jobs, not model inference or a GPU poller:
@@ -68,13 +107,17 @@ These are preparation jobs, not model inference or a GPU poller:
 ```bash
 systemctl --user status ate-restore-data-range-20261028 --no-pager
 systemctl --user status ate-restore-model-range-20261028 --no-pager
+systemctl --user status ate-restore-data-modelscope-20261028 --no-pager
+systemctl --user status ate-restore-model-modelscope-20261028 --no-pager
 systemctl --user status ate-environment-cpu-paths-20261028 --no-pager
 ```
 
 Logs are in `/data/lk/ATE-resources/audit/`, especially
 `download_data_range_20261028.txt`, `download_model_range_20261028.txt` and
 `pinned_env_20261028_retry_paths/environment_install.txt`. The environment job
-will run the original 7 and 101 CPU suites after installing the fixed versions.
+was intended to run the original 7 and 101 CPU suites after installing the fixed
+versions, but is currently failed as described above. A fresh successful install
+attempt and the actual CPU acceptance reports are still required.
 It will NOT start the GPU experiment. Download failures stay failures and
 partials are retained for a manual retry of the same pin.
 
