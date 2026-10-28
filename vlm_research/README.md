@@ -2,7 +2,7 @@
 
 本工程用于验证 `llava-hf/llava-1.5-7b-hf` 在 RTX 4090 上的正常推理、结构和输入长度。使用 `LlavaForConditionalGeneration`、`AutoProcessor`、FP16、`eager` Attention、`eval()` 和 `torch.inference_mode()`。所有参数必须位于同一张 GPU；加载后会检查参数的设备和精度。
 
-第一阶段推理基线、第二阶段 Prompt Prefill Attention 与 Phase 2.1 Query Position 分析已完成。复用第一阶段加载和输入处理函数，通过 `outputs.attentions` 提取语言模型注意力。Phase 2.1 研究问题 Token、Answer-start 与 Teacher Forcing 的答案预测位置，该阶段没有注册 Hook。Phase 3 全局逐层 Text→Visual Attention Knockout 已完成真实 7B 小规模实测；Phase 3.1 新增物理视觉 Token 退出，已完成 12 张固定 GQA 图片的 Full/Mask/Physical 对照。没有实施自由生成 Decode Attention、Token Pruning、量化或训练。Phase 3.2 已扩展为 240 张新增独立图的固定 K 验证，Phase 3.3 已完成同240图的定向后缀Mask诊断，详见下文；环境与旧阶段既有代码/结果保持原样。
+第一阶段推理基线、第二阶段 Prompt Prefill Attention 与 Phase 2.1 Query Position 分析已完成。复用第一阶段加载和输入处理函数，通过 `outputs.attentions` 提取语言模型注意力。Phase 2.1 研究问题 Token、Answer-start 与 Teacher Forcing 的答案预测位置，该阶段没有注册 Hook。Phase 3 全局逐层 Text→Visual Attention Knockout 已完成真实 7B 小规模实测；Phase 3.1 新增物理视觉 Token 退出，已完成 12 张固定 GQA 图片的 Full/Mask/Physical 对照。没有实施自由生成 Decode Attention、Token Pruning、量化或训练。Phase 3.2 已扩展为 240 张新增独立图的固定 K 验证，Phase 3.3 已完成同240图的定向后缀Mask诊断；Phase 3.4 已完成240图ROI审计及48主样本+5独立案例的ROI/Sink小规模诊断，详见下文；环境与旧阶段既有代码/结果保持原样。
 
 ## 文件
 
@@ -32,6 +32,12 @@ vlm_research/
 ├── directed_suffix_probe.py    # 冻结240图、真实GPU校验、完整候选评分与严格断点续跑
 ├── summarize_directed_suffix.py # 离线完整性校验、配对统计和三张核心图
 ├── test_directed_suffix.py     # 定向Mask方向、因果不变量、P−1、清理和续跑测试
+├── roi_sink_common.py          # Phase 3.4：真实裁剪几何、冻结Sink规则、匹配背景和Patch Mask
+├── prepare_roi_sink.py         # 240图ROI审计及按几何固定48主样本/5独立案例
+├── roi_sink_probe.py           # 观察→冻结候选→7B Smoke→小规模定向阻断
+├── roi_sink_precision.py       # 五案例固定55条件的FP32输出投影敏感性检查
+├── summarize_roi_sink.py       # 离线完整性校验、分Head统计、配对效果和图表
+├── test_roi_sink.py            # 小模型/真实Processor/匹配控制/统计和隔离测试
 ├── test_images/
 │   ├── example.jpg
 │   └── SOURCE.md
@@ -40,6 +46,40 @@ vlm_research/
 ```
 
 模型文件保存在用户缓存目录，不放入 Git。当前主工程目录之外的 AFAC 文件未因本任务修改。
+
+## Phase 3.4：ROI vs Attention Sink Causal Diagnostic（完成）
+
+[完整报告](results/phase3_4_roi_sink_diagnostic/report.md)、[文献与官方源码核对](results/phase3_4_roi_sink_diagnostic/source_review.md)、[测试记录](results/phase3_4_roi_sink_diagnostic/test_report.md)位于独立目录 `results/phase3_4_roi_sink_diagnostic/`。未改变Phase1–3.3的Python、数据或结果，也未重装环境/下载模型。
+
+- **ROI审计：** 真实CLIP shortest-edge Resize/336 Center Crop，240/240图pixel_values重构逐元素相同，行优先24×24映射经真实CLIP embedding验证。215图两对象可见、24图仅一对象可见、1图均不可见；14张原图/裁剪/Patch三联图保留。几何筛选后固定left/right各24张，不按预测选择；五历史案例单列。主集合有面积和裁剪选择偏差。
+- **观察：** 32层×32Head，真实Question组与P−1答案预测行；两个中性提示识别持续热点，第三提示仅检查稳定性。候选在因果评分前冻结，不用ROI、答案或Margin调阈值。候选不是已证明的无关噪声；ROI交集另存。只保存所需行和范数/激活，不保存完整S×S。
+- **因果：** 仅L8–15/L24–31、Q-only/A-only，对ROI和非ROI Sink各配三seed精确同数量背景。主48对照全部可用；案例0216546的12个ROI随机组合因背景不足不可用，明确标记。Sink控制空间bin全部匹配；ROI仅约61.61%，存在剩余混杂。保留所有576视觉Token，不是Physical Exit或推理加速。
+
+主Full33/48（left24/24、right9/24）。中层Question ROI富集1.4896，33/48图>1；Answer仅0.9183。中层Q/A→ROI相对各自随机对照额外Margin Drop分别+0.9663/+0.1092 nats；Q条件一原对变错、一原错变对，正确率净值不变。深层Sink视觉内占比没有普遍升高；深层Q/A→非ROI Sink相对随机额外Drop仅−0.0029/−0.0087 nats，无主样本分类收益，也未恢复K24 Physical改善的两条问题。H1仅获有条件支持，H2强解释未获支持，不能把Attention相关性、Mask复合效应和Physical整体效应混为一谈。
+
+GPU前83项CPU测试、最终85项通过；3图7B Smoke审计3072层，目标Attention严格0，预测/Question因果不变量/历史Full/Hook清理通过。无NaN/Inf/OOM。五案例55条件的CPU FP32最终投影检查未改变分类，但小配对效应方向可变；这不是FP32主干复验。正式阶段完成门计时416.054秒，峰值allocated13641.403MiB、reserved13736MiB，只作诊断计时。
+
+```bash
+cd /home/zsy/ATE/vlm_research
+conda activate vlm_research
+export HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1
+CUDA_VISIBLE_DEVICES='' python -m unittest test_attention_probe test_attention_positions test_knockout \
+  test_phase3_watch test_physical_exit test_fixed_k_exit test_directed_suffix test_roi_sink -v
+# 仅当结果目录尚不存在时准备一次；已有目录会拒绝覆盖/重采样。
+# CUDA_VISIBLE_DEVICES='' python prepare_roi_sink.py
+CUDA_VISIBLE_DEVICES=0 python roi_sink_probe.py observe
+CUDA_VISIBLE_DEVICES='' python roi_sink_probe.py freeze
+# 先离线审阅ROI和Attention观察结果，再进入因果阶段。
+CUDA_VISIBLE_DEVICES='' python summarize_roi_sink.py --observations-only
+CUDA_VISIBLE_DEVICES=0 python roi_sink_probe.py smoke
+CUDA_VISIBLE_DEVICES=0 python roi_sink_probe.py causal
+CUDA_VISIBLE_DEVICES=0 python roi_sink_precision.py
+CUDA_VISIBLE_DEVICES='' python summarize_roi_sink.py
+```
+
+`observe/smoke/causal`相同命令支持逐样本续跑，严格验证父Manifest、配置、图像/模型/旧源码、新实现SHA256和检查点校验和，已完成项跳过；禁止更改绑定实现来继续既有检查点。`roi_sink_common.py`、`roi_sink_probe.py`、`prepare_roi_sink.py`为已运行冻结代码。完整汇总还要求先生成precision检查结果。`precision`是五案例固定55条件的额外诊断，没有断点续跑需求。
+
+完整逐样本CSV/JSON1749行（含12不可用案例组合），Head统计108544行在 `head_attention_statistics.csv.gz`（标准gzip CSV），并保存原始选定Attention行、ROI/候选清单、分组汇总、配对统计、曲线/Head热图/Overlay、数值检查和资源日志。首次观察调用的资源预检API错误发生于加载前，修复与失败日志保留，不影响冻结数据及后续成功实验。本轮停止于Phase3.4，不扩大240图全组合、不训练Gate/Router、不进行Decode；自动GPU轮询仍关闭。
 
 ## Phase 3.3：Directed Suffix Visual Attention Knockout（完成）
 

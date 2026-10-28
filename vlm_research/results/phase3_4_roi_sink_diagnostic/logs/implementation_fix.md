@@ -1,0 +1,1 @@
+Initial observe invocation failed before model loading: resource_preflight returns a dictionary, not a (report, ready) tuple. Fixed caller to read ready key. No GPU Forward/checkpoint or result existed; archived initial configuration, refroze implementation binding with unchanged protocol, ROI and samples. Failure traceback retained.

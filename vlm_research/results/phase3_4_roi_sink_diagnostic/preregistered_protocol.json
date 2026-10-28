@@ -1,0 +1,60 @@
+{
+  "seed": 20261030,
+  "neutral_prompts": [
+    "Describe this image.",
+    "What can be seen in the image?",
+    "Summarize the scene."
+  ],
+  "discovery_prompt_indices": [
+    0,
+    1
+  ],
+  "holdout_prompt_index": 2,
+  "sink_rule": "For each patch and each of four discovery views (two prompts x mean real Question queries / P-1), count all 32 layers where head-mean visual-conditional probability >=5/576 AND patch is in top58 (stable index ties). A view is persistent at >=8 layers. Candidate requires >=3/4 persistent views. No ROI, labels, margins or depth-specific preference used. Holdout uses both Q/A views persistent at >=8 layers. Empty sets remain empty.",
+  "sink_enrichment_threshold": 5.0,
+  "sink_min_layers": 8,
+  "sink_min_discovery_views": 3,
+  "top_k": 58,
+  "geometry": "Half-open original xywh boxes; actual CLIP resize integer output and floor center crop. A patch belongs to ROI iff positive continuous intersection area; row-major r*24+c. Also save overlap fractions and center-inside sensitivity.",
+  "selection": "Exclude designated five historical case IDs from main. Both objects >=2 patches; union 4..192; max/min object patch count<=16. Sort qid, Python Random(20261030), shuffle left then right and take24 each. Geometry only, no predictions. Cases reported separately even if not eligible.",
+  "random_seeds": [
+    3401,
+    3402,
+    3403
+  ],
+  "random_rule": "Separate controls matched to ROI union and non-ROI sink counts. Pool excludes ROI union and all sink candidates. Greedy one-to-one nearest available 6x6-patch spatial bin, ties shuffled by fixed seed; record bin Manhattan displacement. Exact patch count, no replacements. Unavailable controls explicitly skipped, never substitute targets.",
+  "windows": {
+    "middle": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15
+    ],
+    "deep": [
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ]
+  },
+  "query_groups": [
+    "question",
+    "answer"
+  ],
+  "causal_conditions": [
+    "roi",
+    "sink_nonroi",
+    "random_roi",
+    "random_sink"
+  ],
+  "precision": "FP16 eager unchanged. Native Full and historical scores exact. Empty key set is an explicit sham. Smoke mask/causal/cleanup checks and attention on/off exact. No tolerance changes; weak margins |Full or intervened|<=0.15 flagged, not excluded.",
+  "interpretation": "ROI is box coverage, not segmentation. Sink candidates are neutral-prompt persistent hotspots, not proven irrelevant noise. Attention association, mask effects and physical exit effects are distinct."
+}
