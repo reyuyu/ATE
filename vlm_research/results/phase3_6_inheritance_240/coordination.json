@@ -1,0 +1,25 @@
+{
+  "recorded_at": "2026-10-29T00:35:21+08:00",
+  "status_at_recording": "running; not a results summary",
+  "branch": "exp/phase3_6-inheritance240",
+  "baseline": "ed666b68eef6380a8bd57852636c18bef1673b02",
+  "upstream_main_checked_before_execution": "e89c8acce6e674ecfbd2c8acad57faf71bf4d547",
+  "frozen_code_commit": "0d323e1bb3eb6f91443854e90242150b04e9eaf1",
+  "protocol_binding": "e3e32e45f36f1842f8a5904a73bca2d1f89295aeced959fafdc8d34f2311588a",
+  "master": "main Codex: implementation, tests, GPU0 execution, sole aggregation, Git and PR",
+  "workers": [
+    {"shard": 0, "gpu": 0, "gpu_uuid": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89", "worktree": "/data/lk/ATE-worktrees/phase36-gpu0", "output": "shards/shard_0", "executor": "main Codex"},
+    {"shard": 1, "gpu": 1, "gpu_uuid": "GPU-b08489af-0a8a-eb48-55ba-8346733af417", "worktree": "/data/lk/ATE-worktrees/phase36-gpu1", "output": "shards/shard_1", "executor_agent": "01a1835c-54f0-79b2-b09b-9acb0e3e4766"},
+    {"shard": 2, "gpu": 2, "gpu_uuid": "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6", "worktree": "/data/lk/ATE-worktrees/phase36-gpu2", "output": "shards/shard_2", "executor_agent": "01a1835c-a524-7862-bc28-47dbdbb61b27"},
+    {"shard": 3, "gpu": 3, "gpu_uuid": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185", "worktree": "/data/lk/ATE-worktrees/phase36-gpu3", "output": "shards/shard_3", "executor_agent": "01a1835c-e9e6-7830-b3e6-6817b1c5f923"}
+  ],
+  "rules": [
+    "All workers use detached worktrees of the identical frozen commit.",
+    "Three helper agents execute only; no source modifications or aggregation.",
+    "No other GPU processes are terminated.",
+    "Each shard owns 60 frozen question IDs and exclusive checkpoint/output files.",
+    "No effect-dependent tuning or partial-cohort scientific analysis.",
+    "One master aggregation after all four validation gates pass.",
+    "Main is neither modified nor pushed; no automatic merge."
+  ]
+}
