@@ -51,6 +51,8 @@ vlm_research/
 
 ## Phase 3.5：Exit Boundary vs ROI Attention Alignment（离线完成）
 
+补充两案例全景图：[六图与说明](results/phase3_5_two_case_visualization/README.md)。`two_case_attention_viz.py`只读取04132006/15133706缓存，为Q和P−1分别输出4×8全32层ROI热图及配对曲线；四热图共用同一视觉条件概率对数色标并标注原始视觉Mass。此补图按要求先平均Head再条件化，曲线使用同一口径，旧逐Head条件化统计不变。`CUDA_VISIBLE_DEVICES='' python two_case_attention_viz.py --verify-existing`可核验六图及输入哈希；不使用GPU或补Forward。
+
 [报告](results/phase3_5_exit_boundary_viz/report.md)、[全部18张图](results/phase3_5_exit_boundary_viz/gallery.md)、[固定边界统计](results/phase3_5_exit_boundary_viz/fixed_boundary_summary.csv)位于独立 `results/phase3_5_exit_boundary_viz/`。仅配对既有Phase3.2 Physical Exit分数与Phase3.4 Full Attention缓存，48主图和5历史案例分开；没有GPU、模型Forward、网络补采或旧结果修改。
 
 K边界严格对应Full的L(K−1)→L_K；组合图将K置于K−0.5。先逐Head条件化计算ROI面积富集/视觉归一化熵，再平均全部32Head，另记录原始Visual Mass和冻结非ROI Sink份额。固定K16/K24、5000次图级Bootstrap、低质量阈值、最佳K并列规则均保存在analysis_protocol.json。
