@@ -1,0 +1,183 @@
+{
+  "schema_version": 1,
+  "common": {
+    "model_id": "llava-hf/llava-1.5-7b-hf",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "transformers": "4.49.0",
+    "dtype": "float16",
+    "attention": "eager",
+    "visual_tokens": 576,
+    "processor": "Original pinned AutoProcessor/chat template, no extra system message or OCR tokens",
+    "generation": {
+      "do_sample": false,
+      "num_beams": 1,
+      "max_new_tokens": 32,
+      "eos_token_id": 2,
+      "use_cache": true,
+      "temperature": 1.0,
+      "top_p": 1.0
+    },
+    "diagnostic_candidates": "Full-vocabulary sum of teacher-forced conditional LogP; no EOS; gold minus strongest wrong; ties wrong; retain all candidate tokens/lengths",
+    "future_intervention_gate": "NOT validated on these tasks. Define true Question span apart from choices, hint and instructions; locate P-1 dynamically; audit multi-token teacher forcing, prefill vs decode and cache semantics separately before B4/C2 or Physical Exit generation.",
+    "official_scorer_revision": "haotian-liu/LLaVA@c121f0432da27facab705978f83c4ada465e46fd",
+    "chat_template": "{% for message in messages %}{% if message['role'] != 'system' %}{{ message['role'].upper() + ': '}}{% endif %}{# Render all images first #}{% for content in message['content'] | selectattr('type', 'equalto', 'image') %}{{ '<image>\n' }}{% endfor %}{# Render all text next #}{% if message['role'] != 'assistant' %}{% for content in message['content'] | selectattr('type', 'equalto', 'text') %}{{ content['text'] + ' '}}{% endfor %}{% else %}{% for content in message['content'] | selectattr('type', 'equalto', 'text') %}{% generation %}{{ content['text'] + ' '}}{% endgeneration %}{% endfor %}{% endif %}{% endfor %}{% if add_generation_prompt %}{{ 'ASSISTANT:' }}{% endif %}",
+    "chat_template_sha256": "d23ee34689a90d28cdf90f8111ef6dadd9bc96b9ab41b4e8eeaf3fa948c040b9",
+    "image_processor_config": {
+      "_processor_class": "LlavaProcessor",
+      "image_processor_type": "CLIPImageProcessor",
+      "do_resize": true,
+      "size": {
+        "shortest_edge": 336
+      },
+      "resample": 3,
+      "do_center_crop": true,
+      "crop_size": {
+        "height": 336,
+        "width": 336
+      },
+      "do_rescale": true,
+      "rescale_factor": 0.00392156862745098,
+      "do_normalize": true,
+      "image_mean": [
+        0.48145466,
+        0.4578275,
+        0.40821073
+      ],
+      "image_std": [
+        0.26862954,
+        0.26130258,
+        0.27577711
+      ],
+      "do_convert_rgb": true
+    },
+    "tokenizer_special_ids": {
+      "bos_token": "<s>",
+      "eos_token": "</s>",
+      "unk_token": "<unk>",
+      "pad_token": "<pad>",
+      "image_token": "<image>"
+    },
+    "tokenizer_class": "LlamaTokenizerFast",
+    "upstream_scorer_sha256": {
+      "llava/eval/eval_science_qa.py": "e57b92cafc7a4c0d0228bc0554a4315ef808e844d009dcaafa3b0f6ac693fbaf",
+      "llava/eval/eval_pope.py": "a4fe52fad8387f104dd66192f50089fe2991d651cf62fb79f07670cefd932845",
+      "llava/eval/eval_textvqa.py": "e78fdd1ae8fdf94c46053c14f7d65f20707b6a0c324c632b841dde5ef04783a0",
+      "llava/eval/m4c_evaluator.py": "8b49e1033e29d551c0bdd86d9149e2b54370e4cd17e52176ac9061b3521f0774"
+    },
+    "tokenizer_processor_files": {
+      "preprocessor_config.json": "a8d5e64ee5c07ff6d70142856d178ac39d0563da3612e32110fa824f5337b7a1",
+      "special_tokens_map.json": "358c249e2fb29060c6b73157d428853b0c48710deffc8ee670ab1013880946c9",
+      "added_tokens.json": "a94c56096001713e3eb9a34b1a545a8c1d5e8034ed2fb81f897c8cb54b420121",
+      "model.safetensors.index.json": "73af906b5ac12aea6eddf104d482d2a50bca30b20d61ee9f6c5269d3427a6991",
+      "chat_template.jinja": "6fef09c05345e88b9f85e80bcb3491003332050750586568bdf91cfa81965d0c",
+      "config.json": "0bde54495c54bcc346064a0d314b010d1c4d3ca7f7e583b6f711949a35352c0f",
+      "processor_config.json": "fef918d6ba333f72a066877965bc4a162308568ba62aa90c806caedf7b45d64e",
+      "generation_config.json": "3a6dc8c202be258023f58a03f804bdcacf138b8a2cc7492be2530e16945a0951",
+      "tokenizer_config.json": "79b7f1ebceddf7235f3791c387d781818b0c7e7cf868d0e4f71896a55b949833",
+      "tokenizer.model": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+      "tokenizer.json": "30e1294abd835edfebb24618fce6f47c21ffb2b2802520d150bdee0b808b47cb",
+      "chat_template.json": "854445c0a45532ecbee1ae9aa31d4be19644060a156f2c88456f50f584261543"
+    }
+  },
+  "datasets": {
+    "gqa_chooseattr": {
+      "prompt_template": "{question}\\nAnswer the question using a single word or phrase.",
+      "official_generation_metrics": [],
+      "diagnostic_candidate_enabled": true,
+      "comparison_scope": "Frozen subset, not complete benchmark leaderboard reproduction",
+      "generation_limit_caveat": "32-token image-only greedy suite configuration; track EOS vs truncation",
+      "status": "mechanism_literal_exact_match_only",
+      "prompt_template_sha256": "b86f2ce64f90847360059723ac2465abc68561b74edad6c68777d87749d95206"
+    },
+    "gqa_queryattr": {
+      "prompt_template": "{question}\\nAnswer the question using a single word or phrase.",
+      "official_generation_metrics": [],
+      "diagnostic_candidate_enabled": false,
+      "comparison_scope": "Frozen subset, not complete benchmark leaderboard reproduction",
+      "generation_limit_caveat": "32-token image-only greedy suite configuration; track EOS vs truncation",
+      "status": "mechanism_literal_exact_match_only",
+      "prompt_template_sha256": "b86f2ce64f90847360059723ac2465abc68561b74edad6c68777d87749d95206"
+    },
+    "gqa_logicalobj": {
+      "prompt_template": "{question}\\nAnswer the question using a single word or phrase.",
+      "official_generation_metrics": [],
+      "diagnostic_candidate_enabled": true,
+      "comparison_scope": "Frozen subset, not complete benchmark leaderboard reproduction",
+      "generation_limit_caveat": "32-token image-only greedy suite configuration; track EOS vs truncation",
+      "status": "mechanism_literal_exact_match_only",
+      "prompt_template_sha256": "b86f2ce64f90847360059723ac2465abc68561b74edad6c68777d87749d95206"
+    },
+    "pope_random": {
+      "prompt_template": "{question}\\nAnswer the question using a single word or phrase.",
+      "official_generation_metrics": [
+        "accuracy",
+        "precision",
+        "recall",
+        "f1",
+        "yes_ratio"
+      ],
+      "diagnostic_candidate_enabled": true,
+      "comparison_scope": "Frozen subset, not complete benchmark leaderboard reproduction",
+      "generation_limit_caveat": "32-token image-only greedy suite configuration; track EOS vs truncation",
+      "prompt_template_sha256": "b86f2ce64f90847360059723ac2465abc68561b74edad6c68777d87749d95206"
+    },
+    "pope_popular": {
+      "prompt_template": "{question}\\nAnswer the question using a single word or phrase.",
+      "official_generation_metrics": [
+        "accuracy",
+        "precision",
+        "recall",
+        "f1",
+        "yes_ratio"
+      ],
+      "diagnostic_candidate_enabled": true,
+      "comparison_scope": "Frozen subset, not complete benchmark leaderboard reproduction",
+      "generation_limit_caveat": "32-token image-only greedy suite configuration; track EOS vs truncation",
+      "prompt_template_sha256": "b86f2ce64f90847360059723ac2465abc68561b74edad6c68777d87749d95206"
+    },
+    "pope_adversarial": {
+      "prompt_template": "{question}\\nAnswer the question using a single word or phrase.",
+      "official_generation_metrics": [
+        "accuracy",
+        "precision",
+        "recall",
+        "f1",
+        "yes_ratio"
+      ],
+      "diagnostic_candidate_enabled": true,
+      "comparison_scope": "Frozen subset, not complete benchmark leaderboard reproduction",
+      "generation_limit_caveat": "32-token image-only greedy suite configuration; track EOS vs truncation",
+      "prompt_template_sha256": "b86f2ce64f90847360059723ac2465abc68561b74edad6c68777d87749d95206"
+    },
+    "scienceqa_img": {
+      "prompt_template": "[Context: {hint}\\n if present]{question}\\n{A. choice...}\\nAnswer with the option's letter from the given choices directly.",
+      "official_generation_metrics": [
+        "choice_index_accuracy"
+      ],
+      "diagnostic_candidate_enabled": true,
+      "comparison_scope": "Frozen subset, not complete benchmark leaderboard reproduction",
+      "generation_limit_caveat": "32-token image-only greedy suite configuration; track EOS vs truncation",
+      "prompt_template_sha256": "cafb766e7ae3f194159b8c07447e9e1411c8ac78f722761a35b39d3771452b7a"
+    },
+    "textvqa": {
+      "prompt_template": "{question}\\nAnswer the question using a single word or phrase.",
+      "official_generation_metrics": [
+        "vqa_soft_accuracy_10_votes"
+      ],
+      "diagnostic_candidate_enabled": false,
+      "comparison_scope": "Frozen subset, not complete benchmark leaderboard reproduction",
+      "generation_limit_caveat": "32-token image-only greedy suite configuration; track EOS vs truncation",
+      "ocr_policy": "Image-only: no OCR input. Scorer compatible, not numerically comparable to OCR-assisted prompt scores.",
+      "prompt_template_sha256": "b86f2ce64f90847360059723ac2465abc68561b74edad6c68777d87749d95206"
+    },
+    "gqa_official_balanced": {
+      "prompt_template": "{question}\\nAnswer the question using a single word or phrase.",
+      "official_generation_metrics": [],
+      "diagnostic_candidate_enabled": false,
+      "comparison_scope": "Frozen subset, not complete benchmark leaderboard reproduction",
+      "generation_limit_caveat": "32-token image-only greedy suite configuration; track EOS vs truncation",
+      "status": "blocked_official_scorer",
+      "prompt_template_sha256": "b86f2ce64f90847360059723ac2465abc68561b74edad6c68777d87749d95206"
+    }
+  }
+}
