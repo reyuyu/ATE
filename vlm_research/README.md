@@ -2,7 +2,7 @@
 
 本工程用于验证 `llava-hf/llava-1.5-7b-hf` 在 RTX 4090 上的正常推理、结构和输入长度。使用 `LlavaForConditionalGeneration`、`AutoProcessor`、FP16、`eager` Attention、`eval()` 和 `torch.inference_mode()`。所有参数必须位于同一张 GPU；加载后会检查参数的设备和精度。
 
-第一阶段推理基线、第二阶段 Prompt Prefill Attention 与 Phase 2.1 Query Position 分析已完成。复用第一阶段加载和输入处理函数，通过 `outputs.attentions` 提取语言模型注意力。Phase 2.1 研究问题 Token、Answer-start 与 Teacher Forcing 的答案预测位置，该阶段没有注册 Hook。Phase 3 全局逐层 Text→Visual Attention Knockout 已完成真实 7B 小规模实测；Phase 3.1 新增物理视觉 Token 退出，已完成 12 张固定 GQA 图片的 Full/Mask/Physical 对照。没有实施自由生成 Decode Attention、Token Pruning、量化或训练。环境与前三阶段既有代码/结果保持原样。
+第一阶段推理基线、第二阶段 Prompt Prefill Attention 与 Phase 2.1 Query Position 分析已完成。复用第一阶段加载和输入处理函数，通过 `outputs.attentions` 提取语言模型注意力。Phase 2.1 研究问题 Token、Answer-start 与 Teacher Forcing 的答案预测位置，该阶段没有注册 Hook。Phase 3 全局逐层 Text→Visual Attention Knockout 已完成真实 7B 小规模实测；Phase 3.1 新增物理视觉 Token 退出，已完成 12 张固定 GQA 图片的 Full/Mask/Physical 对照。没有实施自由生成 Decode Attention、Token Pruning、量化或训练。Phase 3.2 已扩展为 240 张新增独立图的固定 K 验证，详见下文；环境与旧阶段既有代码/结果保持原样。
 
 ## 文件
 
@@ -36,6 +36,32 @@ vlm_research/
 ```
 
 模型文件保存在用户缓存目录，不放入 Git。当前主工程目录之外的 AFAC 文件未因本任务修改。
+
+## Phase 3.2：240 图 Fixed-K Physical Exit（完成）
+
+[完整报告](results/phase3_2_fixed_k_exit/report.md)和[逐 K 汇总](results/phase3_2_fixed_k_exit/summary_by_k.csv)已保存。新增 240 张独立图片，left/right 各120，排除上一轮12图；种子20261029，先冻结 Manifest 再运行，无结果筛选。复用未修改的 `physical_exit.py`、加载器、Processor、真实 Question 定位和完整候选序列 logP；K=[0,8,12,16,20,24,28,32]。
+
+Full=187/240（77.9167%）；K16=187/240，但原对变错3、原错变对3；K20=186/240（原对变错1）；K24=189/240，保留全部187条Full-correct。平均 Margin Drop 为负仍有退化尾部；left/right 存在明显偏好。Question Drift 在测试网格中随K增大而下降，较小Drift不保证不翻错。上游数据已筛选，候选准确率不等于自由生成GQA准确率，不支持通用安全退出层结论。
+
+先通过62项CPU回归，再通过24图GPU Smoke、原12图×8K Mask/Physical等价性，最后完成240图正式配对实验。K32在全部240图与原生Full的有效文本hidden/logits精确一致；Smoke与正式运行的分数精确一致。原容差未放宽，环境/模型/第三方库及旧阶段代码结果未改变。正式阶段412.775秒，峰值allocated13776.610MiB、reserved13860MiB；未做独立预热重复，耗时仅诊断，不宣称稳定加速或Decode加速。
+
+新增入口：`prepare_fixed_k_data.py`、`fixed_k_exit.py`、`summarize_fixed_k.py`、`test_fixed_k_exit.py`。结果目录 `results/phase3_2_fixed_k_exit/` 保存冻结数据/版本/权重与代码哈希、1920行CSV/JSON、逐Token漂移和逐层长度、四图、翻转/尾部个案及资源日志。
+
+```bash
+cd /home/zsy/ATE/vlm_research
+conda activate vlm_research
+# 只对尚不存在的新结果目录准备一次；已有冻结目录会拒绝覆盖。
+# python prepare_fixed_k_data.py
+CUDA_VISIBLE_DEVICES='' python -m unittest test_attention_probe test_attention_positions test_knockout test_phase3_watch test_physical_exit test_fixed_k_exit -v
+CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python fixed_k_exit.py smoke
+CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python fixed_k_exit.py validate
+CUDA_VISIBLE_DEVICES=0 HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python fixed_k_exit.py run
+CUDA_VISIBLE_DEVICES='' HF_HUB_OFFLINE=1 TRANSFORMERS_OFFLINE=1 python summarize_fixed_k.py
+```
+
+中断恢复：直接重跑相同阶段，先核验已完成检查点再跳过，未完成样本重做；原子文件和进程锁防止重复计数。绑定涵盖冻结Manifest、图片哈希、候选和ID、代码/安装源码、模型权重及版本；错配、损坏、重复K或不完整记录会拒绝。不要手改Manifest或删除已完成检查点来选有利样本；代码变化后须使用本实验提交的代码恢复。GPU预检失败会保存原因，不终止其他进程。自动轮询保持关闭。
+
+本阶段仅固定K、无缓存Prefill/Teacher-forcing。完成后停止；不自动进入Phase3.3，不训练Router、不做Decode或更多数据集。
 
 ## Phase 3.1：Physical Visual Exit Pilot（完成）
 

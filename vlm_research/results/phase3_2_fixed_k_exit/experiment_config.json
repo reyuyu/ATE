@@ -1,0 +1,63 @@
+{
+  "schema": 1,
+  "cutoffs": [
+    0,
+    8,
+    12,
+    16,
+    20,
+    24,
+    28,
+    32
+  ],
+  "tolerances": {
+    "fp16_logit_atol": 0.1,
+    "fp16_logit_rtol": 0.003,
+    "max_text_cosine_distance": 0.0001,
+    "max_text_relative_rmse": 0.01,
+    "candidate_joint_logp_atol_nats": 0.1,
+    "candidate_margin_atol_nats": 0.15,
+    "cpu_fp32_atol": 2e-06,
+    "cpu_fp32_rtol": 2e-05
+  },
+  "manifest_sha256": "93c518eb079c82124566ba7b41e9a5ccff3f4a41f38ed752fe20ea81516d4cc5",
+  "code_sha256": {
+    "fixed_k_exit.py": "446ee1ec990d3017aa140cc9cd1ab647aacc15ba33e26b652e5f87d5393b2011",
+    "prepare_fixed_k_data.py": "3de8f20848f0a0ffa7856f5eda7dc089ab8816e4cdd3749c64a35e6dc9450a86",
+    "physical_exit.py": "b9d89dae88b7c9a7db21d5faa236ca39e4195094baf93d465a04991d59840e33",
+    "physical_exit_pilot.py": "743027a0f4713831709fbaafe7d117ef4ec77bbe40b215a6c118713d710f666b",
+    "vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d",
+    "attention_position_probe.py": "91749c6b4f5db5428b5e8ef4e599b72c85bae7683f5fcc2c5e29380b3d5d55eb",
+    "knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a"
+  },
+  "installed_source_sha256": {
+    "LlamaModel": "d313bd9b9565638f0780fbd8158ddf69ff77334b38462f50945efdd64140bbfb",
+    "LlamaDecoderLayer": "d313bd9b9565638f0780fbd8158ddf69ff77334b38462f50945efdd64140bbfb",
+    "LlamaAttention": "d313bd9b9565638f0780fbd8158ddf69ff77334b38462f50945efdd64140bbfb",
+    "LlavaForConditionalGeneration": "ab4ea7eb5ee124fd0dace5e09eb0a93dcf332690d4cfb4b48d870bee79a44489"
+  },
+  "python": "3.11.18",
+  "torch": "2.6.0+cu124",
+  "transformers": "4.49.0",
+  "cuda_runtime": "12.4",
+  "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "model_path": "/home/zsy/.cache/huggingface/manual/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "model_config_sha256": "0bde54495c54bcc346064a0d314b010d1c4d3ca7f7e583b6f711949a35352c0f",
+  "model_shards": {
+    "model-00001-of-00003.safetensors": {
+      "size_bytes": 4992930200,
+      "sha256": "c11dbf016ee7d35ee130c19b67e20eb04873996006f424b7bcbd453b6517ee66"
+    },
+    "model-00002-of-00003.safetensors": {
+      "size_bytes": 4957878440,
+      "sha256": "46df6c6e5fad297fe7fbca4963dcf180cb1d0528cabc884d1f603311fed01328"
+    },
+    "model-00003-of-00003.safetensors": {
+      "size_bytes": 4176137408,
+      "sha256": "4f06177c37ca13944e73b57dd6d051767b950dffc12400c700dfa2509c24c697"
+    }
+  },
+  "protocol": "FP16/eager/eval/inference_mode; batch=1; use_cache=False; native Full paired with physical; unchanged chat template; candidates left,right; full joint logP without EOS; strict margin>0; final RMSNorm Question hidden from first candidate; no decode.",
+  "timings": "Diagnostic only: no independent warmup/repeats. Includes CLIP/projector, observers and position hashes; Full stores all hidden states, physical only last. Not a fair stable speed benchmark.",
+  "validation": "Original 12 Phase3.1 samples; all 8 K; frozen Phase3.1 numerical tolerances and old-result compatibility at shared K."
+}

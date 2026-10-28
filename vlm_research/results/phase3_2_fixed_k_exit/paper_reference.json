@@ -1,0 +1,15 @@
+{
+  "title": "Accelerating Multimodal Large Language Models via Dynamic Visual-Token Exit and the Empirical Findings",
+  "venue": "NeurIPS 2025",
+  "url": "https://proceedings.neurips.cc/paper_files/paper/2025/file/f60d4225745fb682bd088b63dcbbe52d-Paper-Conference.pdf",
+  "access_date": "2026-10-28",
+  "pdf_sha256": "86828d391bd7407bdba068b570e3b5f1119114be6b31cb9a80ffe51112de3040",
+  "read_sections": [
+    "Section 3, Figure 3 discussion",
+    "Section 5.1 datasets and metrics",
+    "Section 5.2 implementation",
+    "Appendix A.3 exit-layer distributions"
+  ],
+  "paper_observation": "Section 3 reports dropping all visual tokens at layer 24 on GQA gives 0.5% / 0.6% performance drop for LLaVA-1.5 7B / 13B. Figure 3 is fixed layer removal; dynamic router results are a separate protocol.",
+  "comparison_caveat": "Our upstream-filtered 240-image left/right candidate joint-logP evaluation with no KV cache is not full-benchmark generated-answer GQA evaluation, nor trained DyVTE. No direct numerical reproduction claim."
+}
