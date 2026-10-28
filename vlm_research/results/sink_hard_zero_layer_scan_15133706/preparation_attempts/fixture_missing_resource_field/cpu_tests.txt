@@ -1,0 +1,40 @@
+test_actual_edit_is_before_value_matmul (test_attention_sink_hard_zero.HardZeroTests.test_actual_edit_is_before_value_matmul) ... ok
+test_checkpoint_binding_tamper_and_partial_rejected (test_attention_sink_hard_zero.HardZeroTests.test_checkpoint_binding_tamper_and_partial_rejected) ... ok
+test_exact_zero_formula_local_mass_and_question_causality (test_attention_sink_hard_zero.HardZeroTests.test_exact_zero_formula_local_mass_and_question_causality) ... ok
+test_fp16_subnormal_rounding_and_zero_mass (test_attention_sink_hard_zero.HardZeroTests.test_fp16_subnormal_rounding_and_zero_mass) ... ok
+test_frozen_conditions_and_controls (test_attention_sink_hard_zero.HardZeroTests.test_frozen_conditions_and_controls) ... ok
+test_invalid_patches (test_attention_sink_hard_zero.HardZeroTests.test_invalid_patches) ... ok
+test_noop_all_logits_and_attentions_exact (test_attention_sink_hard_zero.HardZeroTests.test_noop_all_logits_and_attentions_exact) ... ok
+test_normal_exit_failure_cleanup_and_instance_isolation (test_attention_sink_hard_zero.HardZeroTests.test_normal_exit_failure_cleanup_and_instance_isolation) ... ok
+test_resource_gate_never_loads_seven_b_model (test_attention_sink_hard_zero.HardZeroTests.test_resource_gate_never_loads_seven_b_model) ... ERROR
+test_undefined_remaining_support_fails_before_edit (test_attention_sink_hard_zero.HardZeroTests.test_undefined_remaining_support_fails_before_edit) ... ok
+test_blends_support_causality (test_attention_inheritance.InheritanceTests.test_blends_support_causality) ... ok
+test_exception_cleanup (test_attention_inheritance.InheritanceTests.test_exception_cleanup) ... ok
+test_fp16_rounding_mass (test_attention_inheritance.InheritanceTests.test_fp16_rounding_mass) ... ok
+test_instance_isolation (test_attention_inheritance.InheritanceTests.test_instance_isolation) ... ok
+test_invalid_reference_and_indices (test_attention_inheritance.InheritanceTests.test_invalid_reference_and_indices) ... ok
+test_subnormal_conditioning_bound_and_actual_matmul (test_attention_inheritance.InheritanceTests.test_subnormal_conditioning_bound_and_actual_matmul) ... ok
+test_zero_exact_and_no_leak (test_attention_inheritance.InheritanceTests.test_zero_exact_and_no_leak) ... ok
+test_failure_cleanup_and_isolation (test_attention_sink_steering.SteeringTest.test_failure_cleanup_and_isolation) ... ok
+test_fp16_subnormal_mass_and_zero_support (test_attention_sink_steering.SteeringTest.test_fp16_subnormal_mass_and_zero_support) ... ok
+test_frozen_grid_count_and_controls (test_attention_sink_steering.SteeringTest.test_frozen_grid_count_and_controls) ... ok
+test_invalid_inputs (test_attention_sink_steering.SteeringTest.test_invalid_inputs) ... ok
+test_noop_exact_all_scopes_and_cleanup (test_attention_sink_steering.SteeringTest.test_noop_exact_all_scopes_and_cleanup) ... ok
+test_positive_reweight_formula_mass_and_causal_scoping (test_attention_sink_steering.SteeringTest.test_positive_reweight_formula_mass_and_causal_scoping) ... ok
+test_similarity_and_factors_independent_numeric (test_attention_sink_steering.SteeringTest.test_similarity_and_factors_independent_numeric) ... ok
+
+======================================================================
+ERROR: test_resource_gate_never_loads_seven_b_model (test_attention_sink_hard_zero.HardZeroTests.test_resource_gate_never_loads_seven_b_model)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/home/zsy/ATE/vlm_research/test_attention_sink_hard_zero.py", line 138, in test_resource_gate_never_loads_seven_b_model
+    runner.gpu(output)
+  File "/home/zsy/ATE/vlm_research/sink_hard_zero_case.py", line 263, in gpu
+    resource=resource_preflight(protocol["minimum_free_mib"])
+                                ~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+KeyError: 'minimum_free_mib'
+
+----------------------------------------------------------------------
+Ran 24 tests in 0.122s
+
+FAILED (errors=1)

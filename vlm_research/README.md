@@ -55,6 +55,8 @@ vlm_research/
 
 ## 单案例15133706：Sink去偏与ROI增强（真实GPU完成）
 
+新增独立硬置零实验（尚待真实GPU）：[不同层Sink扣除的冻结协议与状态](results/sink_hard_zero_layer_scan_15133706/report.md)。`attention_sink_hard_zero.py`只将P−1→13个非ROI Sink的权重置零，保持当前视觉总质量；`sink_hard_zero_case.py`固定32单层及L2～4/L8～15/L14～23/L24～31四窗口，各配三冻结背景对照，共144条件。`test_attention_sink_hard_zero.py`覆盖公式、FP16/因果/清理和资源门禁。结果不覆盖旧实验，GPU完成状态以新报告为准，只在独立实验分支保存。
+
 补充离线直观图：[Sink捕捉核对及原始/增强横向对比](results/attention_sink_steering_case_15133706/intuitive_visualization/README.md)。只复用缓存，统一色标覆盖真实Processor图像，明确区分非ROI Sink、ROI内交集#364及局部Before/After；ROI增强并未消除Sink，早层抑制后的热点部分转移至未抑制交集。`visualize_sink_capture_case.py`不加载模型，不修改旧结果。
 
 [完整报告](results/attention_sink_steering_case_15133706/report.md) · [31条件CSV](results/attention_sink_steering_case_15133706/per_condition_results.csv) · [空间相似性](results/attention_sink_steering_case_15133706/offline_spatial_comparison_clean.png) · [目标与三随机对照](results/attention_sink_steering_case_15133706/target_vs_matched_controls.png) · [全部关键层热图](results/attention_sink_steering_case_15133706/heatmap_gallery.md)。只用15133706，L2～L4逐Head条件分布B与冻结13个非ROI Sink/133个ROI，固定31条件、无结果调参。
