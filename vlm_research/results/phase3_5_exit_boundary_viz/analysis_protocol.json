@@ -1,0 +1,28 @@
+{
+  "phase": "3.5",
+  "bootstrap_seed": 20261031,
+  "bootstrap_replicates": 5000,
+  "primary_boundaries": [
+    16,
+    24
+  ],
+  "exploratory_best_candidates": [
+    12,
+    16,
+    20,
+    24,
+    28
+  ],
+  "metrics": "Per-head visual conditioning, then equal-head mean. Question rows already averaged over real Question tokens. Entropy divided by log(576). Sink is frozen NON-ROI candidate share.",
+  "layer_alignment": "Exit K removes tokens before L_K: before=L(K-1), after=L_K. Shared plot coordinate for boundary K is K-0.5; K0/32 have no two-sided Full boundary metric.",
+  "low_mass": "Flag if either endpoint head-mean visual mass <1e-3 OR any endpoint head visual mass <1e-4. Keep all 48 in primary analysis.",
+  "sensitivity_head_mass_thresholds": [
+    0.0001,
+    0.001,
+    0.01
+  ],
+  "sensitivity": "Also exclude flagged images; separately recompute using only identical heads whose mass is >= threshold at BOTH endpoints. Keep image weighting equal; report no-head images. Raw Gain>0 primary; sensitivity Gain>1e-10 and >0.01 nats.",
+  "best_ties": "All K within absolute 1e-10 nats of grid maximum are tied; choose smallest tied K deterministically and save all tied K. Strict classification remains margin>0, ties incorrect.",
+  "statistics": "Image paired bootstrap percentile 95% CI, resampling whole images. Pearson and average-tie-rank Spearman; undefined constant replicates excluded and counted. Exploratory, no multiplicity correction or causal claim.",
+  "comparison": "Gain>0 versus Gain<=0 Delta_ROI distributions; mean and median differences from image bootstrap. Do not pool five historical cases into main estimates."
+}

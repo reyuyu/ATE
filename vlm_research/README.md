@@ -38,6 +38,8 @@ vlm_research/
 ├── roi_sink_precision.py       # 五案例固定55条件的FP32输出投影敏感性检查
 ├── summarize_roi_sink.py       # 离线完整性校验、分Head统计、配对效果和图表
 ├── test_roi_sink.py            # 小模型/真实Processor/匹配控制/统计和隔离测试
+├── exit_boundary_analysis.py   # Phase 3.5：纯缓存CPU统计/图级Bootstrap/边界曲线
+├── test_exit_boundary_analysis.py # 离线指标/偏移/并列/Bootstrap数值测试
 ├── test_images/
 │   ├── example.jpg
 │   └── SOURCE.md
@@ -46,6 +48,25 @@ vlm_research/
 ```
 
 模型文件保存在用户缓存目录，不放入 Git。当前主工程目录之外的 AFAC 文件未因本任务修改。
+
+## Phase 3.5：Exit Boundary vs ROI Attention Alignment（离线完成）
+
+[报告](results/phase3_5_exit_boundary_viz/report.md)、[全部18张图](results/phase3_5_exit_boundary_viz/gallery.md)、[固定边界统计](results/phase3_5_exit_boundary_viz/fixed_boundary_summary.csv)位于独立 `results/phase3_5_exit_boundary_viz/`。仅配对既有Phase3.2 Physical Exit分数与Phase3.4 Full Attention缓存，48主图和5历史案例分开；没有GPU、模型Forward、网络补采或旧结果修改。
+
+K边界严格对应Full的L(K−1)→L_K；组合图将K置于K−0.5。先逐Head条件化计算ROI面积富集/视觉归一化熵，再平均全部32Head，另记录原始Visual Mass和冻结非ROI Sink份额。固定K16/K24、5000次图级Bootstrap、低质量阈值、最佳K并列规则均保存在analysis_protocol.json。
+
+主48的K16正Gain37图，其中Q/A的ROI下降31/27图；K24正Gain33图中仅4/2图ROI下降，熵却全部上升。固定K16 ROI–Gain Pearson Q/A为+.212/+.323，K24为−.130/−.251，方向不统一。主48在两K均保持Full的33/48正确、无分类翻转。五案例中15133706 K24恢复时Q/A ROI均上升，是明确反例。事后最佳K虽ROI负相关，但熵–Gain也负相关，且有事后选择/层深混杂，不证明退出边界机制或Sink解释。
+
+```bash
+cd /home/zsy/ATE/vlm_research
+conda activate vlm_research
+CUDA_VISIBLE_DEVICES='' python -m unittest test_exit_boundary_analysis -v
+# 仅第一次、结果目录不存在时运行；拒绝覆盖已完成目录
+# CUDA_VISIBLE_DEVICES='' python exit_boundary_analysis.py
+CUDA_VISIBLE_DEVICES='' python exit_boundary_analysis.py --verify-existing
+```
+
+新增exit_boundary_analysis.py/test_exit_boundary_analysis.py；9项数值测试通过。636行边界变化、424行8K附表、固定/最佳K/敏感性统计、5套对齐/局部/空间图、3张主统计图和输入输出SHA256均保存。K_best仅从[12,16,20,24,28]事后选择，列出全部并列，K0/8/32仍在完整附表。已停止，不训练、不补Forward、不自动扩展其他阶段。
 
 ## Phase 3.4：ROI vs Attention Sink Causal Diagnostic（完成）
 
