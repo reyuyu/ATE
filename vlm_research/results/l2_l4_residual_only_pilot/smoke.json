@@ -1,0 +1,601 @@
+{
+  "passed": true,
+  "manifest_sha256": "c2adcf7643fcbf41e03b931563a35385172b0a323a799365deef0d822cdaf876",
+  "checks": [
+    {
+      "unit": "gqa_chooserel",
+      "question_id": "00543846",
+      "condition": "P1-Joint",
+      "noop_all_logits_exact_full": true,
+      "independent_zero_reference_all_logits_exact": true,
+      "causal_earlier_prefix_exact": true,
+      "audit": {
+        "condition": "P1-Joint",
+        "original_p_minus_1": 602,
+        "edits": [
+          {
+            "layer": 2,
+            "kind": "attention",
+            "query": 602,
+            "shape": [
+              1,
+              603,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 1.131725453586115,
+            "non_target_sha256": "727e025bd7aa876733954cea15d3625efde5c31a9b937e8e8b3d558504d7e8d2"
+          },
+          {
+            "layer": 2,
+            "kind": "mlp",
+            "query": 602,
+            "shape": [
+              1,
+              603,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 1.1674831911871848,
+            "non_target_sha256": "a8e4437eb152433a489e851e43cb24170af217dbcf52450e9e3ef7a8482d4b96"
+          },
+          {
+            "layer": 3,
+            "kind": "attention",
+            "query": 602,
+            "shape": [
+              1,
+              603,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 0.9481321348726116,
+            "non_target_sha256": "71c3c6f5ffd172980e6d0a7a380b9f6dcd89087fda54eff2e0189e7707c6efef"
+          },
+          {
+            "layer": 3,
+            "kind": "mlp",
+            "query": 602,
+            "shape": [
+              1,
+              603,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 1.5167732187512042,
+            "non_target_sha256": "a2fad59900fbec759aed0f59d58d8effecf72d06af99a7bfda6008473fe6f0ad"
+          },
+          {
+            "layer": 4,
+            "kind": "attention",
+            "query": 602,
+            "shape": [
+              1,
+              603,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 0.9476220684471752,
+            "non_target_sha256": "a118c8cab3fdcdd41438a8bee0f623f9eb0616a18d5a73f6f103e322ae50c674"
+          },
+          {
+            "layer": 4,
+            "kind": "mlp",
+            "query": 602,
+            "shape": [
+              1,
+              603,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 2.3796337514395587,
+            "non_target_sha256": "7cfa8bbfa894a1aec880cf1effa525b511c5632292e26d8fda85ffbb3a8460af"
+          }
+        ],
+        "residual_identity": [
+          {
+            "layer": 2,
+            "p_minus_1": 602,
+            "target_residual_exact": true,
+            "all_tokens_identity": false
+          },
+          {
+            "layer": 3,
+            "p_minus_1": 602,
+            "target_residual_exact": true,
+            "all_tokens_identity": false
+          },
+          {
+            "layer": 4,
+            "p_minus_1": 602,
+            "target_residual_exact": true,
+            "all_tokens_identity": false
+          }
+        ],
+        "target_sublayer_calls": {
+          "L2_attention": 1,
+          "L2_mlp": 1,
+          "L3_attention": 1,
+          "L3_mlp": 1,
+          "L4_attention": 1,
+          "L4_mlp": 1
+        },
+        "all_decoder_layers_visited_once": true
+      }
+    },
+    {
+      "unit": "gqa_chooserel",
+      "question_id": "00543846",
+      "condition": "Whole-Skip",
+      "noop_all_logits_exact_full": true,
+      "independent_zero_reference_all_logits_exact": true,
+      "causal_earlier_prefix_exact": null,
+      "audit": {
+        "condition": "Whole-Skip",
+        "original_p_minus_1": 602,
+        "edits": [],
+        "residual_identity": [
+          {
+            "layer": 2,
+            "p_minus_1": 602,
+            "target_residual_exact": true,
+            "all_tokens_identity": true
+          },
+          {
+            "layer": 3,
+            "p_minus_1": 602,
+            "target_residual_exact": true,
+            "all_tokens_identity": true
+          },
+          {
+            "layer": 4,
+            "p_minus_1": 602,
+            "target_residual_exact": true,
+            "all_tokens_identity": true
+          }
+        ],
+        "target_sublayer_calls": {
+          "L2_attention": 0,
+          "L2_mlp": 0,
+          "L3_attention": 0,
+          "L3_mlp": 0,
+          "L4_attention": 0,
+          "L4_mlp": 0
+        },
+        "all_decoder_layers_visited_once": true
+      }
+    },
+    {
+      "unit": "gqa_chooserel",
+      "question_id": "00543846",
+      "full_manual_uncached_matches_native_cached_and_uncached_tokens": true,
+      "native_token_ids": {
+        "False": [
+          450,
+          17354,
+          19548,
+          338,
+          304,
+          278,
+          2175,
+          310,
+          278,
+          7826,
+          29889,
+          2
+        ],
+        "True": [
+          450,
+          17354,
+          19548,
+          338,
+          304,
+          278,
+          2175,
+          310,
+          278,
+          7826,
+          29889,
+          2
+        ]
+      }
+    },
+    {
+      "unit": "scienceqa_img",
+      "question_id": "10500",
+      "condition": "P1-Joint",
+      "noop_all_logits_exact_full": true,
+      "independent_zero_reference_all_logits_exact": true,
+      "causal_earlier_prefix_exact": true,
+      "audit": {
+        "condition": "P1-Joint",
+        "original_p_minus_1": 629,
+        "edits": [
+          {
+            "layer": 2,
+            "kind": "attention",
+            "query": 629,
+            "shape": [
+              1,
+              630,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 1.445991216191382,
+            "non_target_sha256": "3313e7b033a9e27bf31e38500c37cac278d8e25e21a0010d521b7fff3c7fdbc6"
+          },
+          {
+            "layer": 2,
+            "kind": "mlp",
+            "query": 629,
+            "shape": [
+              1,
+              630,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 0.985520639823518,
+            "non_target_sha256": "c669f6f4ee331d85f27d7c0fff721f023eeb1c1efbbd62164862282aaac4ebba"
+          },
+          {
+            "layer": 3,
+            "kind": "attention",
+            "query": 629,
+            "shape": [
+              1,
+              630,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 1.0984959268900432,
+            "non_target_sha256": "a49d82726354ce404eb96144b23a70074b89cec30096ae55a12377098fca190b"
+          },
+          {
+            "layer": 3,
+            "kind": "mlp",
+            "query": 629,
+            "shape": [
+              1,
+              630,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 1.4104744563259104,
+            "non_target_sha256": "33f65dd5c4f8d1ac7cbfcf1410f071b21a800afb0db3cedbf8de91073f8520ad"
+          },
+          {
+            "layer": 4,
+            "kind": "attention",
+            "query": 629,
+            "shape": [
+              1,
+              630,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 0.966749151004273,
+            "non_target_sha256": "83a8b84158ebcde01de888d65b2cac41e7817d9e1e14f4211180b7cfbd93a1fd"
+          },
+          {
+            "layer": 4,
+            "kind": "mlp",
+            "query": 629,
+            "shape": [
+              1,
+              630,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 2.1943382270804723,
+            "non_target_sha256": "d12f6fe6d3e65be7cdfb5fea48737567d463147fe5e3976f592d77d751d5de01"
+          }
+        ],
+        "residual_identity": [
+          {
+            "layer": 2,
+            "p_minus_1": 629,
+            "target_residual_exact": true,
+            "all_tokens_identity": false
+          },
+          {
+            "layer": 3,
+            "p_minus_1": 629,
+            "target_residual_exact": true,
+            "all_tokens_identity": false
+          },
+          {
+            "layer": 4,
+            "p_minus_1": 629,
+            "target_residual_exact": true,
+            "all_tokens_identity": false
+          }
+        ],
+        "target_sublayer_calls": {
+          "L2_attention": 1,
+          "L2_mlp": 1,
+          "L3_attention": 1,
+          "L3_mlp": 1,
+          "L4_attention": 1,
+          "L4_mlp": 1
+        },
+        "all_decoder_layers_visited_once": true
+      }
+    },
+    {
+      "unit": "scienceqa_img",
+      "question_id": "10500",
+      "condition": "Whole-Skip",
+      "noop_all_logits_exact_full": true,
+      "independent_zero_reference_all_logits_exact": true,
+      "causal_earlier_prefix_exact": null,
+      "audit": {
+        "condition": "Whole-Skip",
+        "original_p_minus_1": 629,
+        "edits": [],
+        "residual_identity": [
+          {
+            "layer": 2,
+            "p_minus_1": 629,
+            "target_residual_exact": true,
+            "all_tokens_identity": true
+          },
+          {
+            "layer": 3,
+            "p_minus_1": 629,
+            "target_residual_exact": true,
+            "all_tokens_identity": true
+          },
+          {
+            "layer": 4,
+            "p_minus_1": 629,
+            "target_residual_exact": true,
+            "all_tokens_identity": true
+          }
+        ],
+        "target_sublayer_calls": {
+          "L2_attention": 0,
+          "L2_mlp": 0,
+          "L3_attention": 0,
+          "L3_mlp": 0,
+          "L4_attention": 0,
+          "L4_mlp": 0
+        },
+        "all_decoder_layers_visited_once": true
+      }
+    },
+    {
+      "unit": "scienceqa_img",
+      "question_id": "10500",
+      "full_manual_uncached_matches_native_cached_and_uncached_tokens": true,
+      "native_token_ids": {
+        "False": [
+          315,
+          2
+        ],
+        "True": [
+          315,
+          2
+        ]
+      }
+    },
+    {
+      "unit": "textvqa",
+      "question_id": "34743",
+      "condition": "P1-Joint",
+      "noop_all_logits_exact_full": true,
+      "independent_zero_reference_all_logits_exact": true,
+      "causal_earlier_prefix_exact": true,
+      "audit": {
+        "condition": "P1-Joint",
+        "original_p_minus_1": 609,
+        "edits": [
+          {
+            "layer": 2,
+            "kind": "attention",
+            "query": 609,
+            "shape": [
+              1,
+              610,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 1.3738975452291757,
+            "non_target_sha256": "2f77705df876a52828cfc97a2b5dc05cf788c16fd54f7ca5da249dc1c001403e"
+          },
+          {
+            "layer": 2,
+            "kind": "mlp",
+            "query": 609,
+            "shape": [
+              1,
+              610,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 0.9528424969093904,
+            "non_target_sha256": "93f283928c86036d1f96b24cfffc9328582f5cbff681996c75b122039ec2885f"
+          },
+          {
+            "layer": 3,
+            "kind": "attention",
+            "query": 609,
+            "shape": [
+              1,
+              610,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 1.2524819194647634,
+            "non_target_sha256": "79d251df66be7a9fd2668cf5a2d435b9171fc2138adea2cce17149f521de3094"
+          },
+          {
+            "layer": 3,
+            "kind": "mlp",
+            "query": 609,
+            "shape": [
+              1,
+              610,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 1.3305072925710553,
+            "non_target_sha256": "351fabc72f6afe6a6a7597410d5c4fdc01393afc4f9fc792d2eef6d45592f9a6"
+          },
+          {
+            "layer": 4,
+            "kind": "attention",
+            "query": 609,
+            "shape": [
+              1,
+              610,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 1.0380167303638752,
+            "non_target_sha256": "e9d153c02d0252c5be0dd6c4325bd1f5fba28187d889b2438249040e9312dc78"
+          },
+          {
+            "layer": 4,
+            "kind": "mlp",
+            "query": 609,
+            "shape": [
+              1,
+              610,
+              4096
+            ],
+            "target_zero": true,
+            "other_tokens_bitwise_exact": true,
+            "original_tensor_unchanged": true,
+            "original_target_norm": 2.1254657524918668,
+            "non_target_sha256": "5b8de82dec0382d8324a6c5436b10ae9dbce79e7d3373e3c9bb592c974acd64f"
+          }
+        ],
+        "residual_identity": [
+          {
+            "layer": 2,
+            "p_minus_1": 609,
+            "target_residual_exact": true,
+            "all_tokens_identity": false
+          },
+          {
+            "layer": 3,
+            "p_minus_1": 609,
+            "target_residual_exact": true,
+            "all_tokens_identity": false
+          },
+          {
+            "layer": 4,
+            "p_minus_1": 609,
+            "target_residual_exact": true,
+            "all_tokens_identity": false
+          }
+        ],
+        "target_sublayer_calls": {
+          "L2_attention": 1,
+          "L2_mlp": 1,
+          "L3_attention": 1,
+          "L3_mlp": 1,
+          "L4_attention": 1,
+          "L4_mlp": 1
+        },
+        "all_decoder_layers_visited_once": true
+      }
+    },
+    {
+      "unit": "textvqa",
+      "question_id": "34743",
+      "condition": "Whole-Skip",
+      "noop_all_logits_exact_full": true,
+      "independent_zero_reference_all_logits_exact": true,
+      "causal_earlier_prefix_exact": null,
+      "audit": {
+        "condition": "Whole-Skip",
+        "original_p_minus_1": 609,
+        "edits": [],
+        "residual_identity": [
+          {
+            "layer": 2,
+            "p_minus_1": 609,
+            "target_residual_exact": true,
+            "all_tokens_identity": true
+          },
+          {
+            "layer": 3,
+            "p_minus_1": 609,
+            "target_residual_exact": true,
+            "all_tokens_identity": true
+          },
+          {
+            "layer": 4,
+            "p_minus_1": 609,
+            "target_residual_exact": true,
+            "all_tokens_identity": true
+          }
+        ],
+        "target_sublayer_calls": {
+          "L2_attention": 0,
+          "L2_mlp": 0,
+          "L3_attention": 0,
+          "L3_mlp": 0,
+          "L4_attention": 0,
+          "L4_mlp": 0
+        },
+        "all_decoder_layers_visited_once": true
+      }
+    },
+    {
+      "unit": "textvqa",
+      "question_id": "34743",
+      "full_manual_uncached_matches_native_cached_and_uncached_tokens": true,
+      "native_token_ids": {
+        "False": [
+          6573,
+          4657,
+          264,
+          2
+        ],
+        "True": [
+          6573,
+          4657,
+          264,
+          2
+        ]
+      }
+    }
+  ],
+  "tolerances_relaxed": false
+}
