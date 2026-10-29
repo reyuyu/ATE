@@ -1,0 +1,88 @@
+{
+  "seed": 20261029,
+  "selection": "sort(question_id,image_id); independent Random(seed).sample(pool,24); sort selected",
+  "tasks": [
+    "gqa_chooserel",
+    "gqa_chooseattr",
+    "gqa_queryattr",
+    "gqa_logicalobj"
+  ],
+  "n_per_task": 24,
+  "window": 9,
+  "centers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31
+  ],
+  "paths": [
+    "image_to_last",
+    "question_to_last",
+    "image_to_question"
+  ],
+  "microbatch": 4,
+  "batch_policy": "Four replicas of same image/prompt; four window centers, same batch size for Native Full",
+  "gpu_uuid": "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+  "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "dtype": "float16",
+  "attention": "eager",
+  "use_cache": false,
+  "metric": "100*expm1(masked_logp-full_logp), fixed Native first argmax token; full vocabulary FP32 log_softmax",
+  "correct_subset": "Strict first-token hit: native argmax equals first token of a gold answer, NOT full-answer EM",
+  "prompt": "Original HF chat template; question + newline + Answer the question using a single word or phrase.",
+  "chooserel_prompt_note": "Reuse frozen questions, not historical Full scores; append same short-answer instruction as other tasks",
+  "official_code_commit": "c9a1111dac4baa175f67716fab473789320187c0",
+  "base_commit": "7ccb44941cb48e901e6e23e96bae6da173fe2ce5",
+  "sources": {
+    "gqa_chooserel": {
+      "path": "results/phase3_2_fixed_k_exit/manifest.json",
+      "sha256": "93c518eb079c82124566ba7b41e9a5ccff3f4a41f38ed752fe20ea81516d4cc5",
+      "pool_n": 240
+    },
+    "gqa_chooseattr": {
+      "path": "results/phase4_0_dataset_suite/manifests/gqa_chooseattr.json",
+      "sha256": "b5ed241d961ee26e53ff3123c92264bfb27fe9fbc57b044f4f63f4237098ed5b",
+      "pool_n": 240
+    },
+    "gqa_queryattr": {
+      "path": "results/phase4_0_dataset_suite/manifests/gqa_queryattr.json",
+      "sha256": "b1dae68bb6040df4cb4fb16fa0588d73d5276781ee8b61a68449dce3ec55f091",
+      "pool_n": 240
+    },
+    "gqa_logicalobj": {
+      "path": "results/phase4_0_dataset_suite/manifests/gqa_logicalobj.json",
+      "sha256": "515b84aca44c25dc732fd15f725b73e89c3d15757e5491ab4db4f9fce68a5cae",
+      "pool_n": 240
+    }
+  },
+  "no_prediction_filter": true,
+  "no_decode_training_or_extra_windows": true
+}
