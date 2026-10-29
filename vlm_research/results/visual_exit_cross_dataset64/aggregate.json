@@ -1,0 +1,105 @@
+{
+  "status": "complete",
+  "manifest_sha256": "82631c3413a967ddbd716521113dc25ee8f8c218e32590d6817b3986eda97b24",
+  "units": {
+    "scienceqa_img": {
+      "questions": 32,
+      "unique_image_sha256": 32,
+      "scores": {
+        "Full": 0.8125,
+        "K16": 0.8125,
+        "K24": 0.8125
+      },
+      "changes": {
+        "K16": {
+          "score_change": 0.0,
+          "score_increased": 0,
+          "score_decreased": 0,
+          "score_unchanged": 32,
+          "full_correct_to_wrong": 0,
+          "full_wrong_to_correct": 0,
+          "worst_cases": []
+        },
+        "K24": {
+          "score_change": 0.0,
+          "score_increased": 0,
+          "score_decreased": 0,
+          "score_unchanged": 32,
+          "full_correct_to_wrong": 0,
+          "full_wrong_to_correct": 0,
+          "worst_cases": []
+        }
+      }
+    },
+    "textvqa": {
+      "questions": 32,
+      "unique_image_sha256": 32,
+      "scores": {
+        "Full": 0.50625,
+        "K16": 0.1875,
+        "K24": 0.496875
+      },
+      "changes": {
+        "K16": {
+          "score_change": -0.31875,
+          "score_increased": 0,
+          "score_decreased": 12,
+          "score_unchanged": 20,
+          "full_correct_to_wrong": null,
+          "full_wrong_to_correct": null,
+          "worst_cases": [
+            {
+              "question_id": "34743",
+              "score_change": -1.0,
+              "full_answer": "Halloween",
+              "exit_answer": "4th of july",
+              "full_score": 1.0,
+              "exit_score": 0.0
+            },
+            {
+              "question_id": "34821",
+              "score_change": -1.0,
+              "full_answer": "Lg",
+              "exit_answer": "Samsung",
+              "full_score": 1.0,
+              "exit_score": 0.0
+            },
+            {
+              "question_id": "34930",
+              "score_change": -1.0,
+              "full_answer": "Anniversary ale",
+              "exit_answer": "Ale",
+              "full_score": 1.0,
+              "exit_score": 0.0
+            }
+          ]
+        },
+        "K24": {
+          "score_change": -0.009374999999999967,
+          "score_increased": 0,
+          "score_decreased": 1,
+          "score_unchanged": 31,
+          "full_correct_to_wrong": null,
+          "full_wrong_to_correct": null,
+          "worst_cases": [
+            {
+              "question_id": "37087",
+              "score_change": -0.3,
+              "full_answer": "Beginning",
+              "exit_answer": "Death",
+              "full_score": 0.3,
+              "exit_score": 0.0
+            }
+          ]
+        }
+      }
+    }
+  },
+  "sample_count": 64,
+  "paired_conditions": [
+    "Full",
+    "K16",
+    "K24"
+  ],
+  "pilot_only": true
+}
