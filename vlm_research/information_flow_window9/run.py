@@ -84,7 +84,7 @@ def prepare():
         'batch_policy': 'Four replicas of same image/prompt; four window centers, same batch size for Native Full',
         'gpu_uuid': GPU, 'model_path': MODEL, 'dtype': 'float16', 'attention': 'eager', 'use_cache': False,
         'metric': '100*expm1(masked_logp-full_logp), fixed Native first argmax token; full vocabulary FP32 log_softmax',
-        'correct_subset': 'Strict first-token hit: native argmax equals first token of a gold answer, NOT full-answer EM',
+        'correct_subset': 'First-token text hit after official strip/lower normalization, NOT full-answer EM; also save strict ID hit',
         'prompt': 'Original HF chat template; question + newline + Answer the question using a single word or phrase.',
         'chooserel_prompt_note': 'Reuse frozen questions, not historical Full scores; append same short-answer instruction as other tasks',
         'official_code_commit': 'c9a1111dac4baa175f67716fab473789320187c0',
@@ -134,7 +134,7 @@ def load_experiment():
 def run(smoke=False):
     pre = preflight()
     import torch
-    from information_flow_window9.masks import PATHS, intervention, probability_change, window
+    from information_flow_window9.masks import PATHS, intervention, probability_change, window, first_token_hit
     from vlm_common import load_model, prepare_inputs, gpu_memory
     config, manifest = load_experiment()
     binding = {'code_commit': git('rev-parse', 'HEAD'), 'source_sha256': source_hashes(),
@@ -192,12 +192,15 @@ def run(smoke=False):
             token = int(full[0].argmax().item())
             full_logp = float(full[0].log_softmax(-1)[token].item())
             gold_ids = mapping['reference_answer_token_ids']
-            first_hit = any(ids and ids[0] == token for ids in gold_ids.values())
+            gold_texts = [processor.tokenizer.decode([ids[0]]) for ids in gold_ids.values() if ids]
+            first_hit = first_token_hit(processor.tokenizer.decode([token]), gold_texts)
             baseline = {'dataset': sample['dataset'], 'question_id': sample['question_id'],
                 'image_id': sample['image_id'], 'question': sample['question'], 'gold_answer': sample['answer'],
                 'target_token_id': token, 'target_token_text': processor.tokenizer.decode([token]),
                 'full_logp': full_logp, 'full_probability': math.exp(full_logp),
                 'full_first_token_hit': first_hit, 'gold_token_ids': gold_ids,
+                'full_strict_first_token_id_hit': any(ids and ids[0] == token for ids in gold_ids.values()),
+                'gold_first_token_texts': gold_texts,
                 'p_minus_1': mapping['p_minus_1'], 'question_positions': mapping['question_positions'],
                 'visual_positions': mapping['visual_positions'], 'prompt_length': counts['llm_input_tokens']}
             rows = []

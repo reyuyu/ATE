@@ -3,7 +3,7 @@ import unittest
 
 import torch
 
-from information_flow_window9.masks import block, edges, intervention, probability_change, window
+from information_flow_window9.masks import block, edges, intervention, probability_change, window, first_token_hit
 
 
 class Attention(torch.nn.Module):
@@ -78,6 +78,13 @@ class Tests(unittest.TestCase):
     def test_reject_wrong_positions(self):
         with self.assertRaises(ValueError):
             edges('image_to_last', {**self.mapping, 'question_positions': [6]})
+
+    def test_first_token_text_normalization(self):
+        self.assertTrue(first_token_hit(' Right', ['right']))
+        self.assertTrue(first_token_hit('No', ['no']))
+        self.assertFalse(first_token_hit('left', ['right']))
+        self.assertFalse(first_token_hit('', ['']))
+        self.assertFalse(first_token_hit('right.', ['right']))
 
 
 if __name__ == '__main__':

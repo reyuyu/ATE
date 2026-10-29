@@ -21,6 +21,7 @@ question is the statistical unit. Success checkpoints are exclusive and binding-
 No input replacement or output-based selection. Native vocabulary logits must restore
 bitwise exactly after all interventions for each question.
 
-Supplementary "correct" means strictly Native first-token hit on the Gold first token,
+Supplementary "correct" means Native first-token text hit on the Gold first token
+(official strip/lower normalization; strict ID agreement also saved),
 not full-answer exact match. The latter cannot be claimed without complete decoding.
 This distinction is explicit in both the figure and report. Main curves use every question.

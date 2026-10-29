@@ -148,7 +148,7 @@ Maximum drop is the minimum over the 32 means of **per-question** relative proba
 
 ![Native first-token hits only](information_flow_first_token_hit.png)
 
-"Correct" here is explicitly **strict Gold-first-token hit**, not complete-answer exact match. No full Decode was run. Multi-token answers may share a prefix; capitalization, punctuation and tokenization affect this strict check. Thus this supplementary cohort must not be reported as the official paper's full-answer-correct cohort or as VQA accuracy. Main curves always include all 24 questions per task, including Native errors.
+"Correct" here is explicitly **Gold-first-token text hit after strip/lower normalization**, not complete-answer exact match. No full Decode was run. Multi-token answers may share a prefix; punctuation and tokenization can affect this check. Strict token-ID agreement is additionally saved in baselines.csv. Thus this supplementary cohort must not be reported as the official paper's full-answer-correct cohort or as VQA accuracy. Main curves always include all 24 questions per task, including Native errors.
 
 ## Protocol
 
@@ -178,7 +178,7 @@ The paper describes image-to-question integration in lower/middle layers and pro
 ## Files
 
 - `per_question.csv`: every masked path/center/question, fixed token, probabilities, LogP changes.
-- `baselines.csv`: question, Gold, Native token, strict first-token hit and true positions.
+- `baselines.csv`: question, Gold, Native token, normalized first-token text hit, strict token-ID hit and true positions.
 - `curves.csv`: all-sample and first-token-hit means, including mean delta LogP.
 - `sensitivity_summary.csv`: peak windows plus descriptive early (centers 0-10), middle (11-21), late (22-31) means.
 - `checkpoints/`, `manifest.json`, `config.json`, `execution_binding.json`, `environment.json`, `smoke.json`, `completion.json`, CPU and GPU text logs.

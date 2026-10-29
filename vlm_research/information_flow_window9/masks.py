@@ -101,3 +101,9 @@ def probability_change(full_logp, masked_logp):
     if not math.isfinite(full_logp) or not math.isfinite(masked_logp):
         raise ValueError('Nonfinite log probability')
     return 100.0 * math.expm1(masked_logp - full_logp)
+
+
+def first_token_hit(predicted_text, gold_token_texts):
+    """Official strip/lower text normalization, but only first-token agreement."""
+    value = predicted_text.strip().lower()
+    return bool(value) and any(value == text.strip().lower() for text in gold_token_texts)
