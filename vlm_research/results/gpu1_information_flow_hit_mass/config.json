@@ -1,0 +1,602 @@
+{
+  "parent_commit": "4d800f0971f8c97bdfbc8db9728fc87247ea376c",
+  "parent_manifest_sha256": "96e6ee8d5e6efc92759d7e1ab15aaa7631097ae9929973622e7bf337685b3afe",
+  "parent_config": {
+    "seed": 20261029,
+    "selection": "sort(question_id,image_id); independent Random(seed).sample(pool,24); sort selected",
+    "tasks": [
+      "gqa_chooserel",
+      "gqa_chooseattr",
+      "gqa_queryattr",
+      "gqa_logicalobj"
+    ],
+    "n_per_task": 24,
+    "window": 9,
+    "centers": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "paths": [
+      "image_to_last",
+      "question_to_last",
+      "image_to_question"
+    ],
+    "microbatch": 4,
+    "batch_policy": "Four replicas of same image/prompt; four window centers, same batch size for Native Full",
+    "gpu_uuid": "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+    "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "dtype": "float16",
+    "attention": "eager",
+    "use_cache": false,
+    "metric": "100*expm1(masked_logp-full_logp), fixed Native first argmax token; full vocabulary FP32 log_softmax",
+    "correct_subset": "First-token text hit after official strip/lower normalization, NOT full-answer EM; also save strict ID hit",
+    "prompt": "Original HF chat template; question + newline + Answer the question using a single word or phrase.",
+    "chooserel_prompt_note": "Reuse frozen questions, not historical Full scores; append same short-answer instruction as other tasks",
+    "official_code_commit": "c9a1111dac4baa175f67716fab473789320187c0",
+    "base_commit": "7ccb44941cb48e901e6e23e96bae6da173fe2ce5",
+    "sources": {
+      "gqa_chooserel": {
+        "path": "results/phase3_2_fixed_k_exit/manifest.json",
+        "sha256": "93c518eb079c82124566ba7b41e9a5ccff3f4a41f38ed752fe20ea81516d4cc5",
+        "pool_n": 240
+      },
+      "gqa_chooseattr": {
+        "path": "results/phase4_0_dataset_suite/manifests/gqa_chooseattr.json",
+        "sha256": "b5ed241d961ee26e53ff3123c92264bfb27fe9fbc57b044f4f63f4237098ed5b",
+        "pool_n": 240
+      },
+      "gqa_queryattr": {
+        "path": "results/phase4_0_dataset_suite/manifests/gqa_queryattr.json",
+        "sha256": "b1dae68bb6040df4cb4fb16fa0588d73d5276781ee8b61a68449dce3ec55f091",
+        "pool_n": 240
+      },
+      "gqa_logicalobj": {
+        "path": "results/phase4_0_dataset_suite/manifests/gqa_logicalobj.json",
+        "sha256": "515b84aca44c25dc732fd15f725b73e89c3d15757e5491ab4db4f9fce68a5cae",
+        "pool_n": 240
+      }
+    },
+    "no_prediction_filter": true,
+    "no_decode_training_or_extra_windows": true
+  },
+  "sample_keys": [
+    [
+      "gqa_chooserel",
+      "021055626"
+    ],
+    [
+      "gqa_chooserel",
+      "02871148"
+    ],
+    [
+      "gqa_chooserel",
+      "03211462"
+    ],
+    [
+      "gqa_chooserel",
+      "04468301"
+    ],
+    [
+      "gqa_chooserel",
+      "0464509"
+    ],
+    [
+      "gqa_chooserel",
+      "05343701"
+    ],
+    [
+      "gqa_chooserel",
+      "05749100"
+    ],
+    [
+      "gqa_chooserel",
+      "061022484"
+    ],
+    [
+      "gqa_chooserel",
+      "07386502"
+    ],
+    [
+      "gqa_chooserel",
+      "08877955"
+    ],
+    [
+      "gqa_chooserel",
+      "09348966"
+    ],
+    [
+      "gqa_chooserel",
+      "09567688"
+    ],
+    [
+      "gqa_chooserel",
+      "111015440"
+    ],
+    [
+      "gqa_chooserel",
+      "11928567"
+    ],
+    [
+      "gqa_chooserel",
+      "13508036"
+    ],
+    [
+      "gqa_chooserel",
+      "13755351"
+    ],
+    [
+      "gqa_chooserel",
+      "14445965"
+    ],
+    [
+      "gqa_chooserel",
+      "14622588"
+    ],
+    [
+      "gqa_chooserel",
+      "14641547"
+    ],
+    [
+      "gqa_chooserel",
+      "15394126"
+    ],
+    [
+      "gqa_chooserel",
+      "16417436"
+    ],
+    [
+      "gqa_chooserel",
+      "19151820"
+    ],
+    [
+      "gqa_chooserel",
+      "19162987"
+    ],
+    [
+      "gqa_chooserel",
+      "19501632"
+    ],
+    [
+      "gqa_chooseattr",
+      "01527392"
+    ],
+    [
+      "gqa_chooseattr",
+      "02531836"
+    ],
+    [
+      "gqa_chooseattr",
+      "03154115"
+    ],
+    [
+      "gqa_chooseattr",
+      "03811057"
+    ],
+    [
+      "gqa_chooseattr",
+      "04124414"
+    ],
+    [
+      "gqa_chooseattr",
+      "04914921"
+    ],
+    [
+      "gqa_chooseattr",
+      "05153558"
+    ],
+    [
+      "gqa_chooseattr",
+      "0545112"
+    ],
+    [
+      "gqa_chooseattr",
+      "06848026"
+    ],
+    [
+      "gqa_chooseattr",
+      "08185088"
+    ],
+    [
+      "gqa_chooseattr",
+      "08378542"
+    ],
+    [
+      "gqa_chooseattr",
+      "08651339"
+    ],
+    [
+      "gqa_chooseattr",
+      "09700538"
+    ],
+    [
+      "gqa_chooseattr",
+      "10584099"
+    ],
+    [
+      "gqa_chooseattr",
+      "1324086"
+    ],
+    [
+      "gqa_chooseattr",
+      "13704104"
+    ],
+    [
+      "gqa_chooseattr",
+      "1417149"
+    ],
+    [
+      "gqa_chooseattr",
+      "14266566"
+    ],
+    [
+      "gqa_chooseattr",
+      "14304673"
+    ],
+    [
+      "gqa_chooseattr",
+      "14922860"
+    ],
+    [
+      "gqa_chooseattr",
+      "16811715"
+    ],
+    [
+      "gqa_chooseattr",
+      "18638776"
+    ],
+    [
+      "gqa_chooseattr",
+      "18685220"
+    ],
+    [
+      "gqa_chooseattr",
+      "1925410"
+    ],
+    [
+      "gqa_queryattr",
+      "01655675"
+    ],
+    [
+      "gqa_queryattr",
+      "0270263"
+    ],
+    [
+      "gqa_queryattr",
+      "03273615"
+    ],
+    [
+      "gqa_queryattr",
+      "04777407"
+    ],
+    [
+      "gqa_queryattr",
+      "05122155"
+    ],
+    [
+      "gqa_queryattr",
+      "05678760"
+    ],
+    [
+      "gqa_queryattr",
+      "05841053"
+    ],
+    [
+      "gqa_queryattr",
+      "06185290"
+    ],
+    [
+      "gqa_queryattr",
+      "07241754"
+    ],
+    [
+      "gqa_queryattr",
+      "08522338"
+    ],
+    [
+      "gqa_queryattr",
+      "09351028"
+    ],
+    [
+      "gqa_queryattr",
+      "0970724"
+    ],
+    [
+      "gqa_queryattr",
+      "10382382"
+    ],
+    [
+      "gqa_queryattr",
+      "11411593"
+    ],
+    [
+      "gqa_queryattr",
+      "13885023"
+    ],
+    [
+      "gqa_queryattr",
+      "1415230"
+    ],
+    [
+      "gqa_queryattr",
+      "1462172"
+    ],
+    [
+      "gqa_queryattr",
+      "14717868"
+    ],
+    [
+      "gqa_queryattr",
+      "14731077"
+    ],
+    [
+      "gqa_queryattr",
+      "15290680"
+    ],
+    [
+      "gqa_queryattr",
+      "16737946"
+    ],
+    [
+      "gqa_queryattr",
+      "18591066"
+    ],
+    [
+      "gqa_queryattr",
+      "18615842"
+    ],
+    [
+      "gqa_queryattr",
+      "19208199"
+    ],
+    [
+      "gqa_logicalobj",
+      "0156645"
+    ],
+    [
+      "gqa_logicalobj",
+      "03248935"
+    ],
+    [
+      "gqa_logicalobj",
+      "03618718"
+    ],
+    [
+      "gqa_logicalobj",
+      "04745643"
+    ],
+    [
+      "gqa_logicalobj",
+      "04819764"
+    ],
+    [
+      "gqa_logicalobj",
+      "05265585"
+    ],
+    [
+      "gqa_logicalobj",
+      "05515925"
+    ],
+    [
+      "gqa_logicalobj",
+      "05611342"
+    ],
+    [
+      "gqa_logicalobj",
+      "06934945"
+    ],
+    [
+      "gqa_logicalobj",
+      "0875301"
+    ],
+    [
+      "gqa_logicalobj",
+      "08965065"
+    ],
+    [
+      "gqa_logicalobj",
+      "09376541"
+    ],
+    [
+      "gqa_logicalobj",
+      "1013170"
+    ],
+    [
+      "gqa_logicalobj",
+      "10610963"
+    ],
+    [
+      "gqa_logicalobj",
+      "13134978"
+    ],
+    [
+      "gqa_logicalobj",
+      "13353512"
+    ],
+    [
+      "gqa_logicalobj",
+      "13908660"
+    ],
+    [
+      "gqa_logicalobj",
+      "13949858"
+    ],
+    [
+      "gqa_logicalobj",
+      "13962851"
+    ],
+    [
+      "gqa_logicalobj",
+      "1462290"
+    ],
+    [
+      "gqa_logicalobj",
+      "16522286"
+    ],
+    [
+      "gqa_logicalobj",
+      "191034614"
+    ],
+    [
+      "gqa_logicalobj",
+      "19110644"
+    ],
+    [
+      "gqa_logicalobj",
+      "19481865"
+    ]
+  ],
+  "questions": 96,
+  "unique_images": 95,
+  "historical_sink_images": 6,
+  "new_neutral_images": 89,
+  "neutral_prompts": [
+    "Describe this image.",
+    "What can be seen in the image?",
+    "Summarize the scene."
+  ],
+  "sink_rule": "For each patch and each of four discovery views (two prompts x mean real Question queries / P-1), count all 32 layers where head-mean visual-conditional probability >=5/576 AND patch is in top58 (stable index ties). A view is persistent at >=8 layers. Candidate requires >=3/4 persistent views. No ROI, labels, margins or depth-specific preference used. Holdout uses both Q/A views persistent at >=8 layers. Empty sets remain empty.",
+  "sink_definition": "All neutral-persistent sink_indices, including ROI overlap; no ROI subtraction. Empty sets stay empty.",
+  "neutral_storage": "Same two-stage FP16 rounding as Phase3.4: per-head Q-mean/A visual rows, then FP64 head mean cast FP16",
+  "native_mass": "Raw softmax mass summed over keys, averaged equally over heads and true Question queries; P-1 is separate",
+  "sink_share": "Ratio of aggregated raw Sink/Image masses, not mean of per-head ratios; zero denominator -> null",
+  "window_mass": "Arithmetic mean of raw masses over the SAME clipped 9-layer window; share is ratio of these means",
+  "first_token_hit": "Reuse parent strip/lower decoded-first-Gold-token match; NOT complete-answer/VQA accuracy",
+  "replay": "Same batch4, model, inputs, paths and centers. Require exact parent Native and masked fixed-token LogP.",
+  "association": "Descriptive within-question Spearman over 32 overlapping windows; median over questions, no layer-level p-values. BOS always P-1; Sink/Image share uses Question for Image->Question and P-1 for other paths. Sensitivity = signed negative relative probability change; negative rho means higher occupancy accompanies less drop.",
+  "protected_sha256": {
+    "results/gpu1_information_flow_window9/manifest.json": "96e6ee8d5e6efc92759d7e1ab15aaa7631097ae9929973622e7bf337685b3afe",
+    "results/gpu1_information_flow_window9/config.json": "7476c02f8e4a0538dea3d873d5f69f3c413df06df107ef741711294ba34a449c",
+    "results/gpu1_information_flow_window9/curves.csv": "dcc2a910dd510685136168e8757b7147457afc346ba2eef26122c8fa814a2c49",
+    "results/gpu1_information_flow_window9/per_question.csv": "634a2dc6f378c4ccb6111f3888beeaa8c562fe5ee0e6cca8270ba250469cd209",
+    "results/gpu1_information_flow_window9/baselines.csv": "901076c26d64b39384e1cd893e976076746adfc1bebfca9a20a276b1f72c5331",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__021055626.json": "ec4818f09e8707bf4b5741480970f3ad4ccff3d32a3d3a2cd5c274cfdf8092d3",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__02871148.json": "310122dfca106a20b3cc77ecd0a43274f3470cb447d00028ce8602ae64580c51",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__03211462.json": "3cc2a82b840b649e2905692e1665f9aa785d8ed5e5713645d3ba3551306a58cb",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__04468301.json": "8549bf6f1932f71c5b9e01f543e11410bdc91fa5d609028427e4604b311e6575",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__0464509.json": "801ec0c69cceab91cda5b5c1d6f08b518bf800f45544bc2fd282771f79d31b05",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__05343701.json": "13b1c990c11059a5795a45a164e192477d5e79fffa6388ea37ba9a0b2e0ce259",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__05749100.json": "d10441497267d163fdc02c2b08858ddb3148c323edfc92f693b5a853876ed654",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__061022484.json": "967e68d6057e2030cf48ffcd2a27d7c5a3b820769548847ca8a456eab2438b27",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__07386502.json": "07dffe7f0c67d46f072cc827bcf3b9e97819f62a0f2df1c006c08a74fe4917ef",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__08877955.json": "4aafb2960ed3d50335cf332ec9c56a7478ca2dd3d7fa19ecbbffe2bfe4aace3d",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__09348966.json": "105ea6402ed51a5c88affb880a6b8c8d47935f84231240a9a08960587159a121",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__09567688.json": "1fb2b45cde9f56be34b379d8c7ede1f9171c73a1c274874f0838fc2977fe6ef8",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__111015440.json": "2d82b52e3cf62ac6537edd9f31f068bed9930116927537f5de50eec073614b53",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__11928567.json": "fe9c5b8f8ff76c34ed5af621f58d292fc68ab32e74bb171c30075c77c3274010",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__13508036.json": "67baf87f59fd9c65af100626ed878eb4b48b997a32e95d75e807440660bc4d60",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__13755351.json": "7cc0ebc0f63e86987f2c40ff2a99adb1030742f8b20bc9027a3ed9c9cf7844ff",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__14445965.json": "985913ccd7814ffa7e48c857d8b43f3734a1e91ab9e1ad70c1cdd5386014067b",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__14622588.json": "da884519215c852f1a44fe145ae02061fec66a802f403f1c228a15634157b641",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__14641547.json": "b386ffaf9fa77072a54eb3bd4b504af69174d0e753db067065d19ece2e158830",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__15394126.json": "c16dd2321083cbb5c9ed44f3f4121148038c8783e45f05863ed05aeba8ef53e5",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__16417436.json": "1c8ffa69a53378b32aeab5120a617821d3414f3b2a2e402ea662ec49401da5d3",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__19151820.json": "94aca9489770f0bcf10d6f3ed186dd4510229e0a705c058e0bcf9ca46f53282d",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__19162987.json": "d768620c2c97e92ababe3c5d48df173e2c43cfde05bfa3022fbb4e7e87de50e5",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooserel__19501632.json": "10e7ee92e86e2172f00b3fbc38bba436a019d2d93ee8728f0018ed2cdc623fdf",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__01527392.json": "ddeec22d3e1d9a427783ce164ad1cb2325f57054970cc238849db2879c0209fb",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__02531836.json": "e3e066e6f9fd6dc7772193f3a20d58dc8490e740fac47ff66efe436a95973f10",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__03154115.json": "916a7b8aaf28675e802e13b4c5d128f3aa8e6880446028d98d0c8bcede507a3b",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__03811057.json": "f6958cea91ab06a443f403940e597000613c6e77499d560740161b41301d7f79",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__04124414.json": "ddc9b644ab6b92ce4ae0e1a91611420b77d100a5b3060abfea5ef6cf0f0e3c1c",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__04914921.json": "d27fb0c0c7e34c7a43741037afcb9c02bcdc3ba41d3a8b83b5dfb303fbc03303",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__05153558.json": "15ab6a596284c8d2141e7e4b2696f2349dbb13124c06561ffa664f54096eb72a",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__0545112.json": "bbed38c3056c7ef13505b792ca998693ecbd1a27ceb68278cdbf04592e0edf08",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__06848026.json": "40026b2a98e9570c47b4822d40cf0a3c7a1bf19ee0b1c7840a74da825c7c860e",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__08185088.json": "7fa104d19a0623f4a085826dbcecfbf0f9a1d488c44cc21dc73b1c761b05ca67",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__08378542.json": "7dd581e8d6fdc81677235c8ab49fae25c79485b6db5f6ec0f5264d7a93a3abb6",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__08651339.json": "cc0b118138efe0e229068a7e5212772466874889924f6a74fd63459f3d791181",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__09700538.json": "8d20a42c4a7816abd367b50731afb1727c25d44bf72818c2d04808751aa75484",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__10584099.json": "57de9064cd907fcd42fbe1ede2ffa2f9c6a428bb2dcb06e1b1cc7e13aac0398c",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__1324086.json": "fa6ecb25d105b57dde8b7d70813efb12d5cf70749f36842a1daeadabcb711c77",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__13704104.json": "c39b52ac3cd905438008dca0bbe0db51723d91a206e9ca803729198167355e6f",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__1417149.json": "e07055c20979b9c1112d64b53cc91ef9dc942cdb6500f8b4944798a54add885c",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__14266566.json": "d23a37e0fe8fdca44157d50896f0d998505bb905554b3b7b9450e1bf0422a599",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__14304673.json": "34f99cec13800ccc6dba11adea96b0b1e195408e0c876894e7d5364a8d48451e",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__14922860.json": "b28059f46139c2005d686d53c2761a2e46943077541afd419075b8da9a8d5123",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__16811715.json": "552e2c6d05476c9152678eeb094779eeb82958d3ba37a5ede42098cc40fdf4af",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__18638776.json": "c9572def4c504d915c48340b6d4f5756bc94a03279e82d7fb14da5ce470e7c68",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__18685220.json": "2cda8f86b47abcb5ea7658305090ac1afa7054fe2cf6e3b633786f6504d95f5b",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_chooseattr__1925410.json": "a7571bee3b53d387ce8a63f45e74501f7158eb91b73578035c6e1e6d09323515",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__01655675.json": "c690862e276d303b6e0052a6f7e69fb8858ce794c229498dd88e5270c219c9c7",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__0270263.json": "d219994bb19671788218965f19599754dca0e5a06c026ad52c26307b97702531",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__03273615.json": "fb7a3c6a2b142fb96af189afda40ef63094ed2d51cd7359c34582e01ce4d1bba",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__04777407.json": "57debc3063a745036d3eef4b3333ddff47ae832b4697c89654b8c33e6b2f00c3",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__05122155.json": "c60066357994b2cab37bb738d61c4ca0300f3b6fa1cd1d53774eba1fb5fdf7dd",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__05678760.json": "8a909959e27469c040e837d3a42a2907af0d4c20c5751dd8df1d5fda0be85b8c",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__05841053.json": "74df2c783c78b4d5e0dd6bcf3c9016432fdf45a374d839e8486ae9860f79d682",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__06185290.json": "cff9bceeef35994703d8fc8da45b0576a24bfade2d93924e1eeee8aa3649b0e7",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__07241754.json": "e90f046cf0d4100f8b90c4edef53175021f2d1ae84b91d71976e6b757ff3d6c4",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__08522338.json": "e9a4124f91c03298a881c9f0ebd8ae26a3c6a0983d2734c0157edc53687d2bed",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__09351028.json": "94a64688ae065778fa488d6d1079b4bd0ad1a4ddc7325496aa11a3689e2c2ea7",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__0970724.json": "8eac8642d1fbe224a3d7eeef9c1c0e61b4b55c67e17f34e27c811cb4aaa84437",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__10382382.json": "f0ac14d3a75bb5f915791e20bc08075480165c43cd5cfd2510db09324b48e92f",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__11411593.json": "b1be86f19a8ca83ac819b9d55104049a542c6c05ea9c5b1a096904c3f192613b",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__13885023.json": "11d425459042104268df6cf308693e41182dcbc98ccba01a8aaf34b92852e2ee",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__1415230.json": "813878bb340282e416fc9152bf593101d8b40ca7771bafc7a924f5099cd50fb2",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__1462172.json": "951194bbccd73cacbf7c104913da61d71d0cbb1d9e279b82d237d2f92033a94d",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__14717868.json": "7dfe48b548786f47a6085d38f68c0cebb10daf7867295523361d88f46d498b7c",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__14731077.json": "14372d1c64ed226f338896a1bcf8e25358d5c2d84121884f2b68e6822b321fc6",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__15290680.json": "7aa1937a3fa06a6a64023fd0780d141cb255170bd5fbb58d2a1d9e1f8b5084f5",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__16737946.json": "bf10c29ce092c4ef4d1c4a8c6c4595b5a67204aa2e2236ae7ddf603196ccbd45",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__18591066.json": "0c9ebdf5f7781bce654c814970cefe89859ef62a070377594aec07b52b3945a2",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__18615842.json": "8dd7ed802037d8221361cd71c1eec4392618247070041819a0d99e333c924860",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_queryattr__19208199.json": "788e895a5063367ae22460e4ea740ebd67533d904f4705021f7efe1bf369a312",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__0156645.json": "a5daadfc6d473feaac45e482b1d52740e86aaa442d0411284871e541bfeaea9f",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__03248935.json": "d28c80c7dc68f20986222269f84ac4d8da48959304c6a03b76e94fdf729adb4e",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__03618718.json": "11fee6bee69c308350ebaa751b91702541c9723f3d20da622289c5bae8143367",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__04745643.json": "6d72066d4ea7b7082091ab9137eeb403fc2bfd1ae00f273926cc5685c64df12f",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__04819764.json": "e24f98da5ead159b27f71a175e6443e38b4dd953448990a005fbb7383b7a1325",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__05265585.json": "789da07616c43837028b52c96a701884cb876b10dd690acb7450cd413b781c66",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__05515925.json": "a01c5462e7ffbc786303e93a35543de703123303e0addde01c2acd201cfbbed5",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__05611342.json": "d1881cef159a5b676280a060b7aabe4a3dd9e6a282cb0fc69c287fc182761805",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__06934945.json": "77285667877c358c75ea1ed2b944defbbb9c40d25ab3843533acd7c23c2d9365",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__0875301.json": "34e2c7bbc882d42d6ab3af043bcd728febe6a3c189d26baef831f480566023be",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__08965065.json": "55483ed48f268a64adf9c8d44cd48fff3fb081f928a7b48dfbd7b2b69172fde5",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__09376541.json": "071ca51da6a241be1b7567a5fd6a58b0921f3c7997f05d84238b76300884a7fc",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__1013170.json": "19dd9dcd4248ebefcbf8bd21d86e23b0ba74d909fb3e04eb7721d886d442a19e",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__10610963.json": "8713535ebb4428e1f12805f79ebcfe4c09ba8a39e7a9782a2b21fcd221f19943",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__13134978.json": "9b7f93f95bf690cc2465f1fb48d6ec900451818c4f3f1eb7bb7000af11fda105",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__13353512.json": "5dc97724b9578736f64a0b583ed7e296814df3eb520306ca37ba81ebcd3e9408",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__13908660.json": "136b7d66492fe72bcfbc6a09465c78b18da71f6096c57e32286b40de6d06baf6",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__13949858.json": "ca359a8df0b9de71eed272fa03a1474f91724a6fe31dbc8e7c5885e57f99d8a9",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__13962851.json": "01162147829d024f76480ef2e9924c24f826e0909287292496aba1eca98c6c74",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__1462290.json": "f2545b4470d17816c1cd5a7d61a2dacb5aab93ab148f9f029d920962271755a9",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__16522286.json": "090af4aad4833a9563f5503d85364a5b10b30fc208debc2d57f0d96d24fef5d0",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__191034614.json": "eb3339af95c1a251bf459eafc06ebc333daa321fa165995b890146c155668bac",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__19110644.json": "4570461d042e67124d90dc19a59807ecaee9a047a7e5d46f78b822c47577e1ac",
+    "results/gpu1_information_flow_window9/checkpoints/gqa_logicalobj__19481865.json": "5836d9742e63fa9b70c12070a6217258ce6757d770ea5a257c9a41e465c046a3",
+    "results/phase3_4_roi_sink_diagnostic/manifest.json": "6d711d1460e2816fbc10b9f9e825d0455d84e31185fc65a9cb96b7e5369c95e9",
+    "results/phase3_4_roi_sink_diagnostic/sink_manifest.json": "71aa32504e54443ac856326e904cec0db6a38f70a93fa90580332a7b46156c60",
+    "results/phase3_4_roi_sink_diagnostic/preregistered_protocol.json": "90c9ac15c583bdd0ca263f265c9858334b49ba4389c9206d54eeec7f453fe781"
+  }
+}
