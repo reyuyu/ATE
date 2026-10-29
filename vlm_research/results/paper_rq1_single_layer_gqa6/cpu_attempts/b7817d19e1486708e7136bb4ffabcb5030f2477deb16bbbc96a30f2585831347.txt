@@ -1,0 +1,21 @@
+test_paper_rq1_single_layer_gqa6 (unittest.loader._FailedTest.test_paper_rq1_single_layer_gqa6) ... ERROR
+
+======================================================================
+ERROR: test_paper_rq1_single_layer_gqa6 (unittest.loader._FailedTest.test_paper_rq1_single_layer_gqa6)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_paper_rq1_single_layer_gqa6
+Traceback (most recent call last):
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/unittest/loader.py", line 162, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/single-layer-gqa6/vlm_research/test_paper_rq1_single_layer_gqa6.py", line 8, in <module>
+    from paper_rq1_single_layer_gqa6.analyze import cluster_bootstrap
+  File "/data/lk/ATE-worktrees/single-layer-gqa6/vlm_research/paper_rq1_single_layer_gqa6/analyze.py", line 12, in <module>
+    from scipy.stats import pearsonr, spearmanr
+ModuleNotFoundError: No module named 'scipy'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)
