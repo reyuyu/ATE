@@ -1,0 +1,226 @@
+{
+  "protocol": {
+    "seed": 20261030,
+    "samples_per_task": 500,
+    "generation_subset_per_task": 80,
+    "tasks": {
+      "ChooseAttr": [
+        "chooseAttr"
+      ],
+      "ChooseCat": [
+        "categoryThatChoose",
+        "categoryThisChoose",
+        "objThisChoose"
+      ],
+      "ChooseRel": [
+        "relChooser"
+      ],
+      "CompareAttr": [
+        "twoCommon"
+      ],
+      "LogicalObj": [
+        "existThatOr"
+      ],
+      "QueryAttr": [
+        "positionQuery"
+      ]
+    },
+    "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "dtype": "float16",
+    "attention": "eager",
+    "transformers": "4.49.0",
+    "layers": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "selection": "Unfiltered official GQA Balanced validation, exact types.detailed; hash(seed,task,qid). Select500 before any model output, then independently hash(seed,accuracy,task,qid) for80. Never substitute missing/corrupt selected images. Record shared image IDs across tasks.",
+    "sharding": "All questions for the same image ID use hash(seed,worker,image_id) modulo4. Report actual per-task shard sizes; do not move questions based on results.",
+    "prompt": "Unchanged pinned HF chat template; question plus existing single-word-or-phrase instruction.",
+    "ablation": "One single layer0..31, original prompt last valid Query P-1: zero only self_attn.o_proj output. Native MLP/LayerNorm/residual, other queries/layers, inputs and weights unchanged. Independent identical prompt forward for every condition. Not source-target edge knockout.",
+    "first_token": "FP32 CPU log_softmax over full vocabulary. Always track the native Full argmax y_full. delta_logp is primary; relative_delta_p=100*expm1(delta_logp); JS is natural-log nats. Store all33 FP32 vocabulary logit vectors externally for complete numerical replay.",
+    "correctness_groups": "Gold-first-token matching is not full-answer accuracy. Actual Full-correct/wrong groups are available only for the predefined80-question generation subset.",
+    "bos": "Discover unique BOS by tokenizer.bos_token_id in actual valid input IDs, not index0. Native post-softmax P-1 row, mean over heads; store every head, row-sum error and valid keys. Release full attention matrices immediately after reading current row.",
+    "generation": {
+      "do_sample": false,
+      "num_beams": 1,
+      "max_new_tokens": 32,
+      "eos_token_id": 2,
+      "use_cache": true,
+      "ablation": "Prefill original P-1 only, once. All later Decode native, own naturally intervened cache."
+    },
+    "scorer": "Official GQA primary equality after pinned LLaVA submission converter (rstrip period/lowercase); verified official source expressions and source hashes. Not a claim of full GQA auxiliary suite.",
+    "bootstrap": {
+      "repetitions": 10000,
+      "seed": 20261030,
+      "cluster": "image_id",
+      "estimator": "Paired question-weighted ratio of resampled whole-image cluster sums/counts; unequal cluster sizes retained.",
+      "interval": "Ordinary percentile95% CI, descriptive only.192 primary task-layer comparisons; no multiple-comparison significance or noninferiority claim.80 subset is exploratory, not independent."
+    },
+    "tolerances": {
+      "row_sum_atol": 0.002,
+      "noop_logits": "bit-exact",
+      "cross_gpu_logits_atol": 0.02,
+      "cross_gpu_logits_rtol": 0.002,
+      "cross_gpu_bos_atol": 0.0005,
+      "cross_gpu_bos_rtol": 0.005,
+      "raw_metric_replay_atol": 2e-06,
+      "raw_relative_replay_atol": 0.002,
+      "raw_metric_replay_rtol": 2e-05
+    },
+    "interpretation": "Prediction sensitivity, Top-1 flips, JS and full-generation accuracy are different endpoints. BOS correlations descriptive, not causal; no computation skipping or speedup claim."
+  },
+  "source_sha256": {
+    "attention_position_probe.py": "91749c6b4f5db5428b5e8ef4e599b72c85bae7683f5fcc2c5e29380b3d5d55eb",
+    "attention_probe.py": "888aa0bee8f4ed45e8def09083a301a3fe9e4ad8387c2cd396c847766c34a58b",
+    "benchmarks/__init__.py": "4a01538d11620967113915d8d7ecd0a07db5cc5b1e112efbcc8cb0c5657c492b",
+    "benchmarks/_vendor/m4c_evaluator.py": "8b49e1033e29d551c0bdd86d9149e2b54370e4cd17e52176ac9061b3521f0774",
+    "benchmarks/acceptance.py": "280fc61b255cf4440456f6a5a8d5837610a1b64abd47030d360d6354b44d3317",
+    "benchmarks/acquire.py": "7ff8a7a57ea39fb66b4edb2f3d90eb76475dc2e06ed916994b3b8a83c88efed2",
+    "benchmarks/dataset_registry.py": "20369ec1648e795958d7290934f4604fe8ed3b7874c8f27f8aa031d04bf024f5",
+    "benchmarks/fetch_resources.py": "3dfa8872d83c3c71aa180fd7f51ae116279e1f0aa9c9c6f9298fa2177c46ec18",
+    "benchmarks/gqa_adapter.py": "edd2105ba20098bc23e835ce2e46e00e51d8c4eaefe27eb4ecd9011232839f9f",
+    "benchmarks/pope_adapter.py": "2a1195989e5baa0bd80da5551a21983a5baf184c20f50496797226357ecf5098",
+    "benchmarks/prepare_datasets.py": "a752a2695312d66f95d607835f6740f2bf93a6b8be549d6d436b00d188ecf20d",
+    "benchmarks/protocols.py": "c80e8011f8ba3f7f627398ec2a3bff300d479db46ccb04a564d5ed525abd4f48",
+    "benchmarks/publication.py": "3db655ea370c5b2668211e0f57d7626864aa1ab6c2f73cf86c05213365dfd5b2",
+    "benchmarks/scienceqa_adapter.py": "6f03bdc3cea29a53bb58e892678d874220143a9f3cf9a7b6eee8a788502c72fd",
+    "benchmarks/scoring.py": "9dd9bb60a3f0929240e520cc4ce50354ca4778a7f138eb5718fe99c42eed2b25",
+    "benchmarks/smoke.py": "8f513bc47a2e7c4036d10fb8e5e30fd8e87ccbc2e9d799c93983965823e6b3fe",
+    "benchmarks/textvqa_adapter.py": "4306305d2ff4d19fb26eda4e5e35bee971ccdffa1c7d11b6984405ec8d7e6f7d",
+    "benchmarks/validate_datasets.py": "4ffd5ced3d0527af2d69a9b34bcd638f9c0d0b08381d5e5816a88e15162d33bc",
+    "knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+    "paper_rq1/__init__.py": "af7c2358f0153341c0db552efa67e4f531deb391a1ae41d32d36f4e070723e35",
+    "paper_rq1/acquire.py": "10f78cd249ee378ad0397eae6c9f50d4f83db021dc3bc4ad89ac009f473fe1b4",
+    "paper_rq1/analyze.py": "8c75ef85ff9ed68242b08089d9025d028c624945b982b145d6fc10ebce21b474",
+    "paper_rq1/data.py": "dcec8e6b7b1c1268ee7a4413f02d745bfa377029349a5fe5226d909cae510a8f",
+    "paper_rq1/engine.py": "2c838844c0e7e9815662019498c9b577b8f6478898f591c9cf52cc4a2028eff9",
+    "paper_rq1/inventory.py": "b584233c7694fd789f8c252cb27da858943923d56693d3ff87e6800b659099ed",
+    "paper_rq1/launch.py": "a3a4833616702b2ece18acbf4fd7d81692565c4216fa3f2c1ca9b81209fd9055",
+    "paper_rq1/protocol.py": "cbe05745378a0a05d14f6667c2181ce737d6bc87370ee07335de3b67c75a0ca5",
+    "paper_rq1/refine.py": "f7b0cee7f373d0af569f45e65e0f4e4dd7a5dd98deb372123e06e0585def07f8",
+    "paper_rq1/run.py": "cf44578a88905e0356b035588df47a4c22dbd987a605c3cda179fcc787d7df99",
+    "paper_rq1/scorers.py": "081e409993a481a0b3c83e0cf6ae2d16768c10e1c95f602de72c4abe4f5c9ad8",
+    "paper_rq1/tests.py": "73045c921f970fd8b8574533052098b0dd4b724e45c554bcbd2923f3c4bc974c",
+    "paper_rq1_single_layer_gqa6/__init__.py": "1fe8ffe744866992ad935478e9d0e4023e7aae7b3faffe7efbbf7d0008daaba9",
+    "paper_rq1_single_layer_gqa6/analyze.py": "42a3cb3f9f2348fb5294879144c27086c7d191be42d6b8b819f55b0db6713626",
+    "paper_rq1_single_layer_gqa6/data.py": "99a99fd7eac159b825cb9b990004209f9fca6977f7b903d5ab5be42ec9d1cc83",
+    "paper_rq1_single_layer_gqa6/engine.py": "17509131686cb01f1954e12cbd1ed57d2b74663fa6f6aaba0a01e8fceac7ebe9",
+    "paper_rq1_single_layer_gqa6/launch.py": "fb535ec7598d071f02c73174803b4741a2eb8634f8114fcb00ffb8f17b72bada",
+    "paper_rq1_single_layer_gqa6/protocol.py": "0168c619c37174aa973cdac396eeefb7f8ccb87407d7d9fdb7e0a69ab2a112b8",
+    "paper_rq1_single_layer_gqa6/run.py": "d7b454377849a4c5b69d48174a0652dbd03afa416a6b5f140a37b697d2492e03",
+    "paper_rq1_single_layer_gqa6/tests.py": "52c5318f53f31fee09c6e1eb51c0c54d37770457bb6f0ccdcf30c6411965bcb2",
+    "test_paper_rq1_single_layer_gqa6.py": "41b6a086efc44d3600e85b2b773ba7038d6096fb5db9665f840e3dbd67b04f81",
+    "vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d"
+  },
+  "code_commit": "934335e78c8f3d1f11836dc815ded3d88b8b0884",
+  "data_manifest_sha256": "40ce2c4159e3f9cb7f235856edca3b8e89a00a32aea11e313baf81bdd423293d",
+  "cpu_validation_sha256": "e367ee08271da08d75da31021d63300be83b43cacebf93b2be4e41d1f48572da",
+  "model_files": {
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/added_tokens.json": {
+      "sha256": "a94c56096001713e3eb9a34b1a545a8c1d5e8034ed2fb81f897c8cb54b420121",
+      "bytes": 41,
+      "mtime_ns": 1793194086181998587
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/chat_template.json": {
+      "sha256": "854445c0a45532ecbee1ae9aa31d4be19644060a156f2c88456f50f584261543",
+      "bytes": 701,
+      "mtime_ns": 1793194086798017022
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/config.json": {
+      "sha256": "0bde54495c54bcc346064a0d314b010d1c4d3ca7f7e583b6f711949a35352c0f",
+      "bytes": 950,
+      "mtime_ns": 1793194089686103414
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/generation_config.json": {
+      "sha256": "3a6dc8c202be258023f58a03f804bdcacf138b8a2cc7492be2530e16945a0951",
+      "bytes": 141,
+      "mtime_ns": 1793194089290091572
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00001-of-00003.safetensors": {
+      "sha256": "c11dbf016ee7d35ee130c19b67e20eb04873996006f424b7bcbd453b6517ee66",
+      "bytes": 4992930200,
+      "mtime_ns": 1793199719115753829
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00002-of-00003.safetensors": {
+      "sha256": "46df6c6e5fad297fe7fbca4963dcf180cb1d0528cabc884d1f603311fed01328",
+      "bytes": 4957878440,
+      "mtime_ns": 1793199782813772811
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00003-of-00003.safetensors": {
+      "sha256": "4f06177c37ca13944e73b57dd6d051767b950dffc12400c700dfa2509c24c697",
+      "bytes": 4176137408,
+      "mtime_ns": 1793199778045624044
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model.safetensors.index.json": {
+      "sha256": "73af906b5ac12aea6eddf104d482d2a50bca30b20d61ee9f6c5269d3427a6991",
+      "bytes": 70128,
+      "mtime_ns": 1793194858551537899
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/preprocessor_config.json": {
+      "sha256": "a8d5e64ee5c07ff6d70142856d178ac39d0563da3612e32110fa824f5337b7a1",
+      "bytes": 505,
+      "mtime_ns": 1793194856691488340
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/processor_config.json": {
+      "sha256": "fef918d6ba333f72a066877965bc4a162308568ba62aa90c806caedf7b45d64e",
+      "bytes": 173,
+      "mtime_ns": 1793194854031417454
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/special_tokens_map.json": {
+      "sha256": "358c249e2fb29060c6b73157d428853b0c48710deffc8ee670ab1013880946c9",
+      "bytes": 552,
+      "mtime_ns": 1793194854963442292
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer.json": {
+      "sha256": "30e1294abd835edfebb24618fce6f47c21ffb2b2802520d150bdee0b808b47cb",
+      "bytes": 3619380,
+      "mtime_ns": 1793194860207582017
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer.model": {
+      "sha256": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+      "bytes": 499723,
+      "mtime_ns": 1793194861087605460
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer_config.json": {
+      "sha256": "79b7f1ebceddf7235f3791c387d781818b0c7e7cf868d0e4f71896a55b949833",
+      "bytes": 1451,
+      "mtime_ns": 1793194860479589263
+    }
+  },
+  "stages": [
+    "smoke",
+    "first_token",
+    "accuracy"
+  ]
+}
