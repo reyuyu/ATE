@@ -1,0 +1,28 @@
+| Task | Path | Probability peak center/window | Probability change (%) | Full first-token hit (%) | Masked hit (%) | Delta (pp) | Hit->miss / Miss->hit |
+|---|---|---|---:|---:|---:|---:|---:|
+| ChooseRel | Image -> Last | L18 / L14-L22 | -3.04 | 83.33 | 83.33 | +0.00 | 0 / 0 |
+| ChooseRel | Question -> Last | L13 / L9-L17 | -38.79 | 83.33 | 62.50 | -20.83 | 6 / 1 |
+| ChooseRel | Image -> Question | L10 / L6-L14 | -23.90 | 83.33 | 70.83 | -12.50 | 4 / 1 |
+| ChooseAttr | Image -> Last | L18 / L14-L22 | -2.40 | 66.67 | 70.83 | +4.17 | 0 / 1 |
+| ChooseAttr | Question -> Last | L10 / L6-L14 | -37.71 | 66.67 | 54.17 | -12.50 | 3 / 0 |
+| ChooseAttr | Image -> Question | L8 / L4-L12 | -25.90 | 66.67 | 58.33 | -8.33 | 3 / 1 |
+| QueryAttr | Image -> Last | L18 / L14-L22 | -4.58 | 83.33 | 79.17 | -4.17 | 1 / 0 |
+| QueryAttr | Question -> Last | L12 / L8-L16 | -34.28 | 83.33 | 83.33 | +0.00 | 1 / 1 |
+| QueryAttr | Image -> Question | L10 / L6-L14 | -21.65 | 83.33 | 70.83 | -12.50 | 4 / 1 |
+| LogicalObj | Image -> Last | L10 / L6-L14 | -0.23 | 95.83 | 95.83 | +0.00 | 0 / 0 |
+| LogicalObj | Question -> Last | L12 / L8-L16 | -9.02 | 95.83 | 95.83 | +0.00 | 1 / 1 |
+| LogicalObj | Image -> Question | L12 / L8-L16 | -7.88 | 95.83 | 91.67 | -4.17 | 2 / 1 |
+| Task | Path | Median rho(BOS, drop) | Median rho(Sink/Image share, drop) |
+|---|---|---:|---:|
+| ChooseRel | Image -> Last | -0.413 (n=24) | -0.339 (n=24) |
+| ChooseRel | Question -> Last | -0.507 (n=24) | -0.081 (n=24) |
+| ChooseRel | Image -> Question | -0.327 (n=24) | +0.406 (n=24) |
+| ChooseAttr | Image -> Last | +0.190 (n=24) | -0.207 (n=24) |
+| ChooseAttr | Question -> Last | -0.568 (n=24) | +0.035 (n=24) |
+| ChooseAttr | Image -> Question | -0.341 (n=24) | +0.377 (n=24) |
+| QueryAttr | Image -> Last | -0.624 (n=24) | -0.473 (n=24) |
+| QueryAttr | Question -> Last | -0.464 (n=24) | -0.034 (n=24) |
+| QueryAttr | Image -> Question | -0.581 (n=24) | +0.588 (n=24) |
+| LogicalObj | Image -> Last | -0.467 (n=24) | +0.410 (n=24) |
+| LogicalObj | Question -> Last | -0.437 (n=24) | +0.445 (n=24) |
+| LogicalObj | Image -> Question | -0.469 (n=24) | +0.020 (n=24) |
