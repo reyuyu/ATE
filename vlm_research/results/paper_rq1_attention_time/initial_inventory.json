@@ -1,0 +1,102 @@
+{
+  "status": "preflight_not_frozen",
+  "time_unix": 1793262147.8607082,
+  "source_checks": [
+    {
+      "name": "gqa_download.html",
+      "url": "https://cs.stanford.edu/people/dorarad/gqa/download.html",
+      "path": "/data/lk/ATE-resources/paper_rq1/sources/gqa_download.html",
+      "max_bytes": 83886080,
+      "status": "failed",
+      "error": "ConnectTimeout: HTTPSConnectionPool(host='cs.stanford.edu', port=443): Max retries exceeded with url: /people/dorarad/gqa/download.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='cs.stanford.edu', port=443) at 0x7fb081a5ad10>, 'Connection to cs.stanford.edu timed out. (connect timeout=5)'))"
+    },
+    {
+      "name": "gqa_evaluate.html",
+      "url": "https://cs.stanford.edu/people/dorarad/gqa/evaluate.html",
+      "path": "/data/lk/ATE-resources/paper_rq1/sources/gqa_evaluate.html",
+      "max_bytes": 83886080,
+      "status": "failed",
+      "error": "ConnectTimeout: HTTPSConnectionPool(host='cs.stanford.edu', port=443): Max retries exceeded with url: /people/dorarad/gqa/evaluate.html (Caused by ConnectTimeoutError(<HTTPSConnection(host='cs.stanford.edu', port=443) at 0x7fb081a05a10>, 'Connection to cs.stanford.edu timed out. (connect timeout=5)'))"
+    },
+    {
+      "name": "gqa_mirror.json",
+      "url": "https://hf-mirror.com/api/datasets/lmms-lab/GQA",
+      "path": "/data/lk/ATE-resources/paper_rq1/sources/gqa_mirror.json",
+      "max_bytes": 83886080,
+      "http_status": 200,
+      "etag": "W/\"52dc-cV4D5cbqsDHL8YLaJhMOEvT5Yhk\"",
+      "last_modified": null,
+      "final_url": "https://hf-mirror.com/api/datasets/lmms-lab-encoder/GQA",
+      "status": "downloaded",
+      "bytes": 21212,
+      "sha256": "48c091580c072d655df0c7765ab3e2b826bd227021a7d658df43506f3ead5542"
+    },
+    {
+      "name": "textcaps_val.json",
+      "url": "https://dl.fbaipublicfiles.com/textcaps/TextCaps_0.1_val.json",
+      "path": "/data/lk/ATE-resources/paper_rq1/sources/textcaps_val.json",
+      "max_bytes": 83886080,
+      "http_status": 403,
+      "status": "failed",
+      "error": "HTTPError: 403 Client Error: Forbidden for url: https://dl.fbaipublicfiles.com/textcaps/TextCaps_0.1_val.json"
+    },
+    {
+      "name": "textcaps_dataset.html",
+      "url": "https://textvqa.org/textcaps/dataset/",
+      "path": "/data/lk/ATE-resources/paper_rq1/sources/textcaps_dataset.html",
+      "max_bytes": 83886080,
+      "http_status": 200,
+      "etag": "W/\"63ebd28c-af4\"",
+      "last_modified": "Tue, 14 Feb 2023 18:27:24 GMT",
+      "final_url": "https://textvqa.org/textcaps/dataset/",
+      "status": "downloaded",
+      "bytes": 2804,
+      "sha256": "f38607977e76bf20e6ab98e4930514040a6c9f2a4cdaee916a980179bf2e071b"
+    },
+    {
+      "name": "coco_caption_readme.md",
+      "url": "https://raw.githubusercontent.com/tylin/coco-caption/master/README.md",
+      "path": "/data/lk/ATE-resources/paper_rq1/sources/coco_caption_readme.md",
+      "max_bytes": 83886080,
+      "http_status": 200,
+      "etag": "W/\"65116b2de08d466fad96247b014a0d6a628f38d2c4b15151f1aa41a9dd530c39\"",
+      "last_modified": null,
+      "final_url": "https://raw.githubusercontent.com/tylin/coco-caption/master/README.md",
+      "status": "downloaded",
+      "bytes": 2749,
+      "sha256": "12e026ef8dca0aa5a8b095df47fda68f2eb2e8329e0a90ba689910939a1ab72b"
+    },
+    {
+      "name": "gqa_mirror_official.json",
+      "url": "https://huggingface.co/api/datasets/lmms-lab/GQA",
+      "path": "/data/lk/ATE-resources/paper_rq1/sources/gqa_mirror_official.json",
+      "max_bytes": 83886080,
+      "status": "failed",
+      "error": "ConnectionError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/datasets/lmms-lab/GQA (Caused by NewConnectionError(\"HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 101] Network is unreachable\"))"
+    }
+  ],
+  "local_annotation_counts": {
+    "pope_adversarial": {
+      "questions": 3000,
+      "images": 500
+    },
+    "scienceqa_img": {
+      "questions": 2017
+    },
+    "textvqa": {
+      "questions": 5000,
+      "images": 3166
+    },
+    "gqa_balanced": {
+      "local_official_annotation": false
+    },
+    "coco_caption": {
+      "local_official_annotation": false
+    },
+    "textcaps": {
+      "local_official_annotation": false
+    }
+  },
+  "existing_scienceqa_parquet": "/data/lk/ATE-resources/benchmarks/phase4_0/sources/scienceqa_hf/test-00000-of-00001-f0e719df791966ff.parquet",
+  "safety": "No GPU work, no selection, no substitution of correct_question GQA. Availability is not a frozen split."
+}

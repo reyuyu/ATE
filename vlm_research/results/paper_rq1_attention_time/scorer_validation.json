@@ -1,0 +1,66 @@
+{
+  "passed": true,
+  "checks": {
+    "official_gqa_primary_and_llava_conversion": true,
+    "pope_parser": true,
+    "scienceqa_parser": true,
+    "textvqa_ten_vote_fixture": true,
+    "official_caption_identical_reference": {
+      "passed": true,
+      "metrics": {
+        "CIDEr": 10.0,
+        "SPICE": 1.0
+      },
+      "per_image": {
+        "0": {
+          "CIDEr": 10.0,
+          "SPICE": 1.0
+        },
+        "1": {
+          "CIDEr": 10.0,
+          "SPICE": 1.0
+        }
+      }
+    }
+  },
+  "source_sha256": {
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/bleu/bleu.py": "05b74a92b32e071eacfb954ef34328137cfd1b82c563572648633087def23776",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/bleu/bleu_scorer.py": "413ccfef71b88c5f11d25d05fdcf08625a1559338ffbb7c2787e800116eaecdd",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/cider/cider.py": "268b71cb096ccd10cf4a7cd49a9a72072001922f1876f4e88833e1eb4649cfcb",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/cider/cider_scorer.py": "299037838373391c3335e066c867ba2d6dd8617d2c8fb2c4193f32620a774adc",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/eval.py": "2d3a3bd8b72aefa9f9cfe24275dbecd4e9cff7ba9177cdd55f689625f372b193",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/example/coco_eval_example.py": "2caa3e15f00f248e99b45d5b4f23d3e0ce87f2b5da208ad82d024911ee28cbd9",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/meteor/meteor.py": "5ac9a2f6d7e1e04957dfa20774977fdb49c6b77a43c43d4f9eb8f215b1efd850",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/rouge/rouge.py": "24f1fd7a3b87e7d9c4fd5aada88c79f54a58d5d8d36c9382aaf7a72a91edfc74",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/get_stanford_models.py": "cb48112259a6aec54a2fab7c342689ec76815bee45ac2a03d0bf45ab3711cea3",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/spice.py": "4595b4c46894516ed1edd09d39ca02574fe0864ea10fa0b8e504b1593777b615",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/tokenizer/ptbtokenizer.py": "ded90551127b8a4bf683873432ccafa83330a9997f6d0b695cb71a618808b8c1",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/meteor/meteor-1.5.jar": "1e57b4c72c0830ebe68558f1c799a624e96cbc1b6045c9f6330e26dcff6eafc2",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/Meteor-1.5.jar": "014a3627d277a6f4ba5b44a20733f8dff28bbb428204c36abfda56565658ba09",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/SceneGraphParser-1.0.jar": "83a1b7c3f896dd135f9539ba41d65b155827dfc312893bfd5bb835c9f9ae310a",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/ejml-0.23.jar": "12d44e81fdd661ad2aac6384511facf3d8fa003c3ce8d9cec5f22827d1819a26",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/fst-2.47.jar": "8c871febc859cf72dbed1c6c1eebc5600c3d93c3e986feccf4623cc5086098cc",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/guava-19.0.jar": "58d4cc2e05ebb012bbac568b032f75623be1cb6fb096f3c60c72a86f7f057de4",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/hamcrest-core-1.3.jar": "66fdef91e9739348df7a096aa384a5685f4e875584cce89386a7a47251c4d8e9",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/jackson-core-2.5.3.jar": "c9a900c30c702d371be2d3714938dfa6de616599c8eb39f8e3cf7aedd62dfd32",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/javassist-3.19.0-GA.jar": "d19c1ef43ccd9cb1b39466bb2f1c8e45c2b6752f1e13a3dfb60096543d1791fa",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/json-simple-1.1.1.jar": "4e69696892b88b41c55d49ab2fdcc21eead92bf54acc588c0050596c3b75199c",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/junit-4.12.jar": "59721f0805e223d84b90677887d9ff567dc534d7c502ca903c0c2b17f05c116a",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/lmdbjni-0.4.6.jar": "f4e8c51eb4ef05abe57d2187e76f5c335e4ef16d8503329eb7dbc5ae7a90529c",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/lmdbjni-linux64-0.4.6.jar": "0b7773db873aaeec399a50113c0a4e121df0eff5e724607f7bc8171452107d94",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/lmdbjni-osx64-0.4.6.jar": "7d66778037b5689e7c6daf22a7140722f2085da4ae479bceda4a4be487d55460",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/lmdbjni-win64-0.4.6.jar": "969c6aa59893b82856a6832da640672b0f23f1d72f70d7b04296c71970d75b79",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/objenesis-2.4.jar": "090416e160a7e398f79e0149a7b05ef328b1843898a34e08c1cc170128d326d0",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/slf4j-api-1.7.12.jar": "0aee9a77a4940d72932b0d0d9557793f872e66a03f598e473f45e7efecdccf99",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/slf4j-simple-1.7.21.jar": "a20179cc3ded2d7e2f5def4ccb34b2d0836e2f8c9e79352a6babd6a6559cc8e0",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/stanford-corenlp-3.6.0-models.jar": "d285157bd7887ee3018094b5dbae092e49088b023361ccdb550ee1daf9b2c9bd",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/stanford-corenlp-3.6.0.jar": "d341d5863276f55782c5ef73212222d6b3b48e02ae1951ab6de7618d28b12742",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/spice-1.0.jar": "6c6a73ae6dd108667047c1818707590413934dcb9f1a62cef6469059b41b3d59",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/tokenizer/stanford-corenlp-3.4.1.jar": "2fcb91bb7a111f93d71e264f4ee0e3afd19ba0dde6d21b38605088df9e940399",
+    "/data/lk/ATE-resources/paper_rq1/annotations/gqa_eval.py": "4433a8959d82c14b37ffc0c17c6f8d3e34ef692515b79939eb66220a4b74d130",
+    "/data/lk/ATE-resources/benchmarks/phase4_0/sources/llava/scripts/convert_gqa_for_eval.py": "016cea68c91cbc141c276e9e7568420e2f5db5aba90c4f594701663c72929932"
+  },
+  "scope": "Official primary accuracy/soft scoring and caption CIDEr/SPICE; not full GQA auxiliary suite",
+  "seconds": 5.377075890079141
+}

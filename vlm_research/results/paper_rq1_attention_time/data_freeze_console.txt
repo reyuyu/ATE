@@ -1,0 +1,14 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/paper-rq1-attention-time/vlm_research/paper_rq1/data.py", line 289, in <module>
+    main()
+  File "/data/lk/ATE-worktrees/paper-rq1-attention-time/vlm_research/paper_rq1/data.py", line 285, in main
+    {'plan': make_plan, 'fetch': fetch_images, 'freeze': freeze_data}[args.stage]()
+  File "/data/lk/ATE-worktrees/paper-rq1-attention-time/vlm_research/paper_rq1/data.py", line 250, in freeze_data
+    question, _ = locate_question_tokens(processor, row['question'], ids, 32000)
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/paper-rq1-attention-time/vlm_research/attention_position_probe.py", line 58, in locate_question_tokens
+    raise ValueError("Expanded tokenizer IDs do not exactly match actual Processor input")
+ValueError: Expanded tokenizer IDs do not exactly match actual Processor input
