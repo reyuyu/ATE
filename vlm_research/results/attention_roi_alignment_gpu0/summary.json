@@ -1,0 +1,481 @@
+{
+  "coverage": {
+    "total": 64,
+    "datasets": {
+      "gqa_chooserel": 32,
+      "scienceqa_img": 16,
+      "textvqa": 16
+    },
+    "primary_roi_n": 16,
+    "primary_label_counts": {
+      "left": 9,
+      "right": 7
+    },
+    "roi_excluded": {
+      "00543846": [
+        "union_outside_4_to_192"
+      ],
+      "02764837": [
+        "one_or_both_objects_cropped_out",
+        "object_fewer_than_two_patches",
+        "union_outside_4_to_192"
+      ],
+      "03332065": [
+        "union_outside_4_to_192"
+      ],
+      "05480434": [
+        "union_outside_4_to_192"
+      ],
+      "091017094": [
+        "one_or_both_objects_cropped_out",
+        "object_fewer_than_two_patches"
+      ],
+      "10109799": [
+        "one_or_both_objects_cropped_out",
+        "object_fewer_than_two_patches"
+      ],
+      "11283164": [
+        "union_outside_4_to_192",
+        "object_patch_area_ratio_over_16"
+      ],
+      "12316303": [
+        "one_or_both_objects_cropped_out",
+        "object_fewer_than_two_patches"
+      ],
+      "12772975": [
+        "object_patch_area_ratio_over_16"
+      ],
+      "12838746": [
+        "union_outside_4_to_192",
+        "object_patch_area_ratio_over_16"
+      ],
+      "12977380": [
+        "union_outside_4_to_192",
+        "object_patch_area_ratio_over_16"
+      ],
+      "15665817": [
+        "union_outside_4_to_192"
+      ],
+      "16831080": [
+        "union_outside_4_to_192"
+      ],
+      "17745707": [
+        "object_patch_area_ratio_over_16"
+      ],
+      "18553100": [
+        "one_or_both_objects_cropped_out",
+        "object_fewer_than_two_patches"
+      ],
+      "19162987": [
+        "union_outside_4_to_192"
+      ]
+    },
+    "frozen_sink_n": 6,
+    "new_neutral_sink_n": 26,
+    "scienceqa_textvqa_roi_sink": "Not defined; only BOS/Image masses",
+    "per_layer_rows": 2048,
+    "reused_A_skip_rows": 1920,
+    "verified_historical_summary_rows": 90
+  },
+  "bands": [
+    {
+      "band": "early_L0_L4",
+      "window_starts": [
+        0,
+        1,
+        2
+      ],
+      "n_images": 16,
+      "n_overlapping_windows": 3,
+      "full_candidate_accuracy": 0.875,
+      "candidate_accuracy": 0.8541666666666666,
+      "correct_to_wrong": 1.3333333333333333,
+      "wrong_to_correct": 1.0,
+      "mean_absolute_margin_change": 0.9095865885416666,
+      "p_bos": 0.5277430656779971,
+      "p_image": 0.24294959236350322,
+      "p_sink_mass": 0.07304053572523926,
+      "p_sink_share": 0.5732087615787099,
+      "q_roi_enrichment": 0.8261033047697571,
+      "p_roi_enrichment": 0.8037681966090281
+    },
+    {
+      "band": "middle_L9_L15",
+      "window_starts": [
+        9,
+        10,
+        11,
+        12,
+        13
+      ],
+      "n_images": 16,
+      "n_overlapping_windows": 5,
+      "full_candidate_accuracy": 0.875,
+      "candidate_accuracy": 0.725,
+      "correct_to_wrong": 3.4,
+      "wrong_to_correct": 1.0,
+      "mean_absolute_margin_change": 1.58583984375,
+      "p_bos": 0.5919345930218697,
+      "p_image": 0.04440288538268457,
+      "p_sink_mass": 0.022685230810505653,
+      "p_sink_share": 0.6050913197903339,
+      "q_roi_enrichment": 1.353826307394383,
+      "p_roi_enrichment": 0.9578612117251039
+    },
+    {
+      "band": "deep_L20_L31",
+      "window_starts": [
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29
+      ],
+      "n_images": 16,
+      "n_overlapping_windows": 10,
+      "full_candidate_accuracy": 0.875,
+      "candidate_accuracy": 0.9125,
+      "correct_to_wrong": 0.0,
+      "wrong_to_correct": 0.6,
+      "mean_absolute_margin_change": 0.3722412109374999,
+      "p_bos": 0.8092169211556512,
+      "p_image": 0.05257461217309658,
+      "p_sink_mass": 0.023250334473171583,
+      "p_sink_share": 0.5205610446342541,
+      "q_roi_enrichment": 1.0010330318371683,
+      "p_roi_enrichment": 0.9768513524938356
+    }
+  ],
+  "correlations": [
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "p_bos",
+      "outcome": "mean_absolute_margin_change",
+      "windows": 30,
+      "pearson": -0.6262948774358237,
+      "spearman": -0.6249165739710789,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "p_bos",
+      "outcome": "candidate_accuracy",
+      "windows": 30,
+      "pearson": 0.4922000167646249,
+      "spearman": 0.5543111948844364,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "p_bos",
+      "outcome": "correct_to_wrong",
+      "windows": 30,
+      "pearson": -0.6073240776184459,
+      "spearman": -0.667900429146845,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "p_image",
+      "outcome": "mean_absolute_margin_change",
+      "windows": 30,
+      "pearson": 0.07347527583562749,
+      "spearman": -0.2836484983314794,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "p_image",
+      "outcome": "candidate_accuracy",
+      "windows": 30,
+      "pearson": 0.08917624948743617,
+      "spearman": 0.38378945173115836,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "p_image",
+      "outcome": "correct_to_wrong",
+      "windows": 30,
+      "pearson": 0.021914811906470776,
+      "spearman": -0.36311617217808817,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "p_sink_mass",
+      "outcome": "mean_absolute_margin_change",
+      "windows": 30,
+      "pearson": -0.08598645941735292,
+      "spearman": -0.06651835372636263,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "p_sink_mass",
+      "outcome": "candidate_accuracy",
+      "windows": 30,
+      "pearson": 0.129058501032611,
+      "spearman": 0.10513196901726493,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "p_sink_mass",
+      "outcome": "correct_to_wrong",
+      "windows": 30,
+      "pearson": -0.12222963817287903,
+      "spearman": -0.17207914986752773,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "p_sink_share",
+      "outcome": "mean_absolute_margin_change",
+      "windows": 30,
+      "pearson": 0.1827123369547203,
+      "spearman": 0.40556173526140155,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "p_sink_share",
+      "outcome": "candidate_accuracy",
+      "windows": 30,
+      "pearson": -0.2926387435465803,
+      "spearman": -0.450565581502564,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "p_sink_share",
+      "outcome": "correct_to_wrong",
+      "windows": 30,
+      "pearson": 0.17957779215827388,
+      "spearman": 0.3264156755255505,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "q_roi_enrichment",
+      "outcome": "mean_absolute_margin_change",
+      "windows": 30,
+      "pearson": 0.532999167063139,
+      "spearman": 0.49454949944382637,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "q_roi_enrichment",
+      "outcome": "candidate_accuracy",
+      "windows": 30,
+      "pearson": -0.5063054230241503,
+      "spearman": -0.4355467287858119,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "q_roi_enrichment",
+      "outcome": "correct_to_wrong",
+      "windows": 30,
+      "pearson": 0.5206536361511122,
+      "spearman": 0.46641227202794594,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "p_roi_enrichment",
+      "outcome": "mean_absolute_margin_change",
+      "windows": 30,
+      "pearson": -0.045818453920735136,
+      "spearman": -0.04916573971078977,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "p_roi_enrichment",
+      "outcome": "candidate_accuracy",
+      "windows": 30,
+      "pearson": 0.07342769171238016,
+      "spearman": 0.09149947193590531,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_roi16",
+      "feature": "p_roi_enrichment",
+      "outcome": "correct_to_wrong",
+      "windows": 30,
+      "pearson": -0.07398445917090096,
+      "spearman": -0.0947893622151636,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "p_bos",
+      "outcome": "mean_absolute_margin_change",
+      "windows": 30,
+      "pearson": -0.632853407318052,
+      "spearman": -0.6382647385984427,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "p_bos",
+      "outcome": "candidate_accuracy",
+      "windows": 30,
+      "pearson": 0.41567339730381675,
+      "spearman": 0.5088510509556525,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "p_bos",
+      "outcome": "correct_to_wrong",
+      "windows": 30,
+      "pearson": -0.5033376872624076,
+      "spearman": -0.6577042187062977,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "p_image",
+      "outcome": "mean_absolute_margin_change",
+      "windows": 30,
+      "pearson": 0.06772409785898056,
+      "spearman": -0.2253615127919911,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "p_image",
+      "outcome": "candidate_accuracy",
+      "windows": 30,
+      "pearson": 0.23658842365224664,
+      "spearman": 0.29357659303472455,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "p_image",
+      "outcome": "correct_to_wrong",
+      "windows": 30,
+      "pearson": -0.13206604759440202,
+      "spearman": -0.21908116006644102,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "p_sink_mass",
+      "outcome": "mean_absolute_margin_change",
+      "windows": 30,
+      "pearson": -0.09178150879418732,
+      "spearman": -0.06473859844271414,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "p_sink_mass",
+      "outcome": "candidate_accuracy",
+      "windows": 30,
+      "pearson": 0.2429732989553827,
+      "spearman": 0.13268488601415684,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "p_sink_mass",
+      "outcome": "correct_to_wrong",
+      "windows": 30,
+      "pearson": -0.2152468823885119,
+      "spearman": -0.11449351898319787,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "p_sink_share",
+      "outcome": "mean_absolute_margin_change",
+      "windows": 30,
+      "pearson": 0.1450523040529121,
+      "spearman": 0.3410456062291435,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "p_sink_share",
+      "outcome": "candidate_accuracy",
+      "windows": 30,
+      "pearson": -0.27139128422549624,
+      "spearman": -0.4632688282092925,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "p_sink_share",
+      "outcome": "correct_to_wrong",
+      "windows": 30,
+      "pearson": 0.18376251292373622,
+      "spearman": 0.30569999937767317,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "q_roi_enrichment",
+      "outcome": "mean_absolute_margin_change",
+      "windows": 30,
+      "pearson": 0.5709610021595396,
+      "spearman": 0.5283648498331479,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "q_roi_enrichment",
+      "outcome": "candidate_accuracy",
+      "windows": 30,
+      "pearson": -0.5808033074603708,
+      "spearman": -0.41949184200734274,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "q_roi_enrichment",
+      "outcome": "correct_to_wrong",
+      "windows": 30,
+      "pearson": 0.5822566901055236,
+      "spearman": 0.4128217022492768,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "p_roi_enrichment",
+      "outcome": "mean_absolute_margin_change",
+      "windows": 30,
+      "pearson": 0.12109181598067333,
+      "spearman": 0.057174638487208,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "p_roi_enrichment",
+      "outcome": "candidate_accuracy",
+      "windows": 30,
+      "pearson": -0.111421975804867,
+      "spearman": 0.09973931907866891,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    },
+    {
+      "cohort": "chooserel_all32",
+      "feature": "p_roi_enrichment",
+      "outcome": "correct_to_wrong",
+      "windows": 30,
+      "pearson": 0.1256831102744366,
+      "spearman": -0.08270256200194775,
+      "interpretation": "Descriptive across30 overlapping windows, no independent-sample p-value or causal inference"
+    }
+  ],
+  "validation": "64/64 same-GPU historical Full logits exact; observer/no-observer smoke exact; weights unchanged; validated32-layer rows;90 frozen window_summary rows reproduced."
+}
