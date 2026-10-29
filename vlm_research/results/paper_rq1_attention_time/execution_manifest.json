@@ -1,0 +1,220 @@
+{
+  "protocol": {
+    "version": 1,
+    "seed": 20261029,
+    "model": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "dtype": "float16",
+    "attention": "eager",
+    "transformers": "4.49.0",
+    "train": false,
+    "target_counts": {
+      "gqa_balanced": {
+        "discovery": 300,
+        "confirmation": 1000
+      },
+      "scienceqa_img": {
+        "discovery": 300,
+        "confirmation": 800
+      },
+      "pope_adversarial": {
+        "discovery": 300,
+        "confirmation": 900
+      },
+      "textvqa": {
+        "discovery": 300,
+        "confirmation": 1000
+      },
+      "coco_caption": {
+        "discovery": 400,
+        "confirmation": 1000
+      },
+      "textcaps": {
+        "discovery": 400,
+        "confirmation": 1000
+      }
+    },
+    "generation": {
+      "do_sample": false,
+      "num_beams": 1,
+      "short_max_new_tokens": 32,
+      "caption_max_new_tokens": 64,
+      "eos_token_id": 2,
+      "use_cache": true
+    },
+    "intervention": "Zero only current Query o_proj output in zero-based three-layer window, MLP unchanged. t0=current original prompt P-1. t>0=single actual Decode Query consuming Full token t-1. Discovery each intervention starts with a deep clone of identical unmodified Full history; do not free-generate after that intervention. Confirmation maintains its own naturally intervened cache and generated history; Prefill-only modifies only original P-1, Decode-only only subsequent single-token forwards, Combined both.",
+    "windows": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29
+    ],
+    "decode_times": [
+      0,
+      1,
+      4,
+      8,
+      16
+    ],
+    "window_selection": "After complete Discovery, average JS within dataset x reached-time cells, then equal-weight available cells. Fixed references starts0,9,20,29; add lowest2 remaining starts, then highest2 remaining. Ties smaller start. Freeze eight starts before reading or generating Confirmation. Missing cells reported, no imputation. Do not select using confirmation or generation accuracy.",
+    "splitting": "Global source-aware image identity (COCO/OpenImages/GQA identities), byte SHA256 and decoded RGB SHA256. One canonical image assigned to exactly one dataset and partition. Fixed hash order seed20261029, labels and model outputs not used. Multiple questions within one partition allowed; same image always same worker. No repeated question.",
+    "short_prompt": "Reuse frozen Phase4.0 short-answer and ScienceQA multiple-choice format; GQA official balanced questions, never correct_question subsets.",
+    "caption_prompt": "Describe the image in one sentence.",
+    "metrics": {
+      "gqa_balanced": "Official GQA generated answer accuracy (verified official evaluator)",
+      "scienceqa_img": "Pinned original option-letter parser/index accuracy",
+      "pope_adversarial": "Pinned official lexical accuracy, F1/precision/recall/yes-ratio secondary",
+      "textvqa": "Pinned10-human-answer VQA soft accuracy, image-only prompt",
+      "coco_caption": "pycocoevalcap1.2 PTBTokenizer, CIDEr primary, SPICE secondary, official refs",
+      "textcaps": "pycocoevalcap1.2 PTBTokenizer, CIDEr primary, SPICE secondary, official refs"
+    },
+    "inference": "Image-cluster paired bootstrap50000 replicates, fixed seed; marginal95%CI for all deltas. Familywise two-sided95% bounds use Bonferroni across144 primary comparisons (6 tasks x8 windows x3 bypass modes);48 caption SPICE comparisons separate secondary family. Low-harm claim requires familywise lower bound > negative predeclared margin. CI crossing0 is not equivalence. No heads/layers/timepoints treated as independent images.",
+    "noninferiority_margins": {
+      "short_accuracy_or_soft_0_to_1": 0.01,
+      "CIDEr_raw_0_to_10": 0.02,
+      "SPICE_0_to_1": 0.01
+    },
+    "zero_effect_guard": "When every paired score delta is exactly zero, percentile bootstrap is degenerate. Also require score_range * (1-alpha**(1/n_images)) < margin, where alpha=.05/(2*family). This exact zero-negative-event upper bound prevents low-harm claims with inadequate image-cluster rare-harm resolution. Score range10 for CIDEr,1 otherwise. Report empirical zero changes and underpowered inference separately.",
+    "caption_bootstrap": "Use paired per-image official scorer outputs with fixed complete-cohort CIDEr document-frequency calibration. This estimates image-average score uncertainty conditional on fixed benchmark IDF, not a refitted-IDF estimand; disclose explicitly.",
+    "mechanism": "Discovery Native Full only:32-layer current-query BOS/Image/original Question/generated-text mass and o_proj-output / layer-input residual norm. History includes current consumed generated token at Decode. Group windows by mean of three layers. Within task x time x window centered, image-cluster descriptive regression adjusting Full confidence and layer fixed effects; no claim that across-layer correlation explains causality. No Sink/ROI.",
+    "completion_gate": "All sources, official scorers and image-disjoint manifests verified before formal GPU work. CPU tests + real cache/bypass smoke must pass. Partial availability or failed smoke is explicitly partial; never manufacture scores/figures or silently substitute sources."
+  },
+  "source_sha256": {
+    "paper_rq1/__init__.py": "af7c2358f0153341c0db552efa67e4f531deb391a1ae41d32d36f4e070723e35",
+    "paper_rq1/acquire.py": "10f78cd249ee378ad0397eae6c9f50d4f83db021dc3bc4ad89ac009f473fe1b4",
+    "paper_rq1/analyze.py": "8c75ef85ff9ed68242b08089d9025d028c624945b982b145d6fc10ebce21b474",
+    "paper_rq1/data.py": "dcec8e6b7b1c1268ee7a4413f02d745bfa377029349a5fe5226d909cae510a8f",
+    "paper_rq1/engine.py": "2c838844c0e7e9815662019498c9b577b8f6478898f591c9cf52cc4a2028eff9",
+    "paper_rq1/inventory.py": "b584233c7694fd789f8c252cb27da858943923d56693d3ff87e6800b659099ed",
+    "paper_rq1/launch.py": "a3a4833616702b2ece18acbf4fd7d81692565c4216fa3f2c1ca9b81209fd9055",
+    "paper_rq1/protocol.py": "cbe05745378a0a05d14f6667c2181ce737d6bc87370ee07335de3b67c75a0ca5",
+    "paper_rq1/refine.py": "f7b0cee7f373d0af569f45e65e0f4e4dd7a5dd98deb372123e06e0585def07f8",
+    "paper_rq1/run.py": "cf44578a88905e0356b035588df47a4c22dbd987a605c3cda179fcc787d7df99",
+    "paper_rq1/scorers.py": "081e409993a481a0b3c83e0cf6ae2d16768c10e1c95f602de72c4abe4f5c9ad8",
+    "paper_rq1/tests.py": "73045c921f970fd8b8574533052098b0dd4b724e45c554bcbd2923f3c4bc974c",
+    "vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d",
+    "knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+    "attention_position_probe.py": "91749c6b4f5db5428b5e8ef4e599b72c85bae7683f5fcc2c5e29380b3d5d55eb",
+    "benchmarks/scoring.py": "9dd9bb60a3f0929240e520cc4ce50354ca4778a7f138eb5718fe99c42eed2b25",
+    "benchmarks/protocols.py": "c80e8011f8ba3f7f627398ec2a3bff300d479db46ccb04a564d5ed525abd4f48",
+    "benchmarks/prepare_datasets.py": "a752a2695312d66f95d607835f6740f2bf93a6b8be549d6d436b00d188ecf20d",
+    "benchmarks/dataset_registry.py": "20369ec1648e795958d7290934f4604fe8ed3b7874c8f27f8aa031d04bf024f5",
+    "benchmarks/scienceqa_adapter.py": "6f03bdc3cea29a53bb58e892678d874220143a9f3cf9a7b6eee8a788502c72fd",
+    "benchmarks/smoke.py": "8f513bc47a2e7c4036d10fb8e5e30fd8e87ccbc2e9d799c93983965823e6b3fe",
+    "benchmarks/_vendor/m4c_evaluator.py": "8b49e1033e29d551c0bdd86d9149e2b54370e4cd17e52176ac9061b3521f0774",
+    "test_paper_rq1.py": "e9ad87b51b445069cccab8ac069229f80486f3ad8288f829c19b54b0ab324568"
+  },
+  "code_commit": "906103b37b19d56e1752b5b3fc5bc04246ecd6a8",
+  "cpu_validation_sha256": "567f607bb7061ffd9dd7e5a9996cf0c1a20756b08ae67e1d942a11c13469f8ee",
+  "data_manifest_sha256": "5ffd8bb31e9e1446aaaf8d17481670311fee490f16e745aabc5d15247fff1fc0",
+  "scorer_validation_sha256": "e5ecf10328cb0ab5f269beba06712931487c5c55c31dedcbf067e82381f1c6c1",
+  "model_files": {
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/added_tokens.json": {
+      "sha256": "a94c56096001713e3eb9a34b1a545a8c1d5e8034ed2fb81f897c8cb54b420121",
+      "bytes": 41,
+      "mtime_ns": 1793194086181998587
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/chat_template.json": {
+      "sha256": "854445c0a45532ecbee1ae9aa31d4be19644060a156f2c88456f50f584261543",
+      "bytes": 701,
+      "mtime_ns": 1793194086798017022
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/config.json": {
+      "sha256": "0bde54495c54bcc346064a0d314b010d1c4d3ca7f7e583b6f711949a35352c0f",
+      "bytes": 950,
+      "mtime_ns": 1793194089686103414
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/generation_config.json": {
+      "sha256": "3a6dc8c202be258023f58a03f804bdcacf138b8a2cc7492be2530e16945a0951",
+      "bytes": 141,
+      "mtime_ns": 1793194089290091572
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00001-of-00003.safetensors": {
+      "sha256": "c11dbf016ee7d35ee130c19b67e20eb04873996006f424b7bcbd453b6517ee66",
+      "bytes": 4992930200,
+      "mtime_ns": 1793199719115753829
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00002-of-00003.safetensors": {
+      "sha256": "46df6c6e5fad297fe7fbca4963dcf180cb1d0528cabc884d1f603311fed01328",
+      "bytes": 4957878440,
+      "mtime_ns": 1793199782813772811
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00003-of-00003.safetensors": {
+      "sha256": "4f06177c37ca13944e73b57dd6d051767b950dffc12400c700dfa2509c24c697",
+      "bytes": 4176137408,
+      "mtime_ns": 1793199778045624044
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model.safetensors.index.json": {
+      "sha256": "73af906b5ac12aea6eddf104d482d2a50bca30b20d61ee9f6c5269d3427a6991",
+      "bytes": 70128,
+      "mtime_ns": 1793194858551537899
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/preprocessor_config.json": {
+      "sha256": "a8d5e64ee5c07ff6d70142856d178ac39d0563da3612e32110fa824f5337b7a1",
+      "bytes": 505,
+      "mtime_ns": 1793194856691488340
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/processor_config.json": {
+      "sha256": "fef918d6ba333f72a066877965bc4a162308568ba62aa90c806caedf7b45d64e",
+      "bytes": 173,
+      "mtime_ns": 1793194854031417454
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/special_tokens_map.json": {
+      "sha256": "358c249e2fb29060c6b73157d428853b0c48710deffc8ee670ab1013880946c9",
+      "bytes": 552,
+      "mtime_ns": 1793194854963442292
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer.json": {
+      "sha256": "30e1294abd835edfebb24618fce6f47c21ffb2b2802520d150bdee0b808b47cb",
+      "bytes": 3619380,
+      "mtime_ns": 1793194860207582017
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer.model": {
+      "sha256": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+      "bytes": 499723,
+      "mtime_ns": 1793194861087605460
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer_config.json": {
+      "sha256": "79b7f1ebceddf7235f3791c387d781818b0c7e7cf868d0e4f71896a55b949833",
+      "bytes": 1451,
+      "mtime_ns": 1793194860479589263
+    }
+  },
+  "gpu_uuids": [
+    "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89",
+    "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+    "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+    "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+  ],
+  "stages": [
+    "smoke",
+    "discovery",
+    "confirmation"
+  ]
+}
