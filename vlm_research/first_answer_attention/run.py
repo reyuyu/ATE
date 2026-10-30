@@ -103,7 +103,7 @@ def reference(model, prompt):
 
 
 def smoke(model, processor, previous_binding):
-    selected = [next(s for s in cohort() if s['task'] == t) for t in TASKS[:2]]
+    selected = [next(s for s in cohort() if s['task'] == t) for t in list(TASKS)[:2]]
     records = []
     footprint = hook_footprint(model)
     for index, sample in enumerate(selected):

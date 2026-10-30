@@ -10,6 +10,9 @@ from first_answer_attention.engine import CONDITIONS, supplement_generate, first
 
 class Tests(unittest.TestCase):
     def test_exact_five_conditions(self):
+        from first_answer_attention.run import TASKS, cohort
+        smoke_samples = [next(s for s in cohort() if s['task'] == t) for t in list(TASKS)[:2]]
+        self.assertEqual(len(smoke_samples), 2)
         self.assertEqual(list(CONDITIONS), list('ABCDE'))
         self.assertEqual(CONDITIONS['D'], dict(layers=list(range(6)), decode=True))
         self.assertEqual(CONDITIONS['E'], dict(layers=[2, 3, 4, 5], decode=True))
