@@ -1,0 +1,21 @@
+test_decode_quality_analysis (unittest.loader._FailedTest.test_decode_quality_analysis) ... ERROR
+
+======================================================================
+ERROR: test_decode_quality_analysis (unittest.loader._FailedTest.test_decode_quality_analysis)
+----------------------------------------------------------------------
+ImportError: Failed to import test module: test_decode_quality_analysis
+Traceback (most recent call last):
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/unittest/loader.py", line 162, in loadTestsFromName
+    module = __import__(module_name)
+             ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/decode-layerwise-functional-necessity/vlm_research/test_decode_quality_analysis.py", line 6, in <module>
+    from paper_rq1_decode_layerwise_quality.analyze import csv_write,csv_read,choose_cases
+  File "/data/lk/ATE-worktrees/decode-layerwise-functional-necessity/vlm_research/paper_rq1_decode_layerwise_quality/analyze.py", line 11, in <module>
+    from scipy.stats import pearsonr,spearmanr
+ModuleNotFoundError: No module named 'scipy'
+
+
+----------------------------------------------------------------------
+Ran 1 test in 0.000s
+
+FAILED (errors=1)

@@ -22,6 +22,9 @@ def main():
     def low(metric,k):return by[(metric,k)]['family_noninferior']=='True'
     candidates=[k for k in range(32) if all(low(m,k) for m in ['CIDEr','SPICE','TextVQA'])]
     nominal=[k for k in range(32) if all(by[(m,k)]['ordinary_noninferior']=='True' for m in ['CIDEr','SPICE','TextVQA'])]
+    corrected_harm={m:[k for k in range(32) if float(by[(m,k)]['family95_high'])<0] for m in ['CIDEr','SPICE','TextVQA']}
+    coco_summary={int(r['layer']):r for r in csv_read(OUT/'layerwise_coco_quality_summary.csv')}
+    decode_content=json.loads((OUT/'textvqa_full_decode_content_audit.json').read_text())
     ranked={m:sorted(range(32),key=lambda k:float(by[(m,k)]['delta'])) for m in ['CIDEr','SPICE','TextVQA']}
     layers=lambda seq:', '.join('L'+str(k) for k in seq) or '无'
     score_rows=[]
@@ -41,6 +44,8 @@ def main():
         '3. 单步原生Token LogP与完整自由生成质量是不同观测；下面提供历史9/10个实测离散层的描述性相关，不能补造其余层单步结果，也不能把相关当成因果。',
         f"4. 仅建议将以上跨任务校正候选（若有）提交下一阶段独立研究决策。本轮没有进行任何多层联合消融；单层低损害不保证联合安全。",
         '5. 200图探索、有限自动指标与稀有错误缺失，不能建立通用低损害或真实计算加速。普通区间包含0不是无损；校正筛选也不能取代独立确认。','',
+        f"补充：三端点联合筛选未通过不等于所有层均有害。校正区间整体低于0的层分别为：CIDEr {layers(corrected_harm['CIDEr'])}；SPICE {layers(corrected_harm['SPICE'])}；TextVQA {layers(corrected_harm['TextVQA'])}。其它层可能是功效不足或指标分歧，应看逐层区间。",
+        f"COCO L0-off出现{coco_summary[0]['truncated']}/200条64-Token截断，平均生成长度{float(coco_summary[0]['mean_length']):.2f}；质量损失伴随显著的终止异常。这不等于已分离出视觉事实错误的因果贡献。",'',
         '## 模型、数据、冻结协议','',
         f"- 基线提交`{PROTOCOL['base_commit']}`；冻结采集提交`{worker['code_commit']}`；模型`LLaVA-1.5-7B@{PROTOCOL['model_revision']}`，FP16/eager，Transformers4.49.0；未训练或改权重。",
         '- GPU0已有外部任务，未占用、终止或等待抢占。只使用物理GPU1–3，每卡独立模型；同一样本33条件固定同卡。',
@@ -48,6 +53,7 @@ def main():
         f"- TextVQA200题/200图，官方0.5.1验证集、每题完整10答案。可用本地不同图{selection['textvqa_local_unique_candidates']}，历史未用{selection['textvqa_unused_local_candidates']}，本次实际历史重叠{selection['textvqa_selected_historical_overlap']}；另1图Smoke。",
         '- 全部402图核查官方原始行、问题/参考答案、文件SHA256和解码RGB；不声称排除了所有感知近重复或数据分布偏差。来源、Prompt真实Token映射和划分先于GPU结果冻结。',
         '- COCO Prompt：`Describe the image in one sentence.`；最多64 Token。TextVQA原Question+冻结短答模板，最多32 Token，无额外OCR。Greedy、原位置与RoPE、正常KV Cache，EOS=2。','',
+        '- 解码沿用原流程skip_special_tokens=True及首尾strip，所有条件相同；不替换生成内容。完整原始Token IDs另行保留，文本变化率与Token变化率分别记录。','',
         '## 干预与Cache语义','',
         '- 全Prompt Prefill的32层Attention全部正常；第一个Token始终由Native Prefill产生。只从后续真实Decode开始，每一步将指定单层当前Query的`o_proj`输出置零。其他Attention、所有MLP/LayerNorm/残差保持正常。',
         '- 使用真实cache_position、Prompt长度与该层历史Cache长度判定Decode，不只检查sequence_length=1。单Token Prefill CPU反例也覆盖。',
@@ -85,6 +91,7 @@ def main():
         subset=[r for r in full if r['dataset']==unit];content=np.array([int(r['content_tokens']) for r in subset]);off=[r for r in allrows if r['dataset']==unit]
         lines.append(f"- {unit} Full内容Token：均值{content.mean():.3f}、中位数{np.median(content):.1f}、范围{content.min()}–{content.max()}；至少2个内容Token {sum(content>=2)}/200。Full EOS {sum(r['eos']=='True' for r in subset)}/200；32层总截断{sum(r['truncated']=='True' for r in off)}/6400。")
     lines+=['- TextVQA按Full内容长度1、2–3、4+分组的评分、增减题数及文本变化见`textvqa_length_analysis.csv`。1内容Token题的Decode主要预测EOS；这种局限不能证明对一般多Token回答不重要。',
+        f"- 更严格的后续内容审计：{decode_content['with_substantive_decode']}/200题在t>=1存在非特殊且包含字母/数字的Token；{decode_content['only_eos_or_whitespace_punctuation_decode']}/200题后续仅EOS/空白/标点。此定义包含子词，不等于独立词数或人工语义判定。逐题证据见textvqa_full_decode_content_audit.csv。",
         '- `caption_change_analysis.csv`与逐题表保存首个不同Token、原生词类/词和替换Token。词类沿用冻结词表，是事后诊断，不是随机词类因果效应；Unknown/多义/标点/EOS均保留。',
         '- 分数提升不等于视觉事实改善，文本改变也不自动等于质量损害。提前EOS/短文本只描述，不当作性能或加速证据。','',
         '## 与历史预测敏感性的关系','',
@@ -95,13 +102,14 @@ def main():
     lines+=table(correlations,['source','role','metric','layers','pearson','spearman']) if correlations else ['历史相关暂无可比数据，不能补造。']
     lines+=['','## 真实案例与语义核查','',
         'Figure6按预定展示规则从全体配对中选自动指标最大下降、最大上升、分数接近但文本改变，以及截断/语义风险候选。完整排序在quality_win_loss_cases.csv；此处选择用于解释，不用于统计选样。',
-        '自动CIDEr/SPICE提升不构成人工确认。图像核查补充见case_visual_review.md；若没有人工确认，不把候选标为已证明幻觉或语义等价。','',
+        '自动CIDEr/SPICE提升不构成人工确认。代理图像条件化复核见case_visual_review.md：最大CIDEr增益的L25-off主要省略与原图大体相容的服装细节，并非已证实纠正幻觉；公交车例仅增加逗号、核心语义不变；L0大象例存在重复字符/换行和未生成EOS的可核实异常。该复核不是独立人工盲审，不估计总体幻觉率。','',
         '## 图表','',
         '所有图PNG/PDF，L0–L31全部实测点，不平滑/插值；普通与家族区间在前三图分别显示。','']
     for name in ['figure1_coco_cider','figure2_coco_spice','figure3_textvqa','figure4_cross_task_sensitivity','figure5_caption_change_and_harm','figure6_actual_cases']:
         lines+=['!['+name+'](figures/'+name+'.png)','']
     lines+=['## 结论边界与下一阶段','',
         f"- 若开展下一阶段，优先预注册候选：{layers(candidates)}，先做独立确认，再考虑多层联合干预。没有通过校正阈值的层不能凭点估计认定安全。",
+        '- 本轮没有通过三端点共同筛选的层，因此不建议直接将任何层组合当作低损害策略。如果仅用于设计未来独立单层确认，L8/L12的COCO点估计变化较小且TextVQA通过本轮校正阈值，可作为探索线索；这不是冻结筛选通过，也不是联合消融证据。本轮不启动后续实验。',
         '- 不同任务、生成长度、自动参考覆盖差异都可能导致层敏感性不同。单步预测敏感性、局部Attention关联、完整生成必要性和真实硬件加速必须分开。',
         '- 本次只在冻结LLaVA-1.5-7B上进行400样本探索；不推广跨模型、不训练分类器、不执行来源裁剪、不做多层联合或计算加速。','',
         '## 可复现产物','',
@@ -111,6 +119,8 @@ def main():
     short=['# 中文研究总结','',f"Full: CIDEr {base['CIDEr']:.6f}; SPICE {base['SPICE']:.6f}; TextVQA {base['TextVQA']*100:.3f}%.",'',
         f"COCO CIDEr损害最大：{layers(ranked['CIDEr'][:5])}。SPICE损害最大：{layers(ranked['SPICE'][:5])}。TextVQA损害最大：{layers(ranked['TextVQA'][:5])}。",'',
         f"三端点96项校正非劣效候选：{layers(candidates)}；仅探索，不认定安全。",'',
+        f"COCO L0-off有{coco_summary[0]['truncated']}/200条达到64-Token上限；不能从早层Prefill/单步低敏感性推出持续Decode关闭安全。",
+        'L14–L16没有复现为COCO CIDEr损害峰。历史单步敏感性与完整生成质量没有稳定统一对应，详细离散层Pearson/Spearman及协议差异见报告。',
         '本轮400样本×33条件=13,200次真实完整生成；Prefill和首Token原生，仅后续Decode单层Attention输出置零。所有MLP保持，三卡同样本配对。',
         '单步原生Token LogP不等于自由生成质量；历史相关性见report.md。文本变化/平均损失小不证明语义安全，单层不推导多层，Hook置零不代表加速。',
         '已保存全部结果、负向尾部、普通与96比较校正区间、六组PNG/PDF及真实图像案例；下一步候选交由研究决策，本轮不自动扩展。']

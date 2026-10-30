@@ -41,6 +41,11 @@ class AnalysisTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             folder=Path(d)/'x';folder.mkdir();(folder/'Full.json').write_text('{}');(folder/'audit.json').write_text('{}')
             self.assertFalse(repair_incomplete_audit(folder,Path(d)/'attempt',['Full']));self.assertTrue(folder.exists())
+    def test_boxplot_fixed_formatter_keeps_real_layer_labels(self):
+        import matplotlib.pyplot as plt
+        from paper_rq1_decode_layerwise_quality.analyze import layer_ticks
+        fig,ax=plt.subplots();ax.boxplot(np.ones((4,32)),positions=range(32));layer_ticks(ax)
+        self.assertEqual([t.get_text() for t in ax.get_xticklabels()],[str(k) for k in range(0,32,2)]);plt.close(fig)
 
 
 if __name__=='__main__':unittest.main()

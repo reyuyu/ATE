@@ -21,6 +21,8 @@ python -m paper_rq1_decode_layerwise_quality.run freeze
 python -m paper_rq1_decode_layerwise_quality.validation scorer
 python -m paper_rq1_decode_layerwise_quality.launch smoke generation
 OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 python -m paper_rq1_decode_layerwise_quality.analyze all
+python -m paper_rq1_decode_layerwise_quality.validation analysis_cpu
+python -m paper_rq1_decode_layerwise_quality.validation text_length
 python -m paper_rq1_decode_layerwise_quality.validation data
 python -m paper_rq1_decode_layerwise_quality.report
 python -m paper_rq1_decode_layerwise_quality.validation delivery

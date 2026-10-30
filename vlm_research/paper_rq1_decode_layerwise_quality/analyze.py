@@ -154,6 +154,11 @@ def savefig(fig,name):
     fig.savefig(folder/(name+'.png'),dpi=220,bbox_inches='tight');fig.savefig(folder/(name+'.pdf'),bbox_inches='tight');plt.close(fig)
 
 
+def layer_ticks(ax):
+    positions=list(range(0,32,2))
+    ax.set_xticks(positions,labels=[str(k) for k in positions])
+
+
 def figures():
     import matplotlib
     matplotlib.use('Agg')
@@ -169,13 +174,13 @@ def figures():
         fig,ax=plt.subplots(figsize=(12,4.2));ax.vlines(x,flo,fhi,color=colors[metric],alpha=.18,lw=4,label='Bonferroni family96 intervals')
         ax.errorbar(x,y,yerr=[np.maximum(0,y-lo),np.maximum(0,hi-y)],fmt='o-',markersize=4,capsize=2,color=colors[metric],label='Single-layer Decode-off; paired95%CI')
         ax.axhline(base,color='black',ls='--',label='Full');ax.axhline(base-float(values[0]['ni_margin'])*scale,color='grey',ls=':',label='Frozen noninferiority margin')
-        ax.set(xlabel='Ablated layer (normal Prefill; Decode-only)',ylabel=metric+(' soft score (%)' if metric=='TextVQA' else ' (raw)'),xticks=np.arange(0,32,2),xlim=(-.5,31.5),title=('TextVQA200 questions /200 images' if metric=='TextVQA' else 'COCO200 images; fixed reference IDF'))
-        ax.grid(alpha=.2);ax.legend(fontsize=8,ncol=2);savefig(fig,name)
+        ax.set(xlabel='Ablated layer (normal Prefill; Decode-only)',ylabel=metric+(' soft score (%)' if metric=='TextVQA' else ' (raw)'),xlim=(-.5,31.5),title=('TextVQA200 questions /200 images' if metric=='TextVQA' else 'COCO200 images; fixed reference IDF'));layer_ticks(ax)
+        ax.grid(alpha=.2);ax.legend(fontsize=8,ncol=2,loc='upper center',bbox_to_anchor=(.5,-.23));savefig(fig,name)
     fig,axes=plt.subplots(3,1,figsize=(12,8),sharex=True)
     for metric,ax in zip(['CIDEr','SPICE','TextVQA'],axes):
         v=sorted([r for r in stats if r['metric']==metric],key=lambda r:int(r['layer']));scale=100 if metric=='TextVQA' else 1
         ax.plot(range(32),[float(r['delta'])*scale for r in v],'o-',color=colors[metric],markersize=3);ax.axhline(0,color='black',ls='--');ax.set(ylabel='Delta '+metric+(' (pp)' if metric=='TextVQA' else ' (raw)'));ax.grid(alpha=.2)
-    axes[-1].set(xlabel='Ablated Decode Attention layer',xticks=range(0,32,2));fig.suptitle('Cross-task quality changes (different raw scales; not summed)');savefig(fig,'figure4_cross_task_sensitivity')
+    axes[-1].set(xlabel='Ablated Decode Attention layer');layer_ticks(axes[-1]);fig.suptitle('Cross-task quality changes (different raw scales; not summed)');savefig(fig,'figure4_cross_task_sensitivity')
     fig,axes=plt.subplots(3,1,figsize=(13,10),sharex=True);v=sorted([r for r in changes if r['dataset']=='coco_caption'],key=lambda r:int(r['layer']))
     axes[0].plot(range(32),[float(r['text_change_rate'])*100 for r in v],'o-',color='#176b91');axes[0].set(ylabel='Caption text changed (%)')
     groups=[np.array([float(r['delta_CIDEr']) for r in rows if r['dataset']=='coco_caption' and int(r['layer'])==k]) for k in range(32)]
@@ -183,7 +188,7 @@ def figures():
     positive=[int(sum(g>1e-12)) for g in groups];negative=[int(sum(g< -1e-12)) for g in groups]
     axes[2].bar(np.arange(32)-.2,positive,width=.4,label='Score up',color='#3a8157');axes[2].bar(np.arange(32)+.2,negative,width=.4,label='Score down',color='#a64a57');axes[2].set(ylabel='Images',xlabel='Ablated Decode Attention layer');axes[2].legend()
     for ax in axes:ax.grid(alpha=.15)
-    axes[-1].set_xticks(range(0,32,2));fig.suptitle('Text changes are not equivalent to quality harm; all negative tails retained');savefig(fig,'figure5_caption_change_and_harm')
+    layer_ticks(axes[-1]);fig.suptitle('Text changes are not equivalent to quality harm; all negative tails retained');savefig(fig,'figure5_caption_change_and_harm')
     case_figure(rows)
 
 
