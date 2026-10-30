@@ -4,6 +4,7 @@ from collections import Counter,defaultdict
 import csv
 import json
 from pathlib import Path
+import re
 import textwrap
 import time
 import numpy as np
@@ -32,15 +33,16 @@ def csv_read(path):
 
 def dataset_rows():
     config=verify();binding=digest(config)
-    environments=[]
+    environments=[];all_attempt_environments=[]
     for rank in range(3):
         status=json.loads((OUT/f'generation/shard{rank}/completion.json').read_text())
         if status['binding']!=binding or status['status']!='complete':raise ValueError('Require all three complete frozen workers')
-        path=sorted((OUT/f'generation/shard{rank}').glob('environment_*.json'))[-1]
+        paths=sorted((OUT/f'generation/shard{rank}').glob('environment_*.json'));path=paths[-1]
+        all_attempt_environments.extend(json.loads(p.read_text()) for p in paths)
         environments.append(json.loads(path.read_text()))
     for field in ['python','torch','transformers','cuda_runtime','cudnn','gpu','model_revision','model_path','parameter_dtypes','binding','code_commit']:
-        if len({digest(e[field]) for e in environments})!=1:raise ValueError('Worker environment mismatch:'+field)
-    freeze_json(OUT/'environment.json',dict(worker_environments=environments,common_environment_exact=True))
+        if len({digest(e[field]) for e in all_attempt_environments})!=1:raise ValueError('Worker/resume environment mismatch:'+field)
+    freeze_json(OUT/'environment.json',dict(worker_environments=environments,common_environment_exact=True,all_attempts_checked=len(all_attempt_environments)))
     manifest=json.loads((OUT/'sample_manifest.json').read_text());data={};seen=set();audit=[]
     for s in manifest['samples']:
         key=(s['dataset'],s['question_id'])
@@ -188,9 +190,10 @@ def figures():
 def choose_cases(rows):
     coco=[r for r in rows if r['dataset']=='coco_caption' and r['text_changed']=='True']
     if not coco:raise ValueError('No changed captions for required cases')
+    same_words=[r for r in coco if re.findall(r'[a-z0-9]+',r.get('full_text','').lower())==re.findall(r'[a-z0-9]+',r.get('text','').lower()) and r.get('full_text') and r.get('text')]
     chosen=[('Largest automatic CIDEr decrease',min(coco,key=lambda r:float(r['delta_CIDEr']))),
         ('Largest automatic CIDEr increase',max(coco,key=lambda r:float(r['delta_CIDEr']))),
-        ('Changed text / near-equal automatic scores',min(coco,key=lambda r:abs(float(r['delta_CIDEr']))+abs(float(r['delta_SPICE']))))]
+        ('Punctuation/case-only change (inspect)' if same_words else 'Changed text / near-equal automatic scores',min(same_words or coco,key=lambda r:abs(float(r['delta_CIDEr']))+abs(float(r['delta_SPICE']))))]
     used={(r['question_id'],r['layer']) for _,r in chosen}
     pool=[r for r in coco if (r['question_id'],r['layer']) not in used]
     truncated=[r for r in pool if r['truncated']=='True']

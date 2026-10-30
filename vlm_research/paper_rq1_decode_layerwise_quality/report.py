@@ -55,7 +55,8 @@ def main():
         '- 本轮是Attention输出更新消融，不是删除Transformer Block，不省去底层Attention计算，不报告速度收益。','',
         '## 正确性验证','',
         f"- {json.loads((OUT/'cpu_validation.json').read_text())['tests']}项CPU测试通过；目标32层、Hook异常清理、阶段判定、独立Cache、EOS/长度、固定选样、重复/哈希绑定及Bootstrap逻辑均覆盖。",
-        '- 每张GPU均对独立COCO/TextVQA Smoke验证：cached Full与原生model.generate Token完全一致；32层No-op的全部有效Logits精确一致；全部Prefill Logits/Cache精确一致；指定输出确为零，32层Attention与MLP仍执行；Hook/Input/父Cache无污染。',
+        f"- 另{json.loads((OUT/'analysis_cpu_validation.json').read_text())['tests']}项后处理/断点恢复测试通过。最初后处理测试因环境无SciPy而失败，已改为复用仓库原有相关函数；失败日志保留，没有安装/更改运行环境，也未修改GPU采集代码。",
+        '- 每张GPU均对独立COCO/TextVQA Smoke验证：cached Full与原生model.generate Token完全一致；32层No-op的全部生成步有效Logits精确一致；全部32条件的Prefill末位有效Logits/完整Cache精确一致；指定输出确为零，32层Attention与MLP仍执行；Hook/Input/父Cache无污染。',
         '- L0/L14/L31进一步比较各自新算Prefill与共享Prefill的完整干预轨迹和Logits精确一致。三卡同样本Full Logits最大差异记录在gpu_smoke_validation.json，未放宽容差。',
         '- 正式400图均保存33条件检查点、代码/数据/结果哈希、首Token、逐图父Cache/Input审计。全表无非有限分数、NaN/Inf/OOM或跳过失败样本。','',
         '## 官方评分与统计','',
@@ -75,6 +76,10 @@ def main():
             lines.append('- '+metric+' 本层段下降最大：'+detail(metric,order[0]))
             lines.append('- '+metric+' 本层段下降最小：'+detail(metric,order[-1]))
         lines+=['不能从这些单层结果推断相邻层联合关闭的效果；不同任务的敏感峰必须分别看待。','']
+    lines+=[f"早层L0–L8：COCO两端点均通过校正筛选的层为{layers([k for k in range(9) if low('CIDEr',k) and low('SPICE',k)])}；TextVQA通过的层为{layers([k for k in range(9) if low('TextVQA',k)])}。",
+        '此前TextVQA L0–L2三层Decode窗口的损害不能被单层均值解释完毕；有无单层损害都不能证明三层联合无损。','']
+    for k in [26,31]:
+        lines.append(f"L{k}完整生成：CIDEr变化{float(by[('CIDEr',k)]['delta']):+.6f}，SPICE变化{float(by[('SPICE',k)]['delta']):+.6f}，TextVQA变化{100*float(by[('TextVQA',k)]['delta']):+.3f}pp；其方向和区间应与历史视觉词单步LogP高敏感分别解释，不直接等同。")
     lines+=['## 生成变化、EOS与TextVQA长度','']
     for unit in ['coco_caption','textvqa']:
         subset=[r for r in full if r['dataset']==unit];content=np.array([int(r['content_tokens']) for r in subset]);off=[r for r in allrows if r['dataset']==unit]

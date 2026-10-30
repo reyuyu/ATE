@@ -3,6 +3,8 @@ import argparse
 import json
 from pathlib import Path
 import subprocess
+import time
+import unittest
 import numpy as np
 from benchmarks.dataset_registry import digest,freeze_json,sha256
 from benchmarks.scoring import textvqa_score
@@ -11,6 +13,19 @@ from paper_rq1.inventory import RESOURCES,OLD
 from .protocol import ROOT,OUT,RAW
 from .data import rgb_sha
 from .run import verify
+
+
+def analysis_cpu():
+    for name in ['analysis_cpu_tests_final.txt','analysis_cpu_validation.json']:
+        path=OUT/name
+        if path.exists():path.rename(OUT/(str(time.time_ns())+'_'+name))
+    with (OUT/'analysis_cpu_tests_final.txt').open('w') as log:
+        result=unittest.TextTestRunner(stream=log,verbosity=2).run(unittest.defaultTestLoader.loadTestsFromName('test_decode_quality_analysis'))
+    if not result.wasSuccessful():raise AssertionError('Postprocessing tests failed')
+    freeze_json(OUT/'analysis_cpu_validation.json',dict(passed=True,tests=result.testsRun,
+        source_sha256={str(p.relative_to(ROOT)):sha256(p) for p in [ROOT/'test_decode_quality_analysis.py',ROOT/'paper_rq1_decode_layerwise_quality/analyze.py',ROOT/'paper_rq1_decode_layerwise_quality/statistics.py',ROOT/'paper_rq1_decode_layerwise_quality/resume.py']},
+        log_sha256=sha256(OUT/'analysis_cpu_tests_final.txt'),initial_missing_scipy_attempt_preserved=True))
+    print('Postprocessing tests passed',result.testsRun,flush=True)
 
 
 def scorer():
@@ -66,9 +81,10 @@ def delivery():
     process=subprocess.check_output(['nvidia-smi','--query-compute-apps=gpu_uuid,pid,process_name,used_memory','--format=csv'],text=True)
     freeze_json(OUT/'gpu_release.json',dict(current_compute_processes=process,note='External GPU0 processes are not ours and are left untouched.'))
     freeze_json(OUT/'failure_inventory.json',dict(failures=[dict(path=str(p.relative_to(OUT)),sha256=sha256(p),record=json.loads(p.read_text())) for p in sorted((OUT/'failures').glob('*.json'))],
+        postprocessing_initial_import_failure=dict(path='analysis_cpu_tests_initial_failure.txt',sha256=sha256(OUT/'analysis_cpu_tests_initial_failure.txt'),resolved='Reuse existing descriptive_correlations; no environment changes or worker changes.'),
         attempts_preserved=True,unresolved_failures=0))
     freeze_json(OUT/'completion.json',dict(status='complete',datasets=dict(coco_caption=200,textvqa=200),conditions=33,generations=13200,
-        cpu_tests=json.loads((OUT/'cpu_validation.json').read_text())['tests'],gpu_smoke_passed=True,model_and_scorer_hashes_exact=True,
+        cpu_tests=json.loads((OUT/'cpu_validation.json').read_text())['tests'],analysis_cpu_tests=json.loads((OUT/'analysis_cpu_validation.json').read_text())['tests'],gpu_smoke_passed=True,model_and_scorer_hashes_exact=True,
         worker_commit=config['code_commit'],source_sha256={str(p.relative_to(ROOT)):sha256(p) for p in sorted((ROOT/'paper_rq1_decode_layerwise_quality').glob('*.py'))},
         no_training=True,no_multilayer_experiment=True,no_speedup_claim=True))
     records=[dict(path=str(p.relative_to(OUT)),bytes=p.stat().st_size,sha256=sha256(p)) for p in sorted(OUT.rglob('*')) if p.is_file() and p.name not in ['delivery_inventory.json','delivery.log']]
@@ -77,4 +93,4 @@ def delivery():
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('stage',choices=['scorer','data','delivery']);a=p.parse_args();globals()[a.stage]()
+    p=argparse.ArgumentParser();p.add_argument('stage',choices=['scorer','data','analysis_cpu','delivery']);a=p.parse_args();globals()[a.stage]()

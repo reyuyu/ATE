@@ -26,8 +26,11 @@ python -m paper_rq1_decode_layerwise_quality.report
 python -m paper_rq1_decode_layerwise_quality.validation delivery
 ```
 
-Do not overwrite frozen manifests/checkpoints. Rerunning `launch generation`
-only resumes validated missing conditions; occupied GPUs fail closed. Smoke
+Do not overwrite frozen manifests/checkpoints. Run `python -m
+paper_rq1_decode_layerwise_quality.resume` for recovery after all workers stop.
+It takes all shard locks, preserves any complete-condition attempt that lost
+its final audit at interruption, then reruns the frozen collector; otherwise
+it resumes only validated missing conditions. Occupied GPUs fail closed. Smoke
 must finish on all participating cards before any formal generation.
 
 Ordinary paired95% and Bonferroni family96 intervals use200000 image-cluster
