@@ -1,0 +1,13 @@
+device,component,microseconds,iterations,prefix_length,query_rows,source,scope
+cuda,native_fp16_qk,185.37519454956055,200,610,1,"Actual native L0 P-1 Q and full native K/V; pinned FP16/eager path, no synthesized timing tensors.",PyTorch operations+dispatch; not custom-kernel or E2E speedup.
+cuda,native_fp32_softmax_to_fp16,25.14496088027954,200,610,1,"Actual native L0 P-1 Q and full native K/V; pinned FP16/eager path, no synthesized timing tensors.",PyTorch operations+dispatch; not custom-kernel or E2E speedup.
+cuda,native_fp16_av,165.18144607543945,200,610,1,"Actual native L0 P-1 Q and full native K/V; pinned FP16/eager path, no synthesized timing tensors.",PyTorch operations+dispatch; not custom-kernel or E2E speedup.
+cuda,native_full_query_attention,418.0633544921875,200,610,1,"Actual native L0 P-1 Q and full native K/V; pinned FP16/eager path, no synthesized timing tensors.",PyTorch operations+dispatch; not custom-kernel or E2E speedup.
+cuda,bos_qk_fp32_feature,84.56704139709473,200,610,1,"Actual native L0 P-1 Q and full native K/V; pinned FP16/eager path, no synthesized timing tensors.",PyTorch operations+dispatch; not custom-kernel or E2E speedup.
+cuda,read_actual_bos_kv,45.547518730163574,200,610,1,"Actual native L0 P-1 Q and full native K/V; pinned FP16/eager path, no synthesized timing tensors.",PyTorch operations+dispatch; not custom-kernel or E2E speedup.
+cpu,native_fp16_qk,498.4733951278031,200,610,1,"Actual native L0 P-1 Q and full native K/V; pinned FP16/eager path, no synthesized timing tensors.",PyTorch operations+dispatch; not custom-kernel or E2E speedup.
+cpu,native_fp32_softmax_to_fp16,48.04710508324206,200,610,1,"Actual native L0 P-1 Q and full native K/V; pinned FP16/eager path, no synthesized timing tensors.",PyTorch operations+dispatch; not custom-kernel or E2E speedup.
+cpu,native_fp16_av,16878.550915280357,200,610,1,"Actual native L0 P-1 Q and full native K/V; pinned FP16/eager path, no synthesized timing tensors.",PyTorch operations+dispatch; not custom-kernel or E2E speedup.
+cpu,native_full_query_attention,17400.34073474817,200,610,1,"Actual native L0 P-1 Q and full native K/V; pinned FP16/eager path, no synthesized timing tensors.",PyTorch operations+dispatch; not custom-kernel or E2E speedup.
+cpu,bos_qk_fp32_feature,40.412754751741886,200,610,1,"Actual native L0 P-1 Q and full native K/V; pinned FP16/eager path, no synthesized timing tensors.",PyTorch operations+dispatch; not custom-kernel or E2E speedup.
+cpu,read_actual_bos_kv,21.926220506429672,200,610,1,"Actual native L0 P-1 Q and full native K/V; pinned FP16/eager path, no synthesized timing tensors.",PyTorch operations+dispatch; not custom-kernel or E2E speedup.

@@ -1,0 +1,13 @@
+{
+  "heads": 32,
+  "head_dim": 128,
+  "bos_score_per_query": "O(H*d) dot products plus projection/normalization. Does not know the Softmax denominator.",
+  "sampled_score_per_query": "O(7*H*d), up to6 extra Keys; feature-reproduction projection cost is measured separately.",
+  "full_attention_query": "QK and AV each approximately2*T*H*d FLOPs, Softmax O(T*H), Key+Value reads O(2*T*H*d).",
+  "full_prefill": "Native dense Attention computes T rows; gating only P-1 cannot remove all other T-1 rows or other projection/MLP work.",
+  "bos_read": "2*32*128*2=16384 bytes for FP16 K/V, not including weights, projected norm Gram, predictor or dispatch.",
+  "sampled_extra_key_read": "Up to6*32*128*2=49152 additional bytes for FP16 Keys.",
+  "gram": "Offline per-layer/per-head W_head.T W_head;64MiB total FP32. No fixed BOS K/V anchor is assumed.",
+  "actual_acceleration_evidence": false,
+  "joint_gating_executed": false
+}

@@ -1,0 +1,47 @@
+{
+  "passed": true,
+  "script_sha256": "66a920667b05310e0f9b60b6efafe3574875d66fb3524418668ab2808dc24d49",
+  "sample_sha256": "8ff580d3d72c39b7e16893981f23a658dfa7b435ef0d8ab90db07e5d41dd5c87",
+  "preflight": {
+    "gpu_uuid": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89",
+    "free_mib": 24128,
+    "all_other_processes": ""
+  },
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "cuda_runtime": "12.4",
+    "cudnn": 90100,
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "cuda_visible_devices": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89",
+    "model_id": "llava-hf/llava-1.5-7b-hf",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "load_seconds": 10.93271885998547,
+    "parameter_devices": [
+      "cuda:0"
+    ],
+    "parameter_dtypes": [
+      "torch.float16"
+    ],
+    "hf_device_map": {
+      "": "cuda:0"
+    },
+    "memory_after_load": {
+      "allocated_mib": 13473.64794921875,
+      "reserved_mib": 13490.0,
+      "peak_allocated_mib": 13473.64794921875,
+      "peak_reserved_mib": 13490.0,
+      "device_free_mib": 10336.3125,
+      "device_total_mib": 24154.375,
+      "nvidia_smi_process_mib": 13786
+    }
+  },
+  "extra_observed_full_forwards": 1,
+  "new_ablations": 0,
+  "full_logits_exact": true,
+  "source_restored": true,
+  "inputs_unchanged": true,
+  "explanation": "Original Smoke microbench full_query_attention uses FP32 reference arithmetic including casts. This separate audit measures the actual native FP16 QK/AV and FP32-Softmax-to-FP16 path; do not confuse either with E2E acceleration."
+}
