@@ -3,6 +3,19 @@
 Independent branch `codex/function-token-attention-sparsify`, based on
 `6964407e6b4c1291cb0ca7c41128947d3025520d`. No previous collector/results modified.
 
+## Completed Result
+
+Verdict **C**: local low-harm Function pruning did not produce actual acceleration.
+Development400 images/1181 frozen positions/24801 interventions; independent
+holdout200 images/1000 free-running Captions. The frozen hidden-state linear
+probe achieved97.83% precision/57.10% recall on the holdout. Dynamic BOS+History
+changed3/200 Captions; CIDEr/SPICE1.2120/.2486 vs Full1.2102/.2481. On fixed GPU1,
+10images x5repeats, it took1.3923s/Caption vs Full1.3817s, about0.8% slower.
+Static BOS+History failed the frozen CIDEr noninferiority criterion. Neither
+coverage nor reduced Key count is reported as speedup. See the
+[full report](../results/paper_rq1_function_attention_sparsify/report.md) and
+[Chinese research summary](../results/paper_rq1_function_attention_sparsify/research_summary.md).
+
 ## Frozen Design
 
 - Stage A: both previous COCO200 cohorts, all previously selected targets,
@@ -43,12 +56,19 @@ python -m paper_rq1_function_attention_sparsify.pipeline
 ```
 
 CPU tests: `test_function_attention_sparsify`, `test_function_predictor`,
-`test_function_generation`. Every GPU process verifies its frozen sources,
+`test_function_generation`, `test_function_resume` (29tests total). Every GPU process verifies its frozen sources,
 model/data bindings and checkpoint identity. Failures are preserved, not skipped.
 
 Raw logits/features live outside Git under
 `/data/lk/ATE-resources/function_attention_sparsify/`, SHA-bound by checkpoints.
 Small predictor weights, CSVs, manifests, logs, PNG/PDF and reports are committed.
+
+For a stopped/incomplete StageA shard, expose its original physical GPU UUID and
+run `python -m paper_rq1_function_attention_sparsify.resume_collection stage_a
+--rank R`. It archives only attempt metadata/failures, never completed image
+checkpoints, then reuses the byte-identical frozen collector. GPU conflicts fail
+closed. Quality stages natively skip matching completed checkpoints/shards and
+keep retry environment records separately. A running shard must not be resumed.
 
 ## Interpretation
 

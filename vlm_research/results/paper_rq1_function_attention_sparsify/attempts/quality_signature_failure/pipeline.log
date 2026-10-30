@@ -1,0 +1,59 @@
+START paper_rq1_function_attention_sparsify.train
+{
+  "selected": {
+    "threshold": 0.99,
+    "predicted": 210,
+    "true_positive": 207,
+    "false_positive": 3,
+    "precision": 0.9857142857142858,
+    "recall": 0.5579514824797843,
+    "false_positive_rate": 0.0025575447570332483,
+    "coverage": 0.13601036269430053,
+    "brier": 0.04126292625905027,
+    "predictor": "B",
+    "split": "calibration",
+    "precision_ci95_low": 0.9675644248900063,
+    "precision_ci95_high": 1.0,
+    "predicted_images": 93,
+    "eligible": true
+  },
+  "classifier_gate_passed": true,
+  "dynamic_generation_allowed": true,
+  "thresholds": {
+    "A": 1.000001,
+    "B": 0.99,
+    "C": 0.999
+  },
+  "parameters": {
+    "raw_path": "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/results/paper_rq1_function_attention_sparsify/predictor_parameters.npz",
+    "raw_sha256": "295a44c2b67b0e3772397f206e751691215f0c7f7ad4ecc64fcee6711dded002"
+  },
+  "sources": {
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/predictor.py": "06d590b64f9a40c380782ca0ce9d76970f0235d34e479c6523fac1d2aea3ede3",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/train.py": "4afc26924fb1d6832af372a998d567351d4ee8ca008abe6b4209c34d2461d44c",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/analysis.py": "c28b55bca942d478db0ae224b4ac5356cc6531fac7b1841ca6717a88fd337c77",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/test_function_predictor.py": "2f496fe4f02d8240bb46264c37dd68b7b35d1733f9d157dddfea5f3c1e1db62c"
+  },
+  "training_protocol_sha256": "64525a330f5109ba459dc76742141da129c9cdc8dc74514f756096529a2389f8",
+  "holdout_outputs_read": false,
+  "selection_rule": "Among thresholds with image-bootstrap95% precision lower>=.95, >=50 predicted tokens spanning>=20 images, choose max coverage. Select simplest A then B then C unless next improves recall by>=.05 absolute. If none, abstain and stop dynamic strategies.",
+  "failure": null
+}
+START paper_rq1_function_attention_sparsify.quality_run freeze
+quality_smoke GPU 1 PID 1662365
+quality_smoke GPU 2 PID 1662366
+quality_smoke GPU 3 PID 1662367
+quality_smoke worker status [1, 1, 1]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/pipeline.py", line 59, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/pipeline.py", line 48, in main
+    status(stage=stage,status='running',started=started);parallel(stage)
+                                                         ^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/pipeline.py", line 32, in parallel
+    if any(codes):raise RuntimeError(stage+' failed; no later stage started: '+str(codes))
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: quality_smoke failed; no later stage started: [1, 1, 1]

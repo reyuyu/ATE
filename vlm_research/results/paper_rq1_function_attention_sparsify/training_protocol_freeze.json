@@ -1,0 +1,35 @@
+{
+  "protocol": {
+    "features": "Prefix last3 token hashed categorical IDs, position/64 and log1p(position), first/last-token indicators; hidden raw h31_in/its norm plus norm,position. No final generation length, next ID/logits/output or true attention mass.",
+    "algorithms": [
+      "A-prefix logistic",
+      "B-hidden linear logistic",
+      "C-prefix+hidden logistic"
+    ],
+    "training": "CPU FP32 full-batch Adam300 steps lr.03 weight_decay.01, train-only normalization; no model weight training.",
+    "threshold_grid": [
+      0.8,
+      0.85,
+      0.9,
+      0.925,
+      0.95,
+      0.975,
+      0.99,
+      0.995,
+      0.999,
+      1.000001
+    ],
+    "calibration_gate": "Among thresholds with image-bootstrap95% precision lower>=.95, >=50 predicted tokens spanning>=20 images, choose max coverage. Select simplest A then B then C unless next improves recall by>=.05 absolute. If none, abstain and stop dynamic strategies.",
+    "labels": "All t>=1 native positions. Function only complete single-token frozen Function lexicon; EOS/Special, ambiguous, unknown, unaligned, multi-token, punctuation remain explicit negative categories."
+  },
+  "sources": {
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/predictor.py": "06d590b64f9a40c380782ca0ce9d76970f0235d34e479c6523fac1d2aea3ede3",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/train.py": "4afc26924fb1d6832af372a998d567351d4ee8ca008abe6b4209c34d2461d44c",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/analysis.py": "c28b55bca942d478db0ae224b4ac5356cc6531fac7b1841ca6717a88fd337c77",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/test_function_predictor.py": "2f496fe4f02d8240bb46264c37dd68b7b35d1733f9d157dddfea5f3c1e1db62c"
+  },
+  "sample_sha256": "3addecc172d63bcc72c0216227340c9a0f386f796c26d2917ad7dfcc7aebfd32",
+  "stage_a_gate_sha256": "e8ed2a36a977dc01ed54d8d6f61b32429ddd96d114a2ba0ffdfe067918591b31",
+  "code_commit": "4aeb577299a3e857b9deefa6c00fd056b0b5cf3d",
+  "holdout_outputs_read": false
+}

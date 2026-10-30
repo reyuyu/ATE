@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/summarize.py", line 219, in <module>
+    p=argparse.ArgumentParser();p.add_argument('stage',choices=['quality','latency']);a=p.parse_args();globals()[a.stage]()
+                                                                                                       ^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/summarize.py", line 157, in quality
+    write_csv(OUT/'caption_case_studies.csv',chosen)
+  File "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1/analyze.py", line 35, in write_csv
+    raise ValueError('Never overwrite a different completed table')
+ValueError: Never overwrite a different completed table

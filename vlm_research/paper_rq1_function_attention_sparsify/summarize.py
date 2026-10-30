@@ -103,7 +103,7 @@ def quality():
         clf.append(dict(predictor=kind,split='independent_holdout',precision_ci95_low=lo,precision_ci95_high=hi,**measures(p,y,threshold)))
         for threshold0 in PROTOCOL['classifier']['threshold_grid']:curves.append(dict(predictor=kind,**measures(p,y,threshold0)))
         for c in sorted({r['category'] for r in predictions}):
-            mask=np.array([r['category']==c for r in predictions]);category_errors.append(dict(predictor=kind,category=c,n=int(mask.sum()),false_function_predictions=int((mask&selected).sum()),rate=float((mask&selected).sum()/mask.sum())))
+            mask=np.array([r['category']==c for r in predictions]);category_errors.append(dict(predictor=kind,category=c,n=int(mask.sum()),predicted_function=int((mask&selected).sum()),rate=float((mask&selected).sum()/mask.sum())))
         for lo in np.linspace(0,.9,10):
             mask=(p>=lo)&(p<lo+.1)
             if mask.any():bins.append(dict(predictor=kind,bin_low=float(lo),n=int(mask.sum()),probability=float(p[mask].mean()),function_rate=float(y[mask].mean())))
@@ -122,7 +122,7 @@ def quality():
         rs=[r for r in curves if r['predictor']==kind and r['precision'] is not None]
         axes[0].plot([r['coverage'] for r in rs],[r['precision'] for r in rs],marker='o',color=color,label=kind)
         rs=[r for r in bins if r['predictor']==kind];axes[1].plot([r['probability'] for r in rs],[r['function_rate'] for r in rs],marker='o',color=color,label=kind)
-        rs=[r for r in category_errors if r['predictor']==kind and r['category']!='Function'];axes[2].plot(range(len(rs)),[r['rate'] for r in rs],marker='o',color=color,label=kind)
+        rs=[r for r in category_errors if r['predictor']==kind and r['category']!='Function'];axes[2].plot(range(len(rs)),[r['rate'] for r in rs],marker='o',color=color,label=kind+' (abstain)' if freezes['thresholds'][kind]>1 else kind)
     axes[0].set(xlabel='Held-out token coverage',ylabel='Function precision',ylim=(0,1.02));axes[0].axhline(.95,color='grey',ls=':')
     axes[1].plot([0,1],[0,1],color='grey',ls=':');axes[1].set(xlabel='Predicted probability',ylabel='Observed Function rate')
     axes[2].set(xticks=range(len(rs)),xticklabels=[r['category'] for r in rs],ylabel='False Function rate');axes[2].tick_params(axis='x',rotation=65)
@@ -137,15 +137,33 @@ def quality():
         ax.axhline(0,color='grey',lw=.7);ax.axhline(-(.02 if metric=='CIDEr' else .01),color='red',ls=':',label='Frozen noninferiority margin')
         ax.set(xlabel='Fraction L31 Decode QK/AV keys removed',ylabel=metric+' change vs Full (raw)');ax.legend(fontsize=8);ax.grid(alpha=.2)
     figure(fig,'figure4_quality_sparsity')
-    cases=sorted([r for r in rows if r['strategy']!='S0'],key=lambda r:r['CIDEr']-full_scores[r['image_id']]['CIDEr'])
-    chosen=cases[:2]+list(reversed(cases[-2:]));write_csv(OUT/'caption_case_studies.csv',chosen)
-    fig,axes=plt.subplots(4,2,figsize=(13,12),gridspec_kw={'width_ratios':[1,2]})
+    cases=sorted([r for r in rows if r['strategy']!='S0'],key=lambda r:(r['CIDEr']-full_scores[r['image_id']]['CIDEr'],r['image_id'],r['strategy']))
+    static=[r for r in cases if r['strategy'] in ['S1','S2']];dynamic=[r for r in cases if r['strategy'] in ['S3','S4']]
+    chosen=[static[0],dynamic[0],static[-1],dynamic[-1]] if dynamic else [cases[0],cases[1],cases[-2],cases[-1]]
+    by_id={r['image_id']:r for r in quality};risk_lookup={(r['image_id'],r['t'],r['mode']):r for r in risk_rows}
+    for r in chosen:
+        native=by_id[r['image_id']]['runs']['S0'];changed=by_id[r['image_id']]['runs'][r['strategy']]
+        t=next((i for i,(a,b) in enumerate(zip(native['token_ids'],changed['token_ids'])) if a!=b),None)
+        keep='BOS+History' if r['strategy'] in ['S2','S3'] else 'BOS+Prompt+History'
+        mode='BOS+History' if r['strategy'] in ['S2','S3'] else 'No-Image'
+        if t is None:raise ValueError('A selected changed-caption case has no differing original token')
+        annotation0=align(tokenizer,native['token_ids']);annotation1=align(tokenizer,changed['token_ids']);routing=changed['steps'][t]
+        r.update(first_difference_step=t,full_piece=annotation0['tokens'][t]['decoded_piece'],changed_piece=annotation1['tokens'][t]['decoded_piece'],
+            full_role=category(annotation0,t),changed_role=category(annotation1,t),retained_sources=keep,
+            routing_probability=routing['probability'],first_difference_pruned=routing['pruned'],
+            first_difference_full_keys=routing['full_keys'],first_difference_retained_keys=routing['retained_keys'],
+            native_full_token_loss=risk_lookup.get((r['image_id'],t,mode),{}).get('loss'),
+            CIDEr_delta=r['CIDEr']-full_scores[r['image_id']]['CIDEr'])
+    write_csv(OUT/'caption_case_studies.csv',chosen)
+    fig,axes=plt.subplots(4,2,figsize=(13,13.5),gridspec_kw={'width_ratios':[1,2]})
     for index,r in enumerate(chosen):
         axes[index,0].imshow(Image.open(samples[r['image_id']]['image_path']));axes[index,0].axis('off')
         delta=r['CIDEr']-full_scores[r['image_id']]['CIDEr']
-        text=f"{r['image_id']} | {r['strategy']} | CIDEr delta {delta:+.4f}\n\nFull: {r['full_caption']}\n\nPruned: {r['caption']}\n\nRemoved: {r['removed_words']}\nAdded: {r['added_words']}\nPruned Decode steps: {r['pruned_decode_steps']}/{r['decode_steps']}"
+        prob=f"{r['routing_probability']:.5f}" if r['routing_probability'] is not None else 'static policy'
+        loss=f"{r['native_full_token_loss']:+.5f}" if r['native_full_token_loss'] is not None else 'not measured for this role'
+        text=f"{r['image_id']} | {r['strategy']} | CIDEr delta {delta:+.4f}\n\nFull: {r['full_caption']}\n\nPruned: {r['caption']}\n\nFirst difference t={r['first_difference_step']}: {r['full_piece']!r} ({r['full_role']}) -> {r['changed_piece']!r} ({r['changed_role']})\nKept: {r['retained_sources']} | Keys: {r['first_difference_retained_keys']}/{r['first_difference_full_keys']}\nRouter P(Function): {prob} | Native-token loss: {loss}\nPruned Decode steps: {r['pruned_decode_steps']}/{r['decode_steps']}"
         axes[index,1].text(0,1,'\n'.join(textwrap.fill(line,90) for line in text.splitlines()),va='top',fontsize=10);axes[index,1].axis('off')
-    fig.suptitle('Actual free-running Caption examples: score losses and gains (not safety proof)');figure(fig,'figure6_caption_case_studies')
+    fig.suptitle('Actual Caption cases: static/dynamic score extrema, first changed token and retained sources');figure(fig,'figure6_caption_case_studies')
     atomic_json(OUT/'quality_analysis_completion.json',dict(status='complete',images=200,strategies=config['active_strategies'],classifier_tokens=len(predictions),oracle_risk_rows=len(risk_rows),scores=summaries,source_sha256=sha256(Path(__file__))))
     print(json.dumps(summaries,indent=2),flush=True)
 
@@ -187,10 +205,12 @@ def latency():
     for r in summaries:
         if r['implementation']=='A1':continue
         for metric,ax in zip(['CIDEr','SPICE'],axes):
-            ax.scatter(r['mean_caption_seconds'],float(quality_by[r['strategy']][metric+'_delta']),s=60)
-            ax.annotate(r['strategy'],(r['mean_caption_seconds'],float(quality_by[r['strategy']][metric+'_delta'])),xytext=(4,4),textcoords='offset points')
-            ax.set(xlabel='Actual Caption model wall time, GPU1 (s)',ylabel=metric+' change (held-out200)');ax.axhline(0,color='grey',lw=.7);ax.grid(alpha=.2)
-    fig.suptitle('Latency:10 fixed images x5 repeats; quality:independent200 images');figure(fig,'figure5_latency_quality')
+            q=quality_by[r['strategy']];x=r['paired_time_delta'];y=float(q[metric+'_delta'])
+            ax.errorbar(x,y,xerr=[[max(0,x-r['paired_time_delta_ci95_low'])],[max(0,r['paired_time_delta_ci95_high']-x)]],
+                yerr=[[max(0,y-float(q[metric+'_delta_ci95_low']))],[max(0,float(q[metric+'_delta_ci95_high'])-y)]],fmt='o',capsize=3,label=r['strategy'])
+            ax.annotate(r['strategy'],(x,y),xytext=(4,4),textcoords='offset points')
+            ax.set(xlabel='Actual Caption time change vs Full, GPU1 (s)',ylabel=metric+' change (held-out200)');ax.axhline(0,color='grey',lw=.7);ax.axvline(0,color='grey',lw=.7);ax.grid(alpha=.2)
+    fig.suptitle('Latency:10 fixed images x5 repeats; quality:independent200 images; paired95%CI');figure(fig,'figure5_latency_quality')
     atomic_json(OUT/'latency_analysis_completion.json',dict(status='complete',images=10,physical_gpu=1,rows=len(rows),summaries=summaries))
     print(json.dumps(summaries,indent=2),flush=True)
 

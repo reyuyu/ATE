@@ -1,0 +1,32 @@
+{
+  "active_strategies": [
+    "S0",
+    "S1",
+    "S2",
+    "S3",
+    "S4"
+  ],
+  "code_commit": "5ba72ab2adde1d6ed12c3672f36ea83913857507",
+  "sources": {
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/quality_run.py": "7caf02289ff88f0b93db46eb6683c24da45afef79ae98435acf0c274b996fe43",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/generation.py": "36acceeefc037dfbc3034efaeedb1b4d1788ca87f49464a594f7d7794d07186e",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/predictor.py": "06d590b64f9a40c380782ca0ce9d76970f0235d34e479c6523fac1d2aea3ede3",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/test_function_generation.py": "780fcbad5f16748bcd1900baae4bc363ddeae96b5cd9f59a18b72f1bb53a6ad9"
+  },
+  "classifier_sha256": "9179684c5786ab5cdf61cffd74344fc6b789785e43eed83ba2d8e66b562c7c17",
+  "stage_a_gate_sha256": "e8ed2a36a977dc01ed54d8d6f61b32429ddd96d114a2ba0ffdfe067918591b31",
+  "collector_sha256": "ce2467455829f5cff086cdd83fb581292a5a68f83acce78b1c783421643e8974",
+  "model": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "quality": {
+    "CIDEr_raw_noninferiority_margin": 0.02,
+    "SPICE_noninferiority_margin": 0.01,
+    "ci": "10000 paired whole-image bootstrap, ordinary95%. CIDEr fixed full-cohort reference IDF. CI containing0 is not equivalence;200 images cannot establish rare-harm safety."
+  },
+  "classifier_gate": true,
+  "source_gate": true,
+  "holdout_not_read": true,
+  "stop_dynamic_if_gate_fails": true,
+  "cpu_tests": 16,
+  "latency": "Same GPU, warmup3, repeated5 runs on fixed first10 hash-ordered holdout images; CUDA events with synchronization, paired random strategy order seed. Separate sparse vs A1 mechanism only. Full K/V storage and cache update retained; gather and reduced QK/AV reads reported. No theoretical FLOPs as measured speedup.",
+  "speed_claim_gate": "Upper paired95% Caption time delta<0 AND decode-device-time-per-token delta<0. Shorter changed Captions alone are not Attention acceleration."
+}

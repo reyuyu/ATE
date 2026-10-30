@@ -1,0 +1,58 @@
+START paper_rq1_function_attention_sparsify.analysis
+{
+  "dynamic_source_gate_passed": true,
+  "observed": {
+    "role": "Function",
+    "layer": 31,
+    "algorithm": "A2",
+    "mode": "BOS+History",
+    "n": 400,
+    "mean_loss": -0.01861655063345097,
+    "median_loss": -0.01613292098045349,
+    "p90_loss": 0.01611792445182801,
+    "p95_loss": 0.030274820327758738,
+    "p99_loss": 0.06732753992080674,
+    "max_loss": 0.09243381023406982,
+    "mean_abs_delta_logp": 0.02756891987635754,
+    "top1_flips": 13,
+    "flip_rate": 0.0325,
+    "mean_js": 0.0006846608073078641,
+    "mean_retained_ratio": 0.014914953642903944,
+    "ci95_low": -0.021955148200409894,
+    "ci95_high": -0.015321189883637999
+  },
+  "predeclared_limits": {
+    "function_l31_bos_history_max_mean_loss": 0.1,
+    "max_p95_loss": 0.5,
+    "max_flip_rate": 0.1,
+    "meaning": "Conservative exploratory development gate, NOT evidence of safety. Failing any stops dynamic C3/C4 development."
+  },
+  "stage_a_complete": true,
+  "images": 400,
+  "targets": 1181,
+  "interventions": 24801,
+  "historical_max_logit_difference": 0.0,
+  "reasoning": "All three conservative exploratory gates must pass; not a safety conclusion.",
+  "next": "Train/calibrate frozen cheap classifiers. Dynamic free generation only if both source and classifier gates pass."
+}
+Traceback (most recent call last):
+  File "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/pipeline.py", line 37, in main
+    atomic_json(OUT/'pipeline_status.json',dict(stage=module,status='running',started=started))
+  File "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_single_layer_gqa6/run.py", line 31, in atomic_json
+    raise ValueError('Never overwrite a different completed checkpoint')
+ValueError: Never overwrite a different completed checkpoint
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/pipeline.py", line 52, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/pipeline.py", line 49, in main
+    atomic_json(OUT/'pipeline_status.json',dict(status='partial',error=repr(error),started=started));raise
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_single_layer_gqa6/run.py", line 31, in atomic_json
+    raise ValueError('Never overwrite a different completed checkpoint')
+ValueError: Never overwrite a different completed checkpoint
