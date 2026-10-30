@@ -204,6 +204,14 @@ def figures(manifest,data,summary,taskwise,contrasts):
     axes[1].errorbar(np.arange(8),[r['delta_accuracy_pp'] for r in selected],yerr=errors(selected),fmt='none',color='black',capsize=3,label='Ordinary95%')
     axes[1].axhline(0,color='black',linewidth=.8);axes[1].axhline(-1,color='#bd4f46',linestyle='--',label='NI boundary -1pp')
     axes[1].set_xticks(np.arange(8),conditions[1:]);axes[1].set_ylabel('Paired accuracy change (pp)');axes[1].legend(fontsize=8)
+    zoom=axes[1].inset_axes([.32,.26,.64,.35])
+    low_harm=[by[c] for c in ['S3','S5','S7']]
+    zoom.errorbar(range(3),[r['delta_accuracy_pp'] for r in low_harm],
+        yerr=errors(low_harm,'family95_low_pp','family95_high_pp'),fmt='o',color='#26747c',capsize=3)
+    zoom.axhline(0,color='black',linewidth=.6);zoom.axhline(-1,color='#bd4f46',linestyle='--')
+    zoom.set_xticks(range(3),['S3','S5','S7']);zoom.set_xlim(-.5,2.5);zoom.set_ylim(-1.3,1.7)
+    zoom.text(.02,.97,'Low-harm zoom: family8 CI (pp)',transform=zoom.transAxes,va='top',fontsize=9)
+    zoom.tick_params(labelsize=8)
     fig.suptitle(f'Early joint Attention ablation: actual independent cohort N={len(manifest["samples"])} (not balanced3000)')
     save(fig,'figure1_joint_accuracy')
     fig,axes=plt.subplots(2,3,figsize=(15,8),layout='constrained')
@@ -211,7 +219,8 @@ def figures(manifest,data,summary,taskwise,contrasts):
     for ax,task in zip(axes.flat,TASKS):
         available=[task_lookup[(task,c)] for c in cs]
         if not available[0]['n_questions']:
-            ax.text(.5,.5,'No independent samples\nNo estimate',ha='center',va='center',transform=ax.transAxes);ax.set_title(task+' (N=0)');continue
+            ax.text(.5,.5,'No independent samples\nNo estimate',ha='center',va='center',transform=ax.transAxes)
+            ax.set_title(task+' (N=0)');ax.set_axis_off();continue
         ax.bar(np.arange(len(cs)),[r['accuracy_pp'] for r in available],color=['#777777','#26747c','#bd4f46','#ad812c','#26747c','#bd4f46','#ad812c'])
         ax.axhline(available[0]['accuracy_pp'],color='black',linestyle='--',linewidth=.7)
         ax.set_xticks(np.arange(len(cs)),cs);ax.set_ylim(0,105);ax.set_ylabel('Accuracy (%)')
@@ -253,12 +262,12 @@ def figures(manifest,data,summary,taskwise,contrasts):
         for c in ['S4','S8','S1','S5','S2','S6']:
             f,g=values['S0'],values[c]
             kind='harm' if f['score']>g['score'] else 'improvement' if f['score']<g['score'] else 'unchanged' if f['text']==g['text'] else 'changed_same_score'
-            if kind in kinds and (kind,c) not in candidates:candidates[(kind,c)]=(s,c,kind)
-    cases=[];seen=set()
+            if kind in kinds:candidates[(kind,c,s['question_id'])]=(s,c,kind)
+    cases=[];seen=set();seen_images=set()
     for kind in kinds:
-        for (k,c),value in candidates.items():
-            if k==kind and value[0]['question_id'] not in seen:
-                cases.append(value);seen.add(value[0]['question_id'])
+        for (k,c,qid),value in candidates.items():
+            if k==kind and value[0]['question_id'] not in seen and value[0]['image_id'] not in seen_images:
+                cases.append(value);seen.add(value[0]['question_id']);seen_images.add(value[0]['image_id'])
                 if sum(v[2]==kind for v in cases)==2:break
     fig=plt.figure(figsize=(17,12),layout='constrained');grid=fig.add_gridspec(4,3,height_ratios=[2,1.3,2,1.3]);case_rows=[]
     for index,(s,c,kind) in enumerate(cases):

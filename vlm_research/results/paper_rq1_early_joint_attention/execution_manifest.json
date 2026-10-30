@@ -1,0 +1,287 @@
+{
+  "protocol": {
+    "version": 1,
+    "seed": 20261031,
+    "base_commit": "f469eedbc960a0a1cd73661723e70c1ff46a6b1f",
+    "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "dtype": "float16",
+    "attention": "eager",
+    "transformers": "4.49.0",
+    "tasks": {
+      "ChooseAttr": [
+        "chooseAttr"
+      ],
+      "ChooseCat": [
+        "categoryThatChoose",
+        "categoryThisChoose",
+        "objThisChoose"
+      ],
+      "ChooseRel": [
+        "relChooser"
+      ],
+      "CompareAttr": [
+        "twoCommon"
+      ],
+      "LogicalObj": [
+        "existThatOr"
+      ],
+      "QueryAttr": [
+        "positionQuery"
+      ]
+    },
+    "target_per_task": 500,
+    "conditions": {
+      "S0": {
+        "name": "Full",
+        "layers": [],
+        "mode": "Full"
+      },
+      "S1": {
+        "name": "L0–L4 P−1-only",
+        "layers": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "mode": "P-1-only"
+      },
+      "S2": {
+        "name": "L0–L4 Prefill-all-only",
+        "layers": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "mode": "Prefill-all-only"
+      },
+      "S3": {
+        "name": "L0–L4 Decode-only",
+        "layers": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "mode": "Decode-only"
+      },
+      "S4": {
+        "name": "L0–L4 Combined",
+        "layers": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "mode": "Combined"
+      },
+      "S5": {
+        "name": "L2–L5 P−1-only",
+        "layers": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "mode": "P-1-only"
+      },
+      "S6": {
+        "name": "L2–L5 Prefill-all-only",
+        "layers": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "mode": "Prefill-all-only"
+      },
+      "S7": {
+        "name": "L2–L5 Decode-only",
+        "layers": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "mode": "Decode-only"
+      },
+      "S8": {
+        "name": "L2–L5 Combined",
+        "layers": [
+          2,
+          3,
+          4,
+          5
+        ],
+        "mode": "Combined"
+      },
+      "S9": {
+        "name": "L2–L4 Combined",
+        "layers": [
+          2,
+          3,
+          4
+        ],
+        "mode": "Combined"
+      },
+      "S10": {
+        "name": "L0–L1 Combined",
+        "layers": [
+          0,
+          1
+        ],
+        "mode": "Combined"
+      }
+    },
+    "gpus": [
+      "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+      "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+      "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+    ],
+    "physical_gpus": [
+      1,
+      2,
+      3
+    ],
+    "sampling": "Official GQA Balanced validation only. Exclude all historical manifest/config image IDs and SHA256; input-hash ranking within task, up to500 questions per task without replacement. Repeated images within/across current tasks allowed and clustered; no model-output selection. No fallback to exposed images. Separate smoke images.",
+    "generation": {
+      "do_sample": false,
+      "num_beams": 1,
+      "max_new_tokens": 32,
+      "use_cache": true,
+      "eos_token_id": 2
+    },
+    "intervention": "Simultaneous self_attn.o_proj output zeros in frozen layer sets. Four explicit temporal scopes. MLP/LayerNorm/residual native. Every condition independently prefills and generates using its own cache/prefix. No cached Full state reused, no teacher forcing, no actual compute omission or acceleration claim.",
+    "phase": "Use explicit cache_position, original prompt length, per-layer past length and current query length, not qlen alone.",
+    "scoring": "Pinned official GQA primary exact answer accuracy after decoded text.strip() and LLaVA rstrip period/lower conversion.",
+    "statistics": {
+      "repetitions": 200000,
+      "seed": 20261031,
+      "unit": "Paired image-cluster bootstrap, question-weighted sum/count ratio",
+      "main_family": 8,
+      "auxiliary_family": 2,
+      "taskwise_family": 60,
+      "planned_contrast_family": 6,
+      "correction": "Two-sided Bonferroni percentile intervals separately for8 pooled primary S1–S8, 2 pooled auxiliary S9/S10,60 taskwise endpoints (10x6, including unavailable tasks in planned family), and6 pooled prespecified direct contrasts. Ordinary95% also shown. No cross-family simultaneous claim.",
+      "pooled_ni_margin_pp": 1.0,
+      "taskwise_risk_margin_pp": 3.0,
+      "criterion": "Corrected lower bound strictly greater than -1pp pooled. Subtask -3pp is a heterogeneity risk screen, not safety.",
+      "caveat": "Finite Monte Carlo percentile approximation, not exact simultaneous finite-sample coverage. Zero discordances give degenerate bootstrap; do not interpret as zero population risk. Achieved unequal task counts yield question-weighted observed mixture, not target balanced3000 conclusion."
+    },
+    "optional_midlayer_reference": false,
+    "supplementary": "Not run in this core delivery; optional cross-task risk check remains explicitly unexecuted.",
+    "boundaries": "Only11 conditions on actually frozen eligible GQA questions. No training, layer search, source pruning, Decode time scan or caption task."
+  },
+  "source_sha256": {
+    "paper_rq1_early_joint_attention/__init__.py": "82f8a0c121dde2906fffbd39a3357b3eb3a592bd6bfbf557315fb8de8a613387",
+    "paper_rq1_early_joint_attention/protocol.py": "eda2f12ce7e64826e38854f86ca30ee1d6a2f604ea2d66e191001a794beb2b6b",
+    "paper_rq1_early_joint_attention/data.py": "d9f7c7d67316cbd5d2058aba8c6197d55b947a883817b39130028ced75020065",
+    "paper_rq1_early_joint_attention/engine.py": "68347d85e82e82d73beaa3d68d87a24eb13b9c2ab9ebe949a67a3c8309caec8a",
+    "paper_rq1_early_joint_attention/run.py": "24388fe5d339a34f2869da544277e6ad09be84876dbafc2257f4a1bf9829809e",
+    "paper_rq1_early_joint_attention/launch.py": "9627638afedff23bfe349fe4b55d92fbe86fd4f148f7ec0bc54f4b6f4dc7dd20",
+    "test_early_joint_attention.py": "0e6214e77b74e5eaf1ef66c38ba07989bde5bcf3008b5e539ab4a7c06727cfd2",
+    "vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d",
+    "knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+    "paper_rq1/engine.py": "2c838844c0e7e9815662019498c9b577b8f6478898f591c9cf52cc4a2028eff9",
+    "paper_rq1/run.py": "cf44578a88905e0356b035588df47a4c22dbd987a605c3cda179fcc787d7df99",
+    "paper_rq1/scorers.py": "081e409993a481a0b3c83e0cf6ae2d16768c10e1c95f602de72c4abe4f5c9ad8",
+    "paper_rq1/protocol.py": "cbe05745378a0a05d14f6667c2181ce737d6bc87370ee07335de3b67c75a0ca5",
+    "paper_rq1_single_layer_gqa6/run.py": "d7b454377849a4c5b69d48174a0652dbd03afa416a6b5f140a37b697d2492e03",
+    "paper_rq1_single_layer_gqa6/protocol.py": "0168c619c37174aa973cdac396eeefb7f8ccb87407d7d9fdb7e0a69ab2a112b8",
+    "paper_rq1_single_layer_gqa6/data.py": "99a99fd7eac159b825cb9b990004209f9fca6977f7b903d5ab5be42ec9d1cc83",
+    "paper_rq1_decode_layerwise_quality/engine.py": "aae606ae1167e9bb9ada76cc0bd52990b93ed9c7c9b4b87cf01e67bfac7f7a59",
+    "paper_rq1_decode_layerwise_quality/statistics.py": "562e15eea92e9b2bb8720cbaf81cf0571d631e4dc7f2178f39f7c5abab18ecab",
+    "benchmarks/protocols.py": "c80e8011f8ba3f7f627398ec2a3bff300d479db46ccb04a564d5ed525abd4f48",
+    "benchmarks/dataset_registry.py": "20369ec1648e795958d7290934f4604fe8ed3b7874c8f27f8aa031d04bf024f5",
+    "benchmarks/smoke.py": "8f513bc47a2e7c4036d10fb8e5e30fd8e87ccbc2e9d799c93983965823e6b3fe",
+    "benchmarks/scoring.py": "9dd9bb60a3f0929240e520cc4ce50354ca4778a7f138eb5718fe99c42eed2b25"
+  },
+  "code_commit": "86cf9bd64e1c45406e354f9d4786968bf03b5085",
+  "model_files": {
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/added_tokens.json": {
+      "sha256": "a94c56096001713e3eb9a34b1a545a8c1d5e8034ed2fb81f897c8cb54b420121",
+      "bytes": 41,
+      "mtime_ns": 1793194086181998587
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/chat_template.json": {
+      "sha256": "854445c0a45532ecbee1ae9aa31d4be19644060a156f2c88456f50f584261543",
+      "bytes": 701,
+      "mtime_ns": 1793194086798017022
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/config.json": {
+      "sha256": "0bde54495c54bcc346064a0d314b010d1c4d3ca7f7e583b6f711949a35352c0f",
+      "bytes": 950,
+      "mtime_ns": 1793194089686103414
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/generation_config.json": {
+      "sha256": "3a6dc8c202be258023f58a03f804bdcacf138b8a2cc7492be2530e16945a0951",
+      "bytes": 141,
+      "mtime_ns": 1793194089290091572
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00001-of-00003.safetensors": {
+      "sha256": "c11dbf016ee7d35ee130c19b67e20eb04873996006f424b7bcbd453b6517ee66",
+      "bytes": 4992930200,
+      "mtime_ns": 1793199719115753829
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00002-of-00003.safetensors": {
+      "sha256": "46df6c6e5fad297fe7fbca4963dcf180cb1d0528cabc884d1f603311fed01328",
+      "bytes": 4957878440,
+      "mtime_ns": 1793199782813772811
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00003-of-00003.safetensors": {
+      "sha256": "4f06177c37ca13944e73b57dd6d051767b950dffc12400c700dfa2509c24c697",
+      "bytes": 4176137408,
+      "mtime_ns": 1793199778045624044
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model.safetensors.index.json": {
+      "sha256": "73af906b5ac12aea6eddf104d482d2a50bca30b20d61ee9f6c5269d3427a6991",
+      "bytes": 70128,
+      "mtime_ns": 1793194858551537899
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/preprocessor_config.json": {
+      "sha256": "a8d5e64ee5c07ff6d70142856d178ac39d0563da3612e32110fa824f5337b7a1",
+      "bytes": 505,
+      "mtime_ns": 1793194856691488340
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/processor_config.json": {
+      "sha256": "fef918d6ba333f72a066877965bc4a162308568ba62aa90c806caedf7b45d64e",
+      "bytes": 173,
+      "mtime_ns": 1793194854031417454
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/special_tokens_map.json": {
+      "sha256": "358c249e2fb29060c6b73157d428853b0c48710deffc8ee670ab1013880946c9",
+      "bytes": 552,
+      "mtime_ns": 1793194854963442292
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer.json": {
+      "sha256": "30e1294abd835edfebb24618fce6f47c21ffb2b2802520d150bdee0b808b47cb",
+      "bytes": 3619380,
+      "mtime_ns": 1793194860207582017
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer.model": {
+      "sha256": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+      "bytes": 499723,
+      "mtime_ns": 1793194861087605460
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer_config.json": {
+      "sha256": "79b7f1ebceddf7235f3791c387d781818b0c7e7cf868d0e4f71896a55b949833",
+      "bytes": 1451,
+      "mtime_ns": 1793194860479589263
+    }
+  },
+  "bindings": {
+    "experiment_config.json": "8e0119b1800822aab777abbebc9b715d545743668afb4c789fd0fbb73d834389",
+    "sample_manifest.json": "5c466b6cc5260b376ef171aeb0d2b375fa335809015851eb2f735d47552afe70",
+    "selection_audit.json": "5e94b4e4fcd4dcc386baf517fdfeabe9adcaa3298106a6572c3d4dd9b849f688",
+    "cpu_validation.json": "da1f5013aecbd597ca0dea42e8e0535451a21f7b141e6cab43ee71e68a470692"
+  },
+  "transformers_source": {
+    "/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py": "d313bd9b9565638f0780fbd8158ddf69ff77334b38462f50945efdd64140bbfb"
+  }
+}
