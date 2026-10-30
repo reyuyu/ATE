@@ -1,4 +1,7 @@
 import unittest
+import json
+import tempfile
+from pathlib import Path
 from types import SimpleNamespace
 from unittest.mock import patch
 import torch
@@ -34,6 +37,13 @@ class PolicyTests(unittest.TestCase):
         with self.assertRaises(RuntimeError):
             with Policy(None,self.prompt(),'S1'):raise RuntimeError('intentional')
         self.assertIs(llama.eager_attention_forward,original)
+
+    def test_pipeline_status_mutable_not_checkpoint(self):
+        from paper_rq1_function_attention_sparsify.pipeline import status
+        with tempfile.TemporaryDirectory() as folder:
+            with patch('paper_rq1_function_attention_sparsify.pipeline.OUT',Path(folder)):
+                status(stage='analysis',status='running');status(stage='train',status='running')
+            self.assertEqual(json.loads((Path(folder)/'pipeline_status.json').read_text())['stage'],'train')
 
 
 if __name__=='__main__':unittest.main()

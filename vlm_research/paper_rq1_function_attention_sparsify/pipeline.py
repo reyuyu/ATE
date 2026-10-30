@@ -1,9 +1,15 @@
 """Local finite pipeline; resource conflicts fail closed, never wait for GPU0."""
 import os
+import json
 import subprocess
 import time
 from .protocol import OUT,ROOT,PYTHON,GPUS
 from paper_rq1_single_layer_gqa6.run import atomic_json
+
+
+def status(**value):
+    path=OUT/'pipeline_status.json';temporary=path.with_suffix('.tmp')
+    temporary.write_text(json.dumps(value,indent=2)+'\n');os.replace(temporary,path)
 
 
 def command(module,args=(),env=None):
@@ -34,19 +40,20 @@ def main():
             if time.time()-started>3600:raise RuntimeError('StageA did not finish within this pipeline wait budget')
             time.sleep(30)
         for module in ['analysis','train']:
-            atomic_json(OUT/'pipeline_status.json',dict(stage=module,status='running',started=started))
+            if (OUT/('stage_a_gate.json' if module=='analysis' else 'predictor_freeze.json')).exists():continue
+            status(stage=module,status='running',started=started)
             command('paper_rq1_function_attention_sparsify.'+module)
-        command('paper_rq1_function_attention_sparsify.quality_run',['freeze'])
+        if not (OUT/'quality_execution_manifest.json').exists():command('paper_rq1_function_attention_sparsify.quality_run',['freeze'])
         for stage in ['quality_smoke','quality','risk']:
-            atomic_json(OUT/'pipeline_status.json',dict(stage=stage,status='running',started=started));parallel(stage)
+            status(stage=stage,status='running',started=started);parallel(stage)
         command('paper_rq1_function_attention_sparsify.summarize',['quality'])
-        atomic_json(OUT/'pipeline_status.json',dict(stage='latency',status='running',started=started))
+        status(stage='latency',status='running',started=started)
         env=dict(os.environ,CUDA_VISIBLE_DEVICES=GPUS[1],OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',TOKENIZERS_PARALLELISM='false')
         command('paper_rq1_function_attention_sparsify.quality_run',['latency','--rank','0'],env)
         command('paper_rq1_function_attention_sparsify.summarize',['latency'])
-        atomic_json(OUT/'pipeline_status.json',dict(stage='all collection/scoring/figures',status='complete',started=started,seconds=time.time()-started))
+        status(stage='all collection/scoring/figures',status='complete',started=started,seconds=time.time()-started)
     except BaseException as error:
-        atomic_json(OUT/'pipeline_status.json',dict(status='partial',error=repr(error),started=started));raise
+        status(status='partial',error=repr(error),started=started);raise
 
 
 if __name__=='__main__':main()

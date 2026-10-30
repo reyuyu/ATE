@@ -127,8 +127,15 @@ def worker(stage,rank):
             r=json.loads((OUT/f'quality_smoke/shard{i}/completion.json').read_text())
             if r['binding']!=binding or r['status']!='complete':raise ValueError('All policy smokes required')
     folder=OUT/f'{stage}/shard{rank}';folder.mkdir(parents=True,exist_ok=True)
-    atomic_json(folder/'resource_check.json',preflight(physical));model,processor,env=load_model(MODEL_PATH)
-    atomic_json(folder/'environment.json',env);hooks=hook_footprint(model);original=llama.eager_attention_forward;versions={n:p._version for n,p in model.named_parameters()}
+    if (folder/'completion.json').exists():
+        previous=json.loads((folder/'completion.json').read_text())
+        if previous['status']!='complete' or previous['binding']!=binding:raise ValueError('Completed policy shard has incompatible binding')
+        print(stage,rank,'already complete; no GPU allocation',flush=True);return
+    attempt=str(time.time_ns());resource=preflight(physical)
+    atomic_json(folder/('resource_check.json' if not (folder/'resource_check.json').exists() else f'attempts/resource_{attempt}.json'),resource)
+    model,processor,env=load_model(MODEL_PATH)
+    atomic_json(folder/('environment.json' if not (folder/'environment.json').exists() else f'attempts/environment_{attempt}.json'),env)
+    hooks=hook_footprint(model);original=llama.eager_attention_forward;versions={n:p._version for n,p in model.named_parameters()}
     manifest=json.loads((OUT/'sample_manifest.json').read_text());chosen=predictor()
     samples=[manifest['smoke']] if stage=='quality_smoke' else [s for s in manifest['holdout'] if s['rank']==rank]
     if stage=='latency':
