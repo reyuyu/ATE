@@ -163,14 +163,18 @@ def latency():
     summaries=[]
     for (strategy,implementation),rs in groups.items():
         if len(rs)!=50:raise ValueError('Need10 images by5 repeats')
-        per=defaultdict(list);times=defaultdict(list)
+        per=defaultdict(list);times=defaultdict(list);per_token=defaultdict(list)
         for r in rs:
             per[r['image_id']].append(r['wall_seconds']-full[(r['image_id'],r['repeat'])]['wall_seconds']);times[r['image_id']].append(r['wall_seconds'])
+            f=full[(r['image_id'],r['repeat'])]
+            per_token[r['image_id']].append(r['decode_cuda_ms']/max(1,r['length']-1)-f['decode_cuda_ms']/max(1,f['length']-1))
         lo,hi=paired_ci([np.mean(v) for v in per.values()]);mean=float(np.mean([r['wall_seconds'] for r in rs]));fullmean=float(np.mean([r['wall_seconds'] for r in full.values()]))
+        per_token_lo,per_token_hi=paired_ci([np.mean(v) for v in per_token.values()])
         ps=[r for r in profiles if r['strategy']==strategy and r['implementation']==implementation]
         summaries.append(dict(strategy=strategy,implementation=implementation,images=10,repeats=5,
             mean_caption_seconds=mean,paired_time_delta=mean-fullmean,paired_time_delta_ci95_low=lo,paired_time_delta_ci95_high=hi,
-            measured_speed_ratio=fullmean/mean if implementation=='A2' else None,speed_supported=hi<0 and implementation=='A2',
+            measured_speed_ratio=fullmean/mean if implementation=='A2' else None,speed_supported=hi<0 and per_token_hi<0 and implementation=='A2',
+            decode_per_token_delta_ci95_low=per_token_lo,decode_per_token_delta_ci95_high=per_token_hi,
             mean_prefill_cuda_ms=float(np.mean([r['prefill_cuda_ms'] for r in rs])),mean_decode_cuda_ms=float(np.mean([r['decode_cuda_ms'] for r in rs])),
             mean_length=float(np.mean([r['length'] for r in rs])),mean_tokens_per_second=float(np.mean([r['tokens_per_second'] for r in rs])),peak_mib=max(r['peak_mib'] for r in rs),
             mean_l31_attention_operator_ms=float(np.mean([r['milliseconds'] for r in ps if r['operator']=='l31_attention'])) if any(r['operator']=='l31_attention' for r in ps) else None,

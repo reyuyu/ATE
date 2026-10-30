@@ -42,7 +42,8 @@ def freeze():
         sources=sources(),classifier_sha256=sha256(OUT/'predictor_freeze.json'),stage_a_gate_sha256=sha256(OUT/'stage_a_gate.json'),
         collector_sha256=sha256(OUT/'execution_manifest.json'),model=MODEL_PATH,quality=PROTOCOL['quality'],
         classifier_gate=classifier['classifier_gate_passed'],source_gate=gate['dynamic_source_gate_passed'],
-        holdout_not_read=True,stop_dynamic_if_gate_fails=True,cpu_tests=result.testsRun,latency=PROTOCOL['latency']))
+        holdout_not_read=True,stop_dynamic_if_gate_fails=True,cpu_tests=result.testsRun,latency=PROTOCOL['latency'],
+        speed_claim_gate='Upper paired95% Caption time delta<0 AND decode-device-time-per-token delta<0. Shorter changed Captions alone are not Attention acceleration.'))
 
 
 def verify():
