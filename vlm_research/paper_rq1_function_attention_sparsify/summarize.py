@@ -207,9 +207,9 @@ def latency():
         for metric,ax in zip(['CIDEr','SPICE'],axes):
             q=quality_by[r['strategy']];x=r['paired_time_delta'];y=float(q[metric+'_delta'])
             ax.errorbar(x,y,xerr=[[max(0,x-r['paired_time_delta_ci95_low'])],[max(0,r['paired_time_delta_ci95_high']-x)]],
-                yerr=[[max(0,y-float(q[metric+'_delta_ci95_low']))],[max(0,float(q[metric+'_delta_ci95_high'])-y)]],fmt='o',capsize=3,label=r['strategy'])
-            ax.annotate(r['strategy'],(x,y),xytext=(4,4),textcoords='offset points')
-            ax.set(xlabel='Actual Caption time change vs Full, GPU1 (s)',ylabel=metric+' change (held-out200)');ax.axhline(0,color='grey',lw=.7);ax.axvline(0,color='grey',lw=.7);ax.grid(alpha=.2)
+                yerr=[[max(0,y-float(q[metric+'_delta_ci95_low']))],[max(0,float(q[metric+'_delta_ci95_high'])-y)]],fmt='o',capsize=3,label=r['strategy'],
+                color={'S0':'#555555','S1':'#176b91','S2':'#cc7b18','S3':'#3a8157','S4':'#ba4947'}[r['strategy']])
+            ax.set(xlabel='Actual Caption time change vs Full, GPU1 (s)',ylabel=metric+' change (held-out200)');ax.axhline(0,color='grey',lw=.7);ax.axvline(0,color='grey',lw=.7);ax.grid(alpha=.2);ax.legend(loc='lower left',fontsize=9)
     fig.suptitle('Latency:10 fixed images x5 repeats; quality:independent200 images; paired95%CI');figure(fig,'figure5_latency_quality')
     atomic_json(OUT/'latency_analysis_completion.json',dict(status='complete',images=10,physical_gpu=1,rows=len(rows),summaries=summaries))
     print(json.dumps(summaries,indent=2),flush=True)
