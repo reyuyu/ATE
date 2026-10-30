@@ -1,0 +1,918 @@
+{
+  "binding": "a2f770ff964a1df418c141d1f81ae0983c144c7f3091fded9c04c49de24f935a",
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "cuda_runtime": "12.4",
+    "cudnn": 90100,
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "cuda_visible_devices": "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+    "model_id": "llava-hf/llava-1.5-7b-hf",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "load_seconds": 21.64001409802586,
+    "parameter_devices": [
+      "cuda:0"
+    ],
+    "parameter_dtypes": [
+      "torch.float16"
+    ],
+    "hf_device_map": {
+      "": "cuda:0"
+    },
+    "memory_after_load": {
+      "allocated_mib": 13473.64794921875,
+      "reserved_mib": 13490.0,
+      "peak_allocated_mib": 13473.64794921875,
+      "peak_reserved_mib": 13490.0,
+      "device_free_mib": 10336.3125,
+      "device_total_mib": 24154.375,
+      "nvidia_smi_process_mib": 13786
+    },
+    "physical_gpu": 1,
+    "code_commit": "5cbdce152f69a274ae4bf784fc69378523723941",
+    "preflight": {
+      "uuid": "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+      "memory_free_mib": 24128,
+      "all_compute_processes": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 1491226, 4054 MiB\nGPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 1583318, 4050 MiB\n"
+    }
+  },
+  "validation": {
+    "passed": true,
+    "checks": [
+      {
+        "task": "ChooseAttr",
+        "question_id": "12753238",
+        "condition": "W0",
+        "full": {
+          "token_ids": [
+            8037,
+            2
+          ],
+          "length": 2,
+          "eos": true,
+          "truncated": false,
+          "decode_steps": 1,
+          "edits": 0,
+          "own_prefill": true,
+          "own_prefix": true,
+          "initial_cache_sha256": "9aebb3048b18a0c7ed5289a21e04558fe47c0fa9365f84dee47bfa1db2e1ba42",
+          "events": []
+        },
+        "changed": {
+          "token_ids": [
+            8037,
+            2
+          ],
+          "length": 2,
+          "eos": true,
+          "truncated": false,
+          "decode_steps": 1,
+          "edits": 6,
+          "own_prefill": true,
+          "own_prefix": true,
+          "initial_cache_sha256": "9aebb3048b18a0c7ed5289a21e04558fe47c0fa9365f84dee47bfa1db2e1ba42",
+          "events": [
+            {
+              "layer": 0,
+              "decode": false,
+              "active": false,
+              "queries": 610,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 1,
+              "decode": false,
+              "active": false,
+              "queries": 610,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 2,
+              "decode": false,
+              "active": false,
+              "queries": 610,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 3,
+              "decode": false,
+              "active": false,
+              "queries": 610,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 4,
+              "decode": false,
+              "active": false,
+              "queries": 610,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 5,
+              "decode": false,
+              "active": false,
+              "queries": 610,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 0,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 1,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 2,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 3,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 4,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 5,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            }
+          ]
+        },
+        "full_initial_logits_sha256": "4f20597a63c5157975c691ea5fa3a6ac9b883f206e87fa805ca9a2212d9ac9f3",
+        "noop_logits_exact": true,
+        "prefill_logits_and_cache_exact": true,
+        "native_full_and_changed_tokens_exact": true,
+        "all32_mlp_normal": true
+      },
+      {
+        "task": "ChooseCat",
+        "question_id": "17934000",
+        "condition": "W1",
+        "full": {
+          "token_ids": [
+            2726,
+            29895,
+            2
+          ],
+          "length": 3,
+          "eos": true,
+          "truncated": false,
+          "decode_steps": 2,
+          "edits": 0,
+          "own_prefill": true,
+          "own_prefix": true,
+          "initial_cache_sha256": "c79fc39f521184817c3a0dc6ffa03b94c34769b83b482612d0b769c782cc8dac",
+          "events": []
+        },
+        "changed": {
+          "token_ids": [
+            2726,
+            29895,
+            2
+          ],
+          "length": 3,
+          "eos": true,
+          "truncated": false,
+          "decode_steps": 2,
+          "edits": 12,
+          "own_prefill": true,
+          "own_prefix": true,
+          "initial_cache_sha256": "c79fc39f521184817c3a0dc6ffa03b94c34769b83b482612d0b769c782cc8dac",
+          "events": [
+            {
+              "layer": 6,
+              "decode": false,
+              "active": false,
+              "queries": 616,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 7,
+              "decode": false,
+              "active": false,
+              "queries": 616,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 8,
+              "decode": false,
+              "active": false,
+              "queries": 616,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 9,
+              "decode": false,
+              "active": false,
+              "queries": 616,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 10,
+              "decode": false,
+              "active": false,
+              "queries": 616,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 11,
+              "decode": false,
+              "active": false,
+              "queries": 616,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 6,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 7,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 8,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 9,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 10,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 11,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 6,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 7,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 8,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 9,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 10,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 11,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            }
+          ]
+        },
+        "full_initial_logits_sha256": "65505491f58aabf23ed3d0c9fd23b94e3fc5107877b2419cd534f8aae6fda24a",
+        "noop_logits_exact": true,
+        "prefill_logits_and_cache_exact": true,
+        "native_full_and_changed_tokens_exact": true,
+        "all32_mlp_normal": true
+      },
+      {
+        "task": "ChooseRel",
+        "question_id": "00239481",
+        "condition": "W2",
+        "full": {
+          "token_ids": [
+            19941,
+            2
+          ],
+          "length": 2,
+          "eos": true,
+          "truncated": false,
+          "decode_steps": 1,
+          "edits": 0,
+          "own_prefill": true,
+          "own_prefix": true,
+          "initial_cache_sha256": "86294b3e86e821c62b7b113e828f2de663d27c627b575c1b9f69be827db32fcb",
+          "events": []
+        },
+        "changed": {
+          "token_ids": [
+            19941,
+            2
+          ],
+          "length": 2,
+          "eos": true,
+          "truncated": false,
+          "decode_steps": 1,
+          "edits": 6,
+          "own_prefill": true,
+          "own_prefix": true,
+          "initial_cache_sha256": "86294b3e86e821c62b7b113e828f2de663d27c627b575c1b9f69be827db32fcb",
+          "events": [
+            {
+              "layer": 12,
+              "decode": false,
+              "active": false,
+              "queries": 619,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 13,
+              "decode": false,
+              "active": false,
+              "queries": 619,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 14,
+              "decode": false,
+              "active": false,
+              "queries": 619,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 15,
+              "decode": false,
+              "active": false,
+              "queries": 619,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 16,
+              "decode": false,
+              "active": false,
+              "queries": 619,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 17,
+              "decode": false,
+              "active": false,
+              "queries": 619,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 12,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 13,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 14,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 15,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 16,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 17,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            }
+          ]
+        },
+        "full_initial_logits_sha256": "e2dd0198d2fc53e229fa2f82af17e755e345b78aae8cc2f5fd417a7af3cc16d1",
+        "noop_logits_exact": true,
+        "prefill_logits_and_cache_exact": true,
+        "native_full_and_changed_tokens_exact": true,
+        "all32_mlp_normal": true
+      },
+      {
+        "task": "CompareAttr",
+        "question_id": "09301146",
+        "condition": "W3",
+        "full": {
+          "token_ids": [
+            9159,
+            2
+          ],
+          "length": 2,
+          "eos": true,
+          "truncated": false,
+          "decode_steps": 1,
+          "edits": 0,
+          "own_prefill": true,
+          "own_prefix": true,
+          "initial_cache_sha256": "7d8b8625e892b5e61b330621b4e31e30cef8644a5f43fd0dbfd641404ab95c1c",
+          "events": []
+        },
+        "changed": {
+          "token_ids": [
+            9159,
+            2
+          ],
+          "length": 2,
+          "eos": true,
+          "truncated": false,
+          "decode_steps": 1,
+          "edits": 6,
+          "own_prefill": true,
+          "own_prefix": true,
+          "initial_cache_sha256": "7d8b8625e892b5e61b330621b4e31e30cef8644a5f43fd0dbfd641404ab95c1c",
+          "events": [
+            {
+              "layer": 18,
+              "decode": false,
+              "active": false,
+              "queries": 613,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 19,
+              "decode": false,
+              "active": false,
+              "queries": 613,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 20,
+              "decode": false,
+              "active": false,
+              "queries": 613,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 21,
+              "decode": false,
+              "active": false,
+              "queries": 613,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 22,
+              "decode": false,
+              "active": false,
+              "queries": 613,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 23,
+              "decode": false,
+              "active": false,
+              "queries": 613,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 18,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 19,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 20,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 21,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 22,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 23,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            }
+          ]
+        },
+        "full_initial_logits_sha256": "d8786811c299b6e1eefa933277118d78826232a39dc1da7119759e110336bd83",
+        "noop_logits_exact": true,
+        "prefill_logits_and_cache_exact": true,
+        "native_full_and_changed_tokens_exact": true,
+        "all32_mlp_normal": true
+      },
+      {
+        "task": "LogicalObj",
+        "question_id": "04679124",
+        "condition": "W4",
+        "full": {
+          "token_ids": [
+            3869,
+            2
+          ],
+          "length": 2,
+          "eos": true,
+          "truncated": false,
+          "decode_steps": 1,
+          "edits": 0,
+          "own_prefill": true,
+          "own_prefix": true,
+          "initial_cache_sha256": "4a66c78dc783ae0d5aa6e4c3f42853455fff87c28813c54ca1e3661f8576558c",
+          "events": []
+        },
+        "changed": {
+          "token_ids": [
+            3869,
+            2
+          ],
+          "length": 2,
+          "eos": true,
+          "truncated": false,
+          "decode_steps": 1,
+          "edits": 6,
+          "own_prefill": true,
+          "own_prefix": true,
+          "initial_cache_sha256": "4a66c78dc783ae0d5aa6e4c3f42853455fff87c28813c54ca1e3661f8576558c",
+          "events": [
+            {
+              "layer": 26,
+              "decode": false,
+              "active": false,
+              "queries": 611,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 27,
+              "decode": false,
+              "active": false,
+              "queries": 611,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 28,
+              "decode": false,
+              "active": false,
+              "queries": 611,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 29,
+              "decode": false,
+              "active": false,
+              "queries": 611,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 30,
+              "decode": false,
+              "active": false,
+              "queries": 611,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 31,
+              "decode": false,
+              "active": false,
+              "queries": 611,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 26,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 27,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 28,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 29,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 30,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 31,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            }
+          ]
+        },
+        "full_initial_logits_sha256": "88af83f6c93587b6d11d34782fa61cf2e04ba297df96668db0852315dd290bda",
+        "noop_logits_exact": true,
+        "prefill_logits_and_cache_exact": true,
+        "native_full_and_changed_tokens_exact": true,
+        "all32_mlp_normal": true
+      },
+      {
+        "task": "QueryAttr",
+        "question_id": "19900154",
+        "condition": "W0",
+        "full": {
+          "token_ids": [
+            10428,
+            2
+          ],
+          "length": 2,
+          "eos": true,
+          "truncated": false,
+          "decode_steps": 1,
+          "edits": 0,
+          "own_prefill": true,
+          "own_prefix": true,
+          "initial_cache_sha256": "2e9e4bd8edefb0a2762858e0f28672d779baa9ea7f1c0da045652b9f06cf8e24",
+          "events": []
+        },
+        "changed": {
+          "token_ids": [
+            10428,
+            2
+          ],
+          "length": 2,
+          "eos": true,
+          "truncated": false,
+          "decode_steps": 1,
+          "edits": 6,
+          "own_prefill": true,
+          "own_prefix": true,
+          "initial_cache_sha256": "2e9e4bd8edefb0a2762858e0f28672d779baa9ea7f1c0da045652b9f06cf8e24",
+          "events": [
+            {
+              "layer": 0,
+              "decode": false,
+              "active": false,
+              "queries": 610,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 1,
+              "decode": false,
+              "active": false,
+              "queries": 610,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 2,
+              "decode": false,
+              "active": false,
+              "queries": 610,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 3,
+              "decode": false,
+              "active": false,
+              "queries": 610,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 4,
+              "decode": false,
+              "active": false,
+              "queries": 610,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 5,
+              "decode": false,
+              "active": false,
+              "queries": 610,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 0,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 1,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 2,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 3,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 4,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 5,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            }
+          ]
+        },
+        "full_initial_logits_sha256": "8fc83ce0b7cc3d939c0d190390c95d6074b1bd43f9472bc094a9aeec6167fbfc",
+        "noop_logits_exact": true,
+        "prefill_logits_and_cache_exact": true,
+        "native_full_and_changed_tokens_exact": true,
+        "all32_mlp_normal": true
+      }
+    ]
+  }
+}
