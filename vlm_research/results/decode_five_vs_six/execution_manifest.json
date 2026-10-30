@@ -1,0 +1,41 @@
+{
+  "base_commit": "7c2475717ffaacc1f351978bf59eeaf0197c3109",
+  "code_commit": "477c7467c48f47f0f6d7046b323364335a66a689",
+  "source": {
+    "decode_five_vs_six.py": "a32b568164616f388cec11189d6e350626974722749a0f7efba87b77883eb632",
+    "test_decode_five_vs_six.py": "90ff1fccff9f5d334a704bc2c146add02715b2651dde686e29ab89b0600e5d98"
+  },
+  "historical_binding": "6d984a1a805cd289d911e3685b5cb1e0cf332e45e00feee923bb55113332304f",
+  "sample_manifest_sha256": "5c466b6cc5260b376ef171aeb0d2b375fa335809015851eb2f735d47552afe70",
+  "cpu_sha256": "c4b8d8e7998c513c1883a8cb6fc4971f7447968397f84ee4186306c43e4df73e",
+  "condition": {
+    "name": "L0-L5 Decode-only",
+    "layers": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "mode": "Decode-only"
+  },
+  "samples": 1859,
+  "generation": {
+    "max_new_tokens": 32,
+    "eos_token_id": 2,
+    "greedy": true,
+    "own_cache": true
+  },
+  "comparisons": [
+    "five-Full",
+    "six-Full",
+    "six-five"
+  ],
+  "bootstrap_repetitions": 200000,
+  "seed": 20261031,
+  "bootstrap": "Paired whole-image resampling, question-weighted; ordinary95 and Bonferroni family3.",
+  "noninferiority_pp": -1,
+  "criterion": "family3 lower bound strictly greater than -1pp",
+  "recommendation": "Prefer six only if NI vs Full and vs five, direct six-five CI includes0 or is positive, and no excess EOS/truncation/repetition flags; otherwise retain five. No speed claim."
+}

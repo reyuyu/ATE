@@ -1,0 +1,410 @@
+{
+  "binding": "7cff3abdc613a244062179dbd563684fc30731c6a4be284a37bc57cdc1d2ba1e",
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "cuda_runtime": "12.4",
+    "cudnn": 90100,
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "cuda_visible_devices": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185",
+    "model_id": "llava-hf/llava-1.5-7b-hf",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "load_seconds": 20.275552818086,
+    "parameter_devices": [
+      "cuda:0"
+    ],
+    "parameter_dtypes": [
+      "torch.float16"
+    ],
+    "hf_device_map": {
+      "": "cuda:0"
+    },
+    "memory_after_load": {
+      "allocated_mib": 13473.64794921875,
+      "reserved_mib": 13490.0,
+      "peak_allocated_mib": 13473.64794921875,
+      "peak_reserved_mib": 13490.0,
+      "device_free_mib": 10336.3125,
+      "device_total_mib": 24154.375,
+      "nvidia_smi_process_mib": 13786
+    },
+    "physical_gpu": 3,
+    "preflight": {
+      "uuid": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185",
+      "memory_free_mib": 24128,
+      "all_compute_processes": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 1491226, 4054 MiB\nGPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 1583318, 4050 MiB\n"
+    },
+    "code_commit": "477c7467c48f47f0f6d7046b323364335a66a689"
+  },
+  "validation": {
+    "passed": true,
+    "checks": [
+      {
+        "question_id": "01466752",
+        "historical_max_logit_diff": 0.0,
+        "historical_full_five_tokens_exact": true,
+        "noop_all_logits_exact": true,
+        "native_hf_tokens_exact": true,
+        "native_hf_six_tokens_exact": true,
+        "prefill_logits_and_cache_exact": true,
+        "all32_mlp_native": true,
+        "six": {
+          "token_ids": [
+            6054,
+            322,
+            4796,
+            2
+          ],
+          "length": 4,
+          "eos": true,
+          "truncated": false,
+          "decode_steps": 3,
+          "edits": 18,
+          "own_prefill": true,
+          "own_prefix": true,
+          "initial_cache_sha256": "6fb7c3e630302f80f962789aa9dd827676187c88f3726f011647844b63f8f4bb",
+          "events": [
+            {
+              "layer": 0,
+              "decode": false,
+              "active": false,
+              "queries": 612,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 1,
+              "decode": false,
+              "active": false,
+              "queries": 612,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 2,
+              "decode": false,
+              "active": false,
+              "queries": 612,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 3,
+              "decode": false,
+              "active": false,
+              "queries": 612,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 4,
+              "decode": false,
+              "active": false,
+              "queries": 612,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 5,
+              "decode": false,
+              "active": false,
+              "queries": 612,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 0,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 1,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 2,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 3,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 4,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 5,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 0,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 1,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 2,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 3,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 4,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 5,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 0,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 1,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 2,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 3,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 4,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 5,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            }
+          ]
+        }
+      },
+      {
+        "question_id": "02718859",
+        "historical_max_logit_diff": 0.0,
+        "historical_full_five_tokens_exact": true,
+        "noop_all_logits_exact": true,
+        "native_hf_tokens_exact": true,
+        "native_hf_six_tokens_exact": true,
+        "prefill_logits_and_cache_exact": true,
+        "all32_mlp_native": true,
+        "six": {
+          "token_ids": [
+            7646,
+            2
+          ],
+          "length": 2,
+          "eos": true,
+          "truncated": false,
+          "decode_steps": 1,
+          "edits": 6,
+          "own_prefill": true,
+          "own_prefix": true,
+          "initial_cache_sha256": "5a4ad70741ef808fc7dfa71e49b14977125e257cfdb4e70052cf40be1459fae7",
+          "events": [
+            {
+              "layer": 0,
+              "decode": false,
+              "active": false,
+              "queries": 611,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 1,
+              "decode": false,
+              "active": false,
+              "queries": 611,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 2,
+              "decode": false,
+              "active": false,
+              "queries": 611,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 3,
+              "decode": false,
+              "active": false,
+              "queries": 611,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 4,
+              "decode": false,
+              "active": false,
+              "queries": 611,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 5,
+              "decode": false,
+              "active": false,
+              "queries": 611,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 0,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 1,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 2,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 3,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 4,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            },
+            {
+              "layer": 5,
+              "decode": true,
+              "active": true,
+              "queries": 1,
+              "target": "all_current_queries",
+              "noop": false
+            }
+          ]
+        }
+      }
+    ],
+    "formal_baseline_replay": [
+      {
+        "question_id": "03250080",
+        "condition": "S0",
+        "token_ids_exact": true
+      },
+      {
+        "question_id": "03250080",
+        "condition": "S3",
+        "token_ids_exact": true
+      },
+      {
+        "question_id": "15156849",
+        "condition": "S0",
+        "token_ids_exact": true
+      },
+      {
+        "question_id": "15156849",
+        "condition": "S3",
+        "token_ids_exact": true
+      }
+    ]
+  }
+}
