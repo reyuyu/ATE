@@ -1,0 +1,197 @@
+{
+  "protocol": {
+    "version": 1,
+    "seed": 20261030,
+    "base_commit": "6964407e6b4c1291cb0ca7c41128947d3025520d",
+    "model": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "dtype": "float16",
+    "attention": "eager",
+    "transformers": "4.49.0",
+    "layers": [
+      14,
+      26,
+      31
+    ],
+    "conditions": [
+      [
+        "A1",
+        "No-Image"
+      ],
+      [
+        "A1",
+        "BOS+History"
+      ],
+      [
+        "A1",
+        "History-only"
+      ],
+      [
+        "A2",
+        "No-Image"
+      ],
+      [
+        "A2",
+        "BOS+History"
+      ],
+      [
+        "A2",
+        "History-only"
+      ],
+      [
+        "zero",
+        "Whole-off"
+      ]
+    ],
+    "gpus": [
+      1,
+      2,
+      3
+    ],
+    "train_images": 300,
+    "calibration_images": 100,
+    "holdout_images": 200,
+    "max_new_tokens": 64,
+    "eos": 2,
+    "prompt": "Describe the image in one sentence.",
+    "source_partition": "Original BOS, image576, all remaining prompt text (including separators), consumed generated history. Exhaustive/disjoint.",
+    "sampling": "Reuse all400 images and frozen selected positions from both earlier studies. Input-hash image split300/100; independent new200 holdout excludes both studies/smokes and earlier COCO Discovery, by ID/bytes/RGB.",
+    "a1": "Native full softmax; subtract bias-free Wo of jointly removed PV, FP32 accumulation/subtraction then one FP16 cast. No speed claim.",
+    "a2": "Slice unrepeated cached K/V before QK and AV. Native FP16 QK, FP32 softmax cast FP16, native FP16 AV/o_proj. Keep positions/RoPE/cache unchanged.",
+    "risk_gate": {
+      "function_l31_bos_history_max_mean_loss": 0.1,
+      "max_p95_loss": 0.5,
+      "max_flip_rate": 0.1,
+      "meaning": "Conservative exploratory development gate, NOT evidence of safety. Failing any stops dynamic C3/C4 development."
+    },
+    "classifier": {
+      "features": "Prefix last3 token hashed categorical IDs, position/64 and log1p(position), first/last-token indicators; hidden raw h31_in/its norm plus norm,position. No final generation length, next ID/logits/output or true attention mass.",
+      "algorithms": [
+        "A-prefix logistic",
+        "B-hidden linear logistic",
+        "C-prefix+hidden logistic"
+      ],
+      "training": "CPU FP32 full-batch Adam300 steps lr.03 weight_decay.01, train-only normalization; no model weight training.",
+      "threshold_grid": [
+        0.8,
+        0.85,
+        0.9,
+        0.925,
+        0.95,
+        0.975,
+        0.99,
+        0.995,
+        0.999,
+        1.000001
+      ],
+      "calibration_gate": "Among thresholds with image-bootstrap95% precision lower>=.95, >=50 predicted tokens spanning>=20 images, choose max coverage. Select simplest A then B then C unless next improves recall by>=.05 absolute. If none, abstain and stop dynamic strategies.",
+      "labels": "All t>=1 native positions. Function only complete single-token frozen Function lexicon; EOS/Special, ambiguous, unknown, unaligned, multi-token, punctuation remain explicit negative categories."
+    },
+    "stage_c": [
+      "S0-Full",
+      "S1-Static-No-Image",
+      "S2-Static-BOS+History",
+      "S3-Predicted-BOS+History",
+      "S4-Predicted-No-Image"
+    ],
+    "quality": {
+      "CIDEr_raw_noninferiority_margin": 0.02,
+      "SPICE_noninferiority_margin": 0.01,
+      "ci": "10000 paired whole-image bootstrap, ordinary95%. CIDEr fixed full-cohort reference IDF. CI containing0 is not equivalence;200 images cannot establish rare-harm safety."
+    },
+    "latency": "Same GPU, warmup3, repeated5 runs on fixed first10 hash-ordered holdout images; CUDA events with synchronization, paired random strategy order seed. Separate sparse vs A1 mechanism only. Full K/V storage and cache update retained; gather and reduced QK/AV reads reported. No theoretical FLOPs as measured speedup.",
+    "limitations": "StageA/B development exploratory; only locked new200 is held out. Attention sparsity is not whole-layer skipping. Negative results retained."
+  },
+  "source_sha256": {
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/protocol.py": "7c041ee124cd18f8c41b1797f7b62537e13a74b6587d96ae30d9daecb2972403",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/engine.py": "c8d0ca1b805675aa0a8d4fa14b3f92f65c15e1f89fdc4ed252a83b01ea9606e4",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/data.py": "4a609e8e86f7ed9c8dd340d60b4c56e3b1bcfad89e85fb373f171efe1472ad16",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/run.py": "8d24d4b9a853ca937de9dcac4481907eefe7b7c1d0987c943df5e786cb5dabd1",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_function_attention_sparsify/__init__.py": "cdc5fb3ae91d128b77d1642007ab07f766c6c8116877c634a515624f5b94f463",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/test_function_attention_sparsify.py": "1cc76658458d0f1adde438eb147731a06a44841371ea46b6161412798e90b3c7",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_token_role_decode/engine.py": "9c3c9d6d8c348d9a094acb31b25a2e79ecd059068cc8f8662b14f18b6a6d645f",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_token_role_decode/labels.py": "d6e5a533de20566fe65388333d47421d1413b348f44d23f48425e786780d2bde",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1_late_attention_sources/engine.py": "5e30eebb9f85dcf0d3f7f3a4792bc314fd862021a0bc2578b32bc506ca04ca1f",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1/engine.py": "2c838844c0e7e9815662019498c9b577b8f6478898f591c9cf52cc4a2028eff9",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/paper_rq1/run.py": "cf44578a88905e0356b035588df47a4c22dbd987a605c3cda179fcc787d7df99",
+    "/data/lk/ATE-worktrees/function-token-attention-sparsify/vlm_research/vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d",
+    "/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py": "d313bd9b9565638f0780fbd8158ddf69ff77334b38462f50945efdd64140bbfb"
+  },
+  "model_files": {
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/added_tokens.json": {
+      "sha256": "a94c56096001713e3eb9a34b1a545a8c1d5e8034ed2fb81f897c8cb54b420121",
+      "bytes": 41,
+      "mtime_ns": 1793194086181998587
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/chat_template.json": {
+      "sha256": "854445c0a45532ecbee1ae9aa31d4be19644060a156f2c88456f50f584261543",
+      "bytes": 701,
+      "mtime_ns": 1793194086798017022
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/config.json": {
+      "sha256": "0bde54495c54bcc346064a0d314b010d1c4d3ca7f7e583b6f711949a35352c0f",
+      "bytes": 950,
+      "mtime_ns": 1793194089686103414
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/generation_config.json": {
+      "sha256": "3a6dc8c202be258023f58a03f804bdcacf138b8a2cc7492be2530e16945a0951",
+      "bytes": 141,
+      "mtime_ns": 1793194089290091572
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00001-of-00003.safetensors": {
+      "sha256": "c11dbf016ee7d35ee130c19b67e20eb04873996006f424b7bcbd453b6517ee66",
+      "bytes": 4992930200,
+      "mtime_ns": 1793199719115753829
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00002-of-00003.safetensors": {
+      "sha256": "46df6c6e5fad297fe7fbca4963dcf180cb1d0528cabc884d1f603311fed01328",
+      "bytes": 4957878440,
+      "mtime_ns": 1793199782813772811
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00003-of-00003.safetensors": {
+      "sha256": "4f06177c37ca13944e73b57dd6d051767b950dffc12400c700dfa2509c24c697",
+      "bytes": 4176137408,
+      "mtime_ns": 1793199778045624044
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model.safetensors.index.json": {
+      "sha256": "73af906b5ac12aea6eddf104d482d2a50bca30b20d61ee9f6c5269d3427a6991",
+      "bytes": 70128,
+      "mtime_ns": 1793194858551537899
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/preprocessor_config.json": {
+      "sha256": "a8d5e64ee5c07ff6d70142856d178ac39d0563da3612e32110fa824f5337b7a1",
+      "bytes": 505,
+      "mtime_ns": 1793194856691488340
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/processor_config.json": {
+      "sha256": "fef918d6ba333f72a066877965bc4a162308568ba62aa90c806caedf7b45d64e",
+      "bytes": 173,
+      "mtime_ns": 1793194854031417454
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/special_tokens_map.json": {
+      "sha256": "358c249e2fb29060c6b73157d428853b0c48710deffc8ee670ab1013880946c9",
+      "bytes": 552,
+      "mtime_ns": 1793194854963442292
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer.json": {
+      "sha256": "30e1294abd835edfebb24618fce6f47c21ffb2b2802520d150bdee0b808b47cb",
+      "bytes": 3619380,
+      "mtime_ns": 1793194860207582017
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer.model": {
+      "sha256": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+      "bytes": 499723,
+      "mtime_ns": 1793194861087605460
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer_config.json": {
+      "sha256": "79b7f1ebceddf7235f3791c387d781818b0c7e7cf868d0e4f71896a55b949833",
+      "bytes": 1451,
+      "mtime_ns": 1793194860479589263
+    }
+  },
+  "code_commit": "d1c1995ab53f7a14ef79c46fa13857cdb42ec9a8",
+  "data_sha256": "3addecc172d63bcc72c0216227340c9a0f386f796c26d2917ad7dfcc7aebfd32",
+  "cpu_tests": 11,
+  "cpu_passed": true,
+  "cpu_log_sha256": "cb4394b929bd4e0822d27c24cfc96d0a3c9dd29ff7d83157192539bc893207ca"
+}

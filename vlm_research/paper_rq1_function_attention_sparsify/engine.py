@@ -28,7 +28,12 @@ def sparse_attention(module, query, key, value, mask, scaling, positions):
 
 def independent_reference(module,q,k,v,mask,scale,positions):
     k=llama.repeat_kv(k,module.num_key_value_groups);v=llama.repeat_kv(v,module.num_key_value_groups)
-    logits=(q@k.transpose(2,3))*scale
+    # Keep the same FP16 QK problem size. A full-width GEMM can select a different
+    # accumulation kernel; that is not a valid bit-level reference for sparse QK.
+    selected=k[:,:,positions,:]
+    scores=torch.bmm(q.flatten(0,1),selected.transpose(2,3).flatten(0,1)).view(q.shape[0],q.shape[1],q.shape[2],len(positions))*scale
+    logits=torch.full((*q.shape[:-1],k.shape[-2]),float('-inf'),device=q.device,dtype=q.dtype)
+    logits[:,:,:,positions]=scores
     if mask is not None:logits=logits+mask[:,:,:,:k.shape[-2]]
     excluded=torch.ones(k.shape[-2],dtype=torch.bool,device=q.device);excluded[positions]=False
     logits=logits.masked_fill(excluded, float('-inf'))
