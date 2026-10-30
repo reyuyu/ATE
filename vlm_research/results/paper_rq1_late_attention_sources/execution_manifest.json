@@ -1,0 +1,185 @@
+{
+  "protocol": {
+    "version": 1,
+    "seed": 20261030,
+    "base_commit": "2ffdfdf5c003d10d2a2b39c6bd2c48f00b90f861",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model": {
+      "dtype": "float16",
+      "attention": "eager",
+      "transformers": "4.49.0",
+      "train": false
+    },
+    "images": 200,
+    "prompt": "Describe the image in one sentence.",
+    "generation": {
+      "do_sample": false,
+      "use_cache": true,
+      "max_new_tokens": 64,
+      "eos_token_id": 2
+    },
+    "layers": [
+      3,
+      14,
+      16,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "special_layers": [
+      26,
+      31
+    ],
+    "groups": [
+      "BOS",
+      "IMAGE",
+      "PROMPT_TEXT",
+      "GENERATED_HISTORY"
+    ],
+    "modes": [
+      "Whole",
+      "Image",
+      "Prompt",
+      "History"
+    ],
+    "sampling": "Input-hash late-source-images-v1 ordering of original unexecuted COCO confirmation. Exclude all prior Observation2 sample/smoke IDs/SHA/RGB and prior COCO Discovery IDs/SHA/RGB. Unique ID,bytes SHA,decoded RGB. First200 formal plus disjoint201st smoke, selection-index modulo4 gives50/card.",
+    "targets": "Reuse Observation2 labels.align/select unchanged: frozen lexicon/priority, complete single-token unambiguous words at t>=1, one per class/image, same hash anchor. No confidence or outcome selection. Full200 finishes before target freeze and all formal ablations.",
+    "partition": "Dynamically locate unique original BOS,576 image positions,remaining original valid prompt positions. GENERATED_HISTORY=all generated positions through current consumed y[t-1]. RECENT=last key, OLDER_HISTORY=other generated keys. Valid visible keys exactly partitioned; padding rejected, no unassigned key.",
+    "intervention": "One current Decode Query at one specified layer only. Whole zeros o_proj including bias. Source subtracts bias-free Wo(original native post-softmax group PV) accumulated FP32 then subtraction/nativeFP16 cast once. No mask, no renormalization, no free continuation. Every condition owns cloned Full history.",
+    "observation": "One native observer forward per selected position for all10 layers; logits bit-exact to bareFull. Capture actual layer-input residual and native eager weights/repeated V/o_proj input/output. Four primary contributions sum to native Attention within analytic rounding bounds. Extra Recent/Older only26/31.",
+    "numerical": "Retain original Observation2 image-vs-other decompose audit unchanged. General partition adds ONLY analytic gamma_g summation error for four FP32 vectors and group projections to frozen FP16/FP32 bounds, never fitted atol. Verify History=Recent+Older similarly. Noop logits/replay exact; finite FP32 full-vocab metrics; TF32off.",
+    "cache": "Independent deep clones with no-alias/metadata checks every call; parent actual SHA256 before/after every target and every smoke condition. Consume y[t-1] to predict y[t]; cache length promptN+t-1, visibleN+t. Discard every altered cache. Replay every native generation step bit-exact.",
+    "statistics": {
+      "bootstrap": 10000,
+      "unit": "image SHA256, paired whole-image clusters",
+      "family": 41,
+      "A": "10 contrasts: Visual losses History/Image/Prompt at26/31 (6), same-token History-Image and History-Prompt at26/31 (4).",
+      "B": "12 contrasts: same-image Visual-Function for Image/Prompt/History at26/31, raw6 and adjusted6.",
+      "C": "13 contrasts: Visual Whole loss at each25..31 vszero7; adjacent paired differences six. Positive continuous region requires allseven corrected lower bounds>0. CI coveringzero is uncertainty, not equivalence or insensitivity.",
+      "D": "6 supplementary contrasts: Recent-Older loss paired at26/31 for3roles, included in same41 family.",
+      "controls": [
+        "full_token_logp",
+        "full_token_entropy",
+        "generation_step",
+        "relative_generation_position",
+        "token_length"
+      ],
+      "adjusted": "Within-image fixed effects separately per source/layer on images with Function+Visual; availableRelation as third role. Same linear controls as Observation2; constant token_length1 explicitly dropped. Rank/condition/bootstrap audit. Coefficients conditional, not causal word-role effects.",
+      "secondary": "Remaining sources/layers, norms/mass/cosines, Relation vs Function and other comparisons descriptive, no posthoc significance claims."
+    },
+    "limits": "Native-generated-token conditional mechanism study. Source removal is a local causal intervention on projected Value contribution, not proof of transferred visual information, additive LogP attribution, final answer accuracy, layer skipping or speedup."
+  },
+  "source_sha256": {
+    "paper_rq1_token_role_decode/__init__.py": "c5946728a516991f4285e9418796b322372e18dad2147160efa5bcd7bc33fe72",
+    "paper_rq1_token_role_decode/protocol.py": "aced763458a80ebd51c23bf173446466833ab92a90260b787bcef01aeacf9855",
+    "paper_rq1_token_role_decode/data.py": "74555b0dc1c8e67a4f75141761426a34e9913f3294a63b2b3d1a0a47b7d360bd",
+    "paper_rq1_token_role_decode/labels.py": "d6e5a533de20566fe65388333d47421d1413b348f44d23f48425e786780d2bde",
+    "paper_rq1_token_role_decode/engine.py": "9c3c9d6d8c348d9a094acb31b25a2e79ecd059068cc8f8662b14f18b6a6d645f",
+    "paper_rq1_token_role_decode/run.py": "1571c09684495aa37bab11896ae2bb24f6f57e15d0e22616220c252f50fe1bc1",
+    "paper_rq1_token_role_decode/launch.py": "a53af632b950a6ae5a57a1f2c071fce44aaf07b046021ff15a880df14d17607a",
+    "test_token_role_decode.py": "d18524dfa1f7af429a58ef8acda88727424164b675dcde79a74a8bdf61645e7c",
+    "paper_rq1/engine.py": "2c838844c0e7e9815662019498c9b577b8f6478898f591c9cf52cc4a2028eff9",
+    "paper_rq1/run.py": "cf44578a88905e0356b035588df47a4c22dbd987a605c3cda179fcc787d7df99",
+    "paper_rq1/protocol.py": "cbe05745378a0a05d14f6667c2181ce737d6bc87370ee07335de3b67c75a0ca5",
+    "paper_rq1_single_layer_gqa6/engine.py": "17509131686cb01f1954e12cbd1ed57d2b74663fa6f6aaba0a01e8fceac7ebe9",
+    "paper_rq1_single_layer_gqa6/run.py": "d7b454377849a4c5b69d48174a0652dbd03afa416a6b5f140a37b697d2492e03",
+    "vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d",
+    "knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+    "benchmarks/protocols.py": "c80e8011f8ba3f7f627398ec2a3bff300d479db46ccb04a564d5ed525abd4f48",
+    "benchmarks/dataset_registry.py": "20369ec1648e795958d7290934f4604fe8ed3b7874c8f27f8aa031d04bf024f5",
+    "benchmarks/smoke.py": "8f513bc47a2e7c4036d10fb8e5e30fd8e87ccbc2e9d799c93983965823e6b3fe",
+    "paper_rq1/analyze.py": "8c75ef85ff9ed68242b08089d9025d028c624945b982b145d6fc10ebce21b474",
+    "paper_rq1_late_attention_sources/__init__.py": "ab56f66a4874b0e66307dedefe28d8536ab9a5c38d33f3a7490d3b8fcaf63c9f",
+    "paper_rq1_late_attention_sources/protocol.py": "6efe2755fe6794e8f79547798ae43ee45179ea22b99d6ca6669bef9d9f086bb9",
+    "paper_rq1_late_attention_sources/data.py": "68d8a9c274340ef7f9e5d4c934fb37300ed75ea26afec290c089eeb3a8312a47",
+    "paper_rq1_late_attention_sources/engine.py": "5e30eebb9f85dcf0d3f7f3a4792bc314fd862021a0bc2578b32bc506ca04ca1f",
+    "paper_rq1_late_attention_sources/run.py": "9a7db58ebcda553459f3e7f1752f4d11157629a20f71a3bcd9d720e2a821e648",
+    "paper_rq1_late_attention_sources/launch.py": "0dd5b6280ffba83827d641411e90c1bd7a1e019e41b1f9a8c0fe903f26d27ce9",
+    "test_late_attention_sources.py": "cfb9ca1fc245bfb221087008fd6619091a6da7f4f0150939ee9643d2d97aa2a7",
+    "paper_rq1_token_role_decode/README.md": "82e5371814baa8a01960b658caf4e67a2c7af56e90f9d5b84177fa4c9437a5de"
+  },
+  "code_commit": "9352a999c0cb4b5c0ffbdc7fd2941165874630ab",
+  "data_sha256": "4ccab9505239c57e85532df9b6deb5781c9365b40824f37d9fdf9e83bd41c04d",
+  "sample_sha256": "8db0e3e4b60b8eceb4fec6428b976bb2adf158c5a09b44f0432f958483ca99b4",
+  "cpu_sha256": "3217f63f7ca0e2e85f80f53b0986ef59b398042a831ed4e723f363c144ab4c7e",
+  "model_files": {
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/added_tokens.json": {
+      "sha256": "a94c56096001713e3eb9a34b1a545a8c1d5e8034ed2fb81f897c8cb54b420121",
+      "bytes": 41,
+      "mtime_ns": 1793194086181998587
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/chat_template.json": {
+      "sha256": "854445c0a45532ecbee1ae9aa31d4be19644060a156f2c88456f50f584261543",
+      "bytes": 701,
+      "mtime_ns": 1793194086798017022
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/config.json": {
+      "sha256": "0bde54495c54bcc346064a0d314b010d1c4d3ca7f7e583b6f711949a35352c0f",
+      "bytes": 950,
+      "mtime_ns": 1793194089686103414
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/generation_config.json": {
+      "sha256": "3a6dc8c202be258023f58a03f804bdcacf138b8a2cc7492be2530e16945a0951",
+      "bytes": 141,
+      "mtime_ns": 1793194089290091572
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00001-of-00003.safetensors": {
+      "sha256": "c11dbf016ee7d35ee130c19b67e20eb04873996006f424b7bcbd453b6517ee66",
+      "bytes": 4992930200,
+      "mtime_ns": 1793199719115753829
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00002-of-00003.safetensors": {
+      "sha256": "46df6c6e5fad297fe7fbca4963dcf180cb1d0528cabc884d1f603311fed01328",
+      "bytes": 4957878440,
+      "mtime_ns": 1793199782813772811
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00003-of-00003.safetensors": {
+      "sha256": "4f06177c37ca13944e73b57dd6d051767b950dffc12400c700dfa2509c24c697",
+      "bytes": 4176137408,
+      "mtime_ns": 1793199778045624044
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model.safetensors.index.json": {
+      "sha256": "73af906b5ac12aea6eddf104d482d2a50bca30b20d61ee9f6c5269d3427a6991",
+      "bytes": 70128,
+      "mtime_ns": 1793194858551537899
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/preprocessor_config.json": {
+      "sha256": "a8d5e64ee5c07ff6d70142856d178ac39d0563da3612e32110fa824f5337b7a1",
+      "bytes": 505,
+      "mtime_ns": 1793194856691488340
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/processor_config.json": {
+      "sha256": "fef918d6ba333f72a066877965bc4a162308568ba62aa90c806caedf7b45d64e",
+      "bytes": 173,
+      "mtime_ns": 1793194854031417454
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/special_tokens_map.json": {
+      "sha256": "358c249e2fb29060c6b73157d428853b0c48710deffc8ee670ab1013880946c9",
+      "bytes": 552,
+      "mtime_ns": 1793194854963442292
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer.json": {
+      "sha256": "30e1294abd835edfebb24618fce6f47c21ffb2b2802520d150bdee0b808b47cb",
+      "bytes": 3619380,
+      "mtime_ns": 1793194860207582017
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer.model": {
+      "sha256": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+      "bytes": 499723,
+      "mtime_ns": 1793194861087605460
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer_config.json": {
+      "sha256": "79b7f1ebceddf7235f3791c387d781818b0c7e7cf868d0e4f71896a55b949833",
+      "bytes": 1451,
+      "mtime_ns": 1793194860479589263
+    }
+  },
+  "transformers_source_sha256": {
+    "/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py": "d313bd9b9565638f0780fbd8158ddf69ff77334b38462f50945efdd64140bbfb"
+  }
+}

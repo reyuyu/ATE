@@ -1,0 +1,88 @@
+{
+  "status": "partial_resource_blocked",
+  "source_commit": "9352a999c0cb4b5c0ffbdc7fd2941165874630ab",
+  "snapshot": {
+    "observed_at": "2026-10-30T16:14:08.757776+08:00",
+    "gpu_csv": "0, GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 2719 MiB, 21437 MiB, 40 %\n1, GPU-b08489af-0a8a-eb48-55ba-8346733af417, 27 MiB, 24128 MiB, 0 %\n2, GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6, 27 MiB, 24128 MiB, 0 %\n3, GPU-96bc853f-ceea-2404-c704-c48a3d1ca185, 27 MiB, 24128 MiB, 0 %\n",
+    "compute_process_csv": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 1491226, python, 2686 MiB\n"
+  },
+  "images_frozen": 200,
+  "smoke_unique_images": 1,
+  "smoke_complete_physical_gpus": [
+    1,
+    2,
+    3
+  ],
+  "full_completed_images": 0,
+  "formal_completed_images": 0,
+  "targets_frozen": false,
+  "stages": {
+    "smoke": [
+      {
+        "status": "complete",
+        "binding": "45f78b3f152196f26656e69a2081c41f78516b782dbb0d7ce020b6d1ef8303de",
+        "rank": 1,
+        "expected": 1,
+        "completed": 1,
+        "wall_seconds": 44.67855640896596,
+        "weights_versions_unchanged": true,
+        "hooks_clean": true,
+        "memory": {
+          "allocated_mib": 13505.64794921875,
+          "reserved_mib": 14830.0,
+          "peak_allocated_mib": 14710.5439453125,
+          "peak_reserved_mib": 14830.0,
+          "device_free_mib": 8952.3125,
+          "device_total_mib": 24154.375,
+          "nvidia_smi_process_mib": 15170
+        }
+      },
+      {
+        "status": "complete",
+        "binding": "45f78b3f152196f26656e69a2081c41f78516b782dbb0d7ce020b6d1ef8303de",
+        "rank": 2,
+        "expected": 1,
+        "completed": 1,
+        "wall_seconds": 44.65122502204031,
+        "weights_versions_unchanged": true,
+        "hooks_clean": true,
+        "memory": {
+          "allocated_mib": 13505.64794921875,
+          "reserved_mib": 14830.0,
+          "peak_allocated_mib": 14710.5439453125,
+          "peak_reserved_mib": 14830.0,
+          "device_free_mib": 8952.3125,
+          "device_total_mib": 24154.375,
+          "nvidia_smi_process_mib": 15170
+        }
+      },
+      {
+        "status": "complete",
+        "binding": "45f78b3f152196f26656e69a2081c41f78516b782dbb0d7ce020b6d1ef8303de",
+        "rank": 3,
+        "expected": 1,
+        "completed": 1,
+        "wall_seconds": 44.38307075807825,
+        "weights_versions_unchanged": true,
+        "hooks_clean": true,
+        "memory": {
+          "allocated_mib": 13505.64794921875,
+          "reserved_mib": 14830.0,
+          "peak_allocated_mib": 14710.5439453125,
+          "peak_reserved_mib": 14830.0,
+          "device_free_mib": 8952.3125,
+          "device_total_mib": 24154.375,
+          "nvidia_smi_process_mib": 15170
+        }
+      }
+    ],
+    "full": [],
+    "ablation": []
+  },
+  "actual_smoke_decomposition_checks": 60,
+  "max_smoke_error_to_bound": 0.8991753458976746,
+  "formal_effect_estimates_available": false,
+  "formal_figures_generated": false,
+  "other_processes_untouched": true,
+  "reason": "Four-physical-GPU requirement and allfour smoke gate are retained. GPU0 occupied by another user, so Full and formal ablations not launched."
+}

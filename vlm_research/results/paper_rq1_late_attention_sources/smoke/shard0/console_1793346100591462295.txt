@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/late-attention-sources/vlm_research/paper_rq1_late_attention_sources/run.py", line 276, in <module>
+    else:worker(args.stage,args.rank)
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/late-attention-sources/vlm_research/paper_rq1_late_attention_sources/run.py", line 190, in worker
+    pre=preflight(rank)
+        ^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/late-attention-sources/vlm_research/paper_rq1/run.py", line 77, in preflight
+    raise ValueError('GPU occupied; no existing process will be interrupted')
+ValueError: GPU occupied; no existing process will be interrupted
