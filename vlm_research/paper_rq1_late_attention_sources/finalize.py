@@ -1,5 +1,6 @@
 """Delivery integrity or explicitly partial resource status; never fake effects."""
 import argparse
+import fcntl
 from datetime import datetime
 import json
 from pathlib import Path
@@ -84,6 +85,7 @@ source losses are not additive, and no actual speedup is measured.
 
 
 def partial():
+    lock=(OUT/'launcher.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     config=verify()
     if (OUT/'analysis_completion.json').exists():raise ValueError('Do not downgrade an existing completed analysis')
     stages={}
@@ -102,35 +104,37 @@ def partial():
                     for check in r['checks']:validations.extend(check.get('audits',[]))
     if len(stages['ablation'])==4:raise ValueError('All formal shards complete: run real analysis, not partial report')
     snapshot=gpu_snapshot()
-    if not any(line.startswith(uuid) for line in snapshot['compute_process_csv'].splitlines() for uuid in GPUS):
-        raise ValueError('Allfour are now idle: resume frozen collection instead of claiming resource blockage')
+    active={GPUS[i] for i in configuration()['authorized_physical_gpus']}
+    if not any(line.startswith(uuid) for line in snapshot['compute_process_csv'].splitlines() for uuid in active):
+        raise ValueError('GPUs1/2/3 are idle: resume collection instead of claiming resource blockage from GPU0')
     stamp=str(time.time_ns());folder=OUT/'partial'/stamp;folder.mkdir(parents=True)
     status=dict(status='partial_resource_blocked',source_commit=config['code_commit'],snapshot=snapshot,
-        images_frozen=200,smoke_unique_images=1,smoke_complete_physical_gpus=[r['rank'] for r in stages['smoke']],
+        images_frozen=200,smoke_unique_images=1,smoke_complete_physical_gpus=sorted({SHARD_GPU[r['rank']] for r in stages['smoke']}),
         full_completed_images=sum(r['completed'] for r in stages['full']),
         formal_completed_images=sum(r['completed'] for r in stages['ablation']),
         targets_frozen=(OUT/'selected_token_manifest.json').exists(),stages=stages,
         actual_smoke_decomposition_checks=len(validations),
         max_smoke_error_to_bound=max(v for r in validations for k,v in r.items() if k.endswith('_error_to_bound')) if validations else None,
         formal_effect_estimates_available=False,formal_figures_generated=False,
-        other_processes_untouched=True,reason='Four-physical-GPU requirement and allfour smoke gate are retained. GPU0 occupied by another user, so Full and formal ablations not launched.')
+        counts_cover_completed_shards_only=True,scheduling=configuration(),
+        other_processes_untouched=True,reason='At least one authorized GPU1/2/3 is occupied; no other process interrupted. GPU0 is excluded.')
     freeze_json(folder/'status.json',status)
     readme()
     lines=['# Late-Layer Attention Source Decomposition','', '**状态：partial，尚无正式实验结果。**','',
-        f"冻结200张新图片；采集CPU测试20项通过，独立统计测试见statistics_tests.txt。冻结采集Commit：`{config['code_commit']}`。",
+        f"冻结200张新图片；采集/调度CPU测试23项通过，独立统计测试见statistics_tests.txt。冻结采集Commit：`{config['code_commit']}`。",
         f"已完成真实GPU Smoke的物理卡：{status['smoke_complete_physical_gpus']}；这是一张独立Smoke图在各卡的重复验证，不是正式200图结果。",
-        f"Native Full完成图片数：{status['full_completed_images']}；正式消融完成图片数：{status['formal_completed_images']}；目标词位置尚未选择/冻结。",
+        f"已完整结束分片中的Native Full图片数：{status['full_completed_images']}；消融图片数：{status['formal_completed_images']}；目标已冻结：{status['targets_frozen']}。未完整结束分片的逐图检查点另行保留。",
         '', '## 阻塞原因','',
-        'GPU0被其他用户的计算任务占用，初次预检拒绝加载。没有终止、修改或抢占该任务。GPU1–3的Smoke进程已退出。',
-        '保留四卡要求和全部Smoke通过后才开始Full的门槛；没有改成三卡、混用旧结果或把Smoke冒充机制结论。',
+        '至少一张授权的GPU1/2/3被计算任务占用，资源快照见status.json；未终止、修改或抢占任何其他任务。',
+        '本轮按用户授权使用三张卡，四个逻辑分片及每图Full/消融同卡不变；GPU0不参与。',
         '', '## 已验证和未执行','',
         f"本轮已完成Smoke的来源分解检查{len(validations)}项；具体输出、No-op/Cache/Hook审计和原始Logits哈希均保留。",
-        '正式来源损失、Visual−Function对比、L25–L31连续性、Recent−Older效应均尚未测得；不填零、不预测方向、不绘制正式论文图。',
+        '全200图的正式来源损失、Visual−Function对比、L25–L31连续性、Recent−Older效应尚未完整汇总；不填零、不预测方向、不绘制正式论文图。',
         '五张主图、CSV汇总和中文研究报告的生成代码已实现，但受全部200图完成校验约束。',
-        '', '## 恢复','', 'GPU0及其余三卡空闲后，按[README.md](README.md)原命令恢复；有效Smoke记录会复用，冻结数据/采集源码不变。',
+        '', '## 恢复','', 'GPU1/2/3空闲后，按[README.md](README.md)原命令恢复；有效同绑定检查点会复用，冻结数据/采集源码不变。',
         f"本次快照：`partial/{stamp}/status.json`；实际GPU状态记录于该快照，不能把以后资源变化当作已有实验结果。"]
     (OUT/'report.md').write_text('\n'.join(lines)+'\n')
-    (OUT/'research_summary.md').write_text('# 中文研究总结：partial\n\n尚未执行正式200图采集，八项研究问题均待真实结果回答。\n\n'+
+    (OUT/'research_summary.md').write_text('# 中文研究总结：partial\n\n尚未完成正式200图采集，八项研究问题均待完整真实结果回答。\n\n'+
         '\n'.join(f'{i}. {q}：尚无正式证据。' for i,q in enumerate([
             'Visual在L26/L31依赖哪种来源','L31的Whole/Image差异能否由History/Prompt解释','Function来源差异',
             'Relation中层与后层依赖','L25–L31连续深层敏感区','Attention Mass与输出贡献是否一致',

@@ -61,5 +61,14 @@ class Tests(unittest.TestCase):
             with self.assertRaises(FileNotFoundError):analyze.main()
             self.assertEqual(list(Path(folder).iterdir()),[])
 
+    def test_partial_report_cannot_overwrite_active_collection(self):
+        import fcntl
+        from paper_rq1_late_attention_sources import finalize
+        with tempfile.TemporaryDirectory() as folder,patch.object(finalize,'OUT',Path(folder)):
+            with (Path(folder)/'launcher.lock').open('a') as owner:
+                fcntl.flock(owner,fcntl.LOCK_EX|fcntl.LOCK_NB)
+                with self.assertRaises(BlockingIOError):finalize.partial()
+                self.assertFalse((Path(folder)/'report.md').exists())
+
 
 if __name__=='__main__':unittest.main()

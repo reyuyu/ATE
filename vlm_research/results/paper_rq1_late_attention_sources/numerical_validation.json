@@ -1,0 +1,436 @@
+{
+  "passed": true,
+  "status": "complete",
+  "images": 200,
+  "target_positions": 590,
+  "role_counts": {
+    "Function": 200,
+    "Visual": 197,
+    "Relation": 193
+  },
+  "intervention_forwards": 27140,
+  "per_token_rows": 33040,
+  "native_source_rows": 25960,
+  "source_commit": "195e65a7bbd327942c8118509be8b9ca3198b2a9",
+  "target_sha256": "1cb620e51cd9181fe0483d9225ad220eabda975bcedb5cf3490d056e0ae8f115",
+  "all_replay_steps_exact": true,
+  "native_observer_logits_exact": true,
+  "cache_target_hash_checks": 590,
+  "missing_duplicate_conditions": 0,
+  "numerical_checks": 5980,
+  "raw_logit_files": 404,
+  "raw_logit_bytes": 2266480285,
+  "stages": {
+    "smoke": [
+      {
+        "status": "complete",
+        "binding": "1a2068c9f53f166193ba1ace1c9c34fa6b4ee2bb4dc095d243a30ba552308967",
+        "rank": 0,
+        "physical_gpu": 1,
+        "expected": 1,
+        "completed": 1,
+        "wall_seconds": 44.283999420003965,
+        "weights_versions_unchanged": true,
+        "hooks_clean": true,
+        "memory": {
+          "allocated_mib": 13505.64794921875,
+          "reserved_mib": 14830.0,
+          "peak_allocated_mib": 14710.5439453125,
+          "peak_reserved_mib": 14830.0,
+          "device_free_mib": 8952.3125,
+          "device_total_mib": 24154.375,
+          "nvidia_smi_process_mib": 15170
+        }
+      },
+      {
+        "status": "complete",
+        "binding": "1a2068c9f53f166193ba1ace1c9c34fa6b4ee2bb4dc095d243a30ba552308967",
+        "rank": 1,
+        "physical_gpu": 2,
+        "expected": 1,
+        "completed": 1,
+        "wall_seconds": 44.86218835785985,
+        "weights_versions_unchanged": true,
+        "hooks_clean": true,
+        "memory": {
+          "allocated_mib": 13505.64794921875,
+          "reserved_mib": 14830.0,
+          "peak_allocated_mib": 14710.5439453125,
+          "peak_reserved_mib": 14830.0,
+          "device_free_mib": 8952.3125,
+          "device_total_mib": 24154.375,
+          "nvidia_smi_process_mib": 15170
+        }
+      },
+      {
+        "status": "complete",
+        "binding": "1a2068c9f53f166193ba1ace1c9c34fa6b4ee2bb4dc095d243a30ba552308967",
+        "rank": 2,
+        "physical_gpu": 3,
+        "expected": 1,
+        "completed": 1,
+        "wall_seconds": 44.36308457306586,
+        "weights_versions_unchanged": true,
+        "hooks_clean": true,
+        "memory": {
+          "allocated_mib": 13505.64794921875,
+          "reserved_mib": 14830.0,
+          "peak_allocated_mib": 14710.5439453125,
+          "peak_reserved_mib": 14830.0,
+          "device_free_mib": 8952.3125,
+          "device_total_mib": 24154.375,
+          "nvidia_smi_process_mib": 15170
+        }
+      },
+      {
+        "status": "complete",
+        "binding": "1a2068c9f53f166193ba1ace1c9c34fa6b4ee2bb4dc095d243a30ba552308967",
+        "rank": 3,
+        "physical_gpu": 1,
+        "expected": 1,
+        "completed": 1,
+        "wall_seconds": 45.003951337886974,
+        "weights_versions_unchanged": true,
+        "hooks_clean": true,
+        "memory": {
+          "allocated_mib": 13505.64794921875,
+          "reserved_mib": 14830.0,
+          "peak_allocated_mib": 14710.5439453125,
+          "peak_reserved_mib": 14830.0,
+          "device_free_mib": 8952.3125,
+          "device_total_mib": 24154.375,
+          "nvidia_smi_process_mib": 15170
+        }
+      }
+    ],
+    "full": [
+      {
+        "status": "complete",
+        "binding": "1a2068c9f53f166193ba1ace1c9c34fa6b4ee2bb4dc095d243a30ba552308967",
+        "rank": 0,
+        "physical_gpu": 1,
+        "expected": 50,
+        "completed": 50,
+        "wall_seconds": 95.66018827795051,
+        "weights_versions_unchanged": true,
+        "hooks_clean": true,
+        "memory": {
+          "allocated_mib": 13506.3037109375,
+          "reserved_mib": 14220.0,
+          "peak_allocated_mib": 14142.7890625,
+          "peak_reserved_mib": 14220.0,
+          "device_free_mib": 9564.3125,
+          "device_total_mib": 24154.375,
+          "nvidia_smi_process_mib": 14558
+        }
+      },
+      {
+        "status": "complete",
+        "binding": "1a2068c9f53f166193ba1ace1c9c34fa6b4ee2bb4dc095d243a30ba552308967",
+        "rank": 1,
+        "physical_gpu": 2,
+        "expected": 50,
+        "completed": 50,
+        "wall_seconds": 98.1427723269444,
+        "weights_versions_unchanged": true,
+        "hooks_clean": true,
+        "memory": {
+          "allocated_mib": 13506.3037109375,
+          "reserved_mib": 14220.0,
+          "peak_allocated_mib": 14142.7890625,
+          "peak_reserved_mib": 14220.0,
+          "device_free_mib": 9564.3125,
+          "device_total_mib": 24154.375,
+          "nvidia_smi_process_mib": 14558
+        }
+      },
+      {
+        "status": "complete",
+        "binding": "1a2068c9f53f166193ba1ace1c9c34fa6b4ee2bb4dc095d243a30ba552308967",
+        "rank": 2,
+        "physical_gpu": 3,
+        "expected": 50,
+        "completed": 50,
+        "wall_seconds": 91.69790961500257,
+        "weights_versions_unchanged": true,
+        "hooks_clean": true,
+        "memory": {
+          "allocated_mib": 13506.3037109375,
+          "reserved_mib": 14220.0,
+          "peak_allocated_mib": 14142.7890625,
+          "peak_reserved_mib": 14220.0,
+          "device_free_mib": 9564.3125,
+          "device_total_mib": 24154.375,
+          "nvidia_smi_process_mib": 14558
+        }
+      },
+      {
+        "status": "complete",
+        "binding": "1a2068c9f53f166193ba1ace1c9c34fa6b4ee2bb4dc095d243a30ba552308967",
+        "rank": 3,
+        "physical_gpu": 1,
+        "expected": 50,
+        "completed": 50,
+        "wall_seconds": 96.35085714305751,
+        "weights_versions_unchanged": true,
+        "hooks_clean": true,
+        "memory": {
+          "allocated_mib": 13506.3037109375,
+          "reserved_mib": 14220.0,
+          "peak_allocated_mib": 14142.7890625,
+          "peak_reserved_mib": 14220.0,
+          "device_free_mib": 9564.3125,
+          "device_total_mib": 24154.375,
+          "nvidia_smi_process_mib": 14558
+        }
+      }
+    ],
+    "ablation": [
+      {
+        "status": "complete",
+        "binding": "1a2068c9f53f166193ba1ace1c9c34fa6b4ee2bb4dc095d243a30ba552308967",
+        "rank": 0,
+        "physical_gpu": 1,
+        "expected": 50,
+        "completed": 50,
+        "wall_seconds": 872.5480507269967,
+        "weights_versions_unchanged": true,
+        "hooks_clean": true,
+        "memory": {
+          "allocated_mib": 13505.64794921875,
+          "reserved_mib": 14730.0,
+          "peak_allocated_mib": 14659.236328125,
+          "peak_reserved_mib": 14730.0,
+          "device_free_mib": 9052.3125,
+          "device_total_mib": 24154.375,
+          "nvidia_smi_process_mib": 15070
+        }
+      },
+      {
+        "status": "complete",
+        "binding": "1a2068c9f53f166193ba1ace1c9c34fa6b4ee2bb4dc095d243a30ba552308967",
+        "rank": 1,
+        "physical_gpu": 2,
+        "expected": 50,
+        "completed": 50,
+        "wall_seconds": 894.5150260771625,
+        "weights_versions_unchanged": true,
+        "hooks_clean": true,
+        "memory": {
+          "allocated_mib": 13505.64794921875,
+          "reserved_mib": 14730.0,
+          "peak_allocated_mib": 14658.8603515625,
+          "peak_reserved_mib": 14730.0,
+          "device_free_mib": 9052.3125,
+          "device_total_mib": 24154.375,
+          "nvidia_smi_process_mib": 15070
+        }
+      },
+      {
+        "status": "complete",
+        "binding": "1a2068c9f53f166193ba1ace1c9c34fa6b4ee2bb4dc095d243a30ba552308967",
+        "rank": 2,
+        "physical_gpu": 3,
+        "expected": 50,
+        "completed": 50,
+        "wall_seconds": 886.4505707391072,
+        "weights_versions_unchanged": true,
+        "hooks_clean": true,
+        "memory": {
+          "allocated_mib": 13505.64794921875,
+          "reserved_mib": 14710.0,
+          "peak_allocated_mib": 14658.775390625,
+          "peak_reserved_mib": 14710.0,
+          "device_free_mib": 9072.3125,
+          "device_total_mib": 24154.375,
+          "nvidia_smi_process_mib": 15050
+        }
+      },
+      {
+        "status": "complete",
+        "binding": "1a2068c9f53f166193ba1ace1c9c34fa6b4ee2bb4dc095d243a30ba552308967",
+        "rank": 3,
+        "physical_gpu": 1,
+        "expected": 50,
+        "completed": 50,
+        "wall_seconds": 901.9646754339337,
+        "weights_versions_unchanged": true,
+        "hooks_clean": true,
+        "memory": {
+          "allocated_mib": 13505.64794921875,
+          "reserved_mib": 14730.0,
+          "peak_allocated_mib": 14659.0244140625,
+          "peak_reserved_mib": 14730.0,
+          "device_free_mib": 9052.3125,
+          "device_total_mib": 24154.375,
+          "nvidia_smi_process_mib": 15070
+        }
+      }
+    ]
+  },
+  "environments": [
+    {
+      "stage": "smoke",
+      "rank": 0,
+      "code_commit": "195e65a7bbd327942c8118509be8b9ca3198b2a9",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.49.0",
+      "cuda_runtime": "12.4",
+      "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+      "cuda_visible_devices": "GPU-b08489af-0a8a-eb48-55ba-8346733af417"
+    },
+    {
+      "stage": "smoke",
+      "rank": 1,
+      "code_commit": "195e65a7bbd327942c8118509be8b9ca3198b2a9",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.49.0",
+      "cuda_runtime": "12.4",
+      "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+      "cuda_visible_devices": "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6"
+    },
+    {
+      "stage": "smoke",
+      "rank": 2,
+      "code_commit": "195e65a7bbd327942c8118509be8b9ca3198b2a9",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.49.0",
+      "cuda_runtime": "12.4",
+      "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+      "cuda_visible_devices": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+    },
+    {
+      "stage": "smoke",
+      "rank": 3,
+      "code_commit": "195e65a7bbd327942c8118509be8b9ca3198b2a9",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.49.0",
+      "cuda_runtime": "12.4",
+      "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+      "cuda_visible_devices": "GPU-b08489af-0a8a-eb48-55ba-8346733af417"
+    },
+    {
+      "stage": "full",
+      "rank": 0,
+      "code_commit": "195e65a7bbd327942c8118509be8b9ca3198b2a9",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.49.0",
+      "cuda_runtime": "12.4",
+      "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+      "cuda_visible_devices": "GPU-b08489af-0a8a-eb48-55ba-8346733af417"
+    },
+    {
+      "stage": "full",
+      "rank": 1,
+      "code_commit": "195e65a7bbd327942c8118509be8b9ca3198b2a9",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.49.0",
+      "cuda_runtime": "12.4",
+      "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+      "cuda_visible_devices": "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6"
+    },
+    {
+      "stage": "full",
+      "rank": 2,
+      "code_commit": "195e65a7bbd327942c8118509be8b9ca3198b2a9",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.49.0",
+      "cuda_runtime": "12.4",
+      "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+      "cuda_visible_devices": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+    },
+    {
+      "stage": "full",
+      "rank": 3,
+      "code_commit": "195e65a7bbd327942c8118509be8b9ca3198b2a9",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.49.0",
+      "cuda_runtime": "12.4",
+      "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+      "cuda_visible_devices": "GPU-b08489af-0a8a-eb48-55ba-8346733af417"
+    },
+    {
+      "stage": "ablation",
+      "rank": 0,
+      "code_commit": "195e65a7bbd327942c8118509be8b9ca3198b2a9",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.49.0",
+      "cuda_runtime": "12.4",
+      "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+      "cuda_visible_devices": "GPU-b08489af-0a8a-eb48-55ba-8346733af417"
+    },
+    {
+      "stage": "ablation",
+      "rank": 1,
+      "code_commit": "195e65a7bbd327942c8118509be8b9ca3198b2a9",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.49.0",
+      "cuda_runtime": "12.4",
+      "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+      "cuda_visible_devices": "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6"
+    },
+    {
+      "stage": "ablation",
+      "rank": 2,
+      "code_commit": "195e65a7bbd327942c8118509be8b9ca3198b2a9",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.49.0",
+      "cuda_runtime": "12.4",
+      "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+      "cuda_visible_devices": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+    },
+    {
+      "stage": "ablation",
+      "rank": 3,
+      "code_commit": "195e65a7bbd327942c8118509be8b9ca3198b2a9",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.49.0",
+      "cuda_runtime": "12.4",
+      "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+      "cuda_visible_devices": "GPU-b08489af-0a8a-eb48-55ba-8346733af417"
+    }
+  ],
+  "max_numerical_errors": {
+    "head_max_abs_error": 0.0019445419311523438,
+    "head_max_error_to_bound": 0.9248477816581726,
+    "projection_max_abs_error": 0.004558563232421875,
+    "projection_max_error_to_bound": 0.1614750325679779,
+    "group_head_max_abs_error": 0.0019450187683105469,
+    "group_head_max_error_to_bound": 0.9244277477264404,
+    "group_projection_max_abs_error": 0.004558563232421875,
+    "group_projection_max_error_to_bound": 0.15745775401592255
+  },
+  "max_history_split_error_to_bound": 0.0005030410247854888,
+  "operational_amendment": {
+    "passed": true,
+    "scientific_conditions_unchanged": true,
+    "original_sample_protocol_sha256": "0de1fef5784456e663dbd28abef96f752aace5b1cd17c8996910d64f4ceba372",
+    "sample_sha256": "8db0e3e4b60b8eceb4fec6428b976bb2adf158c5a09b44f0432f958483ca99b4",
+    "scheduling": {
+      "version": 2,
+      "authorized_physical_gpus": [
+        1,
+        2,
+        3
+      ],
+      "logical_shards": 4,
+      "images_per_shard": 50,
+      "shard_physical_gpu": {
+        "0": 1,
+        "1": 2,
+        "2": 3,
+        "3": 1
+      },
+      "shard_gpu_uuid": {
+        "0": "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+        "1": "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+        "2": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185",
+        "3": "GPU-b08489af-0a8a-eb48-55ba-8346733af417"
+      },
+      "same_image_full_ablation_same_gpu": true,
+      "rationale": "User authorized three GPUs; frozen samples and scientific conditions unchanged. GPU0 excluded."
+    }
+  },
+  "no_nan_inf_oom": true,
+  "hooks_and_weight_versions_unchanged": true
+}
