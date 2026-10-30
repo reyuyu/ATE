@@ -1,0 +1,90 @@
+{
+  "version": 1,
+  "seed": 20261030,
+  "base_commit": "a6bf615a6c515addd29fac508ea86ab8da12dc64",
+  "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "dtype": "float16",
+  "attention": "eager",
+  "transformers": "4.49.0",
+  "gpus": [
+    "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+    "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+    "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+  ],
+  "physical_gpus": [
+    1,
+    2,
+    3
+  ],
+  "samples": {
+    "coco_caption": 200,
+    "textvqa": 200
+  },
+  "conditions": [
+    "Full",
+    "L0-off",
+    "L1-off",
+    "L2-off",
+    "L3-off",
+    "L4-off",
+    "L5-off",
+    "L6-off",
+    "L7-off",
+    "L8-off",
+    "L9-off",
+    "L10-off",
+    "L11-off",
+    "L12-off",
+    "L13-off",
+    "L14-off",
+    "L15-off",
+    "L16-off",
+    "L17-off",
+    "L18-off",
+    "L19-off",
+    "L20-off",
+    "L21-off",
+    "L22-off",
+    "L23-off",
+    "L24-off",
+    "L25-off",
+    "L26-off",
+    "L27-off",
+    "L28-off",
+    "L29-off",
+    "L30-off",
+    "L31-off"
+  ],
+  "intervention": "Only the selected single layer current Decode query o_proj output is zero. MLP and all other layers normal. Prefill never edited; first generated token native. No speed claim.",
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "use_cache": true,
+    "eos_token_id": 2,
+    "coco_max_new_tokens": 64,
+    "textvqa_max_new_tokens": 32
+  },
+  "prefill": "Native prefill computed once/image; immutable parent cache deep-cloned separately for all33 conditions. Independent own-prefix Decode trajectories. Cached vs independent-prefill equivalence gated by Smoke.",
+  "stage_detection": "Real cache_position >= full prompt length, nonempty past cache, one current query; never query length alone.",
+  "coco_prompt": "Describe the image in one sentence.",
+  "textvqa_prompt": "Existing official image-only TextVQA question + frozen short-answer instruction; no added OCR.",
+  "sampling": "Input-SHA seeded ordering; one question/image; prior-used COCO IDs/byte/RGB excluded. TextVQA prefer locally available never-used identities, then explicit historical-overlap fallback only if insufficient. No model-output filtering.",
+  "scoring": "COCO pycocoevalcap1.2 PTBTokenizer/CIDEr/SPICE, same200 reference images/IDF across33 conditions. TextVQA pinned official ten-answer soft score.",
+  "statistics": {
+    "bootstrap_repetitions": 200000,
+    "seed": 20261030,
+    "unit": "Image-cluster paired bootstrap, fixed reference-IDF; resample per-image score deltas, not words/heads/conditions.",
+    "ordinary_ci": 0.95,
+    "familywise_ci": 0.95,
+    "comparison_family": 96,
+    "correction": "Bonferroni two-sided percentile intervals across32 layers x3 quality endpoints=96; alpha/192 in each tail;200000 draws gives~52 expected tail draws. Report Monte Carlo limitation; no claim of exact finite-sample coverage.",
+    "margins": {
+      "CIDEr": 0.02,
+      "SPICE": 0.01,
+      "TextVQA": 0.01
+    },
+    "criterion": "Lower confidence bound > -margin, ordinary and corrected separately. Cross-task candidate requires all3 corrected lower bounds; not safety certification."
+  },
+  "boundaries": "Only32 individual Decode-layer interventions. No VLM/classifier training, source sparsity, multi-layer intervention, acceleration claims or confirmation expansion."
+}
