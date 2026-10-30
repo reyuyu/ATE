@@ -7,17 +7,37 @@ from pathlib import Path
 import numpy as np
 from benchmarks.dataset_registry import freeze_json,sha256,digest
 from paper_rq1.analyze import write_csv
-from .protocol import ROOT,OUT,LAYERS,DEEP,SPECIAL,TYPES,MODES,GROUPS,FAMILY,conditions
+from .protocol import ROOT,OUT,LAYERS,DEEP,SPECIAL,TYPES,MODES,GROUPS,FAMILY,PROTOCOL,conditions
 from .run import verify,verify_targets,gate
 from .statistics import ci,fixed_effects
 from .scheduling import SHARD_GPU
 from .protocol import GPUS
 
 
+def validate_amendment(manifest,config):
+    old=json.loads((OUT/'attempts/four_gpu_resource_blocked/execution_manifest.json').read_text())
+    amendment=json.loads((OUT/'three_gpu_amendment.json').read_text())
+    if manifest['protocol_sha256']!=digest(old['protocol']):raise ValueError('Original sample protocol binding changed')
+    old_science={k:v for k,v in old['protocol'].items() if k!='sampling'}
+    new_science={k:v for k,v in PROTOCOL.items() if k!='sampling'}
+    if old_science!=new_science:raise ValueError('Scientific conditions changed in hardware-only amendment')
+    if old['protocol']['sampling'].replace('50/card.','50/logical shard.')!=PROTOCOL['sampling']:
+        raise ValueError('Sampling rule changed beyond clarifying logical shard label')
+    for name,key in [('sample_manifest.json','sample_sha256'),('data_manifest.json','data_sha256')]:
+        if not sha256(OUT/name)==old[key]==amendment[key]==config[key]:raise ValueError('Frozen data changed during rescheduling')
+    for name in ['paper_rq1_late_attention_sources/engine.py',
+                 'paper_rq1_token_role_decode/labels.py']:
+        if old['source_sha256'][name]!=config['source_sha256'][name]:raise ValueError('Intervention/labels changed')
+    if amendment['scheduling']!=config['scheduling']:raise ValueError('GPU assignment changed')
+    return dict(passed=True,scientific_conditions_unchanged=True,original_sample_protocol_sha256=manifest['protocol_sha256'],
+                sample_sha256=config['sample_sha256'],scheduling=config['scheduling'])
+
+
 def collect():
     config=verify();targets=verify_targets();stages={stage:gate(stage) for stage in ['smoke','full','ablation']}
     if list(OUT.glob('**/failures/*.json')):raise ValueError('Unresolved recorded sample failures; no complete claim allowed')
     manifest=json.loads((OUT/'sample_manifest.json').read_text())
+    amendment=validate_amendment(manifest,config)
     selected=json.loads((OUT/'selected_token_manifest.json').read_text())
     rows=[];native=[];numerical=[];raw_bindings=[];environments=[]
     for stage in stages:
@@ -84,6 +104,7 @@ def collect():
         max_numerical_errors={k:max(r[k] for r in numerical if k in r) for k in numerical[0]
             if k.endswith('_abs_error') or k.endswith('_error_to_bound')},
         max_history_split_error_to_bound=max(r.get('history_split_max_error_to_bound',0) for r in numerical),
+        operational_amendment=amendment,
         no_nan_inf_oom=True,hooks_and_weight_versions_unchanged=True)
     write_csv(OUT/'source_ablation_per_token.csv',rows);write_csv(OUT/'native_source_contributions.csv',native)
     write_csv(OUT/'raw_logits_manifest.csv',raw_bindings)
