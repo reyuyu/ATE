@@ -1,0 +1,130 @@
+{
+  "base_commit": "c25001e135408ad72d9f797da03265464b01f7b1",
+  "previous_binding": "a2f770ff964a1df418c141d1f81ae0983c144c7f3091fded9c04c49de24f935a",
+  "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "source": {
+    "first_answer_attention/__init__.py": "c85853c29c437cabdc008e740fc08b1e0ae399047c1191801546252392794180",
+    "first_answer_attention/engine.py": "0a3f51b0bd3c7295da0eb051dc267d174e18daab06048b8264f4c1e40abc58f7",
+    "first_answer_attention/run.py": "5f6f3e2970acccaace1d7f63cc292a52fc33320ddd8d3bdb42fa7c0c522a8388",
+    "first_answer_attention/analyze.py": "53900622840c39df1a6fb1552c749f91c96bd6a53f1cc02e807927c488da3707",
+    "test_first_answer_attention.py": "47251dfa202bd7aec213b60633a96f29db3abe2faeca4728290d88cd8f25d2ef",
+    "paper_rq1_early_joint_attention/engine.py": "68347d85e82e82d73beaa3d68d87a24eb13b9c2ab9ebe949a67a3c8309caec8a",
+    "paper_rq1/engine.py": "2c838844c0e7e9815662019498c9b577b8f6478898f591c9cf52cc4a2028eff9"
+  },
+  "cpu_sha256": "a8df7351c12e4ed344743569901c5972287a2e37470b1a56c344faed0c10dc7b",
+  "baseline_bindings_sha256": "704d308e72ea43370286309e4f9db0c518c8af131666d2ea3acb9852d6a57aff",
+  "original_manifest_sha256": "648f313630512ae5f0a64436abffa7a0aedade79baf5f972410c38b9edb61877",
+  "conditions": {
+    "A": {
+      "layers": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "decode": false
+    },
+    "B": {
+      "layers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "decode": false
+    },
+    "C": {
+      "layers": [
+        0,
+        1,
+        2,
+        3,
+        4
+      ],
+      "decode": true
+    },
+    "D": {
+      "layers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "decode": true
+    },
+    "E": {
+      "layers": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "decode": true
+    }
+  },
+  "code_commit": "7b9b033e149ea03c4583fe95734761d607519d42",
+  "questions": 3000,
+  "images": 2409,
+  "per_task": {
+    "ChooseAttr": 500,
+    "ChooseCat": 500,
+    "ChooseRel": 500,
+    "CompareAttr": 500,
+    "LogicalObj": 500,
+    "QueryAttr": 500
+  },
+  "full_accuracy_reused": true,
+  "full_correct": 2627,
+  "full_generation_replayed_only_in_smoke": true,
+  "reference": "One native cached Prefill per question obtains on-machine first-token logits, not free Full generation.",
+  "temporal_scope": "Only original P-1 in Prefill; C/D/E additionally all subsequent Decode queries. Never all Prefill queries.",
+  "generation": {
+    "greedy": true,
+    "use_cache": true,
+    "max_new_tokens": 32,
+    "eos_token_id": 2,
+    "own_condition_prefix": true
+  },
+  "statistics": {
+    "seed": 20261031,
+    "bootstrap_repetitions": 200000,
+    "primary_family": 5,
+    "noninferiority_pp": -1,
+    "direct_contrasts": [
+      [
+        "B",
+        "A"
+      ],
+      [
+        "D",
+        "C"
+      ],
+      [
+        "C",
+        "A"
+      ],
+      [
+        "D",
+        "B"
+      ],
+      [
+        "E",
+        "C"
+      ],
+      [
+        "E",
+        "D"
+      ]
+    ],
+    "direct_family": 6,
+    "unit": "Whole-image SHA256 paired clusters; question-weighted ratio",
+    "taskwise": "Descriptive; five-comparison correction within task, not global30 simultaneous inference.",
+    "first_logp_loss": "logP_Full(native first Top1) - logP_condition(native first Top1); signed FP32 log_softmax.",
+    "criterion": "Corrected lower bound strictly greater than -1pp; CI containing0 is not equivalence."
+  }
+}

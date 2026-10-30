@@ -1,0 +1,2056 @@
+{
+  "binding": "6c4234883f674202b7f450114a00ee2fbe38d03cc3d82896eff50ca2277e4267",
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "cuda_runtime": "12.4",
+    "cudnn": 90100,
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "cuda_visible_devices": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185",
+    "model_id": "llava-hf/llava-1.5-7b-hf",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "load_seconds": 20.3109880508855,
+    "parameter_devices": [
+      "cuda:0"
+    ],
+    "parameter_dtypes": [
+      "torch.float16"
+    ],
+    "hf_device_map": {
+      "": "cuda:0"
+    },
+    "memory_after_load": {
+      "allocated_mib": 13473.64794921875,
+      "reserved_mib": 13490.0,
+      "peak_allocated_mib": 13473.64794921875,
+      "peak_reserved_mib": 13490.0,
+      "device_free_mib": 10336.3125,
+      "device_total_mib": 24154.375,
+      "nvidia_smi_process_mib": 13786
+    },
+    "physical_gpu": 3,
+    "code_commit": "7b9b033e149ea03c4583fe95734761d607519d42",
+    "preflight": {
+      "uuid": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185",
+      "memory_free_mib": 24128,
+      "all_compute_processes": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 1491226, 4054 MiB\nGPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 1583318, 4050 MiB\n"
+    }
+  },
+  "validation": {
+    "passed": true,
+    "records": [
+      {
+        "task": "ChooseAttr",
+        "question_id": "12753238",
+        "full_tokens": [
+          8037,
+          2
+        ],
+        "full_first_logits_sha256": "4f20597a63c5157975c691ea5fa3a6ac9b883f206e87fa805ca9a2212d9ac9f3",
+        "checks": [
+          {
+            "condition": "A",
+            "generation": {
+              "token_ids": [
+                8037,
+                2
+              ],
+              "length": 2,
+              "eos": true,
+              "truncated": false,
+              "decode_steps": 1,
+              "edits": 5,
+              "own_prefill": true,
+              "own_prefix": true,
+              "initial_cache_sha256": "9a9f427ac4417939edfce5d0ab0313a9d758c7bb9bf8bb7981911d1c47631b28",
+              "events": [
+                {
+                  "layer": 0,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                }
+              ]
+            },
+            "first_logits_sha256": "fb64fbc0a6d12de820c8aebdc115ebf23ff96c86194ff43f66e92d565d9bca75",
+            "first_metrics": {
+              "full_first_token": 8037,
+              "first_token": 8037,
+              "first_top1_flip": false,
+              "full_first_token_logp": -0.0534890778362751,
+              "intervened_full_token_logp": -0.03425407037138939,
+              "first_logp_loss": -0.01923500746488571
+            },
+            "noop_all_logits_exact": true,
+            "other_prefill_queries_all32layers_exact": true,
+            "all32_mlp_normal": true,
+            "independent_native_hf_tokens_exact": true,
+            "native_recovery_exact": true
+          },
+          {
+            "condition": "B",
+            "generation": {
+              "token_ids": [
+                8037,
+                2
+              ],
+              "length": 2,
+              "eos": true,
+              "truncated": false,
+              "decode_steps": 1,
+              "edits": 6,
+              "own_prefill": true,
+              "own_prefix": true,
+              "initial_cache_sha256": "d09f94b4548436a96208e0fc53b61336c08006a50fc5dc1990ea371bc89f808f",
+              "events": [
+                {
+                  "layer": 0,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                }
+              ]
+            },
+            "first_logits_sha256": "3a1a42ba908ff00e958ee9829ba46de2ffb05bdb5150e6cd245b9a46ce5480df",
+            "first_metrics": {
+              "full_first_token": 8037,
+              "first_token": 8037,
+              "first_top1_flip": false,
+              "full_first_token_logp": -0.0534890778362751,
+              "intervened_full_token_logp": -0.059599850326776505,
+              "first_logp_loss": 0.006110772490501404
+            },
+            "noop_all_logits_exact": true,
+            "other_prefill_queries_all32layers_exact": true,
+            "all32_mlp_normal": true,
+            "independent_native_hf_tokens_exact": true,
+            "native_recovery_exact": true
+          },
+          {
+            "condition": "C",
+            "generation": {
+              "token_ids": [
+                8037,
+                2
+              ],
+              "length": 2,
+              "eos": true,
+              "truncated": false,
+              "decode_steps": 1,
+              "edits": 10,
+              "own_prefill": true,
+              "own_prefix": true,
+              "initial_cache_sha256": "9a9f427ac4417939edfce5d0ab0313a9d758c7bb9bf8bb7981911d1c47631b28",
+              "events": [
+                {
+                  "layer": 0,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                }
+              ],
+              "decode_events": [
+                {
+                  "layer": 0,
+                  "decode": false,
+                  "active": false,
+                  "queries": 610,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": false,
+                  "active": false,
+                  "queries": 610,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": false,
+                  "active": false,
+                  "queries": 610,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": false,
+                  "active": false,
+                  "queries": 610,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": false,
+                  "active": false,
+                  "queries": 610,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                }
+              ]
+            },
+            "first_logits_sha256": "fb64fbc0a6d12de820c8aebdc115ebf23ff96c86194ff43f66e92d565d9bca75",
+            "first_metrics": {
+              "full_first_token": 8037,
+              "first_token": 8037,
+              "first_top1_flip": false,
+              "full_first_token_logp": -0.0534890778362751,
+              "intervened_full_token_logp": -0.03425407037138939,
+              "first_logp_loss": -0.01923500746488571
+            },
+            "noop_all_logits_exact": true,
+            "other_prefill_queries_all32layers_exact": true,
+            "all32_mlp_normal": true,
+            "independent_native_hf_tokens_exact": true,
+            "native_recovery_exact": true
+          },
+          {
+            "condition": "D",
+            "generation": {
+              "token_ids": [
+                8037,
+                2
+              ],
+              "length": 2,
+              "eos": true,
+              "truncated": false,
+              "decode_steps": 1,
+              "edits": 12,
+              "own_prefill": true,
+              "own_prefix": true,
+              "initial_cache_sha256": "d09f94b4548436a96208e0fc53b61336c08006a50fc5dc1990ea371bc89f808f",
+              "events": [
+                {
+                  "layer": 0,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                }
+              ],
+              "decode_events": [
+                {
+                  "layer": 0,
+                  "decode": false,
+                  "active": false,
+                  "queries": 610,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": false,
+                  "active": false,
+                  "queries": 610,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": false,
+                  "active": false,
+                  "queries": 610,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": false,
+                  "active": false,
+                  "queries": 610,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": false,
+                  "active": false,
+                  "queries": 610,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": false,
+                  "active": false,
+                  "queries": 610,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                }
+              ]
+            },
+            "first_logits_sha256": "3a1a42ba908ff00e958ee9829ba46de2ffb05bdb5150e6cd245b9a46ce5480df",
+            "first_metrics": {
+              "full_first_token": 8037,
+              "first_token": 8037,
+              "first_top1_flip": false,
+              "full_first_token_logp": -0.0534890778362751,
+              "intervened_full_token_logp": -0.059599850326776505,
+              "first_logp_loss": 0.006110772490501404
+            },
+            "noop_all_logits_exact": true,
+            "other_prefill_queries_all32layers_exact": true,
+            "all32_mlp_normal": true,
+            "independent_native_hf_tokens_exact": true,
+            "native_recovery_exact": true
+          },
+          {
+            "condition": "E",
+            "generation": {
+              "token_ids": [
+                8037,
+                2
+              ],
+              "length": 2,
+              "eos": true,
+              "truncated": false,
+              "decode_steps": 1,
+              "edits": 8,
+              "own_prefill": true,
+              "own_prefix": true,
+              "initial_cache_sha256": "c3d12ed4d66d84ec86a9770170603771018c7d185e54e9f1e418082e0c71cdd6",
+              "events": [
+                {
+                  "layer": 2,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": false,
+                  "active": true,
+                  "queries": 610,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                }
+              ],
+              "decode_events": [
+                {
+                  "layer": 2,
+                  "decode": false,
+                  "active": false,
+                  "queries": 610,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": false,
+                  "active": false,
+                  "queries": 610,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": false,
+                  "active": false,
+                  "queries": 610,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": false,
+                  "active": false,
+                  "queries": 610,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                }
+              ]
+            },
+            "first_logits_sha256": "c742fc019c6462ffd9e0d030c5913b1b45fab8f91a7a027982c382244ba382c8",
+            "first_metrics": {
+              "full_first_token": 8037,
+              "first_token": 8037,
+              "first_top1_flip": false,
+              "full_first_token_logp": -0.0534890778362751,
+              "intervened_full_token_logp": -0.0589718297123909,
+              "first_logp_loss": 0.005482751876115799
+            },
+            "noop_all_logits_exact": true,
+            "other_prefill_queries_all32layers_exact": true,
+            "all32_mlp_normal": true,
+            "independent_native_hf_tokens_exact": true,
+            "native_recovery_exact": true
+          }
+        ]
+      },
+      {
+        "task": "ChooseCat",
+        "question_id": "17934000",
+        "full_tokens": [
+          2726,
+          29895,
+          2
+        ],
+        "full_first_logits_sha256": "65505491f58aabf23ed3d0c9fd23b94e3fc5107877b2419cd534f8aae6fda24a",
+        "checks": [
+          {
+            "condition": "A",
+            "generation": {
+              "token_ids": [
+                2726,
+                29895,
+                2
+              ],
+              "length": 3,
+              "eos": true,
+              "truncated": false,
+              "decode_steps": 2,
+              "edits": 5,
+              "own_prefill": true,
+              "own_prefix": true,
+              "initial_cache_sha256": "519fa7db8a513c569c49452bb5c7b56a0a76a18d4659b4b8de42621140de9d53",
+              "events": [
+                {
+                  "layer": 0,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                }
+              ]
+            },
+            "first_logits_sha256": "75c1c86eb466f1df02611e90aabd180a61359d743f09ca2fab7d60b55d6caf70",
+            "first_metrics": {
+              "full_first_token": 2726,
+              "first_token": 2726,
+              "first_top1_flip": false,
+              "full_first_token_logp": -0.00536419078707695,
+              "intervened_full_token_logp": -0.04066905006766319,
+              "first_logp_loss": 0.03530485928058624
+            },
+            "noop_all_logits_exact": true,
+            "other_prefill_queries_all32layers_exact": true,
+            "all32_mlp_normal": true,
+            "independent_native_hf_tokens_exact": true,
+            "native_recovery_exact": true
+          },
+          {
+            "condition": "B",
+            "generation": {
+              "token_ids": [
+                2726,
+                29895,
+                2
+              ],
+              "length": 3,
+              "eos": true,
+              "truncated": false,
+              "decode_steps": 2,
+              "edits": 6,
+              "own_prefill": true,
+              "own_prefix": true,
+              "initial_cache_sha256": "0cfafc33ec120b15d6d1e7ad3082291760c32c3659b7e21a47ccc189da1c7d3f",
+              "events": [
+                {
+                  "layer": 0,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                }
+              ]
+            },
+            "first_logits_sha256": "0e53fc03c5dc91e8f6ad12bac1cf9b755f38b253d10a6cd4c06c883ee18e3296",
+            "first_metrics": {
+              "full_first_token": 2726,
+              "first_token": 2726,
+              "first_top1_flip": false,
+              "full_first_token_logp": -0.00536419078707695,
+              "intervened_full_token_logp": -0.01884029060602188,
+              "first_logp_loss": 0.013476099818944931
+            },
+            "noop_all_logits_exact": true,
+            "other_prefill_queries_all32layers_exact": true,
+            "all32_mlp_normal": true,
+            "independent_native_hf_tokens_exact": true,
+            "native_recovery_exact": true
+          },
+          {
+            "condition": "C",
+            "generation": {
+              "token_ids": [
+                2726,
+                29895,
+                2
+              ],
+              "length": 3,
+              "eos": true,
+              "truncated": false,
+              "decode_steps": 2,
+              "edits": 15,
+              "own_prefill": true,
+              "own_prefix": true,
+              "initial_cache_sha256": "519fa7db8a513c569c49452bb5c7b56a0a76a18d4659b4b8de42621140de9d53",
+              "events": [
+                {
+                  "layer": 0,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                }
+              ],
+              "decode_events": [
+                {
+                  "layer": 0,
+                  "decode": false,
+                  "active": false,
+                  "queries": 616,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": false,
+                  "active": false,
+                  "queries": 616,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": false,
+                  "active": false,
+                  "queries": 616,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": false,
+                  "active": false,
+                  "queries": 616,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": false,
+                  "active": false,
+                  "queries": 616,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                }
+              ]
+            },
+            "first_logits_sha256": "75c1c86eb466f1df02611e90aabd180a61359d743f09ca2fab7d60b55d6caf70",
+            "first_metrics": {
+              "full_first_token": 2726,
+              "first_token": 2726,
+              "first_top1_flip": false,
+              "full_first_token_logp": -0.00536419078707695,
+              "intervened_full_token_logp": -0.04066905006766319,
+              "first_logp_loss": 0.03530485928058624
+            },
+            "noop_all_logits_exact": true,
+            "other_prefill_queries_all32layers_exact": true,
+            "all32_mlp_normal": true,
+            "independent_native_hf_tokens_exact": true,
+            "native_recovery_exact": true
+          },
+          {
+            "condition": "D",
+            "generation": {
+              "token_ids": [
+                2726,
+                29895,
+                2
+              ],
+              "length": 3,
+              "eos": true,
+              "truncated": false,
+              "decode_steps": 2,
+              "edits": 18,
+              "own_prefill": true,
+              "own_prefix": true,
+              "initial_cache_sha256": "0cfafc33ec120b15d6d1e7ad3082291760c32c3659b7e21a47ccc189da1c7d3f",
+              "events": [
+                {
+                  "layer": 0,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                }
+              ],
+              "decode_events": [
+                {
+                  "layer": 0,
+                  "decode": false,
+                  "active": false,
+                  "queries": 616,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": false,
+                  "active": false,
+                  "queries": 616,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": false,
+                  "active": false,
+                  "queries": 616,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": false,
+                  "active": false,
+                  "queries": 616,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": false,
+                  "active": false,
+                  "queries": 616,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": false,
+                  "active": false,
+                  "queries": 616,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 0,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 1,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                }
+              ]
+            },
+            "first_logits_sha256": "0e53fc03c5dc91e8f6ad12bac1cf9b755f38b253d10a6cd4c06c883ee18e3296",
+            "first_metrics": {
+              "full_first_token": 2726,
+              "first_token": 2726,
+              "first_top1_flip": false,
+              "full_first_token_logp": -0.00536419078707695,
+              "intervened_full_token_logp": -0.01884029060602188,
+              "first_logp_loss": 0.013476099818944931
+            },
+            "noop_all_logits_exact": true,
+            "other_prefill_queries_all32layers_exact": true,
+            "all32_mlp_normal": true,
+            "independent_native_hf_tokens_exact": true,
+            "native_recovery_exact": true
+          },
+          {
+            "condition": "E",
+            "generation": {
+              "token_ids": [
+                2726,
+                29895,
+                2
+              ],
+              "length": 3,
+              "eos": true,
+              "truncated": false,
+              "decode_steps": 2,
+              "edits": 12,
+              "own_prefill": true,
+              "own_prefix": true,
+              "initial_cache_sha256": "f2b09dd1536d74ffe91c7ce9b714a0efc15b563539f549a412ff5e8335491495",
+              "events": [
+                {
+                  "layer": 2,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": false,
+                  "active": true,
+                  "queries": 616,
+                  "target": "original_P-1",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": true,
+                  "active": false,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                }
+              ],
+              "decode_events": [
+                {
+                  "layer": 2,
+                  "decode": false,
+                  "active": false,
+                  "queries": 616,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": false,
+                  "active": false,
+                  "queries": 616,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": false,
+                  "active": false,
+                  "queries": 616,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": false,
+                  "active": false,
+                  "queries": 616,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 2,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 3,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 4,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                },
+                {
+                  "layer": 5,
+                  "decode": true,
+                  "active": true,
+                  "queries": 1,
+                  "target": "all_current_queries",
+                  "noop": false
+                }
+              ]
+            },
+            "first_logits_sha256": "89e375a53e0e1c9e2e973b8a9ba283e3c9f4dc419a297eeb4d47f9df6ca77c74",
+            "first_metrics": {
+              "full_first_token": 2726,
+              "first_token": 2726,
+              "first_top1_flip": false,
+              "full_first_token_logp": -0.00536419078707695,
+              "intervened_full_token_logp": -0.0023593467194586992,
+              "first_logp_loss": -0.003004844067618251
+            },
+            "noop_all_logits_exact": true,
+            "other_prefill_queries_all32layers_exact": true,
+            "all32_mlp_normal": true,
+            "independent_native_hf_tokens_exact": true,
+            "native_recovery_exact": true
+          }
+        ]
+      }
+    ]
+  }
+}
