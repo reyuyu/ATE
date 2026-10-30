@@ -45,5 +45,14 @@ class PolicyTests(unittest.TestCase):
                 status(stage='analysis',status='running');status(stage='train',status='running')
             self.assertEqual(json.loads((Path(folder)/'pipeline_status.json').read_text())['stage'],'train')
 
+    def test_transformers_scaling_keyword_contract(self):
+        import transformers.models.llama.modeling_llama as llama
+        module=SimpleNamespace(layer_idx=31,num_key_value_groups=1,training=False)
+        q=torch.ones(1,1,1,4);k=torch.ones(1,1,5,4);v=torch.ones_like(k)
+        with Policy(None,self.prompt(),'S1') as p:
+            p.next([])
+            out,weights=llama.eager_attention_forward(module,q,k,v,None,scaling=.5,dropout=0.)
+        self.assertEqual(out.shape,(1,1,1,4));self.assertEqual(weights.shape,(1,1,1,5))
+
 
 if __name__=='__main__':unittest.main()

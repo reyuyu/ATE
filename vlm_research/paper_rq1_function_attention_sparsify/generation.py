@@ -35,20 +35,20 @@ class Policy(AbstractContextManager):
                             self.host_profile.append(dict(operator='classifier_host_including_sync',milliseconds=1000*(time.perf_counter()-started)))
                 self.handles.append(model_layers(self.model)[31].register_forward_pre_hook(before,with_kwargs=True))
             if self.strategy!='S0' or self.profile:
-                def attention(module,q,k,v,mask,scale,**kwargs):
-                    if module.layer_idx!=31 or not self.prefix:return self.original(module,q,k,v,mask,scale,**kwargs)
+                def attention(module,q,k,v,mask,scaling,**kwargs):
+                    if module.layer_idx!=31 or not self.prefix:return self.original(module,q,k,v,mask,scaling,**kwargs)
                     begin,end=torch.cuda.Event(enable_timing=True),torch.cuda.Event(enable_timing=True)
                     if self.profile:begin.record()
                     if self.prune:
                         if q.shape[-2]!=1:raise AssertionError('Only real Decode query may be pruned')
                         mode='No-Image' if self.strategy in ['S1','S4'] else 'BOS+History'
                         self.keep=retained(self.groups,mode)
-                        if self.implementation=='A2':result=sparse_attention(module,q,k,v,mask,scale,self.keep)
+                        if self.implementation=='A2':result=sparse_attention(module,q,k,v,mask,scaling,self.keep)
                         else:
-                            result=self.original(module,q,k,v,mask,scale,**kwargs)
+                            result=self.original(module,q,k,v,mask,scaling,**kwargs)
                             removed=sorted(set(range(k.shape[-2]))-set(self.keep))
                             self.head=group_head(result[1][0,:,0],llama.repeat_kv(v,module.num_key_value_groups)[0],removed)
-                    else:result=self.original(module,q,k,v,mask,scale,**kwargs)
+                    else:result=self.original(module,q,k,v,mask,scaling,**kwargs)
                     if self.profile:end.record();self.events.append(('l31_attention',begin,end))
                     return result
                 llama.eager_attention_forward=attention
