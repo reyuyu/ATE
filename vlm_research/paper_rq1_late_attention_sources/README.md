@@ -20,7 +20,11 @@ $PY -u -m paper_rq1_late_attention_sources.analyze
 ```
 
 Resume with the same launch command; never resample or replace frozen targets.
-Each stage gates all four complete same-code workers. Each worker independently
+User authorized GPUs1/2/3 after initial GPU0 resource blockage. Frozen images
+and four50-image logical shards are unchanged: GPU1 executes shards0/3 in
+sequence, GPU2 shard1, GPU3 shard2. Original Full and intervention always use
+the same physical GPU. Old Smoke was archived; new binding reruns Smoke.
+Each stage gates all four complete same-code logical workers. Each worker independently
 loads one model on its designated UUID, checks idle status and writes per-image
 atomic checkpoints. The coordinator freezes target positions after all Full
 captions and before any formal ablation. Changed code, data, cache alignment,

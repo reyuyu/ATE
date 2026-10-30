@@ -1,0 +1,69 @@
+{
+  "status": "operational_amendment_before_formal_gpu",
+  "user_authorization": "User explicitly authorized three GPUs instead of four.",
+  "old_collector_commit": "9352a999c0cb4b5c0ffbdc7fd2941165874630ab",
+  "sample_sha256": "8db0e3e4b60b8eceb4fec6428b976bb2adf158c5a09b44f0432f958483ca99b4",
+  "data_sha256": "4ccab9505239c57e85532df9b6deb5781c9365b40824f37d9fdf9e83bd41c04d",
+  "scheduling": {
+    "version": 2,
+    "authorized_physical_gpus": [
+      1,
+      2,
+      3
+    ],
+    "logical_shards": 4,
+    "images_per_shard": 50,
+    "shard_physical_gpu": {
+      "0": 1,
+      "1": 2,
+      "2": 3,
+      "3": 1
+    },
+    "shard_gpu_uuid": {
+      "0": "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+      "1": "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+      "2": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185",
+      "3": "GPU-b08489af-0a8a-eb48-55ba-8346733af417"
+    },
+    "same_image_full_ablation_same_gpu": true,
+    "rationale": "User authorized three GPUs; frozen samples and scientific conditions unchanged. GPU0 excluded."
+  },
+  "full_images_before_amendment": 0,
+  "formal_images_before_amendment": 0,
+  "scientific_conditions_unchanged": true,
+  "engine_unchanged": true,
+  "labels_unchanged": true,
+  "old_smoke_not_reused_for_new_binding": true,
+  "archived_paths_sha256": {
+    "execution_manifest.json": "0b1c7afe9fd9d26664e926db989e9c604d5b23a0129b9cea77608c2b367a8f45",
+    "cpu_validation.json": "3217f63f7ca0e2e85f80f53b0986ef59b398042a831ed4e723f363c144ab4c7e",
+    "cpu_tests.txt": "8c6017902a67fbaa6f74f5739d2e1a99ddbaf29db4f5fa2d2e339b97e8500565",
+    "final_cpu_tests.txt": "c2d85acf35264069caec543475e675cbd50b571fb1c38d7fcad8f95254f064a3",
+    "statistics_tests.txt": "e150485f0ba99d394368e74c5baa988e99767b465d1408d236b75d8124750a23",
+    "smoke/shard0/console_1793346100591462295.txt": "911e0d66704d453d3d443d574c921b21ae1215c42cc25c8d44711ec09edd51a5",
+    "smoke/shard0/worker.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "smoke/shard1/checkpoints/coco2014_183338.json": "e8b5dead0f08023164c6a59cf91302dcc1eb98e6dbeaf6fa62021d664448b1d1",
+    "smoke/shard1/completion.json": "b57c8d7f71f2ef863676203876a354e06082544268a99f4b329c780fa0a2ab64",
+    "smoke/shard1/console_1793346100592253249.txt": "a226e6577d44c4c88d035983addf8fd55c74bd4823fcd2a334bd0a967bbb32fa",
+    "smoke/shard1/environment.json": "0b6d65c8b86f33ac436e8e11e6e8a55390a89ce1e268ff49bc09a01816eb85ed",
+    "smoke/shard1/worker.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "smoke/shard2/checkpoints/coco2014_183338.json": "a0baac771d1472746f32fad3870213dcff8c346e67804e0276b24f6d48cfc12f",
+    "smoke/shard2/completion.json": "e85250d5a7fea1a3e3d266c45ee76a48e4da4bc757ab756cdec98809ee520f5f",
+    "smoke/shard2/console_1793346100592968020.txt": "06ef1bcbb3bf37cdd1ccc4e09fdfa69e66e65073e31fcb65e6295997726871e7",
+    "smoke/shard2/environment.json": "9f23cf76ac9c418408daa70c65672086e6372ca315eec40bacdd4e03b4ebabb9",
+    "smoke/shard2/worker.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "smoke/shard3/checkpoints/coco2014_183338.json": "544eeb5da231db158b41f11ba91f40bf22cb21c001d3c6c38e60ff40d143fde7",
+    "smoke/shard3/completion.json": "ea3cd34fff09f28c710f413ed4d376ae5565968053793ba39213ba3d3e6394ab",
+    "smoke/shard3/console_1793346100593649530.txt": "f02b8a1cb9f460d549d33eb80da16ca9cee8e5f5cb96f987191c328d4dc2c228",
+    "smoke/shard3/environment.json": "d336a319b680cd4b06655276c9bdc93344a9bf73693933219ab5f81b1836676b",
+    "smoke/shard3/worker.lock": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "report.md": "1d9d97f897f6ef34e0d1d76acee8b9dfe0066adc6fd81e7c619c62283493dfdd",
+    "research_summary.md": "bfcba7a0e29a146a5050c5f72ddfd1fa903c2a018bec463d0c4e450a8d1be8c6",
+    "README.md": "5844218f502ef35bfe5198f77dac8b63334a2d5eebda2349a00de5f29bec446f"
+  },
+  "snapshot": {
+    "observed_at": "2026-10-30T16:32:04.588755+08:00",
+    "gpu_csv": "0, GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 2719 MiB, 21437 MiB, 64 %\n1, GPU-b08489af-0a8a-eb48-55ba-8346733af417, 27 MiB, 24128 MiB, 0 %\n2, GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6, 27 MiB, 24128 MiB, 0 %\n3, GPU-96bc853f-ceea-2404-c704-c48a3d1ca185, 27 MiB, 24128 MiB, 0 %\n",
+    "compute_process_csv": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 1491226, python, 2686 MiB\n"
+  }
+}

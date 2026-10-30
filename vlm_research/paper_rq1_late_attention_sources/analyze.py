@@ -10,6 +10,8 @@ from paper_rq1.analyze import write_csv
 from .protocol import ROOT,OUT,LAYERS,DEEP,SPECIAL,TYPES,MODES,GROUPS,FAMILY,conditions
 from .run import verify,verify_targets,gate
 from .statistics import ci,fixed_effects
+from .scheduling import SHARD_GPU
+from .protocol import GPUS
 
 
 def collect():
@@ -23,6 +25,8 @@ def collect():
             env=json.loads((OUT/f'{stage}/shard{rank}/environment.json').read_text())
             if env['code_commit']!=config['code_commit'] or env['transformers']!='4.49.0' or env['parameter_dtypes']!=['torch.float16']:
                 raise ValueError('Worker environment not frozen version')
+            if env['physical_gpu']!=SHARD_GPU[rank] or env['cuda_visible_devices']!=GPUS[SHARD_GPU[rank]]:
+                raise ValueError('Shard changed physical GPU; native and altered runs must pair on same GPU')
             environments.append(dict(stage=stage,rank=rank,**{k:env[k] for k in ['code_commit','torch','transformers','cuda_runtime','model_revision','cuda_visible_devices']}))
             if stage=='smoke':
                 checkpoint=next((OUT/f'{stage}/shard{rank}/checkpoints').glob('*.json'))

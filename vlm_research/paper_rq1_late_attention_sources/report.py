@@ -50,12 +50,13 @@ def report(rows,native,summary,source_summary,main,paired,deep,recent):
         'Norm, Mass and loss are distinct. Group projections can cancel; their intervention losses are nonlinear and cannot be summed to Whole loss. '
         'History may contain visual information, but History-off does not prove visual-to-text information transfer or strict semantic grounding.',
         '', '## Correctness and Resource Use','',
-        f"All4 real GPU smoke gates passed; native model.generate tokens, no-op logits, native source-observer logits and every formal Full replay step are exact. "
+        f"All4 logical-shard smoke gates on physical GPUs1/2/3 passed; native model.generate tokens, no-op logits, native source-observer logits and every formal Full replay step are exact. "
         f"{targets['positions']} target parent-cache SHA checks passed; {validation['numerical_checks']} native decomposition audits passed unchanged/analytically extended rounding bounds. "
         f"All {validation['raw_logit_files']} raw NPZ SHA256 files verified, {validation['raw_logit_bytes']} bytes, stored locally with committed inventory. "
         'No silent skipped image, nonfinite value, OOM, input mutation or leaked hook was accepted. Model versions and installed Transformers source remain bound.',
         'An initial GPU0 preflight refused an external compute task; see resource_event.json and original smoke console logs. '
-        'No other process was terminated or altered. Completion above is contingent on allfour valid later completions, not the initial three.',
+        'The user then authorized three GPUs. Four original logical shards stay unchanged: GPU1 runs shards0/3, GPU2 shard1, GPU3 shard2. '
+        'Old Smoke/bindings were archived, new Smoke rerun. No other process was terminated or altered; GPU0 was not used.',
         '', '## Figures','']
     for path in sorted((OUT/'figures').glob('*.png')):lines+=[f'![{path.stem}](figures/{path.name})','']
     lines+=['See [research_summary.md](research_summary.md) for the eight Chinese research answers and [README.md](README.md) for exact reproduction/resume commands.']
@@ -114,8 +115,8 @@ def report(rows,native,summary,source_summary,main,paired,deep,recent):
         '不能将词类标签当作严格Grounding或词性的无偏因果效应；原生Caption决定可观察词类，单Token词表过滤限制推广范围。',
         '不能从单步LogP/Top1变化推导完整Caption准确率、整层可跳过、动态路由有效或真实推理加速。',
         '', '## 验证与复现','',
-        f"全部四卡Smoke、20项采集CPU测试、独立统计测试通过。原生生成/无操作/观察器Logits精确一致；{targets['positions']}次目标父Cache哈希检查通过。",
+        f"GPU1/2/3上的四个逻辑分片Smoke、23项采集/调度CPU测试、独立统计测试通过。原生生成/无操作/观察器Logits精确一致；{targets['positions']}次目标父Cache哈希检查通过。",
         f"{validation['numerical_checks']}组原生数值分解验证通过。容差来自冻结FP16/FP32传播误差界，旧Image审计原样保留；未按输出放宽。",
-        '最初GPU0曾被其他用户任务占用，预检拒绝加载；未终止或更改其他进程。正式完成结论仅来自后续四卡均通过后的真实记录。',
+        '最初GPU0曾被其他用户任务占用，预检拒绝加载；随后用户授权改用GPU1/2/3。原200图及四个逻辑分片保持不变，新绑定重新Smoke；未使用GPU0或干扰其他进程。',
         '全部明细、置信区间、环境、代码及原始Logits哈希见CSV/JSON，五张主图均有PNG和PDF。大体积原始NPZ保留本机并提交路径/哈希，不向Git提交模型权重。']
     (OUT/'research_summary.md').write_text('\n'.join(chinese)+'\n')

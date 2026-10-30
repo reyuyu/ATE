@@ -13,6 +13,7 @@ from benchmarks.dataset_registry import freeze_json,sha256
 from .protocol import ROOT,OUT,PYTHON,GPUS
 from .run import verify,gate,verify_targets
 from .engine import metrics
+from .scheduling import configuration,SHARD_GPU
 
 
 def gpu_snapshot():
@@ -31,20 +32,23 @@ separate; it cannot alter frozen worker sources or Observation2 artifacts.
 
 ## Resume
 
-From `{ROOT}` on the same local resources, only when allfour GPUs are idle:
+From `{ROOT}` on the same local resources, only when GPUs1,2,3 are idle. GPU0
+is excluded. Four unchanged50-image logical shards run through three queues;
+GPU1 handles shards0/3, GPU2 shard1, GPU3 shard2. Full and ablation stay paired
+on the same physical GPU. See three_gpu_amendment.json for user authorization.
 
 ```bash
 export CUDA_VISIBLE_DEVICES=''
 export OMP_NUM_THREADS=4 MKL_NUM_THREADS=4 TOKENIZERS_PARALLELISM=false
 PY={PYTHON}
-$PY -m unittest -v test_late_attention_sources test_token_role_decode test_late_source_statistics
+$PY -m unittest -v test_late_attention_sources test_token_role_decode test_late_source_scheduling test_late_source_statistics
 $PY -u -m paper_rq1_late_attention_sources.launch
 $PY -u -m paper_rq1_late_attention_sources.analyze
 $PY -u -m paper_rq1_late_attention_sources.finalize complete
 ```
 
 Do not rerun data selection/CPU freeze to replace the already frozen samples.
-Valid completed smoke shards/checkpoints are reused. Allfour Smoke completions
+Valid same-binding smoke shards/checkpoints are reused. Allfour logical Smoke completions
 are required before Full; all Full captions are required before central target
 selection; the exact target SHA is required before source interventions.
 An occupied GPU stops that stage without terminating any other process. See
@@ -66,10 +70,12 @@ resource_event.json for the initial refused GPU0 process, and original logs.
   recent_vs_older_history.csv: user-requested primary breakdowns.
 - numerical_validation.json: complete only after all formal shards pass.
 - figures/: five PNG/PDF real-data figures, created only after complete gates.
-- partial/: earlier resource-blocked snapshots, never formal result evidence.
+- partial/, attempts/: earlier resource-blocked snapshots, never formal evidence.
+- three_gpu_amendment.json: unchanged image hashes, authorized GPU mapping and
+  archived initial Smoke/source binding; initial Smoke is not used for this run.
 
 Absent artifacts mean not yet executed, not zero effects. Raw full-vocabulary
-FP32 NPZ files stay at `/data/lk/ATE-resources/late_attention_sources/raw/`, with
+FP32 NPZ files stay at `/data/lk/ATE-resources/late_attention_sources/raw/three_gpu_v2/`, with
 SHA256 in checkpoints and completed raw_logits_manifest.csv. Model weights and
 raw images are not Git blobs. Single-step LogP loss is not answer accuracy,
 source losses are not additive, and no actual speedup is measured.

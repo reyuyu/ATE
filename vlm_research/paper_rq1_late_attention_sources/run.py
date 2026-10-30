@@ -25,12 +25,13 @@ from paper_rq1.analyze import write_csv
 from vlm_common import load_model,gpu_memory
 from .protocol import ROOT,OUT,OLD,RAW,MODEL_PATH,PROTOCOL,LAYERS,TYPES,conditions
 from .engine import step,generate,metrics,partition,step_inputs,cache_fingerprint
+from .scheduling import SHARDS, SHARD_GPU, configuration
 
 
 def sources():
     result=prior_sources()
-    names=['paper_rq1_late_attention_sources/'+n+'.py' for n in ['__init__','protocol','data','engine','run','launch']]
-    names+=['test_late_attention_sources.py','paper_rq1_token_role_decode/README.md']
+    names=['paper_rq1_late_attention_sources/'+n+'.py' for n in ['__init__','protocol','data','engine','run','launch','scheduling']]
+    names+=['test_late_attention_sources.py','test_late_source_scheduling.py','paper_rq1_token_role_decode/README.md']
     result.update({n:sha256(ROOT/n) for n in names})
     # prior run/labels/protocol/engine are reused directly and already bound above.
     return result
@@ -41,7 +42,7 @@ def cpu():
     if (OUT/'cpu_validation.json').exists():
         archive=OUT/'audit';archive.mkdir(exist_ok=True);stamp=str(time.time_ns())
         for n in ['cpu_validation.json','cpu_tests.txt']:os.replace(OUT/n,archive/(stamp+'_'+n))
-    suite=unittest.defaultTestLoader.loadTestsFromNames(['test_late_attention_sources','test_token_role_decode'])
+    suite=unittest.defaultTestLoader.loadTestsFromNames(['test_late_attention_sources','test_token_role_decode','test_late_source_scheduling'])
     with (OUT/'cpu_tests.txt').open('w') as stream:
         result=unittest.TextTestRunner(stream=stream,verbosity=2).run(suite)
     if not result.wasSuccessful():raise ValueError('CPU tests failed; inspect cpu_tests.txt')
@@ -58,7 +59,7 @@ def freeze():
     model=json.loads((OLD/'execution_manifest.json').read_text())['model_files']
     for name,record in model.items():
         if sha256(name)!=record['sha256']:raise ValueError('Changed pinned model artifact')
-    freeze_json(OUT/'execution_manifest.json',dict(protocol=PROTOCOL,source_sha256=sources(),
+    freeze_json(OUT/'execution_manifest.json',dict(protocol=PROTOCOL,scheduling=configuration(),source_sha256=sources(),
         code_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT.parent,text=True).strip(),
         data_sha256=sha256(OUT/'data_manifest.json'),sample_sha256=sha256(OUT/'sample_manifest.json'),
         cpu_sha256=sha256(OUT/'cpu_validation.json'),model_files=model,
@@ -67,7 +68,7 @@ def freeze():
 
 def verify():
     config=json.loads((OUT/'execution_manifest.json').read_text())
-    if config['source_sha256']!=sources() or config['protocol']!=PROTOCOL:raise ValueError('Frozen source/protocol changed')
+    if config['source_sha256']!=sources() or config['protocol']!=PROTOCOL or config['scheduling']!=configuration():raise ValueError('Frozen source/protocol/scheduling changed')
     for key,name in [('data_sha256','data_manifest.json'),('sample_sha256','sample_manifest.json'),('cpu_sha256','cpu_validation.json')]:
         if sha256(OUT/name)!=config[key]:raise ValueError('Frozen input changed')
     for name,h in config['transformers_source_sha256'].items():
@@ -80,9 +81,10 @@ def verify():
 
 def gate(stage):
     config=verify();results=[]
-    for rank in range(4):
+    for rank in SHARDS:
         r=json.loads((OUT/f'{stage}/shard{rank}/completion.json').read_text())
-        if r['status']!='complete' or r['binding']!=digest(config):raise ValueError('Need four same-code complete workers: '+stage)
+        if (r['status']!='complete' or r['binding']!=digest(config) or r['rank']!=rank
+                or r['physical_gpu']!=SHARD_GPU[rank]):raise ValueError('Need four same-code logical shards on authorized three GPUs: '+stage)
         results.append(r)
     return results
 
@@ -187,13 +189,14 @@ def worker(stage,rank):
         if chosen['binding']!=binding or chosen['full_stage_digest']!=digest(full_stage):raise ValueError('Different native target trajectory')
     folder=OUT/f'{stage}/shard{rank}';folder.mkdir(parents=True,exist_ok=True)
     lock=(folder/'worker.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
-    pre=preflight(rank)
+    physical_gpu=SHARD_GPU[rank]
+    pre=preflight(physical_gpu)
     if transformers.__version__!='4.49.0':raise ValueError('Wrong Transformers environment')
     model,processor,env=load_model(MODEL_PATH)
-    env.update(binding=binding,code_commit=config['code_commit'],preflight=pre)
+    env.update(binding=binding,code_commit=config['code_commit'],preflight=pre,logical_shard=rank,physical_gpu=physical_gpu)
     if (folder/'environment.json').exists():
         prior=json.loads((folder/'environment.json').read_text())
-        if any(prior[k]!=env[k] for k in ['binding','code_commit','torch','transformers','model_revision']):raise ValueError('Resume environment changed')
+        if any(prior[k]!=env[k] for k in ['binding','code_commit','torch','transformers','model_revision','physical_gpu','cuda_visible_devices']):raise ValueError('Resume environment changed')
         freeze_json(folder/f'resume_{time.time_ns()}.json',env)
     else:freeze_json(folder/'environment.json',env)
     original=llama.eager_attention_forward;hooks=hook_footprint(model);versions={n:p._version for n,p in model.named_parameters()}
@@ -230,7 +233,7 @@ def worker(stage,rank):
     if versions!={n:p._version for n,p in model.named_parameters()} or hooks!=hook_footprint(model):raise AssertionError('Weights/hooks changed')
     verify()
     if stage=='ablation':verify_targets()
-    atomic_json(folder/'completion.json',dict(status='complete',binding=binding,rank=rank,expected=len(samples),completed=complete,
+    atomic_json(folder/'completion.json',dict(status='complete',binding=binding,rank=rank,physical_gpu=physical_gpu,expected=len(samples),completed=complete,
         wall_seconds=time.perf_counter()-started,weights_versions_unchanged=True,hooks_clean=True,memory=gpu_memory()))
 
 

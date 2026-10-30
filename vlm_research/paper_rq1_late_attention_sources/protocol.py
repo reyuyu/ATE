@@ -5,7 +5,7 @@ ROOT = Path(__file__).resolve().parents[1]
 OUT = ROOT / 'results/paper_rq1_late_attention_sources'
 OLD = ROOT / 'results/paper_rq1_token_role_decode'
 POOL = ROOT / 'results/paper_rq1_attention_time'
-RAW = Path('/data/lk/ATE-resources/late_attention_sources/raw')
+RAW = Path('/data/lk/ATE-resources/late_attention_sources/raw/three_gpu_v2')
 LAYERS = [3, 14, 16, 25, 26, 27, 28, 29, 30, 31]
 DEEP = list(range(25, 32))
 SPECIAL = [26, 31]
@@ -20,7 +20,7 @@ PROTOCOL = dict(version=1, seed=SEED, base_commit='2ffdfdf5c003d10d2a2b39c6bd2c4
     images=200,prompt='Describe the image in one sentence.',
     generation=dict(do_sample=False,use_cache=True,max_new_tokens=64,eos_token_id=2),
     layers=LAYERS, special_layers=SPECIAL, groups=GROUPS, modes=MODES,
-    sampling='Input-hash late-source-images-v1 ordering of original unexecuted COCO confirmation. Exclude all prior Observation2 sample/smoke IDs/SHA/RGB and prior COCO Discovery IDs/SHA/RGB. Unique ID,bytes SHA,decoded RGB. First200 formal plus disjoint201st smoke, selection-index modulo4 gives50/card.',
+    sampling='Input-hash late-source-images-v1 ordering of original unexecuted COCO confirmation. Exclude all prior Observation2 sample/smoke IDs/SHA/RGB and prior COCO Discovery IDs/SHA/RGB. Unique ID,bytes SHA,decoded RGB. First200 formal plus disjoint201st smoke, selection-index modulo4 gives50/logical shard.',
     targets='Reuse Observation2 labels.align/select unchanged: frozen lexicon/priority, complete single-token unambiguous words at t>=1, one per class/image, same hash anchor. No confidence or outcome selection. Full200 finishes before target freeze and all formal ablations.',
     partition='Dynamically locate unique original BOS,576 image positions,remaining original valid prompt positions. GENERATED_HISTORY=all generated positions through current consumed y[t-1]. RECENT=last key, OLDER_HISTORY=other generated keys. Valid visible keys exactly partitioned; padding rejected, no unassigned key.',
     intervention='One current Decode Query at one specified layer only. Whole zeros o_proj including bias. Source subtracts bias-free Wo(original native post-softmax group PV) accumulated FP32 then subtraction/nativeFP16 cast once. No mask, no renormalization, no free continuation. Every condition owns cloned Full history.',
