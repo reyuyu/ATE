@@ -1,0 +1,107 @@
+{
+  "binding": "8ce5ccff5cb227faf57ac5e09f4028b4c6ca79dd2f5c283529e69e18b56b21cc",
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "cuda_runtime": "12.4",
+    "cudnn": 90100,
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "cuda_visible_devices": "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+    "model_id": "llava-hf/llava-1.5-7b-hf",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "load_seconds": 20.99573324294761,
+    "parameter_devices": [
+      "cuda:0"
+    ],
+    "parameter_dtypes": [
+      "torch.float16"
+    ],
+    "hf_device_map": {
+      "": "cuda:0"
+    },
+    "memory_after_load": {
+      "allocated_mib": 13473.64794921875,
+      "reserved_mib": 13490.0,
+      "peak_allocated_mib": 13473.64794921875,
+      "peak_reserved_mib": 13490.0,
+      "device_free_mib": 10336.3125,
+      "device_total_mib": 24154.375,
+      "nvidia_smi_process_mib": 13786
+    },
+    "physical_gpu": 2,
+    "code_commit": "cd2ecd94c248aae734a4cb7b9763abfc5c85f1a6",
+    "preflight": {
+      "uuid": "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+      "memory_free_mib": 24128,
+      "all_compute_processes": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 1491226, 4054 MiB\nGPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 1583318, 4050 MiB\nGPU-b08489af-0a8a-eb48-55ba-8346733af417, 2099176, 4732 MiB\n"
+    }
+  },
+  "validation": {
+    "passed": true,
+    "checks": [
+      {
+        "question_id": "12753238",
+        "native_full_replay_exact": true,
+        "reused_E_tokens_and_first_logits_exact": true,
+        "historical_full_first_logits_exact": true,
+        "native_recovery_exact": true,
+        "tested": [
+          {
+            "condition": "W00",
+            "token_ids": [
+              8037,
+              2
+            ],
+            "edits": 8,
+            "other_prefill_queries_all32_exact": true,
+            "all32_mlp_normal": true,
+            "noop_all_logits_exact": true
+          },
+          {
+            "condition": "W01",
+            "token_ids": [
+              8037,
+              2
+            ],
+            "edits": 8,
+            "other_prefill_queries_all32_exact": true,
+            "all32_mlp_normal": true,
+            "noop_all_logits_exact": true
+          },
+          {
+            "condition": "W14",
+            "token_ids": [
+              8037,
+              2
+            ],
+            "edits": 8,
+            "other_prefill_queries_all32_exact": true,
+            "all32_mlp_normal": true,
+            "noop_all_logits_exact": true
+          },
+          {
+            "condition": "W28",
+            "token_ids": [
+              8037,
+              2
+            ],
+            "edits": 8,
+            "other_prefill_queries_all32_exact": true,
+            "all32_mlp_normal": true,
+            "noop_all_logits_exact": true
+          }
+        ]
+      },
+      {
+        "question_id": "17934000",
+        "native_full_replay_exact": true,
+        "reused_E_tokens_and_first_logits_exact": true,
+        "historical_full_first_logits_exact": true,
+        "native_recovery_exact": true,
+        "tested": []
+      }
+    ]
+  }
+}
