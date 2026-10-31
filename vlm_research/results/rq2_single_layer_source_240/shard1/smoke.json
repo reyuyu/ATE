@@ -1,0 +1,2645 @@
+{
+  "passed": true,
+  "source": {
+    "rq2_source_knockout/__init__.py": "0384e565b09e987ae253e31d51b5ea13d86bbec0cff89f5a76e63c8eb1aaf835",
+    "rq2_source_knockout/engine.py": "cc5361a8d0d4e538e0b59d4e731f02e867ce87ae808e696bb3fe96e482474500",
+    "rq2_source_knockout/run.py": "0c16cee179d78a4dc291f7cd5d4b928412352e22d587716b4423393edeaa2d49",
+    "rq2_source_knockout/analyze.py": "c57009e3d0e4714a5a475b630f04e8e56440d827366f37aca7de5b75cbcf962e",
+    "test_rq2_source_knockout.py": "c71d2d26c9ff3854d071a30db976025f70eda8d0f6080d004bbf0b3eff8b4074",
+    "knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+    "vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d",
+    "figure3_decode_windows/run.py": "0da340c5fc6aad0767316aee9b3b0c6597917f86fd0fc0067ed11b2c09d75773",
+    "paper_rq1_single_layer_gqa6/run.py": "d7b454377849a4c5b69d48174a0652dbd03afa416a6b5f140a37b697d2492e03",
+    "paper_rq1_single_layer_gqa6/engine.py": "17509131686cb01f1954e12cbd1ed57d2b74663fa6f6aaba0a01e8fceac7ebe9",
+    "benchmarks/dataset_registry.py": "20369ec1648e795958d7290934f4604fe8ed3b7874c8f27f8aa031d04bf024f5",
+    "paper_rq1_early_joint_attention/statistics.py": "b2e00300e1cb4d322c97ef963c84ebd35d331e26e5111f263f88f4a1015a9cc1",
+    "paper_rq1_decode_layerwise_quality/statistics.py": "562e15eea92e9b2bb8720cbaf81cf0571d631e4dc7f2178f39f7c5abab18ecab"
+  },
+  "sample_manifest_sha256": "6c84f82b2bef1708ccdbc759b62f6e2166e5f81872ce2945646ebcb20c63027d",
+  "history_sha256": "c754b722f37918f4e5c8186e277f721f3ef93be888e2ca99e2838374b882f5ed",
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "cuda_runtime": "12.4",
+    "cudnn": 90100,
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "cuda_visible_devices": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185",
+    "model_id": "llava-hf/llava-1.5-7b-hf",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "load_seconds": 20.21357313194312,
+    "parameter_devices": [
+      "cuda:0"
+    ],
+    "parameter_dtypes": [
+      "torch.float16"
+    ],
+    "hf_device_map": {
+      "": "cuda:0"
+    },
+    "memory_after_load": {
+      "allocated_mib": 13473.64794921875,
+      "reserved_mib": 13490.0,
+      "peak_allocated_mib": 13473.64794921875,
+      "peak_reserved_mib": 13490.0,
+      "device_free_mib": 10336.3125,
+      "device_total_mib": 24154.375,
+      "nvidia_smi_process_mib": 13786
+    }
+  },
+  "preflight": {
+    "physical_gpu": 3,
+    "uuid": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185",
+    "snapshot": "0, GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 4085, 20071, 100\n1, GPU-b08489af-0a8a-eb48-55ba-8346733af417, 27, 24128, 0\n2, GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6, 27, 24128, 0\n3, GPU-96bc853f-ceea-2404-c704-c48a3d1ca185, 27, 24128, 0\n",
+    "processes": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 1583318, 4050 MiB\n"
+  },
+  "checks": [
+    {
+      "question_id": "00283392",
+      "query": 617,
+      "prompt_ids_sha256": "3e65ddaafda7db21dc45bf895bfd243aa5c920c8ecfeac5f4bca51538e05dd2b",
+      "full_logits_sha256": "39a5569c871df4e4ce18e2944e65bb831ff8b6b584b9b101cf55b70303a0b82d",
+      "noop_all_valid_logits_exact": true,
+      "plain_observed_logits_exact": true,
+      "all32_layers_collected": true,
+      "exception_cleanup": true,
+      "normal_cleanup": true,
+      "inputs_and_parameter_versions_unchanged": true,
+      "history": {
+        "historical_full_exact": true,
+        "historical_full_max_abs_difference": 0.0,
+        "historical_full_top1_same": true,
+        "historical_mass_max_abs_difference": 3.5390257835388184e-08,
+        "baseline": "Current same-GPU Native Full for every paired comparison; historical values only provenance/check."
+      },
+      "conditions": [
+        {
+          "layer": 0,
+          "source": "Image",
+          "target_attention_exact_zero": true,
+          "all_other_query_logits_states_and_attention_exact": true,
+          "mask_records": [
+            {
+              "layer": 0,
+              "applied": true,
+              "blocked_connections_per_head": 576,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": true,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 1,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 2,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 3,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 4,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 5,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 6,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 7,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 8,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 9,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 10,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 11,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 12,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 13,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 14,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 15,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 16,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 17,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 18,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 19,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 20,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 21,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 22,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 23,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 24,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 25,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 26,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 27,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 28,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 29,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 30,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 31,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            }
+          ]
+        },
+        {
+          "layer": 15,
+          "source": "Prompt",
+          "target_attention_exact_zero": true,
+          "all_other_query_logits_states_and_attention_exact": true,
+          "mask_records": [
+            {
+              "layer": 0,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 1,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 2,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 3,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 4,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 5,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 6,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 7,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 8,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 9,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 10,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 11,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 12,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 13,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 14,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 15,
+              "applied": true,
+              "blocked_connections_per_head": 40,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": true,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 16,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 17,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 18,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 19,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 20,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 21,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 22,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 23,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 24,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 25,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 26,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 27,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 28,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 29,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 30,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 31,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            }
+          ]
+        },
+        {
+          "layer": 31,
+          "source": "BOS",
+          "target_attention_exact_zero": true,
+          "all_other_query_logits_states_and_attention_exact": true,
+          "mask_records": [
+            {
+              "layer": 0,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 1,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 2,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 3,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 4,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 5,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 6,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 7,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 8,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 9,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 10,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 11,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 12,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 13,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 14,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 15,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 16,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 17,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 18,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 19,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 20,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 21,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 22,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 23,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 24,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 25,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 26,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 27,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 28,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 29,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 30,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 31,
+              "applied": true,
+              "blocked_connections_per_head": 1,
+              "mask_shape": [
+                1,
+                1,
+                618,
+                618
+              ],
+              "cloned_mask": true,
+              "positions_unchanged": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "01806846",
+      "query": 608,
+      "prompt_ids_sha256": "5642ed4834a2450230e683adffefbd94a3a617a307649eddd8f66ff6b8f70f7c",
+      "full_logits_sha256": "133a0345d1f45d02324b3d9bc0f8f1aef52c7b66ef0ffa74c63ae13d7fe9f57e",
+      "noop_all_valid_logits_exact": true,
+      "plain_observed_logits_exact": true,
+      "all32_layers_collected": true,
+      "exception_cleanup": true,
+      "normal_cleanup": true,
+      "inputs_and_parameter_versions_unchanged": true,
+      "history": {
+        "historical_full_exact": true,
+        "historical_full_max_abs_difference": 0.0,
+        "historical_full_top1_same": true,
+        "historical_mass_max_abs_difference": 4.0978193283081055e-08,
+        "baseline": "Current same-GPU Native Full for every paired comparison; historical values only provenance/check."
+      },
+      "conditions": [
+        {
+          "layer": 0,
+          "source": "Image",
+          "target_attention_exact_zero": true,
+          "all_other_query_logits_states_and_attention_exact": true,
+          "mask_records": [
+            {
+              "layer": 0,
+              "applied": true,
+              "blocked_connections_per_head": 576,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": true,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 1,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 2,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 3,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 4,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 5,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 6,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 7,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 8,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 9,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 10,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 11,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 12,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 13,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 14,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 15,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 16,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 17,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 18,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 19,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 20,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 21,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 22,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 23,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 24,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 25,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 26,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 27,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 28,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 29,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 30,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 31,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            }
+          ]
+        },
+        {
+          "layer": 15,
+          "source": "Prompt",
+          "target_attention_exact_zero": true,
+          "all_other_query_logits_states_and_attention_exact": true,
+          "mask_records": [
+            {
+              "layer": 0,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 1,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 2,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 3,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 4,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 5,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 6,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 7,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 8,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 9,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 10,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 11,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 12,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 13,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 14,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 15,
+              "applied": true,
+              "blocked_connections_per_head": 31,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": true,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 16,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 17,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 18,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 19,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 20,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 21,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 22,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 23,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 24,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 25,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 26,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 27,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 28,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 29,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 30,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 31,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            }
+          ]
+        },
+        {
+          "layer": 31,
+          "source": "BOS",
+          "target_attention_exact_zero": true,
+          "all_other_query_logits_states_and_attention_exact": true,
+          "mask_records": [
+            {
+              "layer": 0,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 1,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 2,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 3,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 4,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 5,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 6,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 7,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 8,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 9,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 10,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 11,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 12,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 13,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 14,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 15,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 16,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 17,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 18,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 19,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 20,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 21,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 22,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 23,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 24,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 25,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 26,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 27,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 28,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 29,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 30,
+              "applied": false,
+              "blocked_connections_per_head": 0,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": false,
+              "positions_unchanged": true
+            },
+            {
+              "layer": 31,
+              "applied": true,
+              "blocked_connections_per_head": 1,
+              "mask_shape": [
+                1,
+                1,
+                609,
+                609
+              ],
+              "cloned_mask": true,
+              "positions_unchanged": true
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
