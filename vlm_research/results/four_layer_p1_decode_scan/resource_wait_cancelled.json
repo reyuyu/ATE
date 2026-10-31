@@ -1,0 +1,15 @@
+{
+  "status": "administrative_resource_reschedule_not_model_failure",
+  "terminated_pid": 2128026,
+  "command": "python -u -m four_layer_attention.run worker --rank 0",
+  "reason": "Physical GPU1 remained occupied by external PID2099176. Our shard0 process only waited; no model or checkpoints had been created.",
+  "verified_before_termination": {
+    "shard0_contains_only_worker_lock": true,
+    "pid_absent_from_nvidia_compute_apps": true,
+    "shard2_completed_964_questions_26992_generations": true,
+    "physical_gpu3_idle_memory_mib": 27
+  },
+  "action": "SIGTERM only our waiting PID; retain original wait console. Resume shard0 on idle physical GPU3 under scheduling_amendment.json.",
+  "external_processes_untouched": true,
+  "gpu0_unused": true
+}
