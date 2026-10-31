@@ -1,0 +1,124 @@
+{
+  "status": "frozen",
+  "base_commit": "c67bc7d1a9d0603927b1f18b52777d790f4d1d85",
+  "reviewed_commits": [
+    "f1e661fd228ec600e5a63b3016d68bd2fde64940",
+    "c67bc7d1a9d0603927b1f18b52777d790f4d1d85",
+    "e495adf4fd93337a3638981bbb66c2bbac81242d"
+  ],
+  "phase37_reviewed_sources": {
+    "phase3_7/pathways.py": "b83cb7a592e7025876ebe95cf33c273460be4563201639bc815d2b005217a806",
+    "directed_suffix.py": "060e322ff2c4eb911bbf482c64870ac8a74b58afadbedccaea37087902602d9e",
+    "knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+    "attention_position_probe.py": "91749c6b4f5db5428b5e8ef4e599b72c85bae7683f5fcc2c5e29380b3d5d55eb"
+  },
+  "questions": 240,
+  "original_questions": 3000,
+  "per_task": {
+    "ChooseAttr": 40,
+    "ChooseCat": 40,
+    "ChooseRel": 40,
+    "CompareAttr": 40,
+    "LogicalObj": 40,
+    "QueryAttr": 40
+  },
+  "images": 239,
+  "seed": 20261031,
+  "sample_manifest_sha256": "2a04daecc880d0022944f9a64353aea10da01922a1543c9fa9fe8bff2b08028c",
+  "protected_sha256": {
+    "results/first_answer_early_attention/execution_manifest.json": "4f753c6f507cdd2b1a599398b064b40bb5250480117fde50001b458ddd1c43f6",
+    "results/first_answer_early_attention/per_question.csv": "de1127e92317eeb73bdbaca7ac2ce0b0deb21e6cab7f22dc2978c9e9c03d7eda",
+    "results/gpu2_l0l1_bos_mechanism/result.json": "8aaf643d8e9eae04972ddeeb2c354534f8b7df973ffa578de40d9d04f19c6c46",
+    "results/paper_rq1_single_layer_gqa6/sample_manifest.json": "648f313630512ae5f0a64436abffa7a0aedade79baf5f972410c38b9edb61877"
+  },
+  "selection": "SHA256(early_source_delay_240|seed|task|question_id|image_sha256); lowest40/task; no outcome filter",
+  "cases": [
+    "ChooseAttr__19131690",
+    "ChooseCat__19690103",
+    "ChooseRel__18584332",
+    "CompareAttr__06894896",
+    "LogicalObj__13136946",
+    "QueryAttr__13547757"
+  ],
+  "conditions": {
+    "A1": {
+      "layer": 0,
+      "query": "last",
+      "source": "image"
+    },
+    "A2": {
+      "layer": 0,
+      "query": "last",
+      "source": "question"
+    },
+    "A3": {
+      "layer": 0,
+      "query": "question",
+      "source": "image"
+    },
+    "A4": {
+      "layer": 1,
+      "query": "last",
+      "source": "image"
+    },
+    "A5": {
+      "layer": 1,
+      "query": "last",
+      "source": "question"
+    },
+    "A6": {
+      "layer": 1,
+      "query": "question",
+      "source": "image"
+    },
+    "EarlyOFF": {
+      "early_off": true
+    },
+    "L2Image": {
+      "layer": 2,
+      "query": "last",
+      "source": "image"
+    },
+    "EarlyOFF_L2Image": {
+      "early_off": true,
+      "layer": 2,
+      "query": "last",
+      "source": "image"
+    },
+    "L2Question": {
+      "layer": 2,
+      "query": "last",
+      "source": "question"
+    },
+    "EarlyOFF_L2Question": {
+      "early_off": true,
+      "layer": 2,
+      "query": "last",
+      "source": "question"
+    }
+  },
+  "gpu_uuid": "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+  "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "generation": {
+    "greedy": true,
+    "max_new_tokens": 32,
+    "eos_token_id": 2,
+    "independent_kv": true
+  },
+  "temporal_scope": "All interventions original Prefill only. Last=P-1; Question=multiple real Question rows. All Decode normal.",
+  "mass": "P-1 only, layers0..5, disjoint BOS/Image576/trueQuestion/Template including answer instruction",
+  "full_reuse": "240 historical complete answers; native cached Prefill permitted only for row/hidden measurement and exact binding check",
+  "early_reuse": "Historical P-1+Decode OFF first logits only; NEVER reuse its complete answers as P-1-only",
+  "new_generations_max": 2640,
+  "bootstrap_repetitions": 200000,
+  "interactions": {
+    "formula": "D_s=(EarlyOFF-EarlyOFF_L2s)-(Full-L2s)",
+    "direction": "Predeclared positive D means increased conditional functional dependence; not presumed positive",
+    "family": 2,
+    "intervals": "two-sided ordinary95 and Bonferroni family95 (97.5% marginal)",
+    "unit": "whole image SHA256 clusters, question-weighted paired ratio",
+    "secondary": "Same contrasts on first Top1 flip and native-token LogP Loss; descriptive only"
+  },
+  "exploratory": "Six A comparisons, report ordinary95 and within-six Bonferroni95; taskwise descriptive. Degenerate zero flip bootstrap is not equivalence.",
+  "boundary": "Mass redistribution, path causal contribution, functional compensation and visual semantic integration are distinct claims. No H3 mediation/path-composition test."
+}
