@@ -10,12 +10,18 @@ from first_answer_attention.engine import first_metrics, supplement_generate
 from l0l1_bos.analyze import contrasts
 from l0l1_bos.capture import prefill_capture, vector_change, head_mass
 from l0l1_bos.protocol import CONDITION, cases, old
-from l0l1_bos.run import first_metrics_from_history
+from l0l1_bos.run import first_metrics_from_history, smoke_samples
 
 
 class Tests(unittest.TestCase):
     def test_only_new_condition(self):
         self.assertEqual(CONDITION, dict(layers=[0, 1], decode=True))
+
+    def test_real_task_mapping_smoke_selection(self):
+        samples = smoke_samples()
+        self.assertEqual(len(samples), 2)
+        self.assertEqual(samples[0]['task'], list(old.TASKS)[0])
+        self.assertEqual(samples[1]['task'], list(old.TASKS)[-1])
 
     def test_cases_outcome_blind(self):
         samples = old.cohort()

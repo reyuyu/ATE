@@ -106,8 +106,13 @@ def capture_pair(model, processor, sample, previous, generation=None, save=False
     return record
 
 
+def smoke_samples():
+    tasks = list(old.TASKS)
+    return [next(s for s in old.cohort() if s['task'] == task) for task in (tasks[0], tasks[-1])]
+
+
 def smoke(model, processor):
-    selected = [next(s for s in old.cohort() if s['task'] == task) for task in (old.TASKS[0], old.TASKS[-1])]
+    selected = smoke_samples()
     footprint = hook_footprint(model)
     records = []
     for sample in selected:
