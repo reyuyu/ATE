@@ -1,0 +1,297 @@
+{
+  "binding": "470c9078bc459a6ffb439b45e6536b27bad377cd83e1f6220dbe5a6df2475efe",
+  "sample_sha256": "91944015cf0775bde9e46f06c524713cdc2c0a85bebdfe59b0ffb959c7f09851",
+  "condition": "EarlyOFF_L2Image",
+  "body_sha256": "41ec9e6c0b77ca8f62db27394f95ac2e80ee9559d6ff81016d3d0044b08f688f",
+  "body": {
+    "generation": {
+      "token_ids": [
+        3869,
+        2
+      ],
+      "length": 2,
+      "eos": true,
+      "truncated": false,
+      "decode_steps": 1,
+      "edits": 2,
+      "own_prefill": true,
+      "own_prefix": true,
+      "initial_cache_sha256": null,
+      "events": [],
+      "full_first_token": 3869,
+      "first_token": 3869,
+      "first_top1_flip": false,
+      "full_first_token_logp": -0.00042215018766000867,
+      "intervened_full_token_logp": -0.00014780859055463225,
+      "first_logp_loss": -0.0002743415971053764,
+      "full_first_logits_sha256": "457324d4fd3a07c971da399e5709611895ee4af0bcdb365b88c41da3731824ca",
+      "first_logits_sha256": "bc55d062da65d99a595de544989f589c790df71a56ae1e9bb853cf11895385e6",
+      "text": "Yes",
+      "prediction": "yes",
+      "score": 1
+    },
+    "measurements": {
+      "layer_mass": [
+        {
+          "layer": 0,
+          "bos_mass": 0.0022411979734897614,
+          "image_mass": 0.6600921042263508,
+          "question_mass": 0.07558956742286682,
+          "template_mass": 0.262076186016202,
+          "attention_output_norm": 0.0
+        },
+        {
+          "layer": 1,
+          "bos_mass": 0.005725054070353508,
+          "image_mass": 0.5905599445104599,
+          "question_mass": 0.09937003999948502,
+          "template_mass": 0.30434561148285866,
+          "attention_output_norm": 0.0
+        },
+        {
+          "layer": 2,
+          "bos_mass": 0.17436647415161133,
+          "image_mass": 0.0,
+          "question_mass": 0.2175716534256935,
+          "template_mass": 0.6080578844994307,
+          "attention_output_norm": 5.638289451599121
+        },
+        {
+          "layer": 3,
+          "bos_mass": 0.7284317016601562,
+          "image_mass": 0.16664456389844418,
+          "question_mass": 0.01891268603503704,
+          "template_mass": 0.08603457920253277,
+          "attention_output_norm": 1.4643840789794922
+        },
+        {
+          "layer": 4,
+          "bos_mass": 0.7597808837890625,
+          "image_mass": 0.11676305532455444,
+          "question_mass": 0.028025126084685326,
+          "template_mass": 0.09542008861899376,
+          "attention_output_norm": 1.3199423551559448
+        },
+        {
+          "layer": 5,
+          "bos_mass": 0.8277969360351562,
+          "image_mass": 0.06631195172667503,
+          "question_mass": 0.016095571219921112,
+          "template_mass": 0.08978620916604996,
+          "attention_output_norm": 1.8894402980804443
+        }
+      ],
+      "vector_changes": [
+        {
+          "layer": 2,
+          "measurement": "hidden_in",
+          "l2_change": 2.822349649216036,
+          "relative_l2_change": 1.1429902663181195,
+          "cosine": 0.5679593713170505,
+          "full_norm": 2.4692683152128554,
+          "off_norm": 3.360816089326755,
+          "exact": false
+        },
+        {
+          "layer": 2,
+          "measurement": "query_rope",
+          "l2_change": 65.90935181652534,
+          "relative_l2_change": 0.70525579636012,
+          "cosine": 0.729129448422934,
+          "full_norm": 93.45453402395079,
+          "off_norm": 52.221469170933034,
+          "exact": false
+        },
+        {
+          "layer": 2,
+          "measurement": "hidden_out",
+          "l2_change": 5.260449991351106,
+          "relative_l2_change": 1.4270477818463436,
+          "cosine": 0.4725536856129883,
+          "full_norm": 3.686246570205959,
+          "off_norm": 5.879377113033457,
+          "exact": false
+        },
+        {
+          "layer": 2,
+          "measurement": "bos_key",
+          "l2_change": 0.0,
+          "relative_l2_change": 0.0,
+          "cosine": 1.0,
+          "full_norm": 11.407620081828679,
+          "off_norm": 11.407620081828679,
+          "exact": true
+        },
+        {
+          "layer": 2,
+          "measurement": "bos_value",
+          "l2_change": 0.0,
+          "relative_l2_change": 0.0,
+          "cosine": 1.0,
+          "full_norm": 0.4936479872927748,
+          "off_norm": 0.4936479872927748,
+          "exact": true
+        },
+        {
+          "layer": 3,
+          "measurement": "hidden_in",
+          "l2_change": 5.260449991351106,
+          "relative_l2_change": 1.4270477818463436,
+          "cosine": 0.4725536856129883,
+          "full_norm": 3.686246570205959,
+          "off_norm": 5.879377113033457,
+          "exact": false
+        },
+        {
+          "layer": 3,
+          "measurement": "query_rope",
+          "l2_change": 41.69336279865666,
+          "relative_l2_change": 0.47861381847709905,
+          "cosine": 0.8781734088377562,
+          "full_norm": 87.11274348768437,
+          "off_norm": 75.09619195214869,
+          "exact": false
+        },
+        {
+          "layer": 3,
+          "measurement": "hidden_out",
+          "l2_change": 5.651525591208238,
+          "relative_l2_change": 1.1731542696482102,
+          "cosine": 0.4691430769790261,
+          "full_norm": 4.817376313946283,
+          "off_norm": 5.980307835996688,
+          "exact": false
+        },
+        {
+          "layer": 3,
+          "measurement": "bos_key",
+          "l2_change": 0.0,
+          "relative_l2_change": 0.0,
+          "cosine": 0.9999999999999999,
+          "full_norm": 13.32766208572386,
+          "off_norm": 13.32766208572386,
+          "exact": true
+        },
+        {
+          "layer": 3,
+          "measurement": "bos_value",
+          "l2_change": 0.0,
+          "relative_l2_change": 0.0,
+          "cosine": 1.0,
+          "full_norm": 0.6558370751974729,
+          "off_norm": 0.6558370751974729,
+          "exact": true
+        },
+        {
+          "layer": 4,
+          "measurement": "hidden_in",
+          "l2_change": 5.651525591208238,
+          "relative_l2_change": 1.1731542696482102,
+          "cosine": 0.4691430769790261,
+          "full_norm": 4.817376313946283,
+          "off_norm": 5.980307835996688,
+          "exact": false
+        },
+        {
+          "layer": 4,
+          "measurement": "query_rope",
+          "l2_change": 33.94928341057155,
+          "relative_l2_change": 0.4248070933127295,
+          "cosine": 0.9065472019310516,
+          "full_norm": 79.91694099509579,
+          "off_norm": 76.27189802174497,
+          "exact": false
+        },
+        {
+          "layer": 4,
+          "measurement": "hidden_out",
+          "l2_change": 6.062263081145093,
+          "relative_l2_change": 1.0720661044339153,
+          "cosine": 0.47061635975386457,
+          "full_norm": 5.654747460135548,
+          "off_norm": 6.104607285504645,
+          "exact": false
+        },
+        {
+          "layer": 4,
+          "measurement": "bos_key",
+          "l2_change": 0.0,
+          "relative_l2_change": 0.0,
+          "cosine": 1.0000000000000002,
+          "full_norm": 16.946300672445123,
+          "off_norm": 16.946300672445123,
+          "exact": true
+        },
+        {
+          "layer": 4,
+          "measurement": "bos_value",
+          "l2_change": 0.0,
+          "relative_l2_change": 0.0,
+          "cosine": 0.9999999999999999,
+          "full_norm": 0.8286195971621867,
+          "off_norm": 0.8286195971621867,
+          "exact": true
+        },
+        {
+          "layer": 5,
+          "measurement": "hidden_in",
+          "l2_change": 6.062263081145093,
+          "relative_l2_change": 1.0720661044339153,
+          "cosine": 0.47061635975386457,
+          "full_norm": 5.654747460135548,
+          "off_norm": 6.104607285504645,
+          "exact": false
+        },
+        {
+          "layer": 5,
+          "measurement": "query_rope",
+          "l2_change": 31.5649707309191,
+          "relative_l2_change": 0.3694769143107407,
+          "cosine": 0.9295690122541311,
+          "full_norm": 85.43151008447595,
+          "off_norm": 81.52749214272103,
+          "exact": false
+        },
+        {
+          "layer": 5,
+          "measurement": "hidden_out",
+          "l2_change": 6.203957630126645,
+          "relative_l2_change": 0.9710112281790563,
+          "cosine": 0.5357451566069686,
+          "full_norm": 6.3891718757577785,
+          "off_norm": 6.486345463471454,
+          "exact": false
+        },
+        {
+          "layer": 5,
+          "measurement": "bos_key",
+          "l2_change": 0.0,
+          "relative_l2_change": 0.0,
+          "cosine": 0.9999999999999998,
+          "full_norm": 16.624030202694836,
+          "off_norm": 16.624030202694836,
+          "exact": true
+        },
+        {
+          "layer": 5,
+          "measurement": "bos_value",
+          "l2_change": 0.0,
+          "relative_l2_change": 0.0,
+          "cosine": 0.9999999999999999,
+          "full_norm": 1.3820373376994848,
+          "off_norm": 1.3820373376994848,
+          "exact": true
+        }
+      ],
+      "bos_kv_exact": true
+    },
+    "audit": {
+      "mask_prefill_edits": 1,
+      "decode_mask_edits": 0,
+      "decode_layer_calls": 32,
+      "local_checks": []
+    },
+    "reused_generation": false,
+    "seconds": 0.3185543119907379
+  }
+}
