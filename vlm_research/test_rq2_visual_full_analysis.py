@@ -34,6 +34,10 @@ class Tests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temp:
             with patch.object(a,'OUT',Path(temp)),patch.object(a,'read',return_value={'statistics':{'repetitions':1000}}),patch.object(a,'bootstrap',side_effect=fake):
                 summary,paired,tables=a.summarize(ss,flags,records)
+            from rq2_visual_full import presentation
+            with patch.object(presentation,'OUT',Path(temp)),patch.object(presentation,'read',return_value={'code_commit':'synthetic_test'}):
+                presentation.report(summary,paired,tables,[dict(started_epoch=0.,finished_epoch=60.,seconds=60.)])
+                self.assertIn('未通过', (Path(temp)/'report_zh.md').read_text())
         self.assertEqual([n for n,_,_ in calls],[240,7,6,247])
         self.assertTrue(all(f==[1,4,4,4,4,1]+[1]*5 for _,f,_ in calls))
         main=next(r for r in paired if r['role']=='primary_NI')

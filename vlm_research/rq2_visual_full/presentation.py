@@ -6,7 +6,7 @@ from matplotlib.colors import ListedColormap
 from matplotlib.patches import Patch
 import numpy as np
 
-from .run import OUT, PRIMARY, LABELS, CONDITIONS, previous, read
+from .run import OUT, PRIMARY, SECONDARY, LABELS, CONDITIONS, previous, read
 
 KEYS=['Full',*CONDITIONS]
 COLORS=['#555555','#bd4a49','#c48c28','#22866a','#547cad']
