@@ -1,0 +1,113 @@
+{
+  "base_commit": "e495adf4fd93337a3638981bbb66c2bbac81242d",
+  "questions": 3000,
+  "images": 2409,
+  "per_task": {
+    "ChooseAttr": 500,
+    "ChooseCat": 500,
+    "ChooseRel": 500,
+    "CompareAttr": 500,
+    "LogicalObj": 500,
+    "QueryAttr": 500
+  },
+  "condition": {
+    "layers": [
+      0,
+      1
+    ],
+    "decode": true
+  },
+  "gpu_uuid": "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+  "only_new_condition": "L0L1_OFF",
+  "reuse_bindings_sha256": "888197cc105701896e84f2897b6e026ac315efcde05707228adb602991d66635",
+  "old_binding": "6c4234883f674202b7f450114a00ee2fbe38d03cc3d82896eff50ca2277e4267",
+  "protected_sha256": {
+    "results/first_answer_early_attention/execution_manifest.json": "4f753c6f507cdd2b1a599398b064b40bb5250480117fde50001b458ddd1c43f6",
+    "results/first_answer_early_attention/per_question.csv": "de1127e92317eeb73bdbaca7ac2ce0b0deb21e6cab7f22dc2978c9e9c03d7eda",
+    "results/first_answer_early_attention/result.json": "c319a6b5da50e04f00505d7a3611a8e03c06c41c60a7195b4970ee7edbb28728",
+    "results/first_answer_early_attention/accuracy_summary.csv": "755b6a5830129e2007660174bf18b34f792bf78659467f6fc88fcecc1a313d9c",
+    "results/paper_rq1_single_layer_gqa6/sample_manifest.json": "648f313630512ae5f0a64436abffa7a0aedade79baf5f972410c38b9edb61877"
+  },
+  "cases": [
+    {
+      "task": "ChooseAttr",
+      "question_id": "05529910",
+      "sample_sha256": "532e0404063fe45d1b3ef70b47f69bfcf80e96bd1b567b2887abc654a961cae9"
+    },
+    {
+      "task": "ChooseAttr",
+      "question_id": "06818059",
+      "sample_sha256": "b6cef45db9ebb967ce8fc8c76d999d0531baf602099af33ff13c464ba433accc"
+    },
+    {
+      "task": "ChooseCat",
+      "question_id": "04784973",
+      "sample_sha256": "6fd8823dd7af9517f06ad10a9f9b59c44b775182171c1c7eb4d8596bbf9d01a1"
+    },
+    {
+      "task": "ChooseCat",
+      "question_id": "06278071",
+      "sample_sha256": "444e3f245f115735cb3586d23c997f1e922b9cb5e5f7d2d7d489f36ce1471996"
+    },
+    {
+      "task": "ChooseRel",
+      "question_id": "04197591",
+      "sample_sha256": "8f74498bf3e772901a4c3feb466aece0bc099be8fe52669354289cab6289b0b7"
+    },
+    {
+      "task": "ChooseRel",
+      "question_id": "05799999",
+      "sample_sha256": "d33f6a7bb0260b3a3c3ca578f979b9c5473540dc6a6aed821ec30588ff93e591"
+    },
+    {
+      "task": "CompareAttr",
+      "question_id": "04967002",
+      "sample_sha256": "51b103a8a9344a9b109c26f5c54b3e15996b266e5fda97c054709085b58aa512"
+    },
+    {
+      "task": "CompareAttr",
+      "question_id": "06626818",
+      "sample_sha256": "e4ee6f2d650bb91ac80508cfa1ed1f79c914a3cf349959783ea6d04b985fa767"
+    },
+    {
+      "task": "LogicalObj",
+      "question_id": "04863771",
+      "sample_sha256": "c9ec18444d17e54bf47ae68728bf0794a3e002b50c03d7fad1970ce33d96ae84"
+    },
+    {
+      "task": "LogicalObj",
+      "question_id": "061022270",
+      "sample_sha256": "202d1af2b47abf35460406a7798fb90d379b2878ce243df74ff06b81be319eac"
+    },
+    {
+      "task": "QueryAttr",
+      "question_id": "04955769",
+      "sample_sha256": "e5b71d3bcb2c2daa7fddb63965112d01933b285ba096061077cdf65ae0e1e6d1"
+    },
+    {
+      "task": "QueryAttr",
+      "question_id": "06273941",
+      "sample_sha256": "822a887fca7e07ca76ecacf2afb6bf9cd415a7486807261e04cf82150107b100"
+    }
+  ],
+  "selection": "Independent Random(20261031).sample(sorted original task by question_id,2), no outcome filtering",
+  "temporal_scope": "Only P-1 in Prefill and every subsequent Decode query; o_proj output zero; MLP and KV normal",
+  "generation": {
+    "greedy": true,
+    "max_new_tokens": 32,
+    "eos_token_id": 2,
+    "independent_cache": true
+  },
+  "native_reuse": "Full/D/E complete answers and Full reference LogP reused, no 3000 Full reference forwards",
+  "mass_partition": "BOS token positions; Image576; Prompt = all remaining accessible original input tokens, excluding BOS/Image",
+  "mechanism": "Only original P-1, one independent cached Prefill per condition; observe layers0..5, all heads",
+  "statistics": {
+    "seed": 20261031,
+    "bootstrap_repetitions": 200000,
+    "cluster": "Whole image SHA256, question-weighted paired ratio",
+    "harm": "H01=Full-F; H01_given25=E-D; Full=Native, F=L0L1_OFF, E=L2L5_OFF, D=L0L5_OFF",
+    "interaction": "I=(E-D)-(Full-F)=F+E-D-Full. Positive means super-additive harm on accuracy probability scale.",
+    "family": "Five distinct predeclared contrasts: F-Full,E-Full,D-Full,E-D,interaction; ordinary paired95 and Bonferroni simultaneous95; taskwise descriptive only"
+  },
+  "illustrative": "After accuracy: first <=3 Full-correct/new-wrong cases in task/question order, distinct tasks and images, clearly posthoc"
+}
