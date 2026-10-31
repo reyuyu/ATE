@@ -1,7 +1,6 @@
 import unittest
 
-from rq2_visual_full.run import split, populations, SECONDARY, PRIMARY
-from rq2_visual_sufficiency.run import assign
+from rq2_visual_full.run import split, populations, SECONDARY, PRIMARY, assign, GPUS
 
 
 class Tests(unittest.TestCase):
@@ -20,11 +19,11 @@ class Tests(unittest.TestCase):
         self.assertEqual(PRIMARY,'validation_image_disjoint')
         self.assertEqual(SECONDARY,[('C','A'),('C','B'),('D','Full'),('A','Full')])
 
-    def test_three_way_assignment_is_image_clustered(self):
+    def test_assignment_is_image_clustered(self):
         ss=[dict(question_id=str(i),image_sha256=str(i//3)) for i in range(2760)]
         a=assign(ss);self.assertEqual(a,assign(ss[::-1]))
         for i in range(0,2760,3):self.assertEqual(len({a[str(i+j)] for j in range(3)}),1)
-        loads=[list(a.values()).count(i) for i in range(3)]
+        loads=[list(a.values()).count(i) for i in range(len(GPUS))]
         self.assertEqual(sum(loads),2760)
         self.assertLessEqual(max(loads)-min(loads),3)
 

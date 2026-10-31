@@ -1,0 +1,12 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/rq2-visual-sufficiency-full3000/vlm_research/rq2_visual_full/run.py", line 314, in <module>
+    if args.stage in ('smoke','worker'):globals()[args.stage](args.rank)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/rq2-visual-sufficiency-full3000/vlm_research/rq2_visual_full/run.py", line 175, in smoke
+    code_check();pre=previous.preflight(rank);started=time.perf_counter()
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/rq2-visual-sufficiency-full3000/vlm_research/rq2_visual_sufficiency/run.py", line 58, in preflight
+    raise ValueError('GPU occupied; never stop other processes')
+ValueError: GPU occupied; never stop other processes

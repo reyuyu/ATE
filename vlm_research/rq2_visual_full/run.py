@@ -1,6 +1,6 @@
 """Reuse all historical generators/masks; add only cohort binding and scheduling."""
 import argparse
-from collections import Counter
+from collections import Counter, defaultdict
 import fcntl
 from functools import lru_cache
 import io
@@ -28,13 +28,30 @@ from vlm_common import load_model, gpu_memory
 
 OUT = ROOT/'results/rq2_visual_sufficiency_full3000'
 BASE = 'bdcf9058e3ae676689c01f91653d371fd1e42102'
-TASKS, GPUS, SEED = previous.old.TASKS, previous.GPUS, 20261031
+TASKS, SEED = previous.old.TASKS, 20261031
+GPUS = [previous.GPUS[0],previous.GPUS[2]]
+GPU_INDICES = [1,3]
 PRIMARY = 'validation_image_disjoint'
 SECONDARY = [('C','A'),('C','B'),('D','Full'),('A','Full')]
 
 
 def read(path):
     return json.loads(Path(path).read_text())
+
+
+def assign(ss):
+    groups=defaultdict(list)
+    for s in ss:groups[s['image_sha256']].append(s)
+    loads=[0]*len(GPUS);ranks={}
+    for image in sorted(groups,key=lambda h:(-len(groups[h]),digest(['rq2.3',SEED,h]))):
+        rank=min(range(len(GPUS)),key=lambda k:(loads[k],k))
+        for s in groups[image]:ranks[s['question_id']]=rank
+        loads[rank]+=len(groups[image])
+    return ranks
+
+
+def preflight(rank):
+    return previous.preflight(GPU_INDICES[rank]-1)
 
 
 def sources():
@@ -132,7 +149,7 @@ def prepare():
                 assert r['generation']['masked_layers']==CONDITIONS[key]
                 assert sha256(previous.OUT/r['logits_file'])==r['logits_sha256']
                 records[s['question_id']]['reused'][key]=dict(path=str(p.relative_to(ROOT)),sha256=sha256(p))
-    assignments=previous.assign(groups['validation'])
+    assignments=assign(groups['validation'])
     integrity=dict(original_questions=3000,original_images=len({s['image_sha256'] for s in ss}),
         populations={k:dict(questions=len(v),images=len({s['image_sha256'] for s in v}),
                             tasks=dict(Counter(s['task'] for s in v))) for k,v in groups.items()},
@@ -172,7 +189,7 @@ def code_check():
 
 
 def smoke(rank):
-    code_check();pre=previous.preflight(rank);started=time.perf_counter()
+    code_check();pre=preflight(rank);started=time.perf_counter()
     model,processor,environment=load_model(MODEL_PATH)
     footprint=hook_footprint(model);versions={n:p._version for n,p in model.named_parameters()}
     manifest=read(OUT/'sample_manifest.json');ss=manifest['samples'];checks=[]
@@ -211,23 +228,23 @@ def smoke(rank):
             visual_keys=576,noop_all_logits_and_generation_exact=True,native_history_exact=True,conditions=interventions))
     atomic_json(OUT/f'shard{rank}/smoke.json',dict(passed=True,source=sources(),environment=environment,
         preflight=pre,checks=checks,seconds=time.perf_counter()-started))
-    print('Smoke passed GPU',rank+1,flush=True)
+    print('Smoke passed GPU',GPU_INDICES[rank],flush=True)
 
 
 def freeze():
-    code_check();smokes=[read(OUT/f'shard{k}/smoke.json') for k in range(3)]
+    code_check();smokes=[read(OUT/f'shard{k}/smoke.json') for k in range(len(GPUS))]
     envkeys=['python','torch','transformers','cuda_runtime','cudnn','gpu','model_id','model_revision','parameter_dtypes']
     assert all(s['passed'] and s['source']==sources() and s['checks']==smokes[0]['checks'] for s in smokes)
     assert all({k:s['environment'][k] for k in envkeys}=={k:smokes[0]['environment'][k] for k in envkeys} for s in smokes)
     old=read(previous.OUT/'protocol.json')
     for p,b in old['model_files'].items():assert sha256(p)==b['sha256']
     names=['sample_manifest.json','history_bindings.json','split_integrity.json','cpu_validation.json',
-           *[f'shard{k}/smoke.json' for k in range(3)]]
+           *[f'shard{k}/smoke.json' for k in range(len(GPUS))]]
     freeze_json(OUT/'protocol.json',dict(status='frozen',base_commit=BASE,
         code_commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip(),source=sources(),
         bindings={n:sha256(OUT/n) for n in names},model_revision=old['model_revision'],model_files=old['model_files'],
         transformers_source=old['transformers_source'],transformers='4.49.0',dtype='FP16',attention='eager',
-        gpu_uuids=GPUS,conditions=CONDITIONS,labels=LABELS,total=3000,reused_full=3000,reused_interventions=960,
+        gpu_uuids=GPUS,gpu_indices=GPU_INDICES,conditions=CONDITIONS,labels=LABELS,total=3000,reused_full=3000,reused_interventions=960,
         new_questions=2760,new_generations=11040,generation=old['generation'],
         intervention=old['intervention'],primary_population=PRIMARY,
         statistics=dict(seed=SEED,repetitions=200000,primary=['C','Full'],noninferiority_pp=-1.,
@@ -265,7 +282,7 @@ def worker(rank):
     if (folder/'completion.json').exists():
         assert read(folder/'completion.json')['binding']==binding
         print('Already complete; no GPU loaded',flush=True);return
-    pre=previous.preflight(rank);started_epoch=time.time();started=time.perf_counter()
+    pre=preflight(rank);started_epoch=time.time();started=time.perf_counter()
     model,processor,environment=load_model(MODEL_PATH)
     assert environment['model_revision']==c['model_revision'] and environment['transformers']=='4.49.0'
     assert environment['parameter_dtypes']==['torch.float16'] and not model.training
@@ -295,21 +312,21 @@ def worker(rank):
                 image_id=s['image_id'],image_sha256=s['image_sha256'],condition=key,generation=g,
                 result_sha256=digest(g),first_token=metric,metric_sha256=digest(metric),
                 logits_file=str(raw.relative_to(OUT)),logits_sha256=sha256(raw),seconds=time.perf_counter()-tick,
-                hooks_clean=True,inputs_unchanged=True,parameters_unchanged=True,physical_gpu=rank+1))
+                hooks_clean=True,inputs_unchanged=True,parameters_unchanged=True,physical_gpu=GPU_INDICES[rank]))
         if (i+1)%25==0 or i+1==len(ss):
-            print(json.dumps(dict(gpu=rank+1,questions=i+1,total=len(ss),generations=(i+1)*4,
+            print(json.dumps(dict(gpu=GPU_INDICES[rank],questions=i+1,total=len(ss),generations=(i+1)*4,
                 seconds=time.perf_counter()-started)),flush=True)
     verify()
     atomic_json(folder/'completion.json',dict(status='complete',binding=binding,questions=len(ss),generations=len(ss)*4,
         resumed=resumed,started_epoch=started_epoch,finished_epoch=time.time(),seconds=time.perf_counter()-started,
         environment=environment,preflight=pre,memory=gpu_memory(),hooks_clean=hook_footprint(model)==footprint,
         parameters_unchanged=versions=={n:p._version for n,p in model.named_parameters()}))
-    print('Complete GPU',rank+1,flush=True)
+    print('Complete GPU',GPU_INDICES[rank],flush=True)
 
 
 if __name__=='__main__':
     parser=argparse.ArgumentParser();parser.add_argument('stage',choices=['prepare','cpu','smoke','freeze','worker'])
-    parser.add_argument('--rank',type=int,choices=[0,1,2],default=0);args=parser.parse_args()
+    parser.add_argument('--rank',type=int,choices=range(len(GPUS)),default=0);args=parser.parse_args()
     try:
         if args.stage in ('smoke','worker'):globals()[args.stage](args.rank)
         else:globals()[args.stage]()
