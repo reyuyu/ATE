@@ -1,0 +1,67 @@
+{
+  "binding": "f223eaedd9bdd400f8af6111903785c808dc9cfbd1fa26c0b34429753de71ee4",
+  "passed": true,
+  "validation": {
+    "passed": true,
+    "checks": [
+      {
+        "task": "ChooseAttr",
+        "question_id": "12753238",
+        "query": 609,
+        "full_logits_exact": true,
+        "max_logit_difference": 0.0,
+        "all32_reductions_and_maps_exact": true,
+        "hooks_clean": true,
+        "inputs_unchanged": true,
+        "first_token": 8037
+      },
+      {
+        "task": "ChooseCat",
+        "question_id": "17934000",
+        "query": 615,
+        "full_logits_exact": true,
+        "max_logit_difference": 0.0,
+        "all32_reductions_and_maps_exact": true,
+        "hooks_clean": true,
+        "inputs_unchanged": true,
+        "first_token": 2726
+      }
+    ]
+  },
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "cuda_runtime": "12.4",
+    "cudnn": 90100,
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "cuda_visible_devices": "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+    "model_id": "llava-hf/llava-1.5-7b-hf",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "load_seconds": 19.649594314862043,
+    "parameter_devices": [
+      "cuda:0"
+    ],
+    "parameter_dtypes": [
+      "torch.float16"
+    ],
+    "hf_device_map": {
+      "": "cuda:0"
+    },
+    "memory_after_load": {
+      "allocated_mib": 13473.64794921875,
+      "reserved_mib": 13490.0,
+      "peak_allocated_mib": 13473.64794921875,
+      "peak_reserved_mib": 13490.0,
+      "device_free_mib": 10336.3125,
+      "device_total_mib": 24154.375,
+      "nvidia_smi_process_mib": 13786
+    }
+  },
+  "preflight": {
+    "uuid": "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+    "memory_free_mib": 24128,
+    "all_compute_processes": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 1583318, 4050 MiB\nGPU-96bc853f-ceea-2404-c704-c48a3d1ca185, 2205608, 14650 MiB\n"
+  }
+}

@@ -1,0 +1,57 @@
+{
+  "base_commit": "e495adf4fd93337a3638981bbb66c2bbac81242d",
+  "original_commit": "221cdde56dde53908aaa953fe26672fd33334f84",
+  "original_manifest_blob": "636b0fc3cf14cd243d5bfeb3cf1527ad1fbfc6f1",
+  "original_manifest_sha256": "648f313630512ae5f0a64436abffa7a0aedade79baf5f972410c38b9edb61877",
+  "previous_binding": "6c4234883f674202b7f450114a00ee2fbe38d03cc3d82896eff50ca2277e4267",
+  "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "source": {
+    "first_answer_mass/__init__.py": "3eb9266dc408972cfc6a31e68e7d26d92b3760f6aaf9823ec9f4a0833dc88a4c",
+    "first_answer_mass/engine.py": "555cb45cd90abdde630fd563c41fc6105f3653a7c450b673a8e7d297d803d779",
+    "first_answer_mass/run.py": "f77e662116db2436d5f9b57bee663fd8bd9fb4da8a1e3dfbaa18e30e992a2683",
+    "first_answer_mass/analyze.py": "03991bdb818d2da942bc372f562282e151afc4e94833e59fdd71f057a603da14",
+    "test_first_answer_mass.py": "18ac13ca9e0f44da59f1d9852cd7864a5f0240a4bf361e4afbf8b3ba78da503f",
+    "attention_position_probe.py": "91749c6b4f5db5428b5e8ef4e599b72c85bae7683f5fcc2c5e29380b3d5d55eb",
+    "attention_probe.py": "888aa0bee8f4ed45e8def09083a301a3fe9e4ad8387c2cd396c847766c34a58b",
+    "roi_sink_common.py": "ce2d694706a7e29eb0227330f3bc78dd417c86ae2201336632c27be190e60efb",
+    "paper_rq1_early_joint_attention/statistics.py": "b2e00300e1cb4d322c97ef963c84ebd35d331e26e5111f263f88f4a1015a9cc1"
+  },
+  "code_commit": "15134c941a3c27d63cfafac7644305202d64a330",
+  "input_partitions_sha256": "af71456e8e82213c87ddaf8b428ec6e20266c74fa60ccf6ba59d8b7d26efb852",
+  "case_pool_sha256": "98c8a409506ba032a294e16e35a8f5315f9fd893d00e4263a1ac5f5d243fb15b",
+  "showcase_sha256": "54024a02ea734dc72f2131b2a0e7aec4599d03943c5f88950fd3c4ce65c0919c",
+  "cpu_sha256": "6453e3674f702c43273aa645b211523549ac23f762848a672dbd69c2e5ac925c",
+  "questions": 3000,
+  "images": 2409,
+  "protocol": {
+    "physical_gpu": 1,
+    "native_full_only": true,
+    "query": "Last valid original Prompt P-1, before first answer Token",
+    "cache": false,
+    "decode": false,
+    "teacher_forcing": false,
+    "row_sum_atol": 0.002,
+    "mass": "Head mean of native post-softmax probabilities; four disjoint exhaustive groups.",
+    "question": "Real question only, offset-verified; answer instructions belong to prompt_template.",
+    "prompt": "question + prompt_template, excludes BOS and Image; includes P-1 if template.",
+    "case_maps": "Head-mean raw patch probabilities;24x24 row-major; actual Processor resize/center-crop inverse mapping.",
+    "display_layers": [
+      0,
+      3,
+      15,
+      31
+    ],
+    "case_choice": "Frozen before GPU inference from original image/question clarity, no Attention or accuracy selection."
+  },
+  "statistics": {
+    "seed": 20261031,
+    "bootstrap_repetitions": 10000,
+    "unit": "Whole-image SHA256 paired clusters, question-weighted mean",
+    "ci": "Ordinary pointwise95%; not simultaneous across layers/sources/tasks",
+    "sd": "Across-question sample SD, ddof1; heads/layers not independent samples"
+  },
+  "historical_csv": {
+    "first_token_per_question.csv": "70ee9a995eefe1844c71a66ac2a55899f224a80305b326ecbf89563acbbb3135",
+    "bos_mass_per_question.csv": "e15913df8e2b78668333874ad1839a4d0208b9c1a1e5cd6097d5819f45ff13a1"
+  }
+}
