@@ -1,24 +1,98 @@
 {
-  "status": "partial_annotation_gate_failed",
-  "sample_manifest_sha256": "204c3a9846f4cae48605a50c9ea5b5cf9e7cc112dd8a3b35e068ca6e621daa51",
-  "sensitivity_csv_sha256": "01b316672e1fea69196d669ac24ff0839e78d046f1cb8c1a98a887c9872f9e60",
-  "history_protocol_sha256": "6d7b664ebd9ce1a2286f9bf8a50119b95ac50bc18d575a885495885afd8b754a",
-  "original_annotation_sha256": "4704b5ef646363523faab9f6a42fb1047f35c9b6d9bbba451606c8b1e4026ac5",
-  "original_annotation_path": "/data/lk/ATE-resources/paper_rq1/annotations/gqa_val_balanced.parquet",
-  "source_repository": "FightingFighting/cross-modal-information-flow-in-MLLM",
-  "source_commit": "c9a1111dac4baa175f67716fab473789320187c0",
-  "model": "Qwen/Qwen3-VL-8B-Instruct",
+  "status": "frozen_ready_for_gpu_smoke",
+  "initial_partial_commit": "812f3e495",
+  "model_repo": "Qwen/Qwen3-VL-8B-Instruct",
   "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
   "dtype": "bfloat16",
   "attention": "eager",
-  "requested_samples": 240,
-  "requested_layers": 36,
-  "allowed_physical_gpus": [
+  "layers": 36,
+  "samples": 240,
+  "physical_gpus": [
     0,
     2,
     3
   ],
-  "stop_reason": "Official per-task correct_question CSVs do not cover the frozen cohort; no replacement or fabricated BBoxes.",
-  "no_gpu_experiment_started": true,
-  "no_sensitivity_or_correlation_conclusions": true
+  "sample_manifest_sha256": "204c3a9846f4cae48605a50c9ea5b5cf9e7cc112dd8a3b35e068ca6e621daa51",
+  "roi_mapping_sha256": "05b298e6fbae5541f4c8501cdb5623bcfa03cb55ebcb618d7c0e04bc56cb093d",
+  "annotation_resolution_sha256": "47d449274f833949a86e30db7b2d581e28220a894e631cd6712276e18fd5f900",
+  "model_manifest_sha256": "5fa2414e6596fa188838506bc5e973542e9ba4db94c90cbe748c66b9686ef31c",
+  "environment": {
+    "versions": {
+      "torch": "2.6.0+cu124",
+      "transformers": "4.57.6",
+      "tokenizers": "0.22.1",
+      "Pillow": "11.1.0"
+    },
+    "official_modeling_sha256": "dd63ed3b124232735b3dca1bfa28f9d6b0d3f7182afcb75dde8f3e724b2b22da",
+    "executable": "/data/lk/深度学习/.envs/ate-qwen3vl/bin/python"
+  },
+  "code_sha256": {
+    "vlm_research/qwen3vl_roi_alignment/engine.py": "688f6d20ed02a87596c1e53aedaf86170bb9b50a75baa1bc604f1798a995f1c3",
+    "vlm_research/qwen3vl_roi_alignment/run.py": "a412662b70883c03a29a3116ee31e910f1575c6739b4ef880610585ba825c5d5",
+    "vlm_research/qwen3vl_roi_alignment/annotations.py": "14b1f3eb5fd64ab4a7e7e8ade2597ebdd34e18c72e2a46842412e5a2a1898ac9",
+    "vlm_research/qwen3vl_roi_alignment/processor_check.py": "d200bb027ca78d4eb06cf6f658ca77be99d1ec8dba0d579381f453c5b7aa03b7",
+    "vlm_research/qwen3vl_roi_alignment/preflight.py": "c256d0392726c9434554605ce4dbfb6eff832a16c2354d4429ea6c1032e39243",
+    "vlm_research/qwen3vl_early_windows/experiment.py": "ea65a64f5ac6842e6a821ae2d21222c211060bd4afa08dc2d26fbaf3581b1b9c",
+    "vlm_research/qwen3vl_smoke/common.py": "7d2832ea00133a8700366a9ba668473dc7febd391f64aabe807011990c709099",
+    "vlm_research/qwen3vl_image_source/run.py": "1679dc1c46af988ef2fbe69b78e70922a97e35206d6ecc6137466d5a80376584",
+    "vlm_research/qwen3vl_keep_l26/run.py": "13524a91868117d2d78f15613dc83026e3d882ab5e2c4ad071252bc48221f6ed"
+  },
+  "queries": [
+    "P-1",
+    "Question"
+  ],
+  "question_aggregation": "Arithmetic mean of native attention over heads and all true question subtoken queries, then image-normalized ratios",
+  "roi_definition": "Union of positive-area intersecting merged visual cells of exact terminal-semantic target object BBoxes; clipped to actual image bounds with provenance",
+  "roi_hit_ratio": "ROI Mass / Image Mass",
+  "roi_enrichment": "ROI Hit Ratio / (ROI merged-token count / all merged visual tokens)",
+  "random_baseline": {
+    "repetitions": 128,
+    "algorithm": "numpy PCG64; sample K merged tokens uniformly without replacement, allow overlap with actual ROI",
+    "same_sets_all_layers_and_queries": true,
+    "seed": "First 64 SHA256 bits of random_roi_v1:<input_binding>"
+  },
+  "intervention": false,
+  "generation": false,
+  "visual_replay": false,
+  "deepstack": "Native, unchanged",
+  "primary_sensitivity": "absolute_logp_change",
+  "secondary_sensitivity": "signed_logp_loss",
+  "sensitivity_csv_sha256": "01b316672e1fea69196d669ac24ff0839e78d046f1cb8c1a98a887c9872f9e60",
+  "smoke_keys": [
+    "ChooseAttr__10844589",
+    "ChooseAttr__15365316",
+    "ChooseAttr__15708191",
+    "ChooseAttr__17694473",
+    "ChooseCat__06444139",
+    "ChooseCat__08461371",
+    "ChooseCat__094003",
+    "ChooseCat__15492263",
+    "ChooseRel__02748696",
+    "ChooseRel__03695004",
+    "ChooseRel__13395132",
+    "ChooseRel__13775123",
+    "CompareAttr__01862756",
+    "CompareAttr__08391065",
+    "CompareAttr__12951806",
+    "CompareAttr__19933024",
+    "LogicalObj__0871435",
+    "LogicalObj__12612515",
+    "LogicalObj__12851504",
+    "LogicalObj__18261454",
+    "QueryAttr__05867585",
+    "QueryAttr__08822814",
+    "QueryAttr__12898222",
+    "QueryAttr__17267562"
+  ],
+  "bootstrap": {
+    "seed": 20261102,
+    "repetitions": 2000,
+    "cluster": "Image SHA256",
+    "estimator": "Question-weighted, all same-image questions resampled together",
+    "interval": "Ordinary percentile 95%, descriptive/exploratory, no causal or confirmatory significance claims"
+  },
+  "primary_alignment": "Spearman of 36 layer-mean ROI Enrichment vs mean absolute LogP change; per-question layerwise Spearman; same-layer cross-question L26 Spearman",
+  "peak_definition": "Lowest layer index attaining maximum, no smoothing; ROI Enrichment peak minus absolute LogP change peak",
+  "native_row_sum_tolerance": "Unchanged historical BF16 threshold 2**-8 + 2e-6",
+  "stop_on_failure": true
 }

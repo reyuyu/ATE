@@ -29,7 +29,9 @@ def sha(path):
 
 def dump(path, data):
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+    tmp=path.with_name(path.name+'.tmp')
+    tmp.write_text(json.dumps(data, ensure_ascii=False, indent=2) + '\n')
+    tmp.replace(path)
 
 
 def canonical(value):

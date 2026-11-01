@@ -1,0 +1,61 @@
+{
+  "status": "complete",
+  "samples": 240,
+  "user_authorized": "Same-object official GQA scene graph supplementation and explicit boundary clipping",
+  "scene_graph_url": "https://downloads.cs.stanford.edu/nlp/data/gqa/sceneGraphs.zip",
+  "archive_path": "/data/lk/ATE-resources/paper_rq1/annotations/gqa_sceneGraphs.zip",
+  "archive_sha256": "59f6a3f6ac5227bac6cc615508e542dd546e309c7dbbdb666de05e42d7c51989",
+  "val_scene_graphs_sha256": "3224baf1e87e56d0faa52a9d62bbd5cd79a6528e15957d0bd886de7f0d6c9a41",
+  "csv_questions_matched": 120,
+  "csv_vs_semantic_target_sets_exact": 120,
+  "csv_vs_scene_graph_coordinates_exact": 120,
+  "supplemented_questions": 120,
+  "total_target_boxes": 329,
+  "clipped_boxes": [
+    {
+      "task": "ChooseCat",
+      "question_id": "13708087",
+      "image_id": "2389431",
+      "image_sha256": "86304acbd3d8ea02503a59d1b63db1a9e001763fda5b83a5b836548c07c7993e",
+      "object_id": "4494395",
+      "source": "official_cross_modal_csv",
+      "original_xywh": "[0.0, 17.0, 501.0, 358.0]",
+      "xywh": "[0.0, 17.0, 500.0, 358.0]",
+      "clipped": 1,
+      "csv_scene_graph_exact": 1
+    },
+    {
+      "task": "QueryAttr",
+      "question_id": "031008083",
+      "image_id": "2394845",
+      "image_sha256": "80d2a0b0bad6f871b622ca1d5b0f68bc3ccb2fcf85e44ad32c36eb29ebb8f475",
+      "object_id": "460478",
+      "source": "official_gqa_scene_graph",
+      "original_xywh": "[230.0, 203.0, 104.0, 105.0]",
+      "xywh": "[230.0, 203.0, 103.0, 105.0]",
+      "clipped": 1,
+      "csv_scene_graph_exact": 0
+    },
+    {
+      "task": "QueryAttr",
+      "question_id": "10989631",
+      "image_id": "2351164",
+      "image_sha256": "1ca860a9929e2e27148572ce986c232d5828d08602e27f77aed2943538bcb878",
+      "object_id": "2115089",
+      "source": "official_gqa_scene_graph",
+      "original_xywh": "[68.0, 123.0, 117.0, 211.0]",
+      "xywh": "[68.0, 123.0, 117.0, 210.0]",
+      "clipped": 1,
+      "csv_scene_graph_exact": 0
+    }
+  ],
+  "clipped_questions": 3,
+  "tasks": {
+    "ChooseAttr": 40,
+    "ChooseCat": 40,
+    "ChooseRel": 40,
+    "CompareAttr": 40,
+    "LogicalObj": 40,
+    "QueryAttr": 40
+  }
+}

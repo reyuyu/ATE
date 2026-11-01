@@ -1,4 +1,4 @@
-"""CPU-only partial geometry checks; never reports a model/GPU smoke as passed."""
+"""Real CPU processor geometry; only merged-token indices and small overlays retained."""
 import hashlib
 import inspect
 import json
@@ -9,6 +9,8 @@ from transformers import AutoProcessor
 from transformers.image_utils import SizeDict
 from transformers.models.qwen2_vl.image_processing_qwen2_vl import smart_resize
 from transformers.models.qwen3_vl.modeling_qwen3_vl import Qwen3VLVisionPatchMerger
+from transformers.models.qwen3_vl.modeling_qwen3_vl import Qwen3VLVisionModel
+from types import SimpleNamespace
 
 from ..qwen3vl_early_windows.experiment import MODEL, prepare
 from .preflight import OUT, HISTORY, SOURCES, dump, sha
@@ -42,15 +44,16 @@ def main():
     ip = proc.image_processor
     assert (ip.patch_size,ip.merge_size,ip.temporal_patch_size)==(16,2,2)
     assert type(ip).__name__ == 'Qwen2VLImageProcessorFast'
-    boxes = json.loads((OUT/'available_csv_boxes.json').read_text())
+    boxes = json.loads((OUT/'resolved_boxes.json').read_text())
     samples = json.loads((HISTORY/'sample_manifest.json').read_text())['samples']
     pool = []
     for task in SOURCES:
-        available = [s for s in samples if s['task']==task and f'{task}__{s["question_id"]}' in boxes]
+        available = [s for s in samples if s['task']==task]
         pool += sorted(available,key=lambda s:hashlib.sha256(('roi_cpu_geometry_v1:'+s['input_binding']).encode()).hexdigest())[:4]
     assert len(pool)==24
-    panels, audits = [], []
-    for s in pool:
+    smoke_keys={f'{s["task"]}__{s["question_id"]}' for s in pool}
+    panels, audits, mappings = [], [], {}
+    for s in samples:
         inputs, layout = prepare(proc,s)
         assert layout == s['layout'], 'Actual official processor differs from frozen history'
         grid = layout['image_grid_thw']
@@ -69,9 +72,22 @@ def main():
         assert torch.equal(expected,restored), 'Raw patch order reconstruction failed'
         rows,cols = gh//2,gw//2
         assert rows*cols == layout['image_tokens'] == len(layout['image_positions'])
+        stub=SimpleNamespace(spatial_merge_size=2,rotary_pos_emb=lambda n:torch.arange(n,dtype=torch.float32)[:,None])
+        actual_coords=Qwen3VLVisionModel.rot_pos_emb(stub,torch.tensor([grid]))
+        expected_coords=torch.tensor([[2*r+dr,2*c+dc] for r in range(rows) for c in range(cols)
+                                     for dr in range(2) for dc in range(2)])
+        assert torch.equal(actual_coords,expected_coords), 'Native vision spatial ordering differs'
         target = boxes[f'{s["task"]}__{s["question_id"]}']
         roi = roi_cells(target,width,height,rows,cols)
         assert roi and min(roi)>=0 and max(roi)<rows*cols
+        key=f'{s["task"]}__{s["question_id"]}'
+        mappings[key]=dict(task=s['task'],question_id=s['question_id'],image_sha256=s['image_sha256'],
+            input_binding=s['input_binding'],grid_thw=grid,merged_grid=[rows,cols],
+            roi_token_indices=roi,roi_fraction=len(roi)/(rows*cols),bbox_objects=target,
+            random_seed=int(hashlib.sha256(('random_roi_v1:'+s['input_binding']).encode()).hexdigest()[:16],16),
+            exact_pixel_reconstruction=True,native_rotary_patch_order_exact=True)
+        if key not in smoke_keys:
+            continue
         # Each numbered cell is one merged LLM image token, NOT one 16x16 raw patch.
         display = image.copy()
         display.thumbnail((640,560))
@@ -87,7 +103,7 @@ def main():
         panel=Image.new('RGB',(640,640),'white');panel.paste(rendered,(0,52))
         d=ImageDraw.Draw(panel);d.text((8,6),f'{s["task"]} {s["question_id"]} | grid {rows}x{cols} | ROI {len(roi)}',fill='black')
         d.text((8,23),s['question'][:95],fill='black')
-        path=OUT/'cpu_mapping_overlays'/f'{s["task"]}__{s["question_id"]}.png'
+        path=OUT/'mapping_overlays'/f'{s["task"]}__{s["question_id"]}.png'
         path.parent.mkdir(parents=True,exist_ok=True);panel.save(path)
         panels.append(panel.resize((480,480)))
         audits.append(dict(task=s['task'],question_id=s['question_id'],image_sha256=s['image_sha256'],
@@ -96,14 +112,16 @@ def main():
             official_processor_matches_frozen_layout=True,visual_overlay=str(path.relative_to(OUT))))
     sheet=Image.new('RGB',(480*4,480*6),'white')
     for i,panel in enumerate(panels):sheet.paste(panel,((i%4)*480,(i//4)*480))
-    sheet.save(OUT/'cpu_mapping_overview.png')
-    dump(OUT/'cpu_processor_validation.json',dict(status='partial_cpu_geometry_only',
-        count=24,per_task=4,selection='Stable input-hash from direct-CSV-covered questions only; not the full GPU smoke cohort',
+    sheet.save(OUT/'mapping_overview.png')
+    dump(OUT/'roi_mapping.json',mappings)
+    dump(OUT/'processor_validation.json',dict(status='cpu_geometry_passed',
+        count=240,visualized=24,per_task_visualized=4,smoke_keys=sorted(smoke_keys),
+        selection='All 240 CPU geometry checks; four per task selected by frozen input hash for GPU smoke/overlays',
         scope='CPU pixel packing and geometry only; NO model forward/logit/Attention/DeepStack validation',
         processor_class=type(ip).__name__,patch_size=16,merge_size=2,temporal_patch_size=2,
         merger_source_sha256=sha(inspect.getfile(Qwen3VLVisionPatchMerger)),
         processor_source_sha256=sha(inspect.getfile(type(ip))),samples=audits))
-    print('24 CPU processor checks passed. GPU smoke and full cohort remain BLOCKED.',flush=True)
+    print('240 actual processor checks passed; 24 GPU smoke cases and overlays frozen.',flush=True)
 
 
 if __name__=='__main__':
