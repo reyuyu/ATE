@@ -1,61 +1,80 @@
-# Qwen3-VL ROI Attention 与功能敏感性对齐：前置检查（partial）
+# Qwen3-VL 视觉 ROI Attention 与功能敏感性逐层对齐（完整 240 题）
 
-## 状态与停止原因
+## 完成与有效性
 
-本轮没有启动 GPU Smoke 或正式模型前向，没有产生 36 层 Attention、ROI 指标、相关系数或 L26 新结论。
+- 同一批六类 GQA 各 40 题，共 240 题；36 层、P−1/真实 Question 两类 Query，得到 17,280 行配对记录。未换题、未重新筛选。
+- 固定 Qwen3-VL-8B-Instruct revision `0c351dd01ed87e9c1b53cbc748cba10e6187ff3b`，BF16/eager、官方 Chat Template、Transformers 4.57.6；模型文件逐份 SHA256 同历史一致。
+- 本轮仅原生 Full Prefill，无 Mask、无新生成、无消融重跑，DeepStack 全原生。240 次观测前向，加 24 次无 Hook 的 Smoke 对照；不保存完整 Attention 矩阵。
+- 9 项采集前 CPU 测试、2 项统计测试通过（含重复图片整簇重采样检查）；240 题真实 Processor 输入和像素重建检查通过。每任务 4 题，共 24 题 GPU Smoke 通过，带只读 Hook 与无 Hook logits 精确一致。
+- 240/240 原生首 Token 全词表 BF16 logits SHA256 与同机历史 Full 精确一致；原始图片 SHA256、输入绑定、8,640 条历史 Image OFF 敏感性严格配对。三卡 DeepStack 实际加法、正常/异常 Hook 清理、权重不变均通过。
+- Attention 行和最大误差 0.00324464；沿用原 BF16 阈值 0.00390825，未放宽容差；无 NaN/Inf/OOM。
 
-用户指定的 Cross-modal Information Flow 官方 CSV 来自 `correct_question` 筛选子集，并不覆盖冻结的全部 240 题。根据“映射不可靠就停止”的要求，不能换题、猜测目标框或把缺失 ROI 当成零 Attention。已完成可复核的数据覆盖审计和部分 CPU Processor 几何检查，暂停正式实验。
+## ROI 与统计口径
 
-## 同一批样本与历史绑定
+- 官方 Cross-modal CSV 120 题；按用户授权，以官方 GQA val scene graph 同图、同对象 ID 补齐另外 120 题。终端语义程序依赖用于定位目标，不按词名猜测。120 个 CSV 题的目标对象集合与 scene graph 坐标全部精确交叉验证一致。
+- 共 329 个目标框，3 个框越界 1 像素，均显式裁剪并保留原框、图像/对象 ID 和来源；不存在的 LogicalObj 备选对象不补框。详见 `bbox_provenance.csv`。
+- Qwen 的动态网格不是固定 576 Token：16×16 raw patches 经 2×2 spatial merge；验证真实 Processor 打包顺序和官方视觉 rotary 坐标顺序。ROI 为框与 merged 单元正面积相交的并集，边界单元整个计入；细小框的离散覆盖会大于连续像素面积。
+- Question 指真实问题子词 Token；先对所有真实 Question Query 与各 Head 的原生 Attention 做算术平均，再计算视觉内部比值。P−1 单独统计；不将模板当作问题。
+- ROI Hit Ratio = ROI Mass / Image Mass；ROI Enrichment = Hit Ratio / ROI Token 面积比例。随机基线为每题 128 组等 Token 数均匀无放回随机 patch 集合（允许与真实 ROI 重叠），跨层/Query 共用随机集合；不是空间连续或形状匹配的区域。均匀期望 Enrichment 恒为 1。
+- 所有敏感性均来自历史 **P−1 Image OFF**；Question ROI 与之配对不表示测量了 Question 路径的干预必要性。主指标为 Mean Absolute LogP Change，Signed Loss 为辅；不是 Accuracy 或 Gold Answer Loss。
+- 图片 SHA256 整簇配对 Bootstrap 2,000 次，保留题目加权估计。普通 95% 区间仅作探索性描述，不以跨层点、Head 或 Query 作独立图像，不报告独立层显著性。
 
-- 原始 `qwen3vl_image_source_240/sample_manifest.json` 完整复用，六类各 40 题，没有重采样。
-- 240/240 图片实际 SHA256、Question/Image ID、问题与答案同原始 GQA 标注绑定通过。
-- 240 个历史 layout 的 input_binding 哈希通过；同批历史 8,640 行单层敏感性结果逐题、逐层、图片绑定通过。
-- 模型仍为 `Qwen/Qwen3-VL-8B-Instruct@0c351dd01ed87e9c1b53cbc748cba10e6187ff3b`；没有加载或修改模型权重。
-- 历史 BF16/eager 配置未变；没有新增生成、Mask、训练或层扫描。
+## 核心对齐结果
 
-## 官方 CSV 覆盖
+| Query | 层均值 Enrichment–绝对变化 Spearman [95%CI] | 逐题跨层 Spearman 均值 [95%CI] | L26 同层跨题 Spearman [95%CI] |
+|---|---|---|---|
+| P-1 | 0.477 [0.187, 0.633] | 0.065 [0.037, 0.094] | 0.153 [0.025, 0.278] |
+| Question | 0.224 [0.009, 0.487] | 0.033 [0.009, 0.059] | 0.010 [-0.114, 0.139] |
 
-来源仓库 `FightingFighting/cross-modal-information-flow-in-MLLM` 固定提交 `c9a1111dac4baa175f67716fab473789320187c0`。六份原始 CSV 均保存于 `sources/`，Git blob SHA1 与下载来源逐份精确核验；另保存 SHA256。Question ID 比较仅规范化数字前导零，不采用文本相似匹配。
+层均值相关描述“平均曲线是否一起起伏”；逐题相关描述“同一道题的两条曲线是否对齐”；L26 同层相关描述“跨图片 ROI 关注强度是否对应较大 LogP 改变”。这三者不可互相替代，且跨层结构、任务差异与原预测置信度都可能影响关联。
 
-| 任务 | 冻结题数 | CSV 有该题 | 严格有效 BBox | 缺该题 | 框异常 |
+| 任务 | 绝对敏感性峰层 | P−1 Enrichment 峰层 | Question Enrichment 峰层 | P−1 层均值 Spearman | Question 层均值 Spearman |
 |---|---:|---:|---:|---:|---:|
-| ChooseAttr | 40 | 10 | 10 | 30 | 0 |
-| ChooseCat | 40 | 28 | 27 | 12 | 1 |
-| ChooseRel | 40 | 9 | 9 | 31 | 0 |
-| CompareAttr | 40 | 30 | 30 | 10 | 0 |
-| LogicalObj | 40 | 38 | 38 | 2 | 0 |
-| QueryAttr | 40 | 5 | 5 | 35 | 0 |
-| 总计 | 240 | 120 | 119 | 120 | 1 |
+| Overall | L26 | L23 | L21 | 0.477 | 0.224 |
+| ChooseAttr | L23 | L23 | L21 | 0.379 | 0.356 |
+| ChooseCat | L33 | L31 | L21 | 0.375 | 0.178 |
+| ChooseRel | L26 | L26 | L21 | 0.029 | -0.291 |
+| CompareAttr | L26 | L26 | L20 | 0.492 | 0.311 |
+| LogicalObj | L34 | L23 | L21 | -0.143 | 0.022 |
+| QueryAttr | L23 | L23 | L21 | 0.465 | 0.316 |
 
-异常为 ChooseCat `13708087`：图片 500×375，官方框 `(x=0,y=17,w=501,h=358)`，横向越界 1 像素。本轮不静默裁剪。
+## L26 专项
 
-LogicalObj 的 31 条记录中，一个备选对象的 ID/框为 `-`，表示该对象不存在。只保留标注明确存在的对象框，不为不存在的对象补框，也不把该缺省误算成损坏标注。上述覆盖通过不等于目标语义已通过全部模型实验验证。
+| Query | Image Mass [95%CI] | ROI Mass [95%CI] | Hit Ratio [95%CI] | Enrichment [95%CI] |
+|---|---|---|---|---|
+| P-1 | 0.114 [0.108, 0.121] | 0.044 [0.040, 0.049] | 0.374 [0.341, 0.407] | 2.911 [2.505, 3.380] |
+| Question | 0.138 [0.134, 0.142] | 0.040 [0.036, 0.044] | 0.292 [0.262, 0.324] | 1.856 [1.672, 2.046] |
 
-还尝试以原始 GQA 的明确对象 ID 查询六份 CSV 中同图其他题的对象框；这仍不能覆盖全部样本。该尝试仅作覆盖诊断，不把“提到过的对象”自动当成目标 ROI，不将其标记为完成的 ROI 绑定。原始 GQA parquet 包含语义对象 ID，但不含 BBox，不能凭对象 ID 还原缺失框。
+L26 历史 Mean Absolute LogP Change = **0.01874348 nat**，Signed Loss = **0.01085126 nat**。
+CompareAttr 对 L26 总绝对变化之和贡献为 71.3%；因此不能仅凭总体 L26 峰推广到六种任务。
 
-## CPU Processor 几何检查
+## 逐题峰值与随机对照
 
-4 项 CPU 单元测试通过。另从直接具备有效框的样本中，按稳定输入哈希固定每类 4 题，共 24 题，仅执行 CPU 几何检查：
+- P-1：逐题 ROI 峰减敏感峰平均 3.23 层 [95%CI 1.82, 4.73]，中位数 1.0；峰层完全相同 27/240，差不超过 2 层 64/240。
+- P-1：总体均值曲线的 ROI 峰 L23、敏感峰 L26，差 -3 层 [图片簇 Bootstrap 95%CI -3, -3]。总体曲线峰差与逐题峰差是不同估计量。
+- P-1：逐题 Enrichment–绝对变化 Spearman 中位数 0.060；9 条常量曲线相关无定义，保留并明确标记，不填 0；峰值平局预先规定取最早层，常量 ROI 曲线仍列入全部 240 题峰差统计（5 条），应谨慎解释。
+- P-1：总体各层随机 patch Enrichment 均值范围 0.998–1.007；真实与随机对照见原始逐题表及曲线。Signed Loss 的层均值 Spearman = 0.387 [0.072, 0.573]。
+- Question：逐题 ROI 峰减敏感峰平均 -0.90 层 [95%CI -2.35, 0.59]，中位数 -3.0；峰层完全相同 6/240，差不超过 2 层 33/240。
+- Question：总体均值曲线的 ROI 峰 L21、敏感峰 L26，差 -5 层 [图片簇 Bootstrap 95%CI -5, -5]。总体曲线峰差与逐题峰差是不同估计量。
+- Question：逐题 Enrichment–绝对变化 Spearman 中位数 0.040；9 条常量曲线相关无定义，保留并明确标记，不填 0；峰值平局预先规定取最早层，常量 ROI 曲线仍列入全部 240 题峰差统计（5 条），应谨慎解释。
+- Question：总体各层随机 patch Enrichment 均值范围 0.999–1.003；真实与随机对照见原始逐题表及曲线。Signed Loss 的层均值 Spearman = -0.036 [-0.241, 0.237]。
 
-- 使用固定模型目录的真实 `Qwen2VLImageProcessorFast` 与官方 Chat Template；24 个实际输入 layout 均与历史精确相同。
-- patch=16、spatial merge=2、temporal patch=2；使用实际 `image_grid_thw`，不沿用 LLaVA 的 24×24 网格。
-- 将 Processor 输出的 raw patch 流按 merged-row/merged-col/intra-row/intra-col 重建，与官方实际 resize/normalize 的图像张量逐元素精确一致。
-- 使用真实动态 merged 网格与 32×32 等效图像单元；原图 BBox 与单元正面积相交得到覆盖索引，同题多框取并集。
-- 保存 24 张覆盖图及 `cpu_mapping_overview.png`，检查框、图像方向和空间覆盖对齐。绿色为官方框，粉色为相交单元，白线为 merged 网格；这些不是 Attention 热图。
+## 中文研究结论
 
-这批 24 题只验证已有框样本的 CPU 输入与空间几何，不是 GPU Smoke，更不代表剩余 216 题已通过映射检查。没有验证本轮 Full logits、Attention 行和或 DeepStack 运行输出，也没有运行整体统计。
+- P−1 的总体层均值 ROI Enrichment 与绝对敏感性有正向描述性关联（ρ=0.477），但逐题跨层关联很弱（平均 ρ=0.065）。总体曲线的关联不能直接推广为单题功能敏感性的可靠指示器。
+- L26 的 P−1 Enrichment 高于均匀面积基线，但同层跨题相关仅 ρ=0.153；Question 的同层关联接近零。没有证据将 L26 的较大 Image OFF 改变直接归因于 ROI 读取。
+- 总体 P−1 ROI 富集峰在 L23、Question 富集峰在 L21，不与总体功能敏感峰 L26 重合。ChooseRel/CompareAttr 的 P−1 富集峰与敏感峰均为 L26，但 ChooseRel 全层曲线相关接近零；单个峰重叠不足以说明整条曲线或逐题机制一致。
+- 六任务并不一致，LogicalObj 的 P−1 层均值相关为负；总体 L26 敏感峰的主要贡献来自 CompareAttr。应保留分任务和逐题结果，不使用总体均值替代全部任务结论。
 
-CPU 首次辅助重建调用因将 list 传给缓存参数报 `TypeError: unhashable type: list`；改为官方预处理使用的 tuple 参数后重新运行，24/24 精确检查通过。没有调整数值容差。测试过程记录在 `execution_audit.json`。
+## 结论边界
 
-## 产物与恢复边界
+ROI 关注、直接 Image 路径敏感性与预测表现是不同概念。图中的曲线关联及峰值重叠仅为描述性证据；跨层统计未控制所有混杂，不证明某 ROI 路径导致首 Token 改变，更不能推导整层可跳过或答案 Accuracy 不变。
+L26 必须同时结合六任务曲线、逐题相关、同层相关和峰差观察，不把总体绝对变化峰自动称为 ROI 功能峰。Image 来源中还包含 ROI 外视觉信息，间接视觉信息也可经其他 Token/残差流传播。
 
-- `bbox_coverage.csv`：全部 240 题逐题来源覆盖、绑定与错误原因。
-- `sample_manifest.json`、`available_csv_boxes.json`、`source_audit.json`：冻结输入及可用官方框。
-- `protocol.json`、`validation.json`：明确的 partial/annotation gate failed 状态。
-- `cpu_processor_validation.json`、24 张覆盖图及总览：部分 CPU 映射核验。
-- `artifact_hashes.json`：本轮文件完整性。
+## 文件与运行
 
-只有补齐可靠目标 BBox、明确边界框处理规则后，才能继续完整的每任务 4 题 GPU Smoke 及 240 题收集。建议申请允许使用 GQA 官方 scene graph 的同图同对象 ID 框补充缺失 CSV，保留逐框来源；未经用户同意，本轮未改用该来源或下载替代标注。
-
-GPU0/2/3 未启动本轮进程，不存在需要释放的模型显存；GPU1 未使用，外部任务未干扰。没有得到足以回答“ROI 与 L26 敏感性是否相关”的新结果。
+- 主图：`overall_roi_alignment`；六任务：`six_task_roi_alignment`；逐题相关/峰差：`sample_correlations_and_peaks`；层均值与 L26 散点：`layer_and_l26_alignment`，均提供 PNG/PDF。
+- `per_question.csv`、`layer_summary.csv`、`task_layer_summary.csv`、`layer_curve_correlations.csv`、`per_question_correlations.csv`、`per_question_correlation_summary.csv`、`peak_layers.csv`、`peak_summary.csv`、`l26_correlations.csv`、`l26_layer_summary.csv`。
+- `shard_*/rows/*.npz` 只保留 Head/Question 聚合后的 Image Attention 行，不保留完整矩阵；随机种子、输入、框与模型协议均绑定可重算。
+- 采集冻结代码 `9f9cc5bc134a84e72f30b5767b82f02cf366d29e`。GPU0/2/3 每卡 80 题；正式采集最长 13.89 秒，Smoke 最长 3.90 秒，均不含模型加载、CPU 数据准备、Bootstrap 与绘图。
+- 本轮统计阶段 5.14 秒。GPU0/2/3 已退出并释放模型显存，GPU1 未使用。初次标注不足的 partial 审计保留在提交 `812f3e495`，本次在用户授权后补齐，未将此前 partial 当作完成结果。

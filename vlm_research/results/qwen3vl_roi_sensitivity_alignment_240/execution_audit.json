@@ -1,47 +1,45 @@
 {
-  "timestamp": "2026-11-02T02:54:21.285182+08:00",
-  "cpu_commands": [
-    {
-      "command": [
-        "/home/likai/anaconda3/envs/AFAC/bin/python",
-        "-m",
-        "unittest",
-        "vlm_research.qwen3vl_roi_alignment.test_preflight",
-        "-v"
-      ],
-      "exit_code": 0,
-      "seconds": 0.062316739931702614,
-      "stdout": "",
-      "stderr": "test_binding_never_uses_object_name_guess (vlm_research.qwen3vl_roi_alignment.test_preflight.CoverageTests.test_binding_never_uses_object_name_guess) ... ok\ntest_box_is_xywh_not_xyxy (vlm_research.qwen3vl_roi_alignment.test_preflight.CoverageTests.test_box_is_xywh_not_xyxy) ... ok\ntest_invalid_ids (vlm_research.qwen3vl_roi_alignment.test_preflight.CoverageTests.test_invalid_ids) ... ok\ntest_leading_zero_ids (vlm_research.qwen3vl_roi_alignment.test_preflight.CoverageTests.test_leading_zero_ids) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK\n"
-    },
-    {
-      "command": [
-        "/home/likai/anaconda3/envs/AFAC/bin/python",
-        "-m",
-        "vlm_research.qwen3vl_roi_alignment.preflight",
-        "audit"
-      ],
-      "exit_code": 0,
-      "seconds": 11.879863900132477,
-      "stdout": "{\n  \"ChooseAttr\": {\n    \"direct_csv_bbox_available\": 10,\n    \"question_absent_from_csv\": 30\n  },\n  \"ChooseCat\": {\n    \"direct_csv_bbox_available\": 27,\n    \"question_absent_from_csv\": 12,\n    \"invalid_csv_bbox\": 1\n  },\n  \"ChooseRel\": {\n    \"direct_csv_bbox_available\": 9,\n    \"question_absent_from_csv\": 31\n  },\n  \"CompareAttr\": {\n    \"direct_csv_bbox_available\": 30,\n    \"question_absent_from_csv\": 10\n  },\n  \"LogicalObj\": {\n    \"direct_csv_bbox_available\": 38,\n    \"question_absent_from_csv\": 2\n  },\n  \"QueryAttr\": {\n    \"question_absent_from_csv\": 35,\n    \"direct_csv_bbox_available\": 5\n  }\n}\nSTOP: only 119/240 direct target BBoxes validated; no GPU run.\n",
-      "stderr": ""
-    }
-  ],
-  "cpu_mapping_completed": 24,
-  "manual_overlay_review": "24-panel overview visually checked; image, object boxes and positive-overlap merged cells aligned",
-  "cpu_initial_attempt": {
-    "error": "TypeError: unhashable type: 'list'",
-    "cause": "Helper normalization API requires hashable tuple mean/std",
-    "resolution": "Tuple conversion; exact comparisons unchanged; 24-item rerun passed"
-  },
-  "model_forwards": 0,
-  "gpu_processes_started": 0,
-  "gpu1_used": false,
-  "gpu_final_inventory": "0, GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 27 MiB, 24576 MiB, 0 %\n1, GPU-b08489af-0a8a-eb48-55ba-8346733af417, 21479 MiB, 24576 MiB, 88 %\n2, GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6, 27 MiB, 24576 MiB, 0 %\n3, GPU-96bc853f-ceea-2404-c704-c48a3d1ca185, 27 MiB, 24576 MiB, 0 %\n",
-  "code_sha256": {
+  "status": "complete",
+  "timestamp": "2026-11-02T03:52:17.114442+08:00",
+  "collection_code_commit": "9f9cc5bc134a84e72f30b5767b82f02cf366d29e",
+  "frozen_protocol_sha256": "6873ffcede4c73c48917ebec2290283fa736cf7179897a06e42a8d9f75b6d68b",
+  "protocol_status_note": "Protocol retains immutable pre-run frozen status; validation.json and integrity.json contain final completion status.",
+  "source_sha256": {
+    "vlm_research/qwen3vl_roi_alignment/test_engine.py": "109dbbf0aa56e8df7c00ee456ac48206152269b8ca064b235c2c59b2bf0a3e66",
+    "vlm_research/qwen3vl_roi_alignment/figures.py": "4fce150bcc151e1a8d33048f12cb0ea31c8e33625294da4780e83bdfb0237ec8",
+    "vlm_research/qwen3vl_roi_alignment/analyze.py": "92b0e0dd9c6501600ac0df6004f675aa8a37f2ad507d1c3086060afa49d0b175",
     "vlm_research/qwen3vl_roi_alignment/test_preflight.py": "22aa32004bb2b7c64d852524f1cd7cae17a93a8b393e50a3d6ca702d237cf23a",
-    "vlm_research/qwen3vl_roi_alignment/processor_check.py": "17dd80ce7ad56ca3fe5faf9f93ab05a8ba60aef276781c376195a129cd14c53f",
-    "vlm_research/qwen3vl_roi_alignment/preflight.py": "41572012eace583b6d61ff72004e83d7cedc28daf69b661e830ceb255d2084b3"
+    "vlm_research/qwen3vl_roi_alignment/test_statistics.py": "78ff3a887b2472d0d733846806058876532a14befe2e2d5a9f55cb9baa6f5cbb",
+    "vlm_research/qwen3vl_roi_alignment/run.py": "a412662b70883c03a29a3116ee31e910f1575c6739b4ef880610585ba825c5d5",
+    "vlm_research/qwen3vl_roi_alignment/processor_check.py": "d200bb027ca78d4eb06cf6f658ca77be99d1ec8dba0d579381f453c5b7aa03b7",
+    "vlm_research/qwen3vl_roi_alignment/engine.py": "688f6d20ed02a87596c1e53aedaf86170bb9b50a75baa1bc604f1798a995f1c3",
+    "vlm_research/qwen3vl_roi_alignment/annotations.py": "14b1f3eb5fd64ab4a7e7e8ade2597ebdd34e18c72e2a46842412e5a2a1898ac9",
+    "vlm_research/qwen3vl_roi_alignment/preflight.py": "c256d0392726c9434554605ce4dbfb6eff832a16c2354d4429ea6c1032e39243"
   },
-  "source_csv_whitespace": "Official byte-exact CSV snapshots retained, including upstream trailing spaces; authored files checked separately."
+  "analysis_environment": {
+    "executable": "/home/likai/anaconda3/envs/AFAC/bin/python",
+    "numpy": "2.3.5",
+    "scipy": "1.17.1",
+    "matplotlib": "3.11.0"
+  },
+  "model_environment": {
+    "versions": {
+      "torch": "2.6.0+cu124",
+      "transformers": "4.57.6",
+      "tokenizers": "0.22.1",
+      "Pillow": "11.1.0"
+    },
+    "official_modeling_sha256": "dd63ed3b124232735b3dca1bfa28f9d6b0d3f7182afcb75dde8f3e724b2b22da",
+    "executable": "/data/lk/深度学习/.envs/ate-qwen3vl/bin/python"
+  },
+  "initial_partial_commit": "812f3e495",
+  "permission": "User explicitly approved official GQA scene-graph supplementation and recorded boundary clipping",
+  "bbox_provenance_sha256": "2293493bf1ea68e17a3e46c84fd7aff788a1930e4fd93795ce79363748971972",
+  "gpu1_not_used": true,
+  "workers_exited": true,
+  "statistical_validation": "2 CPU tests verify tied/constant Spearman and duplicate-image paired resampling",
+  "figure_visual_review": "All four PNG figures inspected; labels readable and negative/extreme points retained",
+  "model_full_forwards": 264,
+  "mask_forwards": 0,
+  "generations": 0
 }
