@@ -120,9 +120,9 @@ def figures():
     if (OUT/'internvl_rescue/accuracy_summary.csv').exists():
         fig,axes=plt.subplots(1,3,figsize=(11.7,3.5),layout='constrained')
         for ax,(root,model,label) in zip(axes,[(PARENT,'llava','LLaVA-1.5-7B'),(PARENT,'qwen','Qwen3-VL-8B'),(OUT,'internvl','InternVL3-8B')]):
-            folder=root/(model+'_rescue')
-            values=read_csv(folder/'accuracy_summary.csv')
-            native=read(folder/'native_full_reference.json')
+            rescue_folder=root/(model+'_rescue')
+            values=read_csv(rescue_folder/'accuracy_summary.csv')
+            native=read(rescue_folder/'native_full_reference.json')
             y=np.array([float(r['accuracy_percent']) for r in values])
             low=np.array([float(r['accuracy_ci_low']) for r in values])
             high=np.array([float(r['accuracy_ci_high']) for r in values])
@@ -222,7 +222,8 @@ def integrity():
         assert sha(PARENT/relative)==expected, 'Previous artifacts were changed: '+relative
     write(OUT/'integrity.json',dict(passed=True,questions=3000,conditions=row_count,
         paired_question_and_image_bindings=True, image_clusters=coverage['unique_images'],
-        six_gpu_smokes_passed=True, official_and_noop_logits_max_abs=0,
+        gpu_smoke_runs_passed=6, physical_gpu_count=3, smoke_question_runs=12,
+        official_and_noop_logits_max_abs=0,
         numerical_tolerance_change=False, model_source_unchanged=True,
         previous_artifacts_unchanged=len(old_hashes), code_commit=commits.pop(),
         rescue_questions=240,rescue_condition_counts=rescue_counts,rescue_endings=rescue_endings,
@@ -260,7 +261,11 @@ def report():
     for value in peaks:
         if value['cohort']=='all' and value['task']!='Overall':
             lines.append(f'|{value["task"]}|{value["questions"]}|L{value["absolute_peak_layer"]}|{value["absolute_peak_value"]:.6f}|')
+    iq=next(p for p in peaks if p['cohort']=='all' and p['task']=='QueryAttr')
+    query_share=iq['absolute_peak_value']/(6*overall['absolute_peak_value'])
     lines += ['',
+        f'InternVL总体L19峰中，QueryAttr的题目加权份额约为{100*query_share:.1f}%；任务组成对总体峰很重要，不能把均值峰解释成所有任务共享的处理阶段。该份额只是本层平均绝对变化的算术分解，不是独立因果贡献。',
+        'Qwen与InternVL均呈非均匀分布，但主峰不在相同绝对层，InternVL分任务也出现L9/L19/L21差异。两者Top3均不到逐层平均绝对变化之和的一半，因此支持“有热点、任务相关”的描述，不支持“直接视觉必要性只存在于极少数层”的强结论。',
         '峰值与Top3占比只能描述曲线集中程度，不构成这些层充分或其余层可跳过的证据。跨模型保留各自原生Prompt、Tokenizer、视觉Token数和精度；同题、同图隔离了数据差异，但没有控制全部架构外因素。','',
         '## 与原实验的关系','',
         '- 上一轮LLaVA 240题的LogP交互仍为 −0.011213 nat，图片簇95%CI [−0.019249, −0.003380]。没有出现预声明的正交互，因此不新增InternVL的L2–L5 2×2实验，也不修改候选层寻找正面结果。',
@@ -279,10 +284,18 @@ def report():
     lines += ['', '|探索性配对比较|ΔAccuracy pp|图片簇95%CI pp|参照对→错|参照错→对|', '|---|---|---|---|---|']
     for row in read_csv(OUT/'internvl_rescue/paired_comparisons.csv'):
         lines.append(f'|{row["comparison"]}|{float(row["delta_accuracy_pp"]):+.3f}|[{float(row["ci_low"]):+.3f}, {float(row["ci_high"]):+.3f}]|{row["reference_correct_to_wrong"]}|{row["reference_wrong_to_correct"]}|')
+    comparisons=read_csv(OUT/'internvl_rescue/paired_comparisons.csv')
+    vs_off=next(row for row in comparisons if row['comparison']=='KeepSparse - AllImageOFF')
+    vs_access=next(row for row in comparisons if row['comparison']=='KeepSparse - FullImageAccess')
+    vs_native=next(row for row in comparisons if row['comparison']=='KeepSparse - NativeFull')
     lines += ['',
+        f'InternVL固定L19/L9相对全部直接视觉关闭恢复了{float(vs_off["delta_accuracy_pp"]):.3f}pp，但仍比保留全部直接视觉读取低{abs(float(vs_access["delta_accuracy_pp"])):.3f}pp、比原生Full低{abs(float(vs_native["delta_accuracy_pp"])):.3f}pp。因此是有限恢复，不是受损中继已被两个热点充分补偿。',
         '本项为同240题、数据驱动挑选两层的探索性充分性检查，不是独立确认。不能将普通CI包含0解释成等价，不能将稀疏访问相对全关的改善解释成已恢复原生Full；来源Hard Mask也会重分配保留Key的概率。','',
+        '综合三个模型：指定中继联合干预会损害预测，固定稀疏热点只产生有限恢复。该结果与“信息路径背景值得研究”相容，但LLaVA的预声明L2–L5跳过交互仍不支持“Dead Attention Can Wake Up”。没有据此追加候选或改变负面结论。',
+        'CSV口径：`accuracy_summary.csv`/`task_accuracy.csv`的`delta_full_pp`指相对Relay OFF的FullImageAccess；相对原生NativeFull的差异在`paired_comparisons.csv`中显式列出。原生Full逐题答案另存`native_full_per_question.csv`。','',
         '## 统计、图表与时限','',
         '- 复用题目加权、Image SHA256整簇配对Bootstrap，10,000次、seed20261102；输出Mean Absolute、Mean Signed和Top1 Flip的总体/六任务逐层估计及逐点95%CI。探索性曲线不以未经多重比较校正的区间宣称确认性显著性。',
+        '- 3,000题仍是原Research 1冻结的六类研究题库，不是新抽取的独立确认集；240题热点选择及充分性检查也属于探索。本轮没有Qwen/InternVL的L2–L5交互实测，不能把LLaVA的负结果泛化成所有模型、所有层都没有条件性。',
         '- PNG与矢量PDF：`figures/internvl_overall_sensitivity`、`internvl_six_tasks_absolute/signed/flip`、`qwen_internvl_same3000`、`three_models_same240`。原始逐题CSV、每层/任务汇总和完整检查点均保留。',
         f'- 沿用原总墙钟起点 {START} 和截止 {DEADLINE}，未重新计算7小时预算。报告时间 {now.isoformat()}，累计 {(now-datetime.fromisoformat(START)).total_seconds()/3600:.2f} 小时。最终资源状态见 `delivery_audit.json`。','',
         '本恢复补齐原定InternVL扫描与可选固定两层补偿，没有新增干预条件。首Token分布变化不是完整答案Accuracy，直接来源低敏感也不代表模型没有视觉信息。','']
@@ -290,7 +303,11 @@ def report():
     (OUT/'README.md').write_text('# InternVL Native Replay Recovery\n\n'
         f'InternVL: {coverage["questions"]}/3000 questions, {coverage["conditions"]:,} Image-source OFF conditions.\n\n'
         'Exact official-chat logits restored without tolerance changes; previous failure evidence is retained.\n\n'
-        'See [report_zh.md](report_zh.md).\n')
+        'See [report_zh.md](report_zh.md).\n\n'
+        'The previous delivery remains immutable under ../visual_pathways_seven_hour/.\n'
+        'This recovery completes InternVL and adds only the originally optional fixed two-layer rescue.\n\n'
+        'In rescue accuracy/task summaries, delta_full_pp references relay-OFF FullImageAccess, not NativeFull.\n'
+        'Explicit NativeFull contrasts are in paired_comparisons.csv; native per-question answers are retained separately.\n')
 
 
 def delivery():
