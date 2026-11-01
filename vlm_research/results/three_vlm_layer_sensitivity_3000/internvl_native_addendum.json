@@ -1,0 +1,11 @@
+{
+  "original_protocol_sha256": "052950b9f2a18a32eca290377f66fdec45421b37370c929ba949d01769de3e31",
+  "source_sha256": {
+    "/data/lk/ATE-worktrees/three-vlm-layer-sensitivity-3000/vlm_research/three_vlm_sensitivity/intern_native.py": "08f515cb24def88105a63c32ead1671e9016f09580ad1fc6c97c5cbb12640155"
+  },
+  "qwen_completion_sha256": "784e7e01f2b35a39ef1d16a0be3a23ce2d1178a03cce00872be5a801484a3f36",
+  "prior_failed_smoke": "internvl_smoke.log; historical native BF16 logits max difference 0.0625",
+  "correction": "Native generation sets logits_to_keep=1; preserve this exact LM-head input matrix shape. Base adapter omitted it. No numerical tolerance changes.",
+  "evidence": "Installed Transformers 4.49.0 generation/utils.py _supports_logits_to_keep and generate() set logits_to_keep=1; Qwen2ForCausalLM.forward slices hidden states before lm_head.",
+  "scope": "InternVL only; same data, weights, visual budget, P-1 output ablation, fresh caches, metrics and exact legacy/noop requirements. Qwen frozen sources and all completed checkpoints unchanged."
+}
