@@ -1,6 +1,6 @@
 {
   "source_sha256": {
-    "vlm_research/visual_pathways/qwen_rescue.py": "67cf96f4ae21efb11265df1d361a914037ba3a1e64573c85f910191f50ddc190",
+    "vlm_research/visual_pathways/qwen_rescue.py": "8784a02f2060f9639d76fd28098f97aa5b44ff0a31320dafcb0aa684cd1da8b9",
     "vlm_research/visual_pathways/relay.py": "5bb8673b5e436550dc07ebfb8b74ed4bf45850671d4f381cd493931dca128d03",
     "vlm_research/visual_pathways/engine.py": "5880d3ba7891a3142b67e402989d34b14b642ea547adbcc6db038983760f887d"
   },
@@ -102,5 +102,9 @@
     "cluster": "Image SHA256",
     "estimator": "Question-weighted; whole-image paired resampling"
   },
-  "scope": "Only predeclared Task3 three conditions, no layer search"
+  "scope": "Only predeclared Task3 three conditions, no layer search",
+  "amendment": {
+    "reason": "Before numerical smoke, move prepared inputs to model CUDA device. No numerical tolerance or condition changed.",
+    "prior_protocol_sha256": "a3e68566438d400832c3ef0aba72c87c409eb6d2745d65da7042877097c89fb6"
+  }
 }

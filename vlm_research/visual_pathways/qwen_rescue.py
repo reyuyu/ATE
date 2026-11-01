@@ -99,6 +99,7 @@ def smoke(model,processor,sample):
     from ..qwen3vl_keep_l26.engine import generate as native_generate
     inputs,layout=prepare(processor,sample)
     assert layout==sample['layout']
+    inputs=inputs.to('cuda:0')
     old,gen=history(sample)
     native,first,native_trace=native_generate(model,processor,inputs,layout,native=True,trace=True)
     assert native['token_ids']==gen['conditions']['Full']['token_ids']
