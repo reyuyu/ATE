@@ -195,7 +195,7 @@ def collect(adapter, inputs, samples, monitor):
         reused_checkpoints=reused, code_commit=commit, protocol_sha256=binding))
 
 
-@torch.inference_mode()
+@torch.no_grad()
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument('model', choices=['qwen', 'internvl'])
