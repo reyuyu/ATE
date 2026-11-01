@@ -1,0 +1,47 @@
+{
+  "full_non_eos_token_length_counts": {
+    "2": 14,
+    "1": 224,
+    "3": 2
+  },
+  "token_sequence_changes": {
+    "W0": 18,
+    "W5": 5,
+    "W4": 1
+  },
+  "truncated_cases": [
+    {
+      "task": "ChooseAttr",
+      "question_id": "18114572",
+      "question": "Is the jacket brown or white?",
+      "answer": "brown",
+      "condition": "W0",
+      "full_text": "brown",
+      "changed_text": "brown\nbrown\nbrown\nbrown\nbrown\nbrown\nbrown\nbrown\nbrown\nbrown\nbrown\nbrown\nbrown\nbrown\nbrown\nbrown",
+      "full_token_ids": "[64461, 151645]",
+      "changed_token_ids": "[64461, 198, 64461, 198, 64461, 198, 64461, 198, 64461, 198, 64461, 198, 64461, 198, 64461, 198, 64461, 198, 64461, 198, 64461, 198, 64461, 198, 64461, 198, 64461, 198, 64461, 198, 64461, 198]",
+      "full_correct": 1,
+      "changed_correct": 0,
+      "eos": false,
+      "truncated": true,
+      "first_token_changed": false
+    },
+    {
+      "task": "ChooseCat",
+      "question_id": "07708669",
+      "question": "What is this, a flag or a kite?",
+      "answer": "kite",
+      "condition": "W0",
+      "full_text": "kite",
+      "changed_text": "k\nk\nk\nk\nk\nc\nk\nc\nc\nk\nc\nc\nc\nc\nc\nc",
+      "full_token_ids": "[74, 632, 151645]",
+      "changed_token_ids": "[74, 198, 74, 198, 74, 198, 74, 198, 74, 198, 66, 198, 74, 198, 66, 198, 66, 198, 74, 198, 66, 198, 66, 198, 66, 198, 66, 198, 66, 198, 66, 198]",
+      "full_correct": 1,
+      "changed_correct": 0,
+      "eos": false,
+      "truncated": true,
+      "first_token_changed": false
+    }
+  ],
+  "diagnostic_definition": "Checkpoint anomaly flags denote runtime/numerical failure; EOS, truncation and empty outputs are distinct flags, not excluded from Accuracy."
+}
