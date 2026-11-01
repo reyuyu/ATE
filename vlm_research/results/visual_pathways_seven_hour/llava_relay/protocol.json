@@ -1,0 +1,45 @@
+{
+  "parent_protocol_sha256": "9475b49eefcd452c4a9d14eeeae627bcdcc6c6dd50354ad4d9382f9b89151e60",
+  "source_sha256": {
+    "vlm_research/visual_pathways/relay.py": "5bb8673b5e436550dc07ebfb8b74ed4bf45850671d4f381cd493931dca128d03",
+    "vlm_research/visual_pathways/engine.py": "5880d3ba7891a3142b67e402989d34b14b642ea547adbcc6db038983760f887d",
+    "vlm_research/visual_pathways/test_relay.py": "fb5af877dfdf6bfea8c2dda3d0071118afcac7cfc49948ad96aadb1ed434d918",
+    "vlm_research/vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d"
+  },
+  "manifest_sha256": "358b292f095a289e0478b24f3a76eb4e80ef9ab65bb7bddfad0210e42387e8c7",
+  "conditions": {
+    "A": [
+      false,
+      false
+    ],
+    "B": [
+      false,
+      true
+    ],
+    "C": [
+      true,
+      false
+    ],
+    "D": [
+      true,
+      true
+    ]
+  },
+  "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "dtype": "float16",
+  "transformers": "4.49.0",
+  "attention": "eager",
+  "relay": "All nonvisual Prefill queries before P-1; all layers Image-source hard mask on causal-legal edges; no Decode mask",
+  "skip": "P-1 L2-L5 o_proj only, removed before Decode",
+  "max_new_tokens": 32,
+  "use_cache": true,
+  "first_projection": "Identical logits_to_keep=1 for native, no-op and every condition",
+  "bootstrap": {
+    "seed": 20261102,
+    "repetitions": 10000,
+    "cluster": "Image SHA256",
+    "estimator": "Question-weighted; whole-image paired resampling"
+  },
+  "interaction_gate": "Image-cluster paired two-sided 95% CI for the predeclared LogP interaction lies strictly above zero. Accuracy interaction reported separately; no NI claim."
+}
