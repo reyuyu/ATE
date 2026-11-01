@@ -1,0 +1,28 @@
+{
+  "scope": "Limited post-hoc qualitative review, not a new scorer or 60-image error-rate estimate",
+  "selection": "First three images in the pre-GPU frozen caption_manifest.json; no output-based selection",
+  "blinding": "For each image, condition labels were withheld and four texts shuffled using random.Random(20261101 + image_ordinal) before viewing the image and recording these notes",
+  "reviewer": "Codex visual inspection; not an independent human annotation panel",
+  "cases": [
+    {"image_ordinal": 0, "question_id": "caption:320703", "outputs": [
+      {"blind_ordinal": 0, "note": "Kitchen, white refrigerator, stove and sink are visibly supported.", "clear_wrong_scene": false},
+      {"blind_ordinal": 1, "note": "Kitchen and refrigerator supported; countertop appears gray, not white. Stove and sink not mentioned, but a short caption need not list every object.", "clear_wrong_scene": false},
+      {"blind_ordinal": 2, "note": "Describes a man outside a building; photo is an empty kitchen. Clear scene/object mismatch.", "clear_wrong_scene": true},
+      {"blind_ordinal": 3, "note": "Kitchen, refrigerator, stove and sink are visibly supported.", "clear_wrong_scene": false}
+    ]},
+    {"image_ordinal": 1, "question_id": "caption:248810", "outputs": [
+      {"blind_ordinal": 0, "note": "Giraffe, enclosure, rocks and trees are visibly supported.", "clear_wrong_scene": false},
+      {"blind_ordinal": 1, "note": "Describes a man with black shirt and white pants; photo shows a giraffe enclosure. Clear mismatch.", "clear_wrong_scene": true},
+      {"blind_ordinal": 2, "note": "Giraffe is supported; a building directly behind it is not clearly established. Background claim uncertain rather than adjudicated false.", "clear_wrong_scene": false},
+      {"blind_ordinal": 3, "note": "Giraffe, zoo enclosure, fence and rocks supported.", "clear_wrong_scene": false}
+    ]},
+    {"image_ordinal": 2, "question_id": "caption:56160", "outputs": [
+      {"blind_ordinal": 0, "note": "Vase and decorative flowers supported; table and a nearby potted plant not visible. Unsupported additions; no claim about objects outside the crop.", "clear_wrong_scene": false},
+      {"blind_ordinal": 1, "note": "Vase, flowers and stems supported. Vase is in front of a stone wall, not clearly placed on the wall; spatial wording inaccurate.", "clear_wrong_scene": false},
+      {"blind_ordinal": 2, "note": "Describes a man outside a building rather than the photographed vase. Clear scene/object mismatch.", "clear_wrong_scene": true},
+      {"blind_ordinal": 3, "note": "Same vase/flowers are supported, but on a stone wall is inaccurate spatial wording.", "clear_wrong_scene": false}
+    ]}
+  ],
+  "format_review": "All 12 inspected texts are nonempty grammatical single sentences without obvious within-answer repetition.",
+  "limits": "Do not derive corpus hallucination or object-omission rates from these three cases; references are not exhaustive image inventories. No re-scoring or sample removal."
+}
