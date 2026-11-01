@@ -59,7 +59,7 @@ def environment():
     return dict(executable=os.sys.executable,versions={p:importlib.metadata.version(p) for p in ('torch','transformers','tokenizers','Pillow')})
 
 
-@torch.inference_mode()
+@torch.no_grad()
 def worker(args):
     protocol=verify()
     samples=read(OUT/'sample_manifest.json')['samples']

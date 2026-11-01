@@ -26,7 +26,7 @@
     "vlm_research/visual_pathways/__init__.py": "5d57dbf5f1a52beef2a4281b39c37efade168ac7bc0a607637220560160cb8d2",
     "vlm_research/visual_pathways/common.py": "24d13d6e00d413916db839ebe68bef0f9609668af64f3d7828c34ade28e3ba80",
     "vlm_research/visual_pathways/engine.py": "5880d3ba7891a3142b67e402989d34b14b642ea547adbcc6db038983760f887d",
-    "vlm_research/visual_pathways/scan.py": "7c16ebca2da8adaabc8a3112970ea720f91d723a581978fb12ad9a5093ffd28e",
+    "vlm_research/visual_pathways/scan.py": "661c17224139efb40ee7ccf40ee59e632991017963c9423e983e8cfd94ea0b71",
     "vlm_research/visual_pathways/tests.py": "3fc2b68d14f009f860ea6556fbd6854194bbfc4aab5d7874df25ecdff5371fd8",
     "vlm_research/vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d"
   },
@@ -97,5 +97,10 @@
     "cluster": "Image SHA256",
     "estimator": "Question-weighted; whole-image paired resampling"
   },
-  "stop_policy": "Task1 at 4.5h; experiments at 6h40; no silent skips/tolerance relaxation, all incomplete coverage explicit"
+  "stop_policy": "Task1 at 4.5h; experiments at 6h40; no silent skips/tolerance relaxation, all incomplete coverage explicit",
+  "amendment": {
+    "reason": "Before Qwen numerical smoke: load weights under no_grad, not inference_mode, so existing parameter-version audit works. No intervention/numerical tolerance changed. InternVL stopped after native-logits smoke failure, no retry.",
+    "previous_protocol_sha256": "a682480eff5524006eaa7d4636fdbefca5b6147137e8e11daf9259add3f2043d",
+    "time": 1793565020.9479845
+  }
 }
