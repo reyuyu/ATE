@@ -1,0 +1,1138 @@
+{
+  "model_class": "InternVLChatModel",
+  "parameter_count": 7944373760,
+  "vision": {
+    "path": "vision_model",
+    "layers_path": "vision_model.encoder.layers",
+    "layer_count": 24,
+    "parameter_count": 304012288,
+    "class_name": "InternVisionModel",
+    "patch_size": 14,
+    "use_flash_attn": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "language": {
+    "path": "language_model",
+    "class_name": "Qwen2ForCausalLM",
+    "layer_count": 28,
+    "parameter_count": 7612820992,
+    "hidden_size": 3584,
+    "query_heads": 28,
+    "kv_heads": 4,
+    "grouped_query_attention": true,
+    "head_dimension": 128,
+    "attention_implementation": "eager",
+    "layers": [
+      {
+        "layer": 0,
+        "path": "language_model.model.layers.0",
+        "attention": "language_model.model.layers.0.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.0.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.0.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.0.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.0.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.0.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.0.post_attention_layernorm",
+        "mlp": "language_model.model.layers.0.mlp"
+      },
+      {
+        "layer": 1,
+        "path": "language_model.model.layers.1",
+        "attention": "language_model.model.layers.1.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.1.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.1.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.1.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.1.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.1.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.1.post_attention_layernorm",
+        "mlp": "language_model.model.layers.1.mlp"
+      },
+      {
+        "layer": 2,
+        "path": "language_model.model.layers.2",
+        "attention": "language_model.model.layers.2.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.2.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.2.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.2.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.2.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.2.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.2.post_attention_layernorm",
+        "mlp": "language_model.model.layers.2.mlp"
+      },
+      {
+        "layer": 3,
+        "path": "language_model.model.layers.3",
+        "attention": "language_model.model.layers.3.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.3.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.3.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.3.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.3.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.3.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.3.post_attention_layernorm",
+        "mlp": "language_model.model.layers.3.mlp"
+      },
+      {
+        "layer": 4,
+        "path": "language_model.model.layers.4",
+        "attention": "language_model.model.layers.4.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.4.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.4.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.4.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.4.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.4.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.4.post_attention_layernorm",
+        "mlp": "language_model.model.layers.4.mlp"
+      },
+      {
+        "layer": 5,
+        "path": "language_model.model.layers.5",
+        "attention": "language_model.model.layers.5.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.5.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.5.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.5.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.5.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.5.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.5.post_attention_layernorm",
+        "mlp": "language_model.model.layers.5.mlp"
+      },
+      {
+        "layer": 6,
+        "path": "language_model.model.layers.6",
+        "attention": "language_model.model.layers.6.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.6.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.6.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.6.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.6.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.6.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.6.post_attention_layernorm",
+        "mlp": "language_model.model.layers.6.mlp"
+      },
+      {
+        "layer": 7,
+        "path": "language_model.model.layers.7",
+        "attention": "language_model.model.layers.7.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.7.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.7.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.7.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.7.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.7.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.7.post_attention_layernorm",
+        "mlp": "language_model.model.layers.7.mlp"
+      },
+      {
+        "layer": 8,
+        "path": "language_model.model.layers.8",
+        "attention": "language_model.model.layers.8.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.8.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.8.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.8.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.8.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.8.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.8.post_attention_layernorm",
+        "mlp": "language_model.model.layers.8.mlp"
+      },
+      {
+        "layer": 9,
+        "path": "language_model.model.layers.9",
+        "attention": "language_model.model.layers.9.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.9.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.9.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.9.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.9.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.9.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.9.post_attention_layernorm",
+        "mlp": "language_model.model.layers.9.mlp"
+      },
+      {
+        "layer": 10,
+        "path": "language_model.model.layers.10",
+        "attention": "language_model.model.layers.10.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.10.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.10.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.10.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.10.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.10.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.10.post_attention_layernorm",
+        "mlp": "language_model.model.layers.10.mlp"
+      },
+      {
+        "layer": 11,
+        "path": "language_model.model.layers.11",
+        "attention": "language_model.model.layers.11.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.11.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.11.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.11.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.11.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.11.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.11.post_attention_layernorm",
+        "mlp": "language_model.model.layers.11.mlp"
+      },
+      {
+        "layer": 12,
+        "path": "language_model.model.layers.12",
+        "attention": "language_model.model.layers.12.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.12.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.12.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.12.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.12.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.12.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.12.post_attention_layernorm",
+        "mlp": "language_model.model.layers.12.mlp"
+      },
+      {
+        "layer": 13,
+        "path": "language_model.model.layers.13",
+        "attention": "language_model.model.layers.13.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.13.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.13.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.13.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.13.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.13.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.13.post_attention_layernorm",
+        "mlp": "language_model.model.layers.13.mlp"
+      },
+      {
+        "layer": 14,
+        "path": "language_model.model.layers.14",
+        "attention": "language_model.model.layers.14.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.14.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.14.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.14.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.14.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.14.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.14.post_attention_layernorm",
+        "mlp": "language_model.model.layers.14.mlp"
+      },
+      {
+        "layer": 15,
+        "path": "language_model.model.layers.15",
+        "attention": "language_model.model.layers.15.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.15.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.15.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.15.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.15.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.15.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.15.post_attention_layernorm",
+        "mlp": "language_model.model.layers.15.mlp"
+      },
+      {
+        "layer": 16,
+        "path": "language_model.model.layers.16",
+        "attention": "language_model.model.layers.16.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.16.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.16.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.16.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.16.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.16.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.16.post_attention_layernorm",
+        "mlp": "language_model.model.layers.16.mlp"
+      },
+      {
+        "layer": 17,
+        "path": "language_model.model.layers.17",
+        "attention": "language_model.model.layers.17.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.17.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.17.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.17.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.17.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.17.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.17.post_attention_layernorm",
+        "mlp": "language_model.model.layers.17.mlp"
+      },
+      {
+        "layer": 18,
+        "path": "language_model.model.layers.18",
+        "attention": "language_model.model.layers.18.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.18.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.18.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.18.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.18.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.18.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.18.post_attention_layernorm",
+        "mlp": "language_model.model.layers.18.mlp"
+      },
+      {
+        "layer": 19,
+        "path": "language_model.model.layers.19",
+        "attention": "language_model.model.layers.19.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.19.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.19.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.19.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.19.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.19.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.19.post_attention_layernorm",
+        "mlp": "language_model.model.layers.19.mlp"
+      },
+      {
+        "layer": 20,
+        "path": "language_model.model.layers.20",
+        "attention": "language_model.model.layers.20.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.20.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.20.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.20.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.20.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.20.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.20.post_attention_layernorm",
+        "mlp": "language_model.model.layers.20.mlp"
+      },
+      {
+        "layer": 21,
+        "path": "language_model.model.layers.21",
+        "attention": "language_model.model.layers.21.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.21.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.21.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.21.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.21.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.21.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.21.post_attention_layernorm",
+        "mlp": "language_model.model.layers.21.mlp"
+      },
+      {
+        "layer": 22,
+        "path": "language_model.model.layers.22",
+        "attention": "language_model.model.layers.22.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.22.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.22.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.22.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.22.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.22.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.22.post_attention_layernorm",
+        "mlp": "language_model.model.layers.22.mlp"
+      },
+      {
+        "layer": 23,
+        "path": "language_model.model.layers.23",
+        "attention": "language_model.model.layers.23.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.23.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.23.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.23.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.23.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.23.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.23.post_attention_layernorm",
+        "mlp": "language_model.model.layers.23.mlp"
+      },
+      {
+        "layer": 24,
+        "path": "language_model.model.layers.24",
+        "attention": "language_model.model.layers.24.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.24.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.24.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.24.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.24.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.24.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.24.post_attention_layernorm",
+        "mlp": "language_model.model.layers.24.mlp"
+      },
+      {
+        "layer": 25,
+        "path": "language_model.model.layers.25",
+        "attention": "language_model.model.layers.25.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.25.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.25.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.25.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.25.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.25.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.25.post_attention_layernorm",
+        "mlp": "language_model.model.layers.25.mlp"
+      },
+      {
+        "layer": 26,
+        "path": "language_model.model.layers.26",
+        "attention": "language_model.model.layers.26.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.26.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.26.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.26.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.26.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.26.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.26.post_attention_layernorm",
+        "mlp": "language_model.model.layers.26.mlp"
+      },
+      {
+        "layer": 27,
+        "path": "language_model.model.layers.27",
+        "attention": "language_model.model.layers.27.self_attn",
+        "projections": {
+          "q_proj": {
+            "path": "language_model.model.layers.27.self_attn.q_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          },
+          "k_proj": {
+            "path": "language_model.model.layers.27.self_attn.k_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "v_proj": {
+            "path": "language_model.model.layers.27.self_attn.v_proj",
+            "shape": [
+              512,
+              3584
+            ]
+          },
+          "o_proj": {
+            "path": "language_model.model.layers.27.self_attn.o_proj",
+            "shape": [
+              3584,
+              3584
+            ]
+          }
+        },
+        "input_layernorm": "language_model.model.layers.27.input_layernorm",
+        "post_attention_layernorm": "language_model.model.layers.27.post_attention_layernorm",
+        "mlp": "language_model.model.layers.27.mlp"
+      }
+    ]
+  },
+  "injection": "Vision CLS removed -> pixel_shuffle(v2, downsample_ratio=0.5) -> mlp1 -> replace IMG_CONTEXT embeddings before language layer0; no DeepStack",
+  "pixel_shuffle_method": "pixel_shuffle",
+  "projection_path": "mlp1",
+  "projection": "Sequential(\n  (0): LayerNorm((4096,), eps=1e-05, elementwise_affine=True)\n  (1): Linear(in_features=4096, out_features=3584, bias=True)\n  (2): GELU(approximate='none')\n  (3): Linear(in_features=3584, out_features=3584, bias=True)\n)",
+  "image_size": 448,
+  "downsample_ratio": 0.5,
+  "image_tokens_per_tile": 256,
+  "template": "internvl2_5",
+  "special_token_ids": {
+    "<img>": 151665,
+    "</img>": 151666,
+    "<IMG_CONTEXT>": 151667,
+    "<|im_start|>": 151644,
+    "<|im_end|>": 151645,
+    "<|endoftext|>": 151643
+  },
+  "tokenizer_bos": null,
+  "tokenizer_eos": 151645,
+  "configured_language_bos": 151643,
+  "configured_language_eos": 151643,
+  "official_chat_eos": 151645,
+  "stopping": "Official chat overrides eos_token_id with actual conversation separator; greedy max_new_tokens=32"
+}
