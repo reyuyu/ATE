@@ -60,7 +60,7 @@ class MemoryMonitor:
 def freeze(args):
     out = args.out
     out.mkdir(parents=True, exist_ok=True)
-    assert json.loads((out / "download_validation.json").read_text())["passed"], "Validate the complete download before final freeze"
+    assert json.loads((out / "download_validation.json").read_text(encoding="utf-8"))["passed"], "Validate the complete download before final freeze"
     manifest = select_samples(args.source_manifest)
     write(out / "sample_manifest.json", manifest)
     write(out / "resource_preflight.json", {"gpus": smi("index", "uuid", "name", "memory.total", "memory.used", "memory.free", "utilization.gpu"),
@@ -84,7 +84,7 @@ def freeze(args):
 def architecture(model, processor, layouts):
     import transformers.models.qwen3_vl.modeling_qwen3_vl as modeling
     source = Path(inspect.getfile(modeling))
-    lines = source.read_text().splitlines()
+    lines = source.read_text(encoding="utf-8").splitlines()
     def snippets(term, radius=3):
         return [{"line": i+1, "text": "\n".join(lines[max(0, i-radius):i+radius+1])} for i, line in enumerate(lines) if term in line]
     language = model.model.language_model
@@ -126,7 +126,7 @@ def cpu_probe(args):
     config = AutoConfig.from_pretrained(args.model_dir, local_files_only=True)
     processor = AutoProcessor.from_pretrained(args.model_dir, local_files_only=True)
     rows = []
-    for case in json.loads((args.out / "sample_manifest.json").read_text())["samples"]:
+    for case in json.loads((args.out / "sample_manifest.json").read_text(encoding="utf-8"))["samples"]:
         with Image.open(case["image_path"]) as handle:
             image = handle.convert("RGB")
         question = case["question"]
@@ -155,14 +155,14 @@ def run(args):
     assert args.gpu in (0, 2, 3), "GPU1 forbidden"
     assert os.environ.get("CUDA_VISIBLE_DEVICES") == str(args.gpu)
     out = args.out
-    protocol = json.loads((out / "protocol.json").read_text())
+    protocol = json.loads((out / "protocol.json").read_text(encoding="utf-8"))
     for name, expected in protocol["source_sha256"].items():
         assert sha256(Path(__file__).parent / name) == expected, "Frozen source changed"
     assert sha256(out / "sample_manifest.json") == protocol["sample_manifest_sha256"]
     assert sha256(out / "model_manifest.json") == protocol["model_manifest_sha256"]
     assert sha256(out / "download_validation.json") == protocol["download_validation_sha256"]
-    assert json.loads((out / "download_validation.json").read_text())["passed"]
-    assert json.loads((out / "processor_cpu_validation.json").read_text())["passed"]
+    assert json.loads((out / "download_validation.json").read_text(encoding="utf-8"))["passed"]
+    assert json.loads((out / "processor_cpu_validation.json").read_text(encoding="utf-8"))["passed"]
     pre = subprocess.check_output(["nvidia-smi", "-i", str(args.gpu), "--query-gpu=uuid,memory.used,memory.free", "--format=csv,noheader,nounits"], text=True).strip()
     uuid, used, free = [x.strip() for x in pre.split(",")]
     assert int(used) < 500 and int(free) > 23000, f"Selected GPU no longer idle: {pre}"
@@ -212,7 +212,7 @@ def run(args):
             assert set(implementations.values()) == {args.mode}
             report["attention_implementations"] = implementations
             report["load_passed"] = True
-            samples = json.loads((out / "sample_manifest.json").read_text())["samples"]
+            samples = json.loads((out / "sample_manifest.json").read_text(encoding="utf-8"))["samples"]
             cases = [{**samples[0], "question_id": "demo-local-image", "question": "What is visible in this picture?", "task": "local-demo"}] + samples
             layouts = []
 

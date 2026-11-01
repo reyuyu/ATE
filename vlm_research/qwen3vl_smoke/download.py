@@ -21,7 +21,7 @@ def write(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n")
+    tmp.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     os.replace(tmp, path)
 
 
@@ -154,7 +154,7 @@ def main():
                 total_tensors += 1
                 dtype_counts[meta["dtype"]] = dtype_counts.get(meta["dtype"], 0) + 1
                 assert 0 <= meta["data_offsets"][0] <= meta["data_offsets"][1] <= p.stat().st_size - 8 - header_size
-    index = json.loads((root / "model.safetensors.index.json").read_text())
+    index = json.loads((root / "model.safetensors.index.json").read_text(encoding="utf-8"))
     assert set(index["weight_map"]) == actual_keys
     assert index["weight_map"] == actual_map
     write(args.out / "download_validation.json", {"passed": True, "files": len(files), "weight_shards": len(weights),

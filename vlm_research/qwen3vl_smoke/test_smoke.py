@@ -1,4 +1,8 @@
 import tempfile
+import json
+import os
+import subprocess
+import sys
 import unittest
 from pathlib import Path
 
@@ -22,6 +26,14 @@ class HelpersTest(unittest.TestCase):
             write(path, {"x": 1})
             self.assertEqual(len(sha256(path)), 64)
             self.assertFalse(path.with_suffix(".json.tmp").exists())
+
+    def test_unicode_tokens_in_ascii_locale(self):
+        with tempfile.TemporaryDirectory() as directory:
+            path = Path(directory) / "unicode.json"
+            env = dict(os.environ, LC_ALL="C", PYTHONUTF8="0", PYTHONCOERCECLOCALE="0", CUDA_VISIBLE_DEVICES="")
+            subprocess.run([sys.executable, "-c", "from common import write; import sys; write(sys.argv[1], {'token': chr(266)})", str(path)],
+                           cwd=Path(__file__).parent, env=env, check=True)
+            self.assertEqual(json.loads(path.read_text(encoding="utf-8"))["token"], "\u010a")
 
 
 if __name__ == "__main__":

@@ -14,7 +14,7 @@ def main():
     out = args.out
     def read(name):
         path = out / name
-        return json.loads(path.read_text()) if path.exists() else {}
+        return json.loads(path.read_text(encoding="utf-8")) if path.exists() else {}
     download = read("download_validation.json")
     manifest = read("model_manifest.json")
     native = read("native_smoke.json")
@@ -71,7 +71,7 @@ def main():
         "即使Eager通过，也只证明本轮短上下文、小图片下的基础技术可行性。后续来源Hard Mask必须适配动态视觉Token、GQA、原生因果Mask、三轴M-RoPE、KV Cache和DeepStack；本轮未实施，不能声称已验证干预算法。",
         "不能从这些技术Smoke推断正式GQA Accuracy，也不能保证长上下文或全层Attention矩阵提取能在24GB运行。", "",
         f"GPU释放确认：{released}。未终止其他用户进程；不修改main和LLaVA环境。"]
-    (out / "report_zh.md").write_text("\n".join(report) + "\n")
+    (out / "report_zh.md").write_text("\n".join(report) + "\n", encoding="utf-8")
     hashes = {str(p.relative_to(out)): sha256(p) for p in sorted(out.rglob("*")) if p.is_file() and p.name != "artifact_sha256.json"}
     write(out / "artifact_sha256.json", hashes)
     print(json.dumps(validation, indent=2, ensure_ascii=False))

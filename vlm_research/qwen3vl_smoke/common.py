@@ -9,7 +9,7 @@ def write(path, value):
     path = Path(path)
     path.parent.mkdir(parents=True, exist_ok=True)
     tmp = path.with_suffix(path.suffix + ".tmp")
-    tmp.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n")
+    tmp.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
     os.replace(tmp, path)
 
 
@@ -31,7 +31,7 @@ def question_positions(offsets, expanded_text, question):
 
 
 def select_samples(source, count_per_task=2, seed=20261101):
-    raw = json.loads(Path(source).read_text())
+    raw = json.loads(Path(source).read_text(encoding="utf-8"))
     selected = []
     for task in sorted({x["task"] for x in raw["samples"]}):
         candidates = [x for x in raw["samples"] if x["task"] == task]
