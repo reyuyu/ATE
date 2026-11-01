@@ -68,6 +68,7 @@ def freeze(args):
           "gpu1_forbidden": True})
     sources = {p.name: sha256(p) for p in sorted(Path(__file__).parent.iterdir()) if p.is_file()}
     write(out / "protocol.json", {"scope": "Single-GPU technical feasibility, not performance evaluation or ablation", "source_sha256": sources,
+          "source_commit": subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip(),
           "model_revision": args.model_dir.name, "model_path": str(args.model_dir.resolve()),
           "model_manifest_sha256": sha256(out / "model_manifest.json"),
           "download_validation_sha256": sha256(out / "download_validation.json"),

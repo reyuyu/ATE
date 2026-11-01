@@ -16,6 +16,8 @@ Execution order:
    Install `requirements.txt`, supplying the local CUDA124 torch/torchvision
    wheels via `--find-links /data/lk/ATE-resources/wheels`. Do not upgrade AFAC or
    ate-vlm-research. Record the actual resolved versions.
+   If PyPI transport is slow, `QWEN_PIP_INDEX_URL` can select a PyPI mirror;
+   package version pins stay unchanged. This is unrelated to model provenance.
 3. Run CPU unit tests, freeze the12-question manifest and source/protocol hashes
    using `run.py freeze`. The original six GQA pools are read-only inputs.
 4. Recheck free GPU0/2/3. With exactly one `CUDA_VISIBLE_DEVICES`, run

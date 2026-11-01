@@ -15,7 +15,7 @@ if [[ ! -e "$new_env/bin/python" ]]; then
     "$old_python" -m venv "$new_env"
 fi
 "$new_env/bin/python" -c 'import sys; assert sys.version_info[:2] == (3,11); assert sys.prefix.endswith("ate-qwen3vl")'
-"$new_env/bin/python" -m pip install --index-url https://pypi.org/simple \
+"$new_env/bin/python" -m pip install --index-url "${QWEN_PIP_INDEX_URL:-https://pypi.org/simple}" \
     --find-links /data/lk/ATE-resources/wheels \
     -r vlm_research/qwen3vl_smoke/requirements.txt
 "$new_env/bin/python" -m pip check
