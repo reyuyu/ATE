@@ -157,7 +157,7 @@ def expanded_prompt(model, sample, tiles):
     return template.get_prompt().replace('<image>', '<img>'+'<IMG_CONTEXT>'*(model.num_image_token*tiles)+'</img>', 1)
 
 
-@torch.inference_mode()
+@torch.no_grad()
 def main():
     from transformers import AutoModel, AutoTokenizer
     protocol = read(OUT/'protocol.json')

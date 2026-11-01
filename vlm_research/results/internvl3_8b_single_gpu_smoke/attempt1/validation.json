@@ -1,0 +1,7 @@
+{
+  "passed": false,
+  "scope": "3 max_num=1 generations + one max_num=2 aspect case; 2 cases of fixed single-layer P-1 output hooks; one 2-layer mass collection. No scan, hard masks or benchmark.",
+  "errors": [
+    "Traceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/internvl3-8b-download-smoke/vlm_research/internvl3_smoke/run.py\", line 192, in main\n    versions = [(name,p._version,p.data_ptr()) for name,p in model.named_parameters()]\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/internvl3-8b-download-smoke/vlm_research/internvl3_smoke/run.py\", line 192, in <listcomp>\n    versions = [(name,p._version,p.data_ptr()) for name,p in model.named_parameters()]\n                      ^^^^^^^^^^\nRuntimeError: Inference tensors do not track version counter.\n"
+  ]
+}

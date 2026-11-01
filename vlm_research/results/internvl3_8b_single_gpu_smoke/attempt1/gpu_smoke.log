@@ -1,0 +1,18 @@
+FlashAttention2 is not installed.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.28s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.29s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.27s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.01s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.11s/it]
+SMOKE finished; process exits and releases GPU1
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/internvl3-8b-download-smoke/vlm_research/internvl3_smoke/run.py", line 305, in <module>
+    main()
+  File "/data/lk/深度学习/.envs/ate-internvl3/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/internvl3-8b-download-smoke/vlm_research/internvl3_smoke/run.py", line 192, in main
+    versions = [(name,p._version,p.data_ptr()) for name,p in model.named_parameters()]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/internvl3-8b-download-smoke/vlm_research/internvl3_smoke/run.py", line 192, in <listcomp>
+    versions = [(name,p._version,p.data_ptr()) for name,p in model.named_parameters()]
+                      ^^^^^^^^^^
+RuntimeError: Inference tensors do not track version counter.

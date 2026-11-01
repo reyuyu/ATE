@@ -1,0 +1,44 @@
+{
+  "repo": "OpenGVLab/InternVL3-8B",
+  "revision": "853e3a797a661694b1b8ece0cb72dc2b23e3dac9",
+  "local_path": "/data/lk/ATE-resources/models/internvl3-8b/853e3a797a661694b1b8ece0cb72dc2b23e3dac9",
+  "physical_gpu": 1,
+  "visible_devices": "1",
+  "process_device": "cuda:0",
+  "dtype": "bfloat16",
+  "attention": "eager",
+  "use_flash_attn": false,
+  "independent_environment": "/data/lk/深度学习/.envs/ate-internvl3",
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "max_new_tokens": 32,
+    "use_cache": true
+  },
+  "sample_manifest_sha256": "0470b8088dcf88b2a45fbf88d3b38940bb615be44f8897c0b821962de9e2d4ec",
+  "model_manifest_sha256": "90cb5e1396a9252f06ee3e5651dbaa651baba332036b2495143e8b4e9c56a16b",
+  "source_sha256": {
+    "vlm_research/internvl3_smoke/__init__.py": "72c810f115f51ed920ce436ab697e84f4a2714fdf5e9231dfee4e03adfa48144",
+    "vlm_research/internvl3_smoke/common.py": "9f8b681c49f474a3505d751d6de02bc6cffe5c466dd198166d0850bd020332d5",
+    "vlm_research/internvl3_smoke/download.py": "2856bc72ce5c78c8923404aa6b6b33a4969443d54a23060c8c3505796e3c893f",
+    "vlm_research/internvl3_smoke/engine.py": "5c30032cdf739ad94b93c3bf3d15f972a7b95c5067f8a5411ebb00710a3e95e8",
+    "vlm_research/internvl3_smoke/prepare.py": "acc206bf8b55f3dada940452012c1e9b8fcb9a83cccee4ff602008b0a312519d",
+    "vlm_research/internvl3_smoke/requirements.txt": "f8014de821fca1d09f0d6d2217b30633edb466f52ac375949ed364a8de77764d",
+    "vlm_research/internvl3_smoke/run.py": "0ed4c2941b10592f2d582f3a4951a7917e0f61b1bb32b0255837a282dff3b28b",
+    "vlm_research/internvl3_smoke/setup_env.sh": "483a0cb67ffb854ca7b3d8129435fb599a067a797a0f5861a6ebdd9bf4148697",
+    "vlm_research/internvl3_smoke/tests.py": "e124ca5673dae78dca7781f08af0bd5b6d01f45c8637012a79bfed693b2ffff5"
+  },
+  "intervention_layers": [
+    2,
+    "actual_last_layer"
+  ],
+  "mass_layers": [
+    0,
+    "actual_last_layer"
+  ],
+  "noop_tolerance": 0.0,
+  "mass_row_sum_tolerance": 0.00390825,
+  "mass_tolerance_basis": "Native BF16 nonnegative probability rounding <= 2^-8 plus 2e-6 FP32 summation allowance; not tuned after smoke",
+  "scope": "3 max_num=1 generations + one max_num=2 aspect case; 2 cases of fixed single-layer P-1 output hooks; one 2-layer mass collection. No scan, hard masks or benchmark.",
+  "prefill_replay": "Replay exact first official language_model.generate kwargs using immutable native multimodal embeddings and a fresh empty DynamicCache; preserves vision injection and compute path."
+}
