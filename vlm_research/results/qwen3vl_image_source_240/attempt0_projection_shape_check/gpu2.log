@@ -1,0 +1,13 @@
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.22s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.19s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.20s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.01s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.08s/it]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/qwen3vl-image-source-sensitivity-240/vlm_research/qwen3vl_image_source/run.py", line 233, in <module>
+    worker(args.shard)
+  File "/data/lk/ATE-worktrees/qwen3vl-image-source-sensitivity-240/vlm_research/qwen3vl_image_source/run.py", line 169, in worker
+    validation = smoke(model, processor, max(samples, key=lambda s: s['layout']['input_length']))
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/qwen3vl-image-source-sensitivity-240/vlm_research/qwen3vl_image_source/run.py", line 131, in smoke
+    assert torch.equal(plain[-1], repeated)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError

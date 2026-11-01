@@ -124,6 +124,8 @@ def aggregate():
 
 各GPU先通过真实Smoke：No-op和Full全部有效Prompt Logits逐元素精确一致；复用视觉特征与Native Full全部有效Logits精确一致；L0/L2/L17/L35的目标Mask有效，其他Prefill Query的Attention输出、层输出与最终Logits精确一致；更早层不变；三个DeepStack特征与实际注入精确核验；输入和权重不变；正常及异常退出Hook均清理。全部GPU通过后才开始正式扫描。
 
+首次Smoke将全部位置LM Head投影和仅末位置投影跨形状比较，触发BF16精确一致断言，正式扫描未启动；原始失败日志保存在attempt0_projection_shape_check。修正为各自相同投影形状的Native/No-op严格逐元素比较，不放宽容差。两种投影形状的实测差异单列在validation.json，正式Full与Image OFF始终使用相同的仅末位置投影。
+
 每题只计算一次原生视觉编码，将最终视觉特征和全部三个DeepStack特征一起原样克隆复用到各层条件；没有删除或遗漏DeepStack。每次使用独立无Cache Prefill，防止条件间KV污染。
 
 ## 解释边界

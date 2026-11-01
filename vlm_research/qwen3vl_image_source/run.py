@@ -127,8 +127,12 @@ def smoke(model, processor, sample):
     replay, _, _ = runner.forward(all_logits=True)
     noop, _, _ = runner.forward(layer=0, noop=True, all_logits=True)
     assert torch.equal(plain, replay) and torch.equal(plain, noop)
-    repeated, _, _ = runner.forward(native=True)
-    assert torch.equal(plain[-1], repeated)
+    repeated, _, _ = runner.forward(native=True, all_logits=True)
+    assert torch.equal(plain, repeated)
+    last_only, _, _ = runner.forward(native=True)
+    last_noop, _, _ = runner.forward(layer=0, noop=True)
+    assert torch.equal(last_only, last_noop)
+    projection_shape_difference = float((plain[-1].float() - last_only.float()).abs().max())
     checks = []
     for layer in (0, 2, 17, 35):
         logits, audit, trace = runner.forward(layer=layer, trace=True, all_logits=True, native=True)
@@ -152,7 +156,8 @@ def smoke(model, processor, sample):
     assert weights == [(p._version, p.data_ptr()) for p in model.parameters()]
     return dict(passed=True, question_id=sample['question_id'], image_tokens=sample['layout']['image_tokens'],
         grid=sample['layout']['image_grid_thw'], noop_all_valid_logits_max_abs=0,
-        native_visual_replay_all_valid_logits_max_abs=0, checks=checks,
+        native_visual_replay_all_valid_logits_max_abs=0, last_only_noop_max_abs=0,
+        all_vs_last_only_projection_max_abs=projection_shape_difference, checks=checks,
         visual_feature_hashes=tree_hash(runner.visual), deepstack_count=len(runner.visual[1]),
         inputs_and_weights_unchanged=True, hooks_clean=True, no_nan_inf_oom=True)
 
