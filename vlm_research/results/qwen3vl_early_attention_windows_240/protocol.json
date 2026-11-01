@@ -1,0 +1,94 @@
+{
+  "base_commit": "96988a7bd8b25cedf0e55acf073604835e7c4329",
+  "remote_main_preflight": "e89c8acce6e674ecfbd2c8acad57faf71bf4d547",
+  "seed": 20261101,
+  "model_repo": "Qwen/Qwen3-VL-8B-Instruct",
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "model_path": "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "dtype": "bfloat16",
+  "attention": "eager",
+  "language_layers": 36,
+  "batch_size": 1,
+  "physical_gpu": 1,
+  "gpu_selection": "User opening explicit 'use GPU1' overrides copied section5 exclusion; never use another GPU",
+  "conditions": {
+    "Full": [],
+    "W0": [
+      0,
+      1,
+      2,
+      3
+    ],
+    "W1": [
+      1,
+      2,
+      3,
+      4
+    ],
+    "W2": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "W3": [
+      3,
+      4,
+      5,
+      6
+    ],
+    "W4": [
+      4,
+      5,
+      6,
+      7
+    ],
+    "W5": [
+      16,
+      17,
+      18,
+      19
+    ]
+  },
+  "max_new_tokens": 32,
+  "do_sample": false,
+  "num_beams": 1,
+  "use_cache": true,
+  "intervention": "Post-language-self_attn.o_proj output zero at original P-1 and every real incremental decode query only; QKV/cache/MLP/residual/other prefill/DeepStack untouched",
+  "image_budget": "Unmodified official processor defaults; no silent downsampling",
+  "scoring": "Native decoded text.strip(), then exact prior official-GQA conversion text.rstrip('.').lower(), equals frozen answer; no new aliases",
+  "scorer_bindings": {
+    "/data/lk/ATE-worktrees/first-answer-early-attention/vlm_research/paper_rq1/scorers.py": "081e409993a481a0b3c83e0cf6ae2d16768c10e1c95f602de72c4abe4f5c9ad8",
+    "/data/lk/ATE-resources/paper_rq1/annotations/gqa_eval.py": "4433a8959d82c14b37ffc0c17c6f8d3e34ef692515b79939eb66220a4b74d130",
+    "/data/lk/ATE-resources/benchmarks/phase4_0/sources/llava/scripts/convert_gqa_for_eval.py": "016cea68c91cbc141c276e9e7568420e2f5db5aba90c4f594701663c72929932"
+  },
+  "sample_manifest_sha256": "53c668ade733600f561eda8f6e17b3fe16f3b777bbb911335f642da7e43f4fc7",
+  "model_manifest_sha256": "5fa2414e6596fa188838506bc5e973542e9ba4db94c90cbe748c66b9686ef31c",
+  "environment_sha256": "31c7b93eedfa26142fcea6a0941deb51ce31b74c70f2a7eeaca654f8caaed18f",
+  "code_sha256": {
+    "vlm_research/qwen3vl_early_windows/__init__.py": "17902faa2086f14661225df3c854a36be1df7d6d99f40d7eb394307e418f6127",
+    "vlm_research/qwen3vl_early_windows/analyze.py": "0c9846934107afd29a45441a3bfe77b198a4cfffb9fdcce0cb978a9b03d29f9e",
+    "vlm_research/qwen3vl_early_windows/experiment.py": "ea65a64f5ac6842e6a821ae2d21222c211060bd4afa08dc2d26fbaf3581b1b9c",
+    "vlm_research/qwen3vl_early_windows/run.py": "2034b93d24c3ad6d1b8cdb11876f46cb693c1b3723ae8591129e4fcc9c0c2dd8",
+    "vlm_research/qwen3vl_early_windows/tests.py": "b627a310c80599c870d67e786fd82a927dd0e1a1c5cf8b2045f057a17273d3bf",
+    "vlm_research/qwen3vl_smoke/common.py": "7d2832ea00133a8700366a9ba668473dc7febd391f64aabe807011990c709099"
+  },
+  "processor_chat_template": "{%- if tools %}\n    {{- '<|im_start|>system\\n' }}\n    {%- if messages[0].role == 'system' %}\n        {%- if messages[0].content is string %}\n            {{- messages[0].content }}\n        {%- else %}\n            {%- for content in messages[0].content %}\n                {%- if 'text' in content %}\n                    {{- content.text }}\n                {%- endif %}\n            {%- endfor %}\n        {%- endif %}\n        {{- '\\n\\n' }}\n    {%- endif %}\n    {{- \"# Tools\\n\\nYou may call one or more functions to assist with the user query.\\n\\nYou are provided with function signatures within <tools></tools> XML tags:\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\\n\\nFor each function call, return a json object with function name and arguments within <tool_call></tool_call> XML tags:\\n<tool_call>\\n{\\\"name\\\": <function-name>, \\\"arguments\\\": <args-json-object>}\\n</tool_call><|im_end|>\\n\" }}\n{%- else %}\n    {%- if messages[0].role == 'system' %}\n        {{- '<|im_start|>system\\n' }}\n        {%- if messages[0].content is string %}\n            {{- messages[0].content }}\n        {%- else %}\n            {%- for content in messages[0].content %}\n                {%- if 'text' in content %}\n                    {{- content.text }}\n                {%- endif %}\n            {%- endfor %}\n        {%- endif %}\n        {{- '<|im_end|>\\n' }}\n    {%- endif %}\n{%- endif %}\n{%- set image_count = namespace(value=0) %}\n{%- set video_count = namespace(value=0) %}\n{%- for message in messages %}\n    {%- if message.role == \"user\" %}\n        {{- '<|im_start|>' + message.role + '\\n' }}\n        {%- if message.content is string %}\n            {{- message.content }}\n        {%- else %}\n            {%- for content in message.content %}\n                {%- if content.type == 'image' or 'image' in content or 'image_url' in content %}\n                    {%- set image_count.value = image_count.value + 1 %}\n                    {%- if add_vision_id %}Picture {{ image_count.value }}: {% endif -%}\n                    <|vision_start|><|image_pad|><|vision_end|>\n                {%- elif content.type == 'video' or 'video' in content %}\n                    {%- set video_count.value = video_count.value + 1 %}\n                    {%- if add_vision_id %}Video {{ video_count.value }}: {% endif -%}\n                    <|vision_start|><|video_pad|><|vision_end|>\n                {%- elif 'text' in content %}\n                    {{- content.text }}\n                {%- endif %}\n            {%- endfor %}\n        {%- endif %}\n        {{- '<|im_end|>\\n' }}\n    {%- elif message.role == \"assistant\" %}\n        {{- '<|im_start|>' + message.role + '\\n' }}\n        {%- if message.content is string %}\n            {{- message.content }}\n        {%- else %}\n            {%- for content_item in message.content %}\n                {%- if 'text' in content_item %}\n                    {{- content_item.text }}\n                {%- endif %}\n            {%- endfor %}\n        {%- endif %}\n        {%- if message.tool_calls %}\n            {%- for tool_call in message.tool_calls %}\n                {%- if (loop.first and message.content) or (not loop.first) %}\n                    {{- '\\n' }}\n                {%- endif %}\n                {%- if tool_call.function %}\n                    {%- set tool_call = tool_call.function %}\n                {%- endif %}\n                {{- '<tool_call>\\n{\"name\": \"' }}\n                {{- tool_call.name }}\n                {{- '\", \"arguments\": ' }}\n                {%- if tool_call.arguments is string %}\n                    {{- tool_call.arguments }}\n                {%- else %}\n                    {{- tool_call.arguments | tojson }}\n                {%- endif %}\n                {{- '}\\n</tool_call>' }}\n            {%- endfor %}\n        {%- endif %}\n        {{- '<|im_end|>\\n' }}\n    {%- elif message.role == \"tool\" %}\n        {%- if loop.first or (messages[loop.index0 - 1].role != \"tool\") %}\n            {{- '<|im_start|>user' }}\n        {%- endif %}\n        {{- '\\n<tool_response>\\n' }}\n        {%- if message.content is string %}\n            {{- message.content }}\n        {%- else %}\n            {%- for content in message.content %}\n                {%- if content.type == 'image' or 'image' in content or 'image_url' in content %}\n                    {%- set image_count.value = image_count.value + 1 %}\n                    {%- if add_vision_id %}Picture {{ image_count.value }}: {% endif -%}\n                    <|vision_start|><|image_pad|><|vision_end|>\n                {%- elif content.type == 'video' or 'video' in content %}\n                    {%- set video_count.value = video_count.value + 1 %}\n                    {%- if add_vision_id %}Video {{ video_count.value }}: {% endif -%}\n                    <|vision_start|><|video_pad|><|vision_end|>\n                {%- elif 'text' in content %}\n                    {{- content.text }}\n                {%- endif %}\n            {%- endfor %}\n        {%- endif %}\n        {{- '\\n</tool_response>' }}\n        {%- if loop.last or (messages[loop.index0 + 1].role != \"tool\") %}\n            {{- '<|im_end|>\\n' }}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- '<|im_start|>assistant\\n' }}\n{%- endif %}\n",
+  "bootstrap": {
+    "seed": 20261101,
+    "repetitions": 200000,
+    "cluster": "Whole Image SHA256",
+    "weighting": "Question-weighted",
+    "comparisons": 6,
+    "ordinary_quantiles": [
+      0.025,
+      0.975
+    ],
+    "bonferroni_quantiles": [
+      0.004166666666666667,
+      0.9958333333333333
+    ]
+  },
+  "interpretation": "240-question exploratory comparison only. -1pp is a reference, not independent noninferiority confirmation. No physical skipping/speedup claim.",
+  "pre_smoke_revision_note": "Before first GPU scoring: provide explicit native cache_position in all-valid-logit fixture; import unchanged historical monitor with its script-local common path. Samples, prompt and conditions unchanged."
+}
