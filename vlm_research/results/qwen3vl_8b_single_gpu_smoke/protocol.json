@@ -1,0 +1,36 @@
+{
+  "scope": "Single-GPU technical feasibility, not performance evaluation or ablation",
+  "source_sha256": {
+    "README.md": "b333a726ed5eda5812bbcb0e2aaf01415b80b05da92e2f5cb4817c7785629b5a",
+    "common.py": "7d2832ea00133a8700366a9ba668473dc7febd391f64aabe807011990c709099",
+    "download.py": "999080d617920025b7e6cb2a20412420c38b9e150c75035ecb06a78605d80c17",
+    "finalize.py": "4cb4172839bb21675c1be6bc0ff243d92a085d0e44677f87d9a23ff17b67d988",
+    "requirements.txt": "0c8aa53faf5770fc762dafaa2e5e44861ab2418a5316bba8fa68cc66b6ba2c83",
+    "run.py": "3f8bfb28640832b6dd3257e0d8bc9e05803ed5003b5d1745ea6f5461d7c086c6",
+    "setup_env.sh": "fb25b201cc26d825c6677371a78d312fd62a8cf728f55bcfd18e2b1ee3bf930b",
+    "test_smoke.py": "d0a79d1b41e326c046bb8020b8d2437ceba40a314f4708b7bb152e1f76dcb9ba"
+  },
+  "source_commit": "d9a4b2ac87e08ac847a0acdbfea4d96d6601199c",
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "model_path": "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "model_manifest_sha256": "5fa2414e6596fa188838506bc5e973542e9ba4db94c90cbe748c66b9686ef31c",
+  "download_validation_sha256": "aa874a2204aad7e0f87a80d1c11da4ca6f3fbca20d403de74db63614e3e90e44",
+  "sample_manifest_sha256": "0576940d31ebad5aa7758d10863b375b04e2e4387e2965429dfdf80e23d2799f",
+  "modes": [
+    "sdpa",
+    "eager"
+  ],
+  "dtype": "bfloat16",
+  "offload": false,
+  "quantization": false,
+  "visible_devices": 1,
+  "batch_size": 1,
+  "do_sample": false,
+  "num_beams": 1,
+  "max_new_tokens": 32,
+  "use_cache": true,
+  "image_budget": "Unmodified official processor defaults first; reduced resolution only after an actual documented Eager OOM",
+  "attention_weights": "Never request full output_attentions; no hooks or source masks",
+  "timing": "First generated token streamer callback after CUDA synchronization is Prefill wall time; later callbacks give Decode wall time including callback overhead, not kernel-only timing",
+  "memory": "CUDA allocator peaks plus nvidia-smi process peak sampled every approximately250ms; sampled peak is not guaranteed to catch transient spikes"
+}

@@ -1,0 +1,13 @@
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.16s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.17s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.20s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.03s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.08s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+{"question_id": "demo-local-image", "task": "local-demo", "answer": "clock tower", "generated_token_ids": [20666, 21271, 151645], "eos_reached": true, "truncated": false, "all_scores_finite": true, "input_length": 186, "visual_tokens": 160, "wall_seconds": 1.3688333248719573, "prefill_first_token_wall_seconds": 1.2677928779739887, "decode_wall_seconds": 0.1007730420678854, "decode_steps": 2, "peak_allocated_mib": 16796.634765625, "peak_reserved_mib": 16836.0, "first_token_id": 20666, "first_token_score": 41.0, "cache_class": "DynamicCache", "final_cache_seq_length": 188}
+Traceback (most recent call last):
+  File "/data/lk/ATE-worktrees/qwen3vl-8b-single-gpu-smoke/vlm_research/qwen3vl_smoke/run.py", line 269, in run
+    write(out / f"input_layouts_{args.mode}.json", layouts)
+  File "/data/lk/ATE-worktrees/qwen3vl-8b-single-gpu-smoke/vlm_research/qwen3vl_smoke/common.py", line 12, in write
+    tmp.write_text(json.dumps(value, indent=2, ensure_ascii=False) + "\n")
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/pathlib.py", line 1079, in write_text
+    return f.write(data)
+           ^^^^^^^^^^^^^
+UnicodeEncodeError: 'ascii' codec can't encode character '\u010a' in position 4927: ordinal not in range(128)
+

@@ -1,0 +1,69 @@
+{
+  "mode": "sdpa",
+  "physical_gpu": 0,
+  "gpu_uuid": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89",
+  "passed": false,
+  "cases": [
+    {
+      "question_id": "demo-local-image",
+      "task": "local-demo",
+      "answer": "clock tower",
+      "generated_token_ids": [
+        20666,
+        21271,
+        151645
+      ],
+      "eos_reached": true,
+      "truncated": false,
+      "all_scores_finite": true,
+      "input_length": 186,
+      "visual_tokens": 160,
+      "wall_seconds": 1.3688333248719573,
+      "prefill_first_token_wall_seconds": 1.2677928779739887,
+      "decode_wall_seconds": 0.1007730420678854,
+      "decode_steps": 2,
+      "peak_allocated_mib": 16796.634765625,
+      "peak_reserved_mib": 16836.0,
+      "first_token_id": 20666,
+      "first_token_score": 41.0,
+      "cache_class": "DynamicCache",
+      "final_cache_seq_length": 188
+    }
+  ],
+  "image_budget": "official defaults",
+  "load_passed": true,
+  "first_token_forward_passed": true,
+  "generate_passed": false,
+  "load_seconds": 5.331502309069037,
+  "parameter_devices": [
+    "cuda:0"
+  ],
+  "parameter_dtypes": [
+    "torch.bfloat16"
+  ],
+  "buffer_devices": [
+    "cuda:0"
+  ],
+  "device_map": {
+    "": "cuda:0"
+  },
+  "parameter_count": 8767123696,
+  "attention_implementations": {
+    "text": "sdpa",
+    "vision": "sdpa"
+  },
+  "current_input": {
+    "question_id": "demo-local-image",
+    "input_length": 186,
+    "visual_tokens": 160
+  },
+  "exception": {
+    "type": "UnicodeEncodeError",
+    "message": "'ascii' codec can't encode character '\\u010a' in position 4927: ordinal not in range(128)",
+    "traceback": "Traceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/qwen3vl-8b-single-gpu-smoke/vlm_research/qwen3vl_smoke/run.py\", line 269, in run\n    write(out / f\"input_layouts_{args.mode}.json\", layouts)\n  File \"/data/lk/ATE-worktrees/qwen3vl-8b-single-gpu-smoke/vlm_research/qwen3vl_smoke/common.py\", line 12, in write\n    tmp.write_text(json.dumps(value, indent=2, ensure_ascii=False) + \"\\n\")\n  File \"/home/likai/anaconda3/envs/AFAC/lib/python3.11/pathlib.py\", line 1079, in write_text\n    return f.write(data)\n           ^^^^^^^^^^^^^\nUnicodeEncodeError: 'ascii' codec can't encode character '\\u010a' in position 4927: ordinal not in range(128)\n"
+  },
+  "peak_allocated_mib": 16796.634765625,
+  "peak_reserved_mib": 16836.0,
+  "nvidia_smi_sampled_process_peak_mib": 17122,
+  "memory_monitor_errors": []
+}

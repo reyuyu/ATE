@@ -1,0 +1,223 @@
+Waiting for complete verified download before creating the new environment.
+Download validation passed; creating isolated environment.
+Looking in links: /data/lk/ATE-resources/wheels
+Processing /data/lk/ATE-resources/wheels/torch-2.6.0+cu124-cp311-cp311-linux_x86_64.whl (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+Processing /data/lk/ATE-resources/wheels/torchvision-0.21.0+cu124-cp311-cp311-linux_x86_64.whl (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 3))
+Collecting transformers==4.57.6 (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 4))
+  Downloading transformers-4.57.6-py3-none-any.whl.metadata (43 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 44.0/44.0 kB 381.9 kB/s eta 0:00:00
+Collecting accelerate==1.4.0 (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 5))
+  Downloading accelerate-1.4.0-py3-none-any.whl.metadata (19 kB)
+Collecting huggingface-hub==0.36.0 (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 6))
+  Downloading huggingface_hub-0.36.0-py3-none-any.whl.metadata (14 kB)
+Collecting tokenizers==0.22.1 (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 7))
+  Downloading tokenizers-0.22.1-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (6.8 kB)
+Collecting safetensors==0.5.3 (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 8))
+  Downloading safetensors-0.5.3-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (3.8 kB)
+Collecting Pillow==11.1.0 (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 9))
+  Downloading pillow-11.1.0-cp311-cp311-manylinux_2_28_x86_64.whl.metadata (9.1 kB)
+Collecting numpy==1.26.4 (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 10))
+  Downloading numpy-1.26.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (61 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 61.0/61.0 kB 22.9 kB/s eta 0:00:00
+Collecting requests==2.32.5 (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 11))
+  Downloading requests-2.32.5-py3-none-any.whl.metadata (4.9 kB)
+Collecting filelock (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading filelock-4.2.6-py3-none-any.whl.metadata (2.0 kB)
+Collecting typing-extensions>=4.10.0 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading typing_extensions-4.16.0-py3-none-any.whl.metadata (3.3 kB)
+Collecting networkx (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading networkx-3.6.1-py3-none-any.whl.metadata (6.8 kB)
+Collecting jinja2 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading jinja2-3.1.6-py3-none-any.whl.metadata (2.9 kB)
+Collecting fsspec (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading fsspec-2026.9.0-py3-none-any.whl.metadata (10 kB)
+Collecting nvidia-cuda-nvrtc-cu12==12.4.127 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading nvidia_cuda_nvrtc_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cuda-runtime-cu12==12.4.127 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading nvidia_cuda_runtime_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cuda-cupti-cu12==12.4.127 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading nvidia_cuda_cupti_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cudnn-cu12==9.1.0.70 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cublas-cu12==12.4.5.8 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading nvidia_cublas_cu12-12.4.5.8-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cufft-cu12==11.2.1.3 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading nvidia_cufft_cu12-11.2.1.3-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-curand-cu12==10.3.5.147 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading nvidia_curand_cu12-10.3.5.147-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting nvidia-cusolver-cu12==11.6.1.9 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading nvidia_cusolver_cu12-11.6.1.9-py3-none-manylinux2014_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cusparse-cu12==12.3.1.170 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading nvidia_cusparse_cu12-12.3.1.170-py3-none-manylinux2014_x86_64.whl.metadata (1.6 kB)
+Collecting nvidia-cusparselt-cu12==0.6.2 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading nvidia_cusparselt_cu12-0.6.2-py3-none-manylinux2014_x86_64.whl.metadata (6.8 kB)
+Collecting nvidia-nccl-cu12==2.21.5 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading nvidia_nccl_cu12-2.21.5-py3-none-manylinux2014_x86_64.whl.metadata (1.8 kB)
+Collecting nvidia-nvtx-cu12==12.4.127 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading nvidia_nvtx_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl.metadata (1.7 kB)
+Collecting nvidia-nvjitlink-cu12==12.4.127 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading nvidia_nvjitlink_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl.metadata (1.5 kB)
+Collecting triton==3.2.0 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading triton-3.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl.metadata (1.4 kB)
+Collecting sympy==1.13.1 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading sympy-1.13.1-py3-none-any.whl.metadata (12 kB)
+Collecting packaging>=20.0 (from transformers==4.57.6->-r vlm_research/qwen3vl_smoke/requirements.txt (line 4))
+  Downloading packaging-26.3-py3-none-any.whl.metadata (3.5 kB)
+Collecting pyyaml>=5.1 (from transformers==4.57.6->-r vlm_research/qwen3vl_smoke/requirements.txt (line 4))
+  Downloading pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.4 kB)
+Collecting regex!=2019.12.17 (from transformers==4.57.6->-r vlm_research/qwen3vl_smoke/requirements.txt (line 4))
+  Downloading regex-2026.9.29-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (40 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 40.6/40.6 kB 27.3 kB/s eta 0:00:00
+Collecting tqdm>=4.27 (from transformers==4.57.6->-r vlm_research/qwen3vl_smoke/requirements.txt (line 4))
+  Downloading tqdm-4.70.1-py3-none-any.whl.metadata (57 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 57.4/57.4 kB 14.8 kB/s eta 0:00:00
+Collecting psutil (from accelerate==1.4.0->-r vlm_research/qwen3vl_smoke/requirements.txt (line 5))
+  Downloading psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl.metadata (22 kB)
+Collecting hf-xet<2.0.0,>=1.1.3 (from huggingface-hub==0.36.0->-r vlm_research/qwen3vl_smoke/requirements.txt (line 6))
+  Downloading hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl.metadata (4.9 kB)
+Collecting charset_normalizer<4,>=2 (from requests==2.32.5->-r vlm_research/qwen3vl_smoke/requirements.txt (line 11))
+  Downloading charset_normalizer-3.5.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (46 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 46.4/46.4 kB 18.3 kB/s eta 0:00:00
+Collecting idna<4,>=2.5 (from requests==2.32.5->-r vlm_research/qwen3vl_smoke/requirements.txt (line 11))
+  Downloading idna-3.20-py3-none-any.whl.metadata (7.2 kB)
+Collecting urllib3<3,>=1.21.1 (from requests==2.32.5->-r vlm_research/qwen3vl_smoke/requirements.txt (line 11))
+  Downloading urllib3-2.8.0-py3-none-any.whl.metadata (7.4 kB)
+Collecting certifi>=2017.4.17 (from requests==2.32.5->-r vlm_research/qwen3vl_smoke/requirements.txt (line 11))
+  Downloading certifi-2026.10.23-py3-none-any.whl.metadata (2.5 kB)
+Collecting mpmath<1.4,>=1.1.0 (from sympy==1.13.1->torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading mpmath-1.3.0-py3-none-any.whl.metadata (8.6 kB)
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl.metadata (2.7 kB)
+Downloading transformers-4.57.6-py3-none-any.whl (12.0 MB)
+Terminated
+Traceback (most recent call last):
+  File "<stdin>", line 8, in <module>
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['bash', 'vlm_research/qwen3vl_smoke/setup_env.sh']' returned non-zero exit status 143.
+Looking in indexes: https://pypi.tuna.tsinghua.edu.cn/simple
+Looking in links: /data/lk/ATE-resources/wheels
+Processing /data/lk/ATE-resources/wheels/torch-2.6.0+cu124-cp311-cp311-linux_x86_64.whl (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+Processing /data/lk/ATE-resources/wheels/torchvision-0.21.0+cu124-cp311-cp311-linux_x86_64.whl (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 3))
+Collecting transformers==4.57.6 (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 4))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/03/b8/e484ef633af3887baeeb4b6ad12743363af7cce68ae51e938e00aaa0529d/transformers-4.57.6-py3-none-any.whl (12.0 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 12.0/12.0 MB 81.0 MB/s eta 0:00:00
+Collecting accelerate==1.4.0 (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 5))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/0a/f6/791b9d7eb371a2f385da3b7f1769ced72ead7bf09744637ea2985c83d7ee/accelerate-1.4.0-py3-none-any.whl (342 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 342.1/342.1 kB 21.1 MB/s eta 0:00:00
+Collecting huggingface-hub==0.36.0 (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 6))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/cb/bd/1a875e0d592d447cbc02805fd3fe0f497714d6a2583f59d14fa9ebad96eb/huggingface_hub-0.36.0-py3-none-any.whl (566 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 566.1/566.1 kB 29.8 MB/s eta 0:00:00
+Collecting tokenizers==0.22.1 (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 7))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/d0/c6/dc3a0db5a6766416c32c034286d7c2d406da1f498e4de04ab1b8959edd00/tokenizers-0.22.1-cp39-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (3.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 3.3/3.3 MB 69.8 MB/s eta 0:00:00
+Collecting safetensors==0.5.3 (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 8))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/a6/f8/dae3421624fcc87a89d42e1898a798bc7ff72c61f38973a65d60df8f124c/safetensors-0.5.3-cp38-abi3-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (471 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 471.6/471.6 kB 57.2 MB/s eta 0:00:00
+Collecting Pillow==11.1.0 (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 9))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/48/a4/fbfe9d5581d7b111b28f1d8c2762dee92e9821bb209af9fa83c940e507a0/pillow-11.1.0-cp311-cp311-manylinux_2_28_x86_64.whl (4.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.5/4.5 MB 78.8 MB/s eta 0:00:00
+Collecting numpy==1.26.4 (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 10))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/3a/d0/edc009c27b406c4f9cbc79274d6e46d634d139075492ad055e3d68445925/numpy-1.26.4-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (18.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 18.3/18.3 MB 11.4 MB/s eta 0:00:00
+Collecting requests==2.32.5 (from -r vlm_research/qwen3vl_smoke/requirements.txt (line 11))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/1e/db/4254e3eabe8020b458f1a747140d32277ec7a271daf1d235b70dc0b4e6e3/requests-2.32.5-py3-none-any.whl (64 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 64.7/64.7 kB 10.2 MB/s eta 0:00:00
+Collecting filelock (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/b7/8d/3f849fcb79359259737bc2d8ddcaee6149ffb773239a260c9ff20179736f/filelock-4.2.6-py3-none-any.whl (164 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 164.4/164.4 kB 13.1 MB/s eta 0:00:00
+Collecting typing-extensions>=4.10.0 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/49/d3/b8441a820a491ddfc024b0b0cf0393375b75ea13866d9c66727e54c2fc80/typing_extensions-4.16.0-py3-none-any.whl (45 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 45.6/45.6 kB 10.6 MB/s eta 0:00:00
+Collecting networkx (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/9e/c9/b2622292ea83fbb4ec318f5b9ab867d0a28ab43c5717bb85b0a5f6b3b0a4/networkx-3.6.1-py3-none-any.whl (2.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 2.1/2.1 MB 25.9 MB/s eta 0:00:00
+Collecting jinja2 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/62/a1/3d680cbfd5f4b8f15abc1d571870c5fc3e594bb582bc3b64ea099db13e56/jinja2-3.1.6-py3-none-any.whl (134 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 134.9/134.9 kB 34.6 MB/s eta 0:00:00
+Collecting fsspec (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/6c/c0/a98505f18594f1bce828bb159cec0fcf9860562f1a2c85913409fc8f3d9e/fsspec-2026.9.0-py3-none-any.whl (221 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 221.7/221.7 kB 54.8 MB/s eta 0:00:00
+Collecting nvidia-cuda-nvrtc-cu12==12.4.127 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/2c/14/91ae57cd4db3f9ef7aa99f4019cfa8d54cb4caa7e00975df6467e9725a9f/nvidia_cuda_nvrtc_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (24.6 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 24.6/24.6 MB 11.1 MB/s eta 0:00:00
+Collecting nvidia-cuda-runtime-cu12==12.4.127 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/ea/27/1795d86fe88ef397885f2e580ac37628ed058a92ed2c39dc8eac3adf0619/nvidia_cuda_runtime_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (883 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 883.7/883.7 kB 15.7 MB/s eta 0:00:00
+Collecting nvidia-cuda-cupti-cu12==12.4.127 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/67/42/f4f60238e8194a3106d06a058d494b18e006c10bb2b915655bd9f6ea4cb1/nvidia_cuda_cupti_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (13.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 13.8/13.8 MB 11.4 MB/s eta 0:00:00
+Collecting nvidia-cudnn-cu12==9.1.0.70 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/9f/fd/713452cd72343f682b1c7b9321e23829f00b842ceaedcda96e742ea0b0b3/nvidia_cudnn_cu12-9.1.0.70-py3-none-manylinux2014_x86_64.whl (664.8 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 664.8/664.8 MB 4.6 MB/s eta 0:00:00
+Collecting nvidia-cublas-cu12==12.4.5.8 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/ae/71/1c91302526c45ab494c23f61c7a84aa568b8c1f9d196efa5993957faf906/nvidia_cublas_cu12-12.4.5.8-py3-none-manylinux2014_x86_64.whl (363.4 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 363.4/363.4 MB 6.5 MB/s eta 0:00:00
+Collecting nvidia-cufft-cu12==11.2.1.3 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/27/94/3266821f65b92b3138631e9c8e7fe1fb513804ac934485a8d05776e1dd43/nvidia_cufft_cu12-11.2.1.3-py3-none-manylinux2014_x86_64.whl (211.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 211.5/211.5 MB 7.9 MB/s eta 0:00:00
+Collecting nvidia-curand-cu12==10.3.5.147 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/8a/6d/44ad094874c6f1b9c654f8ed939590bdc408349f137f9b98a3a23ccec411/nvidia_curand_cu12-10.3.5.147-py3-none-manylinux2014_x86_64.whl (56.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 56.3/56.3 MB 10.2 MB/s eta 0:00:00
+Collecting nvidia-cusolver-cu12==11.6.1.9 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/3a/e1/5b9089a4b2a4790dfdea8b3a006052cfecff58139d5a4e34cb1a51df8d6f/nvidia_cusolver_cu12-11.6.1.9-py3-none-manylinux2014_x86_64.whl (127.9 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 127.9/127.9 MB 13.6 MB/s eta 0:00:00
+Collecting nvidia-cusparse-cu12==12.3.1.170 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/db/f7/97a9ea26ed4bbbfc2d470994b8b4f338ef663be97b8f677519ac195e113d/nvidia_cusparse_cu12-12.3.1.170-py3-none-manylinux2014_x86_64.whl (207.5 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 207.5/207.5 MB 7.7 MB/s eta 0:00:00
+Collecting nvidia-cusparselt-cu12==0.6.2 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/78/a8/bcbb63b53a4b1234feeafb65544ee55495e1bb37ec31b999b963cbccfd1d/nvidia_cusparselt_cu12-0.6.2-py3-none-manylinux2014_x86_64.whl (150.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 150.1/150.1 MB 9.0 MB/s eta 0:00:00
+Collecting nvidia-nccl-cu12==2.21.5 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/df/99/12cd266d6233f47d00daf3a72739872bdc10267d0383508b0b9c84a18bb6/nvidia_nccl_cu12-2.21.5-py3-none-manylinux2014_x86_64.whl (188.7 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 188.7/188.7 MB 8.1 MB/s eta 0:00:00
+Collecting nvidia-nvtx-cu12==12.4.127 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/87/20/199b8713428322a2f22b722c62b8cc278cc53dffa9705d744484b5035ee9/nvidia_nvtx_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (99 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 99.1/99.1 kB 13.6 MB/s eta 0:00:00
+Collecting nvidia-nvjitlink-cu12==12.4.127 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/ff/ff/847841bacfbefc97a00036e0fce5a0f086b640756dc38caea5e1bb002655/nvidia_nvjitlink_cu12-12.4.127-py3-none-manylinux2014_x86_64.whl (21.1 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 21.1/21.1 MB 11.2 MB/s eta 0:00:00
+Collecting triton==3.2.0 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/a7/2e/757d2280d4fefe7d33af7615124e7e298ae7b8e3bc4446cdb8e88b0f9bab/triton-3.2.0-cp311-cp311-manylinux_2_17_x86_64.manylinux2014_x86_64.whl (253.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 253.2/253.2 MB 7.3 MB/s eta 0:00:00
+Collecting sympy==1.13.1 (from torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/b2/fe/81695a1aa331a842b582453b605175f419fe8540355886031328089d840a/sympy-1.13.1-py3-none-any.whl (6.2 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 6.2/6.2 MB 18.6 MB/s eta 0:00:00
+Collecting packaging>=20.0 (from transformers==4.57.6->-r vlm_research/qwen3vl_smoke/requirements.txt (line 4))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/63/34/ba1c580383c9eada3711951fef0795c80b829a078d72188184bcab9dd527/packaging-26.3-py3-none-any.whl (129 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 130.0/130.0 kB 46.6 MB/s eta 0:00:00
+Collecting pyyaml>=5.1 (from transformers==4.57.6->-r vlm_research/qwen3vl_smoke/requirements.txt (line 4))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/71/60/917329f640924b18ff085ab889a11c763e0b573da888e8404ff486657602/pyyaml-6.0.3-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (806 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 806.6/806.6 kB 40.8 MB/s eta 0:00:00
+Collecting regex!=2019.12.17 (from transformers==4.57.6->-r vlm_research/qwen3vl_smoke/requirements.txt (line 4))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/8a/70/aa08d1d2b294894b365e5f8ba5380fe3f8546acdb81f10639dfd74209c37/regex-2026.9.29-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (804 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 805.0/805.0 kB 41.7 MB/s eta 0:00:00
+Collecting tqdm>=4.27 (from transformers==4.57.6->-r vlm_research/qwen3vl_smoke/requirements.txt (line 4))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/a7/03/921a3d3c75785aca9ebfbfcabfbc3a1be12e2ab5265deb026d55a5a3f83e/tqdm-4.70.1-py3-none-any.whl (80 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 80.2/80.2 kB 34.4 MB/s eta 0:00:00
+Collecting psutil (from accelerate==1.4.0->-r vlm_research/qwen3vl_smoke/requirements.txt (line 5))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/b5/70/5d8df3b09e25bce090399cf48e452d25c935ab72dad19406c77f4e828045/psutil-7.2.2-cp36-abi3-manylinux2010_x86_64.manylinux_2_12_x86_64.manylinux_2_28_x86_64.whl (155 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 155.6/155.6 kB 38.1 MB/s eta 0:00:00
+Collecting hf-xet<2.0.0,>=1.1.3 (from huggingface-hub==0.36.0->-r vlm_research/qwen3vl_smoke/requirements.txt (line 6))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/f8/1e/1e8ecc05ef034e9a95c18ed32d2ec07905a7cd2ca611a9d88e25ee1f4850/hf_xet-1.8.0-cp38-abi3-manylinux2014_x86_64.manylinux_2_17_x86_64.whl (4.3 MB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 4.3/4.3 MB 24.7 MB/s eta 0:00:00
+Collecting charset_normalizer<4,>=2 (from requests==2.32.5->-r vlm_research/qwen3vl_smoke/requirements.txt (line 11))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/e4/ed/cf505d3011ffceb12c2067a7a5d3cfe92b875d4d44bb0ff0d69375e2c184/charset_normalizer-3.5.2-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (269 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 270.0/270.0 kB 17.1 MB/s eta 0:00:00
+Collecting idna<4,>=2.5 (from requests==2.32.5->-r vlm_research/qwen3vl_smoke/requirements.txt (line 11))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/58/a2/bb081bab032533a855d44de1d56f8e8426114ff1ba5d1f07a438a0a654f8/idna-3.20-py3-none-any.whl (69 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 69.6/69.6 kB 31.7 MB/s eta 0:00:00
+Collecting urllib3<3,>=1.21.1 (from requests==2.32.5->-r vlm_research/qwen3vl_smoke/requirements.txt (line 11))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/92/9d/c4e665119135114480843e7ab388fa94d8480650450e6f8e26b70d323a4c/urllib3-2.8.0-py3-none-any.whl (135 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 135.7/135.7 kB 52.0 MB/s eta 0:00:00
+Collecting certifi>=2017.4.17 (from requests==2.32.5->-r vlm_research/qwen3vl_smoke/requirements.txt (line 11))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/32/d1/a3652fe2c19134d0d15922177821d863cbd7e842d53a21bbe7e8e3a1b5ac/certifi-2026.10.23-py3-none-any.whl (135 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 135.1/135.1 kB 36.8 MB/s eta 0:00:00
+Collecting mpmath<1.4,>=1.1.0 (from sympy==1.13.1->torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/43/e3/7d92a15f894aa0c9c4b49b8ee9ac9850d6e63b03c9c32c0367a13ae62209/mpmath-1.3.0-py3-none-any.whl (536 kB)
+     ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ 536.2/536.2 kB 29.4 MB/s eta 0:00:00
+Collecting MarkupSafe>=2.0 (from jinja2->torch==2.6.0+cu124->-r vlm_research/qwen3vl_smoke/requirements.txt (line 2))
+  Downloading https://pypi.tuna.tsinghua.edu.cn/packages/81/a5/a513b76c139a3915b43404324e55c0b7979ae4f0d39eb6f075b0282e90a8/markupsafe-3.0.4-cp311-cp311-manylinux2014_x86_64.manylinux_2_17_x86_64.manylinux_2_28_x86_64.whl (22 kB)
+Installing collected packages: triton, nvidia-cusparselt-cu12, mpmath, urllib3, typing-extensions, tqdm, sympy, safetensors, regex, pyyaml, psutil, Pillow, packaging, nvidia-nvtx-cu12, nvidia-nvjitlink-cu12, nvidia-nccl-cu12, nvidia-curand-cu12, nvidia-cufft-cu12, nvidia-cuda-runtime-cu12, nvidia-cuda-nvrtc-cu12, nvidia-cuda-cupti-cu12, nvidia-cublas-cu12, numpy, networkx, MarkupSafe, idna, hf-xet, fsspec, filelock, charset_normalizer, certifi, requests, nvidia-cusparse-cu12, nvidia-cudnn-cu12, jinja2, nvidia-cusolver-cu12, huggingface-hub, torch, tokenizers, transformers, torchvision, accelerate
+Successfully installed MarkupSafe-3.0.4 Pillow-11.1.0 accelerate-1.4.0 certifi-2026.10.23 charset_normalizer-3.5.2 filelock-4.2.6 fsspec-2026.9.0 hf-xet-1.8.0 huggingface-hub-0.36.0 idna-3.20 jinja2-3.1.6 mpmath-1.3.0 networkx-3.6.1 numpy-1.26.4 nvidia-cublas-cu12-12.4.5.8 nvidia-cuda-cupti-cu12-12.4.127 nvidia-cuda-nvrtc-cu12-12.4.127 nvidia-cuda-runtime-cu12-12.4.127 nvidia-cudnn-cu12-9.1.0.70 nvidia-cufft-cu12-11.2.1.3 nvidia-curand-cu12-10.3.5.147 nvidia-cusolver-cu12-11.6.1.9 nvidia-cusparse-cu12-12.3.1.170 nvidia-cusparselt-cu12-0.6.2 nvidia-nccl-cu12-2.21.5 nvidia-nvjitlink-cu12-12.4.127 nvidia-nvtx-cu12-12.4.127 packaging-26.3 psutil-7.2.2 pyyaml-6.0.3 regex-2026.9.29 requests-2.32.5 safetensors-0.5.3 sympy-1.13.1 tokenizers-0.22.1 torch-2.6.0+cu124 torchvision-0.21.0+cu124 tqdm-4.70.1 transformers-4.57.6 triton-3.2.0 typing-extensions-4.16.0 urllib3-2.8.0
+No broken requirements found.
