@@ -114,8 +114,8 @@ def relay_summary():
     return generation_summary(folder,('A','B','C','D'),interaction=True)
 
 
-def rescue_summary(model):
-    folder=OUT/(model+'_rescue')
+def rescue_summary(model,output_root=OUT):
+    folder=Path(output_root)/(model+'_rescue')
     names=('FullImageAccess','AllImageOFF','KeepSparse')
     summary=generation_summary(folder,names)
     samples=read(folder/'sample_manifest.json')['samples']
@@ -133,8 +133,11 @@ def rescue_summary(model):
             reference_wrong_to_correct=int(((scores[:,b]==0)&(scores[:,a]==1)).sum()),exploratory=True))
     csv_write(folder/'paired_comparisons.csv',rows)
     native_m,native_l,native_h,_,_=boot_mean(scores[:,3]*100,samples)
+    reference_sources={'llava':'Same-machine Task2 A',
+        'qwen':'Exact-bound historical Full generation; current native logits verified on every question',
+        'internvl':'Current native Full generation, exact first logits verified against scan on every question'}
     write(folder/'native_full_reference.json',dict(accuracy_percent=float(native_m[0]),ci_low=float(native_l[0]),ci_high=float(native_h[0]),
-        questions=240,source='Same-machine Task2 A' if model=='llava' else 'Exact-bound historical Full generation; current native logits verified on every question'))
+        questions=240,source=reference_sources[model]))
     print(json.dumps(dict(model=model,summary=summary,comparisons=rows),ensure_ascii=False),flush=True)
     return rows
 
