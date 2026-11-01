@@ -1,0 +1,95 @@
+{
+  "passed": true,
+  "expected_questions": 3000,
+  "expected_per_task": 500,
+  "same_input_identity": [
+    "task",
+    "question_id",
+    "image_id",
+    "image_sha256",
+    "question",
+    "answer"
+  ],
+  "models": {
+    "qwen": {
+      "full_vectors": 3000,
+      "off_vectors": 108000,
+      "raw_sha256_and_all_metrics_exact": true,
+      "max_replay_errors": {
+        "full_token_id": 0,
+        "off_token_id": 0,
+        "full_top1_logp": 0.0,
+        "off_full_top1_logp": 0.0,
+        "signed_loss": 0.0,
+        "absolute_change": 0.0,
+        "top1_flip": 0,
+        "js_divergence": 0.0,
+        "full_top1_probability": 0.0,
+        "full_top1_margin": 0.0
+      },
+      "failures_retained": 0,
+      "questions": 3000,
+      "rows": 108000,
+      "layers": 36,
+      "per_task": {
+        "ChooseAttr": 500,
+        "ChooseCat": 500,
+        "ChooseRel": 500,
+        "CompareAttr": 500,
+        "LogicalObj": 500,
+        "QueryAttr": 500
+      },
+      "no_duplicate_question_layer": true,
+      "complete_common_ids": true
+    },
+    "internvl": {
+      "full_vectors": 3000,
+      "off_vectors": 84000,
+      "raw_sha256_and_all_metrics_exact": true,
+      "max_replay_errors": {
+        "full_token_id": 0,
+        "off_token_id": 0,
+        "full_top1_logp": 0.0,
+        "off_full_top1_logp": 0.0,
+        "signed_loss": 0.0,
+        "absolute_change": 0.0,
+        "top1_flip": 0,
+        "js_divergence": 0.0,
+        "full_top1_probability": 0.0,
+        "full_top1_margin": 0.0
+      },
+      "failures_retained": 0,
+      "questions": 3000,
+      "rows": 84000,
+      "layers": 28,
+      "per_task": {
+        "ChooseAttr": 500,
+        "ChooseCat": 500,
+        "ChooseRel": 500,
+        "CompareAttr": 500,
+        "LogicalObj": 500,
+        "QueryAttr": 500
+      },
+      "no_duplicate_question_layer": true,
+      "complete_common_ids": true
+    },
+    "llava": {
+      "questions": 3000,
+      "rows": 96000,
+      "layers": 32,
+      "per_task": {
+        "ChooseAttr": 500,
+        "ChooseCat": 500,
+        "ChooseRel": 500,
+        "CompareAttr": 500,
+        "LogicalObj": 500,
+        "QueryAttr": 500
+      },
+      "no_duplicate_question_layer": true,
+      "complete_common_ids": true
+    }
+  },
+  "common_complete_questions": 3000,
+  "common_unique_images": 2409,
+  "no_silent_exclusions": true
+}

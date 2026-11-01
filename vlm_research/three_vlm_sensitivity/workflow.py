@@ -7,6 +7,10 @@ from .common import ROOT, OUT, write, read
 
 
 def main():
+    if all((OUT / f'{name}_completion.json').exists() and read(OUT / f'{name}_completion.json')['complete']
+           for name in ['qwen', 'internvl']):
+        print('Both GPU stages already complete; no model loaded or completion record overwritten.', flush=True)
+        return
     environment = dict(os.environ, CUDA_VISIBLE_DEVICES='1', OMP_NUM_THREADS='1',
                        MKL_NUM_THREADS='1', OPENBLAS_NUM_THREADS='1', PYTHONUNBUFFERED='1')
     started = time.time()
@@ -16,11 +20,16 @@ def main():
         ('internvl', 'smoke', '/data/lk/深度学习/.envs/ate-internvl3/bin/python'),
         ('internvl', 'run', '/data/lk/深度学习/.envs/ate-internvl3/bin/python'),
     ]:
+        completed = OUT / (f'{name}_completion.json' if mode == 'run' else f'{name}_gpu_smoke.json')
+        if completed.exists() and read(completed).get('complete' if mode == 'run' else 'passed'):
+            print('SKIP completed', name, mode, flush=True)
+            continue
         begin = time.time()
         log = OUT / f'{name}_{mode}.log'
         print('START', name, mode, log, flush=True)
         with log.open('a', encoding='utf-8') as handle:
-            command = [executable, '-u', '-m', 'vlm_research.three_vlm_sensitivity.run', name, mode]
+            module = 'vlm_research.three_vlm_sensitivity.intern_native' if name == 'internvl' else 'vlm_research.three_vlm_sensitivity.run'
+            command = [executable, '-u', '-m', module, *([mode] if name == 'internvl' else [name, mode])]
             process = subprocess.run(command, cwd=ROOT, env=environment, stdout=handle, stderr=subprocess.STDOUT)
         stage = dict(model=name, mode=mode, returncode=process.returncode, seconds=time.time()-begin, log=str(log))
         stages.append(stage)
@@ -37,7 +46,7 @@ def main():
         if remaining:
             raise RuntimeError('GPU1 occupied after subprocess exit; do not launch next stage')
     release = dict(released=True, model_processes_exited=True, physical_gpu=1,
-                   snapshot=subprocess.check_output(['nvidia-smi'], text=True), timestamp=time.time())
+                   snapshot=subprocess.check_output(['nvidia-smi'], text=True, errors='replace'), timestamp=time.time())
     write(OUT / 'gpu1_release.json', release)
     write(OUT / 'execution_summary.json', dict(status='gpu_completed_analysis_pending', stages=stages,
         seconds=time.time()-started, sole_physical_gpu=1))
