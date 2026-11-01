@@ -1,0 +1,47 @@
+{
+  "timestamp": "2026-11-02T02:54:21.285182+08:00",
+  "cpu_commands": [
+    {
+      "command": [
+        "/home/likai/anaconda3/envs/AFAC/bin/python",
+        "-m",
+        "unittest",
+        "vlm_research.qwen3vl_roi_alignment.test_preflight",
+        "-v"
+      ],
+      "exit_code": 0,
+      "seconds": 0.062316739931702614,
+      "stdout": "",
+      "stderr": "test_binding_never_uses_object_name_guess (vlm_research.qwen3vl_roi_alignment.test_preflight.CoverageTests.test_binding_never_uses_object_name_guess) ... ok\ntest_box_is_xywh_not_xyxy (vlm_research.qwen3vl_roi_alignment.test_preflight.CoverageTests.test_box_is_xywh_not_xyxy) ... ok\ntest_invalid_ids (vlm_research.qwen3vl_roi_alignment.test_preflight.CoverageTests.test_invalid_ids) ... ok\ntest_leading_zero_ids (vlm_research.qwen3vl_roi_alignment.test_preflight.CoverageTests.test_leading_zero_ids) ... ok\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nOK\n"
+    },
+    {
+      "command": [
+        "/home/likai/anaconda3/envs/AFAC/bin/python",
+        "-m",
+        "vlm_research.qwen3vl_roi_alignment.preflight",
+        "audit"
+      ],
+      "exit_code": 0,
+      "seconds": 11.879863900132477,
+      "stdout": "{\n  \"ChooseAttr\": {\n    \"direct_csv_bbox_available\": 10,\n    \"question_absent_from_csv\": 30\n  },\n  \"ChooseCat\": {\n    \"direct_csv_bbox_available\": 27,\n    \"question_absent_from_csv\": 12,\n    \"invalid_csv_bbox\": 1\n  },\n  \"ChooseRel\": {\n    \"direct_csv_bbox_available\": 9,\n    \"question_absent_from_csv\": 31\n  },\n  \"CompareAttr\": {\n    \"direct_csv_bbox_available\": 30,\n    \"question_absent_from_csv\": 10\n  },\n  \"LogicalObj\": {\n    \"direct_csv_bbox_available\": 38,\n    \"question_absent_from_csv\": 2\n  },\n  \"QueryAttr\": {\n    \"question_absent_from_csv\": 35,\n    \"direct_csv_bbox_available\": 5\n  }\n}\nSTOP: only 119/240 direct target BBoxes validated; no GPU run.\n",
+      "stderr": ""
+    }
+  ],
+  "cpu_mapping_completed": 24,
+  "manual_overlay_review": "24-panel overview visually checked; image, object boxes and positive-overlap merged cells aligned",
+  "cpu_initial_attempt": {
+    "error": "TypeError: unhashable type: 'list'",
+    "cause": "Helper normalization API requires hashable tuple mean/std",
+    "resolution": "Tuple conversion; exact comparisons unchanged; 24-item rerun passed"
+  },
+  "model_forwards": 0,
+  "gpu_processes_started": 0,
+  "gpu1_used": false,
+  "gpu_final_inventory": "0, GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 27 MiB, 24576 MiB, 0 %\n1, GPU-b08489af-0a8a-eb48-55ba-8346733af417, 21479 MiB, 24576 MiB, 88 %\n2, GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6, 27 MiB, 24576 MiB, 0 %\n3, GPU-96bc853f-ceea-2404-c704-c48a3d1ca185, 27 MiB, 24576 MiB, 0 %\n",
+  "code_sha256": {
+    "vlm_research/qwen3vl_roi_alignment/test_preflight.py": "22aa32004bb2b7c64d852524f1cd7cae17a93a8b393e50a3d6ca702d237cf23a",
+    "vlm_research/qwen3vl_roi_alignment/processor_check.py": "17dd80ce7ad56ca3fe5faf9f93ab05a8ba60aef276781c376195a129cd14c53f",
+    "vlm_research/qwen3vl_roi_alignment/preflight.py": "41572012eace583b6d61ff72004e83d7cedc28daf69b661e830ceb255d2084b3"
+  },
+  "source_csv_whitespace": "Official byte-exact CSV snapshots retained, including upstream trailing spaces; authored files checked separately."
+}
