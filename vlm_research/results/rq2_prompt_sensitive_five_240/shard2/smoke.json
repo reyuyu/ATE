@@ -1,0 +1,406 @@
+{
+  "passed": true,
+  "source": {
+    "benchmarks/dataset_registry.py": "20369ec1648e795958d7290934f4604fe8ed3b7874c8f27f8aa031d04bf024f5",
+    "figure3_decode_windows/run.py": "0da340c5fc6aad0767316aee9b3b0c6597917f86fd0fc0067ed11b2c09d75773",
+    "first_answer_attention/run.py": "5f6f3e2970acccaace1d7f63cc292a52fc33320ddd8d3bdb42fa7c0c522a8388",
+    "knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+    "paper_rq1/engine.py": "2c838844c0e7e9815662019498c9b577b8f6478898f591c9cf52cc4a2028eff9",
+    "paper_rq1/scorers.py": "081e409993a481a0b3c83e0cf6ae2d16768c10e1c95f602de72c4abe4f5c9ad8",
+    "paper_rq1_decode_layerwise_quality/statistics.py": "562e15eea92e9b2bb8720cbaf81cf0571d631e4dc7f2178f39f7c5abab18ecab",
+    "paper_rq1_early_joint_attention/engine.py": "68347d85e82e82d73beaa3d68d87a24eb13b9c2ab9ebe949a67a3c8309caec8a",
+    "paper_rq1_early_joint_attention/statistics.py": "b2e00300e1cb4d322c97ef963c84ebd35d331e26e5111f263f88f4a1015a9cc1",
+    "paper_rq1_single_layer_gqa6/engine.py": "17509131686cb01f1954e12cbd1ed57d2b74663fa6f6aaba0a01e8fceac7ebe9",
+    "paper_rq1_single_layer_gqa6/run.py": "d7b454377849a4c5b69d48174a0652dbd03afa416a6b5f140a37b697d2492e03",
+    "rq2_prompt_five/__init__.py": "6c91d9a4d93df3d54b75d422c52f4579a359f12d6f4f182c829a5402d9af91c9",
+    "rq2_prompt_five/analyze.py": "5a32e460eace0f1999aa7f901fb08a656f19b4d87acb3441aa5aa5f17afe02a4",
+    "rq2_prompt_five/engine.py": "167f763c9e5dc468d86115870e1f0d8e8023f06e8a2fda2c35b9c54873c69263",
+    "rq2_prompt_five/run.py": "1e4385dc698a9851e5153bec64ddf1048931c472f35e860515aeef9a151e6f8a",
+    "rq2_source_knockout/__init__.py": "0384e565b09e987ae253e31d51b5ea13d86bbec0cff89f5a76e63c8eb1aaf835",
+    "rq2_source_knockout/analyze.py": "c57009e3d0e4714a5a475b630f04e8e56440d827366f37aca7de5b75cbcf962e",
+    "rq2_source_knockout/engine.py": "cc5361a8d0d4e538e0b59d4e731f02e867ce87ae808e696bb3fe96e482474500",
+    "rq2_source_knockout/run.py": "0c16cee179d78a4dc291f7cd5d4b928412352e22d587716b4423393edeaa2d49",
+    "rq2_visual_full/__init__.py": "512a9521d6c724a1cfd682058abd9b3b2aab85b74d3bd3645f175b8e0b34ce9b",
+    "rq2_visual_full/run.py": "c71258635aab0869eba0fefbdae3b4d65bd16eb1e8510802d68a37f3aaffb8c4",
+    "rq2_visual_sufficiency/__init__.py": "5ef9ccdcea90d9853629e04e7e7c2a7eb6ca28aedecc3dc2221d7db6098b4690",
+    "rq2_visual_sufficiency/analyze.py": "e0df4947425e03e4299c8841e024589cdaae74dfef218d82a7e106d5eab07364",
+    "rq2_visual_sufficiency/engine.py": "fafa015e9b47f1bcf65d86c48478d47dd7500ef647d81486985d478085a369ad",
+    "rq2_visual_sufficiency/run.py": "6fe851b2e8981572f3bcb2401be849c9cf23a04efbf0357abc89c20159fed6cb",
+    "test_rq2_prompt_five.py": "1a1050dff32f51c044272f2a3c8dcb6f97bd35f35ffc9b6a2350bb2b09768702",
+    "test_rq2_source_knockout.py": "c71d2d26c9ff3854d071a30db976025f70eda8d0f6080d004bbf0b3eff8b4074",
+    "test_rq2_visual_full.py": "26c62e9bb7ac4db1b20130f7468742515fcdb0fb66e864b2d8f3045de57ea773",
+    "test_rq2_visual_sufficiency.py": "82159499ce1e2ce33f5c6193eda02883f41ea95b9118005ca7f3dc683e0c3f47",
+    "vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d"
+  },
+  "manifest_sha256": "922917aff7ed571947039d3dd34f271dc0960bbce85229eeb30862442675f38b",
+  "environment": {
+    "python": "3.11.15",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "cuda_runtime": "12.4",
+    "cudnn": 90100,
+    "gpu": "NVIDIA GeForce RTX 3090",
+    "cuda_visible_devices": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185",
+    "model_id": "llava-hf/llava-1.5-7b-hf",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "load_seconds": 21.762165158055723,
+    "parameter_devices": [
+      "cuda:0"
+    ],
+    "parameter_dtypes": [
+      "torch.float16"
+    ],
+    "hf_device_map": {
+      "": "cuda:0"
+    },
+    "memory_after_load": {
+      "allocated_mib": 13473.64794921875,
+      "reserved_mib": 13490.0,
+      "peak_allocated_mib": 13473.64794921875,
+      "peak_reserved_mib": 13490.0,
+      "device_free_mib": 10336.3125,
+      "device_total_mib": 24154.375,
+      "nvidia_smi_process_mib": 13786
+    }
+  },
+  "preflight": {
+    "physical_gpu": 3,
+    "uuid": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185",
+    "snapshot": "0, GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, NVIDIA GeForce RTX 3090, 27, 24128, 1\n1, GPU-b08489af-0a8a-eb48-55ba-8346733af417, NVIDIA GeForce RTX 3090, 27, 24128, 1\n2, GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6, NVIDIA GeForce RTX 3090, 27, 24128, 0\n3, GPU-96bc853f-ceea-2404-c704-c48a3d1ca185, NVIDIA GeForce RTX 3090, 27, 24128, 0\n",
+    "compute_processes": ""
+  },
+  "checks": [
+    {
+      "question_id": "00283392",
+      "task": "ChooseRel",
+      "p_minus_one": 617,
+      "visual_keys": 576,
+      "historical_full_logits_and_generation_exact": true,
+      "noop_all_effective_logits_exact": true,
+      "historical_single_prompt_L1_exact": true,
+      "legacy_single_prompt_exact": true,
+      "normal_exception_hook_cleanup": true,
+      "inputs_weights_unchanged": true,
+      "conditions": [
+        {
+          "condition": "A",
+          "masked_layers": [
+            1
+          ],
+          "prompt_probabilities_zero": true,
+          "image_bos_self_keys_preserved": true,
+          "other_query_logits_attention_states_exact": true,
+          "cache_and_repeat_exact": true,
+          "decode_native": true,
+          "first_logits_sha256": "48064cde570f4b8885ff777d8e24f25dea487dda3216f3b53adf592229512838",
+          "token_ids": [
+            10428,
+            2
+          ]
+        },
+        {
+          "condition": "B",
+          "masked_layers": [
+            13,
+            14,
+            15,
+            16
+          ],
+          "prompt_probabilities_zero": true,
+          "image_bos_self_keys_preserved": true,
+          "other_query_logits_attention_states_exact": true,
+          "cache_and_repeat_exact": true,
+          "decode_native": true,
+          "first_logits_sha256": "5277e593fb943fce6f85ba431e013bb2b363dc39849a8501729ec566c4bdafcb",
+          "token_ids": [
+            10428,
+            2
+          ]
+        },
+        {
+          "condition": "C",
+          "masked_layers": [
+            1,
+            13,
+            14,
+            15,
+            16
+          ],
+          "prompt_probabilities_zero": true,
+          "image_bos_self_keys_preserved": true,
+          "other_query_logits_attention_states_exact": true,
+          "cache_and_repeat_exact": true,
+          "decode_native": true,
+          "first_logits_sha256": "67267774353d2b8d238be81e364f44e1fa278dfba6c03bcf9532a2bbd352aa47",
+          "token_ids": [
+            10428,
+            2
+          ]
+        },
+        {
+          "condition": "D",
+          "masked_layers": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "prompt_probabilities_zero": true,
+          "image_bos_self_keys_preserved": true,
+          "other_query_logits_attention_states_exact": true,
+          "cache_and_repeat_exact": true,
+          "decode_native": true,
+          "first_logits_sha256": "a0133b6a76a0f3bf0d93ef6005175d6b57c97d661ee1b1dab12fa12dd84b020e",
+          "token_ids": [
+            3869,
+            2
+          ]
+        },
+        {
+          "condition": "E",
+          "masked_layers": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "prompt_probabilities_zero": true,
+          "image_bos_self_keys_preserved": true,
+          "other_query_logits_attention_states_exact": true,
+          "cache_and_repeat_exact": true,
+          "decode_native": true,
+          "first_logits_sha256": "4de1879758dc9f1a4bd2adb43ded9a4265b469cb06cff4319b5a1ba50daea771",
+          "token_ids": [
+            13,
+            7341,
+            2
+          ]
+        }
+      ]
+    },
+    {
+      "question_id": "00768588",
+      "task": "QueryAttr",
+      "p_minus_one": 609,
+      "visual_keys": 576,
+      "historical_full_logits_and_generation_exact": true,
+      "noop_all_effective_logits_exact": true,
+      "historical_single_prompt_L1_exact": false,
+      "legacy_single_prompt_exact": true,
+      "normal_exception_hook_cleanup": true,
+      "inputs_weights_unchanged": true,
+      "conditions": [
+        {
+          "condition": "A",
+          "masked_layers": [
+            1
+          ],
+          "prompt_probabilities_zero": true,
+          "image_bos_self_keys_preserved": true,
+          "other_query_logits_attention_states_exact": true,
+          "cache_and_repeat_exact": true,
+          "decode_native": true,
+          "first_logits_sha256": "5a6d04767e99036db8c51c33e05755651dd59728c6165cffb37e7f3cf4526df6",
+          "token_ids": [
+            10428,
+            2
+          ]
+        },
+        {
+          "condition": "B",
+          "masked_layers": [
+            13,
+            14,
+            15,
+            16
+          ],
+          "prompt_probabilities_zero": true,
+          "image_bos_self_keys_preserved": true,
+          "other_query_logits_attention_states_exact": true,
+          "cache_and_repeat_exact": true,
+          "decode_native": true,
+          "first_logits_sha256": "41601f738a175ac1c8bbd4b37c59ac7d1950f3055611354d1e1fb177c55295db",
+          "token_ids": [
+            19941,
+            2
+          ]
+        },
+        {
+          "condition": "C",
+          "masked_layers": [
+            1,
+            13,
+            14,
+            15,
+            16
+          ],
+          "prompt_probabilities_zero": true,
+          "image_bos_self_keys_preserved": true,
+          "other_query_logits_attention_states_exact": true,
+          "cache_and_repeat_exact": true,
+          "decode_native": true,
+          "first_logits_sha256": "8193cfa60070c70f7a2c94c9de27e81c547a62923a6706f36501ab2b798f4bae",
+          "token_ids": [
+            10428,
+            2
+          ]
+        },
+        {
+          "condition": "D",
+          "masked_layers": [
+            0,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "prompt_probabilities_zero": true,
+          "image_bos_self_keys_preserved": true,
+          "other_query_logits_attention_states_exact": true,
+          "cache_and_repeat_exact": true,
+          "decode_native": true,
+          "first_logits_sha256": "d4ee20aaeb7130cdb1ef6b94a7d1cd02735ae01d5521d8de71ba2523f2f309ce",
+          "token_ids": [
+            13,
+            13,
+            2951,
+            607,
+            2625,
+            310,
+            278,
+            15373,
+            338,
+            278,
+            4796,
+            3699,
+            29973,
+            10428,
+            2
+          ]
+        },
+        {
+          "condition": "E",
+          "masked_layers": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19,
+            20,
+            21,
+            22,
+            23,
+            24,
+            25,
+            26,
+            27,
+            28,
+            29,
+            30,
+            31
+          ],
+          "prompt_probabilities_zero": true,
+          "image_bos_self_keys_preserved": true,
+          "other_query_logits_attention_states_exact": true,
+          "cache_and_repeat_exact": true,
+          "decode_native": true,
+          "first_logits_sha256": "399e9c1619cd4b62cd88e633e5bc4169ae383345dadeb8923347cefba7bbc84e",
+          "token_ids": [
+            13,
+            8091,
+            2
+          ]
+        }
+      ]
+    }
+  ]
+}
