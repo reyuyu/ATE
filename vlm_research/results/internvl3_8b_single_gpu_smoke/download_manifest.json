@@ -1,0 +1,201 @@
+{
+  "repo_id": "OpenGVLab/InternVL3-8B",
+  "revision": "853e3a797a661694b1b8ece0cb72dc2b23e3dac9",
+  "local_path": "/data/lk/ATE-resources/models/internvl3-8b/853e3a797a661694b1b8ece0cb72dc2b23e3dac9",
+  "metadata_endpoint": "https://hf-mirror.com",
+  "direct_official_api_verified": false,
+  "available_before_bytes": 244832706560,
+  "expected_lfs_bytes": 15890824813,
+  "peak_payload_copies": 1,
+  "free_space_safety_bytes": 26843545600,
+  "attempts": [
+    {
+      "stage": "official_api",
+      "passed": false,
+      "error": "Traceback (most recent call last):\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connection.py\", line 239, in _new_conn\n    sock = connection.create_connection(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/util/connection.py\", line 85, in create_connection\n    raise err\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/util/connection.py\", line 73, in create_connection\n    sock.connect(sa)\nOSError: [Errno 101] Network is unreachable\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 793, in urlopen\n    response = self._make_request(\n               ^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 494, in _make_request\n    raise new_e\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 470, in _make_request\n    self._validate_conn(conn)\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 1125, in _validate_conn\n    conn.connect()\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connection.py\", line 827, in connect\n    self.sock = sock = self._new_conn()\n                       ^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connection.py\", line 254, in _new_conn\n    raise NewConnectionError(\nurllib3.exceptions.NewConnectionError: HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 101] Network is unreachable\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/requests/adapters.py\", line 696, in send\n    resp = conn.urlopen(\n           ^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 847, in urlopen\n    retries = retries.increment(\n              ^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/util/retry.py\", line 555, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/OpenGVLab/InternVL3-8B?blobs=true (Caused by NewConnectionError(\"HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 101] Network is unreachable\"))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/internvl3-8b-download-smoke/vlm_research/internvl3_smoke/download.py\", line 85, in main\n    metadata = get(f\"{OFFICIAL}/api/models/{REPO}?blobs=true\").json()\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/internvl3-8b-download-smoke/vlm_research/internvl3_smoke/download.py\", line 32, in get\n    response = Session().get(url)\n               ^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/requests/sessions.py\", line 671, in get\n    return self.request(\"GET\", url, params=params, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/internvl3-8b-download-smoke/vlm_research/internvl3_smoke/download.py\", line 28, in request\n    return super().request(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/requests/sessions.py\", line 651, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/requests/sessions.py\", line 784, in send\n    r = adapter.send(request, **kwargs)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/requests/adapters.py\", line 729, in send\n    raise ConnectionError(e, request=request)\nrequests.exceptions.ConnectionError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/OpenGVLab/InternVL3-8B?blobs=true (Caused by NewConnectionError(\"HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 101] Network is unreachable\"))\n"
+    },
+    {
+      "stage": "official_snapshot_download",
+      "passed": false,
+      "error": "Traceback (most recent call last):\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connection.py\", line 239, in _new_conn\n    sock = connection.create_connection(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/util/connection.py\", line 85, in create_connection\n    raise err\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/util/connection.py\", line 73, in create_connection\n    sock.connect(sa)\nOSError: [Errno 101] Network is unreachable\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 793, in urlopen\n    response = self._make_request(\n               ^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 494, in _make_request\n    raise new_e\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 470, in _make_request\n    self._validate_conn(conn)\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 1125, in _validate_conn\n    conn.connect()\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connection.py\", line 827, in connect\n    self.sock = sock = self._new_conn()\n                       ^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connection.py\", line 254, in _new_conn\n    raise NewConnectionError(\nurllib3.exceptions.NewConnectionError: HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 101] Network is unreachable\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/requests/adapters.py\", line 696, in send\n    resp = conn.urlopen(\n           ^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 847, in urlopen\n    retries = retries.increment(\n              ^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/util/retry.py\", line 555, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/OpenGVLab/InternVL3-8B/revision/853e3a797a661694b1b8ece0cb72dc2b23e3dac9 (Caused by NewConnectionError(\"HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 101] Network is unreachable\"))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py\", line 155, in snapshot_download\n    repo_info = api.repo_info(repo_id=repo_id, repo_type=repo_type, revision=revision, token=token)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py\", line 114, in _inner_fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/hf_api.py\", line 2734, in repo_info\n    return method(\n           ^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py\", line 114, in _inner_fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/hf_api.py\", line 2518, in model_info\n    r = get_session().get(path, headers=headers, timeout=timeout, params=params)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/requests/sessions.py\", line 671, in get\n    return self.request(\"GET\", url, params=params, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/internvl3-8b-download-smoke/vlm_research/internvl3_smoke/download.py\", line 28, in request\n    return super().request(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/requests/sessions.py\", line 651, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/requests/sessions.py\", line 784, in send\n    r = adapter.send(request, **kwargs)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/requests/adapters.py\", line 729, in send\n    raise ConnectionError(e, request=request)\nrequests.exceptions.ConnectionError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/OpenGVLab/InternVL3-8B/revision/853e3a797a661694b1b8ece0cb72dc2b23e3dac9 (Caused by NewConnectionError(\"HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 101] Network is unreachable\"))\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/internvl3-8b-download-smoke/vlm_research/internvl3_smoke/download.py\", line 108, in main\n    snapshot_download(repo_id=REPO, revision=revision, local_dir=directory,\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py\", line 114, in _inner_fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py\", line 235, in snapshot_download\n    raise LocalEntryNotFoundError(\nhuggingface_hub.errors.LocalEntryNotFoundError: An error happened while trying to locate the files on the Hub and we cannot find the appropriate snapshot folder for the specified revision on the local disk. Please check your internet connection and try again.\n"
+    },
+    {
+      "stage": "mirror_snapshot_metadata",
+      "passed": false,
+      "error": "Traceback (most recent call last):\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connection.py\", line 239, in _new_conn\n    sock = connection.create_connection(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/util/connection.py\", line 85, in create_connection\n    raise err\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/util/connection.py\", line 73, in create_connection\n    sock.connect(sa)\nOSError: [Errno 101] Network is unreachable\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 793, in urlopen\n    response = self._make_request(\n               ^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 494, in _make_request\n    raise new_e\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 470, in _make_request\n    self._validate_conn(conn)\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 1125, in _validate_conn\n    conn.connect()\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connection.py\", line 827, in connect\n    self.sock = sock = self._new_conn()\n                       ^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connection.py\", line 254, in _new_conn\n    raise NewConnectionError(\nurllib3.exceptions.NewConnectionError: HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 101] Network is unreachable\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/requests/adapters.py\", line 696, in send\n    resp = conn.urlopen(\n           ^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/connectionpool.py\", line 847, in urlopen\n    retries = retries.increment(\n              ^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/urllib3/util/retry.py\", line 555, in increment\n    raise MaxRetryError(_pool, url, reason) from reason  # type: ignore[arg-type]\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nurllib3.exceptions.MaxRetryError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/OpenGVLab/InternVL3-8B/revision/853e3a797a661694b1b8ece0cb72dc2b23e3dac9 (Caused by NewConnectionError(\"HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 101] Network is unreachable\"))\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py\", line 155, in snapshot_download\n    repo_info = api.repo_info(repo_id=repo_id, repo_type=repo_type, revision=revision, token=token)\n                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py\", line 114, in _inner_fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/hf_api.py\", line 2734, in repo_info\n    return method(\n           ^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py\", line 114, in _inner_fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/hf_api.py\", line 2518, in model_info\n    r = get_session().get(path, headers=headers, timeout=timeout, params=params)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/requests/sessions.py\", line 671, in get\n    return self.request(\"GET\", url, params=params, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/internvl3-8b-download-smoke/vlm_research/internvl3_smoke/download.py\", line 28, in request\n    return super().request(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/requests/sessions.py\", line 651, in request\n    resp = self.send(prep, **send_kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/requests/sessions.py\", line 784, in send\n    r = adapter.send(request, **kwargs)\n        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/requests/adapters.py\", line 729, in send\n    raise ConnectionError(e, request=request)\nrequests.exceptions.ConnectionError: HTTPSConnectionPool(host='huggingface.co', port=443): Max retries exceeded with url: /api/models/OpenGVLab/InternVL3-8B/revision/853e3a797a661694b1b8ece0cb72dc2b23e3dac9 (Caused by NewConnectionError(\"HTTPSConnection(host='huggingface.co', port=443): Failed to establish a new connection: [Errno 101] Network is unreachable\"))\n\nThe above exception was the direct cause of the following exception:\n\nTraceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/internvl3-8b-download-smoke/vlm_research/internvl3_smoke/download.py\", line 108, in main\n    snapshot_download(repo_id=REPO, revision=revision, local_dir=directory,\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py\", line 114, in _inner_fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py\", line 235, in snapshot_download\n    raise LocalEntryNotFoundError(\nhuggingface_hub.errors.LocalEntryNotFoundError: An error happened while trying to locate the files on the Hub and we cannot find the appropriate snapshot folder for the specified revision on the local disk. Please check your internet connection and try again.\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/file_download.py\", line 358, in http_get\n    import hf_transfer  # type: ignore[no-redef]\n    ^^^^^^^^^^^^^^^^^^\nModuleNotFoundError: No module named 'hf_transfer'\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/internvl3-8b-download-smoke/vlm_research/internvl3_smoke/download.py\", line 114, in main\n    snapshot_download(repo_id=REPO, revision=revision, local_dir=directory,\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py\", line 114, in _inner_fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py\", line 294, in snapshot_download\n    _inner_hf_hub_download(file)\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/_snapshot_download.py\", line 270, in _inner_hf_hub_download\n    return hf_hub_download(\n           ^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/utils/_validators.py\", line 114, in _inner_fn\n    return fn(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/file_download.py\", line 842, in hf_hub_download\n    return _hf_hub_download_to_local_dir(\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/file_download.py\", line 1138, in _hf_hub_download_to_local_dir\n    _download_to_tmp_and_move(\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/file_download.py\", line 1547, in _download_to_tmp_and_move\n    http_get(\n  File \"/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/huggingface_hub/file_download.py\", line 360, in http_get\n    raise ValueError(\nValueError: Fast download using 'hf_transfer' is enabled (HF_HUB_ENABLE_HF_TRANSFER=1) but 'hf_transfer' package is not available in your environment. Try `pip install hf_transfer`.\n"
+    }
+  ],
+  "files": [
+    {
+      "path": ".gitattributes",
+      "size": 1634,
+      "sha256": "33c4350ca806ff1149bf767c3f2cbf5b8b570e4f9e050f901ac3b4c517266c0d",
+      "git_blob_sha1": "772d8e84809a01c0f4fb9509a89d2f60ca5e8496",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "README.md",
+      "size": 35851,
+      "sha256": "dc7223faa8943185581d44b584d5ce15afeeff0f43155fc2dee291402caa16f7",
+      "git_blob_sha1": "88b449cdf3e0e6af92f290ef68e89f13dbdd60ec",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "added_tokens.json",
+      "size": 790,
+      "sha256": "e66b6bc948dec3421f01a8986f31632cf8d556aaa89f7b39c183b3dd4b5b2c83",
+      "git_blob_sha1": "dd972e4080e791eab591742c1168ee7fd6279146",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "config.json",
+      "size": 6329,
+      "sha256": "cd0c54d0aa85fcd979cd2af524c0c08e26cdca278f05e96b635f298e34afae39",
+      "git_blob_sha1": "7ae333225c8a81cb68f0a42222caa6b723e155e5",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "configuration_intern_vit.py",
+      "size": 5548,
+      "sha256": "22dd687a5f142985407675fc6b1dc688c2ded93e54192543ecf28ef495a6efa8",
+      "git_blob_sha1": "7e630c456eb9cf350e55bf850c3ff72f445a7e17",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "configuration_internvl_chat.py",
+      "size": 4036,
+      "sha256": "6524e6deae6c318543d1022a599f011120f5a970eaa25f1118e7f5d0e346710c",
+      "git_blob_sha1": "502772cc6e24e6d1fbc5bf91ce76c9b234101eaf",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "conversation.py",
+      "size": 15309,
+      "sha256": "b1b9f280e9cb9211e519e2b8071002b57cc742aadb2f49b05fa674ee3c7d83ee",
+      "git_blob_sha1": "5a771766f21ce3aeeb99b286fb8d188b0038a547",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "examples/image1.jpg",
+      "size": 78073,
+      "sha256": "c587294b3bf637dacbb3c96324c127187a2f242c94f639633a0d8a2775a9a399",
+      "git_blob_sha1": "fd9891ef7e00774157a9dcd726b2ea9fa0c5ecff",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "examples/image2.jpg",
+      "size": 125656,
+      "sha256": "08487494b8dc08d44bc36491adf3ab89ff30d13a3122da86f3cd67cad89eeee8",
+      "git_blob_sha1": "25948c75fc4424e29de99aabea4709eb29ff1eb9",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "examples/red-panda.mp4",
+      "size": 1867237,
+      "sha256": "d921c07bb97224d65a37801541d246067f0d506f08723ffa1ad85c217907ccb8",
+      "git_blob_sha1": "bb4d8f60775e09ba7da13528352b3d113b1e409c",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "generation_config.json",
+      "size": 69,
+      "sha256": "6491445090a6da66e04609497396c9d18942e1f0962664d481e8e03e8ae8479b",
+      "git_blob_sha1": "467e2ba8edc477ad1fb650f892ab5be9210522ab",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "merges.txt",
+      "size": 1671853,
+      "sha256": "8831e4f1a044471340f7c0a83d7bd71306a5b867e95fd870f74d0c5308a904d5",
+      "git_blob_sha1": "31349551d90c7606f325fe0f11bbb8bd5fa0d7c7",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "model-00001-of-00004.safetensors",
+      "size": 4991123960,
+      "sha256": "7ea1f92eaae35cb927e7c7b0f87568ccc046a2446aa68066dfdccb7ebbe0c7f0",
+      "url": "https://modelscope.cn/models/OpenGVLab/InternVL3-8B/resolve/0908e0d61e20f8794538f8a9efe134e4d1e0e8d4/model-00001-of-00004.safetensors",
+      "source": "Official ModelScope fixed commit; exact pinned HF LFS SHA256 and size match"
+    },
+    {
+      "path": "model-00002-of-00004.safetensors",
+      "size": 4958443072,
+      "sha256": "05f9f1bf63d946d2963bd68c9d1ee7f93bdc5fc05a9b39a3fb91734d5ef4362d",
+      "url": "https://modelscope.cn/models/OpenGVLab/InternVL3-8B/resolve/0908e0d61e20f8794538f8a9efe134e4d1e0e8d4/model-00002-of-00004.safetensors",
+      "source": "Official ModelScope fixed commit; exact pinned HF LFS SHA256 and size match"
+    },
+    {
+      "path": "model-00003-of-00004.safetensors",
+      "size": 4796984024,
+      "sha256": "904aa0f2fbdbf504cd7bce1a8ec5633ee4e3e1769b48c5b3e08369a23875aaa1",
+      "url": "https://modelscope.cn/models/OpenGVLab/InternVL3-8B/resolve/0908e0d61e20f8794538f8a9efe134e4d1e0e8d4/model-00003-of-00004.safetensors",
+      "source": "Official ModelScope fixed commit; exact pinned HF LFS SHA256 and size match"
+    },
+    {
+      "path": "model-00004-of-00004.safetensors",
+      "size": 1142280864,
+      "sha256": "50e048a88254db95e0aa397a4e4012a353eaf650a18d7b291e1522d16e83d389",
+      "url": "https://modelscope.cn/models/OpenGVLab/InternVL3-8B/resolve/0908e0d61e20f8794538f8a9efe134e4d1e0e8d4/model-00004-of-00004.safetensors",
+      "source": "Official ModelScope fixed commit; exact pinned HF LFS SHA256 and size match"
+    },
+    {
+      "path": "model.safetensors.index.json",
+      "size": 62420,
+      "sha256": "f403bba81945faa7d16439c69f5f0f6d8d8acfd2fec18fef53f9fa0156fa9af8",
+      "git_blob_sha1": "d83e48562d16ed856476871fb0c943706ed85c73",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "modeling_intern_vit.py",
+      "size": 18099,
+      "sha256": "d3e0f68f29e86be1f3e6e101dc45303ec24e5115e0034de101665972576eb348",
+      "git_blob_sha1": "eb4aef44ddace5782035f0316de3834563b1c8dd",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "modeling_internvl_chat.py",
+      "size": 15971,
+      "sha256": "76fe595f04acd077d168f038a15c697d1c66093a0c000bffb0568dfa90095ba8",
+      "git_blob_sha1": "ccf2ab9cc83283f41aafb611d379c4cc50614132",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "preprocessor_config.json",
+      "size": 287,
+      "sha256": "0658115064c561026539aeeead9ed3b1a8e0cc90967df8c142849199f955d2b4",
+      "git_blob_sha1": "dfd7e50d9d4e67cd679b16b337b419a0c6cfa849",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "special_tokens_map.json",
+      "size": 613,
+      "sha256": "76862e765266b85aa9459767e33cbaf13970f327a0e88d1c65846c2ddd3a1ecd",
+      "git_blob_sha1": "ac23c0aaa2434523c494330aeb79c58395378103",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "tokenizer.json",
+      "size": 7033297,
+      "sha256": "ff61d7c33ad80987e37bcbeeeae7457c8e77d14a43a954fcde7be656fc26d6a9",
+      "git_blob_sha1": "1b4f039248a420730cd195d6d6a1a9cc713a7f14",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "tokenizer_config.json",
+      "size": 7330,
+      "sha256": "705d8fbba57dae6bff1e6a1d695ba116fbf27761a4e8373bb68f5d4f0d88f19d",
+      "git_blob_sha1": "f18c701c825405350d5f0ae158749015b3239e6e",
+      "source": "Fixed official HF revision via documented metadata transport"
+    },
+    {
+      "path": "vocab.json",
+      "size": 3383407,
+      "sha256": "87a257b04b17642a0688c98cd1df89c398bda4fee532d6f88b38a659ecb4ac8d",
+      "git_blob_sha1": "6bce3a0a3866c4791a74d83d78f6824c3af64ec3",
+      "source": "Fixed official HF revision via documented metadata transport"
+    }
+  ],
+  "modelscope_revision": "0908e0d61e20f8794538f8a9efe134e4d1e0e8d4",
+  "fallback_identity": "Only bytes matching pinned HF Git blobs/LFS hashes accepted; no foreign-revision custom code",
+  "runtime_code_review_required": true
+}

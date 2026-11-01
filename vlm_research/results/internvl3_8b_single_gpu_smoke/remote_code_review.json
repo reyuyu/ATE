@@ -1,0 +1,96 @@
+{
+  "passed": true,
+  "revision": "853e3a797a661694b1b8ece0cb72dc2b23e3dac9",
+  "files": [
+    {
+      "file": "configuration_intern_vit.py",
+      "sha256": "22dd687a5f142985407675fc6b1dc688c2ded93e54192543ecf28ef495a6efa8",
+      "imports": [
+        "os",
+        "transformers.configuration_utils",
+        "transformers.utils",
+        "typing"
+      ],
+      "unsafe_shell_eval_network_calls_found": false,
+      "reviewed": true
+    },
+    {
+      "file": "configuration_internvl_chat.py",
+      "sha256": "6524e6deae6c318543d1022a599f011120f5a970eaa25f1118e7f5d0e346710c",
+      "imports": [
+        "configuration_intern_vit",
+        "copy",
+        "transformers",
+        "transformers.configuration_utils",
+        "transformers.utils"
+      ],
+      "unsafe_shell_eval_network_calls_found": false,
+      "reviewed": true
+    },
+    {
+      "file": "conversation.py",
+      "sha256": "b1b9f280e9cb9211e519e2b8071002b57cc742aadb2f49b05fa674ee3c7d83ee",
+      "imports": [
+        "dataclasses",
+        "enum",
+        "typing"
+      ],
+      "unsafe_shell_eval_network_calls_found": false,
+      "reviewed": true
+    },
+    {
+      "file": "modeling_intern_vit.py",
+      "sha256": "d3e0f68f29e86be1f3e6e101dc45303ec24e5115e0034de101665972576eb348",
+      "imports": [
+        "apex.normalization",
+        "configuration_intern_vit",
+        "einops",
+        "flash_attn.bert_padding",
+        "flash_attn.flash_attn_interface",
+        "timm.layers",
+        "torch",
+        "torch.nn.functional",
+        "torch.utils.checkpoint",
+        "transformers.activations",
+        "transformers.modeling_outputs",
+        "transformers.modeling_utils",
+        "transformers.utils",
+        "typing"
+      ],
+      "unsafe_shell_eval_network_calls_found": false,
+      "reviewed": true
+    },
+    {
+      "file": "modeling_internvl_chat.py",
+      "sha256": "76fe595f04acd077d168f038a15c697d1c66093a0c000bffb0568dfa90095ba8",
+      "imports": [
+        "configuration_internvl_chat",
+        "conversation",
+        "modeling_intern_vit",
+        "operator",
+        "packaging",
+        "torch",
+        "torch.nn",
+        "torch.utils.checkpoint",
+        "transformers",
+        "transformers.modeling_outputs",
+        "transformers.modeling_utils",
+        "transformers.utils",
+        "typing",
+        "warnings"
+      ],
+      "unsafe_shell_eval_network_calls_found": false,
+      "reviewed": true
+    }
+  ],
+  "decision": "Local fixed-revision code only; no flash_attn/apex installed; constructor explicitly use_flash_attn=False. Builtin Transformers Qwen2ForCausalLM 4.49.0 supports official >=4.37.2 requirement.",
+  "reviewed_paths": [
+    "config classes",
+    "InternVisionModel naive attention",
+    "InternVLChatModel constructor/forward/extract_feature/pixel_shuffle/chat/generate",
+    "conversation internvl2_5 template"
+  ],
+  "no_third_party_code_rewritten": true,
+  "before_trust_remote_code_execution": true,
+  "actual_config_warning": "Stale _name_or_path strings mention 32B/6B; use actual instantiated sizes and shapes, not those labels."
+}
