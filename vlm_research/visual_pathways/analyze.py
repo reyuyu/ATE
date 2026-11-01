@@ -107,6 +107,31 @@ def relay_summary():
     return generation_summary(folder,('A','B','C','D'),interaction=True)
 
 
+def rescue_summary(model):
+    folder=OUT/(model+'_rescue')
+    names=('FullImageAccess','AllImageOFF','KeepSparse')
+    summary=generation_summary(folder,names)
+    samples=read(folder/'sample_manifest.json')['samples']
+    records=[read(folder/'checkpoints'/f'{s["task"]}__{s["question_id"]}.json') for s in samples]
+    scores=np.array([[r['conditions'][c]['correct'] for c in names]+[r['native_full_accuracy']] for r in records],float)
+    comparisons=[(2,1),(2,0),(0,1),(0,3),(1,3),(2,3)]
+    labels=list(names)+['NativeFull']
+    delta=np.stack([(scores[:,a]-scores[:,b])*100 for a,b in comparisons],axis=1)
+    m,l,h,_,groups=boot_mean(delta,samples)
+    rows=[]
+    for j,(a,b) in enumerate(comparisons):
+        rows.append(dict(comparison=labels[a]+' - '+labels[b],n=240,image_clusters=groups,
+            delta_accuracy_pp=float(m[j]),ci_low=float(l[j]),ci_high=float(h[j]),
+            reference_correct_to_wrong=int(((scores[:,b]==1)&(scores[:,a]==0)).sum()),
+            reference_wrong_to_correct=int(((scores[:,b]==0)&(scores[:,a]==1)).sum()),exploratory=True))
+    csv_write(folder/'paired_comparisons.csv',rows)
+    native_m,native_l,native_h,_,_=boot_mean(scores[:,3]*100,samples)
+    write(folder/'native_full_reference.json',dict(accuracy_percent=float(native_m[0]),ci_low=float(native_l[0]),ci_high=float(native_h[0]),
+        questions=240,source='Same-machine Task2 A' if model=='llava' else 'Exact-bound historical Full generation; current native logits verified on every question'))
+    print(json.dumps(dict(model=model,summary=summary,comparisons=rows),ensure_ascii=False),flush=True)
+    return rows
+
+
 def generation_summary(folder,names,interaction=False):
     samples=read(folder/'sample_manifest.json')['samples']
     records=[];flat=[]
@@ -196,7 +221,8 @@ def historical_llava():
 
 
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('action',choices=['relay','qwen','internvl','llava_history']);p.add_argument('--allow-partial',action='store_true');args=p.parse_args()
+    p=argparse.ArgumentParser();p.add_argument('action',choices=['relay','qwen','internvl','llava_history','llava_rescue','qwen_rescue']);p.add_argument('--allow-partial',action='store_true');args=p.parse_args()
     if args.action=='relay':relay_summary()
     elif args.action=='llava_history':historical_llava()
+    elif args.action.endswith('_rescue'):rescue_summary(args.action.split('_')[0])
     else:print(json.dumps(scan_model(args.action,args.allow_partial)),flush=True)

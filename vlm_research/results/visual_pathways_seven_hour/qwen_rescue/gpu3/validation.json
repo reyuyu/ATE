@@ -1,0 +1,28 @@
+{
+  "passed": true,
+  "question_id": "00228612",
+  "noop_logits_max_abs": 0,
+  "historical_native_generation_exact": true,
+  "historical_first_logits_exact": true,
+  "checks": [
+    {
+      "condition": "FullImageAccess",
+      "all_target_probabilities_zero": true,
+      "deepstack_exact": true,
+      "other_prefill_queries_unchanged_across_direct_access_conditions": true
+    },
+    {
+      "condition": "AllImageOFF",
+      "all_target_probabilities_zero": true,
+      "deepstack_exact": true,
+      "other_prefill_queries_unchanged_across_direct_access_conditions": true
+    },
+    {
+      "condition": "KeepSparse",
+      "all_target_probabilities_zero": true,
+      "deepstack_exact": true,
+      "other_prefill_queries_unchanged_across_direct_access_conditions": true
+    }
+  ],
+  "code_commit": "cf83f9c7ae1fe6c2ddc0d9f5213fb0d0236f83a1"
+}
