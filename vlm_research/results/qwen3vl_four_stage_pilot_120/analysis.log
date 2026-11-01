@@ -1,0 +1,151 @@
+{
+  "scope": "Descriptive 120-question pilot, not significance or discovered four-stage boundaries",
+  "four_stage_status": "descriptive_partial_or_different_pattern",
+  "probe_rule_results": {
+    "H1": true,
+    "H2": true,
+    "H3": false,
+    "H4": true
+  },
+  "probe_ranges": {
+    "early": [
+      2,
+      12
+    ],
+    "middle": [
+      13,
+      24
+    ],
+    "late": [
+      25,
+      35
+    ]
+  },
+  "no_fitted_boundaries": true,
+  "no_smoothing": true,
+  "actual_majority_anchor_runs": [
+    [
+      7,
+      10
+    ],
+    [
+      25,
+      35
+    ]
+  ],
+  "early_majority_anchor_runs": [
+    [
+      7,
+      10
+    ]
+  ],
+  "late_majority_anchor_runs": [
+    [
+      25,
+      35
+    ]
+  ],
+  "first_two_layers": [
+    {
+      "layer": 0,
+      "anchor": 0.0019006107409950345,
+      "image": 0.09371337996174892,
+      "prompt": 0.7500558294355869
+    },
+    {
+      "layer": 1,
+      "anchor": 0.0025835317307307073,
+      "image": 0.028682943790530165,
+      "prompt": 0.8639244659493367
+    }
+  ],
+  "probe_anchor_means": {
+    "early": 0.32354826175918183,
+    "middle": 0.39215429944710595,
+    "late": 0.7111743008097013
+  },
+  "early_platform_mean_absolute_loss": 0.006897352486706272,
+  "middle_mean_absolute_loss": 0.01603536165311422,
+  "global_signed_peak": {
+    "layer": 35,
+    "mean": 0.06127853881553165
+  },
+  "global_absolute_peak": {
+    "layer": 35,
+    "mean": 0.0617173273487424
+  },
+  "global_flip_peak": {
+    "layer": 17,
+    "rate": 0.025
+  },
+  "task_peaks": {
+    "ChooseAttr": {
+      "signed_layer": 35,
+      "signed_peak": 0.04792180427466519,
+      "absolute_layer": 35,
+      "absolute_peak": 0.04792180427466519
+    },
+    "ChooseCat": {
+      "signed_layer": 30,
+      "signed_peak": 0.09695029516696999,
+      "absolute_layer": 30,
+      "absolute_peak": 0.09695618912337416
+    },
+    "ChooseRel": {
+      "signed_layer": 35,
+      "signed_peak": 0.046840879003866576,
+      "absolute_layer": 35,
+      "absolute_peak": 0.046840879003866576
+    },
+    "CompareAttr": {
+      "signed_layer": 35,
+      "signed_peak": 0.1436865854775533,
+      "absolute_layer": 35,
+      "absolute_peak": 0.14535546188708395
+    },
+    "LogicalObj": {
+      "signed_layer": 24,
+      "signed_peak": 0.04573820819402954,
+      "absolute_layer": 24,
+      "absolute_peak": 0.04677022440583869
+    },
+    "QueryAttr": {
+      "signed_layer": 35,
+      "signed_peak": 0.0460630725719966,
+      "absolute_layer": 35,
+      "absolute_peak": 0.0460630725719966
+    }
+  },
+  "cross_layer_correlations": {
+    "anchor": {
+      "pearson": 0.20852135329612623,
+      "spearman": 0.2579150579150579
+    },
+    "image": {
+      "pearson": 0.1877850975834952,
+      "spearman": 0.2648648648648649
+    },
+    "question": {
+      "pearson": 0.09852135090819343,
+      "spearman": 0.22162162162162163
+    },
+    "template": {
+      "pearson": -0.3855680469003527,
+      "spearman": -0.583011583011583
+    },
+    "self": {
+      "pearson": 0.40324017607405765,
+      "spearman": 0.06640926640926641
+    },
+    "prompt": {
+      "pearson": -0.2953864477597061,
+      "spearman": -0.33745173745173745
+    }
+  },
+  "caveats": [
+    "Probe ranges are not claimed phase boundaries",
+    "Task differences have only 20 questions each; no task specificity confirmation",
+    "Mass, attention update magnitude and functional sensitivity are distinct; update magnitude was not measured",
+    "No-op exactness and historical Top1 binding must pass; no NI claim"
+  ]
+}
