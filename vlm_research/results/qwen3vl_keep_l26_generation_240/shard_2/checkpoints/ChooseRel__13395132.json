@@ -1,0 +1,990 @@
+{
+  "task": "ChooseRel",
+  "question_id": "13395132",
+  "image_id": "2370967",
+  "image_sha256": "e3e3c136fd56e28253783c7fb8160fa2c3bd15bf99a63d57c1b84a588b7d079e",
+  "question": "Is the faucet to the right or to the left of the bowl that is made of glass?",
+  "answer": "left",
+  "input_binding": "011061b7cac9e35cac2d77f866534586dd603d17d0eb34c3e3d1132ca2c8b22b",
+  "protocol_sha256": "93688fcc42595ac6fcb1bc1a32043f5a8878f619800ab1d0e84eb194ee9abfee",
+  "code_commit": "ea07a18dde57d483c93ecc1263cde205fecb639f",
+  "physical_gpu": 3,
+  "conditions": {
+    "Full": {
+      "text": "left",
+      "prediction": "left",
+      "token_ids": [
+        2359,
+        151645
+      ],
+      "first_token_id": 2359,
+      "generated_tokens": 2,
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "mask_audits": {},
+      "masked_layers": [],
+      "initial_cache_lengths": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "final_cache_lengths": [
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231
+      ],
+      "forward_calls": [
+        {
+          "step": 0,
+          "query_length": 230,
+          "cache_start": 0
+        },
+        {
+          "step": 1,
+          "query_length": 1,
+          "cache_start": 230
+        }
+      ],
+      "decode_mask_calls": 0,
+      "independent_fresh_cache": true,
+      "no_nan_inf_oom": true,
+      "correct": 1,
+      "full_first_token_id": 2359,
+      "first_top1_flip": 0,
+      "first_logp_loss": 0.0,
+      "seconds": 0.17579581984318793
+    },
+    "Keep L26": {
+      "text": "left",
+      "prediction": "left",
+      "token_ids": [
+        2359,
+        151645
+      ],
+      "first_token_id": 2359,
+      "generated_tokens": 2,
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "mask_audits": {
+        "0": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0019235610961914062,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "1": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0024681687355041504,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "2": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0015027523040771484,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "3": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.002135634422302246,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "4": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0017205476760864258,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "5": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.001743316650390625,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "6": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0014586448669433594,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "7": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.002155780792236328,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "8": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0026671886444091797,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "9": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0019071102142333984,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "10": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0023180246353149414,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "11": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0020542144775390625,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "12": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0019197463989257812,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "13": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0018661022186279297,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "14": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0021104812622070312,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "15": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0022172927856445312,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "16": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.002239704132080078,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "17": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0022249221801757812,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "18": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.001804351806640625,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "19": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.00189971923828125,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "20": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0016363859176635742,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "21": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.002261638641357422,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "22": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.001995086669921875,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "23": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.001445770263671875,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "24": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0019588470458984375,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "25": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.001944422721862793,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "27": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.002057194709777832,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "28": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0021626949310302734,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "29": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0019760727882385254,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "30": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0020012855529785156,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "31": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.002184629440307617,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "32": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0019966959953308105,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "33": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0020384788513183594,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "34": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0018677115440368652,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "35": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0019712448120117188,
+          "heads": 32,
+          "observed_native_probabilities": true
+        }
+      },
+      "masked_layers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "initial_cache_lengths": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "final_cache_lengths": [
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231
+      ],
+      "forward_calls": [
+        {
+          "step": 0,
+          "query_length": 230,
+          "cache_start": 0
+        },
+        {
+          "step": 1,
+          "query_length": 1,
+          "cache_start": 230
+        }
+      ],
+      "decode_mask_calls": 0,
+      "independent_fresh_cache": true,
+      "no_nan_inf_oom": true,
+      "correct": 1,
+      "full_first_token_id": 2359,
+      "first_top1_flip": 0,
+      "first_logp_loss": -0.04904049634933472,
+      "seconds": 0.20521070202812552
+    },
+    "All OFF": {
+      "text": "left",
+      "prediction": "left",
+      "token_ids": [
+        2359,
+        151645
+      ],
+      "first_token_id": 2359,
+      "generated_tokens": 2,
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "mask_audits": {
+        "0": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0019235610961914062,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "1": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0024681687355041504,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "2": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0015027523040771484,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "3": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.002135634422302246,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "4": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0017205476760864258,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "5": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.001743316650390625,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "6": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0014586448669433594,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "7": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.002155780792236328,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "8": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0026671886444091797,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "9": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0019071102142333984,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "10": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0023180246353149414,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "11": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0020542144775390625,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "12": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0019197463989257812,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "13": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0018661022186279297,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "14": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0021104812622070312,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "15": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0022172927856445312,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "16": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.002239704132080078,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "17": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0022249221801757812,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "18": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.001804351806640625,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "19": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.00189971923828125,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "20": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0016363859176635742,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "21": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.002261638641357422,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "22": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.001995086669921875,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "23": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.001445770263671875,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "24": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0019588470458984375,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "25": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.001944422721862793,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "26": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0018494129180908203,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "27": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0017610788345336914,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "28": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0018674135208129883,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "29": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.002007722854614258,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "30": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.001927018165588379,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "31": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.001934051513671875,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "32": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0023439526557922363,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "33": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0020189285278320312,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "34": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0021839141845703125,
+          "heads": 32,
+          "observed_native_probabilities": true
+        },
+        "35": {
+          "mask_changed_entries": 192,
+          "expected_mask_entries": 192,
+          "image_probability_max": 0.0,
+          "row_sum_max_error": 0.0019026994705200195,
+          "heads": 32,
+          "observed_native_probabilities": true
+        }
+      },
+      "masked_layers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24,
+        25,
+        26,
+        27,
+        28,
+        29,
+        30,
+        31,
+        32,
+        33,
+        34,
+        35
+      ],
+      "initial_cache_lengths": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "final_cache_lengths": [
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231,
+        231
+      ],
+      "forward_calls": [
+        {
+          "step": 0,
+          "query_length": 230,
+          "cache_start": 0
+        },
+        {
+          "step": 1,
+          "query_length": 1,
+          "cache_start": 230
+        }
+      ],
+      "decode_mask_calls": 0,
+      "independent_fresh_cache": true,
+      "no_nan_inf_oom": true,
+      "correct": 1,
+      "full_first_token_id": 2359,
+      "first_top1_flip": 0,
+      "first_logp_loss": 0.0528184175491333,
+      "seconds": 0.20635701692663133
+    }
+  }
+}
