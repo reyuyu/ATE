@@ -222,6 +222,8 @@ def run(args):
                 def put(self, value):
                     torch.cuda.synchronize()
                     self.times.append(time.perf_counter())
+                    if len(self.times) == 2:
+                        report["first_token_forward_passed"] = True
                 def end(self):
                     pass
 
@@ -264,6 +266,9 @@ def run(args):
                 layout["p_minus_1_mrope_coordinates"] = positions[:, 0, pminus1].tolist()
                 layout["rope_deltas"] = deltas.tolist()
                 layouts.append(layout)
+                write(out / f"input_layouts_{args.mode}.json", layouts)
+                report["current_input"] = {"question_id": case["question_id"], "input_length": len(ids), "visual_tokens": count}
+                write(out / name, report)
                 inputs = inputs.to("cuda:0")
                 timer = Timer()
                 torch.cuda.synchronize()
@@ -297,7 +302,6 @@ def run(args):
                 report["cases"].append(row)
                 report["first_token_forward_passed"] = True
                 write(out / name, report)
-                write(out / f"input_layouts_{args.mode}.json", layouts)
                 print(json.dumps(row, ensure_ascii=False), flush=True)
                 del result, inputs
             report["generate_passed"] = True
