@@ -59,7 +59,13 @@ def scan_model(model,allow_partial=False):
             assert row['absolute_logp_change']==abs(row['signed_logp_loss'])
             assert row['top1_flip']==int(row['full_first_token']!=row['changed_first_token'])
             assert row.get('masked_probability_max',row.get('image_probability_max'))==0
-            flat.append(dict(row,model=model,pilot=s['pilot'],reused=int('reused_from' in record)))
+            off_logp=row.get('off_full_top1_logp',row.get('imageoff_full_top1_logp'))
+            assert float(np.float32(row['full_top1_logp'])-np.float32(off_logp))==row['signed_logp_loss']
+            changed_count=row.get('mask_changed_entries',row.get('changed_entries'))
+            assert changed_count==row['image_tokens']
+            flat.append(dict(row,model=model,pilot=s['pilot'],reused=int('reused_from' in record),
+                off_full_top1_logp=off_logp,mask_changed_entries=changed_count,
+                mask_expected_entries=row['image_tokens'],masked_probability_max=row.get('masked_probability_max',row.get('image_probability_max'))))
             x.append([row['absolute_logp_change'],row['signed_logp_loss'],row['top1_flip']])
         assert np.isfinite(x).all()
         selected.append(s);cube.append(x)

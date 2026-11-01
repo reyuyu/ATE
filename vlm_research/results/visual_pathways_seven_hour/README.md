@@ -1,12 +1,10 @@
 # Visual Pathways: Seven-Hour Budget
 
-Status at this checkpoint: **partial, Qwen 3,000-question scan still running**.
+Overall status: **partial** (InternVL stopped at exact native-logit smoke).
 
-- InternVL: stopped at required exact native-logit smoke; zero formal samples.
-- LLaVA relay interaction: 240/240 complete; predeclared positive-interaction extension gate not met.
-- LLaVA and Qwen sparse rescue: 240/240 each, all frozen conditions complete.
-- See the experiment subdirectories for paired CSVs, raw checkpoints and validation.
+Qwen: 3000/3,000 questions, 108,000 source-OFF rows.
 
-Only completed experiments are included in this checkpoint commit. Do not treat
-an in-progress Qwen scan as a complete 3,000-question result. The final Chinese
-report and full scan integrity check will be added after collection ends.
+LLaVA relay interaction and LLaVA/Qwen sparse rescue: 240/240 each.
+
+See [report_zh.md](report_zh.md) for the Chinese report, limitations and negative results.
+Integrity, frozen protocols, raw checkpoints, CSVs, PNG/PDF figures and resource release audit are retained.

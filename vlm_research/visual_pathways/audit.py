@@ -14,7 +14,9 @@ def run():
     assert coverage['questions']==3000 and coverage['status']=='complete'
     assert coverage['conditions']==108000 and coverage['historical_questions']==240 and coverage['new_questions']==2760
     assert coverage['tasks']=={t:500 for t in sorted({s['task'] for s in samples})}
-    seen=set();devices=Counter();image_tokens=[];native_targets=0
+    seen=set();devices=Counter();image_tokens=[];native_targets=0;first_eos=0
+    eos=read(Path('/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/generation_config.json'))['eos_token_id']
+    eos=[eos] if isinstance(eos,int) else eos
     for s in samples:
         key=f'{s["task"]}__{s["question_id"]}'
         r=read(OUT/'qwen/checkpoints'/f'{key}.json')
@@ -24,6 +26,7 @@ def run():
         tokens={x['full_first_token'] for x in r['rows']}
         logps={x['full_top1_logp'] for x in r['rows']}
         assert len(tokens)==len(logps)==1
+        first_eos+=next(iter(tokens)) in eos
         native_targets+=1
         for row in r['rows']:
             item=(s['task'],s['question_id'],row['layer'])
@@ -60,6 +63,7 @@ def run():
                 assert value['correct']==int(value['prediction']==s['answer'])
                 assert value['fresh_cache'] and value['decode_hooks_removed']
                 assert value['token_ids'] and value['eos'] and value['generated_tokens']==len(value['token_ids'])
+                assert value['token_ids'][0]==value['changed_first_token'], 'First-token metric differs from actual greedy generation'
                 assert value['physical_gpu']==3
                 assert all(a['masked_probability_max']==0 for a in value['prefill_mask_audits'].values())
                 count+=1;empty+=value['empty'];trunc+=value['truncated']
@@ -69,6 +73,7 @@ def run():
                 assert old['image_sha256']==s['image_sha256']
                 full=old['conditions']['Full']
                 assert full['correct']==int(full['prediction']==s['answer'])==r['native_full_accuracy']
+                assert all(value['full_first_token']==full['token_ids'][0] for value in r['conditions'].values())
                 token_checks+=1
         assert empty==trunc==0
         generation_checks.append(dict(experiment=name,questions=240,condition_rows=count,empty=empty,truncated=trunc,
@@ -76,9 +81,12 @@ def run():
     assert not read(OUT/'llava_relay/extension_decision.json')['extend_to_other_models']
     assert not (OUT/'internvl/checkpoints').exists(), 'InternVL formal data must not exist after stopped smoke'
     assert read(OUT/'qwen_model_files_validation.json')['passed'] and read(OUT/'llava_model_files_validation.json')['passed']
+    assert read(OUT/'qwen_history_reuse_validation.json')['passed']
+    assert read(OUT/'native_source_validation.json')['passed']
     now=datetime.now().astimezone()
     result=dict(passed=True,overall_status='partial',reason='InternVL exact native-logit smoke failed; stopped with zero formal samples',
         qwen_questions=3000,qwen_rows=len(seen),same_full_targets_checked=native_targets,
+        native_first_eos_questions=first_eos,
         qwen_new_rows=99360,qwen_historical_rows=8640,qwen_image_token_range=[min(image_tokens),max(image_tokens)],
         qwen_row_devices=dict(devices),qwen_source_freeze_code_commit=validations[0]['code_commit'],
         generation_checks=generation_checks,bootstrap_unit='Image SHA256 whole clusters, question-weighted',
@@ -103,12 +111,14 @@ def delivery():
     now=datetime.now().astimezone()
     inventory=command('nvidia-smi','--query-gpu=index,uuid,memory.used,utilization.gpu','--format=csv,noheader')
     apps=command('nvidia-smi','--query-compute-apps=gpu_uuid,pid,process_name','--format=csv,noheader')
-    lines=inventory.splitlines()
-    own=[line.split(',')[1].strip() for line in lines if int(line.split(',')[0]) in (0,2,3)]
-    assert not any(uuid in apps for uuid in own), 'A permitted GPU still has a compute process; do not claim release'
+    own_pids={read(p)['pid'] for p in OUT.rglob('preflight.json')}
+    active_pids={int(line.split(',')[1].strip()) for line in apps.splitlines() if line.strip()}
+    assert not (own_pids & active_pids), 'An experiment process still owns GPU memory'
     write(OUT/'delivery_audit.json',dict(time=now.isoformat(),start=START,deadline=DEADLINE,
         elapsed_seconds=(now-datetime.fromisoformat(START)).total_seconds(),within_budget=now<datetime.fromisoformat(DEADLINE),
         gpu_ids_used=[0,2,3],gpu1_used=False,gpu_released=True,gpu_inventory=inventory,compute_apps=apps,
+        experiment_pids=sorted(own_pids),external_processes_untouched=True,
+        analysis_source_sha256={str(p.relative_to(ROOT)):sha(p) for p in sorted((ROOT/'vlm_research/visual_pathways').glob('*.py'))},
         branch=command('git','branch','--show-current'),pre_results_commit=command('git','rev-parse','HEAD'),
         main_modified_by_this_experiment=False,scope='No training, acceleration algorithm, extra layer combination or dataset'))
     files={str(p.relative_to(OUT)):sha(p) for p in sorted(OUT.rglob('*')) if p.is_file() and p.name!='result_hashes.json' and not p.name.endswith('.tmp')}

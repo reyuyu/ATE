@@ -69,18 +69,27 @@ def scan_figures():
             selected=[r for r in rows if r['cohort']=='all' and r['task']==task]
             if not selected:
                 ax.text(.5,.5,'Not yet collected',ha='center',transform=ax.transAxes);continue
-            curve(ax,selected,metric,COLORS[suffix],percent=percentage)
+            x,y=curve(ax,selected,metric,COLORS[suffix],percent=percentage)
+            if suffix=='absolute':
+                peak=int(y.argmax())
+                ax.annotate(f'L{x[peak]}',xy=(x[peak],y[peak]),xytext=(4,5),textcoords='offset points',fontsize=8)
             ax.set_title(f'{task} (N={selected[0]["questions"]})');ax.set_ylabel(label)
         fig.suptitle('Qwen3-VL: source-specific sensitivity by task (pointwise image-cluster 95% CI)',fontsize=11)
         save(fig,'qwen_six_tasks_'+suffix)
 
 
 def cross_model():
-    q=[r for r in csv_read(OUT/'qwen/layer_summary.csv') if r['cohort']=='pilot240' and r['task']=='Overall']
-    l=[r for r in csv_read(OUT/'llava_historical_imageoff_layer_summary.csv') if r['task']=='Overall']
+    from .analyze import csv_write
+    q_all=[r for r in csv_read(OUT/'qwen/layer_summary.csv') if r['cohort']=='pilot240']
+    l_all=csv_read(OUT/'llava_historical_imageoff_layer_summary.csv')
+    csv_write(OUT/'cross_model_paired240_layer_summary.csv',q_all+l_all)
+    q=[r for r in q_all if r['task']=='Overall']
+    l=[r for r in l_all if r['task']=='Overall']
     fig,axes=plt.subplots(1,2,figsize=(9,3.3),layout='constrained')
     for rows,name,label in [(q,'qwen','Qwen3-VL-8B (BF16)'),(l,'llava_history','LLaVA-1.5-7B (FP16, historical)')]:
         x,y=curve(axes[0],rows,'mean_absolute_logp_change',COLORS[name],label)
+        peak=int(y.argmax());axes[0].annotate(f'L{x[peak]}',xy=(x[peak],y[peak]),
+            xytext=(5,4),textcoords='offset points',color=COLORS[name],fontsize=8)
         axes[1].plot(x/x.max(),y/y.sum(),color=COLORS[name],marker='o',markersize=2.4,lw=1.4,label=label)
     axes[0].set_ylabel('Mean absolute LogP change (nat)')
     axes[0].set_xticks(range(0,36,5));axes[0].set_xlim(-.5,35.5)
@@ -103,7 +112,7 @@ def relay():
     axes[0].errorbar(x,y,yerr=[y-low,high-y],fmt='none',color='#222222',capsize=3,lw=.9)
     axes[0].set_xticks(x,['A\nRelay ON','B\nON + Skip','C\nRelay OFF','D\nOFF + Skip'])
     axes[0].set_ylim(0,100);axes[0].set_ylabel('Final-answer accuracy (%)')
-    for i,v in enumerate(y):axes[0].text(i,v+5.5,f'{v:.2f}',ha='center',fontsize=8)
+    for i,v in enumerate(y):axes[0].text(i,high[i]+2.,f'{v:.2f}',ha='center',fontsize=8)
     points=csv_read(folder/'interaction.csv')
     for ax,names,label in [(axes[1],['relay_on_skip_logp_harm','relay_off_skip_logp_harm'],'Skip harm: fixed-Full-token LogP loss (nat)'),
                            (axes[2],['relay_on_skip_accuracy_harm_pp','relay_off_skip_accuracy_harm_pp'],'Skip harm: accuracy decrease (pp)')]:
@@ -112,7 +121,7 @@ def relay():
         ax.errorbar([0,1],vals,yerr=[vals-lo,hi-vals],fmt='o',color='#216b9b',capsize=4)
         ax.axhline(0,color='#555555',lw=.8);ax.set_xticks([0,1],['Relay ON','Relay OFF']);ax.set_ylabel(label)
         ax.grid(axis='y',alpha=.15)
-    fig.suptitle('LLaVA 240: L2-L5 P-1 Attention skip does not become more harmful with relay OFF',fontsize=10)
+    fig.suptitle('LLaVA 240: relay x L2-L5 P-1 Attention-skip interaction',fontsize=10)
     save(fig,'llava_relay_interaction')
 
 
@@ -126,11 +135,12 @@ def rescue():
         y=np.array([float(r['accuracy_percent']) for r in rows]);low=np.array([float(r['accuracy_ci_low']) for r in rows]);high=np.array([float(r['accuracy_ci_high']) for r in rows])
         ax.bar(np.arange(3),y,width=.6,color=['#597781','#bababa','#d2a34a'])
         ax.errorbar(np.arange(3),y,yerr=[y-low,high-y],fmt='none',color='#333333',capsize=4,lw=1)
-        ax.axhline(baseline['accuracy_percent'],color='#b43d40',ls='--',lw=1,label='Native Full (relay ON)')
+        ax.axhline(baseline['accuracy_percent'],color='#b43d40',ls='--',lw=1,
+            label=f'Native Full {baseline["accuracy_percent"]:.2f}% (relay ON)')
         ax.set_xticks(np.arange(3),['All layers\nImage access','All layers\nImage OFF',f'Keep only\n{keep}'])
         ax.set_ylim(0,100);ax.set_ylabel('Final-answer accuracy (%)');ax.set_title(label+' | Relay OFF')
-        for i,value in enumerate(y):ax.text(i,value+6,f'{value:.2f}',ha='center',fontsize=8)
-        ax.legend(frameon=False,fontsize=7,loc='lower left')
+        for i,value in enumerate(y):ax.text(i,high[i]+2.2,f'{value:.2f}',ha='center',fontsize=8)
+        ax.legend(frameon=False,fontsize=7,loc='upper right')
     fig.suptitle('Fixed sparse visual access under damaged Prefill relay (240 paired questions)',fontsize=10)
     save(fig,'sparse_visual_rescue')
 

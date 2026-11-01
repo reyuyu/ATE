@@ -1,0 +1,19 @@
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.12s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.20s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.29s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.08s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.13s/it]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/visual-pathways-seven-hour/vlm_research/visual_pathways/scan.py", line 189, in <module>
+    worker(args)
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/visual-pathways-seven-hour/vlm_research/visual_pathways/scan.py", line 92, in worker
+    smoke=qsmoke(model,processor,oldlookup[(samples[0]['task'],samples[0]['question_id'])])
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/visual-pathways-seven-hour/vlm_research/qwen3vl_image_source/run.py", line 125, in smoke
+    weights = [(p._version, p.data_ptr()) for p in model.parameters()]
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/visual-pathways-seven-hour/vlm_research/qwen3vl_image_source/run.py", line 125, in <listcomp>
+    weights = [(p._version, p.data_ptr()) for p in model.parameters()]
+                ^^^^^^^^^^
+RuntimeError: Inference tensors do not track version counter.

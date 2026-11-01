@@ -1,0 +1,37 @@
+{
+  "failed_model": {
+    "model": "InternVL",
+    "phase": "native reference smoke",
+    "formal_samples": 0,
+    "action": "Stopped without numerical tolerance changes or retry",
+    "logs": [
+      "internvl_pilot_gpu0.log",
+      "internvl_pilot_gpu2.log",
+      "internvl_pilot_gpu3.log"
+    ]
+  },
+  "repaired_startup_issues": [
+    {
+      "experiment": "Qwen Task1",
+      "failure": "Inference tensor weights lack version counter",
+      "action": "Load under no_grad, run forwards under inference_mode; no intervention/tolerance change",
+      "protocol_before": "protocol_initial.json",
+      "protocol_after": "protocol.json",
+      "logs": [
+        "qwen_all_gpu0.log",
+        "qwen_all_gpu2.log"
+      ]
+    },
+    {
+      "experiment": "Qwen rescue",
+      "failure": "CPU smoke inputs with CUDA model, before numerical smoke",
+      "action": "Move inputs to CUDA, no intervention/tolerance change",
+      "protocol_before": "qwen_rescue/protocol_attempt0.json",
+      "protocol_after": "qwen_rescue/protocol.json",
+      "logs": [
+        "qwen_rescue_gpu3.log"
+      ]
+    }
+  ],
+  "valid_formal_runs": "Only passed current validation/complete files counted; attempt0 failures retained separately"
+}

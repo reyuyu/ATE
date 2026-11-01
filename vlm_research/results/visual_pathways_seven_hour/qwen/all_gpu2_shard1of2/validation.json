@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "question_id": "00228612",
+  "image_tokens": 160,
+  "grid": [
+    1,
+    20,
+    32
+  ],
+  "noop_all_valid_logits_max_abs": 0,
+  "native_visual_replay_all_valid_logits_max_abs": 0,
+  "last_only_noop_max_abs": 0,
+  "all_vs_last_only_projection_max_abs": 0.0625,
+  "checks": [
+    {
+      "layer": 0,
+      "audit": {
+        "mask_changed_entries": 160,
+        "expected_mask_entries": 160,
+        "image_probability_max": 0.0,
+        "row_sum_max_error": 0.0019436478614807129,
+        "heads": 32,
+        "observed_native_probabilities": true
+      },
+      "other_prefill_queries_exact": true,
+      "earlier_layers_exact": true,
+      "deepstack_native_exact": true
+    },
+    {
+      "layer": 2,
+      "audit": {
+        "mask_changed_entries": 160,
+        "expected_mask_entries": 160,
+        "image_probability_max": 0.0,
+        "row_sum_max_error": 0.0018378496170043945,
+        "heads": 32,
+        "observed_native_probabilities": true
+      },
+      "other_prefill_queries_exact": true,
+      "earlier_layers_exact": true,
+      "deepstack_native_exact": true
+    },
+    {
+      "layer": 17,
+      "audit": {
+        "mask_changed_entries": 160,
+        "expected_mask_entries": 160,
+        "image_probability_max": 0.0,
+        "row_sum_max_error": 0.0018756389617919922,
+        "heads": 32,
+        "observed_native_probabilities": true
+      },
+      "other_prefill_queries_exact": true,
+      "earlier_layers_exact": true,
+      "deepstack_native_exact": true
+    },
+    {
+      "layer": 35,
+      "audit": {
+        "mask_changed_entries": 160,
+        "expected_mask_entries": 160,
+        "image_probability_max": 0.0,
+        "row_sum_max_error": 0.0019655227661132812,
+        "heads": 32,
+        "observed_native_probabilities": true
+      },
+      "other_prefill_queries_exact": true,
+      "earlier_layers_exact": true,
+      "deepstack_native_exact": true
+    }
+  ],
+  "visual_feature_hashes": [
+    [
+      "6a788dcf252ce14a3086884683afce2721b910effd0be2ae803b8ac34adad07e"
+    ],
+    [
+      "5d23d296ba37e629b04169a982a8d128127b28de72d59aa3d77c692e74d06957",
+      "fbca6449e1c217f457503923b4ba7f303455a0ca49f0daa09861e3d65e6435f6",
+      "4495d0b2ee469c96514e3f03dcf57aeba16f3ff86c1e845256d025e053d8cdba"
+    ]
+  ],
+  "deepstack_count": 3,
+  "inputs_and_weights_unchanged": true,
+  "hooks_clean": true,
+  "no_nan_inf_oom": true,
+  "seconds_from_start": 11.649924635887146,
+  "physical_gpu": 2,
+  "protocol_sha256": "9475b49eefcd452c4a9d14eeeae627bcdcc6c6dd50354ad4d9382f9b89151e60",
+  "code_commit": "a4f5df437d3ec72eb12d139c801b9f7ed25f12eb"
+}
