@@ -39,18 +39,19 @@ def boot_mean(values,samples,repetitions=10000,seed=20261102):
     return values.mean(0),low,high,draws,g
 
 
-def scan_model(model,allow_partial=False):
-    samples=read(OUT/'sample_manifest.json')['samples']
+def scan_model(model,allow_partial=False,output_root=OUT):
+    output_root=Path(output_root)
+    samples=read(output_root/'sample_manifest.json')['samples']
     layers={'qwen':36,'internvl':28}[model]
     selected=[];cube=[];flat=[];missing=[];reused=0;new=0
     for s in samples:
         key=f'{s["task"]}__{s["question_id"]}'
-        path=OUT/model/'checkpoints'/f'{key}.json'
+        path=output_root/model/'checkpoints'/f'{key}.json'
         if not path.exists() or not read(path).get('complete'):
             missing.append(key);continue
         record=read(path)
         assert record['sample_sha256']==digest(s) and record['image_sha256']==s['image_sha256']
-        assert record['protocol_sha256']==sha(OUT/'protocol.json')
+        assert record['protocol_sha256']==sha(output_root/'protocol.json')
         assert len(record['rows'])==layers and sorted(r['layer'] for r in record['rows'])==list(range(layers))
         x=[]
         for row in sorted(record['rows'],key=lambda r:r['layer']):
@@ -75,7 +76,7 @@ def scan_model(model,allow_partial=False):
     if not allow_partial:
         assert len(selected)==3000, f'{model}: {len(selected)}/3000 only'
     x=np.array(cube)
-    folder=OUT/model
+    folder=output_root/model
     csv_write(folder/'per_question.csv',flat)
     rows=[];peaks=[]
     cohorts=['all','pilot240']

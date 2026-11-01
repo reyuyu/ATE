@@ -153,7 +153,9 @@ class InternPrefill:
         with ExitStack() as stack:
             edit = stack.enter_context(SourceMask(self.layers[layer].self_attn,[n-1],self.layout['positions']['image'],noop)) if layer is not None else None
             states = stack.enter_context(PrefixTrace(self.layers,n)) if trace else None
-            out = self.model.language_model(**self.inputs,use_cache=False,past_key_values=None,output_attentions=False)
+            # Match native generate's single-position LM-head projection in BF16.
+            out = self.model.language_model(**self.inputs,use_cache=False,past_key_values=None,
+                                            output_attentions=False,logits_to_keep=1)
             assert out.past_key_values is None and torch.isfinite(out.logits).all()
             logits = out.logits[0,-1].detach().cpu().clone()
         assert hooks_count(self.model) == self.hooks
