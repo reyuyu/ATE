@@ -1,0 +1,863 @@
+{
+  "complete": true,
+  "task": "ChooseCat",
+  "question_id": "0117034",
+  "image_id": "2365608",
+  "image_path": "/data/lk/ATE-resources/data/image-tasks/MMEB/GQA/image_2365608.jpg",
+  "image_sha256": "794e2dfb83b9cd753566c3bb94016d3c06f0ea690c39267a6061ef088d1640c9",
+  "question": "Is this a hot dog or a sandwich?",
+  "answer": "sandwich",
+  "sample_sha256": "daf7aeb2bbd564b283d5034c3ae7b6f91c25294d3c0b583cddd37001fbb9243d",
+  "protocol_sha256": "f4cd70af41604d34907febbbf624d2966b9e86d721b05ef59fa153eb5178b9c2",
+  "code_commit": "fc60c72599e48f657df94e83f31566206e46607a",
+  "physical_gpu": 2,
+  "conditions": {
+    "Full": {
+      "text": "Sandwich.",
+      "prediction": "sandwich",
+      "token_ids": [
+        47044,
+        16889,
+        13,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "mask_audits": {},
+      "fresh_cache": true,
+      "final_cache_length": 325,
+      "all_step_logits_sha256": [
+        "bd16f5413498557f39f6d6546201a243c8e4ca654e9197493f0a6d268e08edb2",
+        "17cf4109800a40cc6ca5b520a72daf6f34085a07c19b8677fd9370db007375db",
+        "06df30e8b47c01b9a1daeecca47d865ae6b7752549a0372086198e41cfa83278",
+        "c1e329f9e2c83a3420df0a6d13718e1a726a4c64630fe7ad1d610a3538f39354"
+      ],
+      "full_first_token": 47044,
+      "changed_first_token": 47044,
+      "full_top1_logp": -0.06271994858980179,
+      "off_full_top1_logp": -0.06271994858980179,
+      "signed_logp_loss": 0.0,
+      "absolute_logp_change": 0.0,
+      "top1_flip": 0,
+      "js_divergence": -6.11410788664557e-09,
+      "correct": 1
+    },
+    "Only Text": {
+      "text": "Sandwich",
+      "prediction": "sandwich",
+      "token_ids": [
+        47044,
+        16889,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "mask_audits": {
+        "0": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0025033950805664062
+        },
+        "1": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0017538666725158691
+        },
+        "2": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0011548995971679688
+        },
+        "3": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0018211603164672852
+        },
+        "4": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002010345458984375
+        },
+        "5": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021935701370239258
+        },
+        "6": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002142786979675293
+        },
+        "7": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021407008171081543
+        },
+        "8": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019835233688354492
+        },
+        "9": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002703547477722168
+        },
+        "10": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023061037063598633
+        },
+        "11": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019447803497314453
+        },
+        "12": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0020948052406311035
+        },
+        "13": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023761391639709473
+        },
+        "14": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0024356842041015625
+        },
+        "15": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002063155174255371
+        },
+        "16": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002095341682434082
+        },
+        "17": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019789934158325195
+        },
+        "18": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0017448067665100098
+        },
+        "19": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00236433744430542
+        },
+        "20": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019495487213134766
+        },
+        "21": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0018399357795715332
+        },
+        "22": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00243985652923584
+        },
+        "23": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0024919509887695312
+        },
+        "24": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00225222110748291
+        },
+        "25": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0027500391006469727
+        },
+        "26": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002069234848022461
+        },
+        "27": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00341796875
+        }
+      },
+      "fresh_cache": true,
+      "final_cache_length": 324,
+      "all_step_logits_sha256": [
+        "e4746455b3acc20aff87832b33c029377ce915b5e12c377ef392ad55f951a18b",
+        "ef117bfef0ad661338ec3622573649483d354e2b434f1b2ffe5b710ed449702c",
+        "bc32255deb51e167964770c22ba6810e79ae20cba605e1dc5aa19ffa364aaffb"
+      ],
+      "full_first_token": 47044,
+      "changed_first_token": 47044,
+      "full_top1_logp": -0.06271994858980179,
+      "off_full_top1_logp": -0.03762991726398468,
+      "signed_logp_loss": -0.025090031325817108,
+      "absolute_logp_change": 0.025090031325817108,
+      "top1_flip": 0,
+      "js_divergence": 0.00209165271371603,
+      "correct": 1,
+      "seconds": 0.25746096414513886
+    },
+    "Sparse K1": {
+      "text": "Sandwich",
+      "prediction": "sandwich",
+      "token_ids": [
+        47044,
+        16889,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "mask_audits": {
+        "0": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0025033950805664062
+        },
+        "1": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0017538666725158691
+        },
+        "2": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0011548995971679688
+        },
+        "3": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0018211603164672852
+        },
+        "4": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002010345458984375
+        },
+        "5": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021935701370239258
+        },
+        "6": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002142786979675293
+        },
+        "7": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021407008171081543
+        },
+        "8": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019835233688354492
+        },
+        "9": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002703547477722168
+        },
+        "10": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023061037063598633
+        },
+        "11": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019447803497314453
+        },
+        "12": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0020948052406311035
+        },
+        "13": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023761391639709473
+        },
+        "14": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0024356842041015625
+        },
+        "15": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002063155174255371
+        },
+        "16": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002095341682434082
+        },
+        "17": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019789934158325195
+        },
+        "18": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0017448067665100098
+        },
+        "20": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.001933455467224121
+        },
+        "21": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023124217987060547
+        },
+        "22": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021109580993652344
+        },
+        "23": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0028249621391296387
+        },
+        "24": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002103567123413086
+        },
+        "25": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021589994430541992
+        },
+        "26": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002209186553955078
+        },
+        "27": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002094447612762451
+        }
+      },
+      "fresh_cache": true,
+      "final_cache_length": 324,
+      "all_step_logits_sha256": [
+        "9392272a5c56dc2ec0999cff030b93f4e0e420f60988cd930bb819df89ef5b9c",
+        "ab7e5cf86d025ad7a329e57e06c55718933f6fcb4dbd45c55e0f2b290cbe0aa6",
+        "23163e14e643475cf84c538acff5430a6edab730cd322e5d6f9d5bb259490089"
+      ],
+      "full_first_token": 47044,
+      "changed_first_token": 47044,
+      "full_top1_logp": -0.06271994858980179,
+      "off_full_top1_logp": -0.048288632184267044,
+      "signed_logp_loss": -0.014431316405534744,
+      "absolute_logp_change": 0.014431316405534744,
+      "top1_flip": 0,
+      "js_divergence": 0.0006209061248227954,
+      "correct": 1,
+      "seconds": 0.2556501179933548
+    },
+    "Sparse K3": {
+      "text": "Sandwich",
+      "prediction": "sandwich",
+      "token_ids": [
+        47044,
+        16889,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "mask_audits": {
+        "0": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0025033950805664062
+        },
+        "1": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0017538666725158691
+        },
+        "2": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0011548995971679688
+        },
+        "3": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0018211603164672852
+        },
+        "4": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002010345458984375
+        },
+        "5": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021935701370239258
+        },
+        "6": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002142786979675293
+        },
+        "7": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021407008171081543
+        },
+        "8": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019835233688354492
+        },
+        "10": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022073984146118164
+        },
+        "11": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002500295639038086
+        },
+        "12": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0018908977508544922
+        },
+        "13": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0017311573028564453
+        },
+        "14": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0029218196868896484
+        },
+        "15": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002142190933227539
+        },
+        "17": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002142190933227539
+        },
+        "18": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019534826278686523
+        },
+        "20": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019513964653015137
+        },
+        "21": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0020292997360229492
+        },
+        "22": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021789073944091797
+        },
+        "23": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022991299629211426
+        },
+        "24": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0026805996894836426
+        },
+        "25": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002260267734527588
+        },
+        "26": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002076268196105957
+        },
+        "27": {
+          "prefill_calls": 1,
+          "decode_calls": 2,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0029296875
+        }
+      },
+      "fresh_cache": true,
+      "final_cache_length": 324,
+      "all_step_logits_sha256": [
+        "448926960fa006753b33df5b369649c5b378dba77dec90ae6639db82dbc71081",
+        "fe514e85780fae0d0a3e5f723cfefe5f14aaff273e9aa50dfae54bdb0989de9b",
+        "6223dad9dd358bc3be9b33dd29780eae584099cc506eaec8b14ede8a1a891528"
+      ],
+      "full_first_token": 47044,
+      "changed_first_token": 47044,
+      "full_top1_logp": -0.06271994858980179,
+      "off_full_top1_logp": -0.05689993500709534,
+      "signed_logp_loss": -0.005820013582706451,
+      "absolute_logp_change": 0.005820013582706451,
+      "top1_flip": 0,
+      "js_divergence": 0.0004057056503370404,
+      "correct": 1,
+      "seconds": 0.2490617879666388
+    },
+    "Sparse K8": {
+      "text": "Sandwich.",
+      "prediction": "sandwich",
+      "token_ids": [
+        47044,
+        16889,
+        13,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "mask_audits": {
+        "0": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0025033950805664062
+        },
+        "1": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0017538666725158691
+        },
+        "4": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023099184036254883
+        },
+        "5": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021193623542785645
+        },
+        "6": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002090930938720703
+        },
+        "7": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022728443145751953
+        },
+        "8": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002015054225921631
+        },
+        "10": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002570033073425293
+        },
+        "11": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002277970314025879
+        },
+        "12": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002198934555053711
+        },
+        "13": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023169517517089844
+        },
+        "15": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0024286508560180664
+        },
+        "17": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021719932556152344
+        },
+        "20": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002264261245727539
+        },
+        "22": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002240419387817383
+        },
+        "23": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023577213287353516
+        },
+        "24": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0027059316635131836
+        },
+        "25": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00224149227142334
+        },
+        "26": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002086639404296875
+        },
+        "27": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00238037109375
+        }
+      },
+      "fresh_cache": true,
+      "final_cache_length": 325,
+      "all_step_logits_sha256": [
+        "e00fbf4c7b9a36491d7056728f8ad4208fa18ae007e5ccddfa5bafc31f766b5d",
+        "5722dd6563ac01e001b17a8c04dda8d9fe1a61b7240e9582b839b0289866872c",
+        "2bcda1fd375c15b10b4ee053951e46a5caf91ffe98e87b298d736f79cd99423d",
+        "2ec4adf63fe3746426edef86517de9089653c947aa017a6627791d9aa4ac6c37"
+      ],
+      "full_first_token": 47044,
+      "changed_first_token": 47044,
+      "full_top1_logp": -0.06271994858980179,
+      "off_full_top1_logp": -0.045351896435022354,
+      "signed_logp_loss": -0.017368052154779434,
+      "absolute_logp_change": 0.017368052154779434,
+      "top1_flip": 0,
+      "js_divergence": 0.0015715851914137602,
+      "correct": 1,
+      "seconds": 0.28379317093640566
+    },
+    "Low-8 OFF": {
+      "text": "Sandwich.",
+      "prediction": "sandwich",
+      "token_ids": [
+        47044,
+        16889,
+        13,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "mask_audits": {
+        "4": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0026639699935913086
+        },
+        "17": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0020619630813598633
+        },
+        "20": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0020945072174072266
+        },
+        "23": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002044081687927246
+        },
+        "24": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002417623996734619
+        },
+        "25": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019598007202148438
+        },
+        "26": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0020989179611206055
+        },
+        "27": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002005338668823242
+        }
+      },
+      "fresh_cache": true,
+      "final_cache_length": 325,
+      "all_step_logits_sha256": [
+        "9d06ea491ab5dee2f3d85d70f21082ac3d9610d93c76de62607c3a24c498e218",
+        "053720a45d894143efe15c8e0114af4c0a893f898a4efa916a789e707cecd290",
+        "418cc9ded597992559a089d3a68e1eb76f94927c7c8048ca2c8136b475d718d1",
+        "a078588094546e196bf71d9c1a35a1a65ffa9ef3f02013a555e8aa77238239b0"
+      ],
+      "full_first_token": 47044,
+      "changed_first_token": 47044,
+      "full_top1_logp": -0.06271994858980179,
+      "off_full_top1_logp": -0.05173331871628761,
+      "signed_logp_loss": -0.010986629873514175,
+      "absolute_logp_change": 0.010986629873514175,
+      "top1_flip": 0,
+      "js_divergence": 0.0006981706246733665,
+      "correct": 1,
+      "seconds": 0.2371009800117463
+    }
+  },
+  "input_binding": "66633d8cf14ddca1475835167ed52b427448e1c7f00e06128898e1c31dc4d5f9",
+  "full_logits_sha256": "bd16f5413498557f39f6d6546201a243c8e4ca654e9197493f0a6d268e08edb2",
+  "historical_scan_sha256": "3e88e255b7e011cbaf047c236a85affc6d98d204a791e9780534dde605c2092a"
+}

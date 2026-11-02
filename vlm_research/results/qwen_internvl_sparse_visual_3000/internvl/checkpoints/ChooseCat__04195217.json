@@ -1,0 +1,869 @@
+{
+  "complete": true,
+  "task": "ChooseCat",
+  "question_id": "04195217",
+  "image_id": "2346165",
+  "image_path": "/data/lk/ATE-resources/data/image-tasks/MMEB/GQA/image_2346165.jpg",
+  "image_sha256": "7201ad6826eea291af591c8d1ad88d0546c94a89236ce125b61572ac954ef882",
+  "question": "Is this an oven or a refrigerator?",
+  "answer": "oven",
+  "sample_sha256": "b461df6a6afc1872bee6b0ed5d682eb3f2015619ed80b84b58cd4102ec47884d",
+  "protocol_sha256": "f4cd70af41604d34907febbbf624d2966b9e86d721b05ef59fa153eb5178b9c2",
+  "code_commit": "fc60c72599e48f657df94e83f31566206e46607a",
+  "physical_gpu": 3,
+  "conditions": {
+    "Full": {
+      "text": "Oven.",
+      "prediction": "oven",
+      "token_ids": [
+        46,
+        1037,
+        13,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "mask_audits": {},
+      "fresh_cache": true,
+      "final_cache_length": 324,
+      "all_step_logits_sha256": [
+        "84a2f41e05e132d4614771a4ee6367c1c5144d13087d152b64dc4e4e87e38814",
+        "43a37c4cbb0c18229a084094c7a0ebd288c838d4976d32e0398491a6ffe4328a",
+        "35d4249cb7f5bea7ecf59e88f38e864c857428b7e878e79c2f7b664dbe220585",
+        "5fef11fa883b267bb32e8d2d80af7eb1668705ef3689e62f8ef75294cd8d4c28"
+      ],
+      "full_first_token": 46,
+      "changed_first_token": 46,
+      "full_top1_logp": -0.03637750819325447,
+      "off_full_top1_logp": -0.03637750819325447,
+      "signed_logp_loss": 0.0,
+      "absolute_logp_change": 0.0,
+      "top1_flip": 0,
+      "js_divergence": -1.7336892810249083e-08,
+      "correct": 1
+    },
+    "Only Text": {
+      "text": "Oven.",
+      "prediction": "oven",
+      "token_ids": [
+        46,
+        1037,
+        13,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "mask_audits": {
+        "0": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021514892578125
+        },
+        "1": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00261688232421875
+        },
+        "2": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0016115903854370117
+        },
+        "3": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0016720294952392578
+        },
+        "4": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002317190170288086
+        },
+        "5": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002023935317993164
+        },
+        "6": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019609928131103516
+        },
+        "7": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0025023221969604492
+        },
+        "8": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021347999572753906
+        },
+        "9": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0024695396423339844
+        },
+        "10": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022284984588623047
+        },
+        "11": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00200653076171875
+        },
+        "12": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002096414566040039
+        },
+        "13": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019404888153076172
+        },
+        "14": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0020632147789001465
+        },
+        "15": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0026630163192749023
+        },
+        "16": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022592544555664062
+        },
+        "17": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019092559814453125
+        },
+        "18": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022448301315307617
+        },
+        "19": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002324819564819336
+        },
+        "20": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002148866653442383
+        },
+        "21": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002244234085083008
+        },
+        "22": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002389669418334961
+        },
+        "23": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002067267894744873
+        },
+        "24": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019073486328125
+        },
+        "25": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002554178237915039
+        },
+        "26": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021195411682128906
+        },
+        "27": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0029296875
+        }
+      },
+      "fresh_cache": true,
+      "final_cache_length": 324,
+      "all_step_logits_sha256": [
+        "6cbe908f78b86b14fc0396c1183821eb6014a25dc0ce122ac0d95152c5e13155",
+        "12069327f55047c5e3e27d64d61d02956ac479ea9771d2b1dd9db686934451e0",
+        "5c88b4b9e6f22e4facaddba64d7390c2ccd397378fc30b5550cdb076ad1c5e11",
+        "3765d276db25a8f66195de158e49d153ed14ca89e31d4c49e21235242b1a20ff"
+      ],
+      "full_first_token": 46,
+      "changed_first_token": 46,
+      "full_top1_logp": -0.03637750819325447,
+      "off_full_top1_logp": -0.026707926765084267,
+      "signed_logp_loss": -0.009669581428170204,
+      "absolute_logp_change": 0.009669581428170204,
+      "top1_flip": 0,
+      "js_divergence": 0.004766950383782387,
+      "correct": 1,
+      "seconds": 0.3147067471873015
+    },
+    "Sparse K1": {
+      "text": "Oven.",
+      "prediction": "oven",
+      "token_ids": [
+        46,
+        1037,
+        13,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "mask_audits": {
+        "0": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021514892578125
+        },
+        "1": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00261688232421875
+        },
+        "2": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0016115903854370117
+        },
+        "3": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0016720294952392578
+        },
+        "4": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002317190170288086
+        },
+        "5": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002023935317993164
+        },
+        "6": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019609928131103516
+        },
+        "7": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0025023221969604492
+        },
+        "8": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021347999572753906
+        },
+        "9": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0024695396423339844
+        },
+        "10": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022284984588623047
+        },
+        "11": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00200653076171875
+        },
+        "12": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002096414566040039
+        },
+        "13": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019404888153076172
+        },
+        "14": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0020632147789001465
+        },
+        "15": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0026630163192749023
+        },
+        "16": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022592544555664062
+        },
+        "17": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019092559814453125
+        },
+        "18": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022448301315307617
+        },
+        "20": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0020796656608581543
+        },
+        "21": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022116899490356445
+        },
+        "22": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.001885533332824707
+        },
+        "23": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0024557113647460938
+        },
+        "24": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022319555282592773
+        },
+        "25": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023032426834106445
+        },
+        "26": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021805763244628906
+        },
+        "27": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0025113821029663086
+        }
+      },
+      "fresh_cache": true,
+      "final_cache_length": 324,
+      "all_step_logits_sha256": [
+        "014129bf4fdcea960feca1e1eb7f6cc8c7dcb987f591ea150353c604d68dfd4a",
+        "b75f2149840ba7a19fb5892d83dd93653bf838828f5315505dd08c39c005f48e",
+        "e2ef4eba3acc28a16f96af9dbcc851a9d56ff409f5237bc2d20719e9ef705b87",
+        "d90d9950f216172aaa9093dc7efd1c58b012e37a82e09067adcfaf25ccdc5372"
+      ],
+      "full_first_token": 46,
+      "changed_first_token": 46,
+      "full_top1_logp": -0.03637750819325447,
+      "off_full_top1_logp": -0.023875700309872627,
+      "signed_logp_loss": -0.012501807883381844,
+      "absolute_logp_change": 0.012501807883381844,
+      "top1_flip": 0,
+      "js_divergence": 0.001769747817888856,
+      "correct": 1,
+      "seconds": 0.3125527899246663
+    },
+    "Sparse K3": {
+      "text": "Oven.",
+      "prediction": "oven",
+      "token_ids": [
+        46,
+        1037,
+        13,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "mask_audits": {
+        "0": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021514892578125
+        },
+        "1": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00261688232421875
+        },
+        "2": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0016115903854370117
+        },
+        "3": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0016720294952392578
+        },
+        "4": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002317190170288086
+        },
+        "5": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002023935317993164
+        },
+        "6": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019609928131103516
+        },
+        "7": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0025023221969604492
+        },
+        "8": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021347999572753906
+        },
+        "10": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002170085906982422
+        },
+        "11": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00272446870803833
+        },
+        "12": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002034485340118408
+        },
+        "13": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021516084671020508
+        },
+        "14": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0026142001152038574
+        },
+        "15": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023604631423950195
+        },
+        "17": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0025835037231445312
+        },
+        "18": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00220489501953125
+        },
+        "20": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021185874938964844
+        },
+        "21": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022412538528442383
+        },
+        "22": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002545595169067383
+        },
+        "23": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022165775299072266
+        },
+        "24": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0026450157165527344
+        },
+        "25": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022728443145751953
+        },
+        "26": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023110508918762207
+        },
+        "27": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0029300451278686523
+        }
+      },
+      "fresh_cache": true,
+      "final_cache_length": 324,
+      "all_step_logits_sha256": [
+        "e6014c7dfd4e5e85bba5bbecf6627d9c95976e9a0c0d83c09940dc65c74c9db5",
+        "56dc562ed28eb657b5dbb730ff888389ce96dd8dc08220dffe72a7f8a349fe14",
+        "5ee50260913de166e0c07e633ff082147e0b8557116f38ede6c7e833adb5d1e5",
+        "3acdad62d091019c230c95ae3973ab5f6c920940d3647f69eb5026ea8e1a3c25"
+      ],
+      "full_first_token": 46,
+      "changed_first_token": 46,
+      "full_top1_logp": -0.03637750819325447,
+      "off_full_top1_logp": -0.05445431172847748,
+      "signed_logp_loss": 0.018076803535223007,
+      "absolute_logp_change": 0.018076803535223007,
+      "top1_flip": 0,
+      "js_divergence": 0.001784388441592455,
+      "correct": 1,
+      "seconds": 0.3041241748724133
+    },
+    "Sparse K8": {
+      "text": "Oven.",
+      "prediction": "oven",
+      "token_ids": [
+        46,
+        1037,
+        13,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "mask_audits": {
+        "0": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021514892578125
+        },
+        "1": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00261688232421875
+        },
+        "4": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021640658378601074
+        },
+        "5": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021072030067443848
+        },
+        "6": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002006053924560547
+        },
+        "7": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002039313316345215
+        },
+        "8": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0024676918983459473
+        },
+        "10": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00241696834564209
+        },
+        "11": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002001941204071045
+        },
+        "12": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022460222244262695
+        },
+        "13": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002105712890625
+        },
+        "15": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023086071014404297
+        },
+        "17": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002023160457611084
+        },
+        "20": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002135753631591797
+        },
+        "22": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002462327480316162
+        },
+        "23": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021986961364746094
+        },
+        "24": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0026701688766479492
+        },
+        "25": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002173781394958496
+        },
+        "26": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022639036178588867
+        },
+        "27": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022437572479248047
+        }
+      },
+      "fresh_cache": true,
+      "final_cache_length": 324,
+      "all_step_logits_sha256": [
+        "e3aa3ef7a75218f2ffd9e0b3d57825470fd28bbd6cb00dcbfe7903969883f274",
+        "54b9546c19f26321d033749ecea7efb96ae3dfec2cd9aa2d793ce8d2f231240a",
+        "6a39754b7538a5018c4fa99bf6c89201f24f65bded22265f16045af68203790b",
+        "6160240ee873b7d42860f22fb132f5a83610573af30e5ace67e0dba2c8c3bbe0"
+      ],
+      "full_first_token": 46,
+      "changed_first_token": 46,
+      "full_top1_logp": -0.03637750819325447,
+      "off_full_top1_logp": -0.0492374524474144,
+      "signed_logp_loss": 0.012859944254159927,
+      "absolute_logp_change": 0.012859944254159927,
+      "top1_flip": 0,
+      "js_divergence": 0.0010742886224761605,
+      "correct": 1,
+      "seconds": 0.28367758891545236
+    },
+    "Low-8 OFF": {
+      "text": "Oven.",
+      "prediction": "oven",
+      "token_ids": [
+        46,
+        1037,
+        13,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "mask_audits": {
+        "4": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002245783805847168
+        },
+        "17": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0020636916160583496
+        },
+        "20": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00229489803314209
+        },
+        "23": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002270936965942383
+        },
+        "24": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023800134658813477
+        },
+        "25": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022867918014526367
+        },
+        "26": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002249002456665039
+        },
+        "27": {
+          "prefill_calls": 1,
+          "decode_calls": 3,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0035588741302490234
+        }
+      },
+      "fresh_cache": true,
+      "final_cache_length": 324,
+      "all_step_logits_sha256": [
+        "ec0419717dd96cea230468562152e48fe7f36bb60980fa0fee91a494079b749e",
+        "8dfd82b9a7c955281b872f5e21f8fce96783f9b7066ac3493d40bed5ec52e777",
+        "34a6564a93fbd8515cea8f1761529299eba78fe4166aa01fc487ed164d45a7a0",
+        "0fb6ba12c589f1f3491f8d2ce9fe0f7ef67d1c127bed4d3b3dc0e58a9a52929a"
+      ],
+      "full_first_token": 46,
+      "changed_first_token": 46,
+      "full_top1_logp": -0.03637750819325447,
+      "off_full_top1_logp": -0.02964036539196968,
+      "signed_logp_loss": -0.00673714280128479,
+      "absolute_logp_change": 0.00673714280128479,
+      "top1_flip": 0,
+      "js_divergence": 0.0005935848457738757,
+      "correct": 1,
+      "seconds": 0.23793520010076463
+    }
+  },
+  "input_binding": "1b7f5920348c428c2f948f84c0181aae2e5abd6816925e15460c42db3ea8fc8b",
+  "full_logits_sha256": "84a2f41e05e132d4614771a4ee6367c1c5144d13087d152b64dc4e4e87e38814",
+  "historical_scan_sha256": "3306cb64e9ddf63626ca78f4c9c8d43857f8f0f1d6d1c94950601553e493e623"
+}

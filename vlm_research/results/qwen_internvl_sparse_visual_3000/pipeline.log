@@ -1,0 +1,21 @@
+INTERNVL THREE WORKERS STARTED
+qwen [('Full', 88.43333333333334, 0.0), ('Only Text', 87.9, -0.5333333333333333), ('Sparse K1', 88.03333333333333, -0.4), ('Sparse K3', 88.13333333333334, -0.3), ('Sparse K8', 88.26666666666667, -0.16666666666666666), ('Low-8 OFF', 88.43333333333334, 0.0)]
+internvl [('Full', 91.03333333333333, 0.0), ('Only Text', 90.33333333333333, -0.7), ('Sparse K1', 90.6, -0.43333333333333335), ('Sparse K3', 90.46666666666667, -0.5666666666666667), ('Sparse K8', 90.76666666666667, -0.26666666666666666), ('Low-8 OFF', 90.8, -0.23333333333333334)]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/qwen-internvl-sparse-visual-3000/vlm_research/visual_pathways/sparse_accuracy_analysis.py", line 308, in <module>
+    figures_and_report()
+  File "/data/lk/ATE-worktrees/qwen-internvl-sparse-visual-3000/vlm_research/visual_pathways/sparse_accuracy_analysis.py", line 142, in figures_and_report
+    import matplotlib
+ModuleNotFoundError: No module named 'matplotlib'
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/qwen-internvl-sparse-visual-3000/vlm_research/visual_pathways/sparse_accuracy_finish.py", line 44, in <module>
+    main()
+  File "/data/lk/ATE-worktrees/qwen-internvl-sparse-visual-3000/vlm_research/visual_pathways/sparse_accuracy_finish.py", line 37, in main
+    subprocess.run([PYTHON, '-m', 'vlm_research.visual_pathways.sparse_accuracy_analysis', 'report'],
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/data/lk/深度学习/.envs/ate-internvl3/bin/python', '-m', 'vlm_research.visual_pathways.sparse_accuracy_analysis', 'report']' returned non-zero exit status 1.

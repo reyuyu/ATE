@@ -1,0 +1,881 @@
+{
+  "complete": true,
+  "task": "ChooseCat",
+  "question_id": "03987475",
+  "image_id": "2400828",
+  "image_path": "/data/lk/ATE-resources/data/image-tasks/MMEB/GQA/image_2400828.jpg",
+  "image_sha256": "ea2ba7d29779b53d3cdac5e99758c2b671538a93e5d52f03e288862b425e17f4",
+  "question": "Is this a microwave or a refrigerator?",
+  "answer": "refrigerator",
+  "sample_sha256": "5e388a4150d3e826573b10991f204003334955911ed545e69e7ee0b16a278ba4",
+  "protocol_sha256": "f4cd70af41604d34907febbbf624d2966b9e86d721b05ef59fa153eb5178b9c2",
+  "code_commit": "fc60c72599e48f657df94e83f31566206e46607a",
+  "physical_gpu": 3,
+  "conditions": {
+    "Full": {
+      "text": "Refrigerator",
+      "prediction": "refrigerator",
+      "token_ids": [
+        693,
+        1626,
+        7272,
+        850,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 5,
+      "mask_audits": {},
+      "fresh_cache": true,
+      "final_cache_length": 325,
+      "all_step_logits_sha256": [
+        "0aee06041c004066b4a5746f3ab9335f5e388956ad7a47ec2ad6e6ea0c8a7ec6",
+        "e02a616b6f623ef27be70081c30115d406ba600658a5b4d6c43eae352376e3bc",
+        "b9a389684b488b4fc407846aa4d40cf7e3ec5acca4da49ba101a4cb684c82940",
+        "ebb6755c70cb5ea46b868485b83cd3f4755694617e62a4cbf95ba906de4a3c67",
+        "c1c71da670161a8ba39d9eb291784ea56dd43dad883f34e6c093fdb29fbc9314"
+      ],
+      "full_first_token": 693,
+      "changed_first_token": 693,
+      "full_top1_logp": -0.005928550846874714,
+      "off_full_top1_logp": -0.005928550846874714,
+      "signed_logp_loss": 0.0,
+      "absolute_logp_change": 0.0,
+      "top1_flip": 0,
+      "js_divergence": 2.546774702238963e-08,
+      "correct": 1
+    },
+    "Only Text": {
+      "text": "Refrigerator",
+      "prediction": "refrigerator",
+      "token_ids": [
+        693,
+        1626,
+        7272,
+        850,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 5,
+      "mask_audits": {
+        "0": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002838134765625
+        },
+        "1": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.001832127571105957
+        },
+        "2": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0016036033630371094
+        },
+        "3": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0018084049224853516
+        },
+        "4": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002007722854614258
+        },
+        "5": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.001975536346435547
+        },
+        "6": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023366212844848633
+        },
+        "7": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0024098753929138184
+        },
+        "8": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021704435348510742
+        },
+        "9": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0025299787521362305
+        },
+        "10": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019205808639526367
+        },
+        "11": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023702383041381836
+        },
+        "12": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019729137420654297
+        },
+        "13": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023032426834106445
+        },
+        "14": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022611618041992188
+        },
+        "15": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0024111270904541016
+        },
+        "16": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002428293228149414
+        },
+        "17": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00204312801361084
+        },
+        "18": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022333860397338867
+        },
+        "19": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002229154109954834
+        },
+        "20": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023959875106811523
+        },
+        "21": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0020601749420166016
+        },
+        "22": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002064228057861328
+        },
+        "23": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0024422407150268555
+        },
+        "24": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0020723342895507812
+        },
+        "25": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0020695924758911133
+        },
+        "26": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022646188735961914
+        },
+        "27": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002566814422607422
+        }
+      },
+      "fresh_cache": true,
+      "final_cache_length": 325,
+      "all_step_logits_sha256": [
+        "636b995dfc4a345951be1e00bcba5a8d8c4f3a2edfbc248bd7cd840c05269076",
+        "cb9f9cb4915ab180a035bf6d100bfbc23b07409ec51449980aeb89b1d61b10e5",
+        "1947e5bd524e49504ce59a304645ee905e0fc4971cd8104f3f4bb789ff3b8111",
+        "9aca346f364d11a51a73611013ef9a1fcab5ddce948851632d11295c97137347",
+        "97a19b3f4c0141132b6c9e825e5665d741d29b42d43e94e70b9c95b1ed76cdaf"
+      ],
+      "full_first_token": 693,
+      "changed_first_token": 693,
+      "full_top1_logp": -0.005928550846874714,
+      "off_full_top1_logp": -0.0039341445080935955,
+      "signed_logp_loss": -0.0019944063387811184,
+      "absolute_logp_change": 0.0019944063387811184,
+      "top1_flip": 0,
+      "js_divergence": 0.00011700339382514358,
+      "correct": 1,
+      "seconds": 0.3721343739889562
+    },
+    "Sparse K1": {
+      "text": "Refrigerator",
+      "prediction": "refrigerator",
+      "token_ids": [
+        693,
+        1626,
+        7272,
+        850,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 5,
+      "mask_audits": {
+        "0": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002838134765625
+        },
+        "1": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.001832127571105957
+        },
+        "2": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0016036033630371094
+        },
+        "3": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0018084049224853516
+        },
+        "4": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002007722854614258
+        },
+        "5": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.001975536346435547
+        },
+        "6": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023366212844848633
+        },
+        "7": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0024098753929138184
+        },
+        "8": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021704435348510742
+        },
+        "9": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0025299787521362305
+        },
+        "10": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019205808639526367
+        },
+        "11": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023702383041381836
+        },
+        "12": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019729137420654297
+        },
+        "13": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023032426834106445
+        },
+        "14": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022611618041992188
+        },
+        "15": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0024111270904541016
+        },
+        "16": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002428293228149414
+        },
+        "17": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00204312801361084
+        },
+        "18": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022333860397338867
+        },
+        "20": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002242863178253174
+        },
+        "21": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019594430923461914
+        },
+        "22": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002686619758605957
+        },
+        "23": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0026311874389648438
+        },
+        "24": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002488851547241211
+        },
+        "25": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002338409423828125
+        },
+        "26": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002056598663330078
+        },
+        "27": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002140045166015625
+        }
+      },
+      "fresh_cache": true,
+      "final_cache_length": 325,
+      "all_step_logits_sha256": [
+        "ccf26fbe1ccb04229b208a5da39f43d3016d62715346544abfe03389ffd7433b",
+        "39559efe0569d7e6e93bbc7019b4698caaa0e2ecd537ff2e59f49530cea3928b",
+        "5c98ddfc8db05b6d1587bf692738e41d34bde43248478f1aa3901f087d6c34fb",
+        "95fa1ebe588d8be54da90d1c4800b3144e78677cffe8b4067f6dd0741529cde6",
+        "7d22ee40549cc98ac61449c0e2666a659997e1a144fc516cd8dd3f7ba81f9fc2"
+      ],
+      "full_first_token": 693,
+      "changed_first_token": 693,
+      "full_top1_logp": -0.005928550846874714,
+      "off_full_top1_logp": -0.005363479256629944,
+      "signed_logp_loss": -0.00056507159024477,
+      "absolute_logp_change": 0.00056507159024477,
+      "top1_flip": 0,
+      "js_divergence": 4.986164276488125e-05,
+      "correct": 1,
+      "seconds": 0.3667350320611149
+    },
+    "Sparse K3": {
+      "text": "Refrigerator",
+      "prediction": "refrigerator",
+      "token_ids": [
+        693,
+        1626,
+        7272,
+        850,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 5,
+      "mask_audits": {
+        "0": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002838134765625
+        },
+        "1": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.001832127571105957
+        },
+        "2": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0016036033630371094
+        },
+        "3": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0018084049224853516
+        },
+        "4": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002007722854614258
+        },
+        "5": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.001975536346435547
+        },
+        "6": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023366212844848633
+        },
+        "7": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0024098753929138184
+        },
+        "8": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021704435348510742
+        },
+        "10": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0026645660400390625
+        },
+        "11": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0026531219482421875
+        },
+        "12": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0024741291999816895
+        },
+        "13": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021509528160095215
+        },
+        "14": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002324819564819336
+        },
+        "15": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002301812171936035
+        },
+        "17": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002458810806274414
+        },
+        "18": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021647214889526367
+        },
+        "20": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002305746078491211
+        },
+        "21": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021864771842956543
+        },
+        "22": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.00202023983001709
+        },
+        "23": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002169013023376465
+        },
+        "24": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022737979888916016
+        },
+        "25": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002343893051147461
+        },
+        "26": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002052783966064453
+        },
+        "27": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0030059814453125
+        }
+      },
+      "fresh_cache": true,
+      "final_cache_length": 325,
+      "all_step_logits_sha256": [
+        "154191e0180009c3dc4b12f851e07eb7b9543712649efe2d804fcf89660af1fe",
+        "d8b400e1c8d912486f9efee17b964250296f74e9a9544ecad95aa2012213733e",
+        "3da78eb24d120aa725acfd50599235b36b2cbea68ca5939dfc605a3c21eaa10f",
+        "38f2a6fcc037e316a2b93ea7a5a82ea67c32d0d63388b6fad4dd72df45a16fba",
+        "2b5382a533e486270b47f818568752624d293916063a0e92c26251ab33a48296"
+      ],
+      "full_first_token": 693,
+      "changed_first_token": 693,
+      "full_top1_logp": -0.005928550846874714,
+      "off_full_top1_logp": -0.0023454318288713694,
+      "signed_logp_loss": -0.0035831190180033445,
+      "absolute_logp_change": 0.0035831190180033445,
+      "top1_flip": 0,
+      "js_divergence": 0.00044918240746483207,
+      "correct": 1,
+      "seconds": 0.35691946907900274
+    },
+    "Sparse K8": {
+      "text": "Refrigerator",
+      "prediction": "refrigerator",
+      "token_ids": [
+        693,
+        1626,
+        7272,
+        850,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 5,
+      "mask_audits": {
+        "0": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002838134765625
+        },
+        "1": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.001832127571105957
+        },
+        "4": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022822022438049316
+        },
+        "5": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021039247512817383
+        },
+        "6": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021772384643554688
+        },
+        "7": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022072792053222656
+        },
+        "8": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019943714141845703
+        },
+        "10": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021072030067443848
+        },
+        "11": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002577543258666992
+        },
+        "12": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0020275115966796875
+        },
+        "13": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0019539594650268555
+        },
+        "15": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023151040077209473
+        },
+        "17": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021924972534179688
+        },
+        "20": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0020524263381958008
+        },
+        "22": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023674964904785156
+        },
+        "23": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002043306827545166
+        },
+        "24": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002279520034790039
+        },
+        "25": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002691984176635742
+        },
+        "26": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022126436233520508
+        },
+        "27": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0022590160369873047
+        }
+      },
+      "fresh_cache": true,
+      "final_cache_length": 325,
+      "all_step_logits_sha256": [
+        "742a121232072b3f740950dd1388a2f78d98a90fb6ed24901562a3e4e0c0553a",
+        "bb8cdcedbb0cc2ad90a75f81a7fb77d42a123af805d5e2912773bbe6835d2d6e",
+        "48d44cccec72df0003c9270090ff5a473efd4426a69d7840a430bec044b4dfa0",
+        "78c00a6c5276b8effbb0a2b3625fefcbd29df62536b98790da70830790380d69",
+        "fe1c967621b5ea9382e6c6f2179b9975725c1cb5abc79532298eb1e322716c3c"
+      ],
+      "full_first_token": 693,
+      "changed_first_token": 693,
+      "full_top1_logp": -0.005928550846874714,
+      "off_full_top1_logp": -0.003161196829751134,
+      "signed_logp_loss": -0.00276735401712358,
+      "absolute_logp_change": 0.00276735401712358,
+      "top1_flip": 0,
+      "js_divergence": 0.00022265189909376204,
+      "correct": 1,
+      "seconds": 0.3319013030268252
+    },
+    "Low-8 OFF": {
+      "text": "Refrigerator",
+      "prediction": "refrigerator",
+      "token_ids": [
+        693,
+        1626,
+        7272,
+        850,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 5,
+      "mask_audits": {
+        "4": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0020093917846679688
+        },
+        "17": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0026504993438720703
+        },
+        "20": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0021560192108154297
+        },
+        "23": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0024802684783935547
+        },
+        "24": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002519965171813965
+        },
+        "25": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023956298828125
+        },
+        "26": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.0023931264877319336
+        },
+        "27": {
+          "prefill_calls": 1,
+          "decode_calls": 4,
+          "masked_probability_max": 0.0,
+          "row_sum_max_error": 0.002543926239013672
+        }
+      },
+      "fresh_cache": true,
+      "final_cache_length": 325,
+      "all_step_logits_sha256": [
+        "878117daf9346c6fe21ecc823ed126a1ffc5daa47d55c3e51f574101df79506a",
+        "da9b30057398ceb043b9da46a3b780e3e537217eb6e135fb9de47befc0cb1c69",
+        "53ac669d2f9fa1c258f7af7b46a74d1eacfe615c4374b3e166159b28f3eee2f0",
+        "39617539a58f8f7d3483045c5f32a29212a76a1ced3c7fae489fe2e5d735b889",
+        "b3faf7e5fb2e977f060f5970db51eb5f062d703474bafbd46e440f063af6857f"
+      ],
+      "full_first_token": 693,
+      "changed_first_token": 693,
+      "full_top1_logp": -0.005928550846874714,
+      "off_full_top1_logp": -0.0029226704500615597,
+      "signed_logp_loss": -0.0030058803968131542,
+      "absolute_logp_change": 0.0030058803968131542,
+      "top1_flip": 0,
+      "js_divergence": 0.0003044649201910943,
+      "correct": 1,
+      "seconds": 0.27304190397262573
+    }
+  },
+  "input_binding": "e8afd774e0c0a4b767a4b38686e78e6f240bb51fc72b3ea4d60e67d5934d922e",
+  "full_logits_sha256": "0aee06041c004066b4a5746f3ab9335f5e388956ad7a47ec2ad6e6ea0c8a7ec6",
+  "historical_scan_sha256": "3ceb609fa190072f120265334653dda31f9999a6671889af85a7eb2f01f2694c"
+}
