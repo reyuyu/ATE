@@ -13,7 +13,8 @@ python -m attention_relay_joint.run prepare
 CUDA_VISIBLE_DEVICES='' python -m attention_relay_joint.run cpu
 # Commit source, then expose ONLY the frozen GPU0 UUID for smoke and worker.
 python -m attention_relay_joint.run smoke
-python -m attention_relay_joint.run freeze
+# Freeze's Git paths are repository-relative. Launch that stage from repo root:
+# PYTHONPATH=/absolute/worktree/vlm_research python -m attention_relay_joint.run freeze
 python -m attention_relay_joint.run worker
 CUDA_VISIBLE_DEVICES='' python -m attention_relay_joint.run analyze
 CUDA_VISIBLE_DEVICES='' python -m attention_relay_joint.run verify

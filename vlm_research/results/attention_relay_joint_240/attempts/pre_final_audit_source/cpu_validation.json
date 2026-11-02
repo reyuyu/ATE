@@ -1,0 +1,29 @@
+{
+  "passed": true,
+  "tests": 28,
+  "source": {
+    "attention_relay_joint/__init__.py": "4e1a5fb04170208eb7330f637a205bf03cef52e2754d191a512594242e604ec8",
+    "attention_relay_joint/analyze.py": "e3c8b62681f7b6b4ad6b40d513f22c0813edd467c55e63aa7b87eff6fafe386c",
+    "attention_relay_joint/common.py": "375ba17a88d6b0210fa2fd967081f2a257caba2be00d82278c65f708eb9b5505",
+    "attention_relay_joint/engine.py": "888642a1215e87a3bb92da7b633ed6e0c5c487f0f16b306ae434998fe2c7aad9",
+    "attention_relay_joint/run.py": "20310eaf0ac816c1ee2008a819d5fd6a84577f495f4a6324a8ca473fc5eac905",
+    "attention_relay_joint/tests.py": "e8f1a0db108d6bf04ffbe123494758ea2ea3ce86bc653bb89f5047e90c5f11eb",
+    "benchmarks/dataset_registry.py": "20369ec1648e795958d7290934f4604fe8ed3b7874c8f27f8aa031d04bf024f5",
+    "benchmarks/smoke.py": "8f513bc47a2e7c4036d10fb8e5e30fd8e87ccbc2e9d799c93983965823e6b3fe",
+    "first_answer_attention/engine.py": "0a3f51b0bd3c7295da0eb051dc267d174e18daab06048b8264f4c1e40abc58f7",
+    "knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+    "paper_rq1/engine.py": "2c838844c0e7e9815662019498c9b577b8f6478898f591c9cf52cc4a2028eff9",
+    "paper_rq1/scorers.py": "081e409993a481a0b3c83e0cf6ae2d16768c10e1c95f602de72c4abe4f5c9ad8",
+    "paper_rq1_decode_layerwise_quality/engine.py": "aae606ae1167e9bb9ada76cc0bd52990b93ed9c7c9b4b87cf01e67bfac7f7a59",
+    "paper_rq1_decode_layerwise_quality/statistics.py": "562e15eea92e9b2bb8720cbaf81cf0571d631e4dc7f2178f39f7c5abab18ecab",
+    "paper_rq1_early_joint_attention/engine.py": "68347d85e82e82d73beaa3d68d87a24eb13b9c2ab9ebe949a67a3c8309caec8a",
+    "paper_rq1_early_joint_attention/statistics.py": "b2e00300e1cb4d322c97ef963c84ebd35d331e26e5111f263f88f4a1015a9cc1",
+    "paper_rq1_single_layer_gqa6/engine.py": "17509131686cb01f1954e12cbd1ed57d2b74663fa6f6aaba0a01e8fceac7ebe9",
+    "paper_rq1_single_layer_gqa6/run.py": "d7b454377849a4c5b69d48174a0652dbd03afa416a6b5f140a37b697d2492e03",
+    "rq2_decode_visual/engine.py": "3197d417d9c9f4ad5937f16bf6d8f0abfc5cdbe9b43b0219bdf3b9d4d82bf8e1",
+    "rq2_source_knockout/engine.py": "cc5361a8d0d4e538e0b59d4e731f02e867ce87ae808e696bb3fe96e482474500",
+    "rq2_visual_sufficiency/engine.py": "fafa015e9b47f1bcf65d86c48478d47dd7500ef647d81486985d478085a369ad",
+    "vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d"
+  },
+  "output": "test_divergence_eos_and_joint_only_harm (attention_relay_joint.tests.Tests.test_divergence_eos_and_joint_only_harm) ... ok\ntest_dynamic_mapping_does_not_assume_frozen_token_index (attention_relay_joint.tests.Tests.test_dynamic_mapping_does_not_assume_frozen_token_index) ... ok\ntest_exception_both_hooks_removed (attention_relay_joint.tests.Tests.test_exception_both_hooks_removed) ... ok\ntest_four_frozen_conditions_and_layers (attention_relay_joint.tests.Tests.test_four_frozen_conditions_and_layers) ... ok\ntest_joint_both_hooks_scope_cache_and_non_target (attention_relay_joint.tests.Tests.test_joint_both_hooks_scope_cache_and_non_target) ... ok\ntest_real_tiny_noop_and_native_hf (attention_relay_joint.tests.Tests.test_real_tiny_noop_and_native_hf) ... ok\ntest_reject_unapproved_conditions_padding_and_budget (attention_relay_joint.tests.Tests.test_reject_unapproved_conditions_padding_and_budget) ... ok\ntest_signed_interaction_and_cluster_bootstrap (attention_relay_joint.tests.Tests.test_signed_interaction_and_cluster_bootstrap) ... ok\ntest_composed_temporal_scope_and_cleanup (test_first_answer_attention.Tests.test_composed_temporal_scope_and_cleanup) ... ok\ntest_exact_five_conditions (test_first_answer_attention.Tests.test_exact_five_conditions) ... ok\ntest_first_metrics (test_first_answer_attention.Tests.test_first_metrics) ... ok\ntest_real_cpu_cache_and_observer (test_first_answer_attention.Tests.test_real_cpu_cache_and_observer) ... ok\ntest_wrapper_exception_cleanup (test_first_answer_attention.Tests.test_wrapper_exception_cleanup) ... ok\ntest_dynamic_mapping_and_no_cross_generation_cache (test_rq2_decode_visual.Tests.test_dynamic_mapping_and_no_cross_generation_cache) ... ok\ntest_eos_content_and_group_statistics (test_rq2_decode_visual.Tests.test_eos_content_and_group_statistics) ... ok\ntest_exception_cleanup_and_invalid_cache_step (test_rq2_decode_visual.Tests.test_exception_cleanup_and_invalid_cache_step) ... ok\ntest_fixed_two_layer_definition (test_rq2_decode_visual.Tests.test_fixed_two_layer_definition) ... ok\ntest_input_hash_selection_ignores_outputs (test_rq2_decode_visual.Tests.test_input_hash_selection_ignores_outputs) ... ok\ntest_non_target_prefill_queries_unchanged (test_rq2_decode_visual.Tests.test_non_target_prefill_queries_unchanged) ... ok\ntest_noop_all_logits_and_generation_exact (test_rq2_decode_visual.Tests.test_noop_all_logits_and_generation_exact) ... ok\ntest_true_incremental_masks_and_exact_prefill (test_rq2_decode_visual.Tests.test_true_incremental_masks_and_exact_prefill) ... ok\ntest_bootstrap_question_weighted_whole_images (test_rq2_source_knockout.Tests.test_bootstrap_question_weighted_whole_images) ... ok\ntest_hard_mask_only_target_legal_edges (test_rq2_source_knockout.Tests.test_hard_mask_only_target_legal_edges) ... ok\ntest_invalid_partition (test_rq2_source_knockout.Tests.test_invalid_partition) ... ok\ntest_metric_signed_loss_and_js (test_rq2_source_knockout.Tests.test_metric_signed_loss_and_js) ... ok\ntest_noop_scope_and_cleanup (test_rq2_source_knockout.Tests.test_noop_scope_and_cleanup) ... ok\ntest_partition_excludes_self (test_rq2_source_knockout.Tests.test_partition_excludes_self) ... ok\ntest_sample_and_group_assignment (test_rq2_source_knockout.Tests.test_sample_and_group_assignment) ... ok\n\n----------------------------------------------------------------------\nRan 28 tests in 2.114s\n\nOK\n"
+}
