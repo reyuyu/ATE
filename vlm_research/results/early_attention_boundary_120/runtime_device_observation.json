@@ -1,0 +1,9 @@
+{
+  "observation_source": "nvidia-smi --query-compute-apps=gpu_uuid,pid,process_name,used_gpu_memory --format=csv during Qwen formal generation",
+  "physical_gpu": 1,
+  "gpu_uuid": "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+  "pid": 2679682,
+  "process_name": "/data/lk/深度学习/.envs/ate-qwen3vl/bin/python",
+  "observed_memory_mib": 19402,
+  "interpretation": "The Qwen process was directly observed on physical GPU1. InternVL then ran sequentially with its own GPU1-only preflight and memory log."
+}
