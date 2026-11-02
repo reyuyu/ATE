@@ -1,0 +1,15 @@
+# Execution notes
+
+The user authorized exactly three new conditions (720 main generations). Five historical controls (1200 records) were audited and copied byte-for-byte, with provenance retained. No new token selection was performed.
+
+Execution source commit: 3992f022e2acbea38781bebfff95d3b08176f79a. Final CPU validation: 68 tests passed. Three fixed real-7B smoke questions passed, including 54 smoke generations. Every effective HF/native/no-op logit and old/new baseline logit remained strictly equal; every prohibited actual attention probability was exactly zero. No precision, data, threshold, layer set or token policy was changed.
+
+Only physical GPU1, UUID GPU-b08489af-0a8a-eb48-55ba-8346733af417, was exposed. It was idle at the recorded immediate preflight; GPU0 had become occupied before selection and was left untouched. One model replica generated conditions serially. The worker PID was 2929413; load, smoke and main collection took 389.4329 seconds. Peak allocated memory was 14264.381 MiB. The worker exited normally; GPU1 returned to 27 MiB and 0% use. See gpu_release.json for the timestamped snapshot.
+
+Before freezing the source or loading a GPU model, a CRLF formatting issue prevented the source commit. An incorrectly sequenced freeze invocation then rejected the uncommitted source as intended. Normalizing only CRLF to LF preserved the AST. The immutable JSON writer also rejected replacing an earlier passed CPU audit; that audit was archived under a separate name, and all 68 tests and the historical audit were rerun successfully. These packaging diagnostics and both earlier audit records are retained under pre_freeze* and failures/. No scientific CPU test assertion, numerical GPU gate, mask check, cache check or formal generation failed. The frozen execution source was never subsequently edited.
+
+The historical semantic module was imported verbatim from its referenced Git commit; its pre-existing trailing whitespace was preserved to retain exact source identity. New execution sources passed the Git whitespace check after LF normalization.
+
+All 720 new answers ended with EOS, with no empty answer, truncation or repetition marker. CPU analysis replayed 1920 checkpoints, nine paired comparisons, three predeclared four-condition interactions and actual connection budgets; it rechecked full model-file SHA256 hashes and exact CSV cells. An independent implementation regenerated all bootstrap draws and verified all intervals, harm/correction counts, budget ratios, frozen token sets and complete negative cases. The three PNG figures were visually inspected; matching PDF exports are included.
+
+The final editorial step adds interpretation and these notes only. Scientific CSV files, checkpoints, raw arrays, input manifests, validation records and execution sources remain unchanged. Raw first-token arrays stay in the server resource directory and are not included on GitHub. No additional experiment, physical image exit, KV pruning, router, kernel or cross-model work was started.

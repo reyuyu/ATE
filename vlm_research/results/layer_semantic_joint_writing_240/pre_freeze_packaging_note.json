@@ -1,0 +1,11 @@
+{
+  "issue": "CRLF on newly written analysis file failed Git whitespace check; premature freeze command then rejected uncommitted source",
+  "stage": "before any source freeze or GPU model load",
+  "only_change": "CRLF to LF, AST identical",
+  "changed": [
+    "analyze.py"
+  ],
+  "diagnostics_preserved": true,
+  "scientific_configuration_changed": false,
+  "cpu_rerun_note": "Immutable JSON writer rejected replacing the initial passed CPU audit after LF normalization; initial audit archived under a distinct name before rerun. No test assertion failed."
+}
