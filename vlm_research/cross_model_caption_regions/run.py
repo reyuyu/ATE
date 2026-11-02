@@ -121,7 +121,7 @@ def smoke(kind,model,processor,sample,fast,loader):
                 noop_all_step_logits_exact=True,checks=checks)
 
 
-@torch.inference_mode()
+@torch.no_grad()
 def worker(kind):
     protocol=verify(); inventory=preflight()
     assert os.environ.get('CUDA_VISIBLE_DEVICES')==UUID
