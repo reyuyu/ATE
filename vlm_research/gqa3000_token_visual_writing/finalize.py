@@ -74,10 +74,16 @@ def report():
         '本轮研究功能性接收Token稀疏，不涉及层×Token搜索、Router、Kernel、KV剪枝，也没有证明实际计算或时延节省。完成后停止，不追加实验。','']
     put(OUT/'report_zh.md','\n'.join(lines))
 
+    anomaly_lines=['','## 10. 输出异常汇总','','| 条件 | 非EOS | 空答案 | 截断 | 重复3gram |','|---|---:|---:|---:|---:|']
+    for c in CONDITIONS:
+        rr=item(summary,'all3000_descriptive',c)
+        anomaly_lines.append('| '+c+' | '+' | '.join(f"{number(rr,k):.0f}" for k in ['non_EOS_count_or_seed_mean','empty_count_or_seed_mean','truncated_count_or_seed_mean','repeated_trigram_count_or_seed_mean'])+' |')
+    with (OUT/'report_zh.md').open('a',encoding='utf-8',newline='\n') as f:f.write('\n'.join(anomaly_lines)+'\n')
+
 def complete():
     p=verify();assert_no_stop();assert read(OUT/'visual_layout_review.json')['passed'],'Visually inspect the actual exported main/six-task PDF and PNG first'
     for name in ['replay_validation.json','statistics_validation.json','image_swap_validation.json','figure_validation.json']:assert read(OUT/name)['passed']
-    for name,h in read(OUT/'postprocessing_freeze.json')['sources'].items():assert sha256(ROOT/name)==h
+    for name,h in read(OUT/'postprocessing_freeze_v2.json')['sources'].items():assert sha256(ROOT/name)==h
     for name,info in p['model_files'].items():assert sha256(name)==info['sha256']
     for name,h in read(OUT/'checkpoint_hashes.json').items():assert sha256(OUT/name)==h
     for name,h in read(OUT/'raw_logits_hashes.json').items():assert sha256(name)==h

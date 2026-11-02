@@ -69,7 +69,7 @@ def replay():
         c=read(OUT/f'shard{rank}/completion.json');assert c['passed'] and c['binding']==digest(p)
     samples=read(OUT/'sample_manifest.json')['samples'];index=read(OUT/'selection_index.json');gold=read(OUT/'gold_manifest.json');hashes=read(OUT/'input_hashes.json');shards=read(OUT/'shards.json')['image_assignments']
     tok=AutoTokenizer.from_pretrained(MODEL,local_files_only=True);N=len(samples);C=len(CONDITIONS)
-    accuracy=np.empty((N,C));nll=np.empty((N,C));ratio=np.empty((N,C));firstflip=np.empty((N,C));anomaly=np.zeros((C,4),dtype=int)
+    accuracy=np.empty((N,C));nll=np.empty((N,C));ratio=np.empty((N,C));firstflip=np.empty((N,C));anomaly=np.zeros((N,C,4),dtype=int)
     rowhash={};rawhash={};newcount=0;logical=0;imagehash={};total_bytes=0;csvparts=[];swaps={k for pair in read(OUT/'image_swap_manifest.json')['pairs'] for k in pair['sample_keys']}
     # Partition row tables by the already frozen task, keeping individual GitHub files <100MB.
     writers={};files={};failurefiles={};negativefiles={}
@@ -102,7 +102,7 @@ def replay():
             for j,c in enumerate(CONDITIONS):
                 uid=spec['aliases'][c];r=records[uid];g=r['generation'];tf=r['teacher_forced'];k=len(spec['writers'][c]);q=len(spec['question_positions']);R=len(spec['relay_positions'])
                 accuracy[i,j]=g['correct'];nll[i,j]=tf['nll'];ratio[i,j]=k/R;firstflip[i,j]=int(g['token_ids'][0]!=ag['token_ids'][0])
-                anomaly[j]+=[not g['eos'],g['empty'],g['truncated'],g['repeated_trigram']]
+                anomaly[i,j]=[not g['eos'],g['empty'],g['truncated'],g['repeated_trigram']]
                 budget=spec['budgets'][c.rsplit('-Q',1)[1]] if '-Q' in c else None
                 row=dict(question_id=s['question_id'],task=s['task'],image_sha256=s['image_sha256'],question=s['question'],gold=s['answer'],condition=c,
                     text=g['text'],prediction=g['prediction'],token_ids=json.dumps(g['token_ids']),correct=g['correct'],All_Writer_text=ag['text'],All_correct=ag['correct'],
@@ -149,6 +149,10 @@ def matrices():
 
 def statistics():
     torch.set_num_threads(4);p=verify();assert read(OUT/'replay_validation.json')['passed'];a,n,r,f=matrices();C=len(ANALYSIS_CONDITIONS);cols={c:i for i,c in enumerate(ANALYSIS_CONDITIONS)};ai=cols['All-Writer']
+    with np.load(OUT/'metrics.npz') as z:flags=z['anomalies'].astype(float)
+    flagsets=[flags]
+    for names in DERIVED.values():flagsets.append(flags[:,[cols[c] for c in names]].mean(1,keepdims=True))
+    flags=np.concatenate(flagsets,axis=1);assert flags.shape==(3000,C,4)
     samples=read(OUT/'sample_manifest.json')['samples'];confirm=set(read(OUT/'split_integrity.json')['confirmatory_keys'])
     populations={'all3000_descriptive':list(range(3000)),'image_disjoint_confirmatory':[i for i,s in enumerate(samples) if key(s) in confirm]}
     populations.update({f'task_{t}':[i for i,s in enumerate(samples) if s['task']==t] for t in TASKS})
@@ -169,6 +173,7 @@ def statistics():
                 gold_nll_nat_per_token=float(means[C+j]),gold_nll_ci_low=nllci[0],gold_nll_ci_high=nllci[1],delta_gold_nll=float(means[C+j]-means[C+ai]),delta_nll_ci_low=dnci[0],delta_nll_ci_high=dnci[1],
                 All_correct_to_condition_wrong_count_or_seed_mean=float((a[ix,ai]*(1-correct)).sum()),All_wrong_to_condition_correct_count_or_seed_mean=float(((1-a[ix,ai])*correct).sum()),
                 first_token_flip_count_or_seed_mean=float(f[ix,j].sum()),actual_R_budget_mean=float(r[ix,j].mean()),seed_average_within_question=c in DERIVED,
+                non_EOS_count_or_seed_mean=float(flags[ix,j,0].sum()),empty_count_or_seed_mean=float(flags[ix,j,1].sum()),truncated_count_or_seed_mean=float(flags[ix,j,2].sum()),repeated_trigram_count_or_seed_mean=float(flags[ix,j,3].sum()),
                 ci_role='Ordinary pointwise descriptive95%; primary decisions separately Bonferroni one-sided family')
             summary.append(row)
             if '-Q' in c or c in ['All-Writer','No-Writer']:budgetrows.append(row)
