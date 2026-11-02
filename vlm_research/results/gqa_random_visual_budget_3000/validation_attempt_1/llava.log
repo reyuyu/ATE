@@ -1,0 +1,23 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:04,  2.28s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:04<00:02,  2.45s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.26s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.29s/it]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/gqa-random-visual-budget/vlm_research/random_visual_budget/run.py", line 176, in <module>
+    try:worker(args.model)
+        ^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/gqa-random-visual-budget/vlm_research/random_visual_budget/run.py", line 113, in worker
+    validated=smoke(kind,model,processor,fast,loader,chosen,hist[chosen['question_id']])
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/gqa-random-visual-budget/vlm_research/random_visual_budget/run.py", line 60, in smoke
+    check_first(kind,first,history)
+  File "/data/lk/ATE-worktrees/gqa-random-visual-budget/vlm_research/random_visual_budget/run.py", line 44, in check_first
+    if expected is not None: assert tensor_hash(first)==expected, 'Historical first-logit hash mismatch; no tolerance relaxation'
+                                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Historical first-logit hash mismatch; no tolerance relaxation

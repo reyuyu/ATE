@@ -41,7 +41,8 @@ def load(kind):
 
 def check_first(kind, first, history, which='Full'):
     expected=history['full_logits_sha256'] if which=='Full' else history.get('only_logits_sha256')
-    if expected is not None: assert tensor_hash(first)==expected, 'Historical first-logit hash mismatch; no tolerance relaxation'
+    if expected is not None:
+        assert tensor_hash(first)==expected, f'Historical {kind} {which} first-logit hash mismatch; no tolerance relaxation'
     assert int(first.argmax())==history['Full' if which=='Full' else 'Only_Text'].get('changed_first_token',int(first.argmax()))
 
 

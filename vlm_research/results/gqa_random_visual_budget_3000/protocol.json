@@ -34,8 +34,8 @@
   "sources": {
     "vlm_research/random_visual_budget/__init__.py": "d2ee76644d9198ff7547b908b50bbf921aced29145c702c9567c38b01884ab07",
     "vlm_research/random_visual_budget/common.py": "fde5b1562e8a13790f2de8f71fd8112306eadba9a91c5339c95e9fab4ccdc521",
-    "vlm_research/random_visual_budget/engine.py": "1404d37b747a7e394d885b80425ec8d7cb1b5cb33831b9477583fa02e37531b6",
-    "vlm_research/random_visual_budget/run.py": "cfaf35fd369f0ce32f2ccad6581cb667ef3212b86d371718f2df3d50dfe67929",
+    "vlm_research/random_visual_budget/engine.py": "7154ecf92b52aba9041698ff7a51d3e2602d3d0aefdc1f3eac9ecf5d30c1396b",
+    "vlm_research/random_visual_budget/run.py": "807e7e57fe6ea94f1fbe71f9d9cfe32c2a32fbc2e9ba5940c483531f5ee16253",
     "vlm_research/random_visual_budget/tests.py": "6a99fe7c5a901212751485de4f855696c023f560244449f93bd26001c5345d78",
     "vlm_research/visual_pathways/sparse_accuracy.py": "4ee00023d78ad595ee25ea92c7528f4b1c1c207e517965b5362c3b7d9309cf2e",
     "vlm_research/visual_pathways/engine.py": "5c1aecaa1ab3df98d4e937c1dc343a484735b6f9c8026fb470534066018e2a42",
@@ -90,5 +90,7 @@
     "physical_gpu3": "llava",
     "forbidden_gpu": 1
   },
-  "no_acceleration_or_noninferiority_claim": true
+  "no_acceleration_or_noninferiority_claim": true,
+  "llava_logits_to_keep": 0,
+  "validation_correction": "Before ANY formal generation: preserve original LLaVA full-position LM-head projection (logits_to_keep=0); HF default1 failed historical exact logits. Qwen/InternVL retain1. No tolerance change."
 }

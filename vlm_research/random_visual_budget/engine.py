@@ -60,7 +60,8 @@ def generate(kind,model,tokenizer,inputs,layout,off=(),*,noop=False,native=False
         options=dict(past_key_values=cache,use_cache=True,do_sample=False,num_beams=1,
             max_new_tokens=limit,return_dict_in_generate=True,output_scores=True,
             output_attentions=kind=='llava' and not native,output_hidden_states=False)
-        if kind!='llava':options['logits_to_keep']=1
+        # Preserve each model's historical LM-head shape; FP16 GEMM shape matters.
+        options['logits_to_keep']=0 if kind=='llava' else 1
         if kind=='internvl':
             end=tokenizer.convert_tokens_to_ids(model.conv_template.sep.strip());eos=[end]
             output=lm.generate(**inputs,**options,eos_token_id=end,pad_token_id=end)
