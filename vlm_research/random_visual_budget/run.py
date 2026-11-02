@@ -97,7 +97,7 @@ def smoke(kind,model,processor,fast,loader,sample,history):
         hooks_clean=True,exception_cleanup=True,checks=checks,physical_gpu=MODELS[kind]['gpu'])
 
 
-@torch.inference_mode()
+@torch.no_grad()
 def worker(kind):
     folder=OUT/kind;folder.mkdir(exist_ok=True)
     lock=(folder/'worker.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
