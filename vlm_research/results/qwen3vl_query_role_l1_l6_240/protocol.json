@@ -1,0 +1,117 @@
+{
+  "title": "Qwen3-VL Query-Role L1-L6 / frozen 240",
+  "base_commit": "4272f244752f4abc15e75d57a14c37119bb2b840",
+  "llava_role_commit": "8d12f8c05f2b246d029ec4d9ffe45d1f857fa947",
+  "llava_ia_commit": "8019c6009bb1d8c9f2dc3ffd8c18bf4dfb8c1fd1",
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "model_path": "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "dtype": "bfloat16",
+  "attention": "eager",
+  "processor": "Unmodified pinned native processor, chat template, default image resolution; historical Qwen prompt",
+  "prompt_suffix": "\nAnswer using a single word or short phrase.",
+  "sample_count": 240,
+  "unique_images": 240,
+  "conditions": [
+    "Full",
+    "I-Bypass",
+    "R-Bypass",
+    "A-Bypass",
+    "I+A-Bypass"
+  ],
+  "target_layers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "expected_generations": 1200,
+  "max_new_tokens": 32,
+  "do_sample": false,
+  "num_beams": 1,
+  "use_cache": true,
+  "logits_to_keep": 1,
+  "gpu_uuid": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185",
+  "physical_gpu": 3,
+  "role_definition": {
+    "I": "Actual processor image-pad token positions, variable length",
+    "R": "Strictly after vision_end special token and strictly before original P-1, including post-image native template text",
+    "A": "Original prompt P-1 plus each actual incremental decode query including EOS prediction"
+  },
+  "intervention": "Only selected language self_attn.o_proj output rows zero, after projection; no compute skipping, no mask edits",
+  "preserved": [
+    "DeepStack",
+    "mRoPE",
+    "MLP",
+    "Residual",
+    "KV updates",
+    "native precision",
+    "native resolution"
+  ],
+  "smoke_keys": [
+    "QueryAttr__14165525",
+    "CompareAttr__03196142",
+    "CompareAttr__101038280"
+  ],
+  "smoke_selection": "Input-length shortest, median, longest; no prediction selection",
+  "no_op": "torch.equal for all returned valid per-step native logits with identical logits_to_keep=1; no tolerance",
+  "scorer": {
+    "path": "/data/lk/ATE-worktrees/first-answer-early-attention/vlm_research/paper_rq1/scorers.py",
+    "sha256": "081e409993a481a0b3c83e0cf6ae2d16768c10e1c95f602de72c4abe4f5c9ad8",
+    "rule": "decoded.strip().rstrip(\".\").lower() == gold.lower()"
+  },
+  "bootstrap": {
+    "seed": 20261103,
+    "repetitions": 20000,
+    "cluster": "image_sha256",
+    "paired": true,
+    "comparisons": [
+      [
+        "I-Bypass",
+        "Full"
+      ],
+      [
+        "R-Bypass",
+        "Full"
+      ],
+      [
+        "A-Bypass",
+        "Full"
+      ],
+      [
+        "I+A-Bypass",
+        "Full"
+      ],
+      [
+        "R-Bypass",
+        "I-Bypass"
+      ],
+      [
+        "R-Bypass",
+        "A-Bypass"
+      ]
+    ],
+    "exploratory": true,
+    "correction": "Also Bonferroni across six contrasts and IA interaction (7)"
+  },
+  "sources": {
+    "vlm_research/qwen3vl_early_windows/experiment.py": "ea65a64f5ac6842e6a821ae2d21222c211060bd4afa08dc2d26fbaf3581b1b9c",
+    "vlm_research/qwen3vl_query_role/__init__.py": "1028b7498e996fe8f83e55b7233d8577a228ef3316fe14943e0d7b8c2a2dbc12",
+    "vlm_research/qwen3vl_query_role/analyze.py": "37b70203e5fad71dc6a0c6e37d36cd93621e749757a257745c7145d87a3eaf64",
+    "vlm_research/qwen3vl_query_role/common.py": "0c3d5f2504425be5fd3f397f23838509472e3e50146672518b3260931278330e",
+    "vlm_research/qwen3vl_query_role/engine.py": "70bed98694c53d8ff8b02b13e75199b45447221401be521b355b9e742cbc2a70",
+    "vlm_research/qwen3vl_query_role/run.py": "eda454617250745dc22a8f146b5ca4846cc4ab3553076e03f97b04823958ba4a",
+    "vlm_research/qwen3vl_query_role/tests.py": "677f90d425d8f08288283681bf49a38ee8bed49f564dcc054a18c82a83856841",
+    "vlm_research/qwen3vl_smoke/common.py": "7d2832ea00133a8700366a9ba668473dc7febd391f64aabe807011990c709099"
+  },
+  "artifacts": {
+    "sample_manifest.json": "258c32d470270829e126ae9abf3a030dbc1485b2f329fdfc326f4d6e9b3e686c",
+    "qwen_input_manifest.json": "f6ae260675f550f692ccd7906cb8e0381337e8688018168d305e00c10cae242c",
+    "model_manifest.json": "5fa2414e6596fa188838506bc5e973542e9ba4db94c90cbe748c66b9686ef31c",
+    "environment.json": "6fd86f23d0aa145ead9e225a7741c144c8524ed7bf28af845fcb682c30304b0b",
+    "analysis_environment.json": "0f7ea3264671caf330d498cb41767a8944f72c902df28024808e93df69c85da6",
+    "llava_reference.csv": "f6b302a4435c3dd13873158918a647ff4d4ed7250f7f3fe9857313c4917545b6",
+    "llava_formal_reference.csv": "94f38b6c23e7ae1de0db1d512033dcfcb8d7e2c16960165a1165e663720b8a80"
+  }
+}

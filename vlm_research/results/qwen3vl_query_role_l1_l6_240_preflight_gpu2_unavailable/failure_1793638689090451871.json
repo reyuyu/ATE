@@ -1,0 +1,15 @@
+{
+  "action": "freeze",
+  "error": "Traceback (most recent call last):\n  File \"/home/likai/anaconda3/envs/AFAC/lib/python3.11/importlib/metadata/__init__.py\", line 563, in from_name\n    return next(cls.discover(name=name))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nStopIteration\n\nDuring handling of the above exception, another exception occurred:\n\nTraceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/qwen3vl-query-role-l1-l6-240/vlm_research/qwen3vl_query_role/run.py\", line 282, in main\n    {'freeze': freeze, 'cpu': cpu, 'execute': execute}[action]()\n  File \"/data/lk/ATE-worktrees/qwen3vl-query-role-l1-l6-240/vlm_research/qwen3vl_query_role/run.py\", line 80, in freeze\n    env = environment()\n          ^^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/qwen3vl-query-role-l1-l6-240/vlm_research/qwen3vl_query_role/run.py\", line 37, in environment\n    versions={p: importlib.metadata.version(p) for p in\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/qwen3vl-query-role-l1-l6-240/vlm_research/qwen3vl_query_role/run.py\", line 37, in <dictcomp>\n    versions={p: importlib.metadata.version(p) for p in\n                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/likai/anaconda3/envs/AFAC/lib/python3.11/importlib/metadata/__init__.py\", line 1009, in version\n    return distribution(distribution_name).version\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/likai/anaconda3/envs/AFAC/lib/python3.11/importlib/metadata/__init__.py\", line 982, in distribution\n    return Distribution.from_name(distribution_name)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/likai/anaconda3/envs/AFAC/lib/python3.11/importlib/metadata/__init__.py\", line 565, in from_name\n    raise PackageNotFoundError(name)\nimportlib.metadata.PackageNotFoundError: No package metadata was found for matplotlib\n",
+  "sources": {
+    "vlm_research/qwen3vl_early_windows/experiment.py": "ea65a64f5ac6842e6a821ae2d21222c211060bd4afa08dc2d26fbaf3581b1b9c",
+    "vlm_research/qwen3vl_query_role/__init__.py": "1028b7498e996fe8f83e55b7233d8577a228ef3316fe14943e0d7b8c2a2dbc12",
+    "vlm_research/qwen3vl_query_role/analyze.py": "d7cbbbac80e52bdf5afd18843ec8483f7e5385c4079110310955d4f276183566",
+    "vlm_research/qwen3vl_query_role/common.py": "ebce896a1ac136611b4393c8945e29117ca7aea18bf9ea82a880731ad06323e2",
+    "vlm_research/qwen3vl_query_role/engine.py": "70bed98694c53d8ff8b02b13e75199b45447221401be521b355b9e742cbc2a70",
+    "vlm_research/qwen3vl_query_role/run.py": "df2107f697f55c946797498ca7ac5c5290223374bdee86a3414e31998d2d8ba8",
+    "vlm_research/qwen3vl_query_role/tests.py": "677f90d425d8f08288283681bf49a38ee8bed49f564dcc054a18c82a83856841",
+    "vlm_research/qwen3vl_smoke/common.py": "7d2832ea00133a8700366a9ba668473dc7febd391f64aabe807011990c709099"
+  },
+  "pid": 2864565
+}
