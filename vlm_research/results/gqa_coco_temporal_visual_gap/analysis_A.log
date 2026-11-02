@@ -1,0 +1,24 @@
+Traceback (most recent call last):
+  File "<string>", line 1, in <module>
+  File "/data/lk/ATE-worktrees/gqa-coco-temporal-visual-gap/vlm_research/temporal_visual_gap_analysis.py", line 117, in collect_A
+    **value, median=float(np.median(array)), p5=float(np.percentile(array,5)),
+                                                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/numpy/lib/function_base.py", line 4283, in percentile
+    return _quantile_unchecked(
+           ^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/numpy/lib/function_base.py", line 4555, in _quantile_unchecked
+    return _ureduce(a,
+           ^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/numpy/lib/function_base.py", line 3823, in _ureduce
+    r = func(a, **kwargs)
+        ^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/numpy/lib/function_base.py", line 4722, in _quantile_ureduce_func
+    result = _quantile(arr,
+             ^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/numpy/lib/function_base.py", line 4841, in _quantile
+    result = _lerp(previous,
+             ^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/numpy/lib/function_base.py", line 4655, in _lerp
+    diff_b_a = subtract(b, a)
+               ^^^^^^^^^^^^^^
+TypeError: numpy boolean subtract, the `-` operator, is not supported, use the bitwise_xor, the `^` operator, or the logical_xor function instead.

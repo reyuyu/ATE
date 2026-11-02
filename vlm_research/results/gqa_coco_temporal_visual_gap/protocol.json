@@ -1,0 +1,189 @@
+{
+  "version": 1,
+  "branch": "codex/gqa-coco-temporal-visual-gap",
+  "source_commit": "b990e887dcedb4cb289604859f574966cbf4ee1f",
+  "sources": {
+    "benchmarks/dataset_registry.py": "20369ec1648e795958d7290934f4604fe8ed3b7874c8f27f8aa031d04bf024f5",
+    "benchmarks/smoke.py": "8f513bc47a2e7c4036d10fb8e5e30fd8e87ccbc2e9d799c93983965823e6b3fe",
+    "knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+    "paper_rq1/engine.py": "2c838844c0e7e9815662019498c9b577b8f6478898f591c9cf52cc4a2028eff9",
+    "paper_rq1/scorers.py": "081e409993a481a0b3c83e0cf6ae2d16768c10e1c95f602de72c4abe4f5c9ad8",
+    "paper_rq1_single_layer_gqa6/run.py": "d7b454377849a4c5b69d48174a0652dbd03afa416a6b5f140a37b697d2492e03",
+    "paper_rq1_token_role_decode/labels.py": "d6e5a533de20566fe65388333d47421d1413b348f44d23f48425e786780d2bde",
+    "paper_rq1_token_role_decode/protocol.py": "aced763458a80ebd51c23bf173446466833ab92a90260b787bcef01aeacf9855",
+    "rq2_decode_visual/engine.py": "3197d417d9c9f4ad5937f16bf6d8f0abfc5cdbe9b43b0219bdf3b9d4d82bf8e1",
+    "rq2_source_knockout/engine.py": "cc5361a8d0d4e538e0b59d4e731f02e867ce87ae808e696bb3fe96e482474500",
+    "rq2_visual_sufficiency/engine.py": "fafa015e9b47f1bcf65d86c48478d47dd7500ef647d81486985d478085a369ad",
+    "temporal_visual_gap/__init__.py": "4aaa5deb33c1aa17f9a7f9387a201a83d876550e0213bd9e571ab372b7218d0c",
+    "temporal_visual_gap/common.py": "e785280865e38b0b7f5c785535c340e2c62953fc5bf253d1e5097f8079f7a926",
+    "temporal_visual_gap/engine.py": "4e9b773f2c493b55faca2faf08837e5de2c8aefb01bbbe4d9336c4780eeb7ae4",
+    "temporal_visual_gap/run.py": "4ddd260ce7b6c9f85a38291d8ed6b28a3491ba9323138d231892c9287dfd3ace",
+    "temporal_visual_gap/tests.py": "7d8e70a9d94c5f470e1d4ff47f1b4f815f1a6ff690a3514cee59702ae2e2f561",
+    "vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d"
+  },
+  "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "model_files": {
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/added_tokens.json": {
+      "sha256": "a94c56096001713e3eb9a34b1a545a8c1d5e8034ed2fb81f897c8cb54b420121",
+      "bytes": 41,
+      "mtime_ns": 1793194086181998587
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/chat_template.json": {
+      "sha256": "854445c0a45532ecbee1ae9aa31d4be19644060a156f2c88456f50f584261543",
+      "bytes": 701,
+      "mtime_ns": 1793194086798017022
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/config.json": {
+      "sha256": "0bde54495c54bcc346064a0d314b010d1c4d3ca7f7e583b6f711949a35352c0f",
+      "bytes": 950,
+      "mtime_ns": 1793194089686103414
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/generation_config.json": {
+      "sha256": "3a6dc8c202be258023f58a03f804bdcacf138b8a2cc7492be2530e16945a0951",
+      "bytes": 141,
+      "mtime_ns": 1793194089290091572
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00001-of-00003.safetensors": {
+      "sha256": "c11dbf016ee7d35ee130c19b67e20eb04873996006f424b7bcbd453b6517ee66",
+      "bytes": 4992930200,
+      "mtime_ns": 1793199719115753829
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00002-of-00003.safetensors": {
+      "sha256": "46df6c6e5fad297fe7fbca4963dcf180cb1d0528cabc884d1f603311fed01328",
+      "bytes": 4957878440,
+      "mtime_ns": 1793199782813772811
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00003-of-00003.safetensors": {
+      "sha256": "4f06177c37ca13944e73b57dd6d051767b950dffc12400c700dfa2509c24c697",
+      "bytes": 4176137408,
+      "mtime_ns": 1793199778045624044
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model.safetensors.index.json": {
+      "sha256": "73af906b5ac12aea6eddf104d482d2a50bca30b20d61ee9f6c5269d3427a6991",
+      "bytes": 70128,
+      "mtime_ns": 1793194858551537899
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/preprocessor_config.json": {
+      "sha256": "a8d5e64ee5c07ff6d70142856d178ac39d0563da3612e32110fa824f5337b7a1",
+      "bytes": 505,
+      "mtime_ns": 1793194856691488340
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/processor_config.json": {
+      "sha256": "fef918d6ba333f72a066877965bc4a162308568ba62aa90c806caedf7b45d64e",
+      "bytes": 173,
+      "mtime_ns": 1793194854031417454
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/special_tokens_map.json": {
+      "sha256": "358c249e2fb29060c6b73157d428853b0c48710deffc8ee670ab1013880946c9",
+      "bytes": 552,
+      "mtime_ns": 1793194854963442292
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer.json": {
+      "sha256": "30e1294abd835edfebb24618fce6f47c21ffb2b2802520d150bdee0b808b47cb",
+      "bytes": 3619380,
+      "mtime_ns": 1793194860207582017
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer.model": {
+      "sha256": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+      "bytes": 499723,
+      "mtime_ns": 1793194861087605460
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer_config.json": {
+      "sha256": "79b7f1ebceddf7235f3791c387d781818b0c7e7cf868d0e4f71896a55b949833",
+      "bytes": 1451,
+      "mtime_ns": 1793194860479589263
+    }
+  },
+  "transformers_source": {
+    "/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py": "d313bd9b9565638f0780fbd8158ddf69ff77334b38462f50945efdd64140bbfb"
+  },
+  "scorer_source": {
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/bleu/bleu.py": "05b74a92b32e071eacfb954ef34328137cfd1b82c563572648633087def23776",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/bleu/bleu_scorer.py": "413ccfef71b88c5f11d25d05fdcf08625a1559338ffbb7c2787e800116eaecdd",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/cider/cider.py": "268b71cb096ccd10cf4a7cd49a9a72072001922f1876f4e88833e1eb4649cfcb",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/cider/cider_scorer.py": "299037838373391c3335e066c867ba2d6dd8617d2c8fb2c4193f32620a774adc",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/eval.py": "2d3a3bd8b72aefa9f9cfe24275dbecd4e9cff7ba9177cdd55f689625f372b193",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/example/coco_eval_example.py": "2caa3e15f00f248e99b45d5b4f23d3e0ce87f2b5da208ad82d024911ee28cbd9",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/meteor/meteor.py": "5ac9a2f6d7e1e04957dfa20774977fdb49c6b77a43c43d4f9eb8f215b1efd850",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/rouge/rouge.py": "24f1fd7a3b87e7d9c4fd5aada88c79f54a58d5d8d36c9382aaf7a72a91edfc74",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/get_stanford_models.py": "cb48112259a6aec54a2fab7c342689ec76815bee45ac2a03d0bf45ab3711cea3",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/spice.py": "4595b4c46894516ed1edd09d39ca02574fe0864ea10fa0b8e504b1593777b615",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/tokenizer/ptbtokenizer.py": "ded90551127b8a4bf683873432ccafa83330a9997f6d0b695cb71a618808b8c1",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/meteor/meteor-1.5.jar": "1e57b4c72c0830ebe68558f1c799a624e96cbc1b6045c9f6330e26dcff6eafc2",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/Meteor-1.5.jar": "014a3627d277a6f4ba5b44a20733f8dff28bbb428204c36abfda56565658ba09",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/SceneGraphParser-1.0.jar": "83a1b7c3f896dd135f9539ba41d65b155827dfc312893bfd5bb835c9f9ae310a",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/ejml-0.23.jar": "12d44e81fdd661ad2aac6384511facf3d8fa003c3ce8d9cec5f22827d1819a26",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/fst-2.47.jar": "8c871febc859cf72dbed1c6c1eebc5600c3d93c3e986feccf4623cc5086098cc",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/guava-19.0.jar": "58d4cc2e05ebb012bbac568b032f75623be1cb6fb096f3c60c72a86f7f057de4",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/hamcrest-core-1.3.jar": "66fdef91e9739348df7a096aa384a5685f4e875584cce89386a7a47251c4d8e9",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/jackson-core-2.5.3.jar": "c9a900c30c702d371be2d3714938dfa6de616599c8eb39f8e3cf7aedd62dfd32",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/javassist-3.19.0-GA.jar": "d19c1ef43ccd9cb1b39466bb2f1c8e45c2b6752f1e13a3dfb60096543d1791fa",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/json-simple-1.1.1.jar": "4e69696892b88b41c55d49ab2fdcc21eead92bf54acc588c0050596c3b75199c",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/junit-4.12.jar": "59721f0805e223d84b90677887d9ff567dc534d7c502ca903c0c2b17f05c116a",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/lmdbjni-0.4.6.jar": "f4e8c51eb4ef05abe57d2187e76f5c335e4ef16d8503329eb7dbc5ae7a90529c",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/lmdbjni-linux64-0.4.6.jar": "0b7773db873aaeec399a50113c0a4e121df0eff5e724607f7bc8171452107d94",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/lmdbjni-osx64-0.4.6.jar": "7d66778037b5689e7c6daf22a7140722f2085da4ae479bceda4a4be487d55460",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/lmdbjni-win64-0.4.6.jar": "969c6aa59893b82856a6832da640672b0f23f1d72f70d7b04296c71970d75b79",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/objenesis-2.4.jar": "090416e160a7e398f79e0149a7b05ef328b1843898a34e08c1cc170128d326d0",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/slf4j-api-1.7.12.jar": "0aee9a77a4940d72932b0d0d9557793f872e66a03f598e473f45e7efecdccf99",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/slf4j-simple-1.7.21.jar": "a20179cc3ded2d7e2f5def4ccb34b2d0836e2f8c9e79352a6babd6a6559cc8e0",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/stanford-corenlp-3.6.0-models.jar": "d285157bd7887ee3018094b5dbae092e49088b023361ccdb550ee1daf9b2c9bd",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/lib/stanford-corenlp-3.6.0.jar": "d341d5863276f55782c5ef73212222d6b3b48e02ae1951ab6de7618d28b12742",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/spice/spice-1.0.jar": "6c6a73ae6dd108667047c1818707590413934dcb9f1a62cef6469059b41b3d59",
+    "/data/lk/ATE-resources/paper_rq1/metric_deps/pycocoevalcap/tokenizer/stanford-corenlp-3.4.1.jar": "2fcb91bb7a111f93d71e264f4ee0e3afd19ba0dde6d21b38605088df9e940399",
+    "/data/lk/ATE-resources/paper_rq1/annotations/gqa_eval.py": "4433a8959d82c14b37ffc0c17c6f8d3e34ef692515b79939eb66220a4b74d130",
+    "/data/lk/ATE-resources/benchmarks/phase4_0/sources/llava/scripts/convert_gqa_for_eval.py": "016cea68c91cbc141c276e9e7568420e2f5db5aba90c4f594701663c72929932"
+  },
+  "bindings": {
+    "sample_manifest.json": "141ff8e67efbe204e075941a4770f92981bae39ba85a625eb3d5d5fd2600f78a",
+    "history_bindings.json": "e560c917dbfcee18bf0c8d7e80772b79a763e01efdd22b4ef05c2ae962ee0391",
+    "frozen_gates.json": "50e483196ac4ebf426ab449679fa60bfb0c853d8669956eeee55bcd5751910da",
+    "cpu_validation.json": "7c4be0c0b359d09fa16ff708407cd720385f7e7fd142e230880ac15ed89e41e5"
+  },
+  "gpu": {
+    "physical": 1,
+    "uuid": "GPU-b08489af-0a8a-eb48-55ba-8346733af417"
+  },
+  "dtype": "float16",
+  "attention": "eager",
+  "transformers": "4.49.0",
+  "generation": {
+    "COCO_max_new_tokens": 96,
+    "GQA_max_new_tokens": 32,
+    "do_sample": false,
+    "use_cache": true,
+    "eos": 2
+  },
+  "A": "Native trajectory. Each Full/OFF step deep-clones the identical unmodified pre-step native cache; discard OFF cache. t0 P-1 only, t>=1 real incremental query. All32 original Image keys pre-softmax -inf. Native cache never passed to forward directly.",
+  "B": {
+    "conditions": [
+      "Full",
+      "None",
+      "Periodic25",
+      "Periodic50",
+      "Random25-20261102",
+      "Random25-20261103",
+      "Random50-20261102",
+      "Random50-20261103"
+    ],
+    "prefill": "Entirely native including P-1",
+    "periodic": "t1 ON; Periodic25 (t-1)%4==0; Periodic50 (t-1)%2==0",
+    "random": "canonical dataset_registry.digest([temporal-image-gate-v1,imageSHA,t,seed]) uint256 < 2^256/4 or /2. No tokens/results used.",
+    "generations": 360,
+    "historical_reuse": [
+      "Full",
+      "None"
+    ]
+  },
+  "large_loss_nats": 0.5,
+  "concentration": "Positive-part LogP loss at non-EOS t>=1; top1 and ceil(20% positions); undefined if zero denominator. Report signed distribution separately.",
+  "labels": "Reuse frozen labels.align; map Ambiguous/Special/Unaligned to Unknown, preserve all subwords; word-primary first subword.",
+  "statistics": {
+    "seed": 20261102,
+    "bootstrap": 20000,
+    "unit": "Image SHA256 clusters; ordinary paired percentile 95% exploratory intervals",
+    "role_model": "Image fixed-effect OLS: role dummies + generation position + relative length + native logP + entropy; image-cluster bootstrap, descriptive only"
+  },
+  "limits": "Historical exploratory cohorts. Direct Image access only; indirect visual state remains. Hard Mask not physical deletion/speed. Single-step losses are not cumulative CIDEr loss. No extra conditions/models."
+}
