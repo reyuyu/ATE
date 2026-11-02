@@ -1,0 +1,508 @@
+{
+  "complete": true,
+  "task": "ChooseCat",
+  "question_id": "03678636",
+  "image_id": "2344660",
+  "image_sha256": "1b91be3f700ecd5cc4181900405a9eb1ee28b410a56c3ede6535f80c99b60ea2",
+  "gold": "drawer",
+  "sample_sha256": "811dce006e1e66a930a9d0ab4093ef946a35eb664cbcc82c2a5664173a1bc2c7",
+  "protocol_sha256": "327b34baa0672e9b599ae438e0465c7a9242ac1a1be9b15d7e5a561375580887",
+  "code_commit": "64fe96dccacba1a67183a3c448537a7c692ce665",
+  "physical_gpu": 3,
+  "conditions": {
+    "Full": {
+      "text": "Drawer",
+      "prediction": "drawer",
+      "token_ids": [
+        16322,
+        556,
+        2
+      ],
+      "correct": 1,
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "full_first_token": 16322,
+      "full_top1_logp": -0.6475106477737427,
+      "changed_first_token": 16322,
+      "off_full_top1_logp": -0.6475106477737427,
+      "signed_logp_loss": 0.0,
+      "absolute_logp_change": 0.0,
+      "top1_flip": 0,
+      "source": "strict_historical_reuse"
+    },
+    "Only Text": {
+      "text": "Chair",
+      "prediction": "chair",
+      "token_ids": [
+        24193,
+        2
+      ],
+      "correct": 0,
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "source": "strict_historical_reuse",
+      "full_first_token": 16322,
+      "changed_first_token": 24193,
+      "full_top1_logp": -0.6475106477737427,
+      "off_full_top1_logp": -0.7564777135848999,
+      "signed_logp_loss": 0.10896706581115723,
+      "absolute_logp_change": 0.10896706581115723,
+      "top1_flip": 1,
+      "first_token_source": "single-prefill replay; complete generation remains historical"
+    },
+    "p0.2_s20261102": {
+      "text": "Chair",
+      "prediction": "chair",
+      "token_ids": [
+        24193,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "fresh_cache": true,
+      "final_cache_length": 616,
+      "first_logits_sha256": "88cbfdb850e9ef96e0e2cd0bf28f1155c8f9c9234a38856cefcd2cae9b169004",
+      "all_step_logits_sha256": [
+        "88cbfdb850e9ef96e0e2cd0bf28f1155c8f9c9234a38856cefcd2cae9b169004",
+        "bd823539a834553fcaab3f23d86922fcb394ad9242b03350325a5dbc29806b01"
+      ],
+      "audit": {
+        "rows": 64,
+        "masked_rows": 52,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01525115966796875,
+        "row_sum_max_error": 0.00031870603561401367
+      },
+      "full_first_token": 16322,
+      "changed_first_token": 24193,
+      "full_top1_logp": -0.6475106477737427,
+      "off_full_top1_logp": -0.7496626973152161,
+      "signed_logp_loss": 0.10215204954147339,
+      "absolute_logp_change": 0.10215204954147339,
+      "top1_flip": 1,
+      "correct": 0,
+      "seconds": 0.3730135872028768,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261102": {
+      "text": "Chair",
+      "prediction": "chair",
+      "token_ids": [
+        24193,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "fresh_cache": true,
+      "final_cache_length": 616,
+      "first_logits_sha256": "b4a1a01b19525d0860956b99ee32e50c476d3c5a6f26a24be4ab3ccad2b08ea1",
+      "all_step_logits_sha256": [
+        "b4a1a01b19525d0860956b99ee32e50c476d3c5a6f26a24be4ab3ccad2b08ea1",
+        "2b3155352718cec7f39bc8b6d378d9cbbb761d5d95dc6adbe49b1958324bba10"
+      ],
+      "audit": {
+        "rows": 64,
+        "masked_rows": 38,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01505279541015625,
+        "row_sum_max_error": 0.0003330707550048828
+      },
+      "full_first_token": 16322,
+      "changed_first_token": 24193,
+      "full_top1_logp": -0.6475106477737427,
+      "off_full_top1_logp": -0.7343148589134216,
+      "signed_logp_loss": 0.08680421113967896,
+      "absolute_logp_change": 0.08680421113967896,
+      "top1_flip": 1,
+      "correct": 0,
+      "seconds": 0.3559854628983885,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261102": {
+      "text": "Drawer",
+      "prediction": "drawer",
+      "token_ids": [
+        16322,
+        556,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "a73bff2e0af0b811273c131674b0cf5c35fb02044ab41bd87a2b432d6b704b18",
+      "all_step_logits_sha256": [
+        "a73bff2e0af0b811273c131674b0cf5c35fb02044ab41bd87a2b432d6b704b18",
+        "781bf94bf79a7ef6a1750b35cbfa2a536cb06bca836e0e0e1f4596b17f93f0fb",
+        "b02577469df5135378516526e8d9c4dbce165829e10ed97de8cdfa725934d107"
+      ],
+      "audit": {
+        "rows": 96,
+        "masked_rows": 39,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01311492919921875,
+        "row_sum_max_error": 0.00037044286727905273
+      },
+      "full_first_token": 16322,
+      "changed_first_token": 16322,
+      "full_top1_logp": -0.6475106477737427,
+      "off_full_top1_logp": -0.6455166339874268,
+      "signed_logp_loss": -0.001994013786315918,
+      "absolute_logp_change": 0.001994013786315918,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.4432112439535558,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261102": {
+      "text": "Drawer",
+      "prediction": "drawer",
+      "token_ids": [
+        16322,
+        556,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "4f24bd02f1e3cfbbcc4a64e2635e933e6c3358d42d3582cf8e1ee1b7d916be50",
+      "all_step_logits_sha256": [
+        "4f24bd02f1e3cfbbcc4a64e2635e933e6c3358d42d3582cf8e1ee1b7d916be50",
+        "5f100d9571c2b0aa330a2e8dec40e8088c96ee35c85c898791700056545eed7e",
+        "4c6111732b3320ae4c667b6fbad8bef95e74149aa5149839f6a5c154e2e4937b"
+      ],
+      "audit": {
+        "rows": 96,
+        "masked_rows": 18,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01071929931640625,
+        "row_sum_max_error": 0.0003248453140258789
+      },
+      "full_first_token": 16322,
+      "changed_first_token": 16322,
+      "full_top1_logp": -0.6475106477737427,
+      "off_full_top1_logp": -0.6229879856109619,
+      "signed_logp_loss": -0.02452266216278076,
+      "absolute_logp_change": 0.02452266216278076,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.4182744128629565,
+      "source": "new_random_condition"
+    },
+    "p0.2_s20261103": {
+      "text": "Drawer",
+      "prediction": "drawer",
+      "token_ids": [
+        16322,
+        556,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "fb96fa7de2a23bd84a071d52fe2ad1e2208e97a0ce2dc7bf0c4610850ed73995",
+      "all_step_logits_sha256": [
+        "fb96fa7de2a23bd84a071d52fe2ad1e2208e97a0ce2dc7bf0c4610850ed73995",
+        "60c84e0e57aaf8d6a3deea29bb7c269e18e14ce21964e111731d2acf076073a5",
+        "298cc5ba1416a280799428aed54bf9839794783f76d38595b3de48d8bcc9df1a"
+      ],
+      "audit": {
+        "rows": 96,
+        "masked_rows": 78,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.015045166015625,
+        "row_sum_max_error": 0.0002961158752441406
+      },
+      "full_first_token": 16322,
+      "changed_first_token": 16322,
+      "full_top1_logp": -0.6475106477737427,
+      "off_full_top1_logp": -0.6468989253044128,
+      "signed_logp_loss": -0.000611722469329834,
+      "absolute_logp_change": 0.000611722469329834,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.4879897409118712,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261103": {
+      "text": "Drawer",
+      "prediction": "drawer",
+      "token_ids": [
+        16322,
+        556,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "f9c621bc5ce508f1f1b59b9fa085e443c5232aaca48f05807598c1624bb84ae3",
+      "all_step_logits_sha256": [
+        "f9c621bc5ce508f1f1b59b9fa085e443c5232aaca48f05807598c1624bb84ae3",
+        "8561f5145b2821bb254e47cba679684868e6622afad7c3d3108320cbf9dda70d",
+        "b70d144f23b44a6816768c97d5248d67dbe7859ba3ea59a38a381d89a4041497"
+      ],
+      "audit": {
+        "rows": 96,
+        "masked_rows": 57,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01467132568359375,
+        "row_sum_max_error": 0.0003579854965209961
+      },
+      "full_first_token": 16322,
+      "changed_first_token": 16322,
+      "full_top1_logp": -0.6475106477737427,
+      "off_full_top1_logp": -0.6123270392417908,
+      "signed_logp_loss": -0.035183608531951904,
+      "absolute_logp_change": 0.035183608531951904,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.4637783949729055,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261103": {
+      "text": "Drawer",
+      "prediction": "drawer",
+      "token_ids": [
+        16322,
+        556,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "a508d9b26231116e1c73ff71d74ac585f690f7a9cc16edd8e3bcdcac703f1437",
+      "all_step_logits_sha256": [
+        "a508d9b26231116e1c73ff71d74ac585f690f7a9cc16edd8e3bcdcac703f1437",
+        "4808e5a32d930d1ca3d1a1af4df3d53d789e0fdc7181b99df798bd4c1604a88b",
+        "201c14e0d947b6f36e320aa7f6050df453abf26a5054e6dd5da4b90702b5b58f"
+      ],
+      "audit": {
+        "rows": 96,
+        "masked_rows": 39,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01084136962890625,
+        "row_sum_max_error": 0.00029206275939941406
+      },
+      "full_first_token": 16322,
+      "changed_first_token": 16322,
+      "full_top1_logp": -0.6475106477737427,
+      "off_full_top1_logp": -0.592024564743042,
+      "signed_logp_loss": -0.055486083030700684,
+      "absolute_logp_change": 0.055486083030700684,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.44154541613534093,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261103": {
+      "text": "Drawer",
+      "prediction": "drawer",
+      "token_ids": [
+        16322,
+        556,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "ea4b33aaec2184effbd4da8be9107f827965638548f6bc7ce374936919131aeb",
+      "all_step_logits_sha256": [
+        "ea4b33aaec2184effbd4da8be9107f827965638548f6bc7ce374936919131aeb",
+        "eaa7a9638f623cae9ab6ff8e0a0aa97a05dc52958fedeabdb99966b0c2f9f57c",
+        "7a748f2af06c600719fb32473614b7c219a5dcde2af13b4c05c4d1769b1bfdc1"
+      ],
+      "audit": {
+        "rows": 96,
+        "masked_rows": 18,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.00909423828125,
+        "row_sum_max_error": 0.000347137451171875
+      },
+      "full_first_token": 16322,
+      "changed_first_token": 16322,
+      "full_top1_logp": -0.6475106477737427,
+      "off_full_top1_logp": -0.5952593088150024,
+      "signed_logp_loss": -0.052251338958740234,
+      "absolute_logp_change": 0.052251338958740234,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.4191106909420341,
+      "source": "new_random_condition"
+    },
+    "p0.2_s20261104": {
+      "text": "Chair",
+      "prediction": "chair",
+      "token_ids": [
+        24193,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "fresh_cache": true,
+      "final_cache_length": 616,
+      "first_logits_sha256": "b1ee36b9d9bb865783ad8a53376c09390b7808045cb43a2e4f74667827683fdd",
+      "all_step_logits_sha256": [
+        "b1ee36b9d9bb865783ad8a53376c09390b7808045cb43a2e4f74667827683fdd",
+        "31a63e6b2b32b17dfade63269fe5bba845525b53f3fb1a237dec6d3b0c7cb0c0"
+      ],
+      "audit": {
+        "rows": 64,
+        "masked_rows": 52,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01486968994140625,
+        "row_sum_max_error": 0.0003464221954345703
+      },
+      "full_first_token": 16322,
+      "changed_first_token": 24193,
+      "full_top1_logp": -0.6475106477737427,
+      "off_full_top1_logp": -0.739815890789032,
+      "signed_logp_loss": 0.0923052430152893,
+      "absolute_logp_change": 0.0923052430152893,
+      "top1_flip": 1,
+      "correct": 0,
+      "seconds": 0.37490463606081903,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261104": {
+      "text": "Chair",
+      "prediction": "chair",
+      "token_ids": [
+        24193,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "fresh_cache": true,
+      "final_cache_length": 616,
+      "first_logits_sha256": "728ad96e86ca9268cdbe6323b87c598bb42dcf8aacf65b11bf6e1be5cc722005",
+      "all_step_logits_sha256": [
+        "728ad96e86ca9268cdbe6323b87c598bb42dcf8aacf65b11bf6e1be5cc722005",
+        "0d856aa5ef75fe5c68a0d71aca57b8910efeb2dd0d13a3b2125943bebf2fa916"
+      ],
+      "audit": {
+        "rows": 64,
+        "masked_rows": 38,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0132293701171875,
+        "row_sum_max_error": 0.0003496408462524414
+      },
+      "full_first_token": 16322,
+      "changed_first_token": 24193,
+      "full_top1_logp": -0.6475106477737427,
+      "off_full_top1_logp": -0.7488648295402527,
+      "signed_logp_loss": 0.10135418176651001,
+      "absolute_logp_change": 0.10135418176651001,
+      "top1_flip": 1,
+      "correct": 0,
+      "seconds": 0.3603460779413581,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261104": {
+      "text": "Drawer",
+      "prediction": "drawer",
+      "token_ids": [
+        16322,
+        556,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "78944c106fc141279889256070ab1e66ac451a797a21ff8642273084495efa73",
+      "all_step_logits_sha256": [
+        "78944c106fc141279889256070ab1e66ac451a797a21ff8642273084495efa73",
+        "d31640e7fc93dec02e51785c0a0b4092514b337d69c24ff2a2dbb98df2fbb597",
+        "cbb08c0d33051dfcef379ffa0ec3e16691f689bb70a163f5ff161b28c6b228c9"
+      ],
+      "audit": {
+        "rows": 96,
+        "masked_rows": 39,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.00966644287109375,
+        "row_sum_max_error": 0.00034308433532714844
+      },
+      "full_first_token": 16322,
+      "changed_first_token": 16322,
+      "full_top1_logp": -0.6475106477737427,
+      "off_full_top1_logp": -0.6902436017990112,
+      "signed_logp_loss": 0.042732954025268555,
+      "absolute_logp_change": 0.042732954025268555,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.44184864195995033,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261104": {
+      "text": "Drawer",
+      "prediction": "drawer",
+      "token_ids": [
+        16322,
+        556,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "38cc0537471b8930cc4f70778ab098b77ae86e36d962ae513c537e4ca1cde099",
+      "all_step_logits_sha256": [
+        "38cc0537471b8930cc4f70778ab098b77ae86e36d962ae513c537e4ca1cde099",
+        "ee695760b26dddae1b03aa43fb3dddc4723428a4c3d18c7a4268238488bfe1c1",
+        "6c2895a8c6a1e88f123cc3d1c2c8bcfe18a06228c2bbfcdbad659386fa36ae25"
+      ],
+      "audit": {
+        "rows": 96,
+        "masked_rows": 18,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.009002685546875,
+        "row_sum_max_error": 0.00030028820037841797
+      },
+      "full_first_token": 16322,
+      "changed_first_token": 16322,
+      "full_top1_logp": -0.6475106477737427,
+      "off_full_top1_logp": -0.7025899887084961,
+      "signed_logp_loss": 0.05507934093475342,
+      "absolute_logp_change": 0.05507934093475342,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.41790672414936125,
+      "source": "new_random_condition"
+    }
+  },
+  "input_binding": "32ed8bfe81d6e20eaf579bd1e862af408cc7e8ba9dc5a1956ebddab63fbac90c",
+  "history_binding_sha256": "3754f5251b75f71799cc0db2b68c41496edcbef495bbb5a9207cb26605364292"
+}

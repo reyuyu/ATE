@@ -1,0 +1,94 @@
+{
+  "started_epoch": 1793612907.2039292,
+  "base_commit": "3132d923459a2ab80f38fb5e4108d6c27d3b9016",
+  "models": {
+    "qwen": {
+      "gpu": 0,
+      "layers": 36,
+      "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b"
+    },
+    "internvl": {
+      "gpu": 2,
+      "layers": 28,
+      "revision": "853e3a797a661694b1b8ece0cb72dc2b23e3dac9"
+    },
+    "llava": {
+      "gpu": 3,
+      "layers": 32,
+      "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9"
+    }
+  },
+  "seeds": [
+    20261102,
+    20261103,
+    20261104
+  ],
+  "budgets": [
+    0.0,
+    0.2,
+    0.4,
+    0.6,
+    0.8,
+    1.0
+  ],
+  "sources": {
+    "vlm_research/random_visual_budget/__init__.py": "d2ee76644d9198ff7547b908b50bbf921aced29145c702c9567c38b01884ab07",
+    "vlm_research/random_visual_budget/common.py": "fde5b1562e8a13790f2de8f71fd8112306eadba9a91c5339c95e9fab4ccdc521",
+    "vlm_research/random_visual_budget/engine.py": "1404d37b747a7e394d885b80425ec8d7cb1b5cb33831b9477583fa02e37531b6",
+    "vlm_research/random_visual_budget/run.py": "cfaf35fd369f0ce32f2ccad6581cb667ef3212b86d371718f2df3d50dfe67929",
+    "vlm_research/random_visual_budget/tests.py": "6a99fe7c5a901212751485de4f855696c023f560244449f93bd26001c5345d78",
+    "vlm_research/visual_pathways/sparse_accuracy.py": "4ee00023d78ad595ee25ea92c7528f4b1c1c207e517965b5362c3b7d9309cf2e",
+    "vlm_research/visual_pathways/engine.py": "5c1aecaa1ab3df98d4e937c1dc343a484735b6f9c8026fb470534066018e2a42",
+    "vlm_research/visual_pathways/scan.py": "661c17224139efb40ee7ccf40ee59e632991017963c9423e983e8cfd94ea0b71",
+    "vlm_research/visual_pathways/common.py": "24d13d6e00d413916db839ebe68bef0f9609668af64f3d7828c34ade28e3ba80",
+    "vlm_research/internvl3_smoke/__init__.py": "72c810f115f51ed920ce436ab697e84f4a2714fdf5e9231dfee4e03adfa48144",
+    "vlm_research/internvl3_smoke/common.py": "9f8b681c49f474a3505d751d6de02bc6cffe5c466dd198166d0850bd020332d5",
+    "vlm_research/internvl3_smoke/download.py": "2856bc72ce5c78c8923404aa6b6b33a4969443d54a23060c8c3505796e3c893f",
+    "vlm_research/internvl3_smoke/run.py": "f34e6f0f5ae8564759dda26d2d7b490db4824c170e6d0d221d1f3dd993323d17",
+    "vlm_research/internvl3_smoke/prepare.py": "acc206bf8b55f3dada940452012c1e9b8fcb9a83cccee4ff602008b0a312519d",
+    "vlm_research/internvl3_smoke/tests.py": "e124ca5673dae78dca7781f08af0bd5b6d01f45c8637012a79bfed693b2ffff5",
+    "vlm_research/internvl3_smoke/engine.py": "5c30032cdf739ad94b93c3bf3d15f972a7b95c5067f8a5411ebb00710a3e95e8",
+    "vlm_research/qwen3vl_keep_l26/run.py": "13524a91868117d2d78f15613dc83026e3d882ab5e2c4ad071252bc48221f6ed",
+    "vlm_research/qwen3vl_early_windows/experiment.py": "ea65a64f5ac6842e6a821ae2d21222c211060bd4afa08dc2d26fbaf3581b1b9c",
+    "vlm_research/vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d"
+  },
+  "history_source_sha256": "1ff2f6122153a4e836287214c6c83c9683a30e5b698bde1ccc4a30083a2a1a25",
+  "samples_sha256": "2e0f92e56f2a3f303471c387adda7f402d39f9f6173b532d6cdadce37d70dcf1",
+  "layer_sets_sha256": "f4b09fea25d2f05706cc6252b729a91882a11db0e79dd6ea4394a20653973f4e",
+  "bindings_sha256": {
+    "qwen": "3a85d522cd4a29be8c1e08be500425f0a7a1df7541687acafce08f0d30e95e31",
+    "internvl": "3a88d6f31ee7915c118821ec6942bc70d647ea45dbb7028f071959ff3d547f0d",
+    "llava": "944066694e745b17f12d0e0393f0443968b6c50b15ba6ec4f78c7e38818ce7e0"
+  },
+  "model_files_sha256": "cb27b31bc64b9c45d1d570ca9a2fc3807bf2bfaf3192b462deefb33c25fd232c",
+  "intervention": "Only original P-1 and every actual incremental Decode Query -> original Image Keys: additive -inf before native Softmax; all other Prefill Queries native",
+  "generation": {
+    "greedy": true,
+    "max_new_tokens": 32,
+    "use_cache": true,
+    "independent_cache": true,
+    "independent_actual_prefix": true
+  },
+  "qwen_deepstack": "Native",
+  "internvl": {
+    "max_num": 1,
+    "image_tokens": 256,
+    "logits_to_keep": 1
+  },
+  "scope": "3000 questions x 14 conditions x 3 models; only 12 random conditions are new complete generations per model",
+  "endpoints": "Reuse strictly bound historical complete generation; LLaVA Only Text numeric first-token metrics replay one prefill if not stored",
+  "bootstrap": {
+    "seed": 20261102,
+    "repetitions": 20000,
+    "cluster": "Image SHA256",
+    "estimator": "Question weighted; average the 3 seeds within the same question BEFORE image-cluster resampling",
+    "intervals": "Ordinary paired 95%; all comparisons exploratory"
+  },
+  "resources": {
+    "physical_gpu0": "qwen",
+    "physical_gpu2": "internvl",
+    "physical_gpu3": "llava",
+    "forbidden_gpu": 1
+  },
+  "no_acceleration_or_noninferiority_claim": true
+}

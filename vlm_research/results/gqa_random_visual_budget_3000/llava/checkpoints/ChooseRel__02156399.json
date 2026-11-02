@@ -1,0 +1,491 @@
+{
+  "complete": true,
+  "task": "ChooseRel",
+  "question_id": "02156399",
+  "image_id": "2406694",
+  "image_sha256": "aeb2803edc088c62a4f25205a7984472a245117c151711b3d17ebe81e71403cd",
+  "gold": "left",
+  "sample_sha256": "e1f676105bea9e239e98c2d250f7aebf8010724703a18dda3827006c64a83070",
+  "protocol_sha256": "327b34baa0672e9b599ae438e0465c7a9242ac1a1be9b15d7e5a561375580887",
+  "code_commit": "64fe96dccacba1a67183a3c448537a7c692ce665",
+  "physical_gpu": 3,
+  "conditions": {
+    "Full": {
+      "text": "Left",
+      "prediction": "left",
+      "token_ids": [
+        19941,
+        2
+      ],
+      "correct": 1,
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "full_first_token": 19941,
+      "full_top1_logp": -0.5836615562438965,
+      "changed_first_token": 19941,
+      "off_full_top1_logp": -0.5836615562438965,
+      "signed_logp_loss": 0.0,
+      "absolute_logp_change": 0.0,
+      "top1_flip": 0,
+      "source": "strict_historical_reuse"
+    },
+    "Only Text": {
+      "text": "Right",
+      "prediction": "right",
+      "token_ids": [
+        10428,
+        2
+      ],
+      "correct": 0,
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "source": "strict_historical_reuse",
+      "full_first_token": 19941,
+      "changed_first_token": 10428,
+      "full_top1_logp": -0.5836615562438965,
+      "off_full_top1_logp": -0.7417929768562317,
+      "signed_logp_loss": 0.1581314206123352,
+      "absolute_logp_change": 0.1581314206123352,
+      "top1_flip": 1,
+      "first_token_source": "single-prefill replay; complete generation remains historical"
+    },
+    "p0.2_s20261102": {
+      "text": "Right",
+      "prediction": "right",
+      "token_ids": [
+        10428,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "76c90105a321033ae0cee8d5798730f5ebaa6f58d4a134427d3ce67a5dd1edac",
+      "all_step_logits_sha256": [
+        "76c90105a321033ae0cee8d5798730f5ebaa6f58d4a134427d3ce67a5dd1edac",
+        "e2f3ef5e39b7a790f229909df04501fb0cb46026ee96b46f69fb93fa27283bff"
+      ],
+      "audit": {
+        "rows": 64,
+        "masked_rows": 52,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0196380615234375,
+        "row_sum_max_error": 0.0003286004066467285
+      },
+      "full_first_token": 19941,
+      "changed_first_token": 10428,
+      "full_top1_logp": -0.5836615562438965,
+      "off_full_top1_logp": -0.766661524772644,
+      "signed_logp_loss": 0.18299996852874756,
+      "absolute_logp_change": 0.18299996852874756,
+      "top1_flip": 1,
+      "correct": 0,
+      "seconds": 0.38345952006056905,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261102": {
+      "text": "Right",
+      "prediction": "right",
+      "token_ids": [
+        10428,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "2a67c00afa8fb8566c8804dc38ae57f6a106de71aa9768b6bd296b123e207c8d",
+      "all_step_logits_sha256": [
+        "2a67c00afa8fb8566c8804dc38ae57f6a106de71aa9768b6bd296b123e207c8d",
+        "38ae1d7120151d364739eb850bb37a3fc235c7a7f3f4bc3894f5b6ee0d10a316"
+      ],
+      "audit": {
+        "rows": 64,
+        "masked_rows": 38,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01360321044921875,
+        "row_sum_max_error": 0.00034427642822265625
+      },
+      "full_first_token": 19941,
+      "changed_first_token": 10428,
+      "full_top1_logp": -0.5836615562438965,
+      "off_full_top1_logp": -0.7501025199890137,
+      "signed_logp_loss": 0.1664409637451172,
+      "absolute_logp_change": 0.1664409637451172,
+      "top1_flip": 1,
+      "correct": 0,
+      "seconds": 0.3663716809824109,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261102": {
+      "text": "Left",
+      "prediction": "left",
+      "token_ids": [
+        19941,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "fb385dd072cc1cea28346a3749095760543ab9de6217baaee0cbef0a2d6feadb",
+      "all_step_logits_sha256": [
+        "fb385dd072cc1cea28346a3749095760543ab9de6217baaee0cbef0a2d6feadb",
+        "6bdcb47050fbaf589b33ef7db3aef93cbc83213b0b9008019679e4883cfb115b"
+      ],
+      "audit": {
+        "rows": 64,
+        "masked_rows": 26,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01323699951171875,
+        "row_sum_max_error": 0.0003160834312438965
+      },
+      "full_first_token": 19941,
+      "changed_first_token": 19941,
+      "full_top1_logp": -0.5836615562438965,
+      "off_full_top1_logp": -0.6044650673866272,
+      "signed_logp_loss": 0.020803511142730713,
+      "absolute_logp_change": 0.020803511142730713,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.3518879769835621,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261102": {
+      "text": "Left",
+      "prediction": "left",
+      "token_ids": [
+        19941,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "c60d0084b33f16a563ef899db8c07daeae5b3e35e22bf637d31792d5c96ed57f",
+      "all_step_logits_sha256": [
+        "c60d0084b33f16a563ef899db8c07daeae5b3e35e22bf637d31792d5c96ed57f",
+        "eabd343d2636dfa9bd742a654b0e867591b3032f8b36a2e2dfc2bb0e9e096706"
+      ],
+      "audit": {
+        "rows": 64,
+        "masked_rows": 12,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01323699951171875,
+        "row_sum_max_error": 0.00029075145721435547
+      },
+      "full_first_token": 19941,
+      "changed_first_token": 19941,
+      "full_top1_logp": -0.5836615562438965,
+      "off_full_top1_logp": -0.6046052575111389,
+      "signed_logp_loss": 0.02094370126724243,
+      "absolute_logp_change": 0.02094370126724243,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.3352623940445483,
+      "source": "new_random_condition"
+    },
+    "p0.2_s20261103": {
+      "text": "Right",
+      "prediction": "right",
+      "token_ids": [
+        10428,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "2f2766e2db6a9fd029b1ecb14eb3e874aa0403a5fe84a3c0fdc7ece56dbd202e",
+      "all_step_logits_sha256": [
+        "2f2766e2db6a9fd029b1ecb14eb3e874aa0403a5fe84a3c0fdc7ece56dbd202e",
+        "bf0f2bed0c4d0d18d545e69c2f6febf5d94eb2c82a2a9899c1373b8c3f79224f"
+      ],
+      "audit": {
+        "rows": 64,
+        "masked_rows": 52,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01360321044921875,
+        "row_sum_max_error": 0.00031387805938720703
+      },
+      "full_first_token": 19941,
+      "changed_first_token": 10428,
+      "full_top1_logp": -0.5836615562438965,
+      "off_full_top1_logp": -0.7499743700027466,
+      "signed_logp_loss": 0.1663128137588501,
+      "absolute_logp_change": 0.1663128137588501,
+      "top1_flip": 1,
+      "correct": 0,
+      "seconds": 0.38369945995509624,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261103": {
+      "text": "Right",
+      "prediction": "right",
+      "token_ids": [
+        10428,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "eaae220d27ffd0289e9bcad6d123b088bc5a0c590133db44c418b72dccf5c485",
+      "all_step_logits_sha256": [
+        "eaae220d27ffd0289e9bcad6d123b088bc5a0c590133db44c418b72dccf5c485",
+        "dc5c8ed73a472edcdb99c67623839b3c6d3503cede15d11afa6dc5270a5c7f45"
+      ],
+      "audit": {
+        "rows": 64,
+        "masked_rows": 38,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01360321044921875,
+        "row_sum_max_error": 0.00034427642822265625
+      },
+      "full_first_token": 19941,
+      "changed_first_token": 10428,
+      "full_top1_logp": -0.5836615562438965,
+      "off_full_top1_logp": -0.7255793213844299,
+      "signed_logp_loss": 0.14191776514053345,
+      "absolute_logp_change": 0.14191776514053345,
+      "top1_flip": 1,
+      "correct": 0,
+      "seconds": 0.3670831238850951,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261103": {
+      "text": "Left",
+      "prediction": "left",
+      "token_ids": [
+        19941,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "7d045831806c7729555aa8dc8e692ae5c933731699ea03dcbd857645958190c8",
+      "all_step_logits_sha256": [
+        "7d045831806c7729555aa8dc8e692ae5c933731699ea03dcbd857645958190c8",
+        "8dc33ee9fcc977531fd19cd71bd83df4f6e2292cf5ab9f5c25e304d6f9f1083f"
+      ],
+      "audit": {
+        "rows": 64,
+        "masked_rows": 26,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01323699951171875,
+        "row_sum_max_error": 0.00032263994216918945
+      },
+      "full_first_token": 19941,
+      "changed_first_token": 19941,
+      "full_top1_logp": -0.5836615562438965,
+      "off_full_top1_logp": -0.6259946227073669,
+      "signed_logp_loss": 0.04233306646347046,
+      "absolute_logp_change": 0.04233306646347046,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.35269652400165796,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261103": {
+      "text": "Left",
+      "prediction": "left",
+      "token_ids": [
+        19941,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "3ad3c5e4bdd4c94a96e012d40c5f557a2a86f7dc4efd290c0af48c0af5fe9e6a",
+      "all_step_logits_sha256": [
+        "3ad3c5e4bdd4c94a96e012d40c5f557a2a86f7dc4efd290c0af48c0af5fe9e6a",
+        "d387c30998fb71a8a27dd217b2dec54eb96382f5b5e4a2393389ec9b4b0e5d75"
+      ],
+      "audit": {
+        "rows": 64,
+        "masked_rows": 12,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01319122314453125,
+        "row_sum_max_error": 0.00031316280364990234
+      },
+      "full_first_token": 19941,
+      "changed_first_token": 19941,
+      "full_top1_logp": -0.5836615562438965,
+      "off_full_top1_logp": -0.5974634289741516,
+      "signed_logp_loss": 0.013801872730255127,
+      "absolute_logp_change": 0.013801872730255127,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.33537595998495817,
+      "source": "new_random_condition"
+    },
+    "p0.2_s20261104": {
+      "text": "Right",
+      "prediction": "right",
+      "token_ids": [
+        10428,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "3884ccccb0806792d5b9ce1ad18e9f15b5a8d677c8b903ee429f3463c13d1191",
+      "all_step_logits_sha256": [
+        "3884ccccb0806792d5b9ce1ad18e9f15b5a8d677c8b903ee429f3463c13d1191",
+        "27d666be421ecb8be34d30d3cdcc7abeb0e6a36ab295981c4450826333db4f71"
+      ],
+      "audit": {
+        "rows": 64,
+        "masked_rows": 52,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.020538330078125,
+        "row_sum_max_error": 0.00028228759765625
+      },
+      "full_first_token": 19941,
+      "changed_first_token": 10428,
+      "full_top1_logp": -0.5836615562438965,
+      "off_full_top1_logp": -0.7418339848518372,
+      "signed_logp_loss": 0.15817242860794067,
+      "absolute_logp_change": 0.15817242860794067,
+      "top1_flip": 1,
+      "correct": 0,
+      "seconds": 0.38383197598159313,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261104": {
+      "text": "Right",
+      "prediction": "right",
+      "token_ids": [
+        10428,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "0c940c213c19b17b85697d9b78d4e7d772f735445c31a37e0260cd074a768cd2",
+      "all_step_logits_sha256": [
+        "0c940c213c19b17b85697d9b78d4e7d772f735445c31a37e0260cd074a768cd2",
+        "d9a12740b3ed1728474757cbff5b5065e929e454cb801dd516ac56f1e8c582b8"
+      ],
+      "audit": {
+        "rows": 64,
+        "masked_rows": 38,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.018341064453125,
+        "row_sum_max_error": 0.0003228187561035156
+      },
+      "full_first_token": 19941,
+      "changed_first_token": 10428,
+      "full_top1_logp": -0.5836615562438965,
+      "off_full_top1_logp": -0.7336679100990295,
+      "signed_logp_loss": 0.15000635385513306,
+      "absolute_logp_change": 0.15000635385513306,
+      "top1_flip": 1,
+      "correct": 0,
+      "seconds": 0.366911610821262,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261104": {
+      "text": "Left",
+      "prediction": "left",
+      "token_ids": [
+        19941,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "8c378fec2bb755f69056607ce163f8f7626661a185014db0f6ed96382a8556ec",
+      "all_step_logits_sha256": [
+        "8c378fec2bb755f69056607ce163f8f7626661a185014db0f6ed96382a8556ec",
+        "e910acde52fb7c4d86cf6a46e336b065b6c186b8b90f0ef51a6990672a04b90d"
+      ],
+      "audit": {
+        "rows": 64,
+        "masked_rows": 26,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.016143798828125,
+        "row_sum_max_error": 0.0003216266632080078
+      },
+      "full_first_token": 19941,
+      "changed_first_token": 19941,
+      "full_top1_logp": -0.5836615562438965,
+      "off_full_top1_logp": -0.5904757380485535,
+      "signed_logp_loss": 0.006814181804656982,
+      "absolute_logp_change": 0.006814181804656982,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.3524304060265422,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261104": {
+      "text": "Left",
+      "prediction": "left",
+      "token_ids": [
+        19941,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 2,
+      "fresh_cache": true,
+      "final_cache_length": 617,
+      "first_logits_sha256": "31240307c34536cf60d96395b80bd3b0d846a4d26363d646d1d4027f5d59db74",
+      "all_step_logits_sha256": [
+        "31240307c34536cf60d96395b80bd3b0d846a4d26363d646d1d4027f5d59db74",
+        "146562b6b2634e25bbb9837ef3b144e107880180011e072193b1dda4b0d93053"
+      ],
+      "audit": {
+        "rows": 64,
+        "masked_rows": 12,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.012603759765625,
+        "row_sum_max_error": 0.0003217458724975586
+      },
+      "full_first_token": 19941,
+      "changed_first_token": 19941,
+      "full_top1_logp": -0.5836615562438965,
+      "off_full_top1_logp": -0.5905075073242188,
+      "signed_logp_loss": 0.006845951080322266,
+      "absolute_logp_change": 0.006845951080322266,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.33550367690622807,
+      "source": "new_random_condition"
+    }
+  },
+  "input_binding": "b1287e9fcaec5e63fd1f770d15b0f37b429fe84e2a53da395778ca70d30bf61b",
+  "history_binding_sha256": "bad02e2faf40ba2a92f60d9a1d0d2fd7bcf3dd0c0c07c23048bd7a0c4f171ec3"
+}

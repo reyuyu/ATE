@@ -1,0 +1,543 @@
+{
+  "complete": true,
+  "task": "ChooseCat",
+  "question_id": "16230044",
+  "image_id": "2390071",
+  "image_sha256": "5e04f30529704af7060240e937db278a274010710511cc1610487b0e71050718",
+  "gold": "broccoli",
+  "sample_sha256": "36db791c0507fdb9e8bc01e28a066a8d9811f2608df24888b2feaf0db53b699f",
+  "protocol_sha256": "327b34baa0672e9b599ae438e0465c7a9242ac1a1be9b15d7e5a561375580887",
+  "code_commit": "64fe96dccacba1a67183a3c448537a7c692ce665",
+  "physical_gpu": 3,
+  "conditions": {
+    "Full": {
+      "text": "Broccoli",
+      "prediction": "broccoli",
+      "token_ids": [
+        4358,
+        617,
+        5079,
+        2
+      ],
+      "correct": 1,
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "full_first_token": 4358,
+      "full_top1_logp": -0.008585565723478794,
+      "changed_first_token": 4358,
+      "off_full_top1_logp": -0.008585565723478794,
+      "signed_logp_loss": 0.0,
+      "absolute_logp_change": 0.0,
+      "top1_flip": 0,
+      "source": "strict_historical_reuse"
+    },
+    "Only Text": {
+      "text": "Broccoli",
+      "prediction": "broccoli",
+      "token_ids": [
+        4358,
+        617,
+        5079,
+        2
+      ],
+      "correct": 1,
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "source": "strict_historical_reuse",
+      "full_first_token": 4358,
+      "changed_first_token": 4358,
+      "full_top1_logp": -0.008585565723478794,
+      "off_full_top1_logp": -0.012082600966095924,
+      "signed_logp_loss": 0.0034970352426171303,
+      "absolute_logp_change": 0.0034970352426171303,
+      "top1_flip": 0,
+      "first_token_source": "single-prefill replay; complete generation remains historical"
+    },
+    "p0.2_s20261102": {
+      "text": "Broccoli",
+      "prediction": "broccoli",
+      "token_ids": [
+        4358,
+        617,
+        5079,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 611,
+      "first_logits_sha256": "f85ce4bb9295e9b85c2ff4f815388497ea72ae5944f2e793a96a89c07421539c",
+      "all_step_logits_sha256": [
+        "f85ce4bb9295e9b85c2ff4f815388497ea72ae5944f2e793a96a89c07421539c",
+        "ccf66ef8edb98ff4698793d2f1e2789b3446259f178071605e1016532b940f75",
+        "97546c5348362614f1792661f7f062beb5bb34527338d46751d9b3ef55ff2d2e",
+        "a41f77204841e276efb33979d005530a5189daa1c2ca0383f344eca8929558e9"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 104,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01861572265625,
+        "row_sum_max_error": 0.00035762786865234375
+      },
+      "full_first_token": 4358,
+      "changed_first_token": 4358,
+      "full_top1_logp": -0.008585565723478794,
+      "off_full_top1_logp": -0.012740996666252613,
+      "signed_logp_loss": 0.004155430942773819,
+      "absolute_logp_change": 0.004155430942773819,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.6180393521208316,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261102": {
+      "text": "Broccoli",
+      "prediction": "broccoli",
+      "token_ids": [
+        4358,
+        617,
+        5079,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 611,
+      "first_logits_sha256": "7f23eae5f95c13a348744d8d1320e49d6f341b3f6ecd1a00cb2d1f1af8b89073",
+      "all_step_logits_sha256": [
+        "7f23eae5f95c13a348744d8d1320e49d6f341b3f6ecd1a00cb2d1f1af8b89073",
+        "f4fed34ad98ad9f929cd2a22f97d5239810feb791edad931e526b07e22aeb16c",
+        "8c653ea66cd3c9be51e62f7c0f0a17afc40c512c7d72bc42b747fc21897c83a2",
+        "5a95c58caefc3ed3b4a4d2edbc9e6d971139a1b430004d6caaef5684c074459d"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 76,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.016693115234375,
+        "row_sum_max_error": 0.00035113096237182617
+      },
+      "full_first_token": 4358,
+      "changed_first_token": 4358,
+      "full_top1_logp": -0.008585565723478794,
+      "off_full_top1_logp": -0.012460830621421337,
+      "signed_logp_loss": 0.003875264897942543,
+      "absolute_logp_change": 0.003875264897942543,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5826898219529539,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261102": {
+      "text": "Broccoli",
+      "prediction": "broccoli",
+      "token_ids": [
+        4358,
+        617,
+        5079,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 611,
+      "first_logits_sha256": "7b95670892867c25877b1ef226b6a123d6ec293e1ad3854efeccce1262e4634f",
+      "all_step_logits_sha256": [
+        "7b95670892867c25877b1ef226b6a123d6ec293e1ad3854efeccce1262e4634f",
+        "3098fba0b288461b9448acce5c3747d18c53219fe3e8225a0d4ccf53219c4d26",
+        "f279cf1ad1bf0728c402b0d611b275348440608b896e61788f02f28d01354b0f",
+        "425525f63c4a63403b9a173a85f9912ac11f2b67361d3cb352f9976c3e292c0a"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 52,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01561737060546875,
+        "row_sum_max_error": 0.00030416250228881836
+      },
+      "full_first_token": 4358,
+      "changed_first_token": 4358,
+      "full_top1_logp": -0.008585565723478794,
+      "off_full_top1_logp": -0.0093839755281806,
+      "signed_logp_loss": 0.0007984098047018051,
+      "absolute_logp_change": 0.0007984098047018051,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.55191645398736,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261102": {
+      "text": "Broccoli",
+      "prediction": "broccoli",
+      "token_ids": [
+        4358,
+        617,
+        5079,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 611,
+      "first_logits_sha256": "5e12ab631a7a964f58f8fa77df8d3702ef94426ed415aa5afb300bf50a01c13a",
+      "all_step_logits_sha256": [
+        "5e12ab631a7a964f58f8fa77df8d3702ef94426ed415aa5afb300bf50a01c13a",
+        "fc8ac336f49e82fb6aaedb50f30fb9cb3454f02950859854444a155450d781a1",
+        "69099402ca110f18dbf3dc4f3cb373c7c45c0fdc2f72ebe1c7be669ef75d7b8b",
+        "741d399822c1d612da8ddbb9e120de20b75745092d91b278cbc585dd625a139f"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 24,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0153961181640625,
+        "row_sum_max_error": 0.00036072731018066406
+      },
+      "full_first_token": 4358,
+      "changed_first_token": 4358,
+      "full_top1_logp": -0.008585565723478794,
+      "off_full_top1_logp": -0.00848805345594883,
+      "signed_logp_loss": -9.751226752996445e-05,
+      "absolute_logp_change": 9.751226752996445e-05,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5189332501031458,
+      "source": "new_random_condition"
+    },
+    "p0.2_s20261103": {
+      "text": "Broccoli",
+      "prediction": "broccoli",
+      "token_ids": [
+        4358,
+        617,
+        5079,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 611,
+      "first_logits_sha256": "8bfe6ed77d2f1daca41dc0c36283dd1af93737fcb64cc7e0576c8d67c3f837bf",
+      "all_step_logits_sha256": [
+        "8bfe6ed77d2f1daca41dc0c36283dd1af93737fcb64cc7e0576c8d67c3f837bf",
+        "04f13ecb1a708476e8cd2e415a0d7a3b18fdb3f75485585bde7c7b44b5fbca92",
+        "eeb2760c010459fa7567fc18d5778cc34f6d3d755ce0fab1d35dfe75c9ceb097",
+        "93eadcd3a944a2e56b49d770dcb16dd32ec2b2aa1fe0ad6470784c95dc2a45ef"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 104,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.016693115234375,
+        "row_sum_max_error": 0.0003376007080078125
+      },
+      "full_first_token": 4358,
+      "changed_first_token": 4358,
+      "full_top1_logp": -0.008585565723478794,
+      "off_full_top1_logp": -0.011220922693610191,
+      "signed_logp_loss": 0.0026353569701313972,
+      "absolute_logp_change": 0.0026353569701313972,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.6146795409731567,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261103": {
+      "text": "Broccoli",
+      "prediction": "broccoli",
+      "token_ids": [
+        4358,
+        617,
+        5079,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 611,
+      "first_logits_sha256": "75a8e94bbb3a0a021692d4faece681326b8e5383ccd17fbeeff6384ee891df96",
+      "all_step_logits_sha256": [
+        "75a8e94bbb3a0a021692d4faece681326b8e5383ccd17fbeeff6384ee891df96",
+        "2e975dc643983ae8a46c4f211e4535c78e33222abdd27e20d8cfdb3657a22041",
+        "b1c176dc73f48422324ab1bea41b5b72981770a8c661b1f775337af3a4dd11ed",
+        "210c92d2a7037116fec7679112a937a96788d10691eb5f059a67c1da8279dfc7"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 76,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.016693115234375,
+        "row_sum_max_error": 0.00030416250228881836
+      },
+      "full_first_token": 4358,
+      "changed_first_token": 4358,
+      "full_top1_logp": -0.008585565723478794,
+      "off_full_top1_logp": -0.008408619090914726,
+      "signed_logp_loss": -0.00017694663256406784,
+      "absolute_logp_change": 0.00017694663256406784,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.58141780202277,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261103": {
+      "text": "Broccoli",
+      "prediction": "broccoli",
+      "token_ids": [
+        4358,
+        617,
+        5079,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 611,
+      "first_logits_sha256": "44c1bca5a4faa12012d426e35213774b268f37c2b22e59ac109141adb90da815",
+      "all_step_logits_sha256": [
+        "44c1bca5a4faa12012d426e35213774b268f37c2b22e59ac109141adb90da815",
+        "71fc5946d6ea2746aaca47848cba42222dc80317effbf9afbc2b43b02ac9c995",
+        "8855dd2c65e12441431fd2408c7a9edb6153ef1b429b9577669439fd5576d686",
+        "771a8b44cb5909f4dba75532c8c63a6f4c2c6250a71ca7bace62e15c521c8c15"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 52,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.015716552734375,
+        "row_sum_max_error": 0.0003355741500854492
+      },
+      "full_first_token": 4358,
+      "changed_first_token": 4358,
+      "full_top1_logp": -0.008585565723478794,
+      "off_full_top1_logp": -0.007223915308713913,
+      "signed_logp_loss": -0.0013616504147648811,
+      "absolute_logp_change": 0.0013616504147648811,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5521780529525131,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261103": {
+      "text": "Broccoli",
+      "prediction": "broccoli",
+      "token_ids": [
+        4358,
+        617,
+        5079,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 611,
+      "first_logits_sha256": "8bdd4972bb806347992e2b0137e00f70f0faefb41746ad268d29b90bd8a859fb",
+      "all_step_logits_sha256": [
+        "8bdd4972bb806347992e2b0137e00f70f0faefb41746ad268d29b90bd8a859fb",
+        "89b34be8edd02008fd89e6a6963436722d8696ef573d48e14d3a522f427b3e08",
+        "2dbe5b9cc7d2ed0f11f4c2e492e12c85b09918d8f5c0d88403e0dae74aec8739",
+        "b3b763aecbe55e6067e8693895e6340750c6dcf9f7860347daad9dd01fbf82e8"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 24,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0151519775390625,
+        "row_sum_max_error": 0.00033593177795410156
+      },
+      "full_first_token": 4358,
+      "changed_first_token": 4358,
+      "full_top1_logp": -0.008585565723478794,
+      "off_full_top1_logp": -0.0076191299594938755,
+      "signed_logp_loss": -0.0009664357639849186,
+      "absolute_logp_change": 0.0009664357639849186,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5197433109860867,
+      "source": "new_random_condition"
+    },
+    "p0.2_s20261104": {
+      "text": "Broccoli",
+      "prediction": "broccoli",
+      "token_ids": [
+        4358,
+        617,
+        5079,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 611,
+      "first_logits_sha256": "228db92de2856422cb7a7fe40e4a79af8288b346f90f140b3021e6da668a3a42",
+      "all_step_logits_sha256": [
+        "228db92de2856422cb7a7fe40e4a79af8288b346f90f140b3021e6da668a3a42",
+        "76737c98be0ad9cfabff06d8d139049eab03f26e611904572081cbca2b48ec9e",
+        "d7aeaf1a641dda522ada93dc0ffae44cd56eaa7f34f8ce0bf842536b16a57c9d",
+        "9bbf240723681f68ec508cfacb3a4ddf7aeba7f57185ee5af1068e381390aa40"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 104,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.02618408203125,
+        "row_sum_max_error": 0.00031745433807373047
+      },
+      "full_first_token": 4358,
+      "changed_first_token": 4358,
+      "full_top1_logp": -0.008585565723478794,
+      "off_full_top1_logp": -0.012000152841210365,
+      "signed_logp_loss": 0.003414587117731571,
+      "absolute_logp_change": 0.003414587117731571,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.6150143120903522,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261104": {
+      "text": "Broccoli",
+      "prediction": "broccoli",
+      "token_ids": [
+        4358,
+        617,
+        5079,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 611,
+      "first_logits_sha256": "c6e2db9ca8ce736cf1114fd3774002a58dcc16e4f73b30a1d2fbb7cda9205a5c",
+      "all_step_logits_sha256": [
+        "c6e2db9ca8ce736cf1114fd3774002a58dcc16e4f73b30a1d2fbb7cda9205a5c",
+        "717d8c5fb6a7fe28f3bbae2f0f1a90c8c26cfe954ef680b16a88d233c655f752",
+        "9490cc9cc86cc45b07020d97776ed97740e823de1cab6b66edc67dd219dbeaf9",
+        "51f6f159c38ab1458e7b78df83f73a63a876b4b3a48189d9dcafe81013661dec"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 76,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0231170654296875,
+        "row_sum_max_error": 0.00035387277603149414
+      },
+      "full_first_token": 4358,
+      "changed_first_token": 4358,
+      "full_top1_logp": -0.008585565723478794,
+      "off_full_top1_logp": -0.011366610415279865,
+      "signed_logp_loss": 0.002781044691801071,
+      "absolute_logp_change": 0.002781044691801071,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5806761928834021,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261104": {
+      "text": "Broccoli",
+      "prediction": "broccoli",
+      "token_ids": [
+        4358,
+        617,
+        5079,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 611,
+      "first_logits_sha256": "86e38436e5433dcd3e16441116f05253292c7263e98fa69b23584e8d6b4484c9",
+      "all_step_logits_sha256": [
+        "86e38436e5433dcd3e16441116f05253292c7263e98fa69b23584e8d6b4484c9",
+        "58b6753298187a12e3d4ebb34fd85312a59adc64eff4c09c8c0ed8eb84e6b685",
+        "ab5034a498bdf9da8ad42cb2fa3ac047cff79cb7ede0dcdaeb571093d581fcd9",
+        "700ecf3c1f71eaaec29dc12db84c0730cada1128925ddedac97a4bbc9b3dd7db"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 52,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.017364501953125,
+        "row_sum_max_error": 0.00034999847412109375
+      },
+      "full_first_token": 4358,
+      "changed_first_token": 4358,
+      "full_top1_logp": -0.008585565723478794,
+      "off_full_top1_logp": -0.010362040251493454,
+      "signed_logp_loss": 0.0017764745280146599,
+      "absolute_logp_change": 0.0017764745280146599,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5545694758184254,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261104": {
+      "text": "Broccoli",
+      "prediction": "broccoli",
+      "token_ids": [
+        4358,
+        617,
+        5079,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 611,
+      "first_logits_sha256": "1fa446e8381a41bca2b4d9b4673418c65b8a1ca44bc906a49a5e923a7b137814",
+      "all_step_logits_sha256": [
+        "1fa446e8381a41bca2b4d9b4673418c65b8a1ca44bc906a49a5e923a7b137814",
+        "ff8cc6cda97c99e636a434009cc491d93e6a96c1311eee26b19de8072f82b311",
+        "c566159b19a9a7c4a8d6a7be61d474f490d71785ed8ee037a6ce1c3ad1d9edde",
+        "97239e645188f95c84b1bffbacd97ea744bb8fe08f9d9fd95b79968782b103bf"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 24,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0153350830078125,
+        "row_sum_max_error": 0.00029659271240234375
+      },
+      "full_first_token": 4358,
+      "changed_first_token": 4358,
+      "full_top1_logp": -0.008585565723478794,
+      "off_full_top1_logp": -0.008211541920900345,
+      "signed_logp_loss": -0.00037402380257844925,
+      "absolute_logp_change": 0.00037402380257844925,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5194278699345887,
+      "source": "new_random_condition"
+    }
+  },
+  "input_binding": "f4f726b78c3882ceb7fc04037d692973bb33f9979eadca86794add6c13bacb77",
+  "history_binding_sha256": "32903da8c913afb3bbbfb2929632879ba56942d3a39ab5feadc00668321483fa"
+}

@@ -1,0 +1,543 @@
+{
+  "complete": true,
+  "task": "ChooseCat",
+  "question_id": "02142769",
+  "image_id": "2317347",
+  "image_sha256": "1f4bde96df47db3d693f94e137cbf151fbcf69a0bdc6324862d51f3cae19d28b",
+  "gold": "pineapple",
+  "sample_sha256": "6fa8bd41a5c160db397b4b57ec8fde548888e4d7f39e2efc4d743514b3da1fe0",
+  "protocol_sha256": "327b34baa0672e9b599ae438e0465c7a9242ac1a1be9b15d7e5a561375580887",
+  "code_commit": "64fe96dccacba1a67183a3c448537a7c692ce665",
+  "physical_gpu": 3,
+  "conditions": {
+    "Full": {
+      "text": "Pineapple",
+      "prediction": "pineapple",
+      "token_ids": [
+        349,
+        457,
+        11548,
+        2
+      ],
+      "correct": 1,
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "full_first_token": 349,
+      "full_top1_logp": -0.0034429102670401335,
+      "changed_first_token": 349,
+      "off_full_top1_logp": -0.0034429102670401335,
+      "signed_logp_loss": 0.0,
+      "absolute_logp_change": 0.0,
+      "top1_flip": 0,
+      "source": "strict_historical_reuse"
+    },
+    "Only Text": {
+      "text": "Pineapple",
+      "prediction": "pineapple",
+      "token_ids": [
+        349,
+        457,
+        11548,
+        2
+      ],
+      "correct": 1,
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "source": "strict_historical_reuse",
+      "full_first_token": 349,
+      "changed_first_token": 349,
+      "full_top1_logp": -0.0034429102670401335,
+      "off_full_top1_logp": -0.0021059971768409014,
+      "signed_logp_loss": -0.001336913090199232,
+      "absolute_logp_change": 0.001336913090199232,
+      "top1_flip": 0,
+      "first_token_source": "single-prefill replay; complete generation remains historical"
+    },
+    "p0.2_s20261102": {
+      "text": "Pineapple",
+      "prediction": "pineapple",
+      "token_ids": [
+        349,
+        457,
+        11548,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 622,
+      "first_logits_sha256": "8d9f2787f04bd15ac96efc683888bc477166f730d2fcebefa48da5e614c13447",
+      "all_step_logits_sha256": [
+        "8d9f2787f04bd15ac96efc683888bc477166f730d2fcebefa48da5e614c13447",
+        "3c549cfddec8cc9f9475bd50bd82b05e4a4fe5e71c89bd0df7ffa6fcfc10d12b",
+        "da65ddca227a7a78e25f341dd0807b6b3f2975f17b07e7dd80c761bb233455e5",
+        "a9cd35950501d7851ac6546df89adf5fdfa2677e88a0121075584265c7b8cd08"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 104,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0179290771484375,
+        "row_sum_max_error": 0.0003209114074707031
+      },
+      "full_first_token": 349,
+      "changed_first_token": 349,
+      "full_top1_logp": -0.0034429102670401335,
+      "off_full_top1_logp": -0.0022806129418313503,
+      "signed_logp_loss": -0.0011622973252087831,
+      "absolute_logp_change": 0.0011622973252087831,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.6075687890406698,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261102": {
+      "text": "Pineapple",
+      "prediction": "pineapple",
+      "token_ids": [
+        349,
+        457,
+        11548,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 622,
+      "first_logits_sha256": "47c5cb04afc6477ecb024f724648c21721b56a2034df8b115271ff13fd5ded87",
+      "all_step_logits_sha256": [
+        "47c5cb04afc6477ecb024f724648c21721b56a2034df8b115271ff13fd5ded87",
+        "b8a8f4cc0546b3c902c9c3a504c67448c760973f3a4213c1a4619d1f6496eb1b",
+        "71b70fe1a279ff1f9f3cd7cfaf2ea17485171d7355b22c93b974878a12ace533",
+        "85fad215d182b4f559510dd74d5c7e9370555253654e7da61bd1330624366d13"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 76,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01424407958984375,
+        "row_sum_max_error": 0.0003389120101928711
+      },
+      "full_first_token": 349,
+      "changed_first_token": 349,
+      "full_top1_logp": -0.0034429102670401335,
+      "off_full_top1_logp": -0.002435338916257024,
+      "signed_logp_loss": -0.0010075713507831097,
+      "absolute_logp_change": 0.0010075713507831097,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5708350418135524,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261102": {
+      "text": "Pineapple",
+      "prediction": "pineapple",
+      "token_ids": [
+        349,
+        457,
+        11548,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 622,
+      "first_logits_sha256": "308772fab8b3001c60469a4c0de30d7cfd3cc1b533e6d6d053a168d220b11f45",
+      "all_step_logits_sha256": [
+        "308772fab8b3001c60469a4c0de30d7cfd3cc1b533e6d6d053a168d220b11f45",
+        "05efe143560f55afd74297f735790ba023243872e1925e68fd57ef4974ee8963",
+        "dcb3bc02ac2fe35d4550f88ba1a16cb9009ae8411a09d5dde8e8b87d011dc885",
+        "e10eb43925a74ae9a6d8cb599b55df5fb97df8cd0ca78ca6db20a797b3419f35"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 52,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01105499267578125,
+        "row_sum_max_error": 0.00032782554626464844
+      },
+      "full_first_token": 349,
+      "changed_first_token": 349,
+      "full_top1_logp": -0.0034429102670401335,
+      "off_full_top1_logp": -0.00294263893738389,
+      "signed_logp_loss": -0.0005002713296562433,
+      "absolute_logp_change": 0.0005002713296562433,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5460282149724662,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261102": {
+      "text": "Pineapple",
+      "prediction": "pineapple",
+      "token_ids": [
+        349,
+        457,
+        11548,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 622,
+      "first_logits_sha256": "36372cb388b12fb47a3328c3b8a981808225f653ad19734319594c3092c2a328",
+      "all_step_logits_sha256": [
+        "36372cb388b12fb47a3328c3b8a981808225f653ad19734319594c3092c2a328",
+        "b20b0a827c59d5b06375bd1568f61f68314fa0700f22c895d5839f47e41b4d15",
+        "1b4ffe6952bd71cbd8e8de8dda877122fbc06574220d49b6e661fb425b699a2d",
+        "f0726369a90668a1f84c68ac143bc259e86adf582e81a8d126b4488bfcb23309"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 24,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.007724761962890625,
+        "row_sum_max_error": 0.00033020973205566406
+      },
+      "full_first_token": 349,
+      "changed_first_token": 349,
+      "full_top1_logp": -0.0034429102670401335,
+      "off_full_top1_logp": -0.003133151913061738,
+      "signed_logp_loss": -0.00030975835397839546,
+      "absolute_logp_change": 0.00030975835397839546,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5105703149456531,
+      "source": "new_random_condition"
+    },
+    "p0.2_s20261103": {
+      "text": "Pineapple",
+      "prediction": "pineapple",
+      "token_ids": [
+        349,
+        457,
+        11548,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 622,
+      "first_logits_sha256": "57c14a229c4d3db002886f1885053143be19e22862750c0565ba46671b54ec10",
+      "all_step_logits_sha256": [
+        "57c14a229c4d3db002886f1885053143be19e22862750c0565ba46671b54ec10",
+        "15e97f4e0056c02b068dbfd795d638692245bec8b05d7444b1a0e54a2470af9e",
+        "376bebfc0b704593993e60c845887d1ea8f532e7fe743b1b3afcf97d4a80525a",
+        "01266c0c019e3aeac937fb181cfb93ced5973c2ea7c522af9aaa7454ce297276"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 104,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01288604736328125,
+        "row_sum_max_error": 0.00035768747329711914
+      },
+      "full_first_token": 349,
+      "changed_first_token": 349,
+      "full_top1_logp": -0.0034429102670401335,
+      "off_full_top1_logp": -0.002054605633020401,
+      "signed_logp_loss": -0.0013883046340197325,
+      "absolute_logp_change": 0.0013883046340197325,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.6086327249649912,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261103": {
+      "text": "Pineapple",
+      "prediction": "pineapple",
+      "token_ids": [
+        349,
+        457,
+        11548,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 622,
+      "first_logits_sha256": "5b477e88fe440ded8db0c50f12a950ab8efdce4bad7e09f700658e1c8ab724c3",
+      "all_step_logits_sha256": [
+        "5b477e88fe440ded8db0c50f12a950ab8efdce4bad7e09f700658e1c8ab724c3",
+        "9ee4e0fdb4672b7a5f677db4538664654b2a1e075fe0e4d1307cf76569196828",
+        "0c7c44560b1e7d663500b3e294c2435431f94f491fc96f1695bb8ac129644b7c",
+        "c9bcca6ecc041c322abade16c04d9b797dd10abd75d7e50321502c96fe1d84ff"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 76,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01233673095703125,
+        "row_sum_max_error": 0.00031948089599609375
+      },
+      "full_first_token": 349,
+      "changed_first_token": 349,
+      "full_top1_logp": -0.0034429102670401335,
+      "off_full_top1_logp": -0.0021648798137903214,
+      "signed_logp_loss": -0.0012780304532498121,
+      "absolute_logp_change": 0.0012780304532498121,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.572726507904008,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261103": {
+      "text": "Pineapple",
+      "prediction": "pineapple",
+      "token_ids": [
+        349,
+        457,
+        11548,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 622,
+      "first_logits_sha256": "f61dbf5501e4265380fc96b2fe3dab973a56fedb8ab2291a95339d53901489cd",
+      "all_step_logits_sha256": [
+        "f61dbf5501e4265380fc96b2fe3dab973a56fedb8ab2291a95339d53901489cd",
+        "fffdd42cb8a9112fb25264cc2c6d3ec6ce396095f1449fe63286d8b01c2201d1",
+        "c4a98ecae62d43d08aedd967b7135657eced398eae61713ce0690e48b85d6ac9",
+        "110b80b65797c4fec48af91daed89d1aa90cc493af72aca9a730c2fd1b4bd193"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 52,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.00797271728515625,
+        "row_sum_max_error": 0.0003314018249511719
+      },
+      "full_first_token": 349,
+      "changed_first_token": 349,
+      "full_top1_logp": -0.0034429102670401335,
+      "off_full_top1_logp": -0.0022545652464032173,
+      "signed_logp_loss": -0.0011883450206369162,
+      "absolute_logp_change": 0.0011883450206369162,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5446374388411641,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261103": {
+      "text": "Pineapple",
+      "prediction": "pineapple",
+      "token_ids": [
+        349,
+        457,
+        11548,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 622,
+      "first_logits_sha256": "f69e648408ea1205bd82cb6701a2053df7ca35cdf18553fea07626218475be30",
+      "all_step_logits_sha256": [
+        "f69e648408ea1205bd82cb6701a2053df7ca35cdf18553fea07626218475be30",
+        "87afdee9187341a57c479c5bd82bddbf704949f1b4238c651e073fcec45be2ac",
+        "a664406e031e47458ebe64b977759a6bf3b3a6a9d6ca4d38b242977e2d798f45",
+        "4e07ce98539dd7fb23cf874241a2f532fa67657c5eb9a89ec2824ff0e17e0efb"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 24,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.007781982421875,
+        "row_sum_max_error": 0.0003421306610107422
+      },
+      "full_first_token": 349,
+      "changed_first_token": 349,
+      "full_top1_logp": -0.0034429102670401335,
+      "off_full_top1_logp": -0.002602525521069765,
+      "signed_logp_loss": -0.0008403847459703684,
+      "absolute_logp_change": 0.0008403847459703684,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5124295419082046,
+      "source": "new_random_condition"
+    },
+    "p0.2_s20261104": {
+      "text": "Pineapple",
+      "prediction": "pineapple",
+      "token_ids": [
+        349,
+        457,
+        11548,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 622,
+      "first_logits_sha256": "33008546820a0cf6ead7b16baa1137eb9e49d0ce5f4a71b0822091b13c8e5abd",
+      "all_step_logits_sha256": [
+        "33008546820a0cf6ead7b16baa1137eb9e49d0ce5f4a71b0822091b13c8e5abd",
+        "83406534209a9296f01db46853a32bb342947a1d14782558b2230d3b03090eba",
+        "7c3904855b49241080c93b66f8fa5d70699262f37b07f9a4b155569030bf69ec",
+        "7488fca5caa7c5eb7f86839fbc9d01faf0fc0c20e708541f0074d51c3ceeac6e"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 104,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0160369873046875,
+        "row_sum_max_error": 0.00036704540252685547
+      },
+      "full_first_token": 349,
+      "changed_first_token": 349,
+      "full_top1_logp": -0.0034429102670401335,
+      "off_full_top1_logp": -0.002217455068603158,
+      "signed_logp_loss": -0.0012254551984369755,
+      "absolute_logp_change": 0.0012254551984369755,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.6072840481065214,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261104": {
+      "text": "Pineapple",
+      "prediction": "pineapple",
+      "token_ids": [
+        349,
+        457,
+        11548,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 622,
+      "first_logits_sha256": "2bd3e6b4943df770df5eed64e53d73cf73d7263a5671d3abef3d4d44e4c1a95c",
+      "all_step_logits_sha256": [
+        "2bd3e6b4943df770df5eed64e53d73cf73d7263a5671d3abef3d4d44e4c1a95c",
+        "3412fd3316b24bbf30bbf936a7f458fba0575cd2870fc345ea229a0d6c1bf162",
+        "f3b339046e5bf6db2b58f89304c768f1357210cb6b5dd1b3fee623a0bd993127",
+        "75b6df8ea54b28f4ef97ccad38a2db172d09510e47de18192b017a1f109b848e"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 76,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.00952911376953125,
+        "row_sum_max_error": 0.000347137451171875
+      },
+      "full_first_token": 349,
+      "changed_first_token": 349,
+      "full_top1_logp": -0.0034429102670401335,
+      "off_full_top1_logp": -0.002779789036139846,
+      "signed_logp_loss": -0.0006631212309002876,
+      "absolute_logp_change": 0.0006631212309002876,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5743854830507189,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261104": {
+      "text": "Pineapple",
+      "prediction": "pineapple",
+      "token_ids": [
+        349,
+        457,
+        11548,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 622,
+      "first_logits_sha256": "b806de41b15a86509587ccd287d534479a484519a1ed84562ada3c98b25ec5b1",
+      "all_step_logits_sha256": [
+        "b806de41b15a86509587ccd287d534479a484519a1ed84562ada3c98b25ec5b1",
+        "9125c4b8a26b457c5bb8ceaa35069b49c27b3fb602c5bb607eb3c65697bac0e7",
+        "7528d8af7d35c18310d1ce3d0adf4f4da73139b89276b62805ae9957a15f5cb0",
+        "75b7dbefc7e344ecd2d28b6996fd2c9b9d8d94525f6989def23f0f5bb086daae"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 52,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.00946807861328125,
+        "row_sum_max_error": 0.00035953521728515625
+      },
+      "full_first_token": 349,
+      "changed_first_token": 349,
+      "full_top1_logp": -0.0034429102670401335,
+      "off_full_top1_logp": -0.0034602549858391285,
+      "signed_logp_loss": 1.7344718798995018e-05,
+      "absolute_logp_change": 1.7344718798995018e-05,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.544196804985404,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261104": {
+      "text": "Pineapple",
+      "prediction": "pineapple",
+      "token_ids": [
+        349,
+        457,
+        11548,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 622,
+      "first_logits_sha256": "96310ec4d4ef0ad307bf90fe7269deb8fb9fe6dfb16ce1cd890ed13c9c313025",
+      "all_step_logits_sha256": [
+        "96310ec4d4ef0ad307bf90fe7269deb8fb9fe6dfb16ce1cd890ed13c9c313025",
+        "a97a0eb616e342c37c42e66b1b923e96d3e4c02abe8d12fecc1fb7c0cc244ddb",
+        "5933c2240dab6a7d7d91b912034ce71413cc164405cce3db41380739e451c391",
+        "d7c3e248bebfbea80c06becb66d7b610e0b4d9e67fb5f525eb1e186d32f208c8"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 24,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.007450103759765625,
+        "row_sum_max_error": 0.0003197193145751953
+      },
+      "full_first_token": 349,
+      "changed_first_token": 349,
+      "full_top1_logp": -0.0034429102670401335,
+      "off_full_top1_logp": -0.004593653604388237,
+      "signed_logp_loss": 0.0011507433373481035,
+      "absolute_logp_change": 0.0011507433373481035,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5129388310015202,
+      "source": "new_random_condition"
+    }
+  },
+  "input_binding": "5101dbc74eed4c8b2458b2ed85ce9102758e326528a6232aefffea7005f1bc67",
+  "history_binding_sha256": "18973823c3661339e8f6cc2e5e4905cda0ab3a18240fe61426506390cfacb8bd"
+}

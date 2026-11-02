@@ -1,0 +1,543 @@
+{
+  "complete": true,
+  "task": "ChooseCat",
+  "question_id": "05479916",
+  "image_id": "2359471",
+  "image_sha256": "f75e7aa917ec7b4f97cb578d7ef650c3b4e24b307c1588de03745a42d53a1f3e",
+  "gold": "zebra",
+  "sample_sha256": "031327458432adc3897a7857dd819760fa7fdc39f6d623bb68c5a59e25f8e54a",
+  "protocol_sha256": "327b34baa0672e9b599ae438e0465c7a9242ac1a1be9b15d7e5a561375580887",
+  "code_commit": "64fe96dccacba1a67183a3c448537a7c692ce665",
+  "physical_gpu": 3,
+  "conditions": {
+    "Full": {
+      "text": "Zebra",
+      "prediction": "zebra",
+      "token_ids": [
+        796,
+        774,
+        336,
+        2
+      ],
+      "correct": 1,
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "full_first_token": 796,
+      "full_top1_logp": -0.031875114887952805,
+      "changed_first_token": 796,
+      "off_full_top1_logp": -0.031875114887952805,
+      "signed_logp_loss": 0.0,
+      "absolute_logp_change": 0.0,
+      "top1_flip": 0,
+      "source": "strict_historical_reuse"
+    },
+    "Only Text": {
+      "text": "Zebra",
+      "prediction": "zebra",
+      "token_ids": [
+        796,
+        774,
+        336,
+        2
+      ],
+      "correct": 1,
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "source": "strict_historical_reuse",
+      "full_first_token": 796,
+      "changed_first_token": 796,
+      "full_top1_logp": -0.031875114887952805,
+      "off_full_top1_logp": -0.01017750147730112,
+      "signed_logp_loss": -0.021697613410651684,
+      "absolute_logp_change": 0.021697613410651684,
+      "top1_flip": 0,
+      "first_token_source": "single-prefill replay; complete generation remains historical"
+    },
+    "p0.2_s20261102": {
+      "text": "Zebra",
+      "prediction": "zebra",
+      "token_ids": [
+        796,
+        774,
+        336,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 621,
+      "first_logits_sha256": "9135d119058d2d27b0838fb1cd734022d9d093ab76ba0d29b8ae8a11bf2ca4e9",
+      "all_step_logits_sha256": [
+        "9135d119058d2d27b0838fb1cd734022d9d093ab76ba0d29b8ae8a11bf2ca4e9",
+        "2d0d5c5a5777181a42fc7463705734ab2dfe9a7184fb0c938c4d7f4c49ff1031",
+        "dfa73026af4f15768c4402a45518f5f15537b78542b9d10a5cb2f25f351f0374",
+        "c43acc8999218c49f7ca2502687d33941ed74d821dd5e99fdee7782b95db1f94"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 104,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0230255126953125,
+        "row_sum_max_error": 0.00033611059188842773
+      },
+      "full_first_token": 796,
+      "changed_first_token": 796,
+      "full_top1_logp": -0.031875114887952805,
+      "off_full_top1_logp": -0.015221389010548592,
+      "signed_logp_loss": -0.016653725877404213,
+      "absolute_logp_change": 0.016653725877404213,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.6055723810568452,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261102": {
+      "text": "Zebra",
+      "prediction": "zebra",
+      "token_ids": [
+        796,
+        774,
+        336,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 621,
+      "first_logits_sha256": "5bfa3f3391beeddf687ae1e5c2b643be4605fef6b5f78fb35d27eeadf07387e4",
+      "all_step_logits_sha256": [
+        "5bfa3f3391beeddf687ae1e5c2b643be4605fef6b5f78fb35d27eeadf07387e4",
+        "44f1161a2c967c6746ca3c0310dec9f2fb6ae41b4ed8bf082628a10b39e86780",
+        "443f6abbc1a569f4986839ca8ae1cfab77d66f2ff7ac65fc98e7fe52c7e7664f",
+        "2e6e416e13e69ce4f37c7a6d7500da24787ac5f5fe56c53ff5d18ec2a24f79a3"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 76,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0160980224609375,
+        "row_sum_max_error": 0.0003306865692138672
+      },
+      "full_first_token": 796,
+      "changed_first_token": 796,
+      "full_top1_logp": -0.031875114887952805,
+      "off_full_top1_logp": -0.011021922342479229,
+      "signed_logp_loss": -0.020853192545473576,
+      "absolute_logp_change": 0.020853192545473576,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5694157681427896,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261102": {
+      "text": "Zebra",
+      "prediction": "zebra",
+      "token_ids": [
+        796,
+        774,
+        336,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 621,
+      "first_logits_sha256": "67579f0bc22d3f3748ec8c2e7600e134ab713f4f4f2345017eb3ec09ee1897e1",
+      "all_step_logits_sha256": [
+        "67579f0bc22d3f3748ec8c2e7600e134ab713f4f4f2345017eb3ec09ee1897e1",
+        "dd4814f082bc18e3d1e3cb9baea9fbd3037bacacb6a2845f3956dedf3447c3f5",
+        "07748440ab6291fb4364aa8c652f21efab3a9a012e477612033d25866c999653",
+        "2f214ecc8100ffda55c9f10b358a4a7d4a4c7be3215fa00a2534aa41eaf77b9f"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 52,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0160980224609375,
+        "row_sum_max_error": 0.0003285408020019531
+      },
+      "full_first_token": 796,
+      "changed_first_token": 796,
+      "full_top1_logp": -0.031875114887952805,
+      "off_full_top1_logp": -0.027546396479010582,
+      "signed_logp_loss": -0.004328718408942223,
+      "absolute_logp_change": 0.004328718408942223,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.540396706899628,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261102": {
+      "text": "Zebra",
+      "prediction": "zebra",
+      "token_ids": [
+        796,
+        774,
+        336,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 621,
+      "first_logits_sha256": "d30f0a28ca2a3b24d8128c562cfb202e90592567c84ba315036cc067c8fce2a1",
+      "all_step_logits_sha256": [
+        "d30f0a28ca2a3b24d8128c562cfb202e90592567c84ba315036cc067c8fce2a1",
+        "f79947cb4d307fc1e7f1f2cb50f5f84be644932cdfe9b13a71cf2533ad86fff4",
+        "cc8bf7ae4310d9b3bc32aa4c1ff4086591205f4ec1263a1d5bb39380b277bfe5",
+        "e04ab19e440ed577c8f9995def917a95afc58872c773f302c207894dac10ce36"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 24,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.00859832763671875,
+        "row_sum_max_error": 0.00030690431594848633
+      },
+      "full_first_token": 796,
+      "changed_first_token": 796,
+      "full_top1_logp": -0.031875114887952805,
+      "off_full_top1_logp": -0.0241934135556221,
+      "signed_logp_loss": -0.007681701332330704,
+      "absolute_logp_change": 0.007681701332330704,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5068961719516665,
+      "source": "new_random_condition"
+    },
+    "p0.2_s20261103": {
+      "text": "Zebra",
+      "prediction": "zebra",
+      "token_ids": [
+        796,
+        774,
+        336,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 621,
+      "first_logits_sha256": "40f737a82242713132541c2bbc3aab34ee5e3687d81e79b4490cfb2fe395c837",
+      "all_step_logits_sha256": [
+        "40f737a82242713132541c2bbc3aab34ee5e3687d81e79b4490cfb2fe395c837",
+        "b5b41ee8660b0b23c691134209400b75addcd03bbeebc477e9fc74edf3036db2",
+        "c24862ed68b8000f75adce75fa4a9e327b3fbc78d6998f2cc56823b4c697ac3a",
+        "efae699380f4e924c25854727f5de22df1c9dcae7c6bbef18190fe2d3855c6d1"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 104,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0160980224609375,
+        "row_sum_max_error": 0.00036716461181640625
+      },
+      "full_first_token": 796,
+      "changed_first_token": 796,
+      "full_top1_logp": -0.031875114887952805,
+      "off_full_top1_logp": -0.013007551431655884,
+      "signed_logp_loss": -0.01886756345629692,
+      "absolute_logp_change": 0.01886756345629692,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.6037203769665211,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261103": {
+      "text": "Zebra",
+      "prediction": "zebra",
+      "token_ids": [
+        796,
+        774,
+        336,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 621,
+      "first_logits_sha256": "0df2c6a0d200e9b19895755c897f1694fb47b3c9be174ef99a36b0f5922f1a22",
+      "all_step_logits_sha256": [
+        "0df2c6a0d200e9b19895755c897f1694fb47b3c9be174ef99a36b0f5922f1a22",
+        "8fc1c229b68f460a14b00a8bdd3e736ec6d82cc0fe642433455e68b97968d00d",
+        "91679621acc7ac7817cece086f9ca5128d95c1e82e9b70ff3bf3aa568d2f29d6",
+        "cbdac0d12eb7ec1fd573647cd7027149bb322c379cd467e9eb4738be292a2ca5"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 76,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0160980224609375,
+        "row_sum_max_error": 0.00034099817276000977
+      },
+      "full_first_token": 796,
+      "changed_first_token": 796,
+      "full_top1_logp": -0.031875114887952805,
+      "off_full_top1_logp": -0.010482490994036198,
+      "signed_logp_loss": -0.021392623893916607,
+      "absolute_logp_change": 0.021392623893916607,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5687728461343795,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261103": {
+      "text": "Zebra",
+      "prediction": "zebra",
+      "token_ids": [
+        796,
+        774,
+        336,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 621,
+      "first_logits_sha256": "39feac83b89794cfdec0ec087d41973fd1caed4165c3bfe05b759cf0d7cd32d9",
+      "all_step_logits_sha256": [
+        "39feac83b89794cfdec0ec087d41973fd1caed4165c3bfe05b759cf0d7cd32d9",
+        "e1b2fc1965011ff5b3c92fd5916af50062255b6619dec3a3f82f912377af978f",
+        "c72556747a8ca555c16fe54aed85d92421089f8931de79095b09c4dea163491c",
+        "3ebb0ae1ff7cdef4b3b1ef50ea7d2aa314cbb5eff78a1e6efbcf242cb7d20d1c"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 52,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0082550048828125,
+        "row_sum_max_error": 0.0003350377082824707
+      },
+      "full_first_token": 796,
+      "changed_first_token": 796,
+      "full_top1_logp": -0.031875114887952805,
+      "off_full_top1_logp": -0.0110282888635993,
+      "signed_logp_loss": -0.020846826024353504,
+      "absolute_logp_change": 0.020846826024353504,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5399926891550422,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261103": {
+      "text": "Zebra",
+      "prediction": "zebra",
+      "token_ids": [
+        796,
+        774,
+        336,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 621,
+      "first_logits_sha256": "0ef0d00326dfd784d61337779540a1564da15b17165c6ea20565082e404d63a4",
+      "all_step_logits_sha256": [
+        "0ef0d00326dfd784d61337779540a1564da15b17165c6ea20565082e404d63a4",
+        "493588e37476c07f479cf0abb72c8282ca5ebee39727d203b1178ff1dc6c52ce",
+        "f3e1d73f024396452cc06b8d36bb5e1521e681483e2d79c46d1c8859ffb89d61",
+        "c0f1e303b4b62c1116a95967355eeba722f2f8fe46b75877f7d1ad512824dfe0"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 24,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.00875091552734375,
+        "row_sum_max_error": 0.0003135800361633301
+      },
+      "full_first_token": 796,
+      "changed_first_token": 796,
+      "full_top1_logp": -0.031875114887952805,
+      "off_full_top1_logp": -0.026278384029865265,
+      "signed_logp_loss": -0.00559673085808754,
+      "absolute_logp_change": 0.00559673085808754,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5067219431512058,
+      "source": "new_random_condition"
+    },
+    "p0.2_s20261104": {
+      "text": "Zebra",
+      "prediction": "zebra",
+      "token_ids": [
+        796,
+        774,
+        336,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 621,
+      "first_logits_sha256": "9d01e8101128a894d61dba36b7350fc2a50d8806e6206c79ea19d22c43ac50d4",
+      "all_step_logits_sha256": [
+        "9d01e8101128a894d61dba36b7350fc2a50d8806e6206c79ea19d22c43ac50d4",
+        "0268d46eb83adf01a7433ba319c08c1bfbf8d694e9a4a99a4d35dfa37cd2ab9f",
+        "a3552ec5b886365035f0ad40e99084f4b0370d730c8783844b173d6a9658dcd2",
+        "9a2388cb52f6f19b6ecb633127fcee650dfe8f66f7890215bae2b8f0cd5a063f"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 104,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.018096923828125,
+        "row_sum_max_error": 0.0003114938735961914
+      },
+      "full_first_token": 796,
+      "changed_first_token": 796,
+      "full_top1_logp": -0.031875114887952805,
+      "off_full_top1_logp": -0.01029242854565382,
+      "signed_logp_loss": -0.021582686342298985,
+      "absolute_logp_change": 0.021582686342298985,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.7409033640287817,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261104": {
+      "text": "Zebra",
+      "prediction": "zebra",
+      "token_ids": [
+        796,
+        774,
+        336,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 621,
+      "first_logits_sha256": "18f07cc8599de938414ceecf81ced477aafaf77f11ff286d4f2d844437bfdac5",
+      "all_step_logits_sha256": [
+        "18f07cc8599de938414ceecf81ced477aafaf77f11ff286d4f2d844437bfdac5",
+        "50a3c9783194a396d9f0c3d50ebedb23b142fa8dd95a1f529b9caacaa6dcd586",
+        "e362a5083ca3c062fa80e071d54fa5351910308e2bd834a7fae933a7475b503e",
+        "e66ad408c25617dc04818c253615fd74ff1473080480e1d9c0a53802efefa291"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 76,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.016693115234375,
+        "row_sum_max_error": 0.000331878662109375
+      },
+      "full_first_token": 796,
+      "changed_first_token": 796,
+      "full_top1_logp": -0.031875114887952805,
+      "off_full_top1_logp": -0.015865519642829895,
+      "signed_logp_loss": -0.01600959524512291,
+      "absolute_logp_change": 0.01600959524512291,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5677387660834938,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261104": {
+      "text": "Zebra",
+      "prediction": "zebra",
+      "token_ids": [
+        796,
+        774,
+        336,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 621,
+      "first_logits_sha256": "f40d4af112ab5eadb2c8aeb9aae89197d9563bb5d60e7dc171b4a1aada6ec965",
+      "all_step_logits_sha256": [
+        "f40d4af112ab5eadb2c8aeb9aae89197d9563bb5d60e7dc171b4a1aada6ec965",
+        "8d2e46eeadeacf20090dfa38d466c75a1ad4fb128377e644bd89ae48f4a35c56",
+        "65da2c6d6df753672a95042d7339448b7bad53bae032e09d31d248fc5213a3e3",
+        "e1c6426eba482c60f67f16d21ae9cd8a555d0e7d0b637ff68d9b4478a267683e"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 52,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01486968994140625,
+        "row_sum_max_error": 0.00030350685119628906
+      },
+      "full_first_token": 796,
+      "changed_first_token": 796,
+      "full_top1_logp": -0.031875114887952805,
+      "off_full_top1_logp": -0.020606830716133118,
+      "signed_logp_loss": -0.011268284171819687,
+      "absolute_logp_change": 0.011268284171819687,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.539843165082857,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261104": {
+      "text": "Zebra",
+      "prediction": "zebra",
+      "token_ids": [
+        796,
+        774,
+        336,
+        2
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 4,
+      "fresh_cache": true,
+      "final_cache_length": 621,
+      "first_logits_sha256": "fa9b0aa73e52a4ea4b68c23cec7ad3a4687eb992b89de37ebaf41978508f3e34",
+      "all_step_logits_sha256": [
+        "fa9b0aa73e52a4ea4b68c23cec7ad3a4687eb992b89de37ebaf41978508f3e34",
+        "4414438dc382baf65421cb4a5bc513fc26e25ef7e7ee72f140639aa012e5ab0f",
+        "742f43d95e1a7b0529e809b125a4f1555e4b5eb2d871a3ea4def303e8b025e8b",
+        "bbba4ab1f4030e68bed5a0b18b50fd6715c695aaa4071b80bfb3eeeb97c3b884"
+      ],
+      "audit": {
+        "rows": 128,
+        "masked_rows": 24,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.00836944580078125,
+        "row_sum_max_error": 0.00034236907958984375
+      },
+      "full_first_token": 796,
+      "changed_first_token": 796,
+      "full_top1_logp": -0.031875114887952805,
+      "off_full_top1_logp": -0.03555895388126373,
+      "signed_logp_loss": 0.0036838389933109283,
+      "absolute_logp_change": 0.0036838389933109283,
+      "top1_flip": 0,
+      "correct": 1,
+      "seconds": 0.5073815630748868,
+      "source": "new_random_condition"
+    }
+  },
+  "input_binding": "0c52385748b89ab07e11af9a68ce1c3da4960c2378589ccbc1e2df8e6d3db639",
+  "history_binding_sha256": "a07f0bf58d116c6b867d68118ff35482a0a159ab13000e8186591c1f1b23d7b8"
+}

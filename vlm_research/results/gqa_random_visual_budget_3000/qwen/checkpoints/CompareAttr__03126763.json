@@ -1,0 +1,541 @@
+{
+  "complete": true,
+  "task": "CompareAttr",
+  "question_id": "03126763",
+  "image_id": "2400784",
+  "image_sha256": "2dfcb9b0a4862dbded298ced067bd32603a020c1d03e37c67fc63c74e26d80bb",
+  "gold": "color",
+  "sample_sha256": "3dbbf4a06f65c4f0384397b47a588d56391ad6704929c8ba3262df10f8a46680",
+  "protocol_sha256": "327b34baa0672e9b599ae438e0465c7a9242ac1a1be9b15d7e5a561375580887",
+  "code_commit": "64fe96dccacba1a67183a3c448537a7c692ce665",
+  "physical_gpu": 0,
+  "conditions": {
+    "Full": {
+      "text": "lexus",
+      "prediction": "lexus",
+      "token_ids": [
+        2571,
+        355,
+        151645
+      ],
+      "correct": 0,
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "full_first_token": 2571,
+      "changed_first_token": 2571,
+      "full_top1_logp": -0.04727114737033844,
+      "off_full_top1_logp": -0.04727114737033844,
+      "signed_logp_loss": 0.0,
+      "absolute_logp_change": 0.0,
+      "top1_flip": 0,
+      "source": "strict_historical_reuse"
+    },
+    "Only Text": {
+      "text": "both are in the image",
+      "prediction": "both are in the image",
+      "token_ids": [
+        21028,
+        525,
+        304,
+        279,
+        2168,
+        151645
+      ],
+      "correct": 0,
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 6,
+      "full_first_token": 2571,
+      "changed_first_token": 21028,
+      "full_top1_logp": -0.04727114737033844,
+      "off_full_top1_logp": -13.874651908874512,
+      "signed_logp_loss": 13.827381134033203,
+      "absolute_logp_change": 13.827381134033203,
+      "top1_flip": 1,
+      "source": "strict_historical_reuse"
+    },
+    "p0.2_s20261102": {
+      "text": "both are in the image",
+      "prediction": "both are in the image",
+      "token_ids": [
+        21028,
+        525,
+        304,
+        279,
+        2168,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 6,
+      "fresh_cache": true,
+      "final_cache_length": 194,
+      "first_logits_sha256": "57fe844ab481dc15caf16d57b92063bcdae4407af355338a6acb2524e8c9fa4d",
+      "all_step_logits_sha256": [
+        "57fe844ab481dc15caf16d57b92063bcdae4407af355338a6acb2524e8c9fa4d",
+        "9c0e14c3dde43c9634d32799b54c64ee3462d96d3b57aeaf6307ae09c23b2d4c",
+        "2cc915c82dc3c3595cd571a1ac16f9171caadb606985f5b520535f87826abc8c",
+        "8c3cc379b30d5df2f58b04a7cf12e2b59188ece1422f3428e573c86f78baea4a",
+        "e6ee9423ad8339ef3611a8b1effdd25219d6404de2df77e70b7e181e4d7d26bb",
+        "085d9519b67461db225c9793793686992d3cc475a190a79a8b0e1ee09a7dca25"
+      ],
+      "audit": {
+        "rows": 216,
+        "masked_rows": 174,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01165771484375,
+        "row_sum_max_error": 0.002771139144897461
+      },
+      "full_first_token": 2571,
+      "changed_first_token": 21028,
+      "full_top1_logp": -0.04727114737033844,
+      "off_full_top1_logp": -4.089113712310791,
+      "signed_logp_loss": 4.041842564940453,
+      "absolute_logp_change": 4.041842564940453,
+      "top1_flip": 1,
+      "correct": 0,
+      "seconds": 0.5712915910407901,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261102": {
+      "text": "both are in blue",
+      "prediction": "both are in blue",
+      "token_ids": [
+        21028,
+        525,
+        304,
+        6303,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 5,
+      "fresh_cache": true,
+      "final_cache_length": 193,
+      "first_logits_sha256": "3ec4aaad95a9c3beb9e01ecb12cda4ebe46e30a91fb440f9925d035c4586460b",
+      "all_step_logits_sha256": [
+        "3ec4aaad95a9c3beb9e01ecb12cda4ebe46e30a91fb440f9925d035c4586460b",
+        "38863cb2444eb7e7863b17eadf9e3c645a7f7503ba31ecb66b4a548408396dad",
+        "37692d1fb85a0d1fc6dc6c835ca80077be96501c25a095913660adc9ed1b0302",
+        "8566733f78f61b48c0f7fd19e9e9b38cd0e968e92eecbb4850a5ca711de77395",
+        "b16b0de7e3f1201257f5a0a907a6a770c016b9a090351a132debed3f1fc4129a"
+      ],
+      "audit": {
+        "rows": 180,
+        "masked_rows": 110,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0155029296875,
+        "row_sum_max_error": 0.0026758313179016113
+      },
+      "full_first_token": 2571,
+      "changed_first_token": 21028,
+      "full_top1_logp": -0.04727114737033844,
+      "off_full_top1_logp": -1.2776949405670166,
+      "signed_logp_loss": 1.2304237931966782,
+      "absolute_logp_change": 1.2304237931966782,
+      "top1_flip": 1,
+      "correct": 0,
+      "seconds": 0.45880870311520994,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261102": {
+      "text": "both are on wall",
+      "prediction": "both are on wall",
+      "token_ids": [
+        21028,
+        525,
+        389,
+        7002,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 5,
+      "fresh_cache": true,
+      "final_cache_length": 193,
+      "first_logits_sha256": "e1189d04ce1dfa0624df4f91cb14a7f2fba58b7d40d1b6bf979b8f30717d836a",
+      "all_step_logits_sha256": [
+        "e1189d04ce1dfa0624df4f91cb14a7f2fba58b7d40d1b6bf979b8f30717d836a",
+        "44ca66bdacb980695dff56cf1c255ad13f2591242060de79c815e98492495801",
+        "1b484ad0c0744f2306a6d710487701fcb7a4a31095cc20c2bf94fe12318f72a4",
+        "c682f84a168eebcd5228ca0e7008785f322f25a687482bfd49428dd4967fed7c",
+        "0271dbd6fe87230c739e6a715fe7c687356041d67e12baba163d3723c1a5e1f7"
+      ],
+      "audit": {
+        "rows": 180,
+        "masked_rows": 70,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01129150390625,
+        "row_sum_max_error": 0.002878904342651367
+      },
+      "full_first_token": 2571,
+      "changed_first_token": 21028,
+      "full_top1_logp": -0.04727114737033844,
+      "off_full_top1_logp": -1.2633123397827148,
+      "signed_logp_loss": 1.2160411924123764,
+      "absolute_logp_change": 1.2160411924123764,
+      "top1_flip": 1,
+      "correct": 0,
+      "seconds": 0.42170884809456766,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261102": {
+      "text": "both are on wall",
+      "prediction": "both are on wall",
+      "token_ids": [
+        21028,
+        525,
+        389,
+        7002,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 5,
+      "fresh_cache": true,
+      "final_cache_length": 193,
+      "first_logits_sha256": "4b9cd818a2da28ceb20697ace38c7ffcd5fa6fcecc8d871a02fabf5a09a9d390",
+      "all_step_logits_sha256": [
+        "4b9cd818a2da28ceb20697ace38c7ffcd5fa6fcecc8d871a02fabf5a09a9d390",
+        "7c559f09e78b1e470f30eede12ee8cab9f879a23b120f430394e3cdbc5600ef9",
+        "c30abb7ae1c8f500477fe1deba9c9baf19d4e0ab2b41d30abca4d955aa95255d",
+        "36d6f02df17e7ab5a6929a67583fdf19c5c71f296f9a63410dc92635be5dd14c",
+        "a816c69689bf389a14753cd3fa58274461ddf14fabf2fadc6d2eafc7197df14c"
+      ],
+      "audit": {
+        "rows": 180,
+        "masked_rows": 35,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01141357421875,
+        "row_sum_max_error": 0.002733945846557617
+      },
+      "full_first_token": 2571,
+      "changed_first_token": 21028,
+      "full_top1_logp": -0.04727114737033844,
+      "off_full_top1_logp": -2.9229516983032227,
+      "signed_logp_loss": 2.875680550932884,
+      "absolute_logp_change": 2.875680550932884,
+      "top1_flip": 1,
+      "correct": 0,
+      "seconds": 0.38969189394265413,
+      "source": "new_random_condition"
+    },
+    "p0.2_s20261103": {
+      "text": "lexus",
+      "prediction": "lexus",
+      "token_ids": [
+        2571,
+        355,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "fresh_cache": true,
+      "final_cache_length": 191,
+      "first_logits_sha256": "524661a4695898e34b5e42e6fe4cfdba2c20d533783d7f6110a9145517485943",
+      "all_step_logits_sha256": [
+        "524661a4695898e34b5e42e6fe4cfdba2c20d533783d7f6110a9145517485943",
+        "9fcd04436a21105939c8130bf7962e41024950849d24b94b1c308e57c8649973",
+        "fff8ede8913be4ff2cc4359ed0b96afe662481dc84a68c4005baf15aee1b3240"
+      ],
+      "audit": {
+        "rows": 108,
+        "masked_rows": 87,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0267333984375,
+        "row_sum_max_error": 0.0027136802673339844
+      },
+      "full_first_token": 2571,
+      "changed_first_token": 2571,
+      "full_top1_logp": -0.04727114737033844,
+      "off_full_top1_logp": -0.6671874523162842,
+      "signed_logp_loss": 0.6199163049459457,
+      "absolute_logp_change": 0.6199163049459457,
+      "top1_flip": 0,
+      "correct": 0,
+      "seconds": 0.32897671801038086,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261103": {
+      "text": "lexus",
+      "prediction": "lexus",
+      "token_ids": [
+        2571,
+        355,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "fresh_cache": true,
+      "final_cache_length": 191,
+      "first_logits_sha256": "d18953bf30d1b7dab90a72bca3d139b57ea0ad7328b2fe75fa6491d0d0860ef4",
+      "all_step_logits_sha256": [
+        "d18953bf30d1b7dab90a72bca3d139b57ea0ad7328b2fe75fa6491d0d0860ef4",
+        "98f2e2ae904321b2ecf87e04d9c65539de05c3a441aef4fc83b4c777cfce233d",
+        "6f785f6d165cd11236f0ada9463c44e3a2b92a5efe19635fa7e9f1fddd0bf675"
+      ],
+      "audit": {
+        "rows": 108,
+        "masked_rows": 66,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0252685546875,
+        "row_sum_max_error": 0.0026503801345825195
+      },
+      "full_first_token": 2571,
+      "changed_first_token": 2571,
+      "full_top1_logp": -0.04727114737033844,
+      "off_full_top1_logp": -0.27920085191726685,
+      "signed_logp_loss": 0.2319297045469284,
+      "absolute_logp_change": 0.2319297045469284,
+      "top1_flip": 0,
+      "correct": 0,
+      "seconds": 0.3090716691222042,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261103": {
+      "text": "lexus",
+      "prediction": "lexus",
+      "token_ids": [
+        2571,
+        355,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "fresh_cache": true,
+      "final_cache_length": 191,
+      "first_logits_sha256": "e5c02efa7f7c016ada4de149fa2744457b5b0b68137b53cf666b2279b7255de6",
+      "all_step_logits_sha256": [
+        "e5c02efa7f7c016ada4de149fa2744457b5b0b68137b53cf666b2279b7255de6",
+        "eb98c2f07985692b73b6dc5b06b42c7cddfa470109b34a39426081c61493c137",
+        "ac98638351a44698161d645d1d04e631913ef5e79195acb195e7b6299e59c5b2"
+      ],
+      "audit": {
+        "rows": 108,
+        "masked_rows": 42,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0208740234375,
+        "row_sum_max_error": 0.0025349855422973633
+      },
+      "full_first_token": 2571,
+      "changed_first_token": 2571,
+      "full_top1_logp": -0.04727114737033844,
+      "off_full_top1_logp": -0.21879728138446808,
+      "signed_logp_loss": 0.17152613401412964,
+      "absolute_logp_change": 0.17152613401412964,
+      "top1_flip": 0,
+      "correct": 0,
+      "seconds": 0.28688363707624376,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261103": {
+      "text": "lexus",
+      "prediction": "lexus",
+      "token_ids": [
+        2571,
+        355,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "fresh_cache": true,
+      "final_cache_length": 191,
+      "first_logits_sha256": "b8e375be56dc4cf602e5414a2ace7f43628ce9a9924300a2af8ee480a2b3ab35",
+      "all_step_logits_sha256": [
+        "b8e375be56dc4cf602e5414a2ace7f43628ce9a9924300a2af8ee480a2b3ab35",
+        "0624a7838eb472b7fa322f8c243db955c7174ee88cd66b054e2dede5d50f0e58",
+        "cd093b2fa3c09a3a7d72c8f9970d49990432d65f47754532e73775b327d01ad5"
+      ],
+      "audit": {
+        "rows": 108,
+        "masked_rows": 21,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0196533203125,
+        "row_sum_max_error": 0.0025827884674072266
+      },
+      "full_first_token": 2571,
+      "changed_first_token": 2571,
+      "full_top1_logp": -0.04727114737033844,
+      "off_full_top1_logp": -0.21258509159088135,
+      "signed_logp_loss": 0.1653139442205429,
+      "absolute_logp_change": 0.1653139442205429,
+      "top1_flip": 0,
+      "correct": 0,
+      "seconds": 0.2657713140361011,
+      "source": "new_random_condition"
+    },
+    "p0.2_s20261104": {
+      "text": "both are in blue",
+      "prediction": "both are in blue",
+      "token_ids": [
+        21028,
+        525,
+        304,
+        6303,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 5,
+      "fresh_cache": true,
+      "final_cache_length": 193,
+      "first_logits_sha256": "524492e59114fad2590b3ea6266b89c0b3eafd0d71a65f0d01b9f47a61330deb",
+      "all_step_logits_sha256": [
+        "524492e59114fad2590b3ea6266b89c0b3eafd0d71a65f0d01b9f47a61330deb",
+        "83ffc2a6d44f8b83208f7660af10234639bd28f39f9704aa4bbfcd9fe4241eb0",
+        "d5649eb96d322370977ecd34752bc1ebe94dfddf1a2e59ec173a1db8247e42bd",
+        "d581f877cffe4ff196b70085470fda9a7cd3b9a24e669e6dfaae6faf673ae89f",
+        "7df80902de1403a68cbf31615c149c10758489adbea83f935e4842e6b93ead1a"
+      ],
+      "audit": {
+        "rows": 180,
+        "masked_rows": 145,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.01226806640625,
+        "row_sum_max_error": 0.0027251839637756348
+      },
+      "full_first_token": 2571,
+      "changed_first_token": 21028,
+      "full_top1_logp": -0.04727114737033844,
+      "off_full_top1_logp": -5.932900428771973,
+      "signed_logp_loss": 5.885629281401634,
+      "absolute_logp_change": 5.885629281401634,
+      "top1_flip": 1,
+      "correct": 0,
+      "seconds": 0.48897901200689375,
+      "source": "new_random_condition"
+    },
+    "p0.4_s20261104": {
+      "text": "lexus",
+      "prediction": "lexus",
+      "token_ids": [
+        2571,
+        355,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "fresh_cache": true,
+      "final_cache_length": 191,
+      "first_logits_sha256": "9cc227a7010905789f060f75fdb77e2d6ca5e2c74c020f357c26dcd363b5fae6",
+      "all_step_logits_sha256": [
+        "9cc227a7010905789f060f75fdb77e2d6ca5e2c74c020f357c26dcd363b5fae6",
+        "bb430d4569c1335a7573998c0fb4957a7178b100f6ab8744dd85d29fb9bc43ba",
+        "053840b3e3ba829874f8408a300347f1b0af706dfb941b3c0478fdf0e55bd889"
+      ],
+      "audit": {
+        "rows": 108,
+        "masked_rows": 66,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.03857421875,
+        "row_sum_max_error": 0.0028225183486938477
+      },
+      "full_first_token": 2571,
+      "changed_first_token": 2571,
+      "full_top1_logp": -0.04727114737033844,
+      "off_full_top1_logp": -0.5642818808555603,
+      "signed_logp_loss": 0.5170107334852219,
+      "absolute_logp_change": 0.5170107334852219,
+      "top1_flip": 0,
+      "correct": 0,
+      "seconds": 0.30770628503523767,
+      "source": "new_random_condition"
+    },
+    "p0.6_s20261104": {
+      "text": "lexus",
+      "prediction": "lexus",
+      "token_ids": [
+        2571,
+        355,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "fresh_cache": true,
+      "final_cache_length": 191,
+      "first_logits_sha256": "269661a1491904af746d84e87849eff15b3651de86be57fbf4f5df3e5d54902c",
+      "all_step_logits_sha256": [
+        "269661a1491904af746d84e87849eff15b3651de86be57fbf4f5df3e5d54902c",
+        "35231db22ffe4990220b97f028d7f1a9f5f16f7df22892a36ea878eda7bfbc84",
+        "79968563acf9b6062b1d229a707bc32d8543c3edfed2ac2b6bd3693d07e65027"
+      ],
+      "audit": {
+        "rows": 108,
+        "masked_rows": 42,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.025634765625,
+        "row_sum_max_error": 0.002707362174987793
+      },
+      "full_first_token": 2571,
+      "changed_first_token": 2571,
+      "full_top1_logp": -0.04727114737033844,
+      "off_full_top1_logp": -0.5805988907814026,
+      "signed_logp_loss": 0.5333277434110641,
+      "absolute_logp_change": 0.5333277434110641,
+      "top1_flip": 0,
+      "correct": 0,
+      "seconds": 0.28508256608620286,
+      "source": "new_random_condition"
+    },
+    "p0.8_s20261104": {
+      "text": "lexus",
+      "prediction": "lexus",
+      "token_ids": [
+        2571,
+        355,
+        151645
+      ],
+      "eos": true,
+      "truncated": false,
+      "empty": false,
+      "generated_tokens": 3,
+      "fresh_cache": true,
+      "final_cache_length": 191,
+      "first_logits_sha256": "9af5828071344c16fbcb4479e89be8514dcf86056c811efb8460489652763edf",
+      "all_step_logits_sha256": [
+        "9af5828071344c16fbcb4479e89be8514dcf86056c811efb8460489652763edf",
+        "3d695260b7f507e04ff023bf8b253f1e509b09be00ac27b087b417bfd4f58071",
+        "7774026fbca1ed8b51139dfbee73ef43787d39aa22645d219112a56343ea640b"
+      ],
+      "audit": {
+        "rows": 108,
+        "masked_rows": 21,
+        "blocked_image_probability_max": 0.0,
+        "retained_image_probability_min": 0.0198974609375,
+        "row_sum_max_error": 0.0027867555618286133
+      },
+      "full_first_token": 2571,
+      "changed_first_token": 2571,
+      "full_top1_logp": -0.04727114737033844,
+      "off_full_top1_logp": -0.01178976334631443,
+      "signed_logp_loss": -0.03548138402402401,
+      "absolute_logp_change": 0.03548138402402401,
+      "top1_flip": 0,
+      "correct": 0,
+      "seconds": 0.26505744503811,
+      "source": "new_random_condition"
+    }
+  },
+  "input_binding": "8d4599e62aa7d68ec8f1b34f4648b8ad0f5076c514b0c9cb5c8d639bce34b141",
+  "history_binding_sha256": "53b5d2c6a319102da6eb3cad0dedf7862774b3ec8172b4a0dfb6c9413c1d7b20"
+}
