@@ -1,0 +1,99 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/cross-model-coco-decode-regions-60/vlm_research/cross_model_caption_regions/run.py", line 207, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/data/lk/ATE-worktrees/cross-model-coco-decode-regions-60/vlm_research/cross_model_caption_regions/run.py", line 201, in main
+    else:worker(args.model)
+         ^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/cross-model-coco-decode-regions-60/vlm_research/cross_model_caption_regions/run.py", line 136, in worker
+    assert str(props.uuid)=='GPU-'+UUID.removeprefix('GPU-')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.21s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.26s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.25s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.05s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.12s/it]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/cross-model-coco-decode-regions-60/vlm_research/cross_model_caption_regions/run.py", line 208, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/data/lk/ATE-worktrees/cross-model-coco-decode-regions-60/vlm_research/cross_model_caption_regions/run.py", line 202, in main
+    else:worker(args.model)
+         ^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/cross-model-coco-decode-regions-60/vlm_research/cross_model_caption_regions/run.py", line 151, in worker
+    versions=[(p._version,p.data_ptr()) for p in model.parameters()];footprint=hooks_count(model)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/cross-model-coco-decode-regions-60/vlm_research/cross_model_caption_regions/run.py", line 151, in <listcomp>
+    versions=[(p._version,p.data_ptr()) for p in model.parameters()];footprint=hooks_count(model)
+               ^^^^^^^^^^
+RuntimeError: Inference tensors do not track version counter.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.17s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.18s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.20s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.02s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.08s/it]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+SMOKE PASS qwen
+qwen 1/60; 8/480; 27.2s
+qwen 2/60; 16/480; 47.4s
+qwen 3/60; 24/480; 66.8s
+qwen 4/60; 32/480; 87.1s
+qwen 5/60; 40/480; 112.8s
+qwen 6/60; 48/480; 139.5s
+qwen 7/60; 56/480; 163.1s
+qwen 8/60; 64/480; 181.7s
+qwen 9/60; 72/480; 199.7s
+qwen 10/60; 80/480; 215.7s
+qwen 11/60; 88/480; 238.0s
+qwen 12/60; 96/480; 260.1s
+qwen 13/60; 104/480; 277.1s
+qwen 14/60; 112/480; 297.1s
+qwen 15/60; 120/480; 317.0s
+qwen 16/60; 128/480; 336.9s
+qwen 17/60; 136/480; 359.6s
+qwen 18/60; 144/480; 382.8s
+qwen 19/60; 152/480; 401.0s
+qwen 20/60; 160/480; 428.7s
+qwen 21/60; 168/480; 449.3s
+qwen 22/60; 176/480; 471.7s
+qwen 23/60; 184/480; 490.0s
+qwen 24/60; 192/480; 512.0s
+qwen 25/60; 200/480; 529.8s
+qwen 26/60; 208/480; 553.6s
+qwen 27/60; 216/480; 578.8s
+qwen 28/60; 224/480; 596.1s
+qwen 29/60; 232/480; 616.3s
+qwen 30/60; 240/480; 636.9s
+qwen 31/60; 248/480; 659.6s
+qwen 32/60; 256/480; 677.4s
+qwen 33/60; 264/480; 698.6s
+qwen 34/60; 272/480; 722.8s
+qwen 35/60; 280/480; 743.3s
+qwen 36/60; 288/480; 763.6s
+qwen 37/60; 296/480; 783.6s
+qwen 38/60; 304/480; 809.1s
+qwen 39/60; 312/480; 828.5s
+qwen 40/60; 320/480; 849.2s
+qwen 41/60; 328/480; 865.9s
+qwen 42/60; 336/480; 885.1s
+qwen 43/60; 344/480; 909.5s
+qwen 44/60; 352/480; 927.7s
+qwen 45/60; 360/480; 949.4s
+qwen 46/60; 368/480; 972.6s
+qwen 47/60; 376/480; 997.2s
+qwen 48/60; 384/480; 1022.4s
+qwen 49/60; 392/480; 1045.0s
+qwen 50/60; 400/480; 1069.8s
+qwen 51/60; 408/480; 1094.7s
+qwen 52/60; 416/480; 1115.8s
+qwen 53/60; 424/480; 1137.8s
+qwen 54/60; 432/480; 1157.4s
+qwen 55/60; 440/480; 1175.2s
+qwen 56/60; 448/480; 1198.3s
+qwen 57/60; 456/480; 1220.3s
+qwen 58/60; 464/480; 1243.7s
+qwen 59/60; 472/480; 1260.6s
+qwen 60/60; 480/480; 1285.5s
