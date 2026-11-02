@@ -152,7 +152,8 @@ def smoke(model, processor, cohort, mapping):
         reference, native_trace = native(model, inputs)
         full, first, full_trace, parent = generate(model, processor.tokenizer, inputs, 'Full', capture=True, retain_cache=True)
         assert full['token_ids'] == reference
-        exact(native_trace, full_trace)
+        # HF generate sets logits_to_keep=1; only its prediction query is returned.
+        exact([x[-1] for x in native_trace], [x[-1] for x in full_trace])
         replay, replay_first, replay_trace, _ = generate(model, processor.tokenizer, inputs, 'Full', capture=True)
         assert replay['token_ids'] == reference and torch.equal(first, replay_first)
         exact(full_trace, replay_trace)
@@ -192,7 +193,10 @@ def smoke(model, processor, cohort, mapping):
         assert versions == {n:p._version for n,p in model.named_parameters()}
         assert tensor_hashes(inputs) == before and hook_footprint(model) == footprint
         rows.append(dict(question_id=s['question_id'], task=s['task'], image_size=mapping[i]['image_size'],
-            layout=mapping[i]['role_layout'], full_generation=full, native_and_replay_all_valid_logits_exact=True,
+            layout=mapping[i]['role_layout'], full_generation=full,
+            native_effective_prediction_logits_exact=True, full_replay_all_valid_logits_exact=True,
+            hf_logit_shapes=[list(x.shape) for x in native_trace],
+            full_logit_shapes=[list(x.shape) for x in full_trace],
             full_and_native_greedy_tokens_exact=True, inputs_unchanged=True, parameters_unchanged=True,
             hooks_clean=True, roles=role_audit))
         print('GPU SMOKE PASS', s['question_id'], flush=True)

@@ -125,3 +125,11 @@ class Tests(unittest.TestCase):
         full = torch.tensor([2.,1.,0.]);changed = torch.tensor([3.,1.,0.])
         values = first_metrics(full,changed)
         self.assertLess(values['first_logp_loss'],0.)
+
+    def test_hf_effective_query_alignment(self):
+        from .run import exact
+        prefill = torch.randn(19,23)
+        native = [prefill[-1:]]
+        exact([x[-1] for x in native], [x[-1] for x in [prefill]])
+        with self.assertRaises(AssertionError):
+            exact(native,[prefill])
