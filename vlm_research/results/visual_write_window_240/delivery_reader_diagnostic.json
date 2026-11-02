@@ -1,0 +1,10 @@
+{
+  "stage": "post-collection read-only CSV comparison",
+  "original_check_failed": true,
+  "assertion": "('per_question.csv', 'first_divergence_all', '', None)",
+  "reason": "csv.DictWriter serializes Python None as an empty field. The original checker incorrectly compared the parsed empty string with str(None).",
+  "corrected_check": "Compare exact canonical CSV serialization and parsing of every replayed row; no numeric tolerance or dataset change.",
+  "model_mask_cache_and_independent_statistics_checks_passed": true,
+  "new_generations": 0,
+  "frozen_execution_sources_unchanged": true
+}
