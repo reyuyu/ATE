@@ -7,6 +7,7 @@ from pathlib import Path
 import sys
 import time
 import traceback
+import uuid
 from types import SimpleNamespace
 
 import torch
@@ -133,7 +134,7 @@ def worker(kind):
     torch.backends.cuda.matmul.allow_tf32=False;torch.backends.cudnn.allow_tf32=False
     assert torch.cuda.device_count()==1
     props=torch.cuda.get_device_properties(0)
-    assert str(props.uuid)=='GPU-'+UUID.removeprefix('GPU-')
+    assert uuid.UUID(str(props.uuid).removeprefix('GPU-')) == uuid.UUID(UUID.removeprefix('GPU-'))
     started=time.perf_counter()
     if kind=='qwen':
         from transformers import AutoProcessor,Qwen3VLForConditionalGeneration
