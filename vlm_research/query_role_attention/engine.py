@@ -101,7 +101,10 @@ class RoleBypass(AbstractContextManager):
 
 
 @torch.inference_mode()
-def generate(model, tokenizer, prompt, condition, noop=False, capture=False, retain_cache=False):
+def generate(model, tokenizer, prompt, condition, noop=False, capture=False, retain_cache=False,
+             logits_to_keep=1):
+    if type(logits_to_keep) is not int or logits_to_keep not in (0, 1):
+        raise ValueError('Use 1 for native generation parity or 0 for all-position diagnostics')
     layout = roles(prompt, model.config.image_token_index)
     tokens, history, logits_trace, cache_lengths = [], None, [], []
     n = layout['prompt_length']
@@ -112,7 +115,8 @@ def generate(model, tokenizer, prompt, condition, noop=False, capture=False, ret
             if history is not None and any(history.get_seq_length(k) != expected_before for k in range(32)):
                 raise AssertionError('Condition cache has wrong prefix length')
             output = model(**step_inputs(prompt, tokens), past_key_values=history,
-                           use_cache=True, output_attentions=False, return_dict=True)
+                           use_cache=True, output_attentions=False, return_dict=True,
+                           logits_to_keep=logits_to_keep)
             history = output.past_key_values
             if any(history.get_seq_length(k) != n+t for k in range(32)):
                 raise AssertionError('Cache lengths differ from real absolute input positions')
