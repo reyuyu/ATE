@@ -1,0 +1,5 @@
+{
+  "stage": "gpu",
+  "traceback": "Traceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/query-role-attention-boundary-240/vlm_research/query_role_attention/run.py\", line 307, in <module>\n    globals()[args.stage]()\n  File \"/data/lk/ATE-worktrees/query-role-attention-boundary-240/vlm_research/query_role_attention/run.py\", line 249, in gpu\n    rows = smoke(model, processor, cohort, mapping)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/query-role-attention-boundary-240/vlm_research/query_role_attention/run.py\", line 156, in smoke\n    exact([x[-1] for x in native_trace], [x[-1] for x in full_trace])\n  File \"/data/lk/ATE-worktrees/query-role-attention-boundary-240/vlm_research/query_role_attention/run.py\", line 142, in exact\n    assert len(a) == len(b) and all(torch.equal(x,y) for x,y in zip(a,b)), 'Effective logits differ'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Effective logits differ\n",
+  "partial": true
+}
