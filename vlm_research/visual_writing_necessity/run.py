@@ -160,7 +160,7 @@ def worker(index):
     torch.set_num_threads(4);torch.manual_seed(0);torch.backends.cuda.matmul.allow_tf32=False;torch.backends.cudnn.allow_tf32=False
     started=time.time();model,processor,environment=load_model(MODEL)
     assert transformers.__version__=='4.49.0' and torch.cuda.device_count()==1 and environment['parameter_dtypes']==['torch.float16']
-    write(attempt/'environment.json',dict(**environment,pid=os.getpid(),gpu=gpu))
+    write(attempt/'environment.json',{**environment,'pid':os.getpid(),'selected_gpu':gpu})
     samples=read(OUT/'sample_manifest.json')['samples'];gold=read(OUT/'gold_sequences.json')
     smoke(model,processor,samples,gold,p['smoke_question_ids'][index],binding,attempt)
     if not (folder/'smoke.json').exists():write(folder/'smoke.json',read(attempt/'smoke.json'))
