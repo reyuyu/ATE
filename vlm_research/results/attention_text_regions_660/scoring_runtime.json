@@ -1,0 +1,20 @@
+{
+  "attempt_1": {
+    "log": "analysis_attempt1.log",
+    "status": "failed",
+    "reason": "Official SPICE Stanford parser exhausted the default 8 GiB Java heap on a long repetitive caption; subsequent parser NullPointerException caused exit 1"
+  },
+  "retry": {
+    "status": "completed_all_seven_conditions",
+    "log": "analysis.log",
+    "CUDA_VISIBLE_DEVICES": "",
+    "_JAVA_OPTIONS": "-Xmx32g -XX:ActiveProcessorCount=2",
+    "available_system_memory_before_retry_GiB": 237,
+    "java_version": "OpenJDK 1.8.0_452",
+    "reason": "Increase CPU heap and limit simultaneous parser work without changing metric or caption content"
+  },
+  "gpu_generations_repeated": 0,
+  "captions_modified": false,
+  "official_scorer_sources_modified": false,
+  "metric_definition_modified": false
+}
