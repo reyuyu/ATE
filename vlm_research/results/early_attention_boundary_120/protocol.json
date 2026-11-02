@@ -1,0 +1,176 @@
+{
+  "status": "frozen_before_GPU",
+  "sample_count": 120,
+  "seed": 20261102,
+  "conditions": {
+    "qwen": {
+      "Full": [],
+      "L1-L4": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "L1-L6": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6
+      ],
+      "L1-L8": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "L2-L8": [
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8
+      ],
+      "L1-L9": [
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    },
+    "internvl": {
+      "Full": [],
+      "L1-L4": [
+        1,
+        2,
+        3,
+        4
+      ],
+      "L2-L4": [
+        2,
+        3,
+        4
+      ],
+      "L2-L5": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "L1-L5": [
+        1,
+        2,
+        3,
+        4,
+        5
+      ]
+    }
+  },
+  "model": {
+    "qwen": {
+      "repo": "Qwen/Qwen3-VL-8B-Instruct",
+      "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+      "directory": "qwen3-vl-8b-instruct",
+      "layers": 36,
+      "transformers": "4.57.6"
+    },
+    "internvl": {
+      "repo": "OpenGVLab/InternVL3-8B",
+      "revision": "853e3a797a661694b1b8ece0cb72dc2b23e3dac9",
+      "directory": "internvl3-8b",
+      "layers": 28,
+      "transformers": "4.49.0"
+    }
+  },
+  "physical_gpu": 1,
+  "gpu_uuid": "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+  "intervention": "Only o_proj output at original P-1 and every real incremental decode query; native KV updates",
+  "generation": {
+    "do_sample": false,
+    "num_beams": 1,
+    "max_new_tokens": 32,
+    "native_eos": true,
+    "cache": true
+  },
+  "scoring": "Pinned GQA conversion: generated text.strip().rstrip('.').lower() == original gold",
+  "sampling_uses_model_outputs": false,
+  "full_reuse": false,
+  "full_reuse_reason": "Previous 3000-question single-layer study saved first-token forwards, not complete answers",
+  "statistics": {
+    "unit": "Image SHA256 cluster, question-weighted paired bootstrap",
+    "repetitions": 20000,
+    "ordinary_confidence": 0.95,
+    "comparison_family": "All nine window-vs-Full comparisons across both models",
+    "simultaneous_method": "Bonferroni percentile intervals, tail probability 0.025/9",
+    "reference_delta_pp": -1,
+    "exploratory": true,
+    "noninferiority_claim": false,
+    "zero_discordance_warning": "Empirical [0,0] bootstrap is not a population safety guarantee",
+    "descriptive_low_harm": "Point estimate delta >= -1 pp; never equivalent to safety or confirmation"
+  },
+  "code_sha256": {
+    "vlm_research/early_attention_boundary/__init__.py": "79e74acd80d5e4120f232d842ed89a4682709891f253608630c529f3f6890b03",
+    "vlm_research/early_attention_boundary/analyze.py": "9ff9a5123c2df4eaa3f802978424b9eb072cf2b4d4b75476b77f559cf78e8a10",
+    "vlm_research/early_attention_boundary/common.py": "6b3e0b3c9c2e18e488bc656c1284e90c9372455af44e2d37fd7d95c95231e45b",
+    "vlm_research/early_attention_boundary/engine.py": "1f61cd90e201ca90c9ffe3df8514e308d69403494a131c3ee31f593745f71715",
+    "vlm_research/early_attention_boundary/prepare.py": "6748ea3d890654b38bbd921f8d6625ca5513df1e8857291fa026d764de6b109e",
+    "vlm_research/early_attention_boundary/run.py": "47f6e2fa357517c2df35f91e5345478fb9f19690418265afccd19d9161b2c43f",
+    "vlm_research/early_attention_boundary/tests.py": "5f4383f0085e7a0e6388fc8db1748aeb7b1e26daa9bd067b4b6c20a523d49439",
+    "vlm_research/three_vlm_sensitivity/__init__.py": "1e8fec9321e201defc3ee59c72c4e60b14d5779b5db9532cca82dd599815816e",
+    "vlm_research/three_vlm_sensitivity/analysis_tests.py": "c35b039718bd8649d690351506e3e44b524f7e7f3299078180f4248afe700a18",
+    "vlm_research/three_vlm_sensitivity/analyze.py": "54b7d32ae9418fa677f702bceef4804853970b7488ba8b19cda1f2879bcf37a5",
+    "vlm_research/three_vlm_sensitivity/bindings.py": "b4fb99fd2e6d8a40c9d34e552903b0204d15d047af1df75df863f9e30ae9d964",
+    "vlm_research/three_vlm_sensitivity/common.py": "dbae82c77dd672c311babce2facf394a16a61477a7bfa164b09191d0e9169672",
+    "vlm_research/three_vlm_sensitivity/engine.py": "83f5e7763cc01d1d6b4798c8b5e1700f80cb8a9fb5d50ee2e08dee2244b10bea",
+    "vlm_research/three_vlm_sensitivity/finish.py": "7015f54a9d6b40f4dc6015db102c75585f1e644b31ca0684f1790e2c61323c86",
+    "vlm_research/three_vlm_sensitivity/intern_native.py": "08f515cb24def88105a63c32ead1671e9016f09580ad1fc6c97c5cbb12640155",
+    "vlm_research/three_vlm_sensitivity/legacy.py": "fef8195809ce4a11eac6e12e80f4c4f721f3b260b7f54c75366b7ad38bbae099",
+    "vlm_research/three_vlm_sensitivity/metrics.py": "271604941a91c500bcb73b410913f3c67512683c9e3de58a5ddc38ac15ca013d",
+    "vlm_research/three_vlm_sensitivity/prepare.py": "f42c09d8c15f47ef1d65d860ce50a9c4e8e9d8a72e5d10bb39bddcfabe14ba58",
+    "vlm_research/three_vlm_sensitivity/run.py": "83e6372dd33e16616e56cb3cb8046ffdf0d09cfa067cc22a86752a6641b49159",
+    "vlm_research/three_vlm_sensitivity/tests.py": "002571d3177ff525213d2fa05b1c9c89934cb8dfb82152b1fa8bc3a36d4be2d0",
+    "vlm_research/three_vlm_sensitivity/workflow.py": "70b887cdd245b77170b103b25470d268a3b753292f50ec02ef737482ab8391b4",
+    "vlm_research/internvl3_smoke/__init__.py": "72c810f115f51ed920ce436ab697e84f4a2714fdf5e9231dfee4e03adfa48144",
+    "vlm_research/internvl3_smoke/common.py": "9f8b681c49f474a3505d751d6de02bc6cffe5c466dd198166d0850bd020332d5",
+    "vlm_research/internvl3_smoke/download.py": "2856bc72ce5c78c8923404aa6b6b33a4969443d54a23060c8c3505796e3c893f",
+    "vlm_research/internvl3_smoke/engine.py": "5c30032cdf739ad94b93c3bf3d15f972a7b95c5067f8a5411ebb00710a3e95e8",
+    "vlm_research/internvl3_smoke/prepare.py": "acc206bf8b55f3dada940452012c1e9b8fcb9a83cccee4ff602008b0a312519d",
+    "vlm_research/internvl3_smoke/run.py": "f34e6f0f5ae8564759dda26d2d7b490db4824c170e6d0d221d1f3dd993323d17",
+    "vlm_research/internvl3_smoke/tests.py": "e124ca5673dae78dca7781f08af0bd5b6d01f45c8637012a79bfed693b2ffff5",
+    "vlm_research/internvl3_stage/__init__.py": "eb824139cb950467161d448ab70f51f39c88cebeaacd461132753c357cc78800",
+    "vlm_research/internvl3_stage/analyze.py": "c42571e9bd3ee28f2ec64a22bbc8db4cdd3b0750ac967b40552970e2d1b85e60",
+    "vlm_research/internvl3_stage/common.py": "255a9b0851731121f5e3802b3477fa815226e050abc079607d65f8384be907ab",
+    "vlm_research/internvl3_stage/engine.py": "47bf04f3a9a355400ae44d468cec2f65ecf776833e24d86697a5265604bdb319",
+    "vlm_research/internvl3_stage/prepare.py": "8db0c4dac2467de028ce82614ba3014f18be241c554facf6c0980c2b50a71805",
+    "vlm_research/internvl3_stage/run.py": "18d7637448be95bee7fcab43b6c69f38e9841b81e77eb88ca12906cf8a2dc169",
+    "vlm_research/internvl3_stage/tests.py": "d72345c0db63fc2026e36ff3a84c705f1f588c6c995397bb591812dde9baa398",
+    "vlm_research/qwen3vl_smoke/common.py": "7d2832ea00133a8700366a9ba668473dc7febd391f64aabe807011990c709099",
+    "vlm_research/qwen3vl_smoke/download.py": "999080d617920025b7e6cb2a20412420c38b9e150c75035ecb06a78605d80c17",
+    "vlm_research/qwen3vl_smoke/finalize.py": "4cb4172839bb21675c1be6bc0ff243d92a085d0e44677f87d9a23ff17b67d988",
+    "vlm_research/qwen3vl_smoke/run.py": "3f8bfb28640832b6dd3257e0d8bc9e05803ed5003b5d1745ea6f5461d7c086c6",
+    "vlm_research/qwen3vl_smoke/test_smoke.py": "d0a79d1b41e326c046bb8020b8d2437ceba40a314f4708b7bb152e1f76dcb9ba",
+    "vlm_research/qwen3vl_early_windows/__init__.py": "17902faa2086f14661225df3c854a36be1df7d6d99f40d7eb394307e418f6127",
+    "vlm_research/qwen3vl_early_windows/analyze.py": "0c9846934107afd29a45441a3bfe77b198a4cfffb9fdcce0cb978a9b03d29f9e",
+    "vlm_research/qwen3vl_early_windows/experiment.py": "ea65a64f5ac6842e6a821ae2d21222c211060bd4afa08dc2d26fbaf3581b1b9c",
+    "vlm_research/qwen3vl_early_windows/run.py": "2034b93d24c3ad6d1b8cdb11876f46cb693c1b3723ae8591129e4fcc9c0c2dd8",
+    "vlm_research/qwen3vl_early_windows/tests.py": "b627a310c80599c870d67e786fd82a927dd0e1a1c5cf8b2045f057a17273d3bf"
+  },
+  "file_sha256": {
+    "sample_manifest.json": "24c3abc6a8b13dbf749156cd3cdece92fcb430732b80126d5892df9b01529666",
+    "qwen_input_manifest.json": "751e9dba8efdc94c907c9aac90dbaf25162c5ecec5feb26a095b27599ab2c61a",
+    "internvl_input_manifest.json": "3e8344c88afb02816613edb05b763aaba519ba925fcb2291bf85f30e8a3ea9f3",
+    "model_and_environment_bindings.json": "dcf1a8e908b14e33cd89c500e1f6cc8f41f035fa1d601ce94c2f6266bab744bd"
+  }
+}
