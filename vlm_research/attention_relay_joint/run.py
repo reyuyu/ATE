@@ -44,6 +44,7 @@ def prepare():
     from transformers import AutoProcessor
     import transformers.models.llama.modeling_llama as llama
     import transformers.models.llava.modeling_llava as llava
+    import transformers.generation.utils as hf_generation
     OUT.mkdir(parents=True, exist_ok=True)
     experiment_one = Path('/data/lk/ATE-worktrees/query-role-attention-boundary-240/vlm_research/results/query_role_attention_boundary_240/sample_manifest.json')
     fallback = ROOT / 'results/rq2_visual_text_handoff_240/sample_manifest.json'
@@ -93,7 +94,7 @@ def prepare():
     converter = OLD_ROOT / 'sources/llava/scripts/convert_gqa_for_eval.py'
     assert sha256(evaluator) == GQA_EVALUATOR_SHA and sha256(converter) == GQA_CONVERTER_SHA
     write(OUT / 'preparation.json', dict(base_commit=BASE, model_revision=REVISION, model_files=model_files,
-        transformers_sources={inspect.getfile(m):sha256(inspect.getfile(m)) for m in [llama, llava]},
+        transformers_sources={inspect.getfile(m):sha256(inspect.getfile(m)) for m in [llama, llava, hf_generation]},
         scorer_sources={str(p):sha256(p) for p in [evaluator, converter]},
         sample_manifest_sha256=sha256(OUT / 'sample_manifest.json'),
         hypotheses=['A-Skip and Text-Only separately low harm', 'Joint may or may not have excess harm'],
@@ -161,8 +162,17 @@ def smoke():
             hf = model.generate(**prompt, do_sample=False, num_beams=1, max_new_tokens=32,
                 use_cache=True, eos_token_id=2, return_dict_in_generate=True, output_scores=True)
         assert hf.sequences[0, prompt['input_ids'].shape[1]:].tolist() == full['token_ids']
-        assert len(hf.scores) == len(ft)
-        assert all(torch.equal(a[0].float().cpu(), b) for a, b in zip(hf.scores, ft))
+        default_differences = [float((a[0].float().cpu()-b).abs().max()) for a,b in zip(hf.scores,ft)]
+        # HF4.49 defaults logits_to_keep=1 while historical forwards use0.
+        # Compare exact logits only with identical LM-head matrix shapes; keep
+        # the default HF token comparison and record its raw numerical difference.
+        with torch.inference_mode():
+            aligned = model.generate(**prompt, do_sample=False, num_beams=1, max_new_tokens=32,
+                use_cache=True, eos_token_id=2, logits_to_keep=0,
+                return_dict_in_generate=True, output_scores=True)
+        assert aligned.sequences[0, prompt['input_ids'].shape[1]:].tolist() == full['token_ids']
+        assert len(aligned.scores) == len(ft)
+        assert all(torch.equal(a[0].float().cpu(), b) for a,b in zip(aligned.scores,ft))
         conditions = []
         for condition in ['A-Skip', 'Text-Only', 'Joint']:
             g, first, trace, debug = generate(model, prompt, condition, audit=True, collect=True)
@@ -197,6 +207,8 @@ def smoke():
         assert tensor_hashes(prompt) == before and guard(model) == initial
         checks.append(dict(question_id=s['question_id'], task=s['task'], p_minus_one=prompt['input_ids'].shape[1]-1,
             noop_all_valid_logits_tokens_and_initial_cache_exact=True, native_hf_greedy_tokens_logits_exact=True,
+            native_default_hf_greedy_tokens_exact=True, aligned_hf_logits_to_keep=0,
+            default_hf_logit_max_abs_differences=default_differences,
             historical_single_hook_implementations_exact=True, exception_cleanup_and_native_restore=True,
             input_unchanged=True, conditions=conditions))
         print('GPU smoke passed', s['task'], s['question_id'], flush=True)

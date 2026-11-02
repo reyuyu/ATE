@@ -43,6 +43,10 @@ class Tests(unittest.TestCase):
         with torch.inference_mode():
             ids=m.language_model.generate(**p,max_new_tokens=4,do_sample=False,use_cache=True,eos_token_id=2,pad_token_id=0)
         self.assertEqual(ids[0,9:].tolist(),f['token_ids'])
+        with torch.inference_mode():
+            aligned=m.language_model.generate(**p,max_new_tokens=4,do_sample=False,use_cache=True,
+                eos_token_id=2,pad_token_id=0,logits_to_keep=0,return_dict_in_generate=True,output_scores=True)
+        self.assertTrue(all(torch.equal(a[0].float(),b) for a,b in zip(aligned.scores,ft)))
 
     def test_joint_both_hooks_scope_cache_and_non_target(self):
         m=tiny();p=inputs();before=hook_footprint(m)
