@@ -1,0 +1,39 @@
+Prepared 40/240 unchanged images
+Prepared 80/240 unchanged images
+Prepared 120/240 unchanged images
+Prepared 160/240 unchanged images
+Prepared 200/240 unchanged images
+Prepared 240/240 unchanged images
+Traceback (most recent call last):
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/importlib/metadata/__init__.py", line 563, in from_name
+    return next(cls.discover(name=name))
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+StopIteration
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/qwen3vl-query-role-l1-l6-240/vlm_research/qwen3vl_query_role/run.py", line 290, in <module>
+    main()
+  File "/data/lk/ATE-worktrees/qwen3vl-query-role-l1-l6-240/vlm_research/qwen3vl_query_role/run.py", line 282, in main
+    {'freeze': freeze, 'cpu': cpu, 'execute': execute}[action]()
+  File "/data/lk/ATE-worktrees/qwen3vl-query-role-l1-l6-240/vlm_research/qwen3vl_query_role/run.py", line 80, in freeze
+    env = environment()
+          ^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/qwen3vl-query-role-l1-l6-240/vlm_research/qwen3vl_query_role/run.py", line 37, in environment
+    versions={p: importlib.metadata.version(p) for p in
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/qwen3vl-query-role-l1-l6-240/vlm_research/qwen3vl_query_role/run.py", line 37, in <dictcomp>
+    versions={p: importlib.metadata.version(p) for p in
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/importlib/metadata/__init__.py", line 1009, in version
+    return distribution(distribution_name).version
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/importlib/metadata/__init__.py", line 982, in distribution
+    return Distribution.from_name(distribution_name)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/importlib/metadata/__init__.py", line 565, in from_name
+    raise PackageNotFoundError(name)
+importlib.metadata.PackageNotFoundError: No package metadata was found for matplotlib

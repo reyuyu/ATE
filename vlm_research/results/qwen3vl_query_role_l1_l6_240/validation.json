@@ -1,0 +1,187 @@
+{
+  "passed": true,
+  "protocol_sha256": "356f4b1f3223b914320783187cac6230f61564496adaaa72e153dbfcc383f27d",
+  "cases": [
+    {
+      "key": "QueryAttr__14165525",
+      "input_binding": "bd262681ba4dd2ca8f899775ac260cc04239a1303e8482261aaf44f724c0516e",
+      "native_full_repeat_exact": true,
+      "independent_cache_objects_and_storage": true,
+      "historical_A_exact": true,
+      "inputs_weights_unchanged": true,
+      "exception_hook_cleanup": true,
+      "checks": [
+        {
+          "condition": "I-Bypass",
+          "noop_all_logits_equal": true,
+          "rows_and_layers_exact": true,
+          "residual_deepstack_mlp_exact": true,
+          "actual_prefill_queries": 128,
+          "decode_queries": 0,
+          "token_ids": [
+            1291,
+            151645
+          ]
+        },
+        {
+          "condition": "R-Bypass",
+          "noop_all_logits_equal": true,
+          "rows_and_layers_exact": true,
+          "residual_deepstack_mlp_exact": true,
+          "actual_prefill_queries": 20,
+          "decode_queries": 0,
+          "token_ids": [
+            2359,
+            151645
+          ]
+        },
+        {
+          "condition": "A-Bypass",
+          "noop_all_logits_equal": true,
+          "rows_and_layers_exact": true,
+          "residual_deepstack_mlp_exact": true,
+          "actual_prefill_queries": 1,
+          "decode_queries": 1,
+          "token_ids": [
+            2359,
+            151645
+          ]
+        },
+        {
+          "condition": "I+A-Bypass",
+          "noop_all_logits_equal": true,
+          "rows_and_layers_exact": true,
+          "residual_deepstack_mlp_exact": true,
+          "actual_prefill_queries": 129,
+          "decode_queries": 1,
+          "token_ids": [
+            1291,
+            151645
+          ]
+        }
+      ]
+    },
+    {
+      "key": "CompareAttr__03196142",
+      "input_binding": "63247f261ea2b04cf53b9f0aaf06eac2a782d59e57cb7f8048633ccf934bb3e8",
+      "native_full_repeat_exact": true,
+      "independent_cache_objects_and_storage": true,
+      "historical_A_exact": true,
+      "inputs_weights_unchanged": true,
+      "exception_hook_cleanup": true,
+      "checks": [
+        {
+          "condition": "I-Bypass",
+          "noop_all_logits_equal": true,
+          "rows_and_layers_exact": true,
+          "residual_deepstack_mlp_exact": true,
+          "actual_prefill_queries": 192,
+          "decode_queries": 0,
+          "token_ids": [
+            3423,
+            151645
+          ]
+        },
+        {
+          "condition": "R-Bypass",
+          "noop_all_logits_equal": true,
+          "rows_and_layers_exact": true,
+          "residual_deepstack_mlp_exact": true,
+          "actual_prefill_queries": 23,
+          "decode_queries": 0,
+          "token_ids": [
+            3152,
+            3959,
+            14448,
+            151645
+          ]
+        },
+        {
+          "condition": "A-Bypass",
+          "noop_all_logits_equal": true,
+          "rows_and_layers_exact": true,
+          "residual_deepstack_mlp_exact": true,
+          "actual_prefill_queries": 1,
+          "decode_queries": 1,
+          "token_ids": [
+            3423,
+            151645
+          ]
+        },
+        {
+          "condition": "I+A-Bypass",
+          "noop_all_logits_equal": true,
+          "rows_and_layers_exact": true,
+          "residual_deepstack_mlp_exact": true,
+          "actual_prefill_queries": 193,
+          "decode_queries": 1,
+          "token_ids": [
+            3423,
+            151645
+          ]
+        }
+      ]
+    },
+    {
+      "key": "CompareAttr__101038280",
+      "input_binding": "f7cc124c90c285209527cbad8774b2e9bce1bc302e7bd4bd984bc9303d5a8214",
+      "native_full_repeat_exact": true,
+      "independent_cache_objects_and_storage": true,
+      "historical_A_exact": true,
+      "inputs_weights_unchanged": true,
+      "exception_hook_cleanup": true,
+      "checks": [
+        {
+          "condition": "I-Bypass",
+          "noop_all_logits_equal": true,
+          "rows_and_layers_exact": true,
+          "residual_deepstack_mlp_exact": true,
+          "actual_prefill_queries": 1024,
+          "decode_queries": 0,
+          "token_ids": [
+            3423,
+            151645
+          ]
+        },
+        {
+          "condition": "R-Bypass",
+          "noop_all_logits_equal": true,
+          "rows_and_layers_exact": true,
+          "residual_deepstack_mlp_exact": true,
+          "actual_prefill_queries": 24,
+          "decode_queries": 0,
+          "token_ids": [
+            76,
+            20247,
+            151645
+          ]
+        },
+        {
+          "condition": "A-Bypass",
+          "noop_all_logits_equal": true,
+          "rows_and_layers_exact": true,
+          "residual_deepstack_mlp_exact": true,
+          "actual_prefill_queries": 1,
+          "decode_queries": 1,
+          "token_ids": [
+            3423,
+            151645
+          ]
+        },
+        {
+          "condition": "I+A-Bypass",
+          "noop_all_logits_equal": true,
+          "rows_and_layers_exact": true,
+          "residual_deepstack_mlp_exact": true,
+          "actual_prefill_queries": 1025,
+          "decode_queries": 1,
+          "token_ids": [
+            3423,
+            151645
+          ]
+        }
+      ]
+    }
+  ],
+  "equality": "torch.equal, all returned per-step logits, same native LM-head shape"
+}
