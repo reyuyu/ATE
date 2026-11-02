@@ -1,0 +1,196 @@
+{
+  "title": "Qwen3-VL Semantic Visual Writers / fixed 240",
+  "base_commit": "4d3667870132c51cce3c5ab0282ac368077e0217",
+  "llava_commit": "9687b298efcdca651cc5446b5cb07da4a2b4e37c",
+  "code_commit": "469fc64790a9745e74c73c4f08c0a55924411298",
+  "sources": {
+    "vlm_research/qwen3vl_early_windows/experiment.py": "ea65a64f5ac6842e6a821ae2d21222c211060bd4afa08dc2d26fbaf3581b1b9c",
+    "vlm_research/qwen3vl_query_role/analyze.py": "37b70203e5fad71dc6a0c6e37d36cd93621e749757a257745c7145d87a3eaf64",
+    "vlm_research/qwen3vl_query_role/common.py": "0c3d5f2504425be5fd3f397f23838509472e3e50146672518b3260931278330e",
+    "vlm_research/qwen3vl_query_role/engine.py": "70bed98694c53d8ff8b02b13e75199b45447221401be521b355b9e742cbc2a70",
+    "vlm_research/qwen3vl_semantic_visual_writers/__init__.py": "4d1741e9dcb44633f8d1dc0559cb5e61307ec47a1423ef5eb08a40fb44990fcb",
+    "vlm_research/qwen3vl_semantic_visual_writers/analyze.py": "3985ffdc3d145da1171d7e2588ed159a1230a8494af2914ad9928c7b4bfd32b0",
+    "vlm_research/qwen3vl_semantic_visual_writers/common.py": "6729528bafea0368310b98492c00f571c7c5347d68e2a51a8a9850ded0715b35",
+    "vlm_research/qwen3vl_semantic_visual_writers/engine.py": "3597a2999b367b7c0f905c25526fe3f575ee7377c5b224f571be5b5665e6e382",
+    "vlm_research/qwen3vl_semantic_visual_writers/run.py": "008404bcac0e6a0b1c79d9a05b9188e7b28b3ed129b927f08c5bc4dae89ba0e0",
+    "vlm_research/qwen3vl_semantic_visual_writers/tests.py": "684ef4d3d66e0ae6f270e14c355212917c4cc98228c7a8240b220f210cc16983",
+    "vlm_research/qwen3vl_smoke/common.py": "7d2832ea00133a8700366a9ba668473dc7febd391f64aabe807011990c709099",
+    "vlm_research/semantic_visual_writers/groups.py": "bdfeea43befd9c59cf373e6972d550ee6340416c7550b8ce3a395989a9492e22"
+  },
+  "artifacts": {
+    "cpu_tests.json": "1907cc48b6dfb85d04bc2a90d9902b66516a275db2c195751430a5f37b810918",
+    "sample_manifest.json": "258c32d470270829e126ae9abf3a030dbc1485b2f329fdfc326f4d6e9b3e686c",
+    "image_swap_manifest.json": "d9fa6e772b578d911c2ea98de5b5872b7ee884a1c935500ff6be14179629d77c",
+    "model_manifest.json": "5fa2414e6596fa188838506bc5e973542e9ba4db94c90cbe748c66b9686ef31c",
+    "llava_per_question.csv": "b95f4bfedcd0dcd4587ed55e84acb21b28e91c4b6640adad063d84233366084d",
+    "llava_accuracy_summary.csv": "bad46e3c8a0e9d25dfe4cad38bccc1c92b688324e01820d3f5548029cf0fab44",
+    "llava_paired_comparisons.csv": "a182e39ba0bae80558a40abcf3a2b65066e661daa4635b32ff57f234be185b6f",
+    "llava_image_swap_summary.csv": "cbbd7a87c3d56e592c041dac08cfa709a7f9a74fd97dda7d649619c56a3965cb",
+    "llava_token_group_manifest.json": "53b3c0ae368549dc7d036feca054b60b966c6b999eccb1442823ebe4c61c1fbc",
+    "token_group_manifest.json": "e0f753c4072f7b0f2bfc960389fc2cab294e6dba676522866758f6779ac0ff7a",
+    "swap_layout_manifest.json": "ee6ffeed681602397379798d9955714b72ae9f21389d5536fbd6d59fe8ad9914",
+    "token_budget_audit.json": "3bdf76c5a465cea504745369f9c3885a63b7879df13df841f1fc774a69d396a2",
+    "environment.json": "6fd86f23d0aa145ead9e225a7741c144c8524ed7bf28af845fcb682c30304b0b",
+    "dependencies.json": "fc2ea304f9b0bd8ed3908227e8a3b6d03fc930b1ad4eb89e89b83bbccb111e18"
+  },
+  "official_sources": {
+    "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py": "dd63ed3b124232735b3dca1bfa28f9d6b0d3f7182afcb75dde8f3e724b2b22da",
+    "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/masking_utils.py": "7a963feed8173b8265298dd24350c166222ce6b4719442fce48ab414d0478a6a",
+    "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/generation/utils.py": "55fd5c50aa785e226afa03e4507b8d27c0328714c0bd048bc60af9e8813a1173"
+  },
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "model_path": "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "dtype": "bfloat16",
+  "attention": "eager",
+  "transformers": "4.57.6",
+  "model_layers": 36,
+  "vocab_size": 151936,
+  "generation": {
+    "greedy": true,
+    "max_new_tokens": 32,
+    "logits_to_keep": 1,
+    "independent_real_KV": true
+  },
+  "conditions": [
+    "All-Writer",
+    "No-Writer",
+    "Semantic-k",
+    "Question-Last-k",
+    "R-Last-k",
+    "Scaffold-k",
+    "Random-k-20261103",
+    "Random-k-20261107",
+    "Random-k-20261111",
+    "Drop-Semantic"
+  ],
+  "main_records": 2400,
+  "new_main_generations": 2400,
+  "swap_conditions": [
+    "All-Writer",
+    "No-Writer",
+    "Semantic-k",
+    "R-Last-k",
+    "Random-k-20261103"
+  ],
+  "swap_generations": 400,
+  "gpu": {
+    "index": 0,
+    "uuid": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89",
+    "name": "NVIDIA GeForce RTX 3090",
+    "logical": "cuda:0"
+  },
+  "smoke_keys": [
+    "QueryAttr__14165525",
+    "ChooseAttr__07424393",
+    "CompareAttr__101038280"
+  ],
+  "role_definition": "I = native image-pad positions, variable length; R = every original position after final I and before P-1, INCLUDING vision_end and native template special tokens",
+  "historical_role_boundary_note": "Earlier o_proj query-role R excluded vision_end. Source-writer masks include it to avoid an uncontrolled post-image visual relay; no old All-Writer result is reused.",
+  "mask": "All36 layers: block P-1 and all real decode queries from original I; block non-selected R -> I. Only pre-softmax hard mask. Native causal/pad mask and all other paths retained.",
+  "selector": {
+    "sha256": "bdfeea43befd9c59cf373e6972d550ee6340416c7550b8ce3a395989a9492e22",
+    "stopwords": [
+      "a",
+      "am",
+      "an",
+      "answer",
+      "are",
+      "as",
+      "be",
+      "been",
+      "being",
+      "can",
+      "could",
+      "did",
+      "do",
+      "does",
+      "doing",
+      "for",
+      "had",
+      "has",
+      "have",
+      "having",
+      "image",
+      "is",
+      "may",
+      "might",
+      "must",
+      "photo",
+      "photograph",
+      "phrase",
+      "picture",
+      "please",
+      "question",
+      "s",
+      "say",
+      "seen",
+      "shall",
+      "should",
+      "showing",
+      "shown",
+      "single",
+      "t",
+      "tell",
+      "the",
+      "then",
+      "there",
+      "using",
+      "was",
+      "were",
+      "will",
+      "word",
+      "would"
+    ],
+    "random_seeds": [
+      20261103,
+      20261107,
+      20261111
+    ],
+    "unchanged_algorithm": true,
+    "native_token_offsets": true,
+    "budget": "Largest feasible whole-word semantic budget matching exact Question/R tail and seeded random controls; Scaffold deficit retained; Drop = selected Semantic complement",
+    "random": "Question-text keyed permutation of whole groups plus unchanged exact-budget DP; not independent uniformly sampled subwords"
+  },
+  "no_op": "All returned valid logits torch.equal, native logits_to_keep=1, never relaxed",
+  "probability_audit": "Prohibited probabilities exactly zero; FP32 softmax cast to native BF16, row-sum bound fixed at torch.finfo(bfloat16).eps, not a logit tolerance",
+  "swaps": "Frozen40 pairs; same-layout No-Writer strict all-step torch.equal gate; different-grid/mRoPE pairs report position confounding separately and are never called visual leakage solely from non-equality",
+  "inference": {
+    "seed": 20261103,
+    "repetitions": 20000,
+    "cluster": "Image SHA256",
+    "primary": [
+      [
+        "Semantic-k",
+        "Random-mean(3)"
+      ],
+      [
+        "Semantic-k",
+        "Question-Last-k"
+      ],
+      [
+        "Semantic-k",
+        "R-Last-k"
+      ],
+      [
+        "Semantic-k",
+        "Scaffold-k"
+      ],
+      [
+        "Semantic-k",
+        "All-Writer"
+      ],
+      [
+        "Semantic-k",
+        "No-Writer"
+      ],
+      [
+        "Drop-Semantic",
+        "All-Writer"
+      ]
+    ],
+    "correction": "Ordinary exploratory95% and Bonferroni7 intervals for seven prespecified contrasts",
+    "random_mean": "Average three correctness indicators within each question before paired cluster resampling",
+    "cross_model": "Descriptive same-question paired comparison; separate original tokenizer, prompt and BF16/FP16 environments, not pure architecture identification"
+  },
+  "stop": "No training, layer/token search, router, activation patching or speedup implementation"
+}
