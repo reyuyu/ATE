@@ -83,7 +83,7 @@ def report():
 def complete():
     p=verify();assert_no_stop();assert read(OUT/'visual_layout_review.json')['passed'],'Visually inspect the actual exported main/six-task PDF and PNG first'
     for name in ['replay_validation.json','statistics_validation.json','image_swap_validation.json','figure_validation.json']:assert read(OUT/name)['passed']
-    for name,h in read(OUT/'postprocessing_freeze_v2.json')['sources'].items():assert sha256(ROOT/name)==h
+    for name,h in read(OUT/'postprocessing_freeze_v3.json')['sources'].items():assert sha256(ROOT/name)==h
     for name,info in p['model_files'].items():assert sha256(name)==info['sha256']
     for name,h in read(OUT/'checkpoint_hashes.json').items():assert sha256(OUT/name)==h
     for name,h in read(OUT/'raw_logits_hashes.json').items():assert sha256(name)==h
