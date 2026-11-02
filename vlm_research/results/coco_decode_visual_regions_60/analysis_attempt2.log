@@ -1,0 +1,13 @@
+PTBTokenizer tokenized 3715 tokens at 67074.01 tokens per second.
+PTBTokenizer tokenized 885 tokens at 20478.36 tokens per second.
+Parsing reference captions
+Parsing test captions
+SPICE evaluation took: 787.3 ms
+Traceback (most recent call last):
+  File "/data/lk/ATE-worktrees/coco-decode-region-60/vlm_research/coco_decode_regions_analysis.py", line 273, in <module>
+    if __name__ == '__main__': main()
+                               ^^^^^^
+  File "/data/lk/ATE-worktrees/coco-decode-region-60/vlm_research/coco_decode_regions_analysis.py", line 196, in main
+    rows.append(dict(question_id=q, image_id=s['image_id'], image_sha256=s['image_sha256'],
+                                             ~^^^^^^^^^^^^
+KeyError: 'image_id'
