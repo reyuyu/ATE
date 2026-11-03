@@ -1,0 +1,17 @@
+question_id,kind,task,confirmatory,k,R,budget_reduction,core_omitted_text,core_omitted_count,k_zero,interpretation
+001020372,harm,ChooseAttr,False,11,33,0,,0,False,关系词 left、of、选择连接词 or 和两个颜色选项都已选中；不能把这道错题解释成漏选这些词。遗漏的是 Is、三个 the 和问号，且整个指令/模板均未读图。是否由功能词或边界接收位置造成，尚无补词验证。
+14236062,harm,ChooseAttr,True,7,29,2,or | colored,2,False,or 与 colored 是词法核心候选，却因整词后缀对照的可行预算缩减而未进入 Semantic-k。cream 已选中但 Gold 是 cream colored；可能同时存在选项连接与答案表面形式问题，尚不能确定哪个遗漏有因果作用。
+02760157,harm,ChooseCat,True,9,28,0,,0,False,penguins、or、panda、bears 全部已选。Semantic 输出 Panda，官方 Gold 为 panda bears；冻结评分器严格判错，但这不等于已经识别成错误动物。此例必须单独标注答案表面形式不匹配，不能全归因于视觉接收失败。
+09662582,harm,ChooseCat,True,4,26,1,train,1,False,train 是问题中的视觉类别选项，却因可行预算缩减而被删除；this、truck、or 已选。该输入规则产生了一个很具体的漏选候选，但补回 train 是否能纠正 Truck 尚未测试。
+08163732,harm,ChooseRel,True,12,37,0,,0,False,left、right、of、boy、wearing、coat 等关系及对象锚点均已选。遗漏主要为系动词、冠词与问号；左右判断仍出错说明有关键内容词不等于视觉定位必然正确。
+15260602,harm,ChooseRel,True,9,32,0,,0,False,left/right、两个方向连接及 train car 均已选。不能预设漏了方向词；功能词和模板接收位置是待检验候选，也可能存在多个位置的共同作用。
+01445490,harm,CompareAttr,True,6,27,0,,0,False,What、common、shield、and、bat 已选，输出却从 Gold Color 变为 Material。比较/共性任务的目标属性发生变化，但不能仅凭答案推断视觉表示缺失；is、冠词、问号及模板是否有作用仍未验证。
+12951806,harm,CompareAttr,True,6,28,0,,0,False,What、container、plate、in、common、and 均已选。do、have 被 STOP 规则排除，可能影响提问形式的接收，但 Material 与 Color 的变化并不能单独证明这种解释。
+0160501,harm,LogicalObj,True,7,29,0,,0,False,or、door、window、open 已选，而 Do 与 are 未选。输出 Door 而不是 Yes，体现了是非任务的答案类型/格式偏移；Do 是可检验的接收位置，但这也可能是多位置或指令共同作用。
+03567478,harm,LogicalObj,True,8,30,1,on,1,False,状态词 on 被可行预算缩减删除，any、or、TVs、laptops 已选。不能笼统说数量词或逻辑词未选；更具体的假说是电源状态接收位置丢失，尚待单词补回验证。
+0481307,harm,QueryAttr,True,5,25,0,,0,False,On、which、side、small、container 全部已选；遗漏 is、the 和问号。左右答案变化不支持“疑问词一定被漏选”的假设；可优先检验问题边界与模板，但本轮未运行。
+10763612,harm,QueryAttr,True,0,24,3,On | which | side,3,True,自然 k 被整词后缀对照的可行性约束降到 0，Semantic-k 与 No-Writer 写入集合完全相同。On/which/side 三个核心候选都被预算约束删除；can 同时因固定 STOP 将模态动词与名词罐子混同而未列为核心。这里存在明确的规则设计风险，但不是已验证的补词修复。
+001025435,rescue,ChooseAttr,True,4,24,0,,0,False,mud、dry、or、wet 已选；冠词、Is、问号及模板未选，Semantic 反而将 Dry 纠正为 Wet。遗漏功能词/模板并不意味着每题都会受损。
+03678636,rescue,ChooseCat,True,11,33,0,,0,False,否定词 not 实际已选，连同 white、drawer、chair 和 or；Semantic 将 Chair 纠正为 Drawer。这是防止“否定一定被漏选”这一预设解释的重要反例。
+03539455,rescue,ChooseRel,True,8,31,0,,0,False,right、left、of、man、bag 及 or 均已选；冠词与 Is 未选。Semantic 从 Right 纠正到 Left，与两道同类关系损害案例共同表明结果具有题目依赖性。
+16958949,rescue,QueryAttr,True,5,27,0,,0,False,On、which、side、of、man 已选，picture 因 STOP 排除。Semantic 从 Right 纠正到 Left；提到图片的词不必在每题都直接读图，不能由单个失败推导全部模板/功能词均必要。
