@@ -1,0 +1,141 @@
+{
+  "artifacts": {
+    "baselines.json": "bf76f07ca2bee7b138710306fc50c3618dd7f415dbecba37240069e3123f54eb",
+    "first_token_raw_bindings.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "historical_first_token_summary.json": "b83ea90de1fc03b95b1711651bb50f5d7dd0281f10fc8c5130d383ae8f172929",
+    "historical_reuse_audit.json": "0bb2f9a70c55767dbbe844d4c8c6603ba67255a7e74394542ef08a99cf8df018",
+    "input_bindings.json": "383c32a9a3ab2d56314c8cde176d3e563ada3eed956d224765d96456dfe4c6c3",
+    "legacy_generation.json": "ca3d163bab055381827226140568f3bef7eaac187cebd76878e0b63e9e442356",
+    "sample_manifest.json": "648f313630512ae5f0a64436abffa7a0aedade79baf5f972410c38b9edb61877",
+    "shards.json": "279515ca52dec9742e01f754f2385dcb76ae728e8598bf39e8cf307f03a18e8d"
+  },
+  "bootstrap": {
+    "bonferroni_comparisons": 36,
+    "image_cluster": true,
+    "no_noninferiority_claim": true,
+    "ordinary_two_sided_95": true,
+    "question_weighted": true,
+    "repetitions": 20000,
+    "seed": 20261104
+  },
+  "code_commit": "ed6572b5a785902f5d2e241145abcb7e6a2791e5",
+  "condition_order": "Native Full first, then ascending Drop-P1 layers",
+  "conditions": [
+    "Native Full",
+    "Drop-P1-L0",
+    "Drop-P1-L1",
+    "Drop-P1-L2",
+    "Drop-P1-L3",
+    "Drop-P1-L4",
+    "Drop-P1-L5",
+    "Drop-P1-L6",
+    "Drop-P1-L7",
+    "Drop-P1-L8",
+    "Drop-P1-L9",
+    "Drop-P1-L10",
+    "Drop-P1-L11",
+    "Drop-P1-L12",
+    "Drop-P1-L13",
+    "Drop-P1-L14",
+    "Drop-P1-L15",
+    "Drop-P1-L16",
+    "Drop-P1-L17",
+    "Drop-P1-L18",
+    "Drop-P1-L19",
+    "Drop-P1-L20",
+    "Drop-P1-L21",
+    "Drop-P1-L22",
+    "Drop-P1-L23",
+    "Drop-P1-L24",
+    "Drop-P1-L25",
+    "Drop-P1-L26",
+    "Drop-P1-L27",
+    "Drop-P1-L28",
+    "Drop-P1-L29",
+    "Drop-P1-L30",
+    "Drop-P1-L31",
+    "Drop-P1-L32",
+    "Drop-P1-L33",
+    "Drop-P1-L34",
+    "Drop-P1-L35"
+  ],
+  "generation": {
+    "do_sample": false,
+    "logits_to_keep": 1,
+    "max_new_tokens": 32,
+    "normal_native_eos": true,
+    "num_beams": 1
+  },
+  "historical_reuse_requires_strict_gpu_replay": true,
+  "image_clusters": 2409,
+  "independent_native_KV": true,
+  "intervention": "Only selected language-layer o_proj original prefill P-1 output row zero; all Decode native",
+  "kind": "qwen",
+  "logits_shape_reason": "LLaVA keep=0 exactly matches frozen original 33-vector/480-generation experiment; Qwen native keep=1",
+  "model": {
+    "directory": "qwen3-vl-8b-instruct",
+    "dtype": "bfloat16",
+    "layers": 36,
+    "logits_to_keep": 1,
+    "python": "/data/lk/深度学习/.envs/ate-qwen3vl/bin/python",
+    "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+    "transformers": "4.57.6"
+  },
+  "native_full_is_not_All_Writer": true,
+  "no_attention_mask_changes": true,
+  "official_sources": {
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/chat_template.json": "5c72a170d2a4a1a3bc5adad2e689ae28138a9700e5b8c96c0266331e86c0acce",
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/config.json": "5cd452860dc1e9c29dd71cc3cef7f39b338b7a40793f7a260655c2d3568f3661",
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/generation_config.json": "8469742d1fce0de951c8909b26a2c0c0d8490837ce476efb114da9e0cefc4d44",
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model.safetensors.index.json": "520b2e05079402e9468a8701d03d1154d14b2599593afb6effa7fb60c1bff070",
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/preprocessor_config.json": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/tokenizer.json": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7",
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/tokenizer_config.json": "c2da771801886ad9ae98181793ffd3dfb7f1af30f6f7c6a4e15d7dbba52e2399",
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/video_preprocessor_config.json": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/vocab.json": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910"
+  },
+  "original_input_and_prompt": true,
+  "other_queries_and_MLP_native": true,
+  "questions": 3000,
+  "smoke_keys": [
+    "ChooseCat__14445878",
+    "ChooseAttr__10214099",
+    "QueryAttr__15470736"
+  ],
+  "sources": {
+    "/data/lk/ATE-worktrees/single-layer-gqa6/vlm_research/knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+    "/data/lk/ATE-worktrees/single-layer-gqa6/vlm_research/paper_rq1/engine.py": "2c838844c0e7e9815662019498c9b577b8f6478898f591c9cf52cc4a2028eff9",
+    "/data/lk/ATE-worktrees/single-layer-gqa6/vlm_research/paper_rq1/scorers.py": "081e409993a481a0b3c83e0cf6ae2d16768c10e1c95f602de72c4abe4f5c9ad8",
+    "/data/lk/ATE-worktrees/single-layer-gqa6/vlm_research/paper_rq1_single_layer_gqa6/analyze.py": "42a3cb3f9f2348fb5294879144c27086c7d191be42d6b8b819f55b0db6713626",
+    "/data/lk/ATE-worktrees/single-layer-gqa6/vlm_research/paper_rq1_single_layer_gqa6/engine.py": "17509131686cb01f1954e12cbd1ed57d2b74663fa6f6aaba0a01e8fceac7ebe9",
+    "/data/lk/ATE-worktrees/single-layer-gqa6/vlm_research/vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/p1_layerwise_accuracy/__init__.py": "6a34cc2afc002ee95a3e219edf7dcd09ac365c2047203d13b4e427e459edf576",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/p1_layerwise_accuracy/analyze.py": "6798272421cdbb1199a9a5037c3688fd5cac69a7d9d14d4e669b365343295df5",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/p1_layerwise_accuracy/common.py": "cb87d6c1f3f6156a14ae22ef3a1cb60304ec90bcc328faa239bf4481a138328c",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/p1_layerwise_accuracy/engine.py": "3cbf506f506c33fe34a636d2a3b5f19f751e2831b3bb299aae460ae8a5add46a",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/p1_layerwise_accuracy/prepare.py": "4b7512f1e369f345d553cd0f19dcbc0e7e040b35df680de079282f181156f53e",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/p1_layerwise_accuracy/run.py": "dbd7b9debece5f9970673e390707008b93f089126296be4b892015727679d453",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/p1_layerwise_accuracy/tests.py": "beb3be6cfd787ad4fe4f946b0b44350bc47f5a765488df9d9fa925467f58da30",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/qwen3vl_early_windows/experiment.py": "ea65a64f5ac6842e6a821ae2d21222c211060bd4afa08dc2d26fbaf3581b1b9c",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/qwen3vl_smoke/common.py": "7d2832ea00133a8700366a9ba668473dc7febd391f64aabe807011990c709099"
+  },
+  "visual_replay": "Same-image native features cloned, exact replay checked before reuse",
+  "weights": {
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model-00001-of-00004.safetensors": {
+      "sha256": "d5d0aef0eb170fc7453a296c43c0849a56f510555d3588e4fd662bb35490aefa",
+      "size": 4902275944
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model-00002-of-00004.safetensors": {
+      "sha256": "8be88fb5501e4d5719a6d4cc212e6a13480330e74f3e8c77daa1a68f199106b5",
+      "size": 4915962496
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model-00003-of-00004.safetensors": {
+      "sha256": "83de00eafe6e0d57ccd009dbcf71c9974d74df2f016c27afb7e95aafd16b2192",
+      "size": 4999831048
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model-00004-of-00004.safetensors": {
+      "sha256": "0a88b98e9f96270973f567e6a2c103ede6ccdf915ca3075e21c755604d0377a5",
+      "size": 2716270024
+    }
+  }
+}

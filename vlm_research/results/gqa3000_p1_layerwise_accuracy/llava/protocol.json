@@ -1,0 +1,134 @@
+{
+  "artifacts": {
+    "baselines.json": "0f6f3cc61b44331b7cc60c2f411437c5dcb699dc870ddd93fe64a6ab3e5dbf30",
+    "first_token_raw_bindings.json": "8841d55336358ad0ad3cda62fb56c3ff8a3fd984a447208f9225d31a5dda32b8",
+    "historical_first_token_summary.json": "85280cd7cc4cf737579babbd9d372b488123dd0813f8ea9380e5a851ddc084f9",
+    "historical_reuse_audit.json": "e863ca209033572e1eb70a71f1298804f5d6068268c6c97679c44dbf335f6d33",
+    "input_bindings.json": "6a1179f8e9fd50c57449ce737a6a47ccf30a5ffc57ccd667a80a45ad583b95d7",
+    "legacy_generation.json": "2276a926fb80dc4890d60aead21af0850af09e7c747607392355f68e4bcec701",
+    "sample_manifest.json": "648f313630512ae5f0a64436abffa7a0aedade79baf5f972410c38b9edb61877",
+    "shards.json": "279515ca52dec9742e01f754f2385dcb76ae728e8598bf39e8cf307f03a18e8d"
+  },
+  "bootstrap": {
+    "bonferroni_comparisons": 32,
+    "image_cluster": true,
+    "no_noninferiority_claim": true,
+    "ordinary_two_sided_95": true,
+    "question_weighted": true,
+    "repetitions": 20000,
+    "seed": 20261104
+  },
+  "code_commit": "ed6572b5a785902f5d2e241145abcb7e6a2791e5",
+  "condition_order": "Native Full first, then ascending Drop-P1 layers",
+  "conditions": [
+    "Native Full",
+    "Drop-P1-L0",
+    "Drop-P1-L1",
+    "Drop-P1-L2",
+    "Drop-P1-L3",
+    "Drop-P1-L4",
+    "Drop-P1-L5",
+    "Drop-P1-L6",
+    "Drop-P1-L7",
+    "Drop-P1-L8",
+    "Drop-P1-L9",
+    "Drop-P1-L10",
+    "Drop-P1-L11",
+    "Drop-P1-L12",
+    "Drop-P1-L13",
+    "Drop-P1-L14",
+    "Drop-P1-L15",
+    "Drop-P1-L16",
+    "Drop-P1-L17",
+    "Drop-P1-L18",
+    "Drop-P1-L19",
+    "Drop-P1-L20",
+    "Drop-P1-L21",
+    "Drop-P1-L22",
+    "Drop-P1-L23",
+    "Drop-P1-L24",
+    "Drop-P1-L25",
+    "Drop-P1-L26",
+    "Drop-P1-L27",
+    "Drop-P1-L28",
+    "Drop-P1-L29",
+    "Drop-P1-L30",
+    "Drop-P1-L31"
+  ],
+  "generation": {
+    "do_sample": false,
+    "logits_to_keep": 0,
+    "max_new_tokens": 32,
+    "normal_native_eos": true,
+    "num_beams": 1
+  },
+  "historical_reuse_requires_strict_gpu_replay": true,
+  "image_clusters": 2409,
+  "independent_native_KV": true,
+  "intervention": "Only selected language-layer o_proj original prefill P-1 output row zero; all Decode native",
+  "kind": "llava",
+  "logits_shape_reason": "LLaVA keep=0 exactly matches frozen original 33-vector/480-generation experiment; Qwen native keep=1",
+  "model": {
+    "directory": "llava-1.5-7b-hf",
+    "dtype": "float16",
+    "layers": 32,
+    "logits_to_keep": 0,
+    "python": "/data/lk/深度学习/.envs/ate-vlm-research/bin/python",
+    "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "transformers": "4.49.0"
+  },
+  "native_full_is_not_All_Writer": true,
+  "no_attention_mask_changes": true,
+  "official_sources": {
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/added_tokens.json": "a94c56096001713e3eb9a34b1a545a8c1d5e8034ed2fb81f897c8cb54b420121",
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/chat_template.json": "854445c0a45532ecbee1ae9aa31d4be19644060a156f2c88456f50f584261543",
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/config.json": "0bde54495c54bcc346064a0d314b010d1c4d3ca7f7e583b6f711949a35352c0f",
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/generation_config.json": "3a6dc8c202be258023f58a03f804bdcacf138b8a2cc7492be2530e16945a0951",
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model.safetensors.index.json": "73af906b5ac12aea6eddf104d482d2a50bca30b20d61ee9f6c5269d3427a6991",
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/preprocessor_config.json": "a8d5e64ee5c07ff6d70142856d178ac39d0563da3612e32110fa824f5337b7a1",
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/processor_config.json": "fef918d6ba333f72a066877965bc4a162308568ba62aa90c806caedf7b45d64e",
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/special_tokens_map.json": "358c249e2fb29060c6b73157d428853b0c48710deffc8ee670ab1013880946c9",
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer.json": "30e1294abd835edfebb24618fce6f47c21ffb2b2802520d150bdee0b808b47cb",
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/tokenizer_config.json": "79b7f1ebceddf7235f3791c387d781818b0c7e7cf868d0e4f71896a55b949833"
+  },
+  "original_input_and_prompt": true,
+  "other_queries_and_MLP_native": true,
+  "questions": 3000,
+  "smoke_keys": [
+    "ChooseAttr__001025435",
+    "LogicalObj__03433478",
+    "ChooseRel__16275021"
+  ],
+  "sources": {
+    "/data/lk/ATE-worktrees/single-layer-gqa6/vlm_research/knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+    "/data/lk/ATE-worktrees/single-layer-gqa6/vlm_research/paper_rq1/engine.py": "2c838844c0e7e9815662019498c9b577b8f6478898f591c9cf52cc4a2028eff9",
+    "/data/lk/ATE-worktrees/single-layer-gqa6/vlm_research/paper_rq1/scorers.py": "081e409993a481a0b3c83e0cf6ae2d16768c10e1c95f602de72c4abe4f5c9ad8",
+    "/data/lk/ATE-worktrees/single-layer-gqa6/vlm_research/paper_rq1_single_layer_gqa6/analyze.py": "42a3cb3f9f2348fb5294879144c27086c7d191be42d6b8b819f55b0db6713626",
+    "/data/lk/ATE-worktrees/single-layer-gqa6/vlm_research/paper_rq1_single_layer_gqa6/engine.py": "17509131686cb01f1954e12cbd1ed57d2b74663fa6f6aaba0a01e8fceac7ebe9",
+    "/data/lk/ATE-worktrees/single-layer-gqa6/vlm_research/vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/p1_layerwise_accuracy/__init__.py": "6a34cc2afc002ee95a3e219edf7dcd09ac365c2047203d13b4e427e459edf576",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/p1_layerwise_accuracy/analyze.py": "6798272421cdbb1199a9a5037c3688fd5cac69a7d9d14d4e669b365343295df5",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/p1_layerwise_accuracy/common.py": "cb87d6c1f3f6156a14ae22ef3a1cb60304ec90bcc328faa239bf4481a138328c",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/p1_layerwise_accuracy/engine.py": "3cbf506f506c33fe34a636d2a3b5f19f751e2831b3bb299aae460ae8a5add46a",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/p1_layerwise_accuracy/prepare.py": "4b7512f1e369f345d553cd0f19dcbc0e7e040b35df680de079282f181156f53e",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/p1_layerwise_accuracy/run.py": "dbd7b9debece5f9970673e390707008b93f089126296be4b892015727679d453",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/p1_layerwise_accuracy/tests.py": "beb3be6cfd787ad4fe4f946b0b44350bc47f5a765488df9d9fa925467f58da30",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/qwen3vl_early_windows/experiment.py": "ea65a64f5ac6842e6a821ae2d21222c211060bd4afa08dc2d26fbaf3581b1b9c",
+    "/data1/likai/ATE-worktrees/gqa3000-p1-layerwise-accuracy-llava-qwen/vlm_research/qwen3vl_smoke/common.py": "7d2832ea00133a8700366a9ba668473dc7febd391f64aabe807011990c709099"
+  },
+  "visual_replay": "Same-image native features cloned, exact replay checked before reuse",
+  "weights": {
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00001-of-00003.safetensors": {
+      "sha256": "c11dbf016ee7d35ee130c19b67e20eb04873996006f424b7bcbd453b6517ee66",
+      "size": 4992930200
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00002-of-00003.safetensors": {
+      "sha256": "46df6c6e5fad297fe7fbca4963dcf180cb1d0528cabc884d1f603311fed01328",
+      "size": 4957878440
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00003-of-00003.safetensors": {
+      "sha256": "4f06177c37ca13944e73b57dd6d051767b950dffc12400c700dfa2509c24c697",
+      "size": 4176137408
+    }
+  }
+}
