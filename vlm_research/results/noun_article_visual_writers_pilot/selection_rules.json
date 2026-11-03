@@ -1,0 +1,11 @@
+{
+  "article": "literal a/an/the with dep=det and head POS NOUN/PROPN; direct dependency permits intervening adjectives; no outcome-dependent POS correction",
+  "bootstrap": "20000 image-cluster paired resamples, seed 20261104; random seeds average per question; exploratory 95% intervals; no noninferiority claims",
+  "mapping": "Intersect parser character spans with original native tokenizer offsets; close to original whole-word groups; audit closures",
+  "noun": "Question NOUN or PROPN; include every compound noun token independently",
+  "parser": "spacy==3.8.7",
+  "pipeline": "en_core_web_sm==3.8.0",
+  "placebo": "two seeds 20261103/20261107; SHA-priority whole lexical Question groups outside base and containing no literal a/an/the; exact subset-sum equal to D minus base, otherwise unavailable; never split words",
+  "selection": "SHA256(noun-article-v1|task|question_id|image_sha256), 20 eligible per task, no repeated image; exclude all Semantic240 and historical12 harm images",
+  "swap": "historical12 only; add D minus S, remove exact whole-group subset of S ordered by SHA independently of answers; random swaps share same removal and exact added budget; unavailable if no exact subset"
+}
