@@ -1,0 +1,93 @@
+{
+  "status": "NOT_STARTED_GPU_BUSY",
+  "timestamp": "2026-11-03T15:48:36.096562+08:00",
+  "epoch": 1793692116.0966346,
+  "base_commit": "a61e30a2ffc605bd130ad414285b94910ddae297",
+  "branch": "codex/qwen3vl-gqa3000-visual-writing-necessity",
+  "required_idle_GPUs": 2,
+  "eligible_GPUs": [],
+  "GPUs": [
+    {
+      "index": 0,
+      "uuid": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89",
+      "name": "NVIDIA GeForce RTX 3090",
+      "used_MiB": 2519,
+      "free_MiB": 21637,
+      "utilization_pct": 58,
+      "compute_processes": [
+        {
+          "uuid": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89",
+          "pid": 3147347,
+          "process": "/home/xrl/Project/.envs/stable_spectral_20261016/bin/python",
+          "memory_MiB": 2486
+        }
+      ],
+      "eligible": false
+    },
+    {
+      "index": 1,
+      "uuid": "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+      "name": "NVIDIA GeForce RTX 3090",
+      "used_MiB": 2089,
+      "free_MiB": 22067,
+      "utilization_pct": 50,
+      "compute_processes": [
+        {
+          "uuid": "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+          "pid": 3147356,
+          "process": "/home/xrl/Project/.envs/stable_spectral_20261016/bin/python",
+          "memory_MiB": 2056
+        }
+      ],
+      "eligible": false
+    },
+    {
+      "index": 2,
+      "uuid": "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+      "name": "NVIDIA GeForce RTX 3090",
+      "used_MiB": 2571,
+      "free_MiB": 21585,
+      "utilization_pct": 63,
+      "compute_processes": [
+        {
+          "uuid": "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+          "pid": 3147353,
+          "process": "/home/xrl/Project/.envs/stable_spectral_20261016/bin/python",
+          "memory_MiB": 2538
+        }
+      ],
+      "eligible": false
+    },
+    {
+      "index": 3,
+      "uuid": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185",
+      "name": "NVIDIA GeForce RTX 3090",
+      "used_MiB": 2515,
+      "free_MiB": 21641,
+      "utilization_pct": 68,
+      "compute_processes": [
+        {
+          "uuid": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185",
+          "pid": 3147351,
+          "process": "/home/xrl/Project/.envs/stable_spectral_20261016/bin/python",
+          "memory_MiB": 2482
+        }
+      ],
+      "eligible": false
+    }
+  ],
+  "process_owner_command_snapshot": "USER         PID ELAPSED COMMAND\nxrl      3147347     810 /home/xrl/Project/.envs/stable_spectral_20261016/bin/python train.py --config /data1/xrl/pixel-seg-spectral-guided-dual-u/control/configs/hsodbit/serial_seed29.json\nxrl      3147351     810 /home/xrl/Project/.envs/stable_spectral_20261016/bin/python train.py --config /data1/xrl/pixel-seg-spectral-guided-dual-u/control/configs/hsodbit/serial_seed17.json\nxrl      3147353     810 /home/xrl/Project/.envs/stable_spectral_20261016/bin/python train.py --config /data1/xrl/pixel-seg-spectral-guided-dual-u/control/configs/hsodbit/serial_seed43.json\nxrl      3147356     809 /home/xrl/Project/.envs/stable_spectral_20261016/bin/python train.py --config /data1/xrl/pixel-seg-spectral-guided-dual-u/control/configs/hsodbit/unguided_seed17.json\n",
+  "raw_nvidia_smi_table": "0, GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, NVIDIA GeForce RTX 3090, 2519, 21637, 58\n1, GPU-b08489af-0a8a-eb48-55ba-8346733af417, NVIDIA GeForce RTX 3090, 2089, 22067, 50\n2, GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6, NVIDIA GeForce RTX 3090, 2571, 21585, 63\n3, GPU-96bc853f-ceea-2404-c704-c48a3d1ca185, NVIDIA GeForce RTX 3090, 2515, 21641, 68\n",
+  "raw_nvidia_smi_processes": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 3147347, /home/xrl/Project/.envs/stable_spectral_20261016/bin/python, 2486\nGPU-b08489af-0a8a-eb48-55ba-8346733af417, 3147356, /home/xrl/Project/.envs/stable_spectral_20261016/bin/python, 2056\nGPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6, 3147353, /home/xrl/Project/.envs/stable_spectral_20261016/bin/python, 2538\nGPU-96bc853f-ceea-2404-c704-c48a3d1ca185, 3147351, /home/xrl/Project/.envs/stable_spectral_20261016/bin/python, 2482\n",
+  "reference_engine_sha256": "3597a2999b367b7c0f905c25526fe3f575ee7377c5b224f571be5b5665e6e382",
+  "model_loaded": false,
+  "CUDA_context_created": false,
+  "CPU_tests_run": false,
+  "GPU_smokes_run": 0,
+  "completed_generations": 0,
+  "required_generations": 114000,
+  "source_protocol_model_input_bindings_frozen": false,
+  "external_processes_modified_or_terminated": false,
+  "background_wait_or_auto_restart": false,
+  "instruction": "Stop and preserve diagnostics when two truly idle GPUs are unavailable; do not seize remaining VRAM."
+}
