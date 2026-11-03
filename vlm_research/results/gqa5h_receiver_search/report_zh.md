@@ -156,3 +156,5 @@ CUDA_VISIBLE_DEVICES='' PYTHONDONTWRITEBYTECODE=1 PYTHONPATH=./vlm_research:/dat
 ```
 
 预期SHA256：`8bf47b46017f0074f2efe0c79720d8b3102089628116ab826326515d4bc33958`。可部署接口为gqa5h_receiver_search.deploy.build_input/load_selector，读取冻结selection_rules及对应源码快照；规则对新文本运行，无题号分支。冻结依赖源码52/52与历史完全一致，服务器资源路径及文件SHA详见protocol、validation。完整提交号以Git历史及交付链接为准，不把提交自包含哈希写成循环依赖。
+
+交付核验补记：首个结果提交28c64871的打包索引按文件名误排除了四份Worker completion.json，后续提交已补齐；原索引/完成标记保存在attempts/packaging_followup_28c64871。配对图区间文字重叠已调整。未重新推理或更改任何Token、答案、ACC及CI。

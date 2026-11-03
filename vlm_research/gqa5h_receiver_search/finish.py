@@ -18,7 +18,7 @@ def main():
     source={str(f.relative_to(ROOT)):sha(f) for f in sorted(Path(__file__).parent.glob('*.py'))};atomic_json(P/'final_source_index.json',source)
     index=[]
     for file in sorted(P.rglob('*')):
-        if file.is_file() and file.name not in ['artifact_sha_index.csv','completion.json','delivery.json'] and file.suffix not in ['.lock']:
+        if file.is_file() and not (file.parent==P and file.name in ['artifact_sha_index.csv','completion.json','delivery.json']) and file.suffix not in ['.lock']:
             assert file.stat().st_size<90*1024**2;index.append(dict(path=str(file.relative_to(ROOT)),bytes=file.stat().st_size,sha256=sha(file)))
     writecsv(P/'artifact_sha_index.csv',index)
     for row in index:assert sha(ROOT/row['path'])==row['sha256']
