@@ -29,7 +29,7 @@ def selected():return read(OUT/'case_manifest.json')['cases']
 def bind():return sha256(OUT/'candidate_plan.json')
 def active():assert not (OUT/'STOP.json').exists(),'Preserve failure; do not continue GPU work'
 def source_hashes():
-    paths=list((ROOT/'semantic_writer_error_cases').glob('*.py'))
+    paths=[ROOT/'semantic_writer_error_cases'/n for n in ['__init__.py','common.py','prepare.py','tests.py','run.py']]
     paths += [ROOT/'gqa3000_token_visual_writing/engine.py',ROOT/'semantic_visual_writers/engine.py',ROOT/'vlm_common.py']
     return {str(p.relative_to(ROOT)):sha256(p) for p in sorted(paths)}
 
