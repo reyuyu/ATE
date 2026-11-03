@@ -1,0 +1,12 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:04,  2.30s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:04<00:02,  2.49s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.30s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:06<00:00,  2.33s/it]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/gqa3000-space-nl-visual-writers/vlm_research/gqa3000_space_nl_visual_writers/quick.py", line 103, in <module>
+    try:globals()[args.stage]()
+        ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/gqa3000-space-nl-visual-writers/vlm_research/gqa3000_space_nl_visual_writers/quick.py", line 67, in run
+    atomic_json(Q/'environment.json',dict(**env,pid=os.getpid(),gpu=gpu,code_commit=code))
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: dict() got multiple values for keyword argument 'gpu'

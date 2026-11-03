@@ -64,7 +64,7 @@ def run():
     lock=(Q/'worker.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     code=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT.parent,text=True).strip();atomic_json(Q/'worker_started.json',dict(pid=os.getpid(),utc=stamp(),code_commit=code))
     model,proc,env=load_model(MODEL);assert torch.cuda.device_count()==1
-    atomic_json(Q/'environment.json',dict(**env,pid=os.getpid(),gpu=gpu,code_commit=code))
+    atomic_json(Q/'environment.json',{**env,'pid':os.getpid(),'gpu':gpu,'code_commit':code})
     import semantic_writer_error_cases.run as oldrun
     oldrun.OUT=Q;oldrun.RAW=RAW;oldrun.smoke(model,proc,p)
     plan=read(Q/'sample_plan.json');count=0;reused=0;labels=0
