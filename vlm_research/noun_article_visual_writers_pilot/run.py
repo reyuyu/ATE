@@ -28,7 +28,7 @@ def run():
     atomic_json(OUT/'gpu_preflight.json',dict(**state,passed=ok,selected=p['gpu']));assert ok and os.environ.get('CUDA_VISIBLE_DEVICES')==u
     lock=(OUT/'worker.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     atomic_json(OUT/'worker_started.json',dict(pid=os.getpid(),started_utc=time.strftime('%Y-%m-%dT%H:%M:%SZ',time.gmtime()),plan_sha256=bind()))
-    model,proc,env=load_model(MODEL);atomic_json(OUT/'environment.json',dict(**env,pid=os.getpid(),gpu=p['gpu']))
+    model,proc,env=load_model(MODEL);atomic_json(OUT/'environment.json',{**env,'pid':os.getpid(),'selected_gpu':p['gpu']})
     # Reuse the strict three-case smoke implementation, rebinding its output only.
     import semantic_writer_error_cases.run as oldrun
     oldrun.OUT=OUT;oldrun.RAW=RAW
