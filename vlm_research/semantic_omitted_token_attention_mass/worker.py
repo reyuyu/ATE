@@ -16,7 +16,8 @@ def work(rank):
     ok=not busy and int(fields[3])<200 and int(fields[4])>22000 and int(fields[5])==0;atomic_json(OUT/f'worker{rank}/gpu_preflight.json',dict(**state,selected=gpu,passed=ok));assert ok and os.environ.get('CUDA_VISIBLE_DEVICES')==u
     lock=(OUT/f'worker{rank}/worker.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     model,proc,env=load_model(MODEL);assert torch.cuda.device_count()==1;atomic_json(OUT/f'worker{rank}/environment.json',{**env,'pid':os.getpid(),'selected_gpu':gpu})
-    subset=[v for v in cases() if v['rank']==rank];assert len(subset)==8
+    serial=p.get('single_gpu',False)
+    subset=cases() if serial else [v for v in cases() if v['rank']==rank];assert len(subset)==(16 if serial else 8)
     for i,v in enumerate(subset):
         if list(OUT.glob('worker*/STOP.json')):raise RuntimeError('Another worker stopped')
         q=v['question_id'];s=v['sample'];inputs=prepared(model,proc,s);assert tensor_hashes(inputs)==v['input_hashes'];footprint=hook_footprint(model)
@@ -36,19 +37,21 @@ def work(rank):
                 with Capture(model,inputs):raise RuntimeError('intentional hook cleanup test')
             except RuntimeError as e:assert str(e)=='intentional hook cleanup test'
             assert hook_footprint(model)==footprint
-            smoke_raw=atomic_npz(RAW/f'worker{rank}/smoke.npz',native_R_image_probabilities=probs,allwriter_R_image_probabilities=apb,native_valid_logits=logits.numpy(),noop_valid_logits=nl.numpy(),allwriter_valid_logits=al.numpy())
-            atomic_json(OUT/f'worker{rank}/smoke_validation.json',dict(passed=True,question_id=q,native_noop_logits_torch_equal=True,native_noop_R_image_probabilities_torch_equal=True,native_allwriter_R_image_probabilities_torch_equal=True,all32_layers_all32_heads_all576_image_keys=True,independent_KV_caches=True,input_and_visual_hash_exact=True,hook_cleanup_on_exception=True,native_audit=audit,allwriter_audit=aa,raw=smoke_raw))
+            smoke_raw=atomic_npz(RAW/f'worker{rank}'/(q+'_smoke.npz'),native_R_image_probabilities=probs,allwriter_R_image_probabilities=apb,native_valid_logits=logits.numpy(),noop_valid_logits=nl.numpy(),allwriter_valid_logits=al.numpy())
+            atomic_json(OUT/f'worker{rank}'/('smoke_'+q+'.json'),dict(passed=True,question_id=q,native_noop_logits_torch_equal=True,native_noop_R_image_probabilities_torch_equal=True,native_allwriter_R_image_probabilities_torch_equal=True,all32_layers_all32_heads_all576_image_keys=True,independent_KV_caches=True,input_and_visual_hash_exact=True,hook_cleanup_on_exception=True,native_audit=audit,allwriter_audit=aa,raw=smoke_raw))
             del ref,parent,nl,nm,nk,npb,na,nc,al,am,ak,apb,aa,ac
-            atomic_json(OUT/f'worker{rank}/ready.json',dict(passed=True,pid=os.getpid(),rank=rank))
-            deadline=time.monotonic()+90
-            while not (OUT/'GO.json').exists():
-                assert not list(OUT.glob('worker*/STOP.json')) and time.monotonic()<deadline,'Smoke barrier failed or timed out'
-                time.sleep(.2)
+            if not serial:
+                atomic_json(OUT/f'worker{rank}/ready.json',dict(passed=True,pid=os.getpid(),rank=rank))
+                deadline=time.monotonic()+90
+                while not (OUT/'GO.json').exists():
+                    assert not list(OUT.glob('worker*/STOP.json')) and time.monotonic()<deadline,'Smoke barrier failed or timed out'
+                    time.sleep(.2)
+            print('SMOKE PASS',q,flush=True)
         del cache,probs
         raw=atomic_npz(OUT/'measurements'/(q+'.npz'),image_mass=mass,legal_key_counts=legal,query_positions=np.array(v['spec']['relay_positions']+[s['input_mapping']['p_minus_one']]),native_valid_logits=logits.numpy())
         atomic_json(OUT/'checkpoints'/(q+'.json'),dict(passed=True,question_id=q,rank=rank,kind=v['kind'],case_manifest_sha256=binding(),image_sha256=s['image_sha256'],input_hashes=v['input_hashes'],native_audit=audit,raw=raw,condition='Native Full; no hard mask'))
         assert footprint==hook_footprint(model);print('NATIVE PREFILL DONE',q,rank,'seconds',round(time.perf_counter()-started,2),flush=True)
-    verify();atomic_json(OUT/f'worker{rank}/completion.json',dict(passed=True,pid=os.getpid(),rank=rank,cases=8,native_main_prefills=8,validation_extra_prefills=3,decode_steps=0,new_generated_answers=0,seconds=time.perf_counter()-started,memory=gpu_memory()))
+    verify();atomic_json(OUT/f'worker{rank}/completion.json',dict(passed=True,pid=os.getpid(),rank=rank,cases=len(subset),native_main_prefills=len(subset),validation_extra_prefills=6 if serial else 3,decode_steps=0,new_generated_answers=0,seconds=time.perf_counter()-started,memory=gpu_memory()))
 if __name__=='__main__':
     a=argparse.ArgumentParser();a.add_argument('--rank',type=int,required=True);args=a.parse_args()
     try:work(args.rank)
