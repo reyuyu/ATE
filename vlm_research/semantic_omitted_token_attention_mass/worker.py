@@ -10,7 +10,6 @@ def verify():
     p=read(OUT/'protocol.json');assert p['sources']==sources() and p['case_manifest_sha256']==binding() and p['rules_sha256']==sha256(OUT/'ranking_rules.json');return p
 def independent(a,b):
     return all(x.data_ptr()!=y.data_ptr() for aa,bb in zip(a.to_legacy_cache(),b.to_legacy_cache()) for x,y in zip(aa,bb))
-@torch.inference_mode()
 def work(rank):
     torch.set_num_threads(4);started=time.perf_counter();p=verify();gpu=p['gpus'][rank];state=hardware();u=gpu['uuid'];fields=[x.strip() for x in next(l for l in state['table'].splitlines() if l.split(',')[1].strip()==u).split(',')];busy=[l for l in state['compute_processes'].splitlines() if l.split(',')[0].strip()==u]
     ok=not busy and int(fields[3])<200 and int(fields[4])>22000 and int(fields[5])==0;atomic_json(OUT/f'worker{rank}/gpu_preflight.json',dict(**state,selected=gpu,passed=ok));assert ok and os.environ.get('CUDA_VISIBLE_DEVICES')==u
