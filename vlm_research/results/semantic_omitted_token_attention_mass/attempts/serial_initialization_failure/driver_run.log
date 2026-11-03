@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/semantic-omitted-token-attention-mass/vlm_research/semantic_omitted_token_attention_mass/driver.py", line 38, in <module>
+    a=argparse.ArgumentParser();a.add_argument('stage',choices=['freeze','run']);args=a.parse_args();globals()[args.stage]()
+                                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/semantic-omitted-token-attention-mass/vlm_research/semantic_omitted_token_attention_mass/driver.py", line 23, in run
+    assert not list(OUT.glob('worker*/STOP.json')) and all(c.poll() in [None,0] for c in children),'Worker failed; cancel our remaining worker only';time.sleep(.2)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Worker failed; cancel our remaining worker only

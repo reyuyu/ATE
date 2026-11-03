@@ -1,0 +1,24 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:04,  2.43s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:05<00:02,  2.62s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.39s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.44s/it]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/semantic-omitted-token-attention-mass/vlm_research/semantic_omitted_token_attention_mass/worker.py", line 57, in <module>
+    try:work(args.rank)
+        ^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/semantic-omitted-token-attention-mass/vlm_research/semantic_omitted_token_attention_mass/worker.py", line 26, in work
+    logits,mass,legal,probs,audit,cache=observed(model,inputs,keep_image=v['smoke'])
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-vlm-research/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/semantic-omitted-token-attention-mass/vlm_research/semantic_omitted_token_attention_mass/engine.py", line 60, in observed
+    before=tensor_hashes(inputs);fp=hook_footprint(model);versions={n:v._version for n,v in model.named_parameters()}
+                                                                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/semantic-omitted-token-attention-mass/vlm_research/semantic_omitted_token_attention_mass/engine.py", line 60, in <dictcomp>
+    before=tensor_hashes(inputs);fp=hook_footprint(model);versions={n:v._version for n,v in model.named_parameters()}
+                                                                      ^^^^^^^^^^
+RuntimeError: Inference tensors do not track version counter.

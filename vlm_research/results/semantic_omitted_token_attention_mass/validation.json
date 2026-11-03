@@ -1,0 +1,84 @@
+{
+  "passed": true,
+  "cpu_tests": 7,
+  "cpu_input_audit": {
+    "answers_reused_not_generated": true,
+    "binding": "05527e1c1f5fbaaac6816667018d374e6ef88f908c7f62eed11b4693f5fa12b2",
+    "cases": 16,
+    "cuda_initialized": false,
+    "harm": 12,
+    "native_tokenizer_offsets_exact": true,
+    "original_inputs_and_groups_exact": true,
+    "p_minus_one_excluded_from_R": true,
+    "passed": true,
+    "rank_counts": {
+      "0": 8,
+      "1": 8
+    },
+    "ranking_rules_sha256": "f923598bef465c9111b12ce37589d87a9690084c6aa154faf881b0740ea4879e",
+    "rescue": 4,
+    "unique_images": 16
+  },
+  "frozen_execution_commit": "d98c590b7832c31fe4b8eb01e576c6de628949e4",
+  "protocol_sources_exact": true,
+  "model_all_files_SHA256_rechecked": true,
+  "transformers_and_scorer_SHA256_rechecked": true,
+  "raw_and_CSV_all_rows_exact": true,
+  "R_rows": 474112,
+  "P_minus_one_rows": 16384,
+  "group_band_rows_recomputed": 3980,
+  "rank_rule_exact": true,
+  "all16_native_masks_unchanged": true,
+  "all32_MLP_native": true,
+  "all_inputs_visual_features_weights_unchanged": true,
+  "all_prefill_nonnegative_and_illegal_edges_zero": true,
+  "maximum_actual_row_sum_error": 0.0004093647003173828,
+  "existing_FP16_row_tolerance": 0.002,
+  "logits_equality": "strict torch.equal in GPU smoke; arrays exactly rechecked on CPU",
+  "smokes": [
+    {
+      "question_id": "001020372",
+      "passed": true,
+      "raw_sha256_verified": true,
+      "exact_arrays_rechecked": true
+    },
+    {
+      "question_id": "14236062",
+      "passed": true,
+      "raw_sha256_verified": true,
+      "exact_arrays_rechecked": true
+    }
+  ],
+  "undefined_enrichment": [
+    {
+      "question_id": "0160501",
+      "layer": "11",
+      "head": "17",
+      "query_position": "606",
+      "group_text": "ASSISTANT",
+      "image_mass": "1.0001424551010132",
+      "enrichment_undefined_reason": "mass_ge_1_FP16_sum"
+    }
+  ],
+  "no_infinite_enrichment": true,
+  "no_clipping_or_renormalization": true,
+  "P_minus_one_separate": true,
+  "checkpoint_image_and_array_SHA256_exact": true,
+  "one_GPU_user_amendment": "User explicitly authorized one idle GPU after initial two-GPU resource stop; fixed16 inputs and ranking rules unchanged",
+  "main_cases_all_worker0": true,
+  "new_answers": 0,
+  "decode_steps": 0,
+  "resource_release": {
+    "passed": true,
+    "utc": "2026-11-03T10:28:01Z",
+    "worker_pids": [
+      3205797
+    ],
+    "all_our_processes_exited": true,
+    "gpu_table": "0, GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 1791, 22365, 17\n1, GPU-b08489af-0a8a-eb48-55ba-8346733af417, 1793, 22363, 50\n2, GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6, 1793, 22363, 47\n3, GPU-96bc853f-ceea-2404-c704-c48a3d1ca185, 27, 24128, 0\n",
+    "compute_processes": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 3197752, /home/xrl/Project/.envs/stable_spectral_20261016/bin/python, 1758\nGPU-b08489af-0a8a-eb48-55ba-8346733af417, 3197759, /home/xrl/Project/.envs/stable_spectral_20261016/bin/python, 1760\nGPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6, 3197762, /home/xrl/Project/.envs/stable_spectral_20261016/bin/python, 1760\n",
+    "other_processes_killed": false,
+    "single_GPU3": true
+  },
+  "visual_checks_passed": true
+}
