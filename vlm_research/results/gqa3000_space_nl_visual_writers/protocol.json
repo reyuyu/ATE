@@ -1,0 +1,79 @@
+{
+  "GPU_execution_entry_not_prepared_or_frozen": true,
+  "attention": "eager",
+  "base_commit": "11fe70e82d6b608da21d9bd375ce49abf390d4d5",
+  "bindings": {
+    "analysis_plan.json": "f82137f14f7bf060001daa6a9a973f0e9f192965d74bbe7af9357ba4030633e5",
+    "cohorts.json": "4e79156a3d505e76b5b707bc154a14843f2dc3cebb51d61c4fe3615cc2e432e1",
+    "parser_environment.json": "6f213372c953c4d00ff0b4d6d0ed34f478642dd53067d8d2bff526db81de5bd7",
+    "prospective_shards.json": "a286be18bcc1d9635fa5c84c26bbec3372601d16bbd1e04e51d6af1dff49fa0d",
+    "sample_manifest.json": "b5f6dec34cc5c96c6cce2d080b141bbbc8379d3d4b72e67f322ac1e63aa8e9f2",
+    "selection_rules.json": "4f88ef65c2a481e67021bbb3e9d52735a60965ec56e91369dd5d3bda124e6d75",
+    "source_audit.json": "5bed34b11f2e6aedd3590b471f00d14a30559163b4d98675adef2aed9765d6e2",
+    "token_plan.json": "cf694839e83e467c1eb10a894ba2d3dd18979346afd7214158243ca01024c42e"
+  },
+  "conditions": [
+    "All-Writer",
+    "Semantic-k",
+    "S+SPACE",
+    "S+NL",
+    "S+SPACE+NL",
+    "Noun+Article",
+    "Noun+Article+SPACE+NL",
+    "S+Template-Control-2",
+    "N+D+Template-Control-2"
+  ],
+  "cpu_tests": 12,
+  "gpus": [],
+  "greedy": true,
+  "logical_new_labels": 21000,
+  "logits_to_keep": 1,
+  "max_new_tokens": 32,
+  "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "native_attention_reference": "2e1e02bc7c9b523c7878701cf0f563be2e0cf570",
+  "new_Greedy_generations_expected": 20868,
+  "precision": "float16",
+  "primary_comparisons": [
+    [
+      "S+SPACE+NL",
+      "Semantic-k"
+    ],
+    [
+      "Noun+Article+SPACE+NL",
+      "Noun+Article"
+    ],
+    [
+      "S+SPACE+NL",
+      "S+Template-Control-2"
+    ],
+    [
+      "Noun+Article+SPACE+NL",
+      "N+D+Template-Control-2"
+    ],
+    [
+      "S+SPACE",
+      "S+NL"
+    ]
+  ],
+  "required_before_future_GPU_run": "Recheck actual idle GPUs; prepare and freeze execution source against this immutable input design; pass actual per-GPU HF/No-op torch.equal, forbidden actual probabilities0, non-target native masks, independent KV/MLP/input/weight hashes and hook cleanup smoke, then generate. No worker was launched in this attempt.",
+  "resource_status": "STOP_NO_IDLE_GPU",
+  "semantic_commit": "01c82b1d39360fc73bca3d10d12886672ffee370",
+  "smoke_ids": [
+    "00150746",
+    "11697551",
+    "11127723"
+  ],
+  "sources": {
+    "gqa3000_space_nl_visual_writers/__init__.py": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b",
+    "gqa3000_space_nl_visual_writers/common.py": "a5486d6d053c759b85d295baa8ab9bc3135a4763e4f2af8b4d14d2a4da0ca8e4",
+    "gqa3000_space_nl_visual_writers/freeze_resource_stop.py": "1b694ed1e440bac8f173fee7cbe238a685215136a096e40cc5c99eddc7a8c248",
+    "gqa3000_space_nl_visual_writers/prepare.py": "378d5ffaa93f454f721b6bfe3424deb93448abde856f0ba9f58619f5c8c6fd74",
+    "gqa3000_space_nl_visual_writers/tests.py": "9592595d2b826a790579d75166bf183e191becb3eaa2620bf05c5da6d0918a51",
+    "gqa3000_token_visual_writing/engine.py": "e7bcdc0ff84c9c8e3ffe766655963ea7f8d56a3eee2f885a0d518b694d2a683f",
+    "paper_rq1/scorers.py": "081e409993a481a0b3c83e0cf6ae2d16768c10e1c95f602de72c4abe4f5c9ad8",
+    "semantic_visual_writers/engine.py": "86338677142474b0fbf0c71eeedcb319bd52cf84ba6fe67297a16ba02c0fa8aa",
+    "semantic_visual_writers/groups.py": "bdfeea43befd9c59cf373e6972d550ee6340416c7550b8ce3a395989a9492e22"
+  },
+  "status": "INPUT_AND_ANALYSIS_DESIGN_FROZEN_RESOURCE_STOP",
+  "transformers": "4.49.0"
+}

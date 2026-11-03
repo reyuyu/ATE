@@ -1,0 +1,55 @@
+{
+  "bootstrap_repetitions": 20000,
+  "bootstrap_seed": 20261104,
+  "cluster": "Image SHA256; resample image clusters with replacement, retain every question and paired condition for each selected image; question-weighted sums divided by resampled total question count.",
+  "comparisons": [
+    [
+      "S+SPACE+NL",
+      "Semantic-k"
+    ],
+    [
+      "Noun+Article+SPACE+NL",
+      "Noun+Article"
+    ],
+    [
+      "S+SPACE+NL",
+      "S+Template-Control-2"
+    ],
+    [
+      "Noun+Article+SPACE+NL",
+      "N+D+Template-Control-2"
+    ],
+    [
+      "S+SPACE",
+      "S+NL"
+    ]
+  ],
+  "metrics": [
+    "accuracy",
+    "delta_vs_All_pp",
+    "correct_to_wrong",
+    "wrong_to_correct",
+    "answer_text_changed",
+    "first_token_flip",
+    "EOS/empty/truncated/repeated_trigram",
+    "actual_writer_k_over_R"
+  ],
+  "no_NLL_computed": true,
+  "no_budget_search": true,
+  "no_interpretation_of_CI_crossing_zero_as_noninferiority": true,
+  "primary_endpoint": "Complete generated answer GQA accuracy using the original gqa_prediction scorer; no Gold NLL for quality assessment.",
+  "primary_multiple_comparison_control": {
+    "comparisons": 5,
+    "family": "Five predeclared comparisons on the main3000-question cohort",
+    "family_alpha": 0.05,
+    "interpretation": "Exploratory bootstrap simultaneous bounds; no exact finite-sample guarantee or noninferiority claim.",
+    "method": "Bonferroni two-sided percentile99% intervals per comparison",
+    "per_comparison_alpha": 0.01,
+    "percentiles": [
+      0.5,
+      99.5
+    ]
+  },
+  "secondary_subsets": "2640,120,12 and six tasks: descriptive paired95% intervals, explicitly outside primary corrected family.",
+  "unadjusted_CI": "Exploratory two-sided percentile95% CI, [2.5,97.5] percentiles; accuracy differences in percentage points."
+}
