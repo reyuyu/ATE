@@ -66,7 +66,7 @@ def collect(model,proc,inputs,q,w,rank,job):
 def worker(rank):
     started=time.monotonic();torch.set_num_threads(4);p=verify_sources();W=P/f'worker{rank}';W.mkdir(exist_ok=True);lock=(W/'worker.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB);gpu=p['gpus'][rank]
     state=hardware();assert gpu in idle_gpus(state) and os.environ['CUDA_VISIBLE_DEVICES']==gpu['uuid'];atomic_json(W/'preflight.json',dict(**state,selected=gpu,utc=utc(),passed=True))
-    model,proc,env=load_model(MODEL);assert torch.cuda.device_count()==1;atomic_json(W/'environment.json',dict(**env,pid=os.getpid(),gpu=gpu,utc=utc()));smoke(model,proc,rank);atomic_json(W/'READY.json',dict(passed=True,utc=utc()))
+    model,proc,env=load_model(MODEL);assert torch.cuda.device_count()==1;atomic_json(W/'environment.json',{**env,'pid':os.getpid(),'gpu':gpu,'utc':utc()});smoke(model,proc,rank);atomic_json(W/'READY.json',dict(passed=True,utc=utc()))
     while not (P/'SMOKE_GATE.json').exists():guard(gpu=True);time.sleep(.25)
     total=0;seconds=0.;cuda_ms=0.;lastq=None;inputs=None;feature_cache={}
     while not (P/'END_WORKERS.json').exists():

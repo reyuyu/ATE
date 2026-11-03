@@ -1,7 +1,9 @@
 """Freeze each candidate and job before inference; analyze DEV/TUNE only until freeze."""
-import argparse,collections,shutil
+import argparse,collections,shutil,importlib.util
 from .common import *
 from .selection import select,flatten,intact,features
+from .cpu_cache import enable as enable_cpu_cache
+enable_cpu_cache()
 
 def register(cid,config,hypothesis,parent=None):
     guard(reserve=1800);assert time.monotonic()<read(P/'clock.json')['design_stop_monotonic'],'Candidate design boundary reached'
@@ -17,21 +19,24 @@ def schedule(jobid,requests,kind='candidate',details=None):
     p=read(P/'protocol.json');n=len(p['gpus']);tasks={};hist_count=0;saved_count=0;frozen=[]
     for row in requests:
         q=row['question_id'];authorized(q);sp=spec(q);w=row['writers'];assert w==sorted(set(w)) and set(w)<=set(sp['R']) and intact(w,sp['groups']);frozen.append(row)
-        if any(w==v for v in sp['historical_writers'].values()):hist_count+=1;continue
+        if not row.get('force_new',False) and any(w==v for v in sp['historical_writers'].values()):hist_count+=1;continue
         if result_path(q,w).exists():saved_count+=1;continue
         key=q+':'+canonical(w)
         if key not in tasks:tasks[key]=dict(question_id=q,writers=w,worker=int(digest(['worker-v1',sample(q)['image_sha256']]),16)%n)
     assert remaining(gpu=True)>len(tasks)*3/max(n,1)+180,'Insufficient time to finish and audit job'
     atomic_json(directory/'requests.json',dict(kind=kind,requests=frozen,details=details or {}))
     manifest=dict(job_id=jobid,kind=kind,tasks=sorted(tasks.values(),key=lambda r:(sample(r['question_id'])['image_sha256'],r['question_id'],canonical(r['writers']))),logical_requests=len(requests),new_generations_requested=len(tasks),historical_set_reuse=hist_count,existing_checkpoint_reuse=saved_count,request_sha256=sha(directory/'requests.json'),source_hashes=source_hashes(),utc=utc(),monotonic=time.monotonic(),remaining_gpu_seconds=remaining(gpu=True),free_bytes=shutil.disk_usage(P).free)
-    atomic_json(directory/'manifest.json',manifest);event('JOB_FROZEN',job_id=jobid,kind=kind,requests=len(requests),new_generations=len(tasks));print(json.dumps({k:manifest[k] for k in ['job_id','kind','logical_requests','new_generations_requested','historical_set_reuse','existing_checkpoint_reuse']}),flush=True)
+    atomic_json(directory/'manifest.json',manifest);event('JOB_FROZEN',job_id=jobid,job_kind=kind,requests=len(requests),new_generations=len(tasks));print(json.dumps({k:manifest[k] for k in ['job_id','kind','logical_requests','new_generations_requested','historical_set_reuse','existing_checkpoint_reuse']}),flush=True)
 
 def candidate_job(jobid,cids,ids):
     requests=[]
     for cid in cids:
-        d=read(P/'candidates'/cid/'definition.json');assert d['source_sha256']==sha(Path(__file__).with_name('selection.py'))
+        d=read(P/'candidates'/cid/'definition.json');source=P/'candidates'/cid/'selection_source.py';assert d['source_sha256']==sha(source)
+        loader=importlib.util.spec_from_file_location('frozen_selector_'+d['source_sha256'],source);module=importlib.util.module_from_spec(loader);loader.loader.exec_module(module)
         for q in ids:
-            authorized(q);sp=spec(q);w=select(sp,d['config']);requests.append(dict(question_id=q,candidate_id=cid,writers=w,config_sha256=digest(d['config']),selector_sha256=d['source_sha256']))
+            split=authorized(q)
+            if split=='FINAL':assert cids==[read(P/'winner_freeze.json')['candidate_id']],'Only the frozen single Winner may be evaluated on FINAL'
+            sp=spec(q);w=module.select(sp,d['config']);requests.append(dict(question_id=q,candidate_id=cid,writers=w,config_sha256=digest(d['config']),selector_sha256=d['source_sha256'],force_new=split=='FINAL'))
     schedule(jobid,requests)
 
 def loo_job(jobid):
@@ -47,7 +52,11 @@ def summarize(jobid):
     assert all((D/f'worker{i}_done.json').exists() and read(D/f'worker{i}_done.json')['passed'] for i in range(len(p['gpus'])))
     request=read(D/'requests.json');history=History();rows=[];baselines={}
     for row in request['requests']:
-        q=row['question_id'];sp=spec(q);r=score_record(q,row['candidate_id'],row['writers'],history);g=r['generation']
+        q=row['question_id'];sp=spec(q)
+        if row.get('force_new',False):
+            r=read(result_path(q,row['writers']));assert r['writers']==row['writers'] and r['input_hashes']==sp['input_hashes'];r['generation']=dict(r['generation'],correct=int(r['generation']['prediction']==gold(q)));r['reused']=False
+        else:r=score_record(q,row['candidate_id'],row['writers'],history)
+        g=r['generation']
         if q not in baselines:baselines[q]={c:history.get(q,c) for c in ['All-Writer','Question-Only','Semantic-first-Q80','Semantic-k']}
         base=baselines[q];v=dict(question_id=q,split=authorized(q),task=sample(q)['task'],image_sha256=sample(q)['image_sha256'],question=sp['question'],gold=gold(q),candidate_id=row['candidate_id'],writers=json.dumps(row['writers']),k=len(row['writers']),R=len(sp['R']),R_ratio=len(row['writers'])/len(sp['R']),k80=sp['k80'],answer=g['text'],prediction=g['prediction'],correct=g['correct'],token_ids=json.dumps(g['token_ids']),reused=r.get('reused',False),eos=g['eos'],empty=g['empty'],truncated=g['truncated'],repeated_trigram=g['repeated_trigram'])
         for c,short in [('All-Writer','All'),('Question-Only','Q100'),('Semantic-first-Q80','Q80'),('Semantic-k','S')]:

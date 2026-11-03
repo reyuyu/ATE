@@ -20,7 +20,9 @@ class SearchTests(unittest.TestCase):
     def test_holdout_is_image_disjoint_and_sealed(self):
         s=read(P/'split_manifest.json');im={k:{s['metadata'][q]['image_sha256'] for q in v} for k,v in s['ids'].items()};self.assertFalse(im['DEV']&im['FINAL'] or im['TUNE']&im['FINAL'] or im['DEV']&im['TUNE'])
         q=s['ids']['FINAL'][0]
-        with self.assertRaises(AssertionError):gold(q)
+        original_exists=Path.exists
+        with patch.object(Path,'exists',lambda path:False if path==P/'winner_freeze.json' else original_exists(path)):
+            with self.assertRaises(AssertionError):gold(q)
     def test_selector_api_excludes_ID_Gold_image_and_outputs(self):
         import inspect
         self.assertEqual(list(inspect.signature(select).parameters),['sp','config']);s=spec(read(P/'split_manifest.json')['ids']['DEV'][0]);self.assertNotIn('answer',s);self.assertNotIn('question_id',s);self.assertNotIn('image_sha256',s);self.assertNotIn('gold',s)

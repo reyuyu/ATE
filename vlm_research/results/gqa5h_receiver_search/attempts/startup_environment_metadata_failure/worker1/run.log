@@ -1,0 +1,12 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.75s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:05<00:02,  2.85s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.58s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.65s/it]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data1/likai/ATE-worktrees/gqa5h-adaptive-token-receiver-search/vlm_research/gqa5h_receiver_search/worker.py", line 120, in <module>
+    try:worker(args.rank) if args.stage=='worker' else driver()
+        ^^^^^^^^^^^^^^^^^
+  File "/data1/likai/ATE-worktrees/gqa5h-adaptive-token-receiver-search/vlm_research/gqa5h_receiver_search/worker.py", line 69, in worker
+    model,proc,env=load_model(MODEL);assert torch.cuda.device_count()==1;atomic_json(W/'environment.json',dict(**env,pid=os.getpid(),gpu=gpu,utc=utc()));smoke(model,proc,rank);atomic_json(W/'READY.json',dict(passed=True,utc=utc()))
+                                                                                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: dict() got multiple values for keyword argument 'gpu'

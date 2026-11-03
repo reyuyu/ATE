@@ -43,6 +43,21 @@ def route_features(sp):
 def select(sp,config):
     groups=[g for g in sp['groups'] if g['question']];x=features(groups,sp['question']);family=config['family'];fraction=config.get('fraction',.8)
     if family=='historical':return list(sp['historical_writers'][config['label']])
+    if family=='structural_prune':
+        removed=set(p for g in groups[:config.get('remove_first_groups',0)] for p in g['positions'])
+        if config.get('remove_punctuation',False):removed.update(p for g in groups if not g['words'] for p in g['positions'])
+        return [p for p in sp['Q'] if p not in removed]
+    if family=='late_relay':
+        if config['anchor']=='last_R_group':anchor=[sp['groups'][-1]]
+        else:
+            instruction=[g for g in sp['groups'][:-1] if not g['question'] and g['words'] and min(g['positions'])>sp['Q'][-1]]
+            assert instruction;anchor=instruction[-config.get('instruction_groups',1):]
+        p=flatten(anchor);assert p and min(p)>sp['Q'][-1] and set(p)<=set(sp['R'])
+        b=config.get('question_budget',0)
+        if b=='natural':base=sp['historical_writers']['Semantic-k']
+        elif b and f'Semantic-first-Q{b}' not in sp['historical_writers']:base=exact_knapsack(groups,feasible_k(sp,b/100),[float(g['core']) for g in groups])
+        else:base=sp['historical_writers'][f'Semantic-first-Q{b}'] if b else []
+        return sorted(set(base)|set(p))
     if family=='router':
         m=config['model'];z=(route_features(sp)-np.asarray(m['mean']))/np.asarray(m['scale']);z[0]=1;value=float(z@np.asarray(m['weights']));return select(sp,config['high'] if value>=config.get('threshold',0.) else config['low'])
     if family=='adaptive_historical':
@@ -53,10 +68,16 @@ def select(sp,config):
         weights=np.zeros(len(FEATURES));mapping=config['weights']
         for name,w in mapping.items():weights[FEATURES.index(name)]=w
         scores=x@weights
+        if config.get('lexicographic_core',False):scores=scores/max(float(np.max(np.abs(scores))),1.)+(2*len(sp['Q'])+1)*x[:,FEATURES.index('core')]
     elif family=='risk':
         model=config['model'];xx=(x-np.asarray(model['mean']))/np.asarray(model['scale']);xx[:,0]=1
         scores=xx@np.asarray(model['weights'])
         # Data-driven deletion risk plus a preregistered weak lexical prior.
         scores+=config.get('prior',0.)*x[:,FEATURES.index('core')]
+        if config.get('lexicographic_core',False):
+            # Keep the original maximum lexical-core token coverage first;
+            # causal scores only resolve feasible ties. The bounded residual
+            # cannot compensate for losing even one core tokenizer position.
+            scores=scores/max(float(np.max(np.abs(scores))),1.)+(2*len(sp['Q'])+1)*x[:,FEATURES.index('core')]
     else:raise ValueError(family)
     answer=exact_knapsack(groups,k,scores);assert set(answer)<=set(sp['Q']);return answer
