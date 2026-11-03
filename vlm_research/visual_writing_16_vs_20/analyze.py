@@ -151,8 +151,9 @@ def per_question(samples,records,primary):
         for c in ALL:
             r=records[qid,c];g=r['generation']
             row=dict(question_id=qid,task=s['task'],image_id=s['image_id'],image_sha256=s['image_sha256'],
-                primary_image_disjoint=qid in primary,gold=s['answer'],condition=c,
-                answer=g['text'],prediction=g['prediction'],correct=g['correct'],baseline_correct=base['correct'],
+                primary_image_disjoint=qid in primary,question=s['question'],prompt_text=s['prompt_text'],
+                gold=s['answer'],condition=c,answer=g['text'],prediction=g['prediction'],correct=g['correct'],
+                baseline_answer=base['text'],baseline_prediction=base['prediction'],baseline_correct=base['correct'],
                 delta_correct=g['correct']-base['correct'],
                 correct_to_wrong=base['correct']==1 and g['correct']==0,wrong_to_correct=base['correct']==0 and g['correct']==1,
                 first_top1=g['first_top1'],baseline_top1=base['first_top1'],first_token_flip=g['first_top1']!=base['first_top1'],
@@ -191,7 +192,7 @@ def figures(summary,pairs,tasks):
         ax.grid(axis='y',alpha=.15)
     limits=[ax.get_ylim() for ax in axes];low=min(x[0] for x in limits);high=max(x[1] for x in limits)
     for ax in axes:ax.set_ylim(low,high)
-    axes[0].legend(frameon=False,fontsize=8,loc='lower left')
+    axes[0].legend(frameon=True,facecolor='white',edgecolor='none',framealpha=1,fontsize=8,loc='lower left')
     fig.suptitle('Visual Writing Budget: 16 vs 20 Layers\nThin: paired 95% CI; wide: two-candidate familywise 95% CI',fontsize=11)
     for ext in ['pdf','png']:fig.savefig(OUT/f'quality_comparison.{ext}')
     plt.close(fig)
