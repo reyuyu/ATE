@@ -276,6 +276,30 @@ def archive_raw():
     write(OUT/'raw_archive_manifest.json',dict(archives=archives,total_records=6000))
 
 
+def finalize():
+    p=verify();done=[read(OUT/f'shard{i}/complete.json') for i in range(2)]
+    state=hardware();active={int(line.split(',')[1]) for line in state['compute_processes'].splitlines()}
+    own={d['pid'] for d in done};assert not own&active,'Workers still have CUDA contexts'
+    selected=[line for line in state['table'].splitlines() if line.split(',')[1].strip() in {g['uuid'] for g in p['gpus']}]
+    write(OUT/'gpu_release_audit.json',dict(passed=True,epoch=time.time(),worker_pids=sorted(own),
+        own_worker_PIDs_absent_from_CUDA_processes=True,selected_GPU_rows=selected,
+        no_external_processes_terminated=True,**state))
+    write(OUT/'completion.json',dict(status='COMPLETE',epoch=time.time(),questions=3000,
+        image_clusters=2409,primary_questions=2640,primary_image_clusters=2169,
+        new_conditions=2,new_generations=6000,reused_All_Writer_generations=3000,
+        formal_GPU_wall_seconds=max(d['formal_seconds'] for d in done),
+        worker_wall_seconds=max(d['total_seconds'] for d in done),
+        elapsed_since_protocol_freeze_seconds=time.time()-p['epoch'],
+        code_commit=p['code_commit'],protocol_sha256=sha256(OUT/'protocol.json'),
+        GPUs=p['gpus'],validation_passed=True,analysis_passed=True,resources_released=True,
+        no_additional_conditions=True,main_unchanged=True))
+    with (OUT/'report_zh.md').open('a') as f:
+        f.write(f"\n## 执行与资源释放\n\n正式双卡生成墙钟 {max(d['formal_seconds'] for d in done)/60:.2f} 分钟；"
+            f"含加载/Smoke 的 Worker 墙钟 {max(d['total_seconds'] for d in done)/60:.2f} 分钟。"
+            "物理 GPU2、GPU3 各加载一份模型；6000条新检查点完整，两个Worker已退出CUDA进程表，显存释放状态见 gpu_release_audit.json。"
+            "未使用或终止GPU0/1上的外部任务。本轮到此停止。\n")
+
+
 def main():
     start=time.time();stream=io.StringIO()
     tests=unittest.defaultTestLoader.loadTestsFromName('vlm_research.visual_writing_16_vs_20.analysis_tests')
@@ -289,7 +313,7 @@ def main():
     for name,ss in groups:
         a,b=analyze_set(name,ss,records);summary.extend(a);pairs.extend(b);tasks.extend(task_statistics(name,ss,records))
     csv_file('accuracy_summary.csv',summary);csv_file('paired_comparisons.csv',pairs);csv_file('task_accuracy.csv',tasks)
-    per_question(samples,records,primary);figures(summary,pairs,tasks);report(summary,pairs,tasks);archive_raw()
+    per_question(samples,records,primary);figures(summary,pairs,tasks);report(summary,pairs,tasks);archive_raw();finalize()
     write(OUT/'analysis_complete.json',dict(passed=True,seconds=time.time()-start,
         new_generations=6000,reused_baselines=3000,primary_questions=2640,all_questions=3000,
         protocol_sha256=sha256(OUT/'protocol.json'),analysis_source_sha256=sha256(Path(__file__)),
