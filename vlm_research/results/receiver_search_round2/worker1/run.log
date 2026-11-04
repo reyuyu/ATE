@@ -1,0 +1,38 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:02<00:05,  2.77s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:05<00:02,  2.87s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.59s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:07<00:00,  2.66s/it]
+SMOKE_PASS 1 00150746
+SMOKE_PASS 1 11697551
+SMOKE_PASS 1 11127723
+JOB_PROGRESS s01-dev60 1 20 389 new 20
+JOB_PROGRESS s01-dev60 1 40 389 new 40
+JOB_PROGRESS s01-dev60 1 60 389 new 60
+JOB_PROGRESS s01-dev60 1 80 389 new 80
+JOB_PROGRESS s01-dev60 1 100 389 new 100
+JOB_PROGRESS s01-dev60 1 120 389 new 120
+JOB_PROGRESS s01-dev60 1 140 389 new 140
+JOB_PROGRESS s01-dev60 1 160 389 new 160
+JOB_PROGRESS s01-dev60 1 180 389 new 180
+JOB_PROGRESS s01-dev60 1 200 389 new 200
+JOB_PROGRESS s01-dev60 1 220 389 new 220
+JOB_PROGRESS s01-dev60 1 240 389 new 240
+JOB_PROGRESS s01-dev60 1 260 389 new 260
+JOB_PROGRESS s01-dev60 1 280 389 new 280
+JOB_PROGRESS s01-dev60 1 300 389 new 300
+JOB_PROGRESS s01-dev60 1 320 389 new 320
+JOB_PROGRESS s01-dev60 1 340 389 new 340
+JOB_PROGRESS s01-dev60 1 360 389 new 360
+JOB_PROGRESS s01-dev60 1 380 389 new 380
+JOB_DONE s01-dev60 1 389
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data1/likai/ATE-worktrees/receiver-search-continuation/vlm_research/receiver_search_round2/worker.py", line 120, in <module>
+    try:worker(args.rank) if args.stage=='worker' else driver()
+        ^^^^^^^^^^^^^^^^^
+  File "/data1/likai/ATE-worktrees/receiver-search-continuation/vlm_research/receiver_search_round2/worker.py", line 73, in worker
+    guard(gpu=True,reserve=10);jobs=sorted((P/'jobs').glob('*/manifest.json'))
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/likai/ATE-worktrees/receiver-search-continuation/vlm_research/receiver_search_round2/common.py", line 35, in guard
+    assert not (P/'STOP.json').exists(),read(P/'STOP.json')
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: {'pid': 3360224, 'rank': 0, 'traceback': 'Traceback (most recent call last):\n  File "/data1/likai/ATE-worktrees/receiver-search-continuation/vlm_research/receiver_search_round2/worker.py", line 120, in <module>\n    try:worker(args.rank) if args.stage==\'worker\' else driver()\n        ^^^^^^^^^^^^^^^^^\n  File "/data1/likai/ATE-worktrees/receiver-search-continuation/vlm_research/receiver_search_round2/worker.py", line 73, in worker\n    guard(gpu=True,reserve=10);jobs=sorted((P/\'jobs\').glob(\'*/manifest.json\'))\n    ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "/data1/likai/ATE-worktrees/receiver-search-continuation/vlm_research/receiver_search_round2/common.py", line 37, in guard\n    assert remaining(gpu)>reserve,\'Time budget exhausted\'\n           ^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Time budget exhausted\n', 'utc': '2026-11-04T03:48:08.552935+00:00'}

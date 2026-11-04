@@ -1,0 +1,22 @@
+test_S_exact (receiver_search_round2.tests.Tests.test_S_exact) ... ok
+test_anchors_and_whole_groups (receiver_search_round2.tests.Tests.test_anchors_and_whole_groups) ... ok
+test_fill_never_splits_or_removes_S (receiver_search_round2.tests.Tests.test_fill_never_splits_or_removes_S) ... ERROR
+test_image_split_and_scope (receiver_search_round2.tests.Tests.test_image_split_and_scope) ... ok
+test_native_mask (receiver_search_round2.tests.Tests.test_native_mask) ... ok
+
+======================================================================
+ERROR: test_fill_never_splits_or_removes_S (receiver_search_round2.tests.Tests.test_fill_never_splits_or_removes_S)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/data1/likai/ATE-worktrees/receiver-search-continuation/vlm_research/receiver_search_round2/tests.py", line 20, in test_fill_never_splits_or_removes_S
+    w,a=selected(s,c);self.assertTrue(intact(w,s['groups']));self.assertTrue(set(s['historical_writers']['Semantic-k'])<=set(w));self.assertGreaterEqual(a['original_k'],0)
+        ^^^^^^^^^^^^^
+  File "/data1/likai/ATE-worktrees/receiver-search-continuation/vlm_research/receiver_search_round2/selection.py", line 31, in selected
+    target=c.get('extra',max(0,int(c['Rcap']*len(sp['R']))-len(w))) if 'Rcap' not in c else max(0,int(c['Rcap']*len(sp['R']))-len(w))
+                                   ~^^^^^^^^
+KeyError: 'Rcap'
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.551s
+
+FAILED (errors=1)
