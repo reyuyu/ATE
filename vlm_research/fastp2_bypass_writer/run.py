@@ -184,33 +184,33 @@ def execute(adapter,rank,p):
 
 
 def fixed(adapter,rank,p):
-    sample=p['smoke'][0]
-    if p['assignment'].get(sample['image_sha256'],0)!=rank:
-        return
-    adapter.prepare(sample,{})
-    spec=dict(input_hashes=adapter.input_hashes,selection=selection(adapter.processor,sample,adapter.inputs['input_ids'][0].tolist()))
-    layout=prepare(adapter,sample,spec)
-    for length in p['fixed_predictions']:
-        path=OUT/f'shard{rank}/fixed{length}.json'
-        if path.exists():
-            sealed_read(path,p,spec)
-            continue
-        results={}
-        for name in CONDITIONS:
-            census=CompleteCensus(adapter)
-            with census.context():
-                value=generate(adapter,layout,name,spec['selection'],length,True)[0]
-            results[name]=dict(quality=scalar(value),flops=census.rows(),measurements=[])
-            for _ in range(5): generate(adapter,layout,name,spec['selection'],length,True)
-        for rep in range(20):
-            shift=rep%len(CONDITIONS)
-            for name in CONDITIONS[shift:]+CONDITIONS[:shift]:
-                v=generate(adapter,layout,name,spec['selection'],length,True)[0]
-                assert v['token_ids']==results[name]['quality']['token_ids']
-                results[name]['measurements'].append(scalar(v))
-        save(path,dict(protocol_sha256=digest(p),input_spec_sha256=digest(spec),sample=key(sample),
-                       length=length,conditions=results))
-        print('FIXED',rank,length,'COMPLETE',flush=True)
+    pool=read(OUT/'sample_manifest.json')
+    specs=read(OUT/'input_specs.json')
+    selected=[(k,s) for k,s in sorted(pool.items()) if s['dataset']=='pilot60' and p['assignment'][s['image_sha256']]==rank]
+    for sample_key,sample in selected:
+        spec=specs[sample_key]
+        layout=prepare(adapter,sample,spec)
+        for length in p['fixed_predictions']:
+            path=OUT/f'shard{rank}/fixed{length}'/(key(sample)+'.json')
+            if path.exists():
+                sealed_read(path,p,spec)
+                continue
+            results={}
+            for name in CONDITIONS:
+                census=CompleteCensus(adapter)
+                with census.context():
+                    value=generate(adapter,layout,name,spec['selection'],length,True)[0]
+                results[name]=dict(quality=scalar(value),flops=census.rows(),measurements=[])
+                for _ in range(5): generate(adapter,layout,name,spec['selection'],length,True)
+            for rep in range(20):
+                shift=rep%len(CONDITIONS)
+                for name in CONDITIONS[shift:]+CONDITIONS[:shift]:
+                    v=generate(adapter,layout,name,spec['selection'],length,True)[0]
+                    assert v['token_ids']==results[name]['quality']['token_ids']
+                    results[name]['measurements'].append(scalar(v))
+            save(path,dict(protocol_sha256=digest(p),input_spec_sha256=digest(spec),sample=key(sample),
+                           length=length,conditions=results))
+            print('FIXED',rank,length,key(sample),'COMPLETE',flush=True)
 
 
 def profile(adapter,rank,p):
