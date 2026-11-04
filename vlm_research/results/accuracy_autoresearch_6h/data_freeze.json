@@ -1,0 +1,32 @@
+{
+  "at": "2026-11-05T04:38:03.433609+08:00",
+  "base": "3b46d36dc80e46fde778c6fc93191c8e33f24122",
+  "final_selection": "Before FINAL: quality-primary and at most one speed secondary; never reselect on FINAL",
+  "historical_limitation": "All images belong to repeatedly researched historical cohorts; FINAL is only held out within this task",
+  "model": {
+    "directory": "llava-1.5-7b-hf",
+    "dtype": "float16",
+    "layers": 32,
+    "logits_to_keep": 0,
+    "python": "/data/lk/深度学习/.envs/ate-vlm-research/bin/python",
+    "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "transformers": "4.49.0"
+  },
+  "noninferiority": "-1pp; image-cluster 20000 paired bootstrap; one-sided Bonferroni across frozen candidates x 2 datasets",
+  "quality_selection": "CHECK minimizes worst dataset loss vs same-prompt Native; <=0.25pp ties use paired E2E then KV",
+  "samples_sha256": "afef0314f532a942475de02ba78b6e716d25e75af250e1d823d48b5881717fc3",
+  "seed": 20261105,
+  "splits_sha256": "0edb79f730612042afd887608e04e95c19acf33f14962b39f1a6e1ba63a51c9f",
+  "timing": "Paired same-device cold-KV, recompute Vision, 3 warmup+5 interleaved measured; Processor/I/O excluded for all",
+  "tolerances": {
+    "hidden_cosine": 0.0001,
+    "hidden_relative_rmse": 0.01,
+    "logit_atol": 0.1,
+    "logit_rtol": 0.003
+  },
+  "weights": {
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00001-of-00003.safetensors": "c11dbf016ee7d35ee130c19b67e20eb04873996006f424b7bcbd453b6517ee66",
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00002-of-00003.safetensors": "46df6c6e5fad297fe7fbca4963dcf180cb1d0528cabc884d1f603311fed01328",
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00003-of-00003.safetensors": "4f06177c37ca13944e73b57dd6d051767b950dffc12400c700dfa2509c24c697"
+  }
+}
