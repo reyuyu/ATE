@@ -1,0 +1,66 @@
+{
+  "base_commit": "e4272ec80fbf54579d4dc10d1d057a5302aee0b4",
+  "benchmark": {
+    "batch": 1,
+    "classification_if_failed": "UNVALIDATED_PERFORMANCE",
+    "compare_matched_kernels": true,
+    "fixed_generated_lengths": [
+      16,
+      64
+    ],
+    "repeats": 5,
+    "warmups": 2
+  },
+  "code_commit": "e955335e166e2309730fa5710e6d86821064a836",
+  "comparison": "Only common prefixes are numerical pairs; later branch differences descriptive only",
+  "cutoffs": {
+    "llava": 20,
+    "qwen": 22
+  },
+  "kernel_candidate_order": [
+    "native",
+    "fp32_linears",
+    "fp32_linears_attention",
+    "canonical_tiles"
+  ],
+  "no_60_or_240_matrix": true,
+  "no_P4_or_question_only": true,
+  "old_partial_unchanged": true,
+  "output_root": "/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/results/physical_visual_handoff_numerical_debug",
+  "previous_protocol_sha256": "a9a45c810a4e81a41b62e6ea729f2e12185a23d4faaf81483dfdd89ded4d0703",
+  "regression_new_questions": 10,
+  "repeated_failure_runs": 3,
+  "reuse_diagnosis_if_source_exact": "dd68144cf30ec66caee2e46d4bd40b3fc91501e8ba0d9cbe96208e589599d07d",
+  "selection_rule": "Choose first candidate passing unchanged numerical and greedy gates on frozen smoke; report all failures",
+  "sources": {
+    "vlm_research/physical_handoff_debug/__init__.py": "ae9a70841e322cfe67659b923fcd5d8a42f6bf02771cbf87fbf2fb4478989901",
+    "vlm_research/physical_handoff_debug/common.py": "a9fc86a8a9b27db7a3d7014585e01a2198cb3064c5c74284c2a97defb3e1fa85",
+    "vlm_research/physical_handoff_debug/diagnose.py": "dd68144cf30ec66caee2e46d4bd40b3fc91501e8ba0d9cbe96208e589599d07d",
+    "vlm_research/physical_handoff_debug/run.py": "0714354816b09877af965260c6d9a7422ba9364a9b259db14a3151117e6f11bd",
+    "vlm_research/physical_handoff_debug/stable.py": "5be23be8452ec4018f8f73613217aa97800ee241730d367b05596dcaf1dc2408",
+    "vlm_research/physical_handoff_debug/tests.py": "49b2f9ae165c284c46493b27711590dfaa80d396064600492b0876d90556718f"
+  },
+  "stages": [
+    "original deterministic repeat",
+    "same-input operator trace",
+    "local FP32 arithmetic control",
+    "fixed numerical repair candidates",
+    "same-kernel paired regression",
+    "KV audit",
+    "diagnostic benchmark"
+  ],
+  "tolerances": {
+    "llava": {
+      "hidden_cosine": 0.0001,
+      "hidden_relative_rmse": 0.01,
+      "logit_atol": 0.1,
+      "logit_rtol": 0.003
+    },
+    "qwen": {
+      "hidden_cosine": 0.002,
+      "hidden_relative_rmse": 0.04,
+      "logit_atol": 0.5,
+      "logit_rtol": 0.01
+    }
+  }
+}

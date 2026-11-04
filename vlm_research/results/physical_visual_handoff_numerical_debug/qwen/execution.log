@@ -1,0 +1,226 @@
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:07,  2.61s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:05<00:05,  2.56s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:07<00:02,  2.55s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.07s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:09<00:00,  2.25s/it]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/physical_handoff_debug/run.py", line 165, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/physical_handoff_debug/run.py", line 159, in main
+    else:worker(args.kind)
+         ^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/physical_handoff_debug/run.py", line 39, in worker
+    a, al, _ = execute(s, 'N0', native=True, capture=True)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/physical_handoff_debug/run.py", line 33, in execute
+    result = run(adapter, s, specs[key(s)], condition, **kw)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/physical_visual_handoff/engine.py", line 283, in run
+    out = adapter.model(**kw)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1344, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1138, in forward
+    image_embeds, deepstack_image_embeds = self.get_image_features(pixel_values, image_grid_thw)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/physical_visual_handoff/engine.py", line 266, in visual
+    a.record(); value = original_visual(*args, **kwargs); b.record()
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1061, in get_image_features
+    image_embeds, deepstack_image_embeds = self.visual(pixel_values, grid_thw=image_grid_thw)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 739, in forward
+    hidden_states = blk(
+                    ^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/modeling_layers.py", line 94, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 267, in forward
+    hidden_states = hidden_states + self.attn(
+                                    ^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 230, in forward
+    attn_outputs = [
+                   ^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 231, in <listcomp>
+    attention_interface(
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 155, in eager_attention_forward
+    attn_weights = torch.matmul(query, key_states.transpose(2, 3)) * scaling
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Deterministic behavior was enabled with either `torch.use_deterministic_algorithms(True)` or `at::Context::setDeterministicAlgorithms(true)`, but this operation is not deterministic because it uses CuBLAS and you have CUDA >= 10.2. To enable deterministic behavior in this case, you must set an environment variable before running your PyTorch application: CUBLAS_WORKSPACE_CONFIG=:4096:8 or CUBLAS_WORKSPACE_CONFIG=:16:8. For more information, go to https://docs.nvidia.com/cuda/cublas/index.html#results-reproducibility
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:07,  2.41s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:04<00:04,  2.39s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:07<00:02,  2.42s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:08<00:00,  1.97s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:08<00:00,  2.13s/it]
+NATIVE_NOOP qwen PASS
+OPERATOR_DIAGNOSIS qwen {'first_nonexact_operator': 'q_projection', 'status': 'COMPLETE'}
+CANDIDATE qwen native ChooseAttr__001025435 False 0.5 0.06107337027788162
+CANDIDATE qwen fp32_linears ChooseAttr__001025435 True 0.75 0.03689228743314743
+CANDIDATE qwen fp32_linears ChooseRel__16148565 False 0.375 0.04635695740580559
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/physical_handoff_debug/run.py", line 165, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/physical_handoff_debug/run.py", line 159, in main
+    else:worker(args.kind)
+         ^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/physical_handoff_debug/run.py", line 67, in worker
+    a, al, ah = execute(s, 'D1', candidate, audit=True, capture=True)
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/physical_handoff_debug/run.py", line 33, in execute
+    result = run(adapter, s, specs[key(s)], condition, **kw)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/physical_visual_handoff/engine.py", line 283, in run
+    out = adapter.model(**kw)
+          ^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1344, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1138, in forward
+    image_embeds, deepstack_image_embeds = self.get_image_features(pixel_values, image_grid_thw)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/physical_visual_handoff/engine.py", line 266, in visual
+    a.record(); value = original_visual(*args, **kwargs); b.record()
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1061, in get_image_features
+    image_embeds, deepstack_image_embeds = self.visual(pixel_values, grid_thw=image_grid_thw)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 739, in forward
+    hidden_states = blk(
+                    ^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/modeling_layers.py", line 94, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 267, in forward
+    hidden_states = hidden_states + self.attn(
+                                    ^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 230, in forward
+    attn_outputs = [
+                   ^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 231, in <listcomp>
+    attention_interface(
+  File "/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/physical_handoff_debug/stable.py", line 32, in attention
+    if module.layer_idx < cutoff:
+       ^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1928, in __getattr__
+    raise AttributeError(
+AttributeError: 'Qwen3VLVisionAttention' object has no attribute 'layer_idx'
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:02<00:07,  2.51s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:05<00:05,  2.53s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:07<00:02,  2.56s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:08<00:00,  2.05s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:08<00:00,  2.23s/it]
+NATIVE_NOOP qwen PASS
+OPERATOR_DIAGNOSIS qwen {'first_nonexact_operator': 'q_projection', 'status': 'COMPLETE'}
+CANDIDATE qwen native ChooseAttr__001025435 False 0.5 0.06107337027788162
+CANDIDATE qwen fp32_linears ChooseAttr__001025435 True 0.75 0.03689228743314743
+CANDIDATE qwen fp32_linears ChooseRel__16148565 False 0.375 0.04635695740580559
+CANDIDATE qwen fp32_linears_attention ChooseAttr__001025435 True 0.5 0.03574530780315399
+CANDIDATE qwen fp32_linears_attention ChooseRel__16148565 False 0.3359375 0.043095167726278305
+CANDIDATE qwen canonical_tiles ChooseAttr__001025435 True 0.0 0.0
+CANDIDATE qwen canonical_tiles ChooseRel__16148565 True 0.0 0.0
+CANDIDATE qwen canonical_tiles ChooseRel__00239481 True 0.0 0.0
+CANDIDATE qwen canonical_tiles CompareAttr__09301146 True 0.0 0.0
+CANDIDATE qwen canonical_tiles ChooseAttr__01768340 True 0.0 0.0
+CANDIDATE qwen canonical_tiles QueryAttr__15470736 True 0.0 0.0
+REGRESSION qwen smoke_P2 ChooseAttr__001025435 True
+REGRESSION qwen smoke_P2 ChooseRel__16148565 True
+REGRESSION qwen smoke_P2 ChooseRel__00239481 True
+REGRESSION qwen smoke_P2 CompareAttr__09301146 True
+REGRESSION qwen smoke_P2 ChooseAttr__01768340 True
+REGRESSION qwen smoke_P2 QueryAttr__15470736 True
+REGRESSION qwen new10 ChooseAttr__08897589 True
+REGRESSION qwen new10 ChooseAttr__111008718 True
+REGRESSION qwen new10 ChooseCat__0380703 True
+REGRESSION qwen new10 ChooseCat__00198590 True
+REGRESSION qwen new10 ChooseRel__02683157 True
+REGRESSION qwen new10 ChooseRel__05484060 True
+REGRESSION qwen new10 CompareAttr__03450144 True
+REGRESSION qwen new10 CompareAttr__03825419 True
+REGRESSION qwen new10 LogicalObj__161046270 True
+REGRESSION qwen new10 QueryAttr__0711957 True
+BENCHMARK qwen native 16 D1
+BENCHMARK qwen native 16 P1
+BENCHMARK qwen native 16 P2
+BENCHMARK qwen native 64 D1
+BENCHMARK qwen native 64 P1
+BENCHMARK qwen native 64 P2
+BENCHMARK qwen canonical_tiles 16 D1
+BENCHMARK qwen canonical_tiles 16 P1
+BENCHMARK qwen canonical_tiles 16 P2
+BENCHMARK qwen canonical_tiles 64 D1
+BENCHMARK qwen canonical_tiles 64 P1
+BENCHMARK qwen canonical_tiles 64 P2
+COMPLETE qwen 666.66 seconds

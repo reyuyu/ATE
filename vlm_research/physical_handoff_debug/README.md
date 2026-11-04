@@ -12,8 +12,8 @@ one independently reserved, idle GPU per worker.
 ```bash
 python -m unittest vlm_research.physical_handoff_debug.tests -v
 python -m vlm_research.physical_handoff_debug.run prepare
-CUDA_VISIBLE_DEVICES=GPU_UUID python -m vlm_research.physical_handoff_debug.run worker --kind llava
-CUDA_VISIBLE_DEVICES=OTHER_GPU_UUID python -m vlm_research.physical_handoff_debug.run worker --kind qwen
+CUDA_VISIBLE_DEVICES=GPU_UUID CUBLAS_WORKSPACE_CONFIG=:4096:8 OMP_NUM_THREADS=4 python -m vlm_research.physical_handoff_debug.run worker --kind llava
+CUDA_VISIBLE_DEVICES=OTHER_GPU_UUID CUBLAS_WORKSPACE_CONFIG=:4096:8 OMP_NUM_THREADS=4 python -m vlm_research.physical_handoff_debug.run worker --kind qwen
 ```
 
 Freeze and commit source before `prepare`. The protocol records source hashes and
@@ -56,3 +56,17 @@ Normal correctness runs stop at EOS. A failed equivalence path is always labeled
 
 Failures leave tracebacks and earlier checkpoints. Never resume an old protocol
 under modified source; record a new source revision and new attempt explicitly.
+
+The CPU-only finalizer is outside the frozen worker package:
+
+```bash
+python -m vlm_research.physical_handoff_debug_finalize
+```
+
+Read the ROOT validation/report when deciding validity: model-local worker PASS
+means matched-kernel regression only, NOT original-native parity. The finalizer
+checks native-to-fixed drift separately and downgrades all performance labels
+when that stricter parity gate fails. The 99 raw checkpoints are preserved in
+`raw_checkpoints.tar.gz`; the artifact hash manifest covers archive and raw files.
+The full per-layer position/storage audit JSON is preserved separately in
+`raw_kv_audits.tar.gz`; readable summaries stay in `kv_memory_validation.csv`.

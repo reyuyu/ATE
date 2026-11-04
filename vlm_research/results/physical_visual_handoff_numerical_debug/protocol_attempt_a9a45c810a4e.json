@@ -1,0 +1,63 @@
+{
+  "base_commit": "e4272ec80fbf54579d4dc10d1d057a5302aee0b4",
+  "benchmark": {
+    "batch": 1,
+    "classification_if_failed": "UNVALIDATED_PERFORMANCE",
+    "compare_matched_kernels": true,
+    "fixed_generated_lengths": [
+      16,
+      64
+    ],
+    "repeats": 5,
+    "warmups": 2
+  },
+  "code_commit": "09ac7c458d7c0e88ad61a2e4265909c006570318",
+  "comparison": "Only common prefixes are numerical pairs; later branch differences descriptive only",
+  "cutoffs": {
+    "llava": 20,
+    "qwen": 22
+  },
+  "kernel_candidate_order": [
+    "native",
+    "fp32_linears",
+    "fp32_linears_attention"
+  ],
+  "no_60_or_240_matrix": true,
+  "no_P4_or_question_only": true,
+  "old_partial_unchanged": true,
+  "output_root": "/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/results/physical_visual_handoff_numerical_debug",
+  "regression_new_questions": 10,
+  "repeated_failure_runs": 3,
+  "selection_rule": "Choose first candidate passing unchanged numerical and greedy gates on frozen smoke; report all failures",
+  "sources": {
+    "vlm_research/physical_handoff_debug/__init__.py": "ae9a70841e322cfe67659b923fcd5d8a42f6bf02771cbf87fbf2fb4478989901",
+    "vlm_research/physical_handoff_debug/common.py": "72cd2d7aa9304f2f7638534482418858aa9d398670024199758840b909cf9e49",
+    "vlm_research/physical_handoff_debug/diagnose.py": "dd68144cf30ec66caee2e46d4bd40b3fc91501e8ba0d9cbe96208e589599d07d",
+    "vlm_research/physical_handoff_debug/run.py": "be30d85efaf56582da947c357ef5f90492ae63cf80b800e3833a5963ade7da3f",
+    "vlm_research/physical_handoff_debug/stable.py": "4ef8fbdc59ae61b05cf0864799f63de6303bd9c26ce806d7dec961590c57dd4e",
+    "vlm_research/physical_handoff_debug/tests.py": "4429736d3ea7d8224d9bec424e9be8d4c2648e13a71f4a702a63769f02cadcdd"
+  },
+  "stages": [
+    "original deterministic repeat",
+    "same-input operator trace",
+    "local FP32 arithmetic control",
+    "fixed numerical repair candidates",
+    "same-kernel paired regression",
+    "KV audit",
+    "diagnostic benchmark"
+  ],
+  "tolerances": {
+    "llava": {
+      "hidden_cosine": 0.0001,
+      "hidden_relative_rmse": 0.01,
+      "logit_atol": 0.1,
+      "logit_rtol": 0.003
+    },
+    "qwen": {
+      "hidden_cosine": 0.002,
+      "hidden_relative_rmse": 0.04,
+      "logit_atol": 0.5,
+      "logit_rtol": 0.01
+    }
+  }
+}
