@@ -1,0 +1,133 @@
+{
+  "annotations_sha256": "0caae7c8d1dafd852727f5ac046bc1efca9b72026bd6ffa34fc489f3a7b3291e",
+  "answer_skip_layers": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "bootstrap_replicates": 20000,
+  "bootstrap_seed": 20261105,
+  "conditions": [
+    "C0",
+    "C1",
+    "C2",
+    "C3-V2",
+    "C4-V2"
+  ],
+  "dense_reference": "Native dense Attention then zero only P-1/Decode at L2-L5; identical Fast-P2 handoff and source masks; smoke only",
+  "device": {
+    "index": 2,
+    "name": "NVIDIA GeForce RTX 3090",
+    "uuid": "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6"
+  },
+  "exploratory": true,
+  "greedy": true,
+  "handoff_layer": 20,
+  "history": [
+    {
+      "commit": "b483cdc524",
+      "path": "vlm_research/results/receiver_cross_dataset_validation/vqa_v2/sample_manifest.json",
+      "sha256": "d3c5e330f149ce3a25710ccefad0f2068ab40f7e85001e6efc880722b606a7b9"
+    },
+    {
+      "commit": "644834d3e22194b4982758dabd59d3e479ef8ce3",
+      "path": "vlm_research/semantic_qrelay_search3h/refinements.py",
+      "sha256": "19e7f1b4d9f0374176cd206983a429286d397afe0c5d985357c4c063b52c4840"
+    },
+    {
+      "commit": "644834d3e22194b4982758dabd59d3e479ef8ce3",
+      "path": "vlm_research/results/semantic_single_gpu_search3h/final_report_zh.md",
+      "sha256": "242362148d4f4b9424ddc727099e6669bf35f91b85389a23bb891995622d0317"
+    },
+    {
+      "commit": "b483cdc524",
+      "path": "vlm_research/receiver_cross_dataset/official_vqa_eval.py",
+      "sha256": "ba95df786a47077b046d9e5715dcfdaa32159c15fb6606b242f13e808e3b6f93"
+    }
+  ],
+  "legacy_A2_not_executed": true,
+  "logits_to_keep": 0,
+  "manifest_sha256": "0c5447c30dea5e134a754b0d1ef4321c5ca4838e6c547ff5bdfec404b7d45749",
+  "max_new_tokens": 32,
+  "model": {
+    "directory": "llava-1.5-7b-hf",
+    "dtype": "float16",
+    "layers": 32,
+    "logits_to_keep": 0,
+    "python": "/data/lk/深度学习/.envs/ate-vlm-research/bin/python",
+    "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "transformers": "4.49.0"
+  },
+  "no_fixed_length_benchmark": true,
+  "no_new_dataset_download": true,
+  "numerical_tolerances": {
+    "hidden_cosine": 0.0001,
+    "hidden_relative_rmse": 0.01,
+    "logit_atol": 0.1,
+    "logit_rtol": 0.003
+  },
+  "old_result_commit": "a30348e6701bb680a20198f7caad762ee4f90d8f",
+  "performance_ids": [
+    "450758001",
+    "201646003",
+    "570516002",
+    "244931002",
+    "347265007",
+    "480490002",
+    "30478001",
+    "166003007",
+    "406001001",
+    "407019004",
+    "142472000",
+    "112608009",
+    "396568002",
+    "75560014",
+    "11615002",
+    "234470001",
+    "7297003",
+    "428254002",
+    "371194003",
+    "79356000"
+  ],
+  "prefill_queries_preserved": "All positions before original P-1, including all 576 visual positions",
+  "question_count": 60,
+  "regenerate_all_five_conditions": true,
+  "repetitions": 5,
+  "sampling": "Stable input-only hash from historical frozen 500 local VQAv2 validation questions; one SHA per image; not sampled from all VQAv2",
+  "scoring": "Pinned official VQAEval normalization + exact 10-annotator leave-one-out consensus",
+  "seed": 20261105,
+  "smoke_ids": [
+    "112608009",
+    "109648002",
+    "170340005"
+  ],
+  "sources": {
+    "vlm_research/ate_fulljoint_v2/__init__.py": "7bcd135aa7787cde2430cb974abc800586e9a742f5dac134f0c19278d88a96de",
+    "vlm_research/ate_fulljoint_v2/common.py": "bff4056b73ec181230816ec94b666538759a45a6ce560f2f4889c00c235cca57",
+    "vlm_research/ate_fulljoint_v2/engine.py": "ef59447163c47528be2fde44751c124df3d550a6e89244046c3d40d99b4e9e44",
+    "vlm_research/ate_fulljoint_v2/run.py": "4a7b590ce130c3051a6eedda7c5d888fdde29a06fedea27cfadde7b84be29d65",
+    "vlm_research/ate_fulljoint_v2/tests.py": "411c8a1fa5d6da004042b3be1eff2f3df9c5f79424b727bb97b8067e07932322",
+    "vlm_research/ate_fulljoint_vqav2/common.py": "580f50a86962237366527011b03cb48372657b611e5f3b6daab79a3b988a6fff",
+    "vlm_research/ate_fulljoint_vqav2/engine.py": "77ea5a75c157182fc2d24f21e752c0b7b4b374a033716edc1dce580695673b46",
+    "vlm_research/fastp2_bypass_writer/engine.py": "f06402bebb722d4eb5606ef2441cc6abf0a73bac5bbc47249ba356db0f986e73",
+    "vlm_research/fastp2_bypass_writer/run.py": "9ec0b9eb1f2128aba4717a4d8b55c77344bf1a15a35197f9da5242ae672f1f0c",
+    "vlm_research/p1_layerwise_accuracy/engine.py": "3cbf506f506c33fe34a636d2a3b5f19f751e2831b3bb299aae460ae8a5add46a",
+    "vlm_research/physical_handoff_fastpath/engine.py": "6e8abb7e04517678c189a896589abb97774652313ecedb57d58f97bd718b74a0",
+    "vlm_research/physical_handoff_fastpath/ledger.py": "07113e7cbc108e49eda43066af74a859fcbe2cfa511f3f3880404050de8ad44c",
+    "vlm_research/physical_visual_handoff/common.py": "071f04ecb8cbc07c03251da236a371843a217536917494914aee55cc5162fcf3",
+    "vlm_research/physical_visual_handoff/engine.py": "e46dd347bc5d4763c179a02459b7bd09ab87e45e7499107930928df3c98f295b",
+    "vlm_research/receiver_cross_dataset/official_vqa_eval.py": "ba95df786a47077b046d9e5715dcfdaa32159c15fb6606b242f13e808e3b6f93",
+    "vlm_research/semantic_visual_writers/groups.py": "bdfeea43befd9c59cf373e6972d550ee6340416c7550b8ce3a395989a9492e22"
+  },
+  "specs_sha256": "8e32daea3e45ae521fbe61ccea53d50ba2ee755f5ebcec65a28198be4df5a431",
+  "timing": "Frozen Fast-P2 CUDA phases; synchronized cold-request wall E2E, no visual reuse; I/O and Processor excluded for all conditions",
+  "unique_images": 60,
+  "warmups": 3,
+  "weights": {
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00001-of-00003.safetensors": "c11dbf016ee7d35ee130c19b67e20eb04873996006f424b7bcbd453b6517ee66",
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00002-of-00003.safetensors": "46df6c6e5fad297fe7fbca4963dcf180cb1d0528cabc884d1f603311fed01328",
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00003-of-00003.safetensors": "4f06177c37ca13944e73b57dd6d051767b950dffc12400c700dfa2509c24c697"
+  },
+  "writer_rule": "Fixed-Q-Conditional-Assistant-15"
+}

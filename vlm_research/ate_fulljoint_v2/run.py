@@ -72,6 +72,10 @@ def compare_visual(question, condition, layout, physical, reference, baseline):
             expected = reference[layer, kind][:, list(positions)]
             observed = actual[:, list(positions)]
             e = equivalence('llava', dummy, dummy, [expected], [observed])
+            if group == 'Pminus1' and kind == 'attention':
+                # Cosine is undefined for two zero vectors; the skip contract is exact zero.
+                assert torch.count_nonzero(expected) == torch.count_nonzero(observed) == 0
+                e.update(passed=True, hidden_cosine_distance=None, zero_update_exact=True)
             assert e['passed'], (question, condition, layer, kind, group, e)
             # Identical dense shapes: zeroing the last causal query cannot change earlier queries.
             baseline_exact = torch.equal(expected, baseline[layer, kind][:, list(positions)])

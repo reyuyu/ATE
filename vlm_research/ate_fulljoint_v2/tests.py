@@ -107,6 +107,22 @@ class Tests(unittest.TestCase):
                 raise RuntimeError('Intentional cleanup test')
         self.assertEqual(old, [layer.self_attn.forward for layer in self.a.layers])
 
+    def test_zero_update_audit_uses_exact_zero(self):
+        from .run import compare_visual
+        zero = torch.zeros(1, 14, 32)
+        snapshots = {(i, name): zero.clone() for i in LAYERS for name in ('attention', 'hidden')}
+        snapshots[6, 'input'] = zero.clone()
+        # Nonzero hidden vectors are required by the historical cosine metric.
+        for (i, name), value in snapshots.items():
+            if name != 'attention':
+                value.fill_(1)
+            else:
+                value[:, :-1].fill_(1)
+        rows = compare_visual('fixture', 'C4-V2', self.layout, snapshots, snapshots, snapshots)
+        self.assertTrue(all(r['passed'] for r in rows))
+        self.assertTrue(all(r['zero_update_exact'] for r in rows
+                            if r['group'] == 'Pminus1' and r['tensor'] == 'attention'))
+
 
 if __name__ == '__main__':
     unittest.main(verbosity=2)
