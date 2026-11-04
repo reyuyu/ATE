@@ -1,0 +1,63 @@
+{
+  "UTC": "2026-11-04T20:02:06.439204+00:00",
+  "precheck_commit": "20d7bde6e005baf1f9437624c9507d4427e54de6",
+  "precheck_protocol_sha256": "ff6e59cce5ab20c1c8b853f15c825013e814ae2476c3368c4776da599f7c88e3",
+  "scientific_protocol_unchanged": true,
+  "layer_sets_sha256": "fd2009c18771ca33ede20c3674d88faa53cfe8cd432291eaf06c3f3111e531e5",
+  "sample_manifest_sha256": "8e1d45e2e4e13d3cc2d6534dd1d4a2043045c8d11f443e5ab7860ef695cfee82",
+  "OCR_labels_sha256": "5f678d7f930c1693dde091a7431b52f9d7228ef9508a01186ed608d809fb6375",
+  "model_manifest_sha256": "7030328e2240ebe150b409527106f168f042ecee3e052d972c06505c1f6e0cd8",
+  "new_conditions": [
+    "C",
+    "D",
+    "E",
+    "R"
+  ],
+  "primary_comparisons": [
+    [
+      "C",
+      "A"
+    ],
+    [
+      "C",
+      "F"
+    ],
+    [
+      "C",
+      "D"
+    ],
+    [
+      "C",
+      "R"
+    ],
+    [
+      "C",
+      "E"
+    ]
+  ],
+  "selected_gpu": {
+    "physical": 2,
+    "UUID": "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+    "logical": "cuda:0",
+    "workers": 1
+  },
+  "smoke_question_ids": [
+    "39419",
+    "34726",
+    "39145"
+  ],
+  "smoke_gates": [
+    "Native/No-op all valid logits torch.equal",
+    "new first valid logits torch.equal Native",
+    "all 32 Prefill attention outputs, weights and block Hidden SHA exact",
+    "A/F/B historical tokens and first logits exact",
+    "actual forbidden attention probability exactly zero",
+    "retained-layer actual image access",
+    "independent real KV and prefix; parent unchanged",
+    "native input/image features/weights, all32 MLP, positions and exception hook cleanup"
+  ],
+  "all1200_new_first_logits": "raw FP16 vector SHA exact to same-input Native A; no large logits archives",
+  "failure_policy": "Stop on any numerical, mask, cache, hook or model validation failure or OOM; no tolerance relaxation, data change or retries that change precision",
+  "checkpoints": "atomic JSON; source/protocol/input SHA; exact same science on resume",
+  "single_gpu_no_preemption": true
+}
