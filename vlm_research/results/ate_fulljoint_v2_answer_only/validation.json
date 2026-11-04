@@ -1,0 +1,37 @@
+{
+  "C4_C3_KV_capacity_equal": true,
+  "all_prefill_MLP_flops_preserved": true,
+  "bootstrap": 20000,
+  "conditional_writer_dense_FLOPs_unchanged": true,
+  "cpu_tests_pass": 9,
+  "device_released": true,
+  "gpu_smoke_pass": 3,
+  "historical_tolerances": {
+    "hidden_cosine": 0.0001,
+    "hidden_relative_rmse": 0.01,
+    "logit_atol": 0.1,
+    "logit_rtol": 0.003
+  },
+  "mask_gate": "Actual forbidden Softmax probabilities zero; conditional mask used by answer-only path",
+  "model_weights_postrun_unchanged": true,
+  "no_fixed16_or64": true,
+  "no_new_data_download": true,
+  "preformal_failures": [
+    {
+      "time": 1793819869.6091466,
+      "traceback": "Traceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/ate-fulljoint-v2-answer-only/vlm_research/ate_fulljoint_v2/run.py\", line 215, in main\n    smoke(adapter, p, samples, specs)\n  File \"/data/lk/ATE-worktrees/ate-fulljoint-v2-answer-only/vlm_research/ate_fulljoint_v2/run.py\", line 135, in smoke\n    preservation += compare_visual(q, condition, layout, visual, ref_visual, baseline_visual)\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/ate-fulljoint-v2-answer-only/vlm_research/ate_fulljoint_v2/run.py\", line 75, in compare_visual\n    assert e['passed'], (question, condition, layer, kind, group, e)\n           ~^^^^^^^^^^\nAssertionError: ('112608009', 'C3-V2', 2, 'attention', 'Pminus1', {'passed': False, 'max_abs_logits': 0.0, 'mean_relative_error': 0.0, 'max_relative_error': 0.0, 'hidden_relative_rmse': 0.0, 'hidden_cosine_distance': 1.0, 'all_argmax_equal': True, 'tolerances': {'logit_atol': 0.1, 'logit_rtol': 0.003, 'hidden_relative_rmse': 0.01, 'hidden_cosine': 0.0001}})\n"
+    }
+  ],
+  "protocol_sha256": "849d00abc5bce78a4f4661678eee145b0c02747cebca03eeddb095c1fce8fcb2",
+  "quality_records": 300,
+  "runtime_failures": [],
+  "scorer_recomputed": true,
+  "source_commit": "542bf1ac8087716fd90909e53cd5ffe9dea1c138",
+  "sources_match_freeze": true,
+  "status": "COMPLETE",
+  "timed_requests": 500,
+  "timing_inputs": 20,
+  "unique_images": 60,
+  "visual_prefill_attention_preserved": true,
+  "warmup_requests": 300
+}
