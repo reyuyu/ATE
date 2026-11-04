@@ -44,16 +44,18 @@ def load_round(name):
     return j,pool,records
 
 
-def analyze(name):
-    ensure_time()
+def analyze(name,offline=False):
+    if not offline: ensure_time()
     j,pool,records=load_round(name); folder=OUT/'analysis'/name
     configs=j['configs']; native=config('native')
     if j['split']=='FINAL':
         frozen=read(OUT/'final_candidate_freeze.json')
         assert digest(frozen)==j['final_freeze_sha256']
         family=frozen['noninferiority_family_size']
+        ni_configs={config_id(dict(c,logits_to_keep=h)) for c in frozen['selected_candidates'] for h in (0,1)}
     else:
         family=max(1,len(configs)-1)*2
+        ni_configs=set()
     allrows=[]; summaries=[]; pairs=[]; groups=[]
     for dataset in ('GQA','VQAv2'):
         keys=[k for k in j['samples'] if pool[k]['dataset']==dataset]
@@ -72,7 +74,8 @@ def analyze(name):
                 accuracy=100*s['mean'][0],accuracy_ci_low=100*s['low'][0],accuracy_ci_high=100*s['high'][0],
                 delta_native_pp=s['mean'][1],delta_ci_low=s['low'][1],delta_ci_high=s['high'][1],
                 corrected_low=s['corrected_low'][1],corrected_high=s['corrected_high'][1],
-                ni_one_sided_lower=s['ni_lower'][2],ni_minus1_supported=bool(s['ni_lower'][2]>-1),
+                ni_one_sided_lower=s['ni_lower'][2],ni_comparison_predeclared=cid in ni_configs,
+                ni_minus1_supported=bool(s['ni_lower'][2]>-1) if cid in ni_configs else None,
                 delta_original_native_pp=s['mean'][2],original_delta_ci_low=s['low'][2],original_delta_ci_high=s['high'][2],
                 original_corrected_low=s['corrected_low'][2],original_corrected_high=s['corrected_high'][2],
                 score_down_original_native=int(sum(scores<originalscores)),score_up_original_native=int(sum(scores>originalscores)),
@@ -245,8 +248,10 @@ def catalog():
 
 
 if __name__=='__main__':
-    ap=argparse.ArgumentParser(); ap.add_argument('action'); ap.add_argument('name',nargs='?'); a=ap.parse_args()
-    if a.action=='quality': analyze(a.name)
+    ap=argparse.ArgumentParser(); ap.add_argument('action'); ap.add_argument('name',nargs='?')
+    ap.add_argument('--offline-audit',action='store_true',help='CPU-only reanalysis; does not extend or dispatch GPU work')
+    a=ap.parse_args()
+    if a.action=='quality': analyze(a.name,offline=a.offline_audit)
     elif a.action=='performance': performance_summary(a.name)
     elif a.action=='history': historical_audit()
     elif a.action=='history-gqa': historical_gqa_audit()

@@ -1,0 +1,18 @@
+{
+  "scope": "Twelve distinct non-Native hypotheses; all results retained. Selection uses DEV/CHECK only.",
+  "decisions": [
+    {"family": "L20: All-R or Q+ASSISTANT x none/both/Decode-only answer bypass", "count": 6, "reason": "Complete the prespecified writer/answer-stage matrix without changing pre-answer Image or text Attention updates."},
+    {"family": "L24: All-R/none, All-R/Decode-only, Q+ASSISTANT/Decode-only", "count": 3, "reason": "Small DEV recovery justified a limited depth check. All-R/Decode-only L24 entered CHECK; no L28 quality search was warranted."},
+    {"family": "L32 All-R, no answer bypass", "count": 1, "reason": "Coarse diagnostic only; not treated as a physical-handoff speed winner."},
+    {"family": "Two fixed repeated-question receiver prompts", "count": 2, "reason": "Include matched-prompt Native controls. Both lose against original-prompt All-R/Decode-only on full DEV and add text/KV cost; eliminated before CHECK."}
+  ],
+  "primary": "qsa-decode-L20-original-H0",
+  "selection": "All-R/Decode-only L24 had the smallest CHECK worst-dataset point loss, 3.7222pp. Q+ASSISTANT/Decode-only L20 was 0.1667pp behind, within the predeclared 0.25pp tie band, and faster on matched complete sequences. This is not a statistical claim of superior Accuracy.",
+  "speed_secondary": null,
+  "not_searched": ["Conditional-15 thresholds", "SPACE/NL boundary sweeps", "old I+A bypass", "L28 quality candidates", "new models", "trained rules", "best per-dataset policy"],
+  "runtime_failures": {"worker_STOP": 0, "OOM": 0, "NaN_Inf": 0, "tolerance_relaxation": false},
+  "operational_notes": [
+    "Initial sparse worktree metadata directory was created before data/source freeze; no shared worktree or main was changed.",
+    "One ad-hoc CPU audit command had a shell-quoting SyntaxError. Replaced with the retained historical_gqa_audit module function; 244/244 DEV Native sequences matched. No GPU result or tolerance was changed."
+  ]
+}
