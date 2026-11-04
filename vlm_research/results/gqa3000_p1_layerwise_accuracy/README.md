@@ -1,8 +1,12 @@
 # GQA3000 original-P-1 single-layer answer-accuracy profiles
 
-**PARTIAL / RUNNING.** This initial commit contains the frozen protocols, inputs,
+**Initial snapshot: PARTIAL / RUNNING.** This initial commit contains the frozen protocols, inputs,
 historical reuse audit, CPU tests and dual-GPU LLaVA Smoke. It does not contain
 completed 3000-question accuracy profiles and must not be cited as a full result.
+
+For later commits, the authoritative final status is `completion.json` plus
+`validation.json` in each model directory and `cross_model/completion.json`.
+The pipeline commits completed results only after those completion gates pass.
 
 LLaVA runs first (32 layers), followed only after complete scoring, validation
 and GPU release by Qwen (36 layers). The only intervention zeros one selected
