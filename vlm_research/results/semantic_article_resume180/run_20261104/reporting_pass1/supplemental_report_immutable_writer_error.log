@@ -1,0 +1,13 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data1/likai/ATE-worktrees/semantic-article-resume180/vlm_research/semantic_article_resume180/closeout_extra.py", line 52, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/data1/likai/ATE-worktrees/semantic-article-resume180/vlm_research/semantic_article_resume180/closeout_extra.py", line 48, in main
+    validation=read(P/'validation.json');validation['reporting_source_sha256']=sha(__file__);validation['reproduce_source_sha256']=sha(Path(__file__).with_name('reproduce.py'));atomic_json(P/'validation.json',validation)
+                                                                                                                                                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/gqa360-structural-receiver-selection/vlm_research/gqa3000_token_visual_writing/common.py", line 36, in atomic_json
+    assert read(path)==obj,'Immutable record differs: '+str(path);return
+           ^^^^^^^^^^^^^^^
+AssertionError: Immutable record differs: /data1/likai/ATE-worktrees/semantic-article-resume180/vlm_research/results/semantic_article_resume180/run_20261104/validation.json
