@@ -1,0 +1,57 @@
+{
+  "UTC": "2026-11-04T17:52:50.662712+00:00",
+  "base_commit": "51761dba1b75f0081a7be2df728392483d609c69",
+  "branch": "codex/textvqa-coco-middle-transfer",
+  "status": "PREPARED_BLOCKED_NO_FREE_GPU",
+  "question_count": 300,
+  "new_generations_required": 1200,
+  "baseline_reuse": 900,
+  "model": "LLaVA-1.5-7B",
+  "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "dtype": "float16",
+  "attention": "eager",
+  "transformers": "4.49.0",
+  "do_sample": false,
+  "max_new_tokens": 32,
+  "logits_to_keep": 1,
+  "scorer": "official MMF TextVQA ten-annotator leave-one-out consensus soft accuracy",
+  "manifest_sha256": "8e1d45e2e4e13d3cc2d6534dd1d4a2043045c8d11f443e5ab7860ef695cfee82",
+  "historical_manifest_worker_field": "preserved provenance only; a future single-GPU worker owns all 300 rows",
+  "labels_sha256": "5f678d7f930c1693dde091a7431b52f9d7228ef9508a01186ed608d809fb6375",
+  "layer_sets_sha256": "fd2009c18771ca33ede20c3674d88faa53cfe8cd432291eaf06c3f3111e531e5",
+  "all_new_conditions": "entire Prefill native including Pminus1; only true Decode query -> original Image Key hard mask before softmax; full real KV retained",
+  "gpu_policy": "one truly idle RTX3090 by UUID; no sharing, preemption or waiting daemon; fresh resource check and all mandatory GPU gates before formal generation",
+  "bootstrap": {
+    "seed": 20261105,
+    "repetitions": 20000,
+    "unit": "image_sha256 whole-cluster paired",
+    "CI": "ordinary pointwise percentile 95%"
+  },
+  "primary_comparisons": [
+    [
+      "C",
+      "A"
+    ],
+    [
+      "C",
+      "F"
+    ],
+    [
+      "C",
+      "D"
+    ],
+    [
+      "C",
+      "R"
+    ],
+    [
+      "C",
+      "E"
+    ]
+  ],
+  "multiplicity": "Holm across the 5 prespecified two-sided paired effects; cluster sign-flip p with plus-one. OCR subgroup comparisons descriptive ordinary CIs, no subgroup significance claims without separately declared correction.",
+  "random_rule": "one preselected seed, never choose by accuracy",
+  "late_budget_difference": "Late has 12 layers; Middle/Early/Random have 11",
+  "scope": "functional hard masks; no physical KV deletion, kernel or speed claims",
+  "failure_policy": "stop on GPU unavailability, smoke failure or OOM; no precision/data/tolerance changes"
+}
