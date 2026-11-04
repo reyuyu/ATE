@@ -2,7 +2,7 @@ import unittest
 from types import SimpleNamespace
 import torch
 
-from .stable import numerical_kernels, linear_fp32
+from .stable import numerical_kernels, linear_fp32, linear_tiles
 from .diagnose import compare_runs, error
 
 
@@ -23,13 +23,21 @@ class Tests(unittest.TestCase):
     def test_context_cleanup_exception(self):
         layers = [SimpleNamespace(modules=lambda: []) for _ in range(32)]
         head = torch.nn.Linear(3, 4)
-        adapter = SimpleNamespace(kind='llava', layers=layers, model=SimpleNamespace(lm_head=head))
+        adapter = SimpleNamespace(kind='llava', layers=layers, model=SimpleNamespace(get_output_embeddings=lambda:head))
         original = head.forward
         with self.assertRaisesRegex(RuntimeError, 'sentinel'):
             with numerical_kernels(adapter, 'fp32_linears'):
                 self.assertNotEqual(original, head.forward)
                 raise RuntimeError('sentinel')
         self.assertEqual(original, head.forward)
+
+    def test_canonical_tiles_keep_dtype_and_rows(self):
+        torch.manual_seed(29)
+        module=torch.nn.Linear(48,72).half()
+        x=torch.randn(1,93,48).half()
+        keep=torch.tensor([0,1,20,35,42,73,90,92])
+        self.assertTrue(torch.equal(linear_tiles(module,x)[:,keep],linear_tiles(module,x[:,keep])))
+        self.assertTrue(torch.equal(linear_tiles(module,x[:,:1]),module(x[:,:1])))
 
     def test_shared_prefix_only(self):
         a = dict(token_ids=[1, 2], text='a')

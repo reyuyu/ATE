@@ -33,6 +33,17 @@ Apply each candidate to BOTH dense and physical paths; compare original native
 diagnostics separately. No answer-dependent tie breaking or regenerated visual
 rows is allowed. The first passing candidate must also pass fresh regression.
 
+After the initial three candidates, the bounded fourth repair `canonical_tiles`
+uses native-precision 32-row linear tiles (at most 31 zero padding rows, never
+reconstructed visual rows), and evaluates the exactly disconnected text/visual
+attention subgraphs separately after the cutoff. Dense and physical text kernels
+then see the same Q/K lengths. The dense reference still computes its visual
+rows, while the physical path never restores them. Decode uses the actual
+per-layer original cache positions, not a guessed compact sequence length.
+This amendment follows the recorded same-input Q/K/V shape diagnosis; the
+original three candidate failures remain in the log. Neither thresholds nor
+functional intervention conditions change.
+
 The 10 fresh questions are selected by input hash, disjoint from all original
 240 pilot images and smoke images. The historical 43-question tie audit performs
 one prefill per path, not a new quality matrix.

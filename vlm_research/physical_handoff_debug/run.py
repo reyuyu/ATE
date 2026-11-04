@@ -44,11 +44,16 @@ def worker(kind):
     atomic(folder/'native_noop.json', dict(status='PASS',question=key(s),all_valid_logits_exact=True,
                                          historical_native_tokens_exact=True))
     print('NATIVE_NOOP', kind, 'PASS', flush=True)
-    diagnose(adapter, manifest, specs)
+    reuse=(folder/'diagnosis_complete.json').exists() and frozen['reuse_diagnosis_if_source_exact']==frozen['sources']['vlm_research/physical_handoff_debug/diagnose.py']
+    if not reuse:
+        diagnose(adapter, manifest, specs)
+    else:
+        atomic(folder/'diagnosis_reuse.json',dict(previous_protocol_sha256=frozen['previous_protocol_sha256'],
+               source_exact=True,no_diagnostic_code_change=True))
     print('OPERATOR_DIAGNOSIS', kind, read(folder/'diagnosis_complete.json'), flush=True)
     del a, b, al, bl
 
-    if kind == 'llava':
+    if kind == 'llava' and not (reuse and (folder/'historical43_prefill_audit.csv').exists()):
         rows = []
         for s in manifest['historical43']:
             a, al, ah = execute(s, 'D1', max_tokens=1, audit=True, capture=True)
@@ -117,6 +122,14 @@ def worker(kind):
     atomic(folder/'quality_gate.json', dict(status='PASS' if valid else 'FAILED',candidate=selected,
            regression_records=len(regression),fresh_questions=len({r['question'] for r in regression if r['phase']=='new10'}),
            historical_partial_unchanged=True))
+    drift=[]
+    if selected is not None:
+        for s in manifest['smoke']:
+            a,al,ah=execute(s,'D1','native',audit=True,capture=True)
+            b,bl,bh=execute(s,'D1',selected,audit=True,capture=True)
+            drift.append(dict(question=key(s),native_kernel='native',fixed_kernel=selected,
+                              **compare_runs(kind,a,b,al,bl,ah,bh)))
+        atomic(folder/'native_to_fixed_dense_drift.json',drift)
     del al, bl, ah, bh
     gc.collect();torch.cuda.empty_cache()
 

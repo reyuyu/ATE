@@ -14,6 +14,9 @@ def sources():
 
 
 def prepare():
+    previous=read(OUT/'protocol.json') if (OUT/'protocol.json').exists() else None
+    if previous is not None:
+        atomic(OUT/('protocol_attempt_'+digest(previous)[:12]+'.json'),previous)
     pool = read(HISTORY/'llava/sample_manifest.json')['samples']
     old = read(OLD/'llava/sample_manifest.json')
     old_images = {s['image_sha256'] for s in old['samples']+old['smoke']}
@@ -43,7 +46,9 @@ def prepare():
            repeated_failure_runs=3,regression_new_questions=10,no_60_or_240_matrix=True,
            stages=['original deterministic repeat','same-input operator trace','local FP32 arithmetic control',
                    'fixed numerical repair candidates','same-kernel paired regression','KV audit','diagnostic benchmark'],
-           kernel_candidate_order=['native','fp32_linears','fp32_linears_attention'],
+           kernel_candidate_order=['native','fp32_linears','fp32_linears_attention','canonical_tiles'],
+           previous_protocol_sha256=digest(previous) if previous else None,
+           reuse_diagnosis_if_source_exact=previous['sources'].get('vlm_research/physical_handoff_debug/diagnose.py') if previous else None,
            selection_rule='Choose first candidate passing unchanged numerical and greedy gates on frozen smoke; report all failures',
            no_P4_or_question_only=True,comparison='Only common prefixes are numerical pairs; later branch differences descriptive only',
            benchmark=dict(warmups=2,repeats=5,fixed_generated_lengths=[16,64],batch=1,
