@@ -1,0 +1,19 @@
+JOB_FROZEN labels960 5760 1825
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data1/likai/ATE-worktrees/semantic-single-gpu-search3h/vlm_research/semantic_qrelay_search3h/phase4.py", line 94, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/data1/likai/ATE-worktrees/semantic-single-gpu-search3h/vlm_research/semantic_qrelay_search3h/phase4.py", line 73, in main
+    if failure:raise RuntimeError(failure)
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Traceback (most recent call last):
+  File "/data1/likai/ATE-worktrees/semantic-single-gpu-search3h/vlm_research/semantic_qrelay_search3h/phase4.py", line 53, in main
+    atomic_json(P/'SMOKE_GATE.json',dict(passed=True,workers=1,UTC=utc()));job('labels960',[(q,w) for q in train for w in ww[q]],child)
+                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/likai/ATE-worktrees/semantic-single-gpu-search3h/vlm_research/semantic_qrelay_search3h/phase4.py", line 37, in job
+    guard(gpu=True,reserve=30);assert child.poll() is None,'Owned worker exited';time.sleep(.5)
+                                                                                 ^^^^^^^^^^^^^^
+KeyboardInterrupt
+

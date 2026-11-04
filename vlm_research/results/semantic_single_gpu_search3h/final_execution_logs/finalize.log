@@ -1,0 +1,23 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data1/likai/ATE-worktrees/semantic-single-gpu-search3h/vlm_research/semantic_qrelay_search3h/finalize_fixed.py", line 126, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/data1/likai/ATE-worktrees/semantic-single-gpu-search3h/vlm_research/semantic_qrelay_search3h/finalize_fixed.py", line 112, in main
+    atomic_json(F/'final_validation.json',dict(passed=True,UTC=utc(),main_unchanged=main_hash,all3000_independently_rescored=True,images=2409,final_rule_exactly_reconstructed=True,S_preserved=True,whole_groups=True,mean_R_under50=budgets[WIN]<.5,mask_probabilities_exact_zero=True,independent_KV=True,bootstrap=20000,seed=20261104,anomalies=dict(anomalies),qwen_smoke=read(qpath/'gpu_smoke_validation.json'),training_policy='Only fixed untrained rules eligible. Earlier phase3 CPU-fitted pilot preserved but excluded. Phase4 stopped before fitting. Later phases5-7 and Qwen contain no fitting.',history_raw_hashes_audited=len(h.files),source_sha256=sha(__file__)))
+  File "/data1/likai/ATE-worktrees/semantic-single-gpu-search3h/vlm_research/gqa3000_token_visual_writing/common.py", line 37, in atomic_json
+    data=(json.dumps(obj,ensure_ascii=False,sort_keys=True,separators=(',',':'))+'\n').encode()
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/json/__init__.py", line 238, in dumps
+    **kw).encode(obj)
+          ^^^^^^^^^^^
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/json/encoder.py", line 200, in encode
+    chunks = self.iterencode(o, _one_shot=True)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/json/encoder.py", line 258, in iterencode
+    return _iterencode(o, 0)
+           ^^^^^^^^^^^^^^^^^
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/json/encoder.py", line 180, in default
+    raise TypeError(f'Object of type {o.__class__.__name__} '
+TypeError: Object of type bool_ is not JSON serializable

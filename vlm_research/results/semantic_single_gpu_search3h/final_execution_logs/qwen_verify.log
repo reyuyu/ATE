@@ -1,0 +1,20 @@
+...................................
+----------------------------------------------------------------------
+Ran 35 tests in 0.017s
+
+OK
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:03,  1.22s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:02<00:02,  1.23s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:03<00:01,  1.25s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.06s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:04<00:00,  1.12s/it]
+Traceback (most recent call last):
+  File "/data1/likai/ATE-worktrees/semantic-single-gpu-search3h/vlm_research/semantic_qrelay_search3h/qwen_verify.py", line 120, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/likai/ATE-worktrees/semantic-single-gpu-search3h/vlm_research/semantic_qrelay_search3h/qwen_verify.py", line 79, in main
+    guard();q=s['question_id'];sp=specs[q];x=inputs(proc,s,sp);before={k:tensor_digest(v) for k,v in x.items()};versions=[(n,v._version,v.data_ptr()) for n,v in model.named_parameters()]
+                                                                                                                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data1/likai/ATE-worktrees/semantic-single-gpu-search3h/vlm_research/semantic_qrelay_search3h/qwen_verify.py", line 79, in <listcomp>
+    guard();q=s['question_id'];sp=specs[q];x=inputs(proc,s,sp);before={k:tensor_digest(v) for k,v in x.items()};versions=[(n,v._version,v.data_ptr()) for n,v in model.named_parameters()]
+                                                                                                                             ^^^^^^^^^^
+RuntimeError: Inference tensors do not track version counter.
