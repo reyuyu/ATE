@@ -68,6 +68,10 @@ def worker(kind):
                 atomic(path,record)
             sample_records[c]=record
             records.append(record)
+            for dense,physical in PAIRS:
+                if c==physical:
+                    assert sample_records[dense]['generation']['token_ids']==record['generation']['token_ids'], \
+                        f'Quality equivalence gate failed {key(s)} {dense}/{physical}; do not run later stages'
         for dense,physical in PAIRS:
             assert sample_records[dense]['generation']['token_ids']==sample_records[physical]['generation']['token_ids'], \
                 f'Quality equivalence gate failed {key(s)} {dense}/{physical}'

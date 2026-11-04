@@ -1,0 +1,8 @@
+{
+  "cpu_passed": true,
+  "formal_performance_not_measured": true,
+  "original_numerical_thresholds_unchanged": true,
+  "passed": false,
+  "reason": "Traceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/physical_visual_handoff/run.py\", line 99, in main\n    worker(args.kind)\n  File \"/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/physical_visual_handoff/run.py\", line 48, in worker\n    assert proof['passed'] and proof['tokens_equal'], f'Equivalence failed: {proof}'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: Equivalence failed: {'passed': False, 'max_abs_logits': 0.5, 'mean_relative_error': 0.22548723220825195, 'max_relative_error': 11352.771484375, 'hidden_relative_rmse': 0.06107337027788162, 'hidden_cosine_distance': 0.0014980435371398926, 'all_argmax_equal': True, 'tolerances': {'logit_atol': 0.5, 'logit_rtol': 0.01, 'hidden_relative_rmse': 0.04, 'hidden_cosine': 0.002}, 'question_id': '001025435', 'task': 'ChooseAttr', 'dense': 'D1', 'physical': 'P1', 'tokens_equal': True, 'mask_checks': 44, 'persistent_cache_bytes': 18399232, 'released_tensor_references': 0}\n",
+  "status": "PARTIAL"
+}

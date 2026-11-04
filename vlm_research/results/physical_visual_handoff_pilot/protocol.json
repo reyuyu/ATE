@@ -1,0 +1,110 @@
+{
+  "benchmark": {
+    "fixed_decode_tokens": [
+      16,
+      64,
+      128
+    ],
+    "repetitions": 20,
+    "warmups": 5
+  },
+  "bootstrap": 20000,
+  "conditions": [
+    "N0",
+    "D0",
+    "D1",
+    "P1",
+    "P2",
+    "D2",
+    "P3",
+    "D3",
+    "P4"
+  ],
+  "cutoff": {
+    "llava": 20,
+    "qwen": 22
+  },
+  "historical_model_hashes": {
+    "llava": {
+      "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00001-of-00003.safetensors": {
+        "sha256": "c11dbf016ee7d35ee130c19b67e20eb04873996006f424b7bcbd453b6517ee66",
+        "size": 4992930200
+      },
+      "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00002-of-00003.safetensors": {
+        "sha256": "46df6c6e5fad297fe7fbca4963dcf180cb1d0528cabc884d1f603311fed01328",
+        "size": 4957878440
+      },
+      "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00003-of-00003.safetensors": {
+        "sha256": "4f06177c37ca13944e73b57dd6d051767b950dffc12400c700dfa2509c24c697",
+        "size": 4176137408
+      }
+    },
+    "qwen": {
+      "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model-00001-of-00004.safetensors": {
+        "sha256": "d5d0aef0eb170fc7453a296c43c0849a56f510555d3588e4fd662bb35490aefa",
+        "size": 4902275944
+      },
+      "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model-00002-of-00004.safetensors": {
+        "sha256": "8be88fb5501e4d5719a6d4cc212e6a13480330e74f3e8c77daa1a68f199106b5",
+        "size": 4915962496
+      },
+      "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model-00003-of-00004.safetensors": {
+        "sha256": "83de00eafe6e0d57ccd009dbcf71c9974d74df2f016c27afb7e95aafd16b2192",
+        "size": 4999831048
+      },
+      "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model-00004-of-00004.safetensors": {
+        "sha256": "0a88b98e9f96270973f567e6a2c103ede6ccdf915ca3075e21c755604d0377a5",
+        "size": 2716270024
+      }
+    }
+  },
+  "max_questions": 240,
+  "model": {
+    "llava": {
+      "directory": "llava-1.5-7b-hf",
+      "dtype": "float16",
+      "layers": 32,
+      "logits_to_keep": 0,
+      "python": "/data/lk/深度学习/.envs/ate-vlm-research/bin/python",
+      "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+      "transformers": "4.49.0"
+    },
+    "qwen": {
+      "directory": "qwen3-vl-8b-instruct",
+      "dtype": "bfloat16",
+      "layers": 36,
+      "logits_to_keep": 1,
+      "python": "/data/lk/深度学习/.envs/ate-qwen3vl/bin/python",
+      "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+      "transformers": "4.57.6"
+    }
+  },
+  "output_root": "/data/lk/ATE-worktrees/dual-gpu-physical-visual-handoff-pilot/vlm_research/results/physical_visual_handoff_pilot",
+  "pilot60": true,
+  "seed": 20261104,
+  "shape_changing_tokens_gate": "Exact greedy tokens in smoke and quality; stop on unexplained divergence",
+  "source_commit": "82bface7d55d5586748ae0a0310f421675e4083d",
+  "sources": {
+    "vlm_research/physical_visual_handoff/__init__.py": "8463128b7fa15f1728f0e191e07ff3fe9f1a048047da62d26a4703811eb8c64c",
+    "vlm_research/physical_visual_handoff/analyze.py": "d1940bff0d182e49dc684a541eeb312137478347a8ada7fe2ccec23dadcc2ada",
+    "vlm_research/physical_visual_handoff/common.py": "071f04ecb8cbc07c03251da236a371843a217536917494914aee55cc5162fcf3",
+    "vlm_research/physical_visual_handoff/engine.py": "e46dd347bc5d4763c179a02459b7bd09ab87e45e7499107930928df3c98f295b",
+    "vlm_research/physical_visual_handoff/measure.py": "854279ee9b96f8231478ebdf9c907906a83db9d021ad9da0a4dfa89e744fe419",
+    "vlm_research/physical_visual_handoff/run.py": "49b19dfab96450b461413b32f35844bc9b41744c8dae8d8801904faeb3a23541",
+    "vlm_research/physical_visual_handoff/tests.py": "ed1200dd042559bdd8af686357841e476fcdcec14fe42dbeb16d4cbfb2815e6b"
+  },
+  "tolerances": {
+    "llava": {
+      "hidden_cosine": 0.0001,
+      "hidden_relative_rmse": 0.01,
+      "logit_atol": 0.1,
+      "logit_rtol": 0.003
+    },
+    "qwen": {
+      "hidden_cosine": 0.002,
+      "hidden_relative_rmse": 0.04,
+      "logit_atol": 0.5,
+      "logit_rtol": 0.01
+    }
+  }
+}

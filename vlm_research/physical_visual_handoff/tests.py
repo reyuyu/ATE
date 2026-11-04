@@ -67,6 +67,15 @@ class Tests(unittest.TestCase):
             actual=ctl.forward(inputs_embeds=embed,position_ids=pos[None],cache_position=pos)
         self.assertTrue(torch.equal(expected.last_hidden_state,actual.last_hidden_state))
         self.assertEqual(actual.past_key_values.get_seq_length(),9)
+        ctl.step=0;ctl.cache=CompactKV(3);ctl.p=plan('llava','D1');ctl.p.length=9;ctl.p.cutoff=1
+        with torch.inference_mode():
+            dense=ctl.forward(inputs_embeds=embed,position_ids=pos[None],cache_position=pos)
+        ctl.step=0;ctl.cache=CompactKV(3);ctl.p=plan('llava','P2');ctl.p.length=9;ctl.p.cutoff=1
+        with torch.inference_mode():
+            physical=ctl.forward(inputs_embeds=embed,position_ids=pos[None],cache_position=pos)
+        keep=torch.tensor([0,1,5,6,7,8])
+        self.assertTrue(torch.allclose(dense.last_hidden_state[:,keep],physical.last_hidden_state,atol=2e-6,rtol=2e-5))
+        self.assertTrue(all(e[0].shape[-2]==6 for e in ctl.cache.entries))
 
 
 if __name__=='__main__': unittest.main()

@@ -1,0 +1,19 @@
+{
+  "interpretation": "Relative error is unstable near zero; report it, gate using combined absolute/relative allclose.",
+  "noop": "torch.equal all effective returned logits, same LM-head shape",
+  "physical": "Allclose plus retained-text hidden RMSE/cosine; no NaN/Inf; exact greedy sequence in equivalence gate",
+  "tolerances": {
+    "llava": {
+      "hidden_cosine": 0.0001,
+      "hidden_relative_rmse": 0.01,
+      "logit_atol": 0.1,
+      "logit_rtol": 0.003
+    },
+    "qwen": {
+      "hidden_cosine": 0.002,
+      "hidden_relative_rmse": 0.04,
+      "logit_atol": 0.5,
+      "logit_rtol": 0.01
+    }
+  }
+}
