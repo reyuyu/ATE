@@ -16,9 +16,10 @@ def keys_for(split):
 def with_native(configs):
     natives=[]
     for c in configs:
-        n=config('native',prompt=c['prompt_variant'],head=c['logits_to_keep'])
-        if n not in natives:
-            natives.append(n)
+        for prompt in ('original',c['prompt_variant']):
+            n=config('native',prompt=prompt,head=c['logits_to_keep'])
+            if n not in natives:
+                natives.append(n)
     return natives+[c for c in configs if c not in natives]
 
 

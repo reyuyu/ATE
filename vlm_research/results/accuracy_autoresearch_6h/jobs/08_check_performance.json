@@ -1,0 +1,96 @@
+{
+  "configs": [
+    {
+      "answer_attention": "none",
+      "cutoff": 20,
+      "logits_to_keep": 0,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "native"
+    },
+    {
+      "answer_attention": "none",
+      "cutoff": 20,
+      "logits_to_keep": 0,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "all"
+    },
+    {
+      "answer_attention": "decode",
+      "cutoff": 20,
+      "logits_to_keep": 0,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "all"
+    },
+    {
+      "answer_attention": "decode",
+      "cutoff": 24,
+      "logits_to_keep": 0,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "all"
+    },
+    {
+      "answer_attention": "decode",
+      "cutoff": 20,
+      "logits_to_keep": 0,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "qsa"
+    },
+    {
+      "answer_attention": "both",
+      "cutoff": 20,
+      "logits_to_keep": 0,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "all"
+    }
+  ],
+  "created_at": "2026-11-05T05:16:55.601646+08:00",
+  "hypothesis": "All four candidates passed DEV promotion. Same-device new timing resolves predeclared <=0.25pp CHECK quality ties; no old latency. Fixed 24-input balanced timing subset, 3 warmups and 5 interleaved repeats, own cold KV and Vision recomputed.",
+  "id": "08_check_performance",
+  "performance": true,
+  "samples": [
+    "GQA__ChooseAttr__02795964",
+    "GQA__ChooseAttr__14696213",
+    "GQA__ChooseCat__0117176",
+    "GQA__ChooseCat__03196301",
+    "GQA__ChooseRel__1613672",
+    "GQA__ChooseRel__18798369",
+    "GQA__CompareAttr__05891255",
+    "GQA__CompareAttr__12806593",
+    "GQA__LogicalObj__06611915",
+    "GQA__LogicalObj__02996859",
+    "GQA__QueryAttr__18699253",
+    "GQA__QueryAttr__00472797",
+    "VQAv2__VQAv2__299042001",
+    "VQAv2__VQAv2__256518014",
+    "VQAv2__VQAv2__9800008",
+    "VQAv2__VQAv2__505934002",
+    "VQAv2__VQAv2__39785002",
+    "VQAv2__VQAv2__508481002",
+    "VQAv2__VQAv2__252716001",
+    "VQAv2__VQAv2__526704001",
+    "VQAv2__VQAv2__226404000",
+    "VQAv2__VQAv2__468379001",
+    "VQAv2__VQAv2__257046001",
+    "VQAv2__VQAv2__346954005"
+  ],
+  "samples_sha256": "afef0314f532a942475de02ba78b6e716d25e75af250e1d823d48b5881717fc3",
+  "sources": {
+    "vlm_research/accuracy_autoresearch/__init__.py": "984b3fa75a8aacf435be881e394684a2b54d6a0fad1fe505819a63d2890c3e78",
+    "vlm_research/accuracy_autoresearch/common.py": "01a68cc5b739a3d9172e351d5d68250e33d997639c35ecbf84376b8bbf0f9d58",
+    "vlm_research/accuracy_autoresearch/engine.py": "4a381e87cd69b5b1e20eb10f3b52a9e1470f6662d845daafba6639bfe7c7974e",
+    "vlm_research/accuracy_autoresearch/tests.py": "f1271cd415749fecec7491833ad805e0d7dd170e3cac6f42b4f05b3cda0146ab",
+    "vlm_research/accuracy_autoresearch/worker.py": "dcb05208746f8853a5605bd05c0fc66fde80de6b2f677ac625e3c605ec9051c0",
+    "vlm_research/ate_fulljoint_v2/engine.py": "ef59447163c47528be2fde44751c124df3d550a6e89244046c3d40d99b4e9e44",
+    "vlm_research/p1_layerwise_accuracy/engine.py": "3cbf506f506c33fe34a636d2a3b5f19f751e2831b3bb299aae460ae8a5add46a",
+    "vlm_research/physical_handoff_fastpath/engine.py": "6e8abb7e04517678c189a896589abb97774652313ecedb57d58f97bd718b74a0",
+    "vlm_research/physical_handoff_fastpath/ledger.py": "07113e7cbc108e49eda43066af74a859fcbe2cfa511f3f3880404050de8ad44c",
+    "vlm_research/receiver_cross_dataset/official_vqa_eval.py": "ba95df786a47077b046d9e5715dcfdaa32159c15fb6606b242f13e808e3b6f93"
+  },
+  "split": "CHECK"
+}

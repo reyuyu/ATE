@@ -1,0 +1,57 @@
+{
+  "at": "2026-11-05T05:14:09.362704+08:00",
+  "candidates": [
+    {
+      "answer_attention": "none",
+      "cutoff": 20,
+      "logits_to_keep": 0,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "all"
+    },
+    {
+      "answer_attention": "decode",
+      "cutoff": 20,
+      "logits_to_keep": 0,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "all"
+    },
+    {
+      "answer_attention": "decode",
+      "cutoff": 24,
+      "logits_to_keep": 0,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "all"
+    },
+    {
+      "answer_attention": "decode",
+      "cutoff": 20,
+      "logits_to_keep": 0,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "qsa"
+    }
+  ],
+  "eliminations": {
+    "All32": "Diagnostic only; no stable coarse recovery. Not eligible as default accelerated winner.",
+    "L28": "No reliable recovery trend at L24; not tested.",
+    "all-none-L24": "Same GQA and lower VQA versus all-none-L20.",
+    "qsa-L24": "Lower GQA and equal VQA versus qsa-L20; deeper cost.",
+    "qsa-both": "Lower GQA/VQA versus qsa-decode on complete DEV.",
+    "repeat-after-instruction": "Same original-Native GQA score and lower VQA than All/decode/L20, with added text/KV cost.",
+    "repeat-before-instruction": "Lower GQA and VQA point scores than All/decode/L20, with added text/KV cost."
+  },
+  "reference": {
+    "answer_attention": "both",
+    "cutoff": 20,
+    "logits_to_keep": 0,
+    "max_new_tokens": 32,
+    "prompt_variant": "original",
+    "writer": "all"
+  },
+  "rule": "Quality-first worst ORIGINAL Native dataset loss; ties within 0.25pp resolved using paired E2E then KV. No candidate selection on FINAL.",
+  "search_candidate_count": 12,
+  "search_closed": true
+}
