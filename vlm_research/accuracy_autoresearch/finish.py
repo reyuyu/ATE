@@ -160,6 +160,35 @@ def full_cohort():
     print('Full historical cohort supportive table written; not used for reselection')
 
 
+def accounting():
+    clock=read(ROOT/'task_deadline.json'); release=read(OUT/'gpu_release_audit.json')
+    complete=read(OUT/'completion.json'); frozen=read(OUT/'final_candidate_freeze.json')
+    assert complete['status']=='COMPLETE' and read(OUT/'validation.json')['status']=='PASS'
+    assert release['own_CUDA_processes_absent'] and (OUT/'results.tsv').exists()
+    start=datetime.datetime.fromisoformat(clock['started_at'])
+    stamp=datetime.datetime.fromisoformat(now())
+    gpu_end=datetime.datetime.fromisoformat(release['at'])
+    atomic(OUT/'task_accounting.json',dict(at=stamp.isoformat(),unified_clock=clock,
+        minutes_to_GPU_release=(gpu_end-start).total_seconds()/60,
+        minutes_to_delivery_preflight=(stamp-start).total_seconds()/60,
+        candidate_frozen_minutes=(datetime.datetime.fromisoformat(frozen['at'])-start).total_seconds()/60,
+        retained_unique_quality_records=sum(complete['counts'].values()),final_quality_records=complete['final_records'],
+        performance=read(OUT/'performance_completeness.json'),
+        status='CPU_COMPLETE_GPU_RELEASED_PENDING_GIT_PUSH',
+        jobs=[dict(worker=i,job=p.stem,**read(p)) for i in range(2)
+              for p in sorted((OUT/f'worker{i}/jobs').glob('*.json'))],
+        no_additional_GPU_work=True,no_shared_environment_or_main_changes=True,
+        task_stops_early_reason='Completed frozen selection and FINAL; quality target not met. No credible authorized next direction without reusing FINAL for tuning.'))
+    inventory={str(p.relative_to(ROOT)):sha(p) for p in sorted(OUT.rglob('*'))
+               if p.is_file() and p.name!='artifact_hashes.json'}
+    source_inventory={str(p.relative_to(ROOT)):sha(p)
+                      for p in sorted((ROOT/'vlm_research/accuracy_autoresearch').glob('*.py'))}
+    atomic(OUT/'artifact_hashes.json',dict(created_at=now(),artifacts=inventory,
+        final_CPU_and_GPU_source_files=source_inventory,
+        immutable_GPU_execution_files=source_hashes()))
+    print('Delivery preflight and',len(inventory),'artifact SHA256 bindings written')
+
+
 def tables_and_figures():
     frozen=read(OUT/'final_candidate_freeze.json'); primary=frozen['quality_primary']; secondary=frozen.get('speed_secondary')
     quality=csv_rows(OUT/'analysis'/frozen['final_quality_job']/'accuracy_summary.csv')
@@ -262,4 +291,5 @@ if __name__=='__main__':
     if a.action=='audit': audit()
     elif a.action=='cases': cases()
     elif a.action=='full-cohort': full_cohort()
+    elif a.action=='accounting': accounting()
     elif a.action=='tables': tables_and_figures()
