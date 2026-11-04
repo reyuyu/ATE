@@ -1,0 +1,41 @@
+...........E....E...................
+======================================================================
+ERROR: test_frozen_split_and_swap_pairs_not_assumed_from_other_study (gqa3000_token_visual_writing.tests.DesignStatisticsTests.test_frozen_split_and_swap_pairs_not_assumed_from_other_study)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/data/lk/ATE-worktrees/single-gpu-receiver-cross-dataset-validation/vlm_research/gqa3000_token_visual_writing/tests.py", line 91, in test_frozen_split_and_swap_pairs_not_assumed_from_other_study
+    samples=read(OUT/'sample_manifest.json')['samples'];split=read(OUT/'split_integrity.json');old=set(split['exploration_image_sha256']);ids=set(split['exploration_question_ids'])
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/single-gpu-receiver-cross-dataset-validation/vlm_research/query_role_attention/common.py", line 27, in read
+    return json.loads(Path(path).read_text())
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/data/lk/ATE-worktrees/single-gpu-receiver-cross-dataset-validation/vlm_research/results/gqa3000_token_visual_writing/sample_manifest.json'
+
+======================================================================
+ERROR: test_all_frozen_sets_exact_budget_question_scope_and_aliases (gqa3000_token_visual_writing.tests.SelectionTests.test_all_frozen_sets_exact_budget_question_scope_and_aliases)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/data/lk/ATE-worktrees/single-gpu-receiver-cross-dataset-validation/vlm_research/gqa3000_token_visual_writing/tests.py", line 35, in test_all_frozen_sets_exact_budget_question_scope_and_aliases
+    index=read(OUT/'selection_index.json');total=0;zeros=0
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/single-gpu-receiver-cross-dataset-validation/vlm_research/query_role_attention/common.py", line 27, in read
+    return json.loads(Path(path).read_text())
+                      ^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/pathlib.py", line 1058, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/likai/anaconda3/envs/AFAC/lib/python3.11/pathlib.py", line 1044, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: '/data/lk/ATE-worktrees/single-gpu-receiver-cross-dataset-validation/vlm_research/results/gqa3000_token_visual_writing/selection_index.json'
+
+----------------------------------------------------------------------
+Ran 36 tests in 0.060s
+
+FAILED (errors=2)
