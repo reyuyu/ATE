@@ -1,0 +1,9 @@
+{
+  "recorded_UTC": "2026-11-04T20:20:46.470447+00:00",
+  "first_CPU_summary_attempt_error": "KeyError: 'condition' on historical B checkpoint",
+  "cause": "Historical B schema has writers and generation.writer_positions but no top-level condition",
+  "repair": "Bind via frozen historical condition index and original checkpoint SHA, then require full R writers",
+  "scope": "CPU reader only; no GPU code, checkpoint, layer set, statistics rule or inference change",
+  "rerun_GPU_generations": 0,
+  "post_fix_independent_validation": "validation.json"
+}
