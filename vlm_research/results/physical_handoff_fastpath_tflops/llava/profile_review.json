@@ -1,0 +1,142 @@
+[
+  {
+    "condition": "D1 Dense",
+    "top_cuda_activities": [
+      {
+        "count": 15,
+        "device_us": 1495558.9860000003,
+        "name": "handoff::decode"
+      },
+      {
+        "count": 1,
+        "device_us": 221917.3,
+        "name": "handoff::prefill"
+      },
+      {
+        "count": 2400,
+        "device_us": 136834.21299999914,
+        "name": "ampere_fp16_s16816gemm_fp16_64x64_sliced1x2_ldg8_f2f_stages_64x5_tn"
+      },
+      {
+        "count": 960,
+        "device_us": 113535.12699999966,
+        "name": "ampere_fp16_s16816gemm_fp16_64x64_ldg8_f2f_stages_64x5_tn"
+      },
+      {
+        "count": 160,
+        "device_us": 63766.51500000009,
+        "name": "ampere_fp16_s1688gemm_fp16_128x128_ldg8_f2f_stages_32x1_tn"
+      },
+      {
+        "count": 65,
+        "device_us": 59272.98000000008,
+        "name": "void cutlass::Kernel2<cutlass_80_tensorop_f16_s16816gemm_relu_f16_256x128_32x3_tn_align8>(cutlass_80_tensorop_f16_s16816gemm_relu_f16_256x128_32x3_tn_align8::Params)"
+      }
+    ]
+  },
+  {
+    "condition": "Fast-P1",
+    "top_cuda_activities": [
+      {
+        "count": 15,
+        "device_us": 1538851.1270000003,
+        "name": "handoff::decode"
+      },
+      {
+        "count": 1,
+        "device_us": 167648.86299999998,
+        "name": "handoff::prefill"
+      },
+      {
+        "count": 2400,
+        "device_us": 136668.0940000063,
+        "name": "ampere_fp16_s16816gemm_fp16_64x64_sliced1x2_ldg8_f2f_stages_64x5_tn"
+      },
+      {
+        "count": 960,
+        "device_us": 113304.3590000009,
+        "name": "ampere_fp16_s16816gemm_fp16_64x64_ldg8_f2f_stages_64x5_tn"
+      },
+      {
+        "count": 1,
+        "device_us": 59590.258,
+        "name": "handoff::vision"
+      },
+      {
+        "count": 100,
+        "device_us": 38590.87899999987,
+        "name": "ampere_fp16_s1688gemm_fp16_128x128_ldg8_f2f_stages_32x1_tn"
+      }
+    ]
+  },
+  {
+    "condition": "Fast-P2",
+    "top_cuda_activities": [
+      {
+        "count": 15,
+        "device_us": 1526592.8649999993,
+        "name": "handoff::decode"
+      },
+      {
+        "count": 1,
+        "device_us": 170557.537,
+        "name": "handoff::prefill"
+      },
+      {
+        "count": 2400,
+        "device_us": 136630.9340000011,
+        "name": "ampere_fp16_s16816gemm_fp16_64x64_sliced1x2_ldg8_f2f_stages_64x5_tn"
+      },
+      {
+        "count": 960,
+        "device_us": 113324.33599999725,
+        "name": "ampere_fp16_s16816gemm_fp16_64x64_ldg8_f2f_stages_64x5_tn"
+      },
+      {
+        "count": 1,
+        "device_us": 60502.782,
+        "name": "handoff::vision"
+      },
+      {
+        "count": 100,
+        "device_us": 39705.378000000055,
+        "name": "ampere_fp16_s1688gemm_fp16_128x128_ldg8_f2f_stages_32x1_tn"
+      }
+    ]
+  },
+  {
+    "condition": "Native Full",
+    "top_cuda_activities": [
+      {
+        "count": 15,
+        "device_us": 1406477.5499999998,
+        "name": "handoff::decode"
+      },
+      {
+        "count": 1,
+        "device_us": 221141.40099999998,
+        "name": "handoff::prefill"
+      },
+      {
+        "count": 2400,
+        "device_us": 137245.78099999376,
+        "name": "ampere_fp16_s16816gemm_fp16_64x64_sliced1x2_ldg8_f2f_stages_64x5_tn"
+      },
+      {
+        "count": 960,
+        "device_us": 113755.87699999538,
+        "name": "ampere_fp16_s16816gemm_fp16_64x64_ldg8_f2f_stages_64x5_tn"
+      },
+      {
+        "count": 160,
+        "device_us": 63800.69000000013,
+        "name": "ampere_fp16_s1688gemm_fp16_128x128_ldg8_f2f_stages_32x1_tn"
+      },
+      {
+        "count": 65,
+        "device_us": 59564.74799999991,
+        "name": "void cutlass::Kernel2<cutlass_80_tensorop_f16_s16816gemm_relu_f16_256x128_32x3_tn_align8>(cutlass_80_tensorop_f16_s16816gemm_relu_f16_256x128_32x3_tn_align8::Params)"
+      }
+    ]
+  }
+]

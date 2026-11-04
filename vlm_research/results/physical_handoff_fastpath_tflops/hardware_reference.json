@@ -1,0 +1,26 @@
+{
+  "classification": "THEORETICAL_VENDOR_REFERENCE_NOT_MEASURED",
+  "gpu": "GeForce RTX 3090 Founders Edition / GA102",
+  "vendor_source": "https://www.nvidia.com/content/PDF/nvidia-ampere-ga-102-gpu-architecture-whitepaper-v2.1.pdf",
+  "source_location": "Appendix A, RTX 3090 comparison table, printed pages 44-45",
+  "reference_boost_clock_mhz": 1695,
+  "sm_count": 82,
+  "tensor_core_count": 328,
+  "fp32_non_tensor_tflops": 35.6,
+  "fp16_tensor_fp16_accumulate_dense_tflops": 142,
+  "fp16_tensor_fp16_accumulate_structured_sparse_effective_tflops": 284,
+  "fp16_tensor_fp32_accumulate_dense_tflops": 71,
+  "fp16_tensor_fp32_accumulate_structured_sparse_effective_tflops": 142,
+  "bf16_tensor_fp32_accumulate_dense_tflops": 71,
+  "bf16_tensor_fp32_accumulate_structured_sparse_effective_tflops": 142,
+  "theoretical_memory_bandwidth_gb_s": 936,
+  "limitations": [
+    "Vendor boost-clock reference only, not actual throughput or bandwidth.",
+    "Actual server cards, sustained SM clocks and native kernels may differ.",
+    "No structured sparsity is enabled in this experiment.",
+    "Do not normalize dense native BF16/FP16-FP32 accumulation to a sparse or FP16-accumulation peak.",
+    "Per-kernel accumulation mode and hardware utilization are not established by the unavailable counters.",
+    "Estimated Algorithmic TFLOPS is not a hardware floating-point counter."
+  ],
+  "counter_permission_reference": "https://developer.nvidia.com/nvidia-development-tools-solutions-err-nvgpuctrperm-permission-issue-performance-counters"
+}

@@ -97,7 +97,11 @@ python -m vlm_research.physical_handoff_fastpath.tests -v
 python -m vlm_research.physical_handoff_fastpath.run freeze
 python -m vlm_research.physical_handoff_fastpath.run all --kind llava
 python -m vlm_research.physical_handoff_fastpath.run all --kind qwen
+python -m vlm_research.physical_handoff_fastpath.reporting.delivery --native-kv-profile llava
+python -m vlm_research.physical_handoff_fastpath.reporting.delivery --native-kv-profile qwen
 python -m vlm_research.physical_handoff_fastpath.analyze
+python -m vlm_research.physical_handoff_fastpath.reporting.delivery
+python -m vlm_research.physical_handoff_fastpath.reporting.delivery --seal-only
 ```
 
 Each model runs on one independent GPU. Checkpoints are atomically replaced
@@ -105,3 +109,12 @@ per sample after all four conditions and 20 repetitions succeed. Resume accepts
 only identical source/protocol/sample hashes and complete checkpoints. No
 failed sample is silently skipped. Hardware semantic or OOM failure stops
 the corresponding worker and saves failure.json. No main/history modifications.
+
+The per-model KV microprofile runs only after the benchmark workers finish and
+uses the same lightweight CUDA-event wrapper for all four cache implementations.
+It is never mixed into latency repetitions. The reporting subpackage is separate
+from the frozen GPU-worker source and has its own delivery hashes. Run the final
+seal without redirecting its stdout to an artifact that is being hashed.
+
+Large profiler traces are committed as lossless gzip with original/archive SHA256
+in trace_archives.json. Raw traces stay local, and can be restored with gzip -dk.
