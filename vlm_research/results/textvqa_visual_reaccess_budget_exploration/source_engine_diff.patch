@@ -1,0 +1,22 @@
+--- historical_engine.py
++++ configurable_engine.py
+@@ -1,4 +1,4 @@
+-"""Same true-cache last-logit forward; only current answer-query Image edges vary."""
++"""Frozen historical mask observer; only permitted layer sets generalized."""
+ from contextlib import AbstractContextManager
+ import torch,numpy as np
+ from knockout_probe import model_layers,ROW_ATOL
+@@ -8,10 +8,9 @@
+ from .common import *
+ def blocked_layer(condition,layer,decode):
+  assert condition in CONDITIONS and 0<=layer<32
+- if condition=='A':return False
+- if condition=='B':return True
+- recover=condition=='E' or condition==('D' if decode else 'C')
+- return not (recover and layer in LAYERS)
++ allowed=DESIGN['conditions'][condition]['Decode' if decode else 'Pminus1']
++ return layer not in allowed
++
+ def blocked_edges(layout,condition,layer,past=0,device='cpu',noop=False):
+  n=layout['prompt_length'];q=1 if past else n;length=past+1 if past else n
+  assert not past or past>=n
