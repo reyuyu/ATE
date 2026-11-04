@@ -1,0 +1,72 @@
+{
+  "base": "7900c44217dab6421bbafff184a0029c01c535dc",
+  "bindings_sha256": "54915400b12370c2158b345e4113ed282a9e2d55a5659145bc19716ca578e823",
+  "conditions": [
+    "Native Full",
+    "D1 Dense",
+    "Fast-P1",
+    "Fast-P2"
+  ],
+  "dense": "Same D1 writing dependency, full hidden rows and full KV; precomputed masks and in-place KV",
+  "engineering_lengths": [
+    16,
+    64
+  ],
+  "engineering_sample": "First frozen smoke sample; beyond EOS explicitly allowed only for fixed16/64",
+  "fast_p1": "Fixed physical hidden trim; pre-cutoff KV remains visual+dense; late-layer KV text only; common in-place append",
+  "fast_p2": "Fixed physical hidden trim; direct gather into final text KV during Prefill; zero full persistent visual KV; in-place append",
+  "kind": "llava",
+  "logits_to_keep": 0,
+  "manifest_sha256": "15f4a1149cdfa060ac52eb11eb279a5250a9241ff2eec30eff7d94933393e042",
+  "max_new_tokens": 32,
+  "model": {
+    "directory": "llava-1.5-7b-hf",
+    "dtype": "float16",
+    "layers": 32,
+    "logits_to_keep": 0,
+    "python": "/data/lk/深度学习/.envs/ate-vlm-research/bin/python",
+    "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "transformers": "4.49.0"
+  },
+  "numerical_policy": "Exact native/noop required; native-precision physical approximation reported, not hidden by stabilizers; semantic failures stop",
+  "numerical_tolerances": {
+    "hidden_cosine": 0.0001,
+    "hidden_relative_rmse": 0.01,
+    "logit_atol": 0.1,
+    "logit_rtol": 0.003
+  },
+  "old_weights_manifest": {
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00001-of-00003.safetensors": {
+      "sha256": "c11dbf016ee7d35ee130c19b67e20eb04873996006f424b7bcbd453b6517ee66",
+      "size": 4992930200
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00002-of-00003.safetensors": {
+      "sha256": "46df6c6e5fad297fe7fbca4963dcf180cb1d0528cabc884d1f603311fed01328",
+      "size": 4957878440
+    },
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00003-of-00003.safetensors": {
+      "sha256": "4f06177c37ca13944e73b57dd6d051767b950dffc12400c700dfa2509c24c697",
+      "size": 4176137408
+    }
+  },
+  "order": "Five warmups per sample/condition; timed conditions interleaved by repetition and rotated by sample",
+  "production": "No diagnostic hooks, FP32 stabilizers, canonical tiles, per-layer sync, torch.isin or dynamic visual-mask construction in Decode",
+  "profiler": "Separate one fixed16 example per condition; hooks/census/events excluded from all latency samples",
+  "repetitions": 20,
+  "sources": {
+    "vlm_research/p1_layerwise_accuracy/common.py": "cb87d6c1f3f6156a14ae22ef3a1cb60304ec90bcc328faa239bf4481a138328c",
+    "vlm_research/p1_layerwise_accuracy/engine.py": "3cbf506f506c33fe34a636d2a3b5f19f751e2831b3bb299aae460ae8a5add46a",
+    "vlm_research/physical_handoff_fastpath/__init__.py": "81a5a9c3182e10ada5de58ebd403cee05f9a86b8129018f7aea49520b09ea57c",
+    "vlm_research/physical_handoff_fastpath/analyze.py": "f91617fe118f45a6bea2ad3fdce018dfe286a6f52f0c1cff078f1e65d7a53814",
+    "vlm_research/physical_handoff_fastpath/engine.py": "6e8abb7e04517678c189a896589abb97774652313ecedb57d58f97bd718b74a0",
+    "vlm_research/physical_handoff_fastpath/ledger.py": "07113e7cbc108e49eda43066af74a859fcbe2cfa511f3f3880404050de8ad44c",
+    "vlm_research/physical_handoff_fastpath/run.py": "bf27a2a3267eccc5cef4c09f210988d66ab564276048fea9eea562c51ff2192c",
+    "vlm_research/physical_handoff_fastpath/tests.py": "265be56bf2b798b19cf4fb8ef97dc7bd4724edfa2ae59f2b9a56b564936e9c04",
+    "vlm_research/physical_visual_handoff/common.py": "071f04ecb8cbc07c03251da236a371843a217536917494914aee55cc5162fcf3",
+    "vlm_research/physical_visual_handoff/engine.py": "e46dd347bc5d4763c179a02459b7bd09ab87e45e7499107930928df3c98f295b",
+    "vlm_research/qwen3vl_early_windows/experiment.py": "ea65a64f5ac6842e6a821ae2d21222c211060bd4afa08dc2d26fbaf3581b1b9c"
+  },
+  "status": "FROZEN",
+  "timing": "cold request mask+cache setup included in synchronized E2E; CUDA events for model, vision, Prefill, Decode; processing and disk IO excluded equally",
+  "warmups": 5
+}
