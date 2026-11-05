@@ -109,13 +109,15 @@ class Execution:
         with ExitStack() as st:
             if self.audit_enabled:
                 eager=qmodel.eager_attention_forward
-                def observed_eager(module,q,k,v,mask,**kw):
+                def observed_eager(module,q,k,v,attention_mask=None,**kw):
+                    if not hasattr(module,'layer_idx'):
+                        return eager(module,q,k,v,attention_mask,**kw)
                     assert q.shape[-1]==k.shape[-1] and k.shape[-2]==v.shape[-2]
                     flops=2*q.shape[0]*q.shape[1]*q.shape[-2]*k.shape[-2]*q.shape[-1]
                     for op in ['QK','AV']:
                         self.shapes.append(dict(layer=module.layer_idx,step=self.step,op=op,
                             query=list(q.shape),key=list(k.shape),value=list(v.shape),flops=flops))
-                    return eager(module,q,k,v,mask,**kw)
+                    return eager(module,q,k,v,attention_mask,**kw)
                 st.enter_context(patch.object(qmodel,'eager_attention_forward',observed_eager))
             if self.c!='N':st.enter_context(patch.object(self.d,'forward',self.forward))
             for i,layer in enumerate(self.d.layers):
