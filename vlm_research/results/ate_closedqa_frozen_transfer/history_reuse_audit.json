@@ -1,0 +1,30 @@
+{
+  "accepted_prior_generated_rows": 0,
+  "all_current_native_baselines_regenerated": true,
+  "at": "2026-11-05T12:34:57.743642+08:00",
+  "execution_base": "60d262f83a981e49a614ef8213e5311c3c7c6469",
+  "historical_closedqa": {
+    "path": "/data/lk/ATE-worktrees/cross-dataset-c1-c2/vlm_research/cross_dataset_c1_c2/run.py",
+    "reason": "Full/C1/C2 use older intervention and model.generate without a frozen logits_to_keep=1 binding; not accepted as exact current five-condition rows",
+    "sha256": "bf0bccf2c722d37723c89e51efc4d68ebb001fdddf12c9effbd7c85a1bb7542e"
+  },
+  "no_history_latency_reuse": true,
+  "pre_freeze_issue": {
+    "name": "Raw annotation JSON digest serialization mismatch",
+    "resolution": "Use original frozen Phase4 dataset_registry.digest for original source-row SHA; data and thresholds unchanged"
+  },
+  "previous_full_qsa_studies": {
+    "commits": [
+      "60d262f83a981e49a614ef8213e5311c3c7c6469",
+      "2c81863ed8c9f845f7aacfc3d80c873271415d77"
+    ],
+    "datasets": [
+      "GQA",
+      "VQAv2"
+    ],
+    "exact_closedqa_rows": 0
+  },
+  "remote_refs": "60d262f83a981e49a614ef8213e5311c3c7c6469\trefs/heads/codex/ate-accuracy-autoresearch-6h\n2c81863ed8c9f845f7aacfc3d80c873271415d77\trefs/heads/codex/ate-accuracy-autoresearch-6h-continued\ne89c8acce6e674ecfbd2c8acad57faf71bf4d547\trefs/heads/main\n",
+  "source_commit": "b8351e2d9fea647b85db7ebb5def580e2b76eb38",
+  "within_run_reuse": "Only exactly identical Image SHA, expanded Prompt IDs, semantic partitions and writer sets; same physical GPU and config. Per-row rescoring and source checkpoint SHA retained."
+}
