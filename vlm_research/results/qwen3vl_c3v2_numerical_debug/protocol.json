@@ -44,6 +44,29 @@
     "all generated tokens"
   ],
   "old_execution_commit": "dae5207d016acea8225f236ce3b81285d3d8bd90",
+  "operator_diagnostics": {
+    "attention": [
+      1,
+      22
+    ],
+    "forms": [
+      "transposed BF16 GEMM",
+      "column-major BF16 input",
+      "BF16 row tile32",
+      "BF16 row tile64"
+    ],
+    "linear_layers": [
+      22,
+      23
+    ],
+    "linear_ops": [
+      "k_proj",
+      "v_proj",
+      "gate_proj",
+      "up_proj"
+    ],
+    "selection": "Choose lowest-overhead form attaining exact same-input component agreement; never choose by answer or Accuracy. Padding candidate must retain material physical reductions and disclose dummy work; no nearly-dense restoration accepted."
+  },
   "original_case": "GQA__06905471",
   "probe_gate": "Every effective logit vector with/without probes torch.equal; invalid probes stop diagnostic analysis",
   "probe_layers": [
@@ -84,6 +107,7 @@
     34,
     35
   ],
+  "probe_revision_2": "All heads at L1/L22 only, remaining layers frozen heads0/16/31; archive actual cache tensors at each layer after prefill and decode",
   "probes": [
     "layer_input",
     "input_norm",

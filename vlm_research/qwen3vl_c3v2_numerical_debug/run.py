@@ -84,13 +84,16 @@ def main(rank,mode):
   assert hook_counts(model)==initial
   assert r['token_ids']==results[c]['token_ids'] and len(v)==len(vectors[c]) and all(torch.equal(a,b) for a,b in zip(v,vectors[c])),('Probe changed logits',c)
   target=PRIVATE/f'shard{rank}/{c}_prefill_probes.pt'
-  index.append(tensor_save(target,dict(records=probe.records,position_records=probe.position_records,deepstack=probe.deepstack,layout=layout,condition=c,source_commit=frozen['commit'],probe_logits_equal=True)))
+  index.append(tensor_save(target,dict(records=probe.records,position_records=probe.position_records,deepstack=probe.deepstack,cache_snapshots=probe.cache_snapshots,layout=layout,condition=c,source_commit=frozen['commit'],probe_logits_equal=True)))
   write(OUT/f'shard{rank}/probe_{c}_validation.json',dict(status='PASS',probe_logits_equal=True,records=len(probe.records),archive=index[-1],tensor_shapes={k:dict(shape=x['shape'],dtype=x['dtype'],positions=x['positions'],key_positions=x['key_positions']) for k,x in probe.records.items()}))
   if c=='F':Fprobe=probe;probe.records={}
   else:del probe
   gc.collect();print('PROBE',rank,c,'PASS',flush=True)
  if Fprobe:
-  shadow_rows,raw=shadow(model,Fprobe,rank);index.append(tensor_save(PRIVATE/f'shard{rank}/bf16_shape_shadow.pt',raw));del Fprobe,raw
+  shadow_rows,raw=shadow(model,Fprobe,rank);index.append(tensor_save(PRIVATE/f'shard{rank}/bf16_shape_shadow.pt',raw))
+  from .operator_shadow import operators
+  extra,extra_raw=operators(model,Fprobe,rank)
+  index.append(tensor_save(PRIVATE/f'shard{rank}/operator_shadow.pt',extra_raw));del Fprobe,raw,extra_raw
  write(OUT/f'shard{rank}/tensor_index.json',index)
  write(OUT/f'shard{rank}/diagnostic_completion.json',dict(status='FIXED_DIAGNOSTICS_COLLECTED',probe_readonly=True,all_matched_factor_comparisons_completed=True,no_quality_or_benchmark=True,source_commit=frozen['commit'],at=datetime.datetime.now(datetime.timezone.utc).isoformat()))
  del model;gc.collect();torch.cuda.empty_cache()
