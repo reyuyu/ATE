@@ -1,0 +1,58 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:08,  4.10s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:08<00:04,  4.25s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:11<00:00,  3.84s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:11<00:00,  3.94s/it]
+SMOKE_BEGIN 1 39419
+SMOKE_CASE_PASS 1 39419
+SMOKE_BEGIN 1 34726
+SMOKE_CASE_PASS 1 34726
+SMOKE_BEGIN 1 39145
+SMOKE_CASE_PASS 1 39145
+DUAL_GPU_SMOKE_PASS 1
+PROGRESS {"UTC": "2026-11-05T05:36:25.539600+00:00", "worker": 1, "stage": "pilot120", "generated": 417, "resumed": 0, "worker_seconds": 706.5245553799905, "generations_per_second": 0.5902130319812093, "remaining_wall_seconds": 20464.460379362106, "GPU_stop_remaining_seconds": 18664.46037864685, "anomaly": false}
+ROW_DONE 1 pilot120 38093 fresh 1024 seconds 449
+ROW_DONE 1 pilot120 35148 fresh 2048 seconds 1012
+ROW_DONE 1 pilot120 39090 fresh 3072 seconds 1417
+PROGRESS {"UTC": "2026-11-05T06:06:25.964507+00:00", "worker": 1, "stage": "pilot120", "generated": 4309, "resumed": 128, "worker_seconds": 2506.949463054072, "generations_per_second": 1.718822043883802, "remaining_wall_seconds": 18664.035472154617, "GPU_stop_remaining_seconds": 16864.035471200943, "anomaly": false}
+ROW_DONE 1 pilot120 37877 fresh 4096 seconds 1913
+ROW_DONE 1 pilot120 34667 fresh 5120 seconds 2279
+ROW_DONE 1 pilot120 37354 fresh 6016 seconds 2673
+ROW_DONE 1 pilot120 38416 fresh 7040 seconds 3120
+ROW_DONE 1 pilot120 36090 fresh 8064 seconds 3563
+PROGRESS {"UTC": "2026-11-05T06:36:26.061598+00:00", "worker": 1, "stage": "pilot120", "generated": 8577, "resumed": 256, "worker_seconds": 4307.046554611996, "generations_per_second": 1.9913878086169576, "remaining_wall_seconds": 16863.938381671906, "GPU_stop_remaining_seconds": 15063.938380479813, "anomaly": false}
+PROGRESS {"UTC": "2026-11-05T06:36:39.635208+00:00", "worker": 1, "stage": "pilot120_complete", "generated": 8609, "resumed": 256, "worker_seconds": 4320.620167192072, "generations_per_second": 1.9925380308528495, "remaining_wall_seconds": 16850.36477971077, "GPU_stop_remaining_seconds": 15050.364778757095, "anomaly": false}
+PROGRESS {"UTC": "2026-11-05T06:36:39.635641+00:00", "worker": 1, "stage": "primary300", "generated": 8609, "resumed": 256, "worker_seconds": 4320.620599851012, "generations_per_second": 1.9925378313237834, "remaining_wall_seconds": 16850.36435031891, "GPU_stop_remaining_seconds": 15050.364349842072, "anomaly": false}
+ROW_DONE 1 primary300 39057 fresh 1063 seconds 422
+ROW_DONE 1 primary300 39047 fresh 1074 seconds 429
+ROW_DONE 1 primary300 38737 fresh 2000 seconds 922
+ROW_DONE 1 primary300 34997 fresh 3074 seconds 1409
+PROGRESS {"UTC": "2026-11-05T07:06:40.390985+00:00", "worker": 1, "stage": "primary300", "generated": 12565, "resumed": 2827, "worker_seconds": 6121.375942040933, "generations_per_second": 2.052643085307826, "remaining_wall_seconds": 15049.608996629715, "GPU_stop_remaining_seconds": 13249.60899591446, "anomaly": false}
+ROW_DONE 1 primary300 36885 fresh 4029 seconds 1876
+ROW_DONE 1 primary300 39262 fresh 5006 seconds 2304
+ROW_DONE 1 primary300 37680 fresh 5017 seconds 2310
+ROW_DONE 1 primary300 38405 fresh 6038 seconds 2726
+ROW_DONE 1 primary300 37764 fresh 6049 seconds 2732
+PROGRESS {"UTC": "2026-11-05T07:28:28.296916+00:00", "worker": 1, "stage": "primary300_complete", "generated": 15538, "resumed": 4577, "worker_seconds": 7429.281874600099, "generations_per_second": 2.091453825856671, "remaining_wall_seconds": 13741.703073263168, "GPU_stop_remaining_seconds": 11941.703072309494, "anomaly": false}
+PROGRESS {"UTC": "2026-11-05T07:34:28.444507+00:00", "worker": 1, "stage": "secondary300", "generated": 15538, "resumed": 4577, "worker_seconds": 7789.429459260078, "generations_per_second": 1.994754568517007, "remaining_wall_seconds": 13381.555458784103, "GPU_stop_remaining_seconds": 11581.555457830429, "anomaly": false}
+ROW_DONE 1 secondary300 36124 fresh 1024 seconds 384
+ROW_DONE 1 secondary300 38313 fresh 1024 seconds 384
+ROW_DONE 1 secondary300 39473 fresh 1024 seconds 384
+ROW_DONE 1 secondary300 39460 fresh 1024 seconds 384
+ROW_DONE 1 secondary300 35715 fresh 1024 seconds 384
+ROW_DONE 1 secondary300 36316 fresh 2048 seconds 907
+ROW_DONE 1 secondary300 35933 fresh 2048 seconds 907
+ROW_DONE 1 secondary300 37226 fresh 2048 seconds 907
+ROW_DONE 1 secondary300 35538 fresh 3008 seconds 1363
+PROGRESS {"UTC": "2026-11-05T08:04:28.814330+00:00", "worker": 1, "stage": "secondary300", "generated": 19450, "resumed": 7713, "worker_seconds": 9589.799287571106, "generations_per_second": 2.0281967762566464, "remaining_wall_seconds": 11581.185651302338, "GPU_stop_remaining_seconds": 9781.185650348663, "anomaly": false}
+ROW_DONE 1 secondary300 37423 fresh 4032 seconds 1854
+ROW_DONE 1 secondary300 37488 fresh 4032 seconds 1854
+ROW_DONE 1 secondary300 38416 fresh 4032 seconds 1854
+ROW_DONE 1 secondary300 38985 fresh 4032 seconds 1854
+ROW_DONE 1 secondary300 35395 fresh 4032 seconds 1854
+ROW_DONE 1 secondary300 37111 fresh 5056 seconds 2262
+PROGRESS {"UTC": "2026-11-05T08:14:08.229457+00:00", "worker": 1, "stage": "secondary300_complete", "generated": 20850, "resumed": 8865, "worker_seconds": 10169.214415790047, "generations_per_second": 2.050305869018316, "remaining_wall_seconds": 11001.770532131195, "GPU_stop_remaining_seconds": 9201.77053141594, "anomaly": false}
+PROGRESS {"UTC": "2026-11-05T08:21:26.528196+00:00", "worker": 1, "stage": "optional300", "generated": 20946, "resumed": 8865, "worker_seconds": 10607.513152871048, "generations_per_second": 1.9746381360206675, "remaining_wall_seconds": 10563.471782207489, "GPU_stop_remaining_seconds": 8763.471781730652, "anomaly": false}
+ROW_DONE 1 optional300 35715 fresh 1024 seconds 425
+ROW_DONE 1 optional300 37226 fresh 2016 seconds 987
+ROW_DONE 1 optional300 36339 fresh 3008 seconds 1402
+PROGRESS {"UTC": "2026-11-05T08:51:26.820917+00:00", "worker": 1, "stage": "optional300", "generated": 24919, "resumed": 8961, "worker_seconds": 12407.80587394, "generations_per_second": 2.008332516898668, "remaining_wall_seconds": 8763.179062843323, "GPU_stop_remaining_seconds": 6963.179062128067, "anomaly": false}
+ROW_DONE 1 optional300 35753 fresh 4000 seconds 1812
+PROGRESS {"UTC": "2026-11-05T08:57:00.473479+00:00", "worker": 1, "stage": "optional300_complete", "generated": 25650, "resumed": 8961, "worker_seconds": 12741.458437560126, "generations_per_second": 2.013113343790159, "remaining_wall_seconds": 8429.526510953903, "GPU_stop_remaining_seconds": 6629.526510000229, "anomaly": false}

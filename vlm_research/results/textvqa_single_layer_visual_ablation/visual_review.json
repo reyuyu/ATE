@@ -1,0 +1,68 @@
+{
+  "passed": true,
+  "UTC": "2026-11-05T09:15:49.700669+00:00",
+  "review_method": "Manually inspected actual pdftoppm PDF renders: all8 on contact sheet; Addback, Native overlay and OCR heatmaps additionally at full1600px render size.",
+  "records": [
+    {
+      "pdf": "addback_layer_curve.pdf",
+      "pdf_sha256": "a34a0aa2e5ba05fc4b85785cbeb128338a632a53332d7af9cd9d08e902adf2b4",
+      "rendered_png": "/data/lk/ATE-resources/experiments/textvqa_single_layer_visual_ablation/qa_final/addback_layer_curve.png",
+      "render_sha256": "58ae0605b72905dfa9aadca36cda20e305abebd6f87ba1882bd7a0eff33e43aa"
+    },
+    {
+      "pdf": "all-text_layer_curve.pdf",
+      "pdf_sha256": "56f783ab0a90b92fad6c5e26c210c72bc6be3656522af6de2bf3eee96c50a8c4",
+      "rendered_png": "/data/lk/ATE-resources/experiments/textvqa_single_layer_visual_ablation/qa_final/all-text_layer_curve.png",
+      "render_sha256": "d556612096f829f1f7b7ddcb6926aec8fe07e489583241aaf17a1e59e1bb416e"
+    },
+    {
+      "pdf": "both_layer_curve.pdf",
+      "pdf_sha256": "b1b864dd2bd684bfbca3fa50d6dbc0628e41d63ba1edeba4b1a208095e70397f",
+      "rendered_png": "/data/lk/ATE-resources/experiments/textvqa_single_layer_visual_ablation/qa_final/both_layer_curve.png",
+      "render_sha256": "9cf170b35d32bab87c896337e71d0b7e5c2ef7bf55b28339f15b1cbc6d8933ea"
+    },
+    {
+      "pdf": "donly_layer_curve.pdf",
+      "pdf_sha256": "4ff10a024dc1c4dfb2021544152c68b391cf1522c08b7e618dc60236b4c1711c",
+      "rendered_png": "/data/lk/ATE-resources/experiments/textvqa_single_layer_visual_ablation/qa_final/donly_layer_curve.png",
+      "render_sha256": "be12203f535aaac5890b004d66ba3bbc4bb028ecc93a731d6a4b890c7a303173"
+    },
+    {
+      "pdf": "middle-minus_layer_curve.pdf",
+      "pdf_sha256": "6a6d6a9ccb29643cea2c991ca0a216cceafa2ed5da5de243099f675256d21e8b",
+      "rendered_png": "/data/lk/ATE-resources/experiments/textvqa_single_layer_visual_ablation/qa_final/middle-minus_layer_curve.png",
+      "render_sha256": "a366b900ac1d9c2cd2f895155ad72e12b27914d66f33999e8efff8b9cadf1118"
+    },
+    {
+      "pdf": "native_stage_overlay.pdf",
+      "pdf_sha256": "c52415a7620eb9e2b9c416b666671d1e89024f989879dd14fc526ab1001b9ca8",
+      "rendered_png": "/data/lk/ATE-resources/experiments/textvqa_single_layer_visual_ablation/qa_final/native_stage_overlay.png",
+      "render_sha256": "93cd15ecb5a454109cb9290a6602751473a953b8ef1d785b6121073117655579"
+    },
+    {
+      "pdf": "ocr_group_layer_heatmaps.pdf",
+      "pdf_sha256": "5af8272d57f7a11ac5528398df19e630d48e0ce23f220e28267f6aaad287bddd",
+      "rendered_png": "/data/lk/ATE-resources/experiments/textvqa_single_layer_visual_ablation/qa_final/ocr_group_layer_heatmaps.png",
+      "render_sha256": "ce719816db20ac3886fe17567cc3f146913e291099a358e9acaf8abc67b2e5c0"
+    },
+    {
+      "pdf": "ponly_layer_curve.pdf",
+      "pdf_sha256": "aaced0b6937433872226243923c0961e5c5a53de97d6a65d8c75857c1b3875f2",
+      "rendered_png": "/data/lk/ATE-resources/experiments/textvqa_single_layer_visual_ablation/qa_final/ponly_layer_curve.png",
+      "render_sha256": "7f791aabbabced66fb8d06409c5aa3e8f7460c27c610d5975655acfbe329167d"
+    }
+  ],
+  "checks": {
+    "all8_legible_no_clipping": true,
+    "all_main_curves_n300": true,
+    "Native_and_Addback_each32_actual_layer_points": true,
+    "Middle11_actual_layer_ticks": true,
+    "ordinary_CI_labels_and_reused_baselines_explicit": true,
+    "overlay_legend_outside_data_axes": true,
+    "fixed_OCR_group_sample_sizes_explicit": true,
+    "measured_points_only_no_smoothing": true
+  },
+  "private_review_contact": "/data/lk/ATE-resources/experiments/textvqa_single_layer_visual_ablation/qa_final/contact.png",
+  "published_plot_PNGs": "figures/*.png",
+  "PDF_structure_check": "independent validate.py uses pre-existing Poppler; no new dependencies or GPU computation"
+}
