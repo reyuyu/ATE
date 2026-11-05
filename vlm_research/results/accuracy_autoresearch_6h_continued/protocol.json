@@ -1,0 +1,58 @@
+{
+  "added_candidates": [
+    {
+      "answer_attention": "none",
+      "cutoff": 28,
+      "logits_to_keep": 0,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "all"
+    },
+    {
+      "answer_attention": "decode",
+      "cutoff": 28,
+      "logits_to_keep": 0,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "all"
+    },
+    {
+      "answer_attention": "none",
+      "cutoff": 32,
+      "logits_to_keep": 0,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "all"
+    },
+    {
+      "answer_attention": "decode",
+      "cutoff": 32,
+      "logits_to_keep": 0,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "all"
+    }
+  ],
+  "at": "2026-11-05T08:10:41.616542+08:00",
+  "clock": {
+    "allowed_physical_gpus": [
+      2,
+      3
+    ],
+    "base_commit": "3b46d36dc80e46fde778c6fc93191c8e33f24122",
+    "candidate_freeze_by": "2026-11-05T08:31:15+08:00",
+    "clock_must_not_reset": true,
+    "deliver_by": "2026-11-05T10:31:15+08:00",
+    "started_at": "2026-11-05T04:31:15+08:00",
+    "stop_new_gpu_work_by": "2026-11-05T10:01:15+08:00"
+  },
+  "forbidden_direct_Image": "All candidate P-1 and all real Decode at every layer",
+  "max_original_candidates": 16,
+  "next_evaluation_label": "RECHECK: historical and previously inspected cohort, not independent FINAL",
+  "no_additional_prompt_or_token_search": true,
+  "no_new_untouched_confirmatory_sample_claim": true,
+  "previous_final_is_already_used": true,
+  "promote": "Top two DEV worst-dataset losses; <=0.25pp ties prefer shallower then Decode-only",
+  "selection": "Best CHECK worst-dataset loss among two promoted and frozen L24 All-R Decode-only reference; <=0.25pp ties use minimum matched-sequence E2E speed then KV",
+  "selection_uses_only_DEV_CHECK": true
+}
