@@ -1,0 +1,16 @@
+{
+  "status": "PASSED",
+  "records": 4000,
+  "correct_counts": {
+    "Native": 694,
+    "F": 588,
+    "D": 585,
+    "E": 680
+  },
+  "all_current_inputs_reconstructed": true,
+  "old_keep_D_rule_semantically_same": true,
+  "scoring_rule": "raw tokenizer.decode(ids,skip_special_tokens=True).rstrip(\".\").lower(); same as current1000",
+  "historical_whitespace_rule": "historical wrapper also returns a stripped text; preserve that in a separate field and score current1000 using raw decode",
+  "baseline_texts_changed_by_strip": [],
+  "at": "2026-11-05T18:40:32.608204+00:00"
+}
