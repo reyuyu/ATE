@@ -83,6 +83,7 @@ class Probe:
     out=eager(module,q,k,v,attention_mask,**kw)
     if not hasattr(module,'layer_idx'):return out
     qpos=self.positions(q.shape[-2]);kpos=(list(range(self.n-1))+[-1]) if self.step==0 and self.layer in range(1,7) and self.c in ['B','C'] and k.shape[-2]==self.n else self.positions(k.shape[-2]);text_indices=[i for i,p in enumerate(qpos) if p not in self.images]
+    if self.step>0 and self.c in ['B','P','C'] and k.shape[-2]==self.n+self.step:kpos=[(-1000-p) if p in self.images else p for p in kpos] # transient dead-image columns are not original image KV
     qi=torch.tensor(text_indices,device=q.device);heads=torch.arange(q.shape[1],device=q.device) if self.step>0 or self.layer in [22,23] else torch.tensor([0,16,31],device=q.device)
     if self.c=='F' and (self.step>0 or self.layer==22):
      self.attention_shadow[f'{self.step}/{self.layer}']=dict(query=q.detach().cpu().clone(),key=k.detach().cpu().clone(),value=v.detach().cpu().clone(),mask=None if attention_mask is None else attention_mask.detach().cpu().clone(),probabilities=out[1].detach().cpu().clone())
