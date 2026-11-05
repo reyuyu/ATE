@@ -1,0 +1,72 @@
+{
+  "B_zero_layers": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "EOS": "unchanged model.generation_config.eos_token_id",
+  "R": "last image token +1 through original P-1 excluded; original template included",
+  "at": "2026-11-06T03:25:36.043780+08:00",
+  "attention": "eager",
+  "base_commit": "5627bc822a7827ae11edfaec84c31f6b73398e25",
+  "bootstrap": {
+    "cluster": "Image SHA256",
+    "confidence": 0.95,
+    "exploratory": true,
+    "question_weighted": true,
+    "repetitions": 20000,
+    "seed": 20261106
+  },
+  "conditions": {
+    "A": "R->Image all32 ON; P-1/Decode->Image all32 OFF; attention outputs native",
+    "B": "same as A plus P-1/Decode o_proj output zero only at L2-L5",
+    "N": "native, all connections; reuse audited history after Smoke"
+  },
+  "dense_full_native_KV": true,
+  "dtype": "float16",
+  "gpu_uuids": [
+    "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+    "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+  ],
+  "greedy": true,
+  "history_C3_reference_only": true,
+  "images": 309,
+  "input_bindings_sha256": "b291b8450b65c07ce3d792f279f7825136bb998368b28437f1411f1b616d8464",
+  "layers_zero_based": true,
+  "logits_to_keep": 1,
+  "max_new_tokens": 32,
+  "model_manifest_sha256": "dd4abae1a7551f6c454e4f9f89c35316bb6865df01e40a6476f15ebd3e928e6e",
+  "n": 500,
+  "no_physical_image_exit": true,
+  "no_timing_physical_optimization_or_search": true,
+  "primary_comparisons": [
+    [
+      "N",
+      "A"
+    ],
+    [
+      "A",
+      "B"
+    ],
+    [
+      "N",
+      "B"
+    ]
+  ],
+  "quality_only": true,
+  "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "sample_manifest_sha256": "b99414717bfb1b005c57be632690625418bab6da26dd618a795e50b362cea0b5",
+  "scorer": "pinned official TextVQA ten-answer leave-one-out consensus evaluator",
+  "smoke_ids": [
+    "textvqa__38668",
+    "textvqa__35304",
+    "textvqa__36148",
+    "textvqa__35240",
+    "textvqa__37563",
+    "textvqa__39410"
+  ],
+  "status": "FROZEN_BEFORE_GPU",
+  "transformers": "4.49.0",
+  "unchanged_MLP_Norm_Residual_RoPE": true
+}
