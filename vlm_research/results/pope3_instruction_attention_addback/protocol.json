@@ -1,0 +1,338 @@
+{
+  "addback": "Restore the selected native instruction subwords in all L0-L19; all contiguous windows of length 1,2,4; C3 is all10 positive control",
+  "attention": "eager",
+  "attention_capture": "Actual kernel-produced post-softmax R->576 Image rows, L0-L19, all 32 heads; observer does not edit tensors",
+  "base_commit": "e936ff3dcf3ae02e4395dd1f2e9dd05cd8da25cb",
+  "conditions": [
+    [
+      "E1",
+      []
+    ],
+    [
+      "C3",
+      [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9
+      ]
+    ],
+    [
+      "add1_00",
+      [
+        0
+      ]
+    ],
+    [
+      "add1_01",
+      [
+        1
+      ]
+    ],
+    [
+      "add1_02",
+      [
+        2
+      ]
+    ],
+    [
+      "add1_03",
+      [
+        3
+      ]
+    ],
+    [
+      "add1_04",
+      [
+        4
+      ]
+    ],
+    [
+      "add1_05",
+      [
+        5
+      ]
+    ],
+    [
+      "add1_06",
+      [
+        6
+      ]
+    ],
+    [
+      "add1_07",
+      [
+        7
+      ]
+    ],
+    [
+      "add1_08",
+      [
+        8
+      ]
+    ],
+    [
+      "add1_09",
+      [
+        9
+      ]
+    ],
+    [
+      "add2_00",
+      [
+        0,
+        1
+      ]
+    ],
+    [
+      "add2_01",
+      [
+        1,
+        2
+      ]
+    ],
+    [
+      "add2_02",
+      [
+        2,
+        3
+      ]
+    ],
+    [
+      "add2_03",
+      [
+        3,
+        4
+      ]
+    ],
+    [
+      "add2_04",
+      [
+        4,
+        5
+      ]
+    ],
+    [
+      "add2_05",
+      [
+        5,
+        6
+      ]
+    ],
+    [
+      "add2_06",
+      [
+        6,
+        7
+      ]
+    ],
+    [
+      "add2_07",
+      [
+        7,
+        8
+      ]
+    ],
+    [
+      "add2_08",
+      [
+        8,
+        9
+      ]
+    ],
+    [
+      "add4_00",
+      [
+        0,
+        1,
+        2,
+        3
+      ]
+    ],
+    [
+      "add4_01",
+      [
+        1,
+        2,
+        3,
+        4
+      ]
+    ],
+    [
+      "add4_02",
+      [
+        2,
+        3,
+        4,
+        5
+      ]
+    ],
+    [
+      "add4_03",
+      [
+        3,
+        4,
+        5,
+        6
+      ]
+    ],
+    [
+      "add4_04",
+      [
+        4,
+        5,
+        6,
+        7
+      ]
+    ],
+    [
+      "add4_05",
+      [
+        5,
+        6,
+        7,
+        8
+      ]
+    ],
+    [
+      "add4_06",
+      [
+        6,
+        7,
+        8,
+        9
+      ]
+    ]
+  ],
+  "config": {
+    "answer_attention": "both",
+    "cutoff": 20,
+    "logits_to_keep": 1,
+    "max_new_tokens": 32,
+    "prompt_variant": "original",
+    "writer": "all"
+  },
+  "dtype": "float16",
+  "edge": "Outer two 24x24 patch rings; 176/576 patches. Ratio is conditional on Image mass; separately record absolute mass.",
+  "gpu": {
+    "index": 0,
+    "uuid": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89"
+  },
+  "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "new_full_generations": 84,
+  "no_input_edits": true,
+  "no_new_conditions_after_outputs": true,
+  "no_training": true,
+  "plots": "Head mean for layer galleries; all-head atlases and exact NPZ retained. Fixed log2(1+576*p_visual) scale for all-head conditional maps.",
+  "roi": "Official COCO boxes mapped by actual integer resize + center crop; bbox-overlap fractions; outside-crop targets remain NA",
+  "samples": [
+    "pope_random__1351",
+    "pope_random__2459",
+    "pope_random__301"
+  ],
+  "scope": "Three selected historical failure cases; descriptive association and local add-back effects, no generalization/independence claim",
+  "scoring": {
+    "lowercase_and_no_space": "Separate sensitivity audits, never silently mix or choose favorable form",
+    "multiple_tokens": "Teacher-force every candidate token with an independent condition cache; no extra BOS/EOS",
+    "primary": "sum logP of exact canonical suffix \" Yes\" minus \" No\", no EOS; full vocabulary FP32 log_softmax",
+    "variants": {
+      "pope_random__1351": {
+        " No": [
+          1939
+        ],
+        " Yes": [
+          3869
+        ],
+        " no": [
+          694
+        ],
+        " yes": [
+          4874
+        ],
+        "No": [
+          3782
+        ],
+        "Yes": [
+          8241
+        ],
+        "no": [
+          1217
+        ],
+        "yes": [
+          3582
+        ]
+      },
+      "pope_random__2459": {
+        " No": [
+          1939
+        ],
+        " Yes": [
+          3869
+        ],
+        " no": [
+          694
+        ],
+        " yes": [
+          4874
+        ],
+        "No": [
+          3782
+        ],
+        "Yes": [
+          8241
+        ],
+        "no": [
+          1217
+        ],
+        "yes": [
+          3582
+        ]
+      },
+      "pope_random__301": {
+        " No": [
+          1939
+        ],
+        " Yes": [
+          3869
+        ],
+        " no": [
+          694
+        ],
+        " yes": [
+          4874
+        ],
+        "No": [
+          3782
+        ],
+        "Yes": [
+          8241
+        ],
+        "no": [
+          1217
+        ],
+        "yes": [
+          3582
+        ]
+      }
+    }
+  },
+  "target_annotation_ids": {
+    "1351": [
+      1799923
+    ],
+    "2459": [
+      1803349
+    ],
+    "301": [
+      1154230,
+      1670746
+    ]
+  },
+  "transformers": "4.49.0"
+}
