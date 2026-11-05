@@ -76,10 +76,13 @@ def differences(ref,probe):
 def main(rank=0,mode='original'):
  torch.set_num_threads(1);check();freeze=read(OUT/'source_manifest_full_model.json')
  for path,h in freeze['files'].items():assert sha(ROOT/path)==h,path
- folder=f'full_rank{rank}';write(OUT/folder/'environment.json',dict(at=datetime.datetime.now(datetime.timezone.utc).isoformat(),uuid=os.environ['CUDA_VISIBLE_DEVICES'],source_commit=freeze['commit'],mode=mode))
+ folder=f'full_v2_rank{rank}';write(OUT/folder/'environment.json',dict(at=datetime.datetime.now(datetime.timezone.utc).isoformat(),uuid=os.environ['CUDA_VISIBLE_DEVICES'],source_commit=freeze['commit'],mode=mode))
  processor=AutoProcessor.from_pretrained(MODEL,local_files_only=True);model=Qwen3VLForConditionalGeneration.from_pretrained(MODEL,local_files_only=True,dtype=torch.bfloat16,attn_implementation='eager',device_map={'':'cuda:0'},use_safetensors=True,low_cpu_mem_usage=True).eval();hc=hook_counts(model)
  key='GQA__06905471';inputs,layout=prepare(processor,sample(key));assert layout==read(ROOT/'vlm_research/results/qwen3vl_c3v2_numerical_debug/sample_manifest.json')['input_bindings'][key]
- allrows=[];scope=[22] if mode=='original' else read(OUT/'full_rank0/completion.json')['final_repair_layers'];attempts=[]
+ allrows=[];scope=[22,23] if mode=='original' else read(OUT/'full_v2_rank0/completion.json')['final_repair_layers'];attempts=[]
+ if mode=='original':
+  prior=read(OUT/'full_rank0/C_L22_components.json');lookup={(r['step'],r['layer'],r['stage']):r for r in prior}
+  assert lookup[0,22,'layer_output']['equal'] and lookup[0,23,'input_norm']['equal'] and not lookup[0,23,'k_proj']['equal']
  for c in ['N','Noop','F','W22-functional','B']:
   r,v=generate(model,processor,inputs,layout,'N' if c=='Noop' else c,[],noop=c=='Noop');assert hook_counts(model)==hc
   if c=='Noop':assert r['token_ids']==nr['token_ids'] and len(v)==len(nv) and all(torch.equal(a,b) for a,b in zip(v,nv))
@@ -99,8 +102,10 @@ def main(rank=0,mode='original'):
   rec=dict(repair_layers=scope.copy(),comparison=rows,first_divergences=first);attempts.append(rec);print('FULL_ATTEMPT',rank,rec,flush=True)
   passed=all(x['gate_pass'] for x in rows)
   if passed or mode!='original':break
-  d=first.get('0');next_layer=scope[-1]+1
-  if not d or d['layer']!=next_layer or d['stage'] not in ['k_proj','v_proj','mlp_output'] or next_layer>35:break
+  next_layer=scope[-1]+1;lookup={(x['step'],x['layer'],x['stage']):x for x in dr}
+  # A transient subnormal AV difference can vanish before the layer boundary.
+  # Extend only when the NEXT layer input is strictly equal and its own K/V projection is not.
+  if next_layer>35 or not lookup.get((0,next_layer,'input_norm'),{}).get('equal',False) or not any(not lookup.get((0,next_layer,s),{'equal':True})['equal'] for s in ['k_proj','v_proj']):break
   # Extension is triggered only by measured first divergence, same fixed policy; no layer selection search.
   scope.append(next_layer);del probe;gc.collect()
  # Permission matched visual-exit pair and uninstrumented repeat.
