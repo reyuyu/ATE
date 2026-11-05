@@ -8,7 +8,31 @@ from .common import *
 
 
 @contextmanager
-def block_audit(adapter,layout):
+def native_reference(adapter):
+    import torch
+    refs=[];handles=[];counter=[0];nlayer=len(adapter.layers)
+    def observe(module,args,kw):
+        step=counter[0]//nlayer
+        values=dict(mask=kw.get('attention_mask'),rotary=kw['position_embeddings'],cp=kw['cache_position'])
+        if counter[0]%nlayer==0:
+            refs.append(dict(mask=values['mask'].cpu().clone() if values['mask'] is not None else None,
+                rotary=[x.cpu().clone() for x in values['rotary']],cp=values['cp'].cpu().clone()))
+        else:
+            ref=refs[step]
+            assert (values['mask'] is None)==(ref['mask'] is None)
+            if ref['mask'] is not None:assert torch.equal(values['mask'].cpu(),ref['mask'])
+            for x,y in zip(values['rotary'],ref['rotary']):assert torch.equal(x.cpu(),y)
+            assert torch.equal(values['cp'].cpu(),ref['cp'])
+        counter[0]+=1
+    try:
+        for layer in adapter.layers:handles.append(layer.self_attn.register_forward_pre_hook(observe,with_kwargs=True))
+        yield refs
+    finally:
+        for h in handles:h.remove()
+
+
+@contextmanager
+def block_audit(adapter,layout,native_refs):
     import torch
     from contextlib import ExitStack
     records=[];state={};handles=[]
@@ -22,14 +46,45 @@ def block_audit(adapter,layout):
             def mid(m,args,t=t):
                 assert torch.equal(t['input']+t['attn'],args[0]);t['mid']=args[0]
             def mlp(m,args,out,t=t):t['mlp']=out;t['mlp_calls']+=1
+            def attn_input(m,args,kw,i=i,t=t):
+                pre=len(records)<len(adapter.layers)
+                cp=kw['cache_position'].cpu();mask=kw.get('attention_mask')
+                n=layout.length if adapter.kind=='llava' else layout['input_length']
+                image=list(layout.image) if adapter.kind=='llava' else layout['image_positions']
+                text=list(layout.text) if adapter.kind=='llava' else [j for j in range(n) if j not in set(image)]
+                cutoff=20 if adapter.kind=='llava' else 22
+                step=len(records)//len(adapter.layers)
+                expected_pos=(list(range(n)) if i<cutoff else text) if pre else [n+step-1]
+                assert cp.tolist()==expected_pos
+                if pre:
+                    expected=native_refs[0]['mask'].clone()
+                    expected[0,0,n-1,image]=-torch.inf
+                    if i>=cutoff:
+                        r=list(range(image[-1]+1,n-1))
+                        expected[0,0,torch.tensor(r)[:,None],torch.tensor(image)[None,:]]=-torch.inf
+                        expected=expected[:,:,text,:][:,:,:,text]
+                    assert mask is not None and torch.equal(mask.cpu(),expected),'Non-target mask or causal values changed'
+                    refrot=native_refs[0]['rotary']
+                    for x,y in zip(kw['position_embeddings'],refrot):
+                        expected_rope=y if i<cutoff else y[:,text]
+                        assert torch.equal(x.cpu(),expected_rope),'Original rotary positions changed'
+                else:
+                    # Every persistent physical key is a past text key; an absent
+                    # mask is exactly the all-zero native text-only submatrix.
+                    assert mask is None
+                    if step<len(native_refs):
+                        for x,y in zip(kw['position_embeddings'],native_refs[step]['rotary']):assert torch.equal(x.cpu(),y)
+                t['scope_exact']=True
             def end(m,args,out,i=i,t=t):
                 h=out[0] if isinstance(out,tuple) else out
                 assert torch.equal(t['mid']+t['mlp'],h)
                 assert t['mlp_calls']==1 and len(t['norms'])==2
                 records.append(dict(layer=i,hidden_rows=h.shape[1],qkv=t['qkv'],
-                    mlp_norm_residual_exact=True,norm_calls=2,mlp_calls=1))
+                    mlp_norm_residual_exact=True,norm_calls=2,mlp_calls=1,
+                    native_non_target_mask_and_original_rotary_exact=t['scope_exact']))
                 t.clear()
             handles += [layer.register_forward_pre_hook(start),layer.self_attn.register_forward_hook(attn),
+                layer.self_attn.register_forward_pre_hook(attn_input,with_kwargs=True),
                 layer.post_attention_layernorm.register_forward_pre_hook(mid),
                 layer.mlp.register_forward_hook(mlp),layer.register_forward_hook(end)]
             for name in ('input_layernorm','post_attention_layernorm'):
@@ -63,14 +118,15 @@ def smoke(adapter,rank,rows,bindings,tag):
         if kind=='qwen':assert b['input_hashes']['pixel_values']==expected['pixel_values_sha256']
         torch.cuda.empty_cache();torch.cuda.reset_peak_memory_stats()
         inputs_hash=digest({k:tensor_sha(v) for k,v in adapter.inputs.items()})
-        native,nv=greedy(adapter,layout,'Native',capture=True)
+        with native_reference(adapter) as native_refs:
+            native,nv=greedy(adapter,layout,'Native',capture=True)
         noop,noopv=greedy(adapter,layout,'Native',capture=True,noop=True)
         assert native['token_ids']==noop['token_ids'];assert_vectors(nv,noopv)
         hf=adapter.model.generate(**adapter.inputs,do_sample=False,num_beams=1,max_new_tokens=32,
             use_cache=True,return_dict_in_generate=True,output_scores=True,logits_to_keep=1)
         assert hf.sequences[0,len(b['input_ids']):].tolist()==native['token_ids']
         assert_vectors(nv,[x[0].cpu() for x in hf.scores]);del hf
-        with block_audit(adapter,layout) as blocks:
+        with block_audit(adapter,layout,native_refs) as blocks:
             physical,pv=greedy(adapter,layout,'Physical-C3',capture=True,audit=True)
         nlayer=32 if kind=='llava' else 36
         cutoff=20 if kind=='llava' else 22
