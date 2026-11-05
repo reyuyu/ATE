@@ -76,13 +76,13 @@ def differences(ref,probe):
 def main(rank=0,mode='original'):
  torch.set_num_threads(1);check();freeze=read(OUT/'source_manifest_full_model.json')
  for path,h in freeze['files'].items():assert sha(ROOT/path)==h,path
- folder=f'full_v2_rank{rank}';write(OUT/folder/'environment.json',dict(at=datetime.datetime.now(datetime.timezone.utc).isoformat(),uuid=os.environ['CUDA_VISIBLE_DEVICES'],source_commit=freeze['commit'],mode=mode))
+ folder=f'full_final_rank{rank}';write(OUT/folder/'environment.json',dict(at=datetime.datetime.now(datetime.timezone.utc).isoformat(),uuid=os.environ['CUDA_VISIBLE_DEVICES'],source_commit=freeze['commit'],mode=mode))
  processor=AutoProcessor.from_pretrained(MODEL,local_files_only=True);model=Qwen3VLForConditionalGeneration.from_pretrained(MODEL,local_files_only=True,dtype=torch.bfloat16,attn_implementation='eager',device_map={'':'cuda:0'},use_safetensors=True,low_cpu_mem_usage=True).eval();hc=hook_counts(model)
  key='GQA__06905471';inputs,layout=prepare(processor,sample(key));assert layout==read(ROOT/'vlm_research/results/qwen3vl_c3v2_numerical_debug/sample_manifest.json')['input_bindings'][key]
- allrows=[];scope=[22,23] if mode=='original' else read(OUT/'full_v2_rank0/completion.json')['final_repair_layers'];attempts=[]
+ allrows=[];scope=list(range(22,36));attempts=[]
  if mode=='original':
-  prior=read(OUT/'full_rank0/C_L22_components.json');lookup={(r['step'],r['layer'],r['stage']):r for r in prior}
-  assert lookup[0,22,'layer_output']['equal'] and lookup[0,23,'input_norm']['equal'] and not lookup[0,23,'k_proj']['equal']
+  prior=read(OUT/'full_v2_rank0/C_L26_components.json');lookup={(r['step'],r['layer'],r['stage']):r for r in prior}
+  assert lookup[0,26,'k_proj']['equal'] and not lookup[0,26,'attention_residual']['equal']
  for c in ['N','Noop','F','W22-functional','B']:
   r,v=generate(model,processor,inputs,layout,'N' if c=='Noop' else c,[],noop=c=='Noop');assert hook_counts(model)==hc
   if c=='Noop':assert r['token_ids']==nr['token_ids'] and len(v)==len(nv) and all(torch.equal(a,b) for a,b in zip(v,nv))
@@ -94,7 +94,19 @@ def main(rank=0,mode='original'):
   if c=='W22-functional':wref=dict(logits=v,token_ids=r['token_ids'])
   if c=='B':allrows+=compare(folder,'F__B',ref,r,v)
  tr=torch.load(RAW_PARENT/'phase1_rank0/F_probes.pt',weights_only=True)['records']
- for attempt in range(14):
+ # The measured L26 AV perturbation prevents strict-equal downstream inputs.
+ # Diagnose each remaining projection on its own F input BEFORE extending the SAME Lt policy.
+ later=[];ix=torch.tensor([i for i in range(layout['input_length']) if i not in layout['image_positions']],device='cuda:0');ws=torch.empty(8*2**20,dtype=torch.uint8,device='cuda:0')
+ with torch.inference_mode():
+  for i in range(27,36):
+   for name in ['k_proj','v_proj','gate_proj','up_proj']:
+    x=tr[f'S0/L{i:02d}/'+('input_norm' if name in ['k_proj','v_proj'] else 'post_attention_norm')]['value'].cuda();mod=getattr(model.model.language_model.layers[i].self_attn if name in ['k_proj','v_proj'] else model.model.language_model.layers[i].mlp,name);short=x.index_select(1,ix).squeeze(0).contiguous();refop=mod(x).index_select(1,ix).squeeze(0);native=mod(short);dense=LtPlan(layout['input_length'],mod.weight.shape[0],mod.weight.shape[1],ws);physical=LtPlan(len(ix),mod.weight.shape[0],mod.weight.shape[1],ws);assert physical.select(dense,0)==0;y=physical.run(short,mod.weight)
+    later.append(dict(layer=i,operator=name,native=metrics(refop,native),fixed_lt=metrics(refop,y),config=physical.config(),input_rows=short.shape[0],dense_diagnostic_only=True));dense.close();physical.close()
+ write(OUT/folder/'later_layer_same_input.json',later)
+ assert all(x['fixed_lt']['equal'] for x in later),'Stop: fixed policy did not match remaining same-input reference'
+ assert all(any(not x['native']['equal'] for x in later if x['layer']==i) for i in range(27,36))
+ del ws
+ for attempt in range(1):
   check();probe=Probe(model,layout,'C')
   with probe.context():r,v=generate(model,processor,inputs,layout,'C',scope)
   assert hook_counts(model)==hc;name='C_L'+str(scope[-1]);save_run(folder,name,r,v);rows=compare(folder,'F__'+name,ref,r,v);allrows+=rows;dr,first=differences(tr,probe)
