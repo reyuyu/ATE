@@ -134,7 +134,7 @@ def main():
                 stats,dist=seed_boot(rows,natives,physicals)
                 np.savez_compressed(OUT/f'{kind}_seed_bootstrap.npz',delta_accuracy_pp=dist)
                 for d in stats:
-                    relevant=list(range(len(rows))) if d['task']=='Overall' else [i for i,s in enumerate(rows) if s['task']==d['task']
+                    relevant=list(range(len(rows))) if d['task']=='Overall' else [i for i,s in enumerate(rows) if s['task']==d['task']]
                     d.update(model=kind,n=len(relevant),native_accuracy=100*np.mean([natives[i] for i in relevant]),
                         c3_accuracy=100*np.mean([physicals[i] for i in relevant]),
                         harm=sum(natives[i] and not physicals[i] for i in relevant),
@@ -152,7 +152,7 @@ def main():
                     summary.append(dict(**common,metric=t['task'],native=t['native_score'],c3=t['c3_score'],
                         delta=t['delta_score_points'],ci_low=t['ci_low'],ci_high=t['ci_high'],unit='Score Points'))
                     paired.append(dict(model=kind,benchmark='MME',comparison=t['task']+' Physical-C3 minus Native',**t))
-                official_export(kind,rows,data)
+                official_export(kind,rows,data,table)
     write_csv(OUT/'coverage.csv',coverage);write_csv(OUT/'quality_summary.csv',summary)
     write_csv(OUT/'seed_task_accuracy.csv',allseed);write_csv(OUT/'mme_task_scores.csv',allmme)
     write_csv(OUT/'paired_comparisons.csv',paired);write_csv(OUT/'per_question.csv',per)
@@ -166,7 +166,7 @@ def main():
     print('QUALITY ANALYSIS',coverage,summary,flush=True)
 
 
-def official_export(kind,rows,data):
+def official_export(kind,rows,data,table):
     import subprocess
     bytask=collections.defaultdict(list)
     for s,d in zip(rows,data):bytask[s['task']].append((s,d))
@@ -183,6 +183,13 @@ def official_export(kind,rows,data):
         tool=OUT/'official_reference/MME_calculation.py'
         p=subprocess.run([__import__('sys').executable,str(tool),'--results_dir',str(folder)],capture_output=True,text=True)
         assert p.returncode==0,p.stderr
+        measured={}
+        for line in p.stdout.splitlines():
+            if ' score:' in line:
+                task,value=line.strip().split(' score:');measured[task.strip()]=float(value)
+        assert set(measured)==set(sum(TASKS.values(),[]))
+        scorefield='native_score' if condition=='Native' else 'c3_score'
+        for taskrow in table:assert abs(measured[taskrow['task']]-taskrow[scorefield])<1e-8
         (folder/'official_output.txt').write_text(p.stdout);(folder/'official_stderr.txt').write_text(p.stderr)
 
 

@@ -40,14 +40,14 @@ def figures(summary,mme,seed):
             a.bar(xx+.18,[float(lookup[c]['c3']) for c in categories],.36,label='Physical C3-V2')
             a.set_xticks(xx,categories);a.set_ylabel('MME score points');a.legend()
         else:a.text(.5,.5,'NOT RUN / INCOMPLETE',ha='center',va='center',transform=a.transAxes)
-        a.set_title(label+' — MME');a.set_ylim(bottom=0)
+        a.set_title(label+'\nMME');a.set_ylim(bottom=0)
         a=axes[i,1];vals=[r for r in summary if r['model']==kind and r['benchmark']=='SEED']
         if vals:
             r=vals[0];bars=a.bar([0,1],[float(r['native']),float(r['c3'])],color=['#1f77b4','#ff7f0e'])
             a.bar_label(bars,fmt='%.2f%%',padding=3);a.set_xticks([0,1],['Native','Physical C3-V2'])
             a.text(.5,.95,f"Δ = {float(r['delta']):+.2f} pp\n95% CI [{float(r['ci_low']):+.2f}, {float(r['ci_high']):+.2f}]",ha='center',va='top',transform=a.transAxes)
         else:a.text(.5,.5,'NOT RUN / INCOMPLETE',ha='center',va='center',transform=a.transAxes)
-        a.set_title(label+' — SEED-Bench-1 Image');a.set_ylabel('Accuracy (%)');a.set_ylim(0,100)
+        a.set_title(label+'\nSEED-Bench-1 Image');a.set_ylabel('Accuracy (%)');a.set_ylim(0,100)
     fig.savefig(folder/'quality_overview.png',dpi=240);fig.savefig(folder/'quality_overview.pdf');plt.close(fig)
     for kind in ('llava','qwen'):
         for bench,data,point,low,high,unit in [('mme',mme,'delta_score_points','score_ci_low','score_ci_high','MME score points'),
@@ -56,7 +56,7 @@ def figures(summary,mme,seed):
             if not data:continue
             data.sort(key=lambda r:float(r[point]));fig,ax=plt.subplots(figsize=(9,max(4,len(data)*.38)),layout='constrained')
             d=np.array([float(r[point]) for r in data]);lo=np.array([float(r[low]) for r in data]);hi=np.array([float(r[high]) for r in data])
-            y=np.arange(len(data));ax.errorbar(d,y,xerr=[d-lo,hi-d],fmt='o',capsize=3)
+            y=np.arange(len(data));ax.hlines(y,lo,hi,color='#1f77b4');ax.scatter(d,y,color='#1f77b4')
             ax.axvline(0,color='gray',linestyle='--');ax.set_yticks(y,[r['task'] for r in data]);ax.set_xlabel('Physical C3-V2 − Native ('+unit+')')
             ax.set_title(kind.upper()+' / '+bench.upper()+' — image-cluster paired 95% CI (exploratory)')
             fig.savefig(folder/f'{kind}_{bench}_task_deltas.png',dpi=240);fig.savefig(folder/f'{kind}_{bench}_task_deltas.pdf');plt.close(fig)
@@ -136,6 +136,11 @@ Qwen主结果若完成，Native与C3均在这一统一2,048视觉Token上限下�
 
 '''+table(coverage,[('model','模型'),('benchmark','Benchmark'),('expected_questions','应含题数'),('complete_paired_questions','完整配对题数'),('missing_checkpoints','缺失Checkpoint'),('status','状态')])
     text+='\n## 实测结论\n\n'
+    if (OUT/'qwen_processor_validation.json').exists():
+        qv=read(OUT/'qwen_processor_validation.json');dist=[]
+        for bench,versions in qv['statistics'].items():
+            for version,stat in versions.items():dist.append(dict(benchmark=bench,task=version,**stat))
+        text+='### Qwen逐图实际视觉Token分布\n\n'+table(dist,[('benchmark','Benchmark'),('task','Processor'),('images','图片数'),('min','最小'),('p50','P50'),('p90','P90'),('p95','P95'),('p99','P99'),('max','最大'),('above_2048','超过2048张数')])+'\n'
     for kind in ('llava','qwen'):
         for bench in ('MME','SEED'):
             target=[r for r in summary if r['model']==kind and r['benchmark']==bench and (r['metric']=='Total' if bench=='MME' else True)]
@@ -148,7 +153,20 @@ Qwen主结果若完成，Native与C3均在这一统一2,048视觉Token上限下�
         if ss:
             worst=sorted(ss,key=lambda r:float(r['delta_pp']))[:4]
             text+='SEED任务ACC分差最低的四项：'+ '；'.join(f"{r['task']} {float(r['delta_pp']):+.2f} pp" for r in worst)+'。Spatial Relation、Visual Reasoning与Text Understanding的全部结果均保留，未按结论选择类别。\n\n'
-    text+='\n## 复现与文件\n\n源码与输入冻结见protocol.json、source_manifest.json、model_manifests.json；逐题结果见per_question.csv、checkpoints/；官方MME复算见official_mme/；图及其直接输入CSV均在结果目录。GPU释放记录见gpu_release_audit.json。\n'
+    manifest=read(OUT/'sample_manifest.json')
+    counts={bench:len({s['image_sha256'] for s in manifest if s['benchmark']==bench}) for bench in ('MME','SEED')}
+    text+=f"\n实际内容SHA簇：MME {counts['MME']}，SEED {counts['SEED']}。图片路径数与内容簇数不同；全部原始记录仍保留，统计按内容SHA整簇配对。\n"
+    stops=[]
+    for path in OUT.glob('STOP_*.json'):
+        e=read(path);stops.append(dict(file=path.name,kind=e.get('kind'),traceback=e.get('traceback'),
+            actual_input_shapes=e.get('actual_input_shapes'),last_actual_attention_shape=e.get('last_actual_attention_shape'),
+            peak_allocated_bytes=e.get('peak_allocated_bytes'),peak_reserved_bytes=e.get('peak_reserved_bytes')))
+    if stops:
+        text+='\n## 停止记录\n\n'
+        for e in stops:
+            text+=f"{e['kind']}路径触发停止；完整现场见{e['file']}。未降低2,048预算、未切换Attention Backend，也未补填未完成条件分数。\n\n"
+            text+='```json\n'+json.dumps({k:v for k,v in e.items() if k!='traceback'},ensure_ascii=False,indent=2)+'\n```\n'
+    text+='\n## 复现与文件\n\n源码与输入冻结见protocol.json、source_manifest.json、model_manifests.json；逐题结果见per_question.csv、checkpoints/；官方MME复算见official_mme/；图及其直接输入CSV均在结果目录。SEED完整候选均评分，不以32 Token生成上限截断候选；候选Cache容量取本题最长候选Token数+1，此值及候选全Token保留在执行源码和Checkpoint。GPU释放记录见gpu_release_audit.json。\n'
     (OUT/'report_zh.md').write_text(text,encoding='utf-8')
     print('REPORT AND FIGURES',status,flush=True)
 
