@@ -1,6 +1,6 @@
 {
   "C_D_E_prefill_p1": "All32 native Attention including L2-L5; otherwise all32 visual access is not implemented.",
-  "GPU_authorization": "PENDING_FRESH_USER_CONFIRMATION",
+  "GPU_authorization": "USER_AUTHORIZED",
   "R_definition": "Original positions strictly after final Image Token and before P-1, as in prior experiment.",
   "attention": "eager",
   "base_commit": "1828dc28dcb2923b72741a5fac9e5cb4c7baf6ba",
@@ -10,6 +10,7 @@
     "replicates": 20000,
     "seed": 20261106
   },
+  "candidate_source_commit": "01a6ea27d411f44f0624ac06d02234b0938111f8",
   "comparisons": [
     "A-E3",
     "B-A",
@@ -430,6 +431,16 @@
   },
   "created_at": "2026-11-06T01:16:04.138240+08:00",
   "dense_attribution_only": true,
+  "devices": [
+    {
+      "index": 0,
+      "uuid": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89"
+    },
+    {
+      "index": 1,
+      "uuid": "GPU-b08489af-0a8a-eb48-55ba-8346733af417"
+    }
+  ],
   "dtype": "FP16",
   "exploratory": true,
   "greedy": true,
@@ -449,9 +460,10 @@
     "vlm_research/c3v2_middle_reaccess/tests.py": "ca27556654cc34b3463cabec017ca75eabc631e96bcd375f4c1fd95488306a98",
     "vlm_research/middle10_attribution/__init__.py": "76b2e03d15614cc738d88cbd2fcbcda5959e9a197421adac34f9e005ba62d054",
     "vlm_research/middle10_attribution/common.py": "1741845a475b40d8fbb102baefaf9c04ceb8d4be2316e879c58b691aa6026c46",
-    "vlm_research/middle10_attribution/engine.py": "7f536b8259f2886b180e221993d655ca0ea5ca9791ba6ea9ba197d80af0b56aa",
+    "vlm_research/middle10_attribution/engine.py": "dbb59eebcc0879fc432f9011a34cf6847a782ae03b90b71c48bbaea1aa0b9f48",
     "vlm_research/middle10_attribution/prepare.py": "914c574d180639d8a7b848f7fc07706771172da943502505dc545abe3fa4cd42",
-    "vlm_research/middle10_attribution/tests.py": "2e1e78a9c273dc974dd9b4b91240800e9dd559b0b8323d9ea2e3249c59b574e8",
+    "vlm_research/middle10_attribution/run.py": "8a54bfd99c0a4ba05b9d2a3c3d91173ae1f1c2ae6154c2dee2bfdd332673eead",
+    "vlm_research/middle10_attribution/tests.py": "90c43479f189172fe8779cc5b4413e057a8eb6221d57880c11ef1a6e0d19b1e5",
     "vlm_research/middle10_recovery/__init__.py": "c577b29e8a5e3e4460b4cd8768c9ae897636cf2e7b8919eeef18f775a6fa2da8",
     "vlm_research/middle10_recovery/common.py": "5268f07ec6329d07248b46a84ae7492660bc74068c1696336710eb05d294b7c2",
     "vlm_research/middle10_recovery/engine.py": "d896ae49af44f69ecb2244e3ed05655f2d3c41e354b62ff7949db1c2159de1e1",
