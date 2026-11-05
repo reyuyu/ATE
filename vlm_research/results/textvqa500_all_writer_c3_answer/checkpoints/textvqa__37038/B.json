@@ -1,0 +1,877 @@
+{
+  "at": "2026-11-06T03:34:32.436169+08:00",
+  "binding": {
+    "image_sha256": "22acde993f55e30585136373ecc5a78833a1811e7c50e2db285c18efb68f02c0",
+    "input_sha256": "be5573aa372f78fc2334c50d74c87a21ee29dec8604b201cac8fab39cab4a74d",
+    "key": "textvqa__37038",
+    "model_manifest_sha256": "dd4abae1a7551f6c454e4f9f89c35316bb6865df01e40a6476f15ebd3e928e6e",
+    "protocol_sha256": "045e290d65e8fe91a371e61224b3d4534d0d7e41b51210fc81bf3bf6afdd7392",
+    "rank": 1,
+    "sample_manifest_sha256": "b99414717bfb1b005c57be632690625418bab6da26dd618a795e50b362cea0b5",
+    "sample_sha256": "4852345dc478b19757c41d280d2cdb23a7dad02dac6ff721f8e310ab2e532065",
+    "source_manifest_sha256": "e376d1cf7c9608a95b18a1e108ccb5ab49fb11d226dd6116bc81e024d2032829",
+    "stage": "accuracy",
+    "uuid": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+  },
+  "generation": {
+    "all_logits_finite": true,
+    "all_step_logits_sha256": [
+      "5724de9e6ce207de7dd45e4157dce4a848855553fe3302660203ca98b26c4658",
+      "1db8c88a302916a043e2138099782302357240ce552a97ee9ebc8fd79780c7a8"
+    ],
+    "audit": {
+      "all32_R_image_open": true,
+      "all_blocks_MLP_norm_counts": {
+        "MLP": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "block": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "input_norm": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "post_norm": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ]
+      },
+      "all_image_KV_retained": true,
+      "all_non_target_masks_exact": true,
+      "all_non_target_o_proj_outputs_exact": true,
+      "answer_zero_events": [
+        {
+          "active": true,
+          "layer": 2,
+          "only_answer_query": true,
+          "original_query": 606,
+          "step": 0
+        },
+        {
+          "active": true,
+          "layer": 3,
+          "only_answer_query": true,
+          "original_query": 606,
+          "step": 0
+        },
+        {
+          "active": true,
+          "layer": 4,
+          "only_answer_query": true,
+          "original_query": 606,
+          "step": 0
+        },
+        {
+          "active": true,
+          "layer": 5,
+          "only_answer_query": true,
+          "original_query": 606,
+          "step": 0
+        },
+        {
+          "active": true,
+          "layer": 2,
+          "only_answer_query": true,
+          "original_query": 607,
+          "step": 1
+        },
+        {
+          "active": true,
+          "layer": 3,
+          "only_answer_query": true,
+          "original_query": 607,
+          "step": 1
+        },
+        {
+          "active": true,
+          "layer": 4,
+          "only_answer_query": true,
+          "original_query": 607,
+          "step": 1
+        },
+        {
+          "active": true,
+          "layer": 5,
+          "only_answer_query": true,
+          "original_query": 607,
+          "step": 1
+        }
+      ],
+      "blocked_probability_max": 0.0,
+      "hooks_clean": true,
+      "input_hashes_unchanged": true,
+      "layer_events": [
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 0,
+          "query_length": 607,
+          "row_sum_max_error": 0.0001811981201171875,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 1,
+          "query_length": 607,
+          "row_sum_max_error": 0.00025463104248046875,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 2,
+          "query_length": 607,
+          "row_sum_max_error": 0.00030690431594848633,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 3,
+          "query_length": 607,
+          "row_sum_max_error": 0.00029480457305908203,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 4,
+          "query_length": 607,
+          "row_sum_max_error": 0.000286102294921875,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 5,
+          "query_length": 607,
+          "row_sum_max_error": 0.00030422210693359375,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 6,
+          "query_length": 607,
+          "row_sum_max_error": 0.00028002262115478516,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 7,
+          "query_length": 607,
+          "row_sum_max_error": 0.00030303001403808594,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 8,
+          "query_length": 607,
+          "row_sum_max_error": 0.0003077983856201172,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 9,
+          "query_length": 607,
+          "row_sum_max_error": 0.000315248966217041,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 10,
+          "query_length": 607,
+          "row_sum_max_error": 0.0003032684326171875,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 11,
+          "query_length": 607,
+          "row_sum_max_error": 0.00030368566513061523,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 12,
+          "query_length": 607,
+          "row_sum_max_error": 0.0002827644348144531,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 13,
+          "query_length": 607,
+          "row_sum_max_error": 0.000316619873046875,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 14,
+          "query_length": 607,
+          "row_sum_max_error": 0.0003051161766052246,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 15,
+          "query_length": 607,
+          "row_sum_max_error": 0.0002835392951965332,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 16,
+          "query_length": 607,
+          "row_sum_max_error": 0.0002924203872680664,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 17,
+          "query_length": 607,
+          "row_sum_max_error": 0.00030994415283203125,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 18,
+          "query_length": 607,
+          "row_sum_max_error": 0.00032335519790649414,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 19,
+          "query_length": 607,
+          "row_sum_max_error": 0.00027316808700561523,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 20,
+          "query_length": 607,
+          "row_sum_max_error": 0.0002726316452026367,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 21,
+          "query_length": 607,
+          "row_sum_max_error": 0.0003286004066467285,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 22,
+          "query_length": 607,
+          "row_sum_max_error": 0.00028395652770996094,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 23,
+          "query_length": 607,
+          "row_sum_max_error": 0.000316619873046875,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 24,
+          "query_length": 607,
+          "row_sum_max_error": 0.0003273487091064453,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 25,
+          "query_length": 607,
+          "row_sum_max_error": 0.0002846717834472656,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 26,
+          "query_length": 607,
+          "row_sum_max_error": 0.0002930164337158203,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 27,
+          "query_length": 607,
+          "row_sum_max_error": 0.0002818107604980469,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 28,
+          "query_length": 607,
+          "row_sum_max_error": 0.00029200315475463867,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 29,
+          "query_length": 607,
+          "row_sum_max_error": 0.00026869773864746094,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 30,
+          "query_length": 607,
+          "row_sum_max_error": 0.0002810955047607422,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 607,
+          "layer": 31,
+          "query_length": 607,
+          "row_sum_max_error": 0.00029975175857543945,
+          "step": 0
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 0,
+          "query_length": 1,
+          "row_sum_max_error": 0.00011539459228515625,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 1,
+          "query_length": 1,
+          "row_sum_max_error": 0.00021219253540039062,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 2,
+          "query_length": 1,
+          "row_sum_max_error": 0.0002568960189819336,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 3,
+          "query_length": 1,
+          "row_sum_max_error": 0.0002570152282714844,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 4,
+          "query_length": 1,
+          "row_sum_max_error": 0.00024771690368652344,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 5,
+          "query_length": 1,
+          "row_sum_max_error": 0.0003349781036376953,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 6,
+          "query_length": 1,
+          "row_sum_max_error": 0.00022113323211669922,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 7,
+          "query_length": 1,
+          "row_sum_max_error": 0.0002663135528564453,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 8,
+          "query_length": 1,
+          "row_sum_max_error": 0.00023603439331054688,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 9,
+          "query_length": 1,
+          "row_sum_max_error": 0.00023603439331054688,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 10,
+          "query_length": 1,
+          "row_sum_max_error": 0.0002696514129638672,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 11,
+          "query_length": 1,
+          "row_sum_max_error": 0.00029790401458740234,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 12,
+          "query_length": 1,
+          "row_sum_max_error": 0.0002448558807373047,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 13,
+          "query_length": 1,
+          "row_sum_max_error": 0.0003204345703125,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 14,
+          "query_length": 1,
+          "row_sum_max_error": 0.00023555755615234375,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 15,
+          "query_length": 1,
+          "row_sum_max_error": 0.00027507543563842773,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 16,
+          "query_length": 1,
+          "row_sum_max_error": 0.00027441978454589844,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 17,
+          "query_length": 1,
+          "row_sum_max_error": 0.0002467036247253418,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 18,
+          "query_length": 1,
+          "row_sum_max_error": 0.00023221969604492188,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 19,
+          "query_length": 1,
+          "row_sum_max_error": 0.00030112266540527344,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 20,
+          "query_length": 1,
+          "row_sum_max_error": 0.00024366378784179688,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 21,
+          "query_length": 1,
+          "row_sum_max_error": 0.00026869773864746094,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 22,
+          "query_length": 1,
+          "row_sum_max_error": 0.00027185678482055664,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 23,
+          "query_length": 1,
+          "row_sum_max_error": 0.00024509429931640625,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 24,
+          "query_length": 1,
+          "row_sum_max_error": 0.0002645254135131836,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 25,
+          "query_length": 1,
+          "row_sum_max_error": 0.00022608041763305664,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 26,
+          "query_length": 1,
+          "row_sum_max_error": 0.00024187564849853516,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 27,
+          "query_length": 1,
+          "row_sum_max_error": 0.00021028518676757812,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 28,
+          "query_length": 1,
+          "row_sum_max_error": 0.00022792816162109375,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 29,
+          "query_length": 1,
+          "row_sum_max_error": 0.0002301931381225586,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 30,
+          "query_length": 1,
+          "row_sum_max_error": 0.000246584415435791,
+          "step": 1
+        },
+        {
+          "blocked_connections_per_head": 576,
+          "blocked_probability_max": 0.0,
+          "key_length": 608,
+          "layer": 31,
+          "query_length": 1,
+          "row_sum_max_error": 0.0002461671829223633,
+          "step": 1
+        }
+      ],
+      "noop": false,
+      "original_positions": [
+        {
+          "cache_position": [
+            0,
+            606
+          ],
+          "query_length": 607,
+          "step": 0
+        },
+        {
+          "cache_position": [
+            607,
+            607
+          ],
+          "query_length": 1,
+          "step": 1
+        }
+      ],
+      "row_sum_max_error": 0.0003349781036376953
+    },
+    "condition": "B",
+    "dense_cache_lengths": [
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608,
+      608
+    ],
+    "empty": false,
+    "eos": true,
+    "first_logits_sha256": "5724de9e6ce207de7dd45e4157dce4a848855553fe3302660203ca98b26c4658",
+    "first_token": 8037,
+    "generated_tokens": 2,
+    "prefix_hidden_sha256": {},
+    "repeated": false,
+    "rotary_sha256": [],
+    "text": "White",
+    "token_ids": [
+      8037,
+      2
+    ],
+    "truncated": false,
+    "visual_feature_sha256": []
+  },
+  "score": 0.0
+}
