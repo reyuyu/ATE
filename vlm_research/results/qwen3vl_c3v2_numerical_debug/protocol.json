@@ -138,6 +138,12 @@
   ],
   "raw_attention_queries": "retained original text positions, with P-1 separately labelled; all heads summarized, raw selected heads only",
   "raw_tensor_storage": "Private /data experiment resource directory; per-file SHA, shape and dtype indexed; do not claim Git contains external arrays",
+  "repair_candidate": {
+    "acceptance": "One frozen original input; collect F/B/C and readonly probe then evaluate all effective steps. If C fails no other input or per-card smoke expansion.",
+    "basis": "Same-input full/prefix eager shadow becomes exactly equal with one temporary zero key; no thin-GEMM shadow variant restored exact late-layer BF16 output",
+    "name": "one causally dead zero key in prefill L1-L6 only",
+    "work": "Q/K/V and o_proj still121, real decode still completely skipped, no persistent dummy KV. Extra one-key QK/AV work explicitly counted. No late operator padding or precision change."
+  },
   "repair_policy": "Only after first divergence located; no threshold/layer/prompt/dtype/weight changes; no nearly-dense fallback accepted as physical fix",
   "score_probe": "Replay same full QK GEMM shape; verify replay softmax equals actual returned probabilities; only then archive selected text queries/heads",
   "secondary_case": "GQA__02497673",
