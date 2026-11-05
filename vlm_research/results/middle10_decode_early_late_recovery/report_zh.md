@@ -1,48 +1,56 @@
-# Middle10早层／深层Decode视觉回看恢复
+# Middle10：早层与深层Decode视觉回看恢复
 
-## 当前状态：PARTIAL，等待本轮GPU授权
+## 协议与完整性
+- 基线Commit：`0a27cef983b5ae1f20930f2660afd59c11bbac7e`。同500题、309图片SHA簇，10答案TextVQA共识软评分。
+- Native与E各500条经输入、权重、源码、生成协议和首Logits绑定核验后复用；Early/Late各新增500条。
+- 全部Prefill（包括P−1）完全Native；所有层Attention/MLP正常，只对真实Decode的Image来源进行Softmax前Hard Mask。
+- Native：L0–L31；E：L11–L20；Early：L0–L20；Late：L11–L31。Dense功能性实验，无物理退出或KV优化。
+- CPU18项及双卡各3道真实Smoke通过；Native/No-op严格一致、禁止概率为0、原始位置/Cache/Hook检查通过。
+- 全部2000条记录的首Logits SHA均与同题Native一致。本轮不进行任何性能测试。
 
-尚未执行真实GPU Smoke或Early/Late正式生成，不能判断早层还是深层恢复更有效。
-没有启动性能测试，也没有加载GPU模型。
+## 质量
+| 条件 | Accuracy (%) | ΔNative (pp) | ΔE (pp) |
+|---|---:|---:|---:|
+| Native | 49.68 | +0.00 | +4.54 |
+| E | 45.14 | -4.54 | +0.00 |
+| Early | 46.38 | -3.30 | +1.24 |
+| Late | 48.50 | -1.18 | +3.36 |
 
-## 已完成
+## 配对比较
+20,000次Image SHA整簇Bootstrap，保留问题等权点估计；双侧探索性95%CI。
+| 比较 | 差值pp [95%CI] | 软分上升/下降 | 满分→较低/较低→满分 |
+|---|---|---:|---:|
+| Early − E | +1.24 [-0.51, +3.13] | 16/9 | 6/11 |
+| Late − E | +3.36 [+1.41, +5.45] | 22/6 | 5/20 |
+| Early − Native | -3.30 [-5.10, -1.68] | 2/19 | 17/2 |
+| Late − Native | -1.18 [-2.63, +0.25] | 7/16 | 10/5 |
+| Late − Early | +2.12 [+0.12, +4.23] | 22/13 | 8/18 |
+| E − Native | -4.54 [-6.81, -2.44] | 6/30 | 24/4 |
 
-- 从指定`0a27cef983b5ae1f20930f2660afd59c11bbac7e`创建独立Worktree与分支`codex/middle10-decode-early-late-recovery`。
-- 原500题、309个图片SHA簇不变；图片SHA与可解码性、固定模型文件SHA均通过CPU核验。
-- Native与E共1,000条历史答案已严格核对样本、输入绑定、源码、分数及首Logits绑定。
-- Native为49.68%，E为45.14%，差4.54pp；二者500题首Logits SHA全部相同。
-- 18项CPU回归测试通过，包括完整Prefill不变、真实Decode Image概率屏蔽、合法Self/BOS、MLP、稠密Cache、原位置及异常路径清理。
-- 新增代码只复用历史E路径并修改Decode允许读图层，旧源码、历史结果、主分支均未修改。
+## 研究结论
+- 点估计上，Late补充更有效。Late−Early为+2.12pp，95%CI [+0.12, +4.23]。
+- 这些是普通、未经多重比较校正的探索性区间，不作为独立确认性结论；CI跨0也不能解释为等效或无损。
+- Late相对E有22题软分提高、6题下降；相对Native仍有16题下降（其中10题从满分降为非满分），不能只报告净收益。
+- Late−Native为-1.18pp，95%CI [-2.63, +0.25]。达到47.68%仅表示点估计过门槛，不能证明相差不超过2pp或非劣效。
+- Early开放21层，Late开放21层；二者分别补回L0–L10和L21–L31，且共同保留L11–L20。本结论只适用于该固定配置和历史探索集。
+- 全部首答案Logits不变；后续真实Decode对自己的生成前缀运行。首Token一致不代表完整答案一致。
+- 达到47.68%点估计门槛的条件：Late。本轮仍立即停止，不测速。
+- 后续物理方案仅建议：保持完整Native Prefill及P−1，L11–L31持久保留原始Image KV，L0–L10完成各层Prefill后只持久保留文本KV；Decode保持全层文本Attention，原始RoPE位置及因果关系不变。
+- 因Native Prefill/P−1仍需32层读图，不能直接沿用原C3进入L20前删除视觉Hidden的路径。此建议是选择性Decode KV压缩，不承诺保留旧C3的Prefill退出收益；先验证数值与生成，再另行研究性能。本轮没有实现或测速。
 
-## 冻结条件
-
-| 条件 | 真实Decode允许读图层 | 状态 | Accuracy |
-|---|---|---|---:|
-| Native | L0–L31 | 历史500题核验复用 | 49.68% |
-| E | L11–L20 | 历史500题核验复用 | 45.14% |
-| Early | L0–L20 | 未运行 | 未测量 |
-| Late | L11–L31 | 未运行 | 未测量 |
-
-四条件的整个Prefill和P−1完全Native。仅对真实Decode Query→原始Image Key施加Softmax前Hard Mask；不做o_proj置零、物理Token退出或KV优化。
-
-## 待执行
-
-1. 收到本轮物理GPU0/1授权后，重新检查UUID、显存和进程，冻结代码与协议。
-2. 双卡各3题真实Smoke：Native/No-op严格一致、历史E复现、独立原生Mask参考、禁止概率为零、RoPE、Cache与Hook。
-3. 按原309图片簇分片，Early/Late各500条；同图所有条件同卡，原子检查点支持校验续跑。
-4. Image SHA整簇20,000次配对Bootstrap；输出四条件汇总、逐题答案及全部损害／恢复案例。
-5. 无论是否达到47.68%，本轮均不测速、不实现物理版本。达到门槛时仅建议后续物理方案，随后停止。
+## 异常与边界
+- 各条件EOS、空答案、重复及截断计数见`accuracy_summary.csv`，全部损害及恢复案例见对应CSV。
+- 质量图：`quality_recovery.png/pdf`；完整原子检查点和Smoke分别压缩归档；冻结500题清单为`sample_manifest.json.gz`。
+- 不新增层组合，不调整Prompt、权重、精度或冻结数值容差；CI跨0不等于无损。
+- Native/E/Early/Late的EOS数为499/499/499/498，截断数为1/1/1/2，空答案均为0；重复标记数为1/3/3/2。全部保留，没有删除异常样本。
+- 正式双卡质量矩阵墙钟217.83秒；这是任务完成时间，不是推理性能基准。
+- GPU Worker均已退出；资源释放与执行日志已保存。
 
 ## 复现
-
-环境：`/data/lk/深度学习/.envs/ate-vlm-research/bin/python`。
-
 ```bash
 python -m vlm_research.middle10_decode_regions.prepare
-# 实际GPU授权确认、源码提交后，才可执行：
-python -m vlm_research.middle10_decode_regions.run --freeze --devices 0,1 --authorization-text "实际用户授权原文"
+# GPU0/1授权原文：确认允许，以后都确认。源码冻结后执行：
+python -m vlm_research.middle10_decode_regions.run --freeze --devices 0,1 --authorization-text "确认允许，以后都确认"
 python -m vlm_research.middle10_decode_regions.run --driver
 python -m vlm_research.middle10_decode_regions.analyze
 ```
-
-本报告明确为准备阶段记录，不代表1,000条新增生成已经完成。
