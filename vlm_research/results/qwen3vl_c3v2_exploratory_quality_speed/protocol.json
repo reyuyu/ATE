@@ -1,0 +1,95 @@
+{
+  "status": "FROZEN_BEFORE_NEW_GPU_PREDICTIONS",
+  "at": "2026-11-05T16:46:36.356193+00:00",
+  "base_commit": "fc3f10eabf48a30b05f4e927a00f50bcd20780ad",
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "dtype": "bfloat16",
+  "attention": "eager",
+  "transformers": "4.57.6",
+  "seed": 20261106,
+  "conditions": [
+    "Native",
+    "Dense-F",
+    "Physical-Original",
+    "Physical-Repaired"
+  ],
+  "quality_n": 1000,
+  "smoke_n": 20,
+  "benchmark_n": 48,
+  "max_new_tokens": 32,
+  "greedy": true,
+  "logits_to_keep": 1,
+  "batch_size": 1,
+  "independent_cache": true,
+  "training": false,
+  "kernel_search": false,
+  "old_strict_gate_required": false,
+  "stop_rules": [
+    "OOM",
+    "NaN/Inf",
+    "invalid cache/positions/mask",
+    "unclean hooks",
+    "unexpected source/input hash"
+  ],
+  "bootstrap": {
+    "replicates": 20000,
+    "seed": 20261106,
+    "unit": "Image SHA256 cluster",
+    "confidence": 0.95,
+    "question_weighted": true,
+    "comparisons": [
+      [
+        "Physical-Original",
+        "Native"
+      ],
+      [
+        "Dense-F",
+        "Native"
+      ],
+      [
+        "Physical-Original",
+        "Dense-F"
+      ],
+      [
+        "Physical-Repaired",
+        "Dense-F"
+      ],
+      [
+        "Physical-Repaired",
+        "Physical-Original"
+      ],
+      [
+        "Physical-Repaired",
+        "Native"
+      ]
+    ],
+    "exploratory": true
+  },
+  "benchmark": {
+    "regimes": [
+      "natural_eos_max32",
+      "fixed16_including_prefill_prediction"
+    ],
+    "warmups_per_condition_regime": 2,
+    "measured_repeats": 5,
+    "condition_order": "cyclic Latin rotation by question SHA and repeat; same image all conditions same GPU",
+    "timing": "synchronized request wall includes H2D, vision, execution/cache/context setup, autoregressive token choice and EOS; excludes image decode/processor/model loading and post-timing text decode",
+    "gpu_events": "vision; first forward (TTFT GPU); prefill language = first forward minus vision; incremental Decode",
+    "primary_controlled_speed": "Native/condition fixed16 ratio of summed per-question repeat-median E2E; paired image bootstrap",
+    "natural_length_caveat": true,
+    "peak": "PyTorch peak allocated and reserved; model baseline plus incremental; not whole process nvidia-smi memory",
+    "cache": "actual live and allocated KV separately; repaired transient zero K/V not persistent",
+    "audit_probes_disabled": true
+  },
+  "gpu_uuids": [
+    "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+    "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+  ],
+  "sample_manifest_sha256": "bb09f894a04f111f430841f4d074ff0d770585956a04c5401436351e235d4a88",
+  "condition_definitions": {
+    "Native": "unaltered native model",
+    "Dense-F": "dense functional early L1-L6 P-1/Decode attention zero; P-1/Decode image hard-mask all layers; R image masked L22-L35",
+    "Physical-Original": "frozen original Execution C: genuine L1-L6 skip, L22 image hidden exit, compact persistent text KV, no numerical repair",
+    "Physical-Repaired": "same physical C with frozen early dead key, Decode image-zero columns, late Prefill image-zero columns and fixed cuBLASLt four projections L22-L35; read-only probes disabled, math unchanged"
+  }
+}
