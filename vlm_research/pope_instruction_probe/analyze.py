@@ -95,36 +95,38 @@ def layer_gallery(c3,e1,crop,roi,token,path):
     maps=np.stack([c3.mean(1),e1.mean(1)])  # condition, layer, patch
     conditional=divide(maps,maps.sum(-1)[...,None])
     vmax=float(np.nanmax(conditional)) if np.isfinite(conditional).any() else 1.
-    fig,axes=plt.subplots(4,10,figsize=(20,8.5))
+    fig,axes=plt.subplots(4,10,figsize=(20,10))
     for j,name in enumerate(('C3','E1')):
         for layer in range(20):
             ax=axes[j*2+layer//10,layer%10]
             overlay(ax,crop,maps[j,layer],roi,f'{name} L{layer}\nImage mass={maps[j,layer].sum():.3f}',vmax)
     fig.suptitle(token+' | actual 24x24 patches, head mean, all 20 layers; shared linear color scale',fontsize=13)
-    cb=fig.colorbar(plt.cm.ScalarMappable(norm=colors.Normalize(0,vmax),cmap=CMAP),ax=axes.ravel().tolist(),fraction=.01,pad=.01)
+    cb=fig.colorbar(plt.cm.ScalarMappable(norm=colors.Normalize(0,vmax),cmap=CMAP),
+        cax=fig.add_axes([.94,.15,.012,.70]))
     cb.set_label('p(patch | Image); zero-mass cells have no conditional distribution')
-    fig.subplots_adjust(left=.01,right=.91,top=.92,bottom=.02,hspace=.2,wspace=.03)
+    fig.subplots_adjust(left=.01,right=.90,top=.91,bottom=.03,hspace=.32,wspace=.05)
     fig.savefig(path,dpi=130); plt.close(fig)
 
 
 def case_figure(s,mapping,roi,arrays,records,directory):
     qid=str(s['question_id']); crop=np.asarray(Image.open(OUT/'images'/qid/'processor_crop.png').convert('RGB'))
-    fig=plt.figure(figsize=(19,17),layout='constrained')
-    gs=fig.add_gridspec(4,6,height_ratios=[1.2,1.2,1.6,1.1])
-    ax=fig.add_subplot(gs[0,:2]); ax.imshow(Image.open(s['image_path'])); draw_boxes(ax,roi['boxes'],True)
+    # Explicit panel bounds keep the long token labels away from adjacent plots.
+    fig=plt.figure(figsize=(19,18))
+    ax=fig.add_axes([.035,.735,.30,.195]); ax.imshow(Image.open(s['image_path'])); draw_boxes(ax,roi['boxes'],True)
     for b in roi['other_same_class_boxes']:
         x,y,w,h=b['original_xywh']
         ax.add_patch(Rectangle((x,y),w,h,fill=False,edgecolor='#33aa55',lw=1.3,linestyle='--'))
     g=roi['geometry']; x=g['crop_left']/g['scale_x']; y=g['crop_top']/g['scale_y']
     ax.add_patch(Rectangle((x,y),336/g['scale_x'],336/g['scale_y'],fill=False,edgecolor='#e69f00',lw=2))
-    ax.set_title('Original: cyan=official bbox; orange=actual crop'); ax.axis('off')
-    ax=fig.add_subplot(gs[0,2:4]); ax.imshow(crop); draw_boxes(ax,roi['boxes']); ax.axis('off')
+    ax.set_title('Original: cyan=official target; orange=actual crop',fontsize=10); ax.axis('off')
+    ax=fig.add_axes([.36,.735,.25,.195]); ax.imshow(crop); draw_boxes(ax,roi['boxes']); ax.axis('off')
     for b in roi['other_same_class_boxes']:
         x,y,x1,y1=b['crop_xyxy']
         if x1>x and y1>y: ax.add_patch(Rectangle((x,y),x1-x,y1-y,fill=False,edgecolor='#33aa55',lw=1.3,linestyle='--'))
-    ax.set_title('Actual model input, 336x336\n'+roi['status'])
-    ax=fig.add_subplot(gs[0,4:]); ax.axis('off')
-    lines=[f'POPE Random {qid}: {s["question"]}', 'Gold=Yes; C3=Yes; E1=No', '', 'R token position | region | subword']
+    note='\nGreen dashed: another visible vase, not the target ROI' if qid=='301' else ''
+    ax.set_title('Actual model input, 336x336\n'+roi['status']+note,fontsize=9)
+    ax=fig.add_axes([.67,.72,.31,.21]); ax.axis('off')
+    lines=[s['question'], 'Gold=Yes; C3=Yes; E1=No', '', 'R position | region | native subword']
     for r in mapping:
         lines.append(f'{r["position"]:3d}  {r["region"][:5]:5s}  {label(r["subword"])}')
     ax.text(0,1,'\n'.join(lines),va='top',family='monospace',fontsize=8)
@@ -137,24 +139,31 @@ def case_figure(s,mapping,roi,arrays,records,directory):
     vmax=float(np.nanmax(cond))
     for j,raw in enumerate(maps):
         condition=('C3','E1')[j//3]; region=('Question','Instruction','ASSISTANT')[j%3]
-        ax=fig.add_subplot(gs[1,j]); values=metrics(raw,roi)
+        ax=fig.add_axes([.035+j*.16,.525,.14,.155]); values=metrics(raw,roi)
         edge=values['edge_ratio']; edge_text=f'{float(edge)*100:.1f}%' if np.isfinite(edge) else 'NA'
         overlay(ax,crop,raw,roi,f'{condition} {region}\nImage={raw.sum():.3f}, edge={edge_text}',vmax)
-    ax=fig.add_subplot(gs[2,:3])
+    cax=fig.add_axes([.23,.498,.54,.009])
+    fig.colorbar(plt.cm.ScalarMappable(norm=colors.Normalize(0,vmax),cmap=CMAP),
+        cax=cax,orientation='horizontal',label='Shared linear scale: p(patch | Image)')
+    cax.tick_params(labelsize=8)
+    ax=fig.add_axes([.09,.235,.34,.205])
     img=np.stack([arrays[c].sum(-1).mean(1).T for c in ('C3','E1')])
     im=ax.imshow(np.concatenate(img,axis=1),aspect='auto',cmap='viridis',vmin=0,vmax=float(img.max()))
-    ax.axvline(19.5,color='white'); ax.set_xticks([0,9,19,20,29,39],['C3 L0','L9','L19','E1 L0','L9','L19'])
+    ax.axvline(19.5,color='white'); ax.set_xticks([0,9,19,20,29,39],['0','9','19','0','9','19'])
+    ax.set_xlabel('Layer index: C3 (left) | E1 (right)')
     ax.set_yticks(range(len(mapping)),[f'{r["position"]}: {label(r["subword"])}' for r in mapping],fontsize=8)
-    ax.set_title('Every R token: head-mean absolute Image mass'); fig.colorbar(im,ax=ax,shrink=.7)
-    ax=fig.add_subplot(gs[2,3:])
+    ax.set_title('Every R token: head-mean absolute Image mass',fontsize=11)
+    fig.colorbar(im,cax=fig.add_axes([.444,.245,.012,.185]))
+    ax=fig.add_axes([.61,.235,.36,.205])
     ix=[r for r in mapping if r['region']=='Instruction']; singles=[records[f'add1_{j:02d}'] for j in range(10)]
     delta=np.array([r['yes_no_margin']-records['E1']['yes_no_margin'] for r in singles])
     ax.barh(range(10),delta,color=['#009e73' if r['generation']['text'].strip().lower()=='yes' else '#68747d' for r in singles])
     ax.set_yticks(range(10),[label(r['subword'])+' -> '+g['generation']['text'] for r,g in zip(ix,singles)])
+    ax.tick_params(axis='y',labelsize=9)
     ax.invert_yaxis(); ax.axvline(0,color='black',lw=.8)
     ax.set_xlabel('Change in logP( Yes) - logP( No), nat, relative to E1')
-    ax.set_title('Single-subword add-back: green means answer restored to Yes')
-    ax=fig.add_subplot(gs[3,:]); bars=[]; names=[]; answers=[]
+    ax.set_title('Single-subword add-back: green = answer restored to Yes',fontsize=11)
+    ax=fig.add_axes([.09,.07,.88,.095]); bars=[]; names=[]; answers=[]
     for size in (2,4):
         for j in range(10-size+1):
             r=records[f'add{size}_{j:02d}']; bars.append(r['yes_no_margin']-records['E1']['yes_no_margin'])
@@ -163,9 +172,46 @@ def case_figure(s,mapping,roi,arrays,records,directory):
     ax.axhline(0,color='black',lw=.8); ax.set_xticks(range(len(bars)),[n+'\n'+a for n,a in zip(names,answers)])
     ax.set_ylabel('Delta Yes/No margin (nat)'); ax.set_xlabel('Contiguous instruction offsets, 0-based; all predeclared windows')
     fig.suptitle(f'POPE {qid}: observed visual reading vs causal instruction add-back\n'
-        'Image maps: head/layer/query means, visual-conditional, shared linear scale. Zero E1 instruction map is imposed by mask.',fontsize=14)
+        'Image maps: head/layer/query means, visual-conditional. Zero E1 instruction map is imposed by mask.',fontsize=14,y=.985)
     fig.savefig(directory/'case_overview.png',dpi=170)
     fig.savefig(directory/'case_overview.pdf'); plt.close(fig)
+
+
+def roi_head_figure(mapping,roi,arrays,records,directory):
+    if not roi['roi_area_fraction']:
+        return
+    candidates=[]
+    for r in mapping:
+        if r['region']!='Instruction':
+            continue
+        values=metrics(arrays['C3'][:,:,r['r_index']],roi)
+        layer,head=np.unravel_index(values['roi_mass'].argmax(),(20,32))
+        candidates.append((float(values['roi_enrichment'][layer,head]),r,layer,head,values))
+    selected=sorted(candidates,key=lambda x:x[0],reverse=True)[:2]
+    crop=np.asarray(Image.open(OUT/'images'/str(mapping[0]['question_id'])/'processor_crop.png').convert('RGB'))
+    raw=[arrays['C3'][l,h,r['r_index']] for _,r,l,h,_ in selected]
+    vmax=max(float((w/w.sum()).max()) for w in raw)
+    fig,axes=plt.subplots(2,3,figsize=(12,8))
+    for row,(_,r,layer,head,values) in enumerate(selected):
+        title=f'C3 {label(r["subword"])} L{layer}/H{head}\nROI share={values["roi_ratio"][layer,head]:.1%}; enrichment={values["roi_enrichment"][layer,head]:.2f}'
+        overlay(axes[row,0],crop,raw[row],roi,title,vmax)
+        overlay(axes[row,1],crop,raw[row],roi,'Same map, target-area zoom',vmax)
+        visible=[b['crop_xyxy'] for b in roi['boxes'] if b['crop_xyxy'][2]>b['crop_xyxy'][0]]
+        boxes=np.array(visible)
+        axes[row,1].set_xlim(max(0,boxes[:,0].min()-28),min(336,boxes[:,2].max()+28))
+        axes[row,1].set_ylim(min(336,boxes[:,3].max()+28),max(0,boxes[:,1].min()-28))
+        offset=[x['position'] for x in mapping if x['region']=='Instruction'].index(r['position'])
+        add=records[f'add1_{offset:02d}']
+        delta=add['yes_no_margin']-records['E1']['yes_no_margin']
+        overlay(axes[row,2],crop,arrays['E1'][layer,head,r['r_index']],roi,
+            f'E1 same token and head\nSingle-token add-back: {add["generation"]["text"]}, margin change {delta:+.6f}',vmax)
+    fig.suptitle('Instruction ROI hotspots do not imply single-token recovery\n'
+        'Post-hoc display: top two enrichments among each token\'s maximum-absolute-ROI head',fontsize=12)
+    fig.subplots_adjust(left=.02,right=.89,top=.86,bottom=.03,hspace=.38,wspace=.08)
+    fig.colorbar(plt.cm.ScalarMappable(norm=colors.Normalize(0,vmax),cmap=CMAP),
+        cax=fig.add_axes([.93,.18,.014,.58]),label='Shared linear p(patch | Image)')
+    fig.savefig(directory/'instruction_roi_focus.png',dpi=170)
+    fig.savefig(directory/'instruction_roi_focus.pdf'); plt.close(fig)
 
 
 def analyze(galleries=True):
@@ -188,7 +234,7 @@ def analyze(galleries=True):
         for condition in ('C3','E1'):
             meta=read(OUT/'attention'/qid/(condition+'.json'))
             assert sha(meta['path'])==meta['sha256']
-            z=np.load(meta['path']); a=z['weights'].astype(np.float32)
+            z=np.load(meta['path']); a=z['weights'].astype(np.float64)
             assert a.shape==(20,32,len(mapping),576)
             assert np.isfinite(a).all() and bool((a>=0).all())
             assert z['query_positions'].tolist()==s['input_mapping']['R']
@@ -253,9 +299,22 @@ def analyze(galleries=True):
                 name=f'{r["position"]}_{r["token_id"]}'
                 title=f'POPE {qid} position {r["position"]}: {label(r["subword"])} [{r["region"]}]'
                 layer_gallery(arrays['C3'][:,:,j],arrays['E1'][:,:,j],crop,roi,title,gallery/(name+'_layers.png'))
-                for condition in ('C3','E1'):
-                    head_atlas(arrays[condition][:,:,j],crop,title+' '+condition,gallery/(name+'_'+condition+'_heads.png'))
+                if galleries is True:
+                    for condition in ('C3','E1'):
+                        head_atlas(arrays[condition][:,:,j],crop,title+' '+condition,gallery/(name+'_'+condition+'_heads.png'))
         case_figure(s,mapping,roi,arrays,records,directory)
+        roi_head_figure(mapping,roi,arrays,records,directory)
+        index=['# POPE '+qid+' Token Attention Gallery','',
+            '[Case overview](case_overview.png) | [Vector PDF](case_overview.pdf)','',
+            'L0-L19 only. Layer galleries share a linear color scale per token; head atlases use the explicitly labeled fixed log scale. Gray means Image mass is zero, not that a token is unimportant.','',
+            '| Position | Token ID | Native subword | Region | All layers, C3 vs E1 | C3 all heads | E1 all heads |',
+            '|---:|---:|---|---|---|---|---|']
+        for r in mapping:
+            name=f'{r["position"]}_{r["token_id"]}'
+            index.append(f'|{r["position"]}|{r["token_id"]}|`{r["subword"]}`|{r["region"]}|'
+                f'[20 layers](token_galleries/{name}_layers.png)|[20x32 heads](token_galleries/{name}_C3_heads.png)|'
+                f'[20x32 heads](token_galleries/{name}_E1_heads.png)|')
+        (directory/'README.md').write_text('\n'.join(index)+'\n')
         successes={str(n):[c for c,r in records.items() if len(r['restored'])==n and r['generation']['text'].strip().lower()=='yes'] for n in (1,2,4,10)}
         cases.append(dict(question_id=qid,question=s['question'],roi_status=roi['status'],roi_area_fraction=roi['roi_area_fraction'],
             addback_yes_conditions=successes,C3_margin=records['C3']['yes_no_margin'],E1_margin=records['E1']['yes_no_margin']))
@@ -298,7 +357,14 @@ def report(samples,cases,tokens,groups,adds):
             names=c['addback_yes_conditions'][str(n)]
             return '; '.join(' '.join(label(s) for s in by[name]['restored_subwords']) for name in names) or '无'
         text.append(f'|{q}|{describe(1)}|{describe(2)}|{describe(4)}|Yes|')
-    text+=['','## Instruction逐Token配对表','',
+    text+=['',
+        '卡车两组有效4-Token窗口的Margin提升分别为+0.125000、+0.062500 nat；船的`Answer`单独恢复为+0.093750 nat。它们是本轮固定窗口中的结果，并非所有子集的最小充分集合。花瓶只在所测完整10-Token正对照恢复，但未测试5-9个或非连续子集，不能断言必须10个。',
+        '各条件的完整生成均保留；这些Margin基于FP16网络输出与FP32 log_softmax，数值接近决策边界，不能当作稳定的总体效果。','',
+        '## 注意力观察：层/Head热点不等于恢复成功','',
+        '卡车可见框占实际输入面积0.8112%。在L0-L19、Head与区域内Query平均后，Question/Instruction/ASSISTANT的ROI条件比例分别为3.2133% / 0.4284% / 6.1918%，面积富集为3.96 / 0.53 / 7.63。Instruction整体并非最集中读取卡车的区域。',
+        '但Instruction的`the`在L14/H29的ROI条件比例达到15.1714%，富集18.70；句号在L14/H12为10.4693%，富集12.91。这是从全部层/Head中按绝对ROI Mass选择的描述性热点，不是显著性检验。单独恢复这两个Token均仍回答No，因此高ROI关注不足以证明单Token恢复有效。',
+        'Instruction的平均外侧两圈比例：卡车25.51%、船42.19%、花瓶38.09%；均匀分布对应176/576=30.56%。船/花瓶的边缘注意力指向的是裁剪后图像边缘，不是原图中已被裁掉的指定目标。其目标ROI指标为NA。','',
+        '## Instruction逐Token配对表','',
         '| 题号 | 原生Subword | C3关注层/Head | 平均边缘比例 | 平均ROI比例 | 恢复后答案 | ΔYes/No Margin nat |',
         '|---|---|---|---:|---:|---|---:|']
     def fmt(v): return 'NA' if v is None else f'{v*100:.3f}%'
@@ -312,10 +378,13 @@ def report(samples,cases,tokens,groups,adds):
         '- 恢复输出为Yes的Token/窗口是此算法背景下的功能敏感候选；只有Margin变化而不翻转也完整保留。不能凭Attention热点宣称因果有效。',
         '- 对完全裁出的目标，本实验不支持“Instruction直接看到该边缘物体”的解释。恢复若改善Yes，仍可能涉及可见场景线索、文本/位置依赖、概率重新分配和残差路径，不能区分这些机制。',
         '- 三题是事先挑出的历史失分案例，不是无偏样本；不估计总体Accuracy、不作独立外部验证、不追加Token组合。',
+        '', '**核心回答：** 卡车案例支持Instruction在少数中层Head接收到可见目标框附近的注意力，且部分4-Token窗口足以恢复Yes；但高关注单Token并不充分。船的`Answer`单Token能恢复Yes，却不能说明它重新读取了被裁掉的船。花瓶的局部窗口未恢复，完整Instruction可恢复，但指定右上目标不可见且存在另一个可见花瓶。三例不能共同证明“Instruction发现边缘目标”这一机制；它们支持的是背景依赖、可能多Token协同的直接视觉路径功能敏感性。',
         '', '## 图与原始数据','',
         '每题figures/<qid>/case_overview.png/pdf提供原图框与真实裁剪、全部R列表、区域热图、逐Token和连续窗口恢复结果。token_galleries/覆盖每个R Token的C3/E1全部20层Head均值及L0-L19×32 Head完整图册。所有图基于真实576个位置，不插值生成新观测。',
+        '卡车另有instruction_roi_focus.png/pdf，放大`the`与句号的ROI热点，并同时显示单Token仍未恢复Yes；两者按各Token最大绝对ROI Head的富集度事后选作展示，不将其解释为预注册验证。',
         '层图在同一Token的C3/E1各层间共用线性色标；全Head图册采用预先固定log2(1+576*p(patch|Image))范围0..6，灰格表示视觉Mass为0。图像叠加仅用于显示，CSV和NPZ保留原始概率。',
         '每个Head/Token的绝对Mass、边缘比例、ROI比例/富集见per_layer_head_token_attention.csv；用户要求的合并表见token_attention_addback_summary.csv。精确Attention数组在/data资源目录，attention/*.json记录路径、SHA和维度，不将大数组重复进Git。',
+        '', '[卡车图册](figures/1351/README.md) | [船图册](figures/2459/README.md) | [花瓶图册](figures/301/README.md)',
         '', '## 正确性与复现','',
         'CPU回归与3题GPU Smoke后执行；三题C3/E1完整Token和首Token全词表Logits SHA与e936ff3历史严格一致；观测Hook前后所有生成步Logits torch.equal；Native/No-op严格一致；对应Dense参考沿用冻结数值标准；禁止概率0，独立Cache、MLP、位置和Hook清理保留审计。',
         '复现：`python -m vlm_research.pope_instruction_probe.run`（只允许协议GPU0且空闲）；`CUDA_VISIBLE_DEVICES= python -m vlm_research.pope_instruction_probe.analyze`重算CSV与图。完整模型/数据/源码哈希见freeze.json；官方COCO标注只按Range提取验证集成员，来源、ZIP CRC和内容SHA均保留。',
@@ -324,5 +393,8 @@ def report(samples,cases,tokens,groups,adds):
 
 
 if __name__=='__main__':
-    parser=argparse.ArgumentParser(); parser.add_argument('--no-galleries',action='store_true')
-    args=parser.parse_args(); analyze(not args.no_galleries)
+    parser=argparse.ArgumentParser()
+    modes=parser.add_mutually_exclusive_group()
+    modes.add_argument('--no-galleries',action='store_true')
+    modes.add_argument('--layers-only',action='store_true',help='Regenerate layer galleries, retain unchanged head atlases')
+    args=parser.parse_args(); analyze(False if args.no_galleries else 'layers' if args.layers_only else True)
