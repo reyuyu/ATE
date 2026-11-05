@@ -1,0 +1,15 @@
+{
+  "no_quality_records_removed_or_rerun": true,
+  "original_failure": "Python measurement metadata duplicate condition keyword; not a numerical/model failure",
+  "recovered": {
+    "worker0/STOP.json": {
+      "at": "2026-11-05T12:39:58.738949+08:00",
+      "traceback": "Traceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/ate-closedqa-frozen-transfer/vlm_research/closedqa_transfer/run.py\", line 223, in main\n    performance(a,rank,samples,partition)\n  File \"/data/lk/ATE-worktrees/ate-closedqa-frozen-transfer/vlm_research/closedqa_transfer/run.py\", line 186, in performance\n    measurements.append(dict(condition=label,rep=rep,**compact(g)))\n                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: dict() got multiple values for keyword argument 'condition'\n"
+    },
+    "worker1/STOP.json": {
+      "at": "2026-11-05T12:39:59.701711+08:00",
+      "traceback": "Traceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/ate-closedqa-frozen-transfer/vlm_research/closedqa_transfer/run.py\", line 223, in main\n    performance(a,rank,samples,partition)\n  File \"/data/lk/ATE-worktrees/ate-closedqa-frozen-transfer/vlm_research/closedqa_transfer/run.py\", line 183, in performance\n    check_stop(); l,w,_=prepare(a,s,label)\n    ^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/ate-closedqa-frozen-transfer/vlm_research/closedqa_transfer/run.py\", line 33, in check_stop\n    assert not list(OUT.glob('worker*/STOP.json')),'A worker failed; preserving checkpoints'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: A worker failed; preserving checkpoints\n"
+    }
+  },
+  "recovery_stops": []
+}

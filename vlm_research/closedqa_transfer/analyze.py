@@ -95,10 +95,11 @@ def draws(keys,samples,records,task):
     return output,len(groups)
 
 
-def summarize():
+def summarize(quality_only=False):
     freeze=read(OUT/'execution_freeze.json'); assert source_hashes()==freeze['sources']
     samples=read(OUT/'sample_manifest.json'); partition=read(OUT/'partition.json')
-    assert all(read(OUT/f'worker{i}/completion.json')['status']=='COMPLETE' for i in (0,1))
+    required='quality_complete.json' if quality_only else 'completion.json'
+    assert all(read(OUT/f'worker{i}'/required)['status']=='COMPLETE' for i in (0,1))
     records={}; raw=[]; negative=[]; reuse=0
     for k,s in samples.items():
         for label in CONFIGS:
@@ -172,6 +173,10 @@ def summarize():
                     pairs.append(row)
     write_csv(OUT/'accuracy_summary.csv',summaries); write_csv(OUT/'paired_comparisons.csv',pairs)
     write_csv(OUT/'scienceqa_subject_accuracy.csv',subjects); atomic(OUT/'noninferiority.json',tests)
+    if quality_only:
+        atomic(OUT/'quality_analysis_completion.json',dict(status='QUALITY_COMPLETE_PERFORMANCE_PENDING',at=now(),
+            condition_rows=len(records),sources=source_hashes(),summary_sha256=sha(OUT/'accuracy_summary.csv')))
+        print(json.dumps(summaries,ensure_ascii=False,indent=2)); return
     latency,flops_rows,shape_rows=performance_summary(samples,records,partition)
     write_csv(OUT/'latency_summary.csv',latency); write_csv(OUT/'flops_kv_summary.csv',flops_rows)
     write_csv(OUT/'executed_shape_census.csv',shape_rows)
@@ -269,7 +274,14 @@ def plots(summary,latency):
 
 
 def report(summary,pairs,latency,compute,tests):
+    main=next(r for r in tests if r['task']=='scienceqa_img')
     lines=['# ATE 固定封闭式问答迁移验证','',
+        '## 核心结论','',
+        f"Full-QSA在ScienceQA为{next(r['accuracy'] for r in summary if r['task']=='scienceqa_img' and r['condition']=='Full-QSA'):.2f}%，相对Native为{main['delta_pp']:+.2f}pp，损害{main['harm']}题、纠正{main['rescue']}题。四项任务没有一项达到预先冻结的−1pp家族校正非劣效判据。因此，本轮不支持把当前Full-QSA直接认定为封闭式问答的低损害迁移方案；不因负结果调整Writer、跳算、阈值或数据。",'']
+    for t in TASKS:
+        q=next(r for r in latency if r['task']==t and r['condition']=='Full-QSA')
+        lines.append(f"- {t}：Full-QSA自然EOS E2E相对Native {q['e2e_speedup_vs_native']:.3f}x；相对C3-V2 {q['e2e_speedup_vs_C3']:.3f}x；同Native完整序列子集{q['same_sequence_n']}/20张，速度{q['same_sequence_speedup']:.3f}x。" if q['same_sequence_speedup'] is not None else f"- {t}：没有同完整序列子集，不能据此主张输出长度无关的加速。")
+    lines+=['',
         '## 协议与完整性','',
         'ScienceQA-IMG 原冻结500题；POPE COCO Random/Popular/Adversarial各300题。题目、图片字节SHA、原Prompt和官方标注全部绑定。原生LLaVA固定revision、FP16/eager、Transformers 4.49.0，所有条件统一last-row LM Head (`logits_to_keep=1`)、Greedy、最多32 token、自然EOS。',
         '非Native均禁止P−1和全部真实Decode访问原始Image Key。L2–L5图像与P−1之前文本Query正常Attention，Norm/Residual/MLP保留。ScienceQA的Q严格仅为题干，不含选项/Hint/指令；这些文本仍原样出现在输入中，没有lecture、solution或Gold泄露。',
@@ -302,10 +314,12 @@ def report(summary,pairs,latency,compute,tests):
         '## 评分与结论边界','',
         'ScienceQA沿用冻结字母解析器，不因输出格式问题修补得分；学科结果见scienceqa_subject_accuracy.csv。POPE沿用官方首句词法规则，空字符串仍会被其规则解析为yes，空答另外完整标记，不隐藏此局限。三策略共享图片，不将它们视作三个独立图像队列，也不跨任务平均Accuracy/F1。',
         '只验证既定五条件，没有搜索/训练/按结果调参。结果用于这批冻结样本的迁移评估，不能解释为新外部总体上的严格无损；质量与时延须共同判断，不以生成首Token指标替代完整答案。','',
+        'Full-QSA和C3-V2同时存在Writer集合与P−1跳算方式差异，不能把两者全部差值单独归因于某一种机制。Conditional/QSA的Dense来源Mask本身不减少矩阵形状或KV容量；FLOPs/速度变化必须来自实际物理路径或生成长度，而不是Mask开放Token更少。Fast-P2在ScienceQA的点估计接近Native，也不能仅凭点估计宣布无损或有益。','',
+        'POPE中Full-QSA的Recall由Native的79.33%下降到74.00%，不是仅凭Yes Ratio即可判断整体改善；三策略共享正例和图片，这一模式不能当成三次独立复现。完整Precision/Recall/F1及其配对差值见CSV。','',
         '## 测试、复现与资源','',
         'CPU16项测试通过；每任务预定3题GPU Smoke通过：同形状Native/No-op及HF生成有效Logits严格torch.equal；对应全Dense功能参考符合原冻结容差；禁止连接实际概率为0，早期非目标Query、位置/RoPE、完整MLP、Cache隔离及Hook清理均检查。没有放宽数值标准。',
         'MMBench/SEED：Phase4冻结注册中没有对应可验证Manifest，指定资源目录未找到可冻结资产和评分器；本轮仅报告未准备状态，不下载或替换。详见benchmark_readiness.json。',
-        '运行命令：`CUDA_VISIBLE_DEVICES=<GPU2或GPU3的冻结UUID> python -m vlm_research.closedqa_transfer.run --rank <0或1>`；完成后CPU汇总：`python -m vlm_research.closedqa_transfer.analyze`。',
+        '正式复现入口：`CUDA_VISIBLE_DEVICES=<GPU2或GPU3的冻结UUID> python -m vlm_research.closedqa_transfer.benchmark --rank <0或1>`。该入口支持已有检查点恢复，也支持空检查点的Smoke、质量生成和性能采集；原run.py不修改，作为冻结质量源码保留。CPU汇总：`python -m vlm_research.closedqa_transfer.analyze`，进程退出后审计：`python -m vlm_research.closedqa_transfer.analyze --finalize`。',
         '代码、模型、样本、分片和协议SHA见execution_freeze.json；GPU使用及退出记录见worker0/、worker1/和resource_release_audit.json。不使用GPU0/1，不修改main或共享环境。']
     if (OUT/'performance_entry_freeze.json').exists():
         lines+=['','### 工程异常与恢复','',
@@ -314,6 +328,34 @@ def report(summary,pairs,latency,compute,tests):
     (OUT/'report_zh.md').write_text('\n'.join(lines)+'\n')
 
 
+def finalize():
+    assert read(OUT/'completion.json')['status']=='COMPLETE'
+    state=hardware(); own=[]
+    for i in (0,1):
+        own += [read(OUT/f'worker{i}'/n)['pid'] for n in ('preflight.json','resume_preflight.json')]
+        assert read(OUT/f'worker{i}/completion.json')['status']=='COMPLETE'
+    compute=list(csv.reader(state['processes'].splitlines()))
+    live_pids={int(row[1].strip()) for row in compute if row}
+    assert not live_pids.intersection(own),'Task GPU process has not exited'
+    assert all(not Path('/proc',str(pid)).exists() for pid in own),'Task OS process still exists'
+    atomic(OUT/'resource_release_audit.json',dict(at=now(),status='PASS',task_pids=own,
+        all_task_processes_exited=True,used_only_physical_GPU2_GPU3=True,
+        no_external_process_terminated=True,final_hardware=state))
+    failures={str(p.relative_to(OUT)):read(p) for p in OUT.glob('worker*/STOP.json')}
+    atomic(OUT/'failure_records.json',dict(recovered=failures,
+        recovery_stops=[str(p.relative_to(OUT)) for p in OUT.glob('worker*/RECOVERY_STOP.json')],
+        original_failure='Python measurement metadata duplicate condition keyword; not a numerical/model failure',
+        no_quality_records_removed_or_rerun=True))
+    assert not list(OUT.glob('worker*/RECOVERY_STOP.json'))
+    code={str(p.relative_to(ROOT)):sha(p) for p in Path(__file__).parent.glob('*.py')}
+    atomic(OUT/'source_manifest.json',dict(code=code,quality_sources=read(OUT/'execution_freeze.json')['sources'],
+        performance_entry=read(OUT/'performance_entry_freeze.json'),
+        analysis_tests_sha256=sha(OUT/'analysis_tests.log')))
+    atomic(OUT/'artifact_sha256.json',{str(p.relative_to(OUT)):sha(p) for p in sorted(OUT.rglob('*'))
+           if p.is_file() and p.name!='artifact_sha256.json'})
+    print('FINAL AUDIT PASS; GPU processes released; all artifacts hashed',flush=True)
+
+
 if __name__=='__main__':
-    ap=argparse.ArgumentParser(); ap.add_argument('--preflight',action='store_true'); args=ap.parse_args()
-    preflight() if args.preflight else summarize()
+    ap=argparse.ArgumentParser(); ap.add_argument('--preflight',action='store_true'); ap.add_argument('--quality-only',action='store_true'); ap.add_argument('--finalize',action='store_true'); args=ap.parse_args()
+    preflight() if args.preflight else finalize() if args.finalize else summarize(args.quality_only)
