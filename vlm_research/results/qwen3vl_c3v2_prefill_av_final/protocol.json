@@ -1,0 +1,48 @@
+{
+  "base_commit": "0fe03aa1bb1923aee8b234ab3dccf59d7b21deb3",
+  "start_UTC": "2026-11-05T16:06:12.099027+00:00",
+  "GPU_cutoff_UTC": "2026-11-05T18:06:12.099027+00:00",
+  "time_limit_origin": "Self-imposed bound; not an added user requirement",
+  "smoke_order": [
+    "GQA__06905471",
+    "GQA__02497673",
+    "GQA__02287196"
+  ],
+  "authorization": "Current task max two idle GPUs explicitly authorized; single card then independent second card replication",
+  "original_failure_stops_other_smokes": true,
+  "candidate_limit": 2,
+  "candidates": [
+    "Restore only transient zero K/V at original image key positions in L22-L35 Prefill; 26 real queries retained",
+    "Only if necessary: one targeted AV reduction-shape or fixed-kernel repair based on measured first divergence; no autotune"
+  ],
+  "inherit": [
+    "Early L1-L6 dummy zero key and real skip",
+    "Decode dead zero image key padding",
+    "Fixed Lt K/V/Gate/Up L22-L35 from parent"
+  ],
+  "full_gate": {
+    "mean_abs": 0.02,
+    "max_abs": 0.5,
+    "top1_equal": true,
+    "complete_tokens_equal": true,
+    "all_effective_steps": true
+  },
+  "forbidden": [
+    "Accuracy",
+    "E2E benchmark",
+    "New data",
+    "Training",
+    "Layer or exit-depth search",
+    "Image Hidden or persistent Image KV restoration",
+    "Threshold relaxation"
+  ],
+  "minimum_disk_GiB": 20,
+  "dtype": "BF16",
+  "attention": "eager",
+  "torch": "2.6.0+cu124",
+  "transformers": "4.57.6",
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "max_new_tokens": 32,
+  "logits_to_keep": 1,
+  "local_timing": "Single-call CUDA events before/after without observer; not an E2E benchmark; report noise limitation"
+}
