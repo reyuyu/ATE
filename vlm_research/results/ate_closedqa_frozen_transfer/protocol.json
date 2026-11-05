@@ -1,0 +1,98 @@
+{
+  "Q_definition": "Only actual original question stem; excludes Hint/options/instruction",
+  "at": "2026-11-05T12:21:08.435164+08:00",
+  "base": "60d262f83a981e49a614ef8213e5311c3c7c6469",
+  "bootstrap_replicates": 20000,
+  "configs": {
+    "C3-V2": {
+      "answer_attention": "both",
+      "cutoff": 20,
+      "logits_to_keep": 1,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "all"
+    },
+    "Fast-P2": {
+      "answer_attention": "none",
+      "cutoff": 20,
+      "logits_to_keep": 1,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "all"
+    },
+    "Full-QSA": {
+      "answer_attention": "decode",
+      "cutoff": 20,
+      "logits_to_keep": 1,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "qsa"
+    },
+    "Historical C4-V2": {
+      "answer_attention": "both",
+      "cutoff": 20,
+      "logits_to_keep": 1,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "conditional15"
+    },
+    "Native Full": {
+      "answer_attention": "none",
+      "cutoff": 20,
+      "logits_to_keep": 1,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "native"
+    }
+  },
+  "logits_to_keep": 1,
+  "max_new_tokens": 32,
+  "model": {
+    "attention": "eager",
+    "diagnostic_candidates": "Full-vocabulary sum of teacher-forced conditional LogP; no EOS; gold minus strongest wrong; ties wrong; retain all candidate tokens/lengths",
+    "dtype": "float16",
+    "future_intervention_gate": "NOT validated on these tasks. Define true Question span apart from choices, hint and instructions; locate P-1 dynamically; audit multi-token teacher forcing, prefill vs decode and cache semantics separately before B4/C2 or Physical Exit generation.",
+    "generation": {
+      "do_sample": false,
+      "eos_token_id": 2,
+      "max_new_tokens": 32,
+      "num_beams": 1,
+      "temperature": 1.0,
+      "top_p": 1.0,
+      "use_cache": true
+    },
+    "model_id": "llava-hf/llava-1.5-7b-hf",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "official_scorer_revision": "haotian-liu/LLaVA@c121f0432da27facab705978f83c4ada465e46fd",
+    "processor": "Original pinned AutoProcessor/chat template, no extra system message or OCR tokens",
+    "transformers": "4.49.0",
+    "visual_tokens": 576
+  },
+  "no_search_training_or_adaptation": true,
+  "noninferiority": {
+    "alpha": 0.05,
+    "family": [
+      "scienceqa_img",
+      "pope_random",
+      "pope_popular",
+      "pope_adversarial"
+    ],
+    "margin_pp": -1,
+    "method": "Bonferroni4 one-sided lower quantile .05/4; lower > -1",
+    "size": 4
+  },
+  "other_comparisons": "exploratory paired intervals vs Native and C3-V2; no NI claims",
+  "performance": {
+    "cold_KV": true,
+    "excludes": "Processor, I/O and layout localization; includes model/cache setup, Vision, Prefill and Decode",
+    "images_each_task": 20,
+    "interleaved": true,
+    "repeats": 5,
+    "vision_recomputed": true,
+    "warmup": 3
+  },
+  "phase4": "7ccb44941cb48e901e6e23e96bae6da173fe2ce5",
+  "primary": "Full-QSA minus Native: Accuracy for four datasets; question weighted paired Image-SHA cluster bootstrap",
+  "seed": 20261105,
+  "stop_after_frozen_matrix": true
+}
