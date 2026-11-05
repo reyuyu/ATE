@@ -1,0 +1,27 @@
+{
+  "at": "2026-11-05T15:21:19.268956+00:00",
+  "command": [
+    "g++",
+    "-std=c++17",
+    "-O2",
+    "-fPIC",
+    "-shared",
+    "/data/lk/ATE-worktrees/qwen3vl-c3v2-l22-kernel-diagnosis/vlm_research/qwen3vl_c3v2_l22_kernel_diagnosis/lt_bridge.cpp",
+    "-o",
+    "/data/lk/ATE-resources/experiments/qwen3vl_c3v2_l22_kernel_diagnosis/build/liblt_bridge.so",
+    "-I/data/lk/\u6df1\u5ea6\u5b66\u4e60/.envs/ate-qwen3vl/lib/python3.11/site-packages/nvidia/cublas/include",
+    "-I/data/lk/\u6df1\u5ea6\u5b66\u4e60/.envs/ate-qwen3vl/lib/python3.11/site-packages/nvidia/cuda_runtime/include",
+    "-I/usr/local/cuda/include",
+    "-L/data/lk/\u6df1\u5ea6\u5b66\u4e60/.envs/ate-qwen3vl/lib/python3.11/site-packages/nvidia/cublas/lib",
+    "-L/data/lk/\u6df1\u5ea6\u5b66\u4e60/.envs/ate-qwen3vl/lib/python3.11/site-packages/nvidia/cuda_runtime/lib",
+    "-Wl,-rpath,/data/lk/\u6df1\u5ea6\u5b66\u4e60/.envs/ate-qwen3vl/lib/python3.11/site-packages/nvidia/cublas/lib",
+    "-Wl,-rpath,/data/lk/\u6df1\u5ea6\u5b66\u4e60/.envs/ate-qwen3vl/lib/python3.11/site-packages/nvidia/cuda_runtime/lib",
+    "-l:libcublasLt.so.12",
+    "-l:libcudart.so.12"
+  ],
+  "source_sha256": "9711e096226f261e39a09816be1b60b094b13ed126dfc86156f00c257f1f9da2",
+  "library_path": "/data/lk/ATE-resources/experiments/qwen3vl_c3v2_l22_kernel_diagnosis/build/liblt_bridge.so",
+  "library_sha256": "578099f3cdf9a6e7e8bce327f19bf8eb834aee6c95a6f26aa00cbbb12830fc8a",
+  "system_environment_modified": false,
+  "existing_toolchain_only": true
+}

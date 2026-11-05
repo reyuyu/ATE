@@ -1,0 +1,45 @@
+{
+  "GPU_cutoff_UTC": "2026-11-05T16:50:11.884519+00:00",
+  "authorization": "User explicitly authorized max two idle GPUs for current task; GPU3 experiments, GPU2 key replication only",
+  "base_commit": "a1a99c88c0db9244ef280017f297d9c5b5e75bbe",
+  "candidate_classes": {
+    "custom": "One Triton BM32 BN64 BK32,4warps,3stages,FP32 accumulation; only if earlier classes do not meet local gate; no autotune",
+    "fixed_cublasLt": "At most first two Dense heuristic configs at8MiB workspace, only if AlgoCheck supports26 shape; record config and actual kernels",
+    "fixed_row_chunks": "One shape26 partition13+13; no image rows or explicit padding"
+  },
+  "delivery_deadline_UTC": "2026-11-05T17:20:11.884519+00:00",
+  "dtype": "BF16",
+  "early_and_decode_repairs": "Keep parent Repair2Execution decode-zero-key intact; no new search",
+  "full_model_gate": {
+    "complete_tokens": 1.0,
+    "max_abs": 0.5,
+    "mean_abs": 0.02,
+    "top1": 1.0
+  },
+  "full_model_only_if_local_gate_passed": true,
+  "layer": 22,
+  "local_gate": "All four means and maxima no worse; at least one K/V mean50% lower OR summed four means25% lower. Select lowest mean among no-worse-max candidates. This is pre-GPU engineering triage, not a logits acceptance substitute.",
+  "microbenchmark": {
+    "repeats": 20,
+    "type": "local CUDA event only, no E2E claim",
+    "warmup": 5
+  },
+  "minimum_disk_GiB": 20,
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "no_accuracy_or_e2e": true,
+  "old_negative_forms_not_repeated": true,
+  "operations": [
+    "k_proj",
+    "v_proj",
+    "gate_proj",
+    "up_proj",
+    "down_proj control"
+  ],
+  "original": "GQA__06905471",
+  "other_smokes_only_if_full_original_passed": true,
+  "per_operator_class_stop": "Skip later classes for that operator when earlier class halves mean without worse max; no autotune",
+  "profile": "PyTorch profiler CPU+CUDA, actual trace kernel names/grid/block. Missing CUDA events recorded as limitation, not fabricated.",
+  "start_UTC": "2026-11-05T15:20:11.884519+00:00",
+  "stop_after_three_classes": true,
+  "time_limit_origin": "Self-imposed bounded engineering effort; not a new user requirement"
+}
