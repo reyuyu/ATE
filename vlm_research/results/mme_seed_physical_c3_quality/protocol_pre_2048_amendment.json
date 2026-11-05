@@ -1,0 +1,138 @@
+{
+  "at": "2026-11-05T20:05:25.702279+00:00",
+  "base_commit": "fecac1ee7af632ffbbdd48ca79555f9f5ee6ff4f",
+  "bootstrap": {
+    "cluster": "Image SHA256",
+    "confidence": 0.95,
+    "exploratory": true,
+    "mme": "Recompute task Accuracy and paired-image Accuracy+ within each bootstrap; weight all questions in sampled clusters",
+    "repetitions": 20000,
+    "seed": 20261106
+  },
+  "conditions": [
+    "Native",
+    "Physical-C3"
+  ],
+  "generation": {
+    "do_sample": false,
+    "eos": "original generation_config",
+    "logits_to_keep": 1,
+    "max_new_tokens": 32
+  },
+  "gpu_uuids": [
+    "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+    "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+  ],
+  "llava": {
+    "cutoff": 20,
+    "dtype": "FP16",
+    "eager": true,
+    "skip_layers": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "transformers": "4.49.0"
+  },
+  "llava_bindings_sha256": "7702df9edd3535d1aaa983941110e8ab4c485a81a3057de12c3f8ecbcb41bda0",
+  "llava_original_source": "5627bc822a7827ae11edfaec84c31f6b73398e25: historical ResearchWriter/AnswerWriter physical C3-V2",
+  "mme": {
+    "images": 1187,
+    "n": 2374,
+    "parser": "Pinned official first-four-character yes/no parser",
+    "scoring": "task 100*Accuracy +100*Accuracy+; sum tasks; Perception/2000,Cognition/800,total/2800"
+  },
+  "model_manifests_sha256": "0d08d55344e614194fdc0bbae0b682778bd0755aa3dd087478b5afbd5dcd0163",
+  "models": {
+    "llava": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "qwen": "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b"
+  },
+  "no_extra_conditions": true,
+  "no_physical_changes": true,
+  "no_timing": true,
+  "no_training": true,
+  "quality_only": true,
+  "qwen": {
+    "cutoff": 22,
+    "dtype": "BF16",
+    "eager": true,
+    "numerical_status": "Known dense/physical difference disclosed; no repairs; resource gate currently BLOCKED",
+    "skip_layers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "transformers": "4.57.6"
+  },
+  "qwen_original_source": "30d3e7a0c9318e71a5951aca9a05b6b78108db72: Physical-Original Execution",
+  "sample_manifest_sha256": "61df2843c3f3891e164e158dc4d7da70f4bda67c5658812cad3f5639c795308e",
+  "seed": 20261106,
+  "seed_bench": {
+    "aggregation": "FP32 mean negative conditional log probability of candidate content",
+    "answer_steps": "first candidate token predicted at P-1; every later candidate token uses actual incremental Decode",
+    "cache_fork": "independent deepcopy of immutable prompt cache; strict equality to cold complete option requests required in Smoke",
+    "images": 5624,
+    "llava_candidate_suffix": "one native assistant separator space + complete choice text + </s>",
+    "n": 14233,
+    "primary_metric": "Accuracy percent; option with minimum mean candidate NLL is predicted",
+    "protocol_adaptation": "Native HF chat template and frozen historical Processor retained. Official mean-NLL ranking is ported; published scores may use another conversation template/preprocessing and are not directly interchangeable.",
+    "qwen_candidate_suffix": "complete choice content only, model-specific official Qwen interface convention",
+    "source_revision": "991e849be802b0de1cd4d45d929bf18e249f5b54",
+    "unique_key": "original annotation record index; duplicate upstream IDs retained"
+  },
+  "smoke": [
+    {
+      "key": "MME__00888",
+      "rank": 1
+    },
+    {
+      "key": "MME__00907",
+      "rank": 0
+    },
+    {
+      "key": "MME__00995",
+      "rank": 0
+    },
+    {
+      "key": "MME__01341",
+      "rank": 0
+    },
+    {
+      "key": "MME__01451",
+      "rank": 1
+    },
+    {
+      "key": "MME__01612",
+      "rank": 1
+    },
+    {
+      "key": "SEED__01097",
+      "rank": 1
+    },
+    {
+      "key": "SEED__01265",
+      "rank": 0
+    },
+    {
+      "key": "SEED__06902",
+      "rank": 1
+    },
+    {
+      "key": "SEED__12717",
+      "rank": 0
+    },
+    {
+      "key": "SEED__12987",
+      "rank": 1
+    },
+    {
+      "key": "SEED__13224",
+      "rank": 0
+    }
+  ],
+  "status": "FROZEN_BEFORE_GPU"
+}

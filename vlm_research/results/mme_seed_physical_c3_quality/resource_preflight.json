@@ -1,0 +1,15 @@
+{
+  "at": "2026-11-05T20:04:39.102887+00:00",
+  "authorization": "User explicitly authorized at most two idle GPUs for this round",
+  "data_free_bytes": 46282129408,
+  "gpu_snapshot": "0, GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 24576, 27, 24128\n1, GPU-b08489af-0a8a-eb48-55ba-8346733af417, 24576, 27, 24128\n2, GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6, 24576, 27, 24128\n3, GPU-96bc853f-ceea-2404-c704-c48a3d1ca185, 24576, 27, 24128\n",
+  "llava_image_tokens": 576,
+  "min_free_bytes": 21474836480,
+  "qwen_counterexamples": {
+    "MME": "MME__01340",
+    "SEED": "SEED__06472"
+  },
+  "qwen_no_gpu_inference_started": true,
+  "qwen_reason": "Frozen default max_pixels=16777216 yields over 16000 image tokens; a single native eager FP32 softmax exceeds 32 GiB, before model weights; RTX3090 has 24 GiB. No resize/cap/kernel change authorized.",
+  "qwen_status": "BLOCKED_RESOURCE_BEFORE_GPU"
+}
