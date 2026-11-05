@@ -1,0 +1,57 @@
+{
+  "at": "2026-11-05T15:58:39.331392+08:00",
+  "devices": [
+    {
+      "index": 0,
+      "uuid": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89"
+    },
+    {
+      "index": 1,
+      "uuid": "GPU-b08489af-0a8a-eb48-55ba-8346733af417"
+    }
+  ],
+  "partition_sha256": "1742685bb8af7ab28c9d5282ce473b86b5ee0cd5081070d3f3cf19a95f95b5a9",
+  "protocol_sha256": "18d877976ee4f743e756f83e3a3360f80d1e6692fc61c722988214ab28778c6c",
+  "sample_manifest_sha256": "6076f1ce0d8c07683ebbe8c567958cb9dfd28d6bbaca38193f8796f74c68bf12",
+  "sources": {
+    "vlm_research/accuracy_autoresearch/__init__.py": "984b3fa75a8aacf435be881e394684a2b54d6a0fad1fe505819a63d2890c3e78",
+    "vlm_research/accuracy_autoresearch/common.py": "01a68cc5b739a3d9172e351d5d68250e33d997639c35ecbf84376b8bbf0f9d58",
+    "vlm_research/accuracy_autoresearch/engine.py": "4a381e87cd69b5b1e20eb10f3b52a9e1470f6662d845daafba6639bfe7c7974e",
+    "vlm_research/accuracy_autoresearch/tests.py": "f1271cd415749fecec7491833ad805e0d7dd170e3cac6f42b4f05b3cda0146ab",
+    "vlm_research/accuracy_autoresearch/worker.py": "dcb05208746f8853a5605bd05c0fc66fde80de6b2f677ac625e3c605ec9051c0",
+    "vlm_research/ate_fulljoint_v2/engine.py": "ef59447163c47528be2fde44751c124df3d550a6e89244046c3d40d99b4e9e44",
+    "vlm_research/ate_fulljoint_vqav2/common.py": "580f50a86962237366527011b03cb48372657b611e5f3b6daab79a3b988a6fff",
+    "vlm_research/benchmarks/protocols.py": "c80e8011f8ba3f7f627398ec2a3bff300d479db46ccb04a564d5ed525abd4f48",
+    "vlm_research/benchmarks/scoring.py": "9dd9bb60a3f0929240e520cc4ce50354ca4778a7f138eb5718fe99c42eed2b25",
+    "vlm_research/closedqa_transfer/common.py": "33f5e4fb626f8cb59b8008dbbca26ffc4ec2c71eb4f26020c47da00e590ea10e",
+    "vlm_research/closedqa_transfer/engine.py": "271882dcd806691185e01ac207ed07339657e3ed122aaf1f99830ba76d54ab1c",
+    "vlm_research/p1_layerwise_accuracy/engine.py": "3cbf506f506c33fe34a636d2a3b5f19f751e2831b3bb299aae460ae8a5add46a",
+    "vlm_research/physical_handoff_fastpath/engine.py": "6e8abb7e04517678c189a896589abb97774652313ecedb57d58f97bd718b74a0",
+    "vlm_research/physical_handoff_fastpath/ledger.py": "07113e7cbc108e49eda43066af74a859fcbe2cfa511f3f3880404050de8ad44c",
+    "vlm_research/receiver_cross_dataset/official_vqa_eval.py": "ba95df786a47077b046d9e5715dcfdaa32159c15fb6606b242f13e808e3b6f93",
+    "vlm_research/reverse_writer/__init__.py": "2dcedfd0c47350f6482845a72056104cd00b68e61846ddb2bd554d8259c2ca02",
+    "vlm_research/reverse_writer/common.py": "b49eb59480189742bf3caf126c01d9ddb05661d7c4eef1f489cb50a5d011b3b8",
+    "vlm_research/reverse_writer/engine.py": "e7a8d0e5d853cbddd21286ef690e3b8abbaaa34107cdd71e55c0107739b7709c",
+    "vlm_research/reverse_writer/run.py": "1ed0c9332cafd05b95f4c1d218f46332ca36455c4b2b22236a2a8118606c1db9",
+    "vlm_research/reverse_writer/tests.py": "bab914a894ca2bd868b5375b020f55bd2ff7eecfecd6240604bb2716290f997c"
+  },
+  "tolerances": {
+    "llava": {
+      "hidden_cosine": 0.0001,
+      "hidden_relative_rmse": 0.01,
+      "logit_atol": 0.1,
+      "logit_rtol": 0.003
+    },
+    "qwen": {
+      "hidden_cosine": 0.002,
+      "hidden_relative_rmse": 0.04,
+      "logit_atol": 0.5,
+      "logit_rtol": 0.01
+    }
+  },
+  "weights": {
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00001-of-00003.safetensors": "c11dbf016ee7d35ee130c19b67e20eb04873996006f424b7bcbd453b6517ee66",
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00002-of-00003.safetensors": "46df6c6e5fad297fe7fbca4963dcf180cb1d0528cabc884d1f603311fed01328",
+    "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9/model-00003-of-00003.safetensors": "4f06177c37ca13944e73b57dd6d051767b950dffc12400c700dfa2509c24c697"
+  }
+}
