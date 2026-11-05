@@ -1,0 +1,169 @@
+{
+  "all_four_regenerated": true,
+  "answer_attention_bypass": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "answer_image_layers": {
+    "C3+Middle10": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20
+    ],
+    "C3+Middle9": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "C3-V2": [],
+    "Native": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ]
+  },
+  "attention": "eager",
+  "bootstrap": {
+    "cluster": "image_sha256",
+    "comparisons": [
+      "C3+Middle9 - C3-V2",
+      "C3+Middle10 - C3-V2",
+      "C3+Middle9 - Native",
+      "C3+Middle10 - Native"
+    ],
+    "replicates": 20000,
+    "seed": 20261105,
+    "weighting": "equal questions"
+  },
+  "correctness": "Native/Noop and unchanged C3 strict torch.equal; shape-changing dense reference uses unchanged historical FP16 gates AND exact greedy tokens.",
+  "created_at": "2026-11-05T22:16:27.581484+08:00",
+  "devices": [
+    {
+      "index": 0,
+      "uuid": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89"
+    },
+    {
+      "index": 1,
+      "uuid": "GPU-b08489af-0a8a-eb48-55ba-8346733af417"
+    }
+  ],
+  "dtype": "FP16",
+  "exploratory": true,
+  "greedy": true,
+  "history_manifest": "/data/lk/ATE-worktrees/c3v2-reverse-writer-pruning/vlm_research/results/c3v2_reverse_writer_pruning/sample_manifest.json",
+  "history_manifest_sha256": "6076f1ce0d8c07683ebbe8c567958cb9dfd28d6bbaca38193f8796f74c68bf12",
+  "image_clusters": 309,
+  "labels": [
+    "Native",
+    "C3-V2",
+    "C3+Middle9",
+    "C3+Middle10"
+  ],
+  "logits_to_keep": 1,
+  "max_new_tokens": 32,
+  "model": "LLaVA-1.5-7B",
+  "native_exception": "Native is completely unmodified; native Image KV exists in all32 layers.",
+  "no_hardware_speed_claim_for_masks": true,
+  "performance": {
+    "cold_independent_KV": true,
+    "conditions_interleaved": true,
+    "dense_reference_not_timed": true,
+    "e2e": "Wall start before control/cache setup through last generated token and final synchronize; excludes scoring, token string decode, JSON/KV auditing.",
+    "fixed16": "Exactly16 predicted tokens with own cache/prefix; ignores EOS only in length-control timing.",
+    "modes": [
+      "natural_eos",
+      "fixed16"
+    ],
+    "prefill": "CUDA events: Vision plus Language first forward",
+    "repetitions": 5,
+    "samples": 48,
+    "ttft": "Wall request start to first greedy token ready",
+    "vision_recomputed": true,
+    "warmups": 3
+  },
+  "physical": "Image KV retained only in9/10 selected layers; absent in bypass layers; other persistent KV is text-only. In-place append, no historical copies.",
+  "receiver_image_layers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "sample_count": 500,
+  "seed": 20261105,
+  "selection": "Same frozen500 questions, no output filtering. Performance48:12/image-distinct prompt-length quartile, stable input hash.",
+  "tolerances": {
+    "hidden_cosine": 0.0001,
+    "hidden_relative_rmse": 0.01,
+    "logit_atol": 0.1,
+    "logit_rtol": 0.003
+  },
+  "transformers": "4.49.0",
+  "visual_hidden_exit": {
+    "C3+Middle10": 21,
+    "C3+Middle9": 20,
+    "C3-V2": 20,
+    "Native": 32
+  },
+  "writer_definition": "Frozen R: post-image text positions before original P-1. L20 receiver image access remains blocked even for Middle10."
+}
