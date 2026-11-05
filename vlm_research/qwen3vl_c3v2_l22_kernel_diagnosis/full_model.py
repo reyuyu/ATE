@@ -113,6 +113,8 @@ def main(rank=0,mode='original'):
   write(OUT/folder/(name+'_first_divergence.json'),first);write(OUT/folder/(name+'_components.json'),dr)
   rec=dict(repair_layers=scope.copy(),comparison=rows,first_divergences=first);attempts.append(rec);print('FULL_ATTEMPT',rank,rec,flush=True)
   passed=all(x['gate_pass'] for x in rows)
+  evidence={k:val for k,val in probe.records.items() if any(k.startswith(f'S{s}/L{i:02d}/') for s in [0,1] for i in [22,26,27]) and val['stage'] in ['layer_input','input_norm','k_proj','v_proj','attention_probabilities','attention_AV_output','o_proj_raw','attention_residual','post_attention_norm','layer_output']}
+  ep=PRIVATE/folder/'selected_component_evidence.pt';ep.parent.mkdir(parents=True,exist_ok=True);torch.save(dict(records=evidence,layout=layout,source_commit=freeze['commit']),ep);write(OUT/folder/'selected_component_evidence_index.json',dict(path=str(ep),sha256=sha(ep),bytes=ep.stat().st_size,external_to_git=True))
   if passed or mode!='original':break
   next_layer=scope[-1]+1;lookup={(x['step'],x['layer'],x['stage']):x for x in dr}
   # A transient subnormal AV difference can vanish before the layer boundary.
