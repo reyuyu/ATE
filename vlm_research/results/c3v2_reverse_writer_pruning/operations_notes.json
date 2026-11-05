@@ -1,0 +1,59 @@
+{
+  "at": "2026-11-05T16:24:36.618111+08:00",
+  "authorization_override": "Latest user message explicitly permits physical GPU0/1; GPU2/3 existing TextVQA untouched",
+  "deadline_not_reset": true,
+  "formatting_audit_sha256": "d6ea1617275fff52dc674cfaa2431778f86cec74e5cd4198fdf8728c48efe581",
+  "initial_safe_stop": {
+    "path": "/data/lk/ATE-resources/preflight/c3v2_reverse_writer_pruning/20261105T154743+0800.json",
+    "record": {
+      "background_polling_started": false,
+      "branch_created": false,
+      "checked_at": "2026-11-05T15:47:43+08:00",
+      "completed_conditions": 0,
+      "conclusion": "Resource precondition failed. No experimental accuracy or writer-budget results were produced. Existing TextVQA workers were left untouched.",
+      "data_disk_available_human": "57G",
+      "generation_count": 0,
+      "gpus": [
+        {
+          "command": "/data/lk/深度学习/.envs/ate-vlm-research/bin/python -m textvqa_single_layer_visual_ablation.run --worker 0",
+          "free_memory_mib": 9739,
+          "name": "NVIDIA GeForce RTX 3090",
+          "physical_index": 2,
+          "process_cwd": "/data/lk/ATE-worktrees/textvqa-single-layer-visual-ablation/vlm_research",
+          "process_memory_mib": 14384,
+          "process_pid": 3754327,
+          "used_memory_mib": 14417,
+          "utilization_percent_snapshot": 31,
+          "uuid": "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6"
+        },
+        {
+          "command": "/data/lk/深度学习/.envs/ate-vlm-research/bin/python -m textvqa_single_layer_visual_ablation.run --worker 1",
+          "free_memory_mib": 9739,
+          "name": "NVIDIA GeForce RTX 3090",
+          "physical_index": 3,
+          "process_cwd": "/data/lk/ATE-worktrees/textvqa-single-layer-visual-ablation/vlm_research",
+          "process_memory_mib": 14384,
+          "process_pid": 3754328,
+          "used_memory_mib": 14417,
+          "utilization_percent_snapshot": 84,
+          "uuid": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+        }
+      ],
+      "main_or_historical_results_modified": false,
+      "model_loaded": false,
+      "new_commit": null,
+      "process_checked_at": "2026-11-05T15:48:28+08:00",
+      "processes_terminated": [],
+      "request_file": "/home/likai/.codex/attachments/c82b9682-6a71-447a-83eb-4fcb6ced0dcf/已粘贴的文本.txt",
+      "requested_branch": "codex/c3v2-reverse-writer-pruning",
+      "requested_worktree": "/data/lk/ATE-worktrees/c3v2-reverse-writer-pruning",
+      "resource_policy": "Both GPU2 and GPU3 must be idle. If either is busy, stop safely without replacing devices or terminating other jobs.",
+      "status": "NOT_STARTED_RESOURCE_BLOCKED",
+      "task": "c3v2_reverse_writer_pruning",
+      "worktree_created": false
+    },
+    "sha256": "c3393040d9606bc9a0711867364d7d8a7b5541d59378ea860f04c42673e0c86e"
+  },
+  "no_model_precision_environment_or_prompt_changes": true,
+  "worker_sources_still_match_freeze": true
+}
