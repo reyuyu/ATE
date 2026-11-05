@@ -1,0 +1,25 @@
+{
+  "all_frozen_dense_operators_reproduced": true,
+  "at": "2026-11-05T15:33:03.766302+00:00",
+  "classes_evaluated": [
+    1
+  ],
+  "later_classes_skipped_when_earlier_local_gate_passed": true,
+  "no_model_generation": true,
+  "policy": {
+    "full_model_allowed": true,
+    "local_gate_pass": true,
+    "rule": "All four means/max no worse; at least one K/V mean50% lower OR summed four mean25% lower. Select per-op lowest mean among no-worse-max candidates, then max/class/order. Down stays native. Engineering triage only; full logits thresholds unchanged. Never select by answer.",
+    "selected": {
+      "down_proj": "torch_physical26",
+      "gate_proj": "Lt_dense_heuristic_0",
+      "k_proj": "Lt_dense_heuristic_0",
+      "up_proj": "Lt_dense_heuristic_0",
+      "v_proj": "Lt_dense_heuristic_0"
+    }
+  },
+  "profiler_kernel_events": 26,
+  "source_commit": "6f6e3364030f8f1f33ae25408ba8ffeb5c2ffa7c",
+  "status": "LOCAL_CANDIDATE_FOUND",
+  "verification_only": true
+}

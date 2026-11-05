@@ -1,0 +1,39 @@
+{
+  "after_fixed_gemm_first_internal": {
+    "0": {
+      "equal": false,
+      "layer": 22,
+      "max_abs": 7.450580596923828e-09,
+      "mean_abs": 6.996113351186509e-14,
+      "nonfinite_mismatch": 0,
+      "relative_l2": 7.785613820310289e-11,
+      "rmse": 2.283092291610611e-11,
+      "stage": "attention_AV_output",
+      "step": 0
+    },
+    "1": {
+      "equal": false,
+      "layer": 27,
+      "max_abs": 0.03125,
+      "mean_abs": 5.425347262644209e-05,
+      "nonfinite_mismatch": 0,
+      "relative_l2": 0.0001862145436462015,
+      "rmse": 0.0011886339634656906,
+      "stage": "scores_before_mask",
+      "step": 1
+    }
+  },
+  "after_fixed_gemm_first_prefill_layer_boundary": {
+    "equal": false,
+    "layer": 26,
+    "max_abs": 0.03125,
+    "mean_abs": 2.0866211343673058e-05,
+    "nonfinite_mismatch": 0,
+    "relative_l2": 1.1132087820442393e-05,
+    "rmse": 0.0004804946365766227,
+    "stage": "layer_output",
+    "step": 0
+  },
+  "baseline_first": "L22 k_proj (frozen parent and current same-input replay)",
+  "evidence": "L22 tiny AV delta vanishes in o_proj; L26 AV delta propagates through residual. No tolerance relaxed. AV shape remains an independent unresolved factor."
+}
