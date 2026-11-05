@@ -114,13 +114,25 @@ def freeze():
         return min(float(r['same_sequence_e2e_speedup']) for r in subset)
     best=min(map(loss,candidates)); tied=[c for c in candidates if loss(c)<=best+.25]
     primary=max(tied,key=speed)
-    selection=dict(at=now(),primary=primary,ranking=[dict(config=c,worst_loss_pp=loss(c),speed=speed(c)) for c in candidates],
+    faster=[]
+    for c in candidates:
+        if c==primary: continue
+        compared=[r for r in paired if r['condition']==config_id(c) and r['baseline']==config_id(primary)]
+        if len(compared)==2 and all(int(r['same_sequence_n'])>=6 and float(r['same_sequence_e2e_speedup'])>=1.02 for r in compared):
+            faster.append(c)
+    secondary=max(faster,key=speed) if faster else None
+    selected=[primary]+([secondary] if secondary else [])
+    selection=dict(at=now(),primary=primary,speed_secondary=secondary,
+        primary_is_capacity_diagnostic=primary['cutoff']==32,
+        secondary_rule='Inherited original 2% faster on BOTH matched-sequence dataset subsets, at least six each; addendum before continuation timing scores',
+        ranking=[dict(config=c,worst_loss_pp=loss(c),speed=speed(c)) for c in candidates],
         prior_FINAL_not_used_for_selection=True,remaining_original_clock=read(ROOT/'task_deadline.json'),
         recheck_is_not_independent_confirmation=True)
     atomic(OUT/'selection.json',selection)
     configs=[]
     for head in (0,1):
-        configs.extend([config('native',head=head),config(head=head),config(answer='both',head=head),dict(primary,logits_to_keep=head)])
+        configs.extend([config('native',head=head),config(head=head),config(answer='both',head=head)]+
+                       [dict(c,logits_to_keep=head) for c in selected])
     job('05_recheck','RECHECK',configs,keys_for('FINAL'))
     job('06_recheck_performance','RECHECK',configs,
         read(PRIOR/'jobs/10_final_performance.json')['samples'],performance=True,finish=True)
