@@ -1,0 +1,72 @@
+{
+  "answer_image_mask_all_non_native": true,
+  "attention": "eager",
+  "bootstrap": 20000,
+  "cluster": "image_sha256, question equally weighted",
+  "comparisons": [
+    [
+      "C",
+      "N"
+    ],
+    [
+      "F",
+      "N"
+    ],
+    [
+      "P",
+      "F"
+    ],
+    [
+      "C",
+      "F"
+    ],
+    [
+      "C",
+      "P"
+    ],
+    [
+      "C",
+      "B"
+    ]
+  ],
+  "conditions": [
+    "N",
+    "F",
+    "P",
+    "B",
+    "C"
+  ],
+  "data_manifest_sha256": "fd5bb01d04585f8fc5cb9ddf48d5e0edde468dcfec1b0e30cfeccc9f01903fce",
+  "diagnostics": [
+    "W22-functional",
+    "A16-functional"
+  ],
+  "dtype": "bfloat16",
+  "input_bindings_sha256": "67283e4699a2874bcfa761ccc1c4851de8b1a66a4744361b7c614060d6c4b152",
+  "interaction_limitation": "Native has direct answer image access; F/P/B/C do not. C-P and C-B conditional contributions, not pure four-cell factorial with Native.",
+  "max_new_tokens": 32,
+  "multiplicity": "Bonferroni within each dataset six comparisons; exploratory -1pp one-sided lower CI, no confirmatory claim",
+  "seed": 20261105,
+  "skip_layers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "smoke_assertions": "All36 MLP/norm and residual; native mRoPE and 3 deepstack; zero blocked attention; early skip affects P-1 only; actual compact KV and hidden rows; cleanup normal/exception; no fallback",
+  "smoke_tolerance": {
+    "action": "Any failure stops both workers before pilot/main/performance; do not relax",
+    "complete_token_agreement": 1.0,
+    "functional_physical_max_abs": 0.5,
+    "functional_physical_mean_abs": 0.02,
+    "native_noop": "torch.equal all effective logits",
+    "top1_agreement": 1.0
+  },
+  "source_reference": "dfe0cbacd09de9dfeacff980b911e6aec22a7665",
+  "timing": "Each image, each condition: three warmups + five repeats, interleaved; coldKV; original pixels; file IO/processor excluded; CUDA events and synchronized wall E2E",
+  "transformers": "4.57.6",
+  "vqav2_scoring": "Pinned ate_fulljoint_vqav2.common.score: official punctuation/digit/article helpers on both pred and gold, then ten-answer leave-one-out consensus",
+  "writer_cutoff": 22
+}
