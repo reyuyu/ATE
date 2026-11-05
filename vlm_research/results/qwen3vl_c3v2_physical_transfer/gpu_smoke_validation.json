@@ -1,0 +1,45 @@
+{
+  "checks_reached": {
+    "native_hf": "Strict generation token and effective-logit assertions completed before F/P/B/C loop on both GPUs; vectors not archived",
+    "native_noop": "Strict assertions completed before F/P/B/C loop on both GPUs; vectors not archived, code/control-flow evidence only",
+    "physical_shapes": "All six nonnative conditions saved for first image on both GPUs"
+  },
+  "completed_accepted_cases_per_gpu": 0,
+  "failed_gate": {
+    "comparison": "F_vs_C",
+    "complete_token_ids_C": [
+      2152,
+      151645
+    ],
+    "complete_token_ids_F": [
+      2152,
+      151645
+    ],
+    "max_abs": 0.4453125,
+    "max_abs_limit": 0.5,
+    "mean_abs": 0.08348099887371063,
+    "mean_abs_limit": 0.02,
+    "step": 0,
+    "top1_equal": true
+  },
+  "failure": {
+    "at": "2026-11-05T12:38:56.040909+00:00",
+    "error": "AssertionError({'step': 0, 'max_abs': 0.4453125, 'mean_abs': 0.08348099887371063, 'top1_equal': True})",
+    "phase": "smoke",
+    "rank": 1,
+    "status": "FAILED",
+    "traceback": "Traceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/qwen3vl-c3v2-physical-transfer/vlm_research/qwen3vl_c3v2_physical/worker.py\", line 131, in <module>\n    try:main(rank,phase)\n        ^^^^^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/qwen3vl-c3v2-physical-transfer/vlm_research/qwen3vl_c3v2_physical/worker.py\", line 74, in main\n    comparisons[a+'__'+b]=compare(vectors[a],vectors[b])\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/qwen3vl-c3v2-physical-transfer/vlm_research/qwen3vl_c3v2_physical/worker.py\", line 37, in compare\n    assert r['max_abs']<=.5 and r['mean_abs']<=.02 and r['top1_equal'],r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'step': 0, 'max_abs': 0.4453125, 'mean_abs': 0.08348099887371063, 'top1_equal': True}\n"
+  },
+  "first_case": "GQA__06905471",
+  "not_reached": [
+    "remaining two smoke cases per GPU",
+    "B-vs-F and P-vs-W22 numerical checks",
+    "pilot",
+    "formal quality",
+    "performance"
+  ],
+  "requested_cases_per_gpu": 3,
+  "source_commit": "dae5207d016acea8225f236ce3b81285d3d8bd90",
+  "status": "FAILED_STOPPED",
+  "thresholds_changed": false
+}

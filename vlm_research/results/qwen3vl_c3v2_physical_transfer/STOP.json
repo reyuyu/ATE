@@ -1,0 +1,8 @@
+{
+  "at": "2026-11-05T12:38:56.040909+00:00",
+  "error": "AssertionError({'step': 0, 'max_abs': 0.4453125, 'mean_abs': 0.08348099887371063, 'top1_equal': True})",
+  "phase": "smoke",
+  "rank": 1,
+  "status": "FAILED",
+  "traceback": "Traceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/qwen3vl-c3v2-physical-transfer/vlm_research/qwen3vl_c3v2_physical/worker.py\", line 131, in <module>\n    try:main(rank,phase)\n        ^^^^^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/qwen3vl-c3v2-physical-transfer/vlm_research/qwen3vl_c3v2_physical/worker.py\", line 74, in main\n    comparisons[a+'__'+b]=compare(vectors[a],vectors[b])\n                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/qwen3vl-c3v2-physical-transfer/vlm_research/qwen3vl_c3v2_physical/worker.py\", line 37, in compare\n    assert r['max_abs']<=.5 and r['mean_abs']<=.02 and r['top1_equal'],r\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: {'step': 0, 'max_abs': 0.4453125, 'mean_abs': 0.08348099887371063, 'top1_equal': True}\n"
+}
