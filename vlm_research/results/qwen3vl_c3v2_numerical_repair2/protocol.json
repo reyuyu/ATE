@@ -1,0 +1,34 @@
+{
+  "GPU_cutoff_UTC": "2026-11-05T16:01:44.206416+00:00",
+  "authorization": "Explicit current-task max two idle GPUs; single card first",
+  "base_commit": "fe142bf2a5e0187e352591c699b4e977c40cb41c",
+  "delivery_deadline_UTC": "2026-11-05T16:31:44.206416+00:00",
+  "dtype": "BF16; FP32 local projection allowed only as explicit candidate",
+  "keep_previous_dead_key_prefill_repair": true,
+  "layers_unchanged": true,
+  "model_candidate_limit": 4,
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "no_accuracy_or_e2e": true,
+  "no_nearly_dense_final": true,
+  "operator_candidates": [
+    "FP32 local projected and rounded back BF16",
+    "BF16 bmm with physical26 rows",
+    "BF16 accumulation reduction disabled for targeted operator"
+  ],
+  "original": "GQA__06905471",
+  "phase1": "Reproduce previous repaired original F/B/W/P/C, native/noop/HF strict. Trace all Decode and late Prefill; all heads for Decode and L22/L23; common real positions only.",
+  "scope_rule": "Start L22 K/V/gate/up; expand to later layers only on measured first divergence evidence. Decode repair determined from actual first divergent operator.",
+  "smoke_cases": [
+    "GQA__06905471",
+    "GQA__02497673",
+    "GQA__02287196"
+  ],
+  "start_UTC": "2026-11-05T14:31:44.206416+00:00",
+  "stop": "No layer search; no benchmark; no new input until full original C gate passed; stop after few targeted candidates or error/OOM; no threshold changes",
+  "thresholds": {
+    "all_tokens_agreement": 1.0,
+    "max_abs": 0.5,
+    "mean_abs": 0.02,
+    "top1_agreement": 1.0
+  }
+}
