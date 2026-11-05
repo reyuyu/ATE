@@ -1,5 +1,6 @@
 """Descriptive reporting for the explicitly non-independent continuation."""
 import csv
+import collections
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -18,9 +19,9 @@ def main():
     perf=rows(OUT/'analysis/06_recheck_performance/latency_flops_kv.csv')
     paired=rows(OUT/'analysis/06_recheck_performance/performance_paired.csv')
     candidates=[config('native'),config(),config(answer='both'),primary]
-    names=['Native','C1','C3-V2','Continued selection']
+    names=['Native','C1 L20','C3-V2 L20','L32 diagnostic']
     if selection.get('speed_secondary'):
-        candidates.append(selection['speed_secondary']); names.append('Speed secondary')
+        candidates.append(selection['speed_secondary']); names.append('L24 physical')
     count=len(candidates)
     combined=[]
     fig,axes=plt.subplots(2,2,figsize=(11,7),layout='constrained')
@@ -60,6 +61,20 @@ def main():
                 depth.append(dict(dataset=d,cutoff=cutoff,answer_attention=mode,n=len(keys),
                     accuracy=100*np.mean([r['generation']['score'] for r in records])))
     write_csv(OUT/'DEV_depth_comparison.csv',depth)
+    contrasts=[]
+    path=[config(answer='both'),config('all','decode',20),config('all','decode',24),
+          config('all','decode',28),config('all','decode',32)]
+    for d in ('GQA','VQAv2'):
+        keys=[k for k in devkeys if pool[k]['dataset']==d]
+        for before,after in zip(path,path[1:]):
+            a=[read_record(after,k,pool[k])['generation'] for k in keys]
+            b=[read_record(before,k,pool[k])['generation'] for k in keys]
+            contrasts.append(dict(dataset=d,before=config_id(before),after=config_id(after),n=len(keys),
+                delta_pp=100*np.mean([x['score']-y['score'] for x,y in zip(a,b)]),
+                harm=sum(x['score']<y['score'] for x,y in zip(a,b)),rescue=sum(x['score']>y['score'] for x,y in zip(a,b)),
+                first_token_flips=sum(x['token_ids'][0]!=y['token_ids'][0] for x,y in zip(a,b)),
+                sequence_changes=sum(x['token_ids']!=y['token_ids'] for x,y in zip(a,b))))
+    write_csv(OUT/'DEV_component_contrasts.csv',contrasts)
     fig,axes=plt.subplots(1,2,figsize=(10,3.5),layout='constrained')
     for ax,d in zip(axes,('GQA','VQAv2')):
         for mode,color in (('none','#ba593e'),('decode','#16786a')):
@@ -72,14 +87,22 @@ def main():
     for k in read(OUT/'jobs/05_recheck.json')['samples']:
         s=pool[k]
         for candidate in [primary]+([selection['speed_secondary']] if selection.get('speed_secondary') else []):
-            a=read_record(candidate,k,s)['generation']
-            for c in (config(answer='both'),config('qsa','decode')):
-                b=read_record(c,k,s)['generation']
-                changes.append(dict(sample=k,dataset=s['dataset'],category=s.get('answer_type',s['task']),
-                    task=s['task'],condition=config_id(candidate),baseline=config_id(c),prediction=a['text'],baseline_prediction=b['text'],
-                    score=a['score'],baseline_score=b['score'],harm=a['score']<b['score'],rescue=a['score']>b['score'],
-                    delta=a['score']-b['score'],question=s['question'],image_sha256=s['image_sha256']))
+            for head in (0,1):
+                current=dict(candidate,logits_to_keep=head); a=read_record(current,k,s)['generation']
+                for c in (config(answer='both',head=head),config('qsa','decode',head=head)):
+                    b=read_record(c,k,s)['generation']
+                    changes.append(dict(sample=k,dataset=s['dataset'],category=s.get('answer_type',s['task']),
+                        task=s['task'],condition=config_id(current),baseline=config_id(c),prediction=a['text'],baseline_prediction=b['text'],
+                        score=a['score'],baseline_score=b['score'],harm=a['score']<b['score'],rescue=a['score']>b['score'],
+                        delta=a['score']-b['score'],question=s['question'],image_sha256=s['image_sha256']))
     write_csv(OUT/'case_changes.csv',changes)
+    categories=collections.defaultdict(list)
+    for r in changes:
+        categories[r['dataset'],r['category'],r['task'],r['condition'],r['baseline']].append(r)
+    write_csv(OUT/'case_category_summary.csv',[
+        dict(dataset=k[0],category=k[1],task=k[2],condition=k[3],baseline=k[4],n=len(v),
+             harm=sum(r['harm'] for r in v),rescue=sum(r['rescue'] for r in v),
+             delta_pp=100*np.mean([r['delta'] for r in v])) for k,v in sorted(categories.items())])
     lines=['# 六小时原时钟内：继续探索结果','',
         '**本轮是已授权的探索续篇，不是新的独立确认。** 旧FINAL已被查看，续篇仅用原DEV/CHECK选型，随后在同一历史队列RECHECK；不能把普通配对CI称为新的非劣效证明。','',
         '## 冻结选择','',f"- 配置：`{config_id(primary)}`；冻结时间：{selection['at']}。",
@@ -94,7 +117,7 @@ def main():
         for c,label in zip(candidates,names):
             q=next(r for r in quality if r['dataset']==d and r['config_id']==config_id(c))
             lines.append(f"| {d} | {label} | {q['n']} | {float(q['accuracy']):.3f} | {float(q['delta_native_pp']):+.3f} [{float(q['delta_ci_low']):+.3f}, {float(q['delta_ci_high']):+.3f}] | {q['score_down']}/{q['score_up']} |")
-    lines+=['','## 独立H1质量与统一计时','',
+    lines+=['','## 单独生成的H1质量与统一计时','',
         '以下质量和性能均来自同一H1工程绑定。每数据集20题，同GPU、冷KV、重算Vision、3预热＋5次条件交错重复。先取逐题中位数再平均；与旧延迟不拼接。','',
         '| 数据集 | 条件 | H1 Accuracy % | Prefill ms | E2E ms | Decode ms/token | E2E加速 | 实际矩阵TFLOPs | KV Live/Capacity MiB | Peak Allocated MiB |',
         '|---|---|---:|---:|---:|---:|---:|---:|---|---:|']

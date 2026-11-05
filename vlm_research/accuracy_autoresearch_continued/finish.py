@@ -42,10 +42,18 @@ def audit():
             marker=read(OUT/f'worker{i}/jobs'/(name+'.json'))
             assert marker['status']=='COMPLETE' and marker['job_sha256']==digest(read(OUT/'jobs'/(name+'.json')))
     j=read(OUT/'jobs/05_recheck.json'); reused=0
+    head_changes=[]
     for k in j['samples']:
         for c in j['configs']:
             assert read_record(c,k,pool[k]) is not None
             reused+=not (OUT/'records'/config_id(c)/(k+'.json')).exists()
+            if c['logits_to_keep']==1:
+                a=read_record(c,k,pool[k])['generation']
+                b=read_record(dict(c,logits_to_keep=0),k,pool[k])['generation']
+                head_changes.append(dict(sample=k,dataset=pool[k]['dataset'],config_H1=config_id(c),
+                    first_logits_changed=a['first_logits_sha256']!=b['first_logits_sha256'],
+                    tokens_changed=a['token_ids']!=b['token_ids'],score_H1=a['score'],score_H0=b['score'],
+                    answer_H1=a['text'],answer_H0=b['text']))
     perf=read(OUT/'jobs/06_recheck_performance.json'); measured=0
     for k in perf['samples']:
         p=read(OUT/'performance'/perf['id']/(k+'.json'))
@@ -59,6 +67,7 @@ def audit():
     state=hardware(); owned=[read(OUT/f'worker{i}/released.json')['pid'] for i in range(2)]
     assert not any(f', {p},' in state['processes'] for p in owned)
     write_csv(OUT/'checkpoint_input_audit.csv',rows)
+    write_csv(OUT/'last_row_head_changes.csv',head_changes)
     atomic(OUT/'gpu_release_audit.json',dict(at=now(),own_worker_pids=owned,own_CUDA_processes_absent=True,
         no_external_process_terminated=True,hardware=state))
     atomic(OUT/'validation.json',dict(at=now(),status='PASS',unique_CPU_tests=15,
@@ -72,6 +81,49 @@ def audit():
     print('Complete exploratory continuation:',len(rows),'new records;',reused,'reused RECHECK records')
 
 
+def full_cohort():
+    configure(); pool=read(PRIOR/'sample_manifest.json'); selection=read(OUT/'selection.json')
+    candidates=[config('native'),config(),config(answer='both'),config('qsa','decode'),selection['primary']]
+    if selection.get('speed_secondary'): candidates.append(selection['speed_secondary'])
+    rows=[]
+    for d in ('GQA','VQAv2'):
+        keys=[k for k,s in pool.items() if s['dataset']==d]
+        for c in candidates:
+            pairs=[(read_record(c,k,pool[k]),read_record(config('native'),k,pool[k])) for k in keys]
+            assert all(a is not None and b is not None for a,b in pairs)
+            x=[a['generation']['score'] for a,b in pairs]; y=[b['generation']['score'] for a,b in pairs]
+            rows.append(dict(dataset=d,config_id=config_id(c),n=len(keys),accuracy=100*sum(x)/len(x),
+                delta_native_pp=100*sum(a-b for a,b in zip(x,y))/len(x),
+                harm=sum(a<b for a,b in zip(x,y)),rescue=sum(a>b for a,b in zip(x,y)),
+                status='Supportive historical H0 cohort including selection data; NOT independent validation'))
+    write_csv(OUT/'supportive_full_cohort.csv',rows)
+    print('Full historical cohort supportive table written')
+
+
+def catalog():
+    rows=[]
+    with (PRIOR/'results.tsv').open() as f:
+        for r in csv.DictReader(f,delimiter='\t'):
+            rows.append(dict(stage='prior',**r))
+    for path in sorted((OUT/'jobs').glob('*.json')):
+        j=read(path)
+        if j.get('performance'): continue
+        summary=OUT/'rounds'/j['id']/'summary.csv'
+        if not summary.exists():
+            summary=OUT/'analysis'/j['id']/'accuracy_summary.csv'
+        with summary.open() as f:
+            for r in csv.DictReader(f):
+                delta=float(r.get('delta_pp',r.get('delta_native_pp')))
+                rows.append(dict(stage='continuation',round=j['id'],split=j['split'],dataset=r['dataset'],
+                    config_id=r['config_id'],expected_n=r['n'],completed_n=r['n'],accuracy=r['accuracy'],
+                    original_native_accuracy=float(r['accuracy'])-delta,delta_original_native_pp=delta,
+                    harm=r.get('harm',r.get('score_down')),rescue=r.get('rescue',r.get('score_up')),
+                    hypothesis=j['hypothesis']))
+    with (OUT/'results.tsv').open('w',newline='') as f:
+        w=csv.DictWriter(f,list(rows[0]),delimiter='\t'); w.writeheader(); w.writerows(rows)
+    print('Combined prior + continuation catalog',len(rows),'rows; repeated stages are not distinct candidates')
+
+
 def inventory():
     assert read(OUT/'validation.json')['status']=='PASS'
     files={str(p.relative_to(ROOT)):sha(p) for p in sorted(OUT.rglob('*'))
@@ -83,4 +135,4 @@ def inventory():
 
 if __name__=='__main__':
     ap=argparse.ArgumentParser(); ap.add_argument('action'); a=ap.parse_args()
-    {'data':data_audit,'audit':audit,'inventory':inventory}[a.action]()
+    {'data':data_audit,'audit':audit,'inventory':inventory,'full-cohort':full_cohort,'catalog':catalog}[a.action]()

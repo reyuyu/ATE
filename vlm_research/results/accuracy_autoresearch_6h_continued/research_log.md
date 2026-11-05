@@ -24,3 +24,47 @@ Old records are read in place only after payload, sample, configuration and orig
 ## Early Observation
 
 The coarse VQAv2 quick60 gave 79.0% for both deeper no-bypass settings and 80.667% for both deeper Decode-only settings, versus Native85.5%. This is a negative result, not proof of equivalence or absence of benefit. All four continue through the frozen full DEV before promotion.
+
+## DEV and CHECK Decision
+
+Full DEV (GQA244/VQAv2 120) gave identical GQA84.836% for all four extensions.
+VQAv2 was70.833% without bypass and71.667% with Decode-only bypass. The fixed
+promotion rule therefore advanced Decode-only L28 and L32. No question or
+image was removed after observing these outputs.
+
+On CHECK (GQA606/VQAv2 180), All-R Decode-only L24/L28/L32 all had GQA87.624%.
+VQAv2 was67.667/67.667/68.222%, versus Native71.389%. Thus no candidate reached
+the per-dataset1pp target. Same-complete-sequence minimum E2E speed across
+datasets was1.154/1.089/1.018x. Before reading these timing results, the
+speed-secondary addendum was recorded separately and committed.
+
+At08:28:37, before the original08:31:15 limit, L32 was frozen as the
+quality-priority capacity diagnostic and L24 as the physical-exit speed
+secondary. There are no further candidates, depth changes or prompt searches.
+
+## Complete RECHECK Point Estimates
+
+At09:00 the full2350-question RECHECK had all23500 condition records available:
+14100 strictly bound historical records and9400 newly generated records.
+Both L24 and L32 gave VQAv2 76.20%, versus C3-V2 74.15% and Native79.20%.
+The H1 GQA results were87.070% and87.116%, versus Native87.721%.
+These point estimates do not revise the frozen selection. In particular,
+the original FINAL has already been used and cannot become an independent
+confirmation merely by calling it RECHECK. Bootstrap and fresh performance
+analysis follow; negative results and all new harms remain in the output.
+
+## Final Performance and Resource Release
+
+All2000 formal timing requests completed. On the unifiedH1 path, L24 achieved
+Native-relative E2E1.155x/1.145x on GQA/VQAv2, versus1.016x/1.029x for L32.
+L24 remains approximately7% slower than C3 while recovering VQAv2 point score;
+its recovery CI versus C3 is[-0.10,+4.45]pp and is not conclusive superiority.
+The paired Native-relative VQAv2 difference remains-3.00pp[-6.80,+0.70].
+The joint quality and speed objective was not reached.
+
+Both workers exited normally and their CUDA allocations were released before
+09:09. The09:10:08 audit passed all23500 RECHECK bindings,12308 new quality
+records across all continuation stages, and the2000 formal timed requests.
+All12308 newly generated records ended at EOS, with no empty, truncated or
+repeated output. No new GPU jobs remain, no external process was terminated,
+and the original clock and frozen GPU execution sources remain unchanged.

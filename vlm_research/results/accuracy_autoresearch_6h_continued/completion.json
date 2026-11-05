@@ -1,0 +1,92 @@
+{
+  "at": "2026-11-05T09:10:08.428296+08:00",
+  "clock": {
+    "allowed_physical_gpus": [
+      2,
+      3
+    ],
+    "base_commit": "3b46d36dc80e46fde778c6fc93191c8e33f24122",
+    "candidate_freeze_by": "2026-11-05T08:31:15+08:00",
+    "clock_must_not_reset": true,
+    "deliver_by": "2026-11-05T10:31:15+08:00",
+    "started_at": "2026-11-05T04:31:15+08:00",
+    "stop_new_gpu_work_by": "2026-11-05T10:01:15+08:00"
+  },
+  "no_further_GPU_work": true,
+  "quality_records": 12308,
+  "recheck_records": 23500,
+  "selection": {
+    "at": "2026-11-05T08:28:37.356001+08:00",
+    "primary": {
+      "answer_attention": "decode",
+      "cutoff": 32,
+      "logits_to_keep": 0,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "all"
+    },
+    "primary_is_capacity_diagnostic": true,
+    "prior_FINAL_not_used_for_selection": true,
+    "ranking": [
+      {
+        "config": {
+          "answer_attention": "decode",
+          "cutoff": 24,
+          "logits_to_keep": 0,
+          "max_new_tokens": 32,
+          "prompt_variant": "original",
+          "writer": "all"
+        },
+        "speed": 1.1542970567388329,
+        "worst_loss_pp": 3.7222222222222228
+      },
+      {
+        "config": {
+          "answer_attention": "decode",
+          "cutoff": 28,
+          "logits_to_keep": 0,
+          "max_new_tokens": 32,
+          "prompt_variant": "original",
+          "writer": "all"
+        },
+        "speed": 1.0886854772996548,
+        "worst_loss_pp": 3.7222222222222228
+      },
+      {
+        "config": {
+          "answer_attention": "decode",
+          "cutoff": 32,
+          "logits_to_keep": 0,
+          "max_new_tokens": 32,
+          "prompt_variant": "original",
+          "writer": "all"
+        },
+        "speed": 1.0178668079506366,
+        "worst_loss_pp": 3.166666666666666
+      }
+    ],
+    "recheck_is_not_independent_confirmation": true,
+    "remaining_original_clock": {
+      "allowed_physical_gpus": [
+        2,
+        3
+      ],
+      "base_commit": "3b46d36dc80e46fde778c6fc93191c8e33f24122",
+      "candidate_freeze_by": "2026-11-05T08:31:15+08:00",
+      "clock_must_not_reset": true,
+      "deliver_by": "2026-11-05T10:31:15+08:00",
+      "started_at": "2026-11-05T04:31:15+08:00",
+      "stop_new_gpu_work_by": "2026-11-05T10:01:15+08:00"
+    },
+    "secondary_rule": "Inherited original 2% faster on BOTH matched-sequence dataset subsets, at least six each; addendum before continuation timing scores",
+    "speed_secondary": {
+      "answer_attention": "decode",
+      "cutoff": 24,
+      "logits_to_keep": 0,
+      "max_new_tokens": 32,
+      "prompt_variant": "original",
+      "writer": "all"
+    }
+  },
+  "status": "COMPLETE_EXPLORATORY_CONTINUATION"
+}

@@ -95,11 +95,11 @@ def promote():
         read(PRIOR/'jobs/08_check_performance.json')['samples'],performance=True)
 
 
-def analyze_round(name,perf=False):
+def analyze_round(name,perf=False,offline=False):
     configure(); analysis.OUT=OUT; analysis.load_round=load_round
     analysis.source_hashes=sources; analysis.read_record=read_record
     if perf: analysis.performance_summary(name)
-    else: analysis.analyze(name)
+    else: analysis.analyze(name,offline=offline)
 
 
 def freeze():
@@ -140,10 +140,14 @@ def freeze():
 
 
 if __name__=='__main__':
-    ap=argparse.ArgumentParser(); ap.add_argument('action'); ap.add_argument('name',nargs='?'); a=ap.parse_args()
+    ap=argparse.ArgumentParser(); ap.add_argument('action'); ap.add_argument('name',nargs='?')
+    ap.add_argument('--offline',action='store_true',help='CPU-only recomputation from completed checkpoints; never dispatches GPU work')
+    a=ap.parse_args()
+    if a.offline and a.action not in ('analyze','performance'):
+        ap.error('--offline is restricted to CPU-only analysis')
     if a.action=='init': init()
     elif a.action=='summary': summary(a.name)
     elif a.action=='promote': promote()
     elif a.action=='freeze': freeze()
-    elif a.action=='analyze': analyze_round(a.name)
+    elif a.action=='analyze': analyze_round(a.name,offline=a.offline)
     elif a.action=='performance': analyze_round(a.name,True)
