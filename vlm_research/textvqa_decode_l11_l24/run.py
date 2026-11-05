@@ -65,7 +65,7 @@ def prepare_cpu():
             records.append(dict(key=key, condition=label, path=str(historical_path(key, label)),
                 sha256=sha(historical_path(key, label))))
     atomic(OUT / 'source_manifest.json', dict(weights=old['weights'], reused_records=records))
-    atomic(OUT / 'protocol.json', dict(created_at=now(), base_commit='84367c439741b00287c5cc58bac86f769a186a7e',
+    atomic(OUT / 'protocol.json', dict(created_at=now(), base_commit='e2bcb348c9814e76a320608549ec3dab2177cbd3',
         model='LLaVA-1.5-7B', revision='b234b804b114d9e37bb655e11cbbb5f5e971b7a9',
         dtype='FP16', attention='eager', transformers='4.49.0', logits_to_keep=1,
         condition=CONDITION, first_layer=FIRST_LAYER, decode_image_layers=KEEP, greedy=True, max_new_tokens=32,

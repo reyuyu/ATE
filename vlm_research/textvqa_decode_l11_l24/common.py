@@ -9,7 +9,7 @@ from ..textvqa_deep_add_drop.common import (
 
 ROOT = Path(__file__).resolve().parents[2]
 FIRST_LAYER = int(os.environ.get('ATE_TEXTVQA_DECODE_FIRST_LAYER', '11'))
-assert FIRST_LAYER in (11, 12), 'Only the two user-requested fixed regions are supported'
+assert FIRST_LAYER in (10, 11, 12), 'Only the user-requested fixed regions are supported'
 OUT = ROOT / f'vlm_research/results/textvqa_decode_l{FIRST_LAYER}_l24_500'
 SUBSET = Path('/data/lk/ATE-worktrees/textvqa-decode-deep-add-drop-200/vlm_research/results/textvqa_decode_deep_add_drop_200')
 CONDITION = f'Decode-L{FIRST_LAYER}-L24'

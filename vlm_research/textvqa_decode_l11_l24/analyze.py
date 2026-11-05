@@ -18,12 +18,14 @@ def main():
     subset = set(partition['subset199_keys'])
     assert len(samples) == 500 and len(subset) == 199
     reused = {(r['key'], r['condition']): r for r in read(OUT / 'source_manifest.json')['reused_records']}
-    prior = Path('/data/lk/ATE-worktrees/textvqa-decode-l11-l24-500/vlm_research/results/textvqa_decode_l11_l24_500')
-    extra = ('Decode-L11-L24',) if FIRST_LAYER == 12 else ()
-    prior_hashes = read(prior / 'result_hashes.json')['checkpoint_sha256'] if extra else {}
-    prior_freeze = read(prior / 'execution_freeze.json') if extra else None
-    if extra:
-        assert prior_freeze['devices'] == frozen['devices']
+    prior_layers = (11, 12) if FIRST_LAYER == 10 else (11,) if FIRST_LAYER == 12 else ()
+    priors = {f'Decode-L{i}-L24': Path(f'/data/lk/ATE-worktrees/textvqa-decode-l{i}-l24-500/vlm_research/results/textvqa_decode_l{i}_l24_500')
+              for i in prior_layers}
+    extra = tuple(priors)
+    prior_hashes = {c: read(p / 'result_hashes.json')['checkpoint_sha256'] for c, p in priors.items()}
+    prior_freezes = {c: read(p / 'execution_freeze.json') for c, p in priors.items()}
+    for label, prior in priors.items():
+        assert prior_freezes[label]['devices'] == frozen['devices']
         assert read(prior / 'partition.json')['image_shard'] == partition['image_shard']
     baselines = BASELINES+extra
     labels = baselines+(CONDITION,)
@@ -33,11 +35,11 @@ def main():
         full = historical(key, 'Native')
         for label in labels:
             path = (checkpoint(key) if label == CONDITION else
-                    prior / 'checkpoints' / (key+'.json') if label in extra else historical_path(key, label))
+                    priors[label] / 'checkpoints' / (key+'.json') if label in extra else historical_path(key, label))
             value = load(path)
             if label in extra:
-                assert sha(path) == prior_hashes[str(path.relative_to(prior))]
-                assert value['sources'] == prior_freeze['sources']
+                assert sha(path) == prior_hashes[label][str(path.relative_to(priors[label]))]
+                assert value['sources'] == prior_freezes[label]['sources']
             elif label != CONDITION:
                 assert sha(path) == reused[key, label]['sha256']
             else:
@@ -150,11 +152,11 @@ def main():
         'python -m vlm_research.textvqa_decode_l11_l24.run --driver',
         'python -m vlm_research.textvqa_decode_l11_l24.analyze', '```', '']
     (OUT / 'report_zh.md').write_text('\n'.join(lines))
-    if extra:
-        atomic(OUT / 'prior_l11_l24_binding.json', dict(questions=500,
+    for label, prior in priors.items():
+        atomic(OUT / (label.lower().replace('decode-', 'prior_').replace('-', '_')+'_binding.json'), dict(questions=500,
             execution_freeze_sha256=sha(prior / 'execution_freeze.json'),
             result_hashes_sha256=sha(prior / 'result_hashes.json'),
-            checkpoint_sha256=prior_hashes, all_inputs_and_first_logits_match=True,
+            checkpoint_sha256=prior_hashes[label], all_inputs_and_first_logits_match=True,
             identical_physical_devices_and_image_assignment=True))
     archive = OUT / 'raw_checkpoints.tar.gz'
     with tarfile.open(archive, 'w:gz') as stream:
