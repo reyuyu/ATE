@@ -8,6 +8,20 @@ from .common import *
 
 
 @contextmanager
+def qwen_last_attention_shape(adapter):
+    """Read-only shape trace, including ViT, so an OOM preserves actual Q/K/V."""
+    if adapter.kind!='qwen':yield;return
+    from unittest.mock import patch
+    from transformers.models.qwen3_vl import modeling_qwen3_vl as qm
+    original=qm.eager_attention_forward
+    def observed(module,q,k,v,*args,**kwargs):
+        adapter.last_attention_shape=dict(module=type(module).__name__,layer=getattr(module,'layer_idx',None),
+            query=list(q.shape),key=list(k.shape),value=list(v.shape),dtype=str(q.dtype))
+        return original(module,q,k,v,*args,**kwargs)
+    with patch.object(qm,'eager_attention_forward',observed):yield
+
+
+@contextmanager
 def native_reference(adapter):
     import torch
     refs=[];handles=[];counter=[0];nlayer=len(adapter.layers)
@@ -116,6 +130,8 @@ def smoke(adapter,rank,rows,bindings,tag):
         layout,b=prepare(adapter,s);expected=bindings[s['key']]
         assert b['input_ids']==expected['input_ids'] and b['prompt']==expected['prompt']
         if kind=='qwen':assert b['input_hashes']['pixel_values']==expected['pixel_values_sha256']
+        atomic(OUT/f'smoke/{kind}_rank{rank}/{s["key"]}_input.json',dict(**tag,key=s['key'],binding=b,
+            actual_input_shapes={k:list(v.shape) for k,v in adapter.inputs.items()},at=now()))
         torch.cuda.empty_cache();torch.cuda.reset_peak_memory_stats()
         inputs_hash=digest({k:tensor_sha(v) for k,v in adapter.inputs.items()})
         with native_reference(adapter) as native_refs:
@@ -248,13 +264,22 @@ def main():
     from .engine import load
     try:
         adapter=load(kind)
-        (smoke if args.stage=='smoke' else run)(adapter,rank,rows,bindings,tag)
+        with qwen_last_attention_shape(adapter):
+            (smoke if args.stage=='smoke' else run)(adapter,rank,rows,bindings,tag)
         del adapter
         import torch
         gc.collect();torch.cuda.empty_cache()
         atomic(OUT/f'environment/{kind}_rank{rank}_{args.stage}_exit.json',dict(**tag,status='SUCCESS',at=now()))
     except BaseException:
         err=dict(**tag,status='FAILED_STOP',at=now(),traceback=traceback.format_exc())
+        try:
+            import torch
+            err['peak_allocated_bytes']=torch.cuda.max_memory_allocated()
+            err['peak_reserved_bytes']=torch.cuda.max_memory_reserved()
+            err['memory_summary']=torch.cuda.memory_summary()
+            err['actual_input_shapes']={k:list(v.shape) for k,v in adapter.inputs.items()}
+            err['last_actual_attention_shape']=getattr(adapter,'last_attention_shape',None)
+        except Exception as diagnostic_error:err['diagnostic_error']=repr(diagnostic_error)
         atomic(OUT/f'environment/{kind}_rank{rank}_{args.stage}_failure.json',err);atomic(OUT/f'STOP_{kind}.json',err)
         raise
 
