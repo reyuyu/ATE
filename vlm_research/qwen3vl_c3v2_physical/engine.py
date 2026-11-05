@@ -72,18 +72,24 @@ class Execution:
         textpos=position_ids[0]
         if position_ids.shape[0]==4:position_ids=position_ids[1:]
         rotary=self.d.rotary_emb(h,position_ids)
-        base=create_causal_mask(config=self.d.config,input_embeds=h,attention_mask=attention_mask,
-            cache_position=cp,past_key_values=self.cache if not isinstance(self.cache,CompactKV) else None,
-            position_ids=textpos)
-        if base is None:
-            if pre:base=torch.full((1,1,self.n,self.n),torch.finfo(h.dtype).min,device=h.device,dtype=h.dtype).triu(1)
-            else:base=h.new_zeros((1,1,1,self.n+self.step))
-        early=base.clone()
-        early[..., -1,self.image]=-torch.inf
-        late=early.clone()
-        if pre and self.late:
-            qi=torch.arange(self.I[-1]+1,self.n-1,device=h.device)
-            late[0,0,qi[:,None],self.image[None,:]]=-torch.inf
+        if not pre and isinstance(self.cache,CompactKV):
+            # Every persistent key is text, in its original causal order. HF's
+            # mask builder cannot infer our physical length from a Cache=None.
+            early=late=None
+        else:
+            base=create_causal_mask(config=self.d.config,input_embeds=h,attention_mask=attention_mask,
+                cache_position=cp,past_key_values=self.cache if not isinstance(self.cache,CompactKV) else None,
+                position_ids=textpos)
+            if base is None:
+                if pre:base=torch.full((1,1,self.n,self.n),torch.finfo(h.dtype).min,device=h.device,dtype=h.dtype).triu(1)
+                else:base=h.new_zeros((1,1,1,self.n+self.step))
+            assert base.shape[-1]>=self.n
+            early=base.clone()
+            early[..., -1,self.image]=-torch.inf
+            late=early.clone()
+            if pre and self.late:
+                qi=torch.arange(self.I[-1]+1,self.n-1,device=h.device)
+                late[0,0,qi[:,None],self.image[None,:]]=-torch.inf
         for i,layer in enumerate(self.d.layers):
             if pre and self.physical and i==22:
                 h=h.index_select(1,self.text);cp=cp.index_select(0,self.text)
