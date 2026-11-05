@@ -1,0 +1,8 @@
+condition,late_R_image_mask,answer_image_mask,physical_exit_L22,attention_bypass_L1_L6,true_skip,prefill_early_rows,prefill_attention_L1_L6_rows,prefill_late_rows,prefill_KV_return,persistent_KV,decode_position,prefill_mrope,deepstack
+N,False,False,False,False,False,122,122,122,native,native dense all layers,original logical 122+step-1,native3axes unchanged,native injections after L0/L1/L2
+F,True,True,False,True,False,122,122,122,current full KV except skipped attention prefix121,native dense all layers,original logical 122+step-1,native3axes unchanged,native injections after L0/L1/L2
+B,True,True,False,True,True,122,121,122,current full KV except skipped attention prefix121,"text-only, skipped layers absent",original logical 122+step-1,native3axes unchanged,native injections after L0/L1/L2
+W22-functional,True,True,False,False,False,122,122,122,current full KV except skipped attention prefix121,native dense all layers,original logical 122+step-1,native3axes unchanged,native injections after L0/L1/L2
+P,True,True,True,False,False,122,122,26,current full KV except skipped attention prefix121,text-only all layers,original logical 122+step-1,native3axes; original text indices gathered at exit,native injections after L0/L1/L2
+C,True,True,True,True,True,122,121,26,current full KV except skipped attention prefix121,"text-only, skipped layers absent",original logical 122+step-1,native3axes; original text indices gathered at exit,native injections after L0/L1/L2
+A16-functional,False,True,False,True,False,122,122,122,current full KV except skipped attention prefix121,native dense all layers,original logical 122+step-1,native3axes unchanged,native injections after L0/L1/L2

@@ -1,0 +1,14 @@
+{
+  "B_C": "Same physical skip and image permissions; only exit and consequent late shapes differ. Both store text-only KV.",
+  "F_B": "Functionally matched effective outputs: same permissions and bypass; physical B removes P-1 QKV and future unused KV. Prefill 122->121 attention can alter BF16 shapes.",
+  "W22_P": "Despite W22 not being a pure Native-relative single factor, historical W22 and P DO have matching R and answer image permissions and no bypass; valid exit-isolation pair.",
+  "baseline": "No first-divergence claim can be made from saved scalar logits and operator shapes alone.",
+  "cache_prefill": "CompactKV.update returns unmodified fresh KV for current prefill, while storing text subset for future decode. Thus persistent storage alone should not change prefill attention values.",
+  "deepstack": "Three native injections before L22; no injection intentionally removed.",
+  "diagnostics_scope": "No quality, NLL, benchmark or layer search in this task.",
+  "first_possible_shape_divergence": "L1 attention prefix 121 vs full122; later L22 text-only26 vs full122 affects QKV, attention reductions, MLP. This is a hypothesis, not a measured cause.",
+  "mask": "Dense finite-min future mask versus explicit -inf image mask; physical text submatrix should preserve all causal/legal entries. CPU truth-table tests and runtime alignment required.",
+  "old_probe_limit": "Original array vectors were not persisted; this task must persist complete logits and relevant stage tensors with SHA.",
+  "positions": "Original logical cache positions and gathered original rotary factors are preserved by source inspection; require runtime tensor equality to exclude bugs.",
+  "skip_KV": "No future attention queries exist in L1-L6. Prefix queries cannot causally use P-1. Absent persistent cache there is semantically sufficient."
+}

@@ -1,0 +1,159 @@
+{
+  "amplification": "First mean absolute aligned-text error > 1e-3, and full per-layer values; diagnostic marker does not replace acceptance",
+  "attention": "eager",
+  "base_commit": "1cd2534f7a79ac7b3c746d17ceb19e823cf53ab3",
+  "conditions": [
+    "F",
+    "B",
+    "W22-functional",
+    "P",
+    "C"
+  ],
+  "dtype": "bfloat16",
+  "factor_gate": "Do all four frozen diagnostic comparisons even when an old numeric threshold fails; do not stop first comparison",
+  "first_divergence": "First layer then execution-order operator with any nonzero aligned text error; also report all common positions before exit and P-1 separately",
+  "gpu_authorization": "EXPLICIT_USER_AUTHORIZED_MAX_TWO_IDLE_GPUS_SINGLE_CARD_FIRST",
+  "gpu_budget": "Freeze absolute start and +2h deadline before first GPU; new GPU work stops 30min before; never reset on retries",
+  "matched_pairs": [
+    [
+      "F",
+      "B"
+    ],
+    [
+      "W22-functional",
+      "P"
+    ],
+    [
+      "B",
+      "C"
+    ],
+    [
+      "F",
+      "C"
+    ]
+  ],
+  "max_new_tokens": 32,
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "numeric_metrics": [
+    "max_abs",
+    "mean_abs",
+    "RMSE",
+    "relative_L2 eps1e-12",
+    "Top1",
+    "Top20 union logits",
+    "all generated tokens"
+  ],
+  "old_execution_commit": "dae5207d016acea8225f236ce3b81285d3d8bd90",
+  "original_case": "GQA__06905471",
+  "probe_gate": "Every effective logit vector with/without probes torch.equal; invalid probes stop diagnostic analysis",
+  "probe_layers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35
+  ],
+  "probes": [
+    "layer_input",
+    "input_norm",
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "q_norm",
+    "k_norm",
+    "rope_q",
+    "rope_k",
+    "scores_before_mask",
+    "effective_mask",
+    "scores_after_mask",
+    "attention_probabilities",
+    "attention_AV_output",
+    "o_proj_raw",
+    "attention_effective_output",
+    "attention_residual",
+    "mlp_output",
+    "layer_output",
+    "final_norm",
+    "lm_head_input"
+  ],
+  "raw_attention_heads": [
+    0,
+    16,
+    31
+  ],
+  "raw_attention_queries": "retained original text positions, with P-1 separately labelled; all heads summarized, raw selected heads only",
+  "raw_tensor_storage": "Private /data experiment resource directory; per-file SHA, shape and dtype indexed; do not claim Git contains external arrays",
+  "repair_policy": "Only after first divergence located; no threshold/layer/prompt/dtype/weight changes; no nearly-dense fallback accepted as physical fix",
+  "score_probe": "Replay same full QK GEMM shape; verify replay softmax equals actual returned probabilities; only then archive selected text queries/heads",
+  "secondary_case": "GQA__02497673",
+  "shadow": {
+    "inputs": "Frozen F operator input, compare full122 vs prefix121 at L1-L6 attention ops; full122 vs original text26 at L22-L23; identical shared input rows",
+    "layers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      22,
+      23
+    ],
+    "ops": [
+      "q_proj",
+      "k_proj",
+      "v_proj",
+      "o_proj",
+      "gate_proj",
+      "up_proj",
+      "down_proj"
+    ],
+    "precision": "BF16 unchanged; local FP32 operator diagnostic permitted, not a candidate replacement"
+  },
+  "smoke_cases": [
+    "GQA__06905471",
+    "GQA__02497673",
+    "GQA__02287196"
+  ],
+  "stop": "No formal accuracy or latency benchmark under any outcome; any repair-original-case failure stops expanding samples",
+  "success_status": "NUMERICAL_SMOKE_VALIDATED only if original then all fixed cases pass on authorized cards",
+  "tolerances": {
+    "action": "Any failure stops both workers before pilot/main/performance; do not relax",
+    "complete_token_agreement": 1.0,
+    "functional_physical_max_abs": 0.5,
+    "functional_physical_mean_abs": 0.02,
+    "native_noop": "torch.equal all effective logits",
+    "top1_agreement": 1.0
+  },
+  "transformers": "4.57.6"
+}
