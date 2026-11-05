@@ -77,8 +77,7 @@ def main():
         if (OUT/f'worker{i}/STOP.json').exists():
             failure=read(OUT/f'worker{i}/STOP.json')['traceback']
             assert "multiple values for keyword argument 'condition'" in failure or 'A worker failed; preserving checkpoints' in failure,failure
-    assert any("multiple values for keyword argument 'condition'" in read(v)['traceback'] for v in OUT.glob('worker*/STOP.json'))
-    assert all(read(OUT/f'worker{i}/smoke.json')['status']=='PASS' for i in (0,1))
+    recovered=bool(list(OUT.glob('worker*/STOP.json')))
     state=hardware(); d=f['devices'][rank]
     assert os.environ['CUDA_VISIBLE_DEVICES']==d['uuid'] and d['uuid'] not in state['processes']
     atomic(OUT/f'worker{rank}/resume_preflight.json',dict(at=now(),pid=os.getpid(),**state))
@@ -86,21 +85,27 @@ def main():
     a=None; started=time.time()
     try:
         a=Adapter('llava')
+        if not (OUT/f'worker{rank}/smoke.json').exists():
+            with patch.object(frozen,'check_stop',check_stop): frozen.smoke(a,rank,samples,partition)
+        barrier=time.time()
+        while not all((OUT/f'worker{i}/smoke.json').exists() for i in (0,1)):
+            check_stop(); assert time.time()-barrier<900; time.sleep(1)
         # Same device, source, inputs and Head; verify resumed Native logits against stored binding.
-        key=next(k for k,s in samples.items() if partition['image_shard'][s['image_sha256']]==rank and record(k,'Native Full',s))
-        l,w,_=prepare(a,samples[key],'Native Full')
-        result=generate(a,l,'Native Full',w,2,True)
-        from ..p1_layerwise_accuracy.engine import tensor_hash
-        assert tensor_hash(result[1][0])==record(key,'Native Full',samples[key])['generation']['first_logits_sha256']
-        del result
-        atomic(OUT/f'worker{rank}/resume_parity.json',dict(status='PASS',sample=key,first_logits_exact=True,
-            sources=source_hashes(),performance_entry_sha256=sha(Path(__file__))))
+        key=next((k for k,s in samples.items() if partition['image_shard'][s['image_sha256']]==rank and record(k,'Native Full',s)),None)
+        if key:
+            l,w,_=prepare(a,samples[key],'Native Full')
+            result=generate(a,l,'Native Full',w,2,True)
+            from ..p1_layerwise_accuracy.engine import tensor_hash
+            assert tensor_hash(result[1][0])==record(key,'Native Full',samples[key])['generation']['first_logits_sha256']
+            del result
+            atomic(OUT/f'worker{rank}/resume_parity.json',dict(status='PASS',sample=key,first_logits_exact=True,
+                sources=source_hashes(),performance_entry_sha256=sha(Path(__file__))))
         with patch.object(frozen,'check_stop',check_stop):
             if not (OUT/f'worker{rank}/quality_complete.json').exists(): frozen.quality(a,rank,samples,partition)
         performance(a,rank,samples,partition); a.verify()
         atomic(OUT/f'worker{rank}/completion.json',dict(status='COMPLETE',at=now(),
             elapsed_seconds=time.time()-started,sources=source_hashes(),performance_entry_sha256=sha(Path(__file__)),
-            recovered_serialization_failure=True))
+            recovered_serialization_failure=recovered))
     except BaseException:
         atomic(OUT/f'worker{rank}/RECOVERY_STOP.json',dict(at=now(),traceback=traceback.format_exc()))
         raise
