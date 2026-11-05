@@ -1,0 +1,33 @@
+{
+  "MLP_residual_norm_native": true,
+  "added_image_mask_negative_infinity": true,
+  "all_cross_gpu_valid_vectors_strict": true,
+  "all_model_files_sha_after_run": true,
+  "all_parent_artifact_sha_after_run": true,
+  "cpu_tests_passed": 36,
+  "figure_png_visually_reviewed": true,
+  "fixed_Lt_56_calls_per_prefill": true,
+  "forbidden_probability_strict_zero": true,
+  "frozen_sources_Git_and_current_sha_checked": 39,
+  "full_model_gate_not_relaxed": true,
+  "hidden_exit_and_early_skip_preserved": true,
+  "internal_AV_not_all_strict": true,
+  "local_main_unchanged": true,
+  "mrope_deepstack_cache_positions_valid": true,
+  "native_noop_hf_strict_both_cases_both_gpus": true,
+  "no_formal_benchmark": true,
+  "no_new_strategy": true,
+  "no_persistent_image_KV": true,
+  "non_target_masks_strict": true,
+  "notes": [
+    "Original retains tiny L22 AV difference, but all late layer outputs and all valid logits are bitwise equal.",
+    "Median fails at q_proj before AV; no accuracy conclusion follows.",
+    "QK metrics compare nonimage aligned keys; dead masked image scores intentionally differ.",
+    "Single-call timings are noisy; neither E2E results nor speedup evidence."
+  ],
+  "only_new_task_namespaces_changed": true,
+  "original_parent_F_and_C_before_logits_strictly_replayed": true,
+  "private_raw_directory_mode": "0o700",
+  "probe_readonly_strict": true,
+  "source_freeze": "19de4599c46f24c46caefbcebce643e72bfeafb1"
+}
