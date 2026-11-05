@@ -4,7 +4,7 @@ from dataclasses import replace
 import torch
 
 from .common import LABELS, policy
-from .engine import AttributionWriter
+from .engine import AttributionWriter, NativeMaskReference
 from ..middle10_recovery.engine import RecoveryWriter
 from ..c3v2_middle_reaccess import tests as fixtures
 
@@ -81,6 +81,12 @@ class Tests(fixtures.Tests):
             with self.assertRaises(ValueError), c.context():
                 raise ValueError('intentional cleanup check')
             self.assertEqual(methods, [b.self_attn.forward for b in self.a.layers])
+            hooks = [(len(b.self_attn._forward_pre_hooks), len(b.self_attn.o_proj._forward_hooks))
+                     for b in self.a.layers]
+            with self.assertRaises(ValueError), NativeMaskReference(self.a, self.layout, label).context():
+                raise ValueError('intentional native-reference cleanup check')
+            self.assertEqual(hooks, [(len(b.self_attn._forward_pre_hooks), len(b.self_attn.o_proj._forward_hooks))
+                                     for b in self.a.layers])
         self.assertTrue(torch.equal(before, self.h))
 
 
