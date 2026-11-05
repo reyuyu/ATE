@@ -18,15 +18,27 @@ def main():
     subset = set(partition['subset199_keys'])
     assert len(samples) == 500 and len(subset) == 199
     reused = {(r['key'], r['condition']): r for r in read(OUT / 'source_manifest.json')['reused_records']}
-    labels = BASELINES+(CONDITION,)
+    prior = Path('/data/lk/ATE-worktrees/textvqa-decode-l11-l24-500/vlm_research/results/textvqa_decode_l11_l24_500')
+    extra = ('Decode-L11-L24',) if FIRST_LAYER == 12 else ()
+    prior_hashes = read(prior / 'result_hashes.json')['checkpoint_sha256'] if extra else {}
+    prior_freeze = read(prior / 'execution_freeze.json') if extra else None
+    if extra:
+        assert prior_freeze['devices'] == frozen['devices']
+        assert read(prior / 'partition.json')['image_shard'] == partition['image_shard']
+    baselines = BASELINES+extra
+    labels = baselines+(CONDITION,)
     records, hashes, rows = {}, {}, []
     for key in sorted(samples):
         sample = samples[key]
         full = historical(key, 'Native')
         for label in labels:
-            path = checkpoint(key) if label == CONDITION else historical_path(key, label)
+            path = (checkpoint(key) if label == CONDITION else
+                    prior / 'checkpoints' / (key+'.json') if label in extra else historical_path(key, label))
             value = load(path)
-            if label != CONDITION:
+            if label in extra:
+                assert sha(path) == prior_hashes[str(path.relative_to(prior))]
+                assert value['sources'] == prior_freeze['sources']
+            elif label != CONDITION:
                 assert sha(path) == reused[key, label]['sha256']
             else:
                 assert value['sources'] == frozen['sources']
@@ -47,7 +59,7 @@ def main():
                 token_ids=g['token_ids'], first_logits_sha256=g['first_logits_sha256'],
                 input_binding_sha256=digest(value['input_binding']), eos=g['eos'], empty=g['empty'],
                 truncated=g['truncated'], repeated=g['repeated'], content_tokens=g['content_tokens']))
-    assert len(rows) == 2000 and len(hashes) == 500
+    assert len(rows) == 500*len(labels) and len(hashes) == 500
     assert {str(p.relative_to(OUT)) for p in (OUT / 'checkpoints').glob('*.json')} == set(hashes)
     write_csv(OUT / 'per_question.csv', rows)
     summaries, comparisons, cases = [], [], []
@@ -71,7 +83,7 @@ def main():
                 condition=label, accuracy=float(means[j]), ci_low=float(lo), ci_high=float(hi),
                 eos=sum(g['eos'] for g in gs), empty=sum(g['empty'] for g in gs),
                 truncated=sum(g['truncated'] for g in gs), repeated=sum(g['repeated'] for g in gs)))
-        for b, baseline in enumerate(BASELINES):
+        for b, baseline in enumerate(baselines):
             delta = values[:, -1]-values[:, b]
             lo, hi = np.percentile(boot[:, -1]-boot[:, b], [2.5, 97.5])
             comparisons.append(dict(cohort=cohort, questions=len(keys), image_clusters=len(images),
@@ -102,12 +114,12 @@ def main():
     smoke = [read(OUT / f'worker{r}/smoke.json') for r in range(2)]
     assert all(s['status'] == 'PASS' and len(s['checks']) == 3 for s in smoke)
     atomic(OUT / 'validation.json', dict(status='PASS', CPU_tests=14,
-        GPU_smoke=[s['status'] for s in smoke], new_answers=500, reused_answers=1500,
+        GPU_smoke=[s['status'] for s in smoke], new_answers=500, reused_answers=500*len(baselines),
         first_logits_exact_native_all=True, no_missing_or_duplicate_records=True,
         inference_sources=frozen['sources'], analysis_source_sha256=sha(Path(__file__)),
         performance_requests=0))
     atomic(OUT / 'completion.json', dict(at=now(), status='COMPLETE_QUALITY_ONLY',
-        new_answers=500, reused_answers=1500, subset199_is_nested_not_additional_generation=True,
+        new_answers=500, reused_answers=500*len(baselines), subset199_is_nested_not_additional_generation=True,
         code_commit=frozen['code_commit'], performance_requests=0,
         formal_quality_wall_seconds=max(read(OUT / f'worker{r}/progress.json')['elapsed_seconds'] for r in range(2))))
     lines = [f'# TextVQA：Decode L{FIRST_LAYER}–L24完整答案验证', '',
@@ -116,7 +128,7 @@ def main():
         f'- Native Prefill/P−1在全部32层正常；只限制真实增量Decode的原始Image Key访问，开放L{FIRST_LAYER}–L24（含两端，共{len(KEEP)}层）。',
         '- 所有Decode文本Attention、MLP、Residual、RoPE和独立真实KV保持原生；不是Attention输出置零，不做物理退出。',
         '- LLaVA-1.5-7B固定revision b234b804b114d9e37bb655e11cbbb5f5e971b7a9，FP16/eager、Transformers4.49.0、H1 last-row、原Prompt、Greedy max32、自然EOS。',
-        '- 官方十答案TextVQA共识软评分。Native/E/Late的1500条历史记录经输入、权重、源码及首Logits绑定复用。',
+        f'- 官方十答案TextVQA共识软评分。{", ".join(baselines)}共{500*len(baselines)}条历史记录经输入、源码及首Logits绑定复用，运行前同时核验固定权重。',
         '- 14项CPU测试、GPU0/1各3题Smoke通过；Native/No-op严格一致，Mask实际概率为0，独立Dense参考、KV及Hook验证通过。', '',
         '## 得分：分别列出两种样本范围',
         '| 条件 | 原500题 | 其中的原199题子集 |', '|---|---:|---:|']
@@ -129,7 +141,7 @@ def main():
         '|---|---|---:|---|---:|']
     for r in comparisons:
         lines.append(f"| {r['cohort']} | {r['baseline']} | {r['delta_accuracy_pp']:+.2f} | [{r['ci_low']:+.2f}, {r['ci_high']:+.2f}] | {r['soft_score_increased']}/{r['soft_score_decreased']} |")
-    lines += ['', '- `per_question.csv`保存全部2000条新旧答案与Token；`harm_recovery_cases.csv`保留全部逐题增减。',
+    lines += ['', f'- `per_question.csv`保存全部{500*len(labels)}条新旧答案与Token；`harm_recovery_cases.csv`保留全部逐题增减。',
         '- `accuracy_summary.csv`记录EOS、空答案、重复与截断，不剔除失败或负面样本。',
         '- 没有性能测试、额外层组合、物理优化或训练。GPU0/1 Worker已退出并释放资源，本轮到此停止。', '',
         '## 复现', '```bash', f'export ATE_TEXTVQA_DECODE_FIRST_LAYER={FIRST_LAYER}',
@@ -138,6 +150,12 @@ def main():
         'python -m vlm_research.textvqa_decode_l11_l24.run --driver',
         'python -m vlm_research.textvqa_decode_l11_l24.analyze', '```', '']
     (OUT / 'report_zh.md').write_text('\n'.join(lines))
+    if extra:
+        atomic(OUT / 'prior_l11_l24_binding.json', dict(questions=500,
+            execution_freeze_sha256=sha(prior / 'execution_freeze.json'),
+            result_hashes_sha256=sha(prior / 'result_hashes.json'),
+            checkpoint_sha256=prior_hashes, all_inputs_and_first_logits_match=True,
+            identical_physical_devices_and_image_assignment=True))
     archive = OUT / 'raw_checkpoints.tar.gz'
     with tarfile.open(archive, 'w:gz') as stream:
         stream.add(OUT / 'checkpoints', arcname='checkpoints')
