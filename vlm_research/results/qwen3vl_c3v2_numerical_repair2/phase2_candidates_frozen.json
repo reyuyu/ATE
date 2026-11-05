@@ -1,0 +1,18 @@
+{
+  "FP32_scope": "Four projections in genuine26-row Prefill only; L22 or L22-L35. Later scope conditional on fresh same-input K/V/gate/up shape evidence in L24-L35.",
+  "evidence": "phase1: F/B Decode first difference L12 AV; local FP32 at L22 does not fix K/V",
+  "final_candidate_choice": "Prefer zero-key-only minimal repair unless local FP32 reduces both full C effective-step mean errors; never choose by answer or Accuracy.",
+  "first_scope": "All non-skipped CompactKV Decode attention gets transient masked zero-image columns; no persistent KV added",
+  "no_new_input_if_original_fails": true,
+  "not_repeated": [
+    "transposed GEMM",
+    "column-major",
+    "32/64 row padding"
+  ],
+  "thresholds_unchanged": true,
+  "variants": [
+    "decode-zero-key",
+    "FP32-L22+decode",
+    "FP32-late+decode"
+  ]
+}

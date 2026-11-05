@@ -1,0 +1,193 @@
+{
+  "L22_repair_passed": false,
+  "accuracy_or_benchmark_run": false,
+  "all_array_bytes_sha_bound": true,
+  "all_canonical_flops_equal_observed_and_padding_totals": true,
+  "all_effective_logits_recomputed": true,
+  "all_important_tensors_sha_verified": true,
+  "all_json_csv_parse": true,
+  "cache_snapshots_checked": 1008,
+  "cpu_cleanup": true,
+  "cpu_unit_tests_passed": 27,
+  "decode_B_original_case_strict_on_two_gpus": true,
+  "extra_input_count": 0,
+  "figure_pdf_png_pairs": [
+    "decode_first_divergence.pdf",
+    "logits_repair_comparison.pdf",
+    "operator_precision_comparison.pdf",
+    "physical_shapes_and_overhead.pdf"
+  ],
+  "figure_visual_inspection": "All four PNG figures inspected; PDF page count and text verified",
+  "full_C_original_passed": false,
+  "limitations": [
+    "One original input only",
+    "FP32 projections cannot be treated as matching frozen dense BF16",
+    "Temporary Decode key restoration adds QK/AV work despite compressed persistent KV",
+    "GPU single-call timings lack controlled benchmark repetition"
+  ],
+  "main_unchanged": true,
+  "native_noop_hf_strict": true,
+  "old_results_unchanged": true,
+  "physical_invariants": [
+    {
+      "all_36_mlp_norm_residual": true,
+      "cache_original_positions": true,
+      "decode_append_prefix_unchanged": true,
+      "deepstack_unchanged": true,
+      "late_kv_matches_actual_projections": true,
+      "mrope_common_positions": true,
+      "name": "F",
+      "real_exit_and_skip_preserved": true,
+      "run": "phase1_rank0"
+    },
+    {
+      "all_36_mlp_norm_residual": true,
+      "cache_original_positions": true,
+      "decode_append_prefix_unchanged": true,
+      "deepstack_unchanged": true,
+      "late_kv_matches_actual_projections": true,
+      "mrope_common_positions": true,
+      "name": "B",
+      "real_exit_and_skip_preserved": true,
+      "run": "phase1_rank0"
+    },
+    {
+      "all_36_mlp_norm_residual": true,
+      "cache_original_positions": true,
+      "decode_append_prefix_unchanged": true,
+      "deepstack_unchanged": true,
+      "late_kv_matches_actual_projections": true,
+      "mrope_common_positions": true,
+      "name": "W22-functional",
+      "real_exit_and_skip_preserved": true,
+      "run": "phase1_rank0"
+    },
+    {
+      "all_36_mlp_norm_residual": true,
+      "cache_original_positions": true,
+      "decode_append_prefix_unchanged": true,
+      "deepstack_unchanged": true,
+      "late_kv_matches_actual_projections": true,
+      "mrope_common_positions": true,
+      "name": "P",
+      "real_exit_and_skip_preserved": true,
+      "run": "phase1_rank0"
+    },
+    {
+      "all_36_mlp_norm_residual": true,
+      "cache_original_positions": true,
+      "decode_append_prefix_unchanged": true,
+      "deepstack_unchanged": true,
+      "late_kv_matches_actual_projections": true,
+      "mrope_common_positions": true,
+      "name": "C",
+      "real_exit_and_skip_preserved": true,
+      "run": "phase1_rank0"
+    },
+    {
+      "all_36_mlp_norm_residual": true,
+      "cache_original_positions": true,
+      "decode_append_prefix_unchanged": true,
+      "deepstack_unchanged": true,
+      "late_kv_matches_actual_projections": true,
+      "mrope_common_positions": true,
+      "name": "decode-zero-key__B",
+      "real_exit_and_skip_preserved": true,
+      "run": "phase2_rank0"
+    },
+    {
+      "all_36_mlp_norm_residual": true,
+      "cache_original_positions": true,
+      "decode_append_prefix_unchanged": true,
+      "deepstack_unchanged": true,
+      "late_kv_matches_actual_projections": true,
+      "mrope_common_positions": true,
+      "name": "decode-zero-key__P",
+      "real_exit_and_skip_preserved": true,
+      "run": "phase2_rank0"
+    },
+    {
+      "all_36_mlp_norm_residual": true,
+      "cache_original_positions": true,
+      "decode_append_prefix_unchanged": true,
+      "deepstack_unchanged": true,
+      "late_kv_matches_actual_projections": true,
+      "mrope_common_positions": true,
+      "name": "decode-zero-key__C",
+      "real_exit_and_skip_preserved": true,
+      "run": "phase2_rank0"
+    },
+    {
+      "all_36_mlp_norm_residual": true,
+      "cache_original_positions": true,
+      "decode_append_prefix_unchanged": true,
+      "deepstack_unchanged": true,
+      "late_kv_matches_actual_projections": true,
+      "mrope_common_positions": true,
+      "name": "FP32-L22+decode__P",
+      "real_exit_and_skip_preserved": true,
+      "run": "phase2_rank0"
+    },
+    {
+      "all_36_mlp_norm_residual": true,
+      "cache_original_positions": true,
+      "decode_append_prefix_unchanged": true,
+      "deepstack_unchanged": true,
+      "late_kv_matches_actual_projections": true,
+      "mrope_common_positions": true,
+      "name": "FP32-L22+decode__C",
+      "real_exit_and_skip_preserved": true,
+      "run": "phase2_rank0"
+    },
+    {
+      "all_36_mlp_norm_residual": true,
+      "cache_original_positions": true,
+      "decode_append_prefix_unchanged": true,
+      "deepstack_unchanged": true,
+      "late_kv_matches_actual_projections": true,
+      "mrope_common_positions": true,
+      "name": "FP32-late+decode__P",
+      "real_exit_and_skip_preserved": true,
+      "run": "phase2_rank0"
+    },
+    {
+      "all_36_mlp_norm_residual": true,
+      "cache_original_positions": true,
+      "decode_append_prefix_unchanged": true,
+      "deepstack_unchanged": true,
+      "late_kv_matches_actual_projections": true,
+      "mrope_common_positions": true,
+      "name": "FP32-late+decode__C",
+      "real_exit_and_skip_preserved": true,
+      "run": "phase2_rank0"
+    },
+    {
+      "all_36_mlp_norm_residual": true,
+      "cache_original_positions": true,
+      "decode_append_prefix_unchanged": true,
+      "deepstack_unchanged": true,
+      "late_kv_matches_actual_projections": true,
+      "mrope_common_positions": true,
+      "name": "decode-zero-key__B",
+      "real_exit_and_skip_preserved": true,
+      "run": "phase2_rank1"
+    },
+    {
+      "all_36_mlp_norm_residual": true,
+      "cache_original_positions": true,
+      "decode_append_prefix_unchanged": true,
+      "deepstack_unchanged": true,
+      "late_kv_matches_actual_projections": true,
+      "mrope_common_positions": true,
+      "name": "decode-zero-key__C",
+      "real_exit_and_skip_preserved": true,
+      "run": "phase2_rank1"
+    }
+  ],
+  "pre_gpu_weight_hashes_verified": true,
+  "probes_readonly": true,
+  "remaining_smokes_run": false,
+  "source_and_old_artifact_hashes_verified": true,
+  "source_versions_git_verified": true,
+  "status": "PARTIAL_REPAIR"
+}

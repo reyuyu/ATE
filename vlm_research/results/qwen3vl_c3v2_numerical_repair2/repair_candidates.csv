@@ -1,0 +1,10 @@
+run,variant,comparison,first_prefill_stage,first_prefill_layer,first_decode_stage,first_decode_layer,step0_mean,step0_max,step1_mean,step1_max,all_effective_steps_pass,physical_hidden_rows,fp32_call_count,fp32_single_run_total_gpu_ms,fp32_weight_cast_bytes_total,decode_zero_columns_per_active_layer,persistent_dummy_keys
+phase2_rank0,decode-zero-key,F__B,NONE,NONE,NONE,NONE,0.0,0.0,0.0,0.0,True,122,0,0,0,96,0
+phase2_rank0,decode-zero-key,W22-functional__P,k_proj,22,scores_before_mask,22,0.05541224032640457,0.375,0.05521173030138016,0.5,False,26,0,0,0,96,0
+phase2_rank0,decode-zero-key,F__C,k_proj,22,scores_before_mask,22,0.05232971906661987,0.484375,0.060191113501787186,0.3125,False,26,0,0,0,96,0
+phase2_rank0,FP32-L22+decode,W22-functional__P,k_proj,22,scores_before_mask,22,0.0837595984339714,0.5,0.0508517324924469,0.375,False,26,4,2.8887040689587593,436207616,96,0
+phase2_rank0,FP32-L22+decode,F__C,k_proj,22,scores_before_mask,22,0.05531689524650574,0.625,0.10309017449617386,0.5,False,26,4,1.6005119979381561,436207616,96,0
+phase2_rank0,FP32-late+decode,W22-functional__P,k_proj,22,scores_before_mask,22,0.10099644213914871,0.75,0.04922037571668625,0.3125,False,26,56,21.903647921979427,6106906624,96,0
+phase2_rank0,FP32-late+decode,F__C,k_proj,22,scores_before_mask,22,0.07729863375425339,0.5,0.08254636824131012,0.5,False,26,56,22.29766394197941,6106906624,96,0
+phase2_rank1,decode-zero-key,F__B,NONE,NONE,NONE,NONE,0.0,0.0,0.0,0.0,True,122,0,0,0,96,0
+phase2_rank1,decode-zero-key,F__C,k_proj,22,scores_before_mask,22,0.05232971906661987,0.484375,0.060191113501787186,0.3125,False,26,0,0,0,96,0
