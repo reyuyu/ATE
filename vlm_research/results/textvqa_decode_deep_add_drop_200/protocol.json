@@ -1,5 +1,6 @@
 {
   "attention": "eager",
+  "authorization": "User standing authorization: 确认允许，以后都确认; current request permits at most two idle GPUs.",
   "base_commit": "5627bc822a7827ae11edfaec84c31f6b73398e25",
   "bootstrap": {
     "cluster": "image_sha256",
@@ -7,6 +8,7 @@
     "replicates": 20000,
     "seed": 20261106
   },
+  "code_commit": "b963df317942cbbe7e53424c089df500e691cb90",
   "comparisons": "Add-Li minus E; Drop-Li minus Late; each minus Native as descriptive reference",
   "conditions": [
     "Add-L21",
@@ -490,6 +492,16 @@
     ]
   },
   "decode_text_attention": "Native in all32 layers; no o_proj bypass",
+  "devices": [
+    {
+      "index": 0,
+      "uuid": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89"
+    },
+    {
+      "index": 1,
+      "uuid": "GPU-b08489af-0a8a-eb48-55ba-8346733af417"
+    }
+  ],
   "dtype": "FP16",
   "entire_prefill_and_p1": "Native in every layer, all Image/Prompt Attention and MLP unchanged",
   "exploratory_ordering_only": true,
