@@ -1,0 +1,66 @@
+{
+  "at": "2026-11-05T14:10:53.137308+00:00",
+  "benchmark_run": false,
+  "checks": {
+    "all_12_paired_logit_rows_recomputed_exactly": true,
+    "all_baseline_condition_input_hashes_equal": true,
+    "all_external_tensor_hashes_verified": true,
+    "all_five_single_page_vector_pdf_and_png_pairs": [
+      "early_bypass_components.pdf",
+      "exit_boundary_components.pdf",
+      "p_minus_1_layerwise_error.pdf",
+      "physical_shapes_kv_audit.pdf",
+      "repair_logits_comparison.pdf"
+    ],
+    "all_json_csv_parsed": {
+      "csv": 12,
+      "json": 67
+    },
+    "all_model_files_match_old_freeze": true,
+    "all_three_deepstack_injections_strict_equal": true,
+    "all_three_source_manifests_match_exact_git_commits": true,
+    "compact_bit_exact_first_divergence_archives_recomputed": [
+      {
+        "changed_elements": 4,
+        "contrast": "L1_F_B",
+        "first_saved_nonzero_stage": "attention_AV_output"
+      },
+      {
+        "changed_elements": 9299,
+        "contrast": "L22_W_P",
+        "first_saved_nonzero_stage": "k_proj"
+      },
+      {
+        "changed_elements": 9329,
+        "contrast": "repaired_L22_F_C",
+        "first_saved_nonzero_stage": "k_proj"
+      }
+    ],
+    "disk_free_GiB": 84.2085075378418,
+    "figures_visual_inspection": "All five PNG figures inspected in contact sheet; repair comparison also inspected at full image size; no clipping observed",
+    "fixed_images_sha_verified": true,
+    "gpu_workers_exited_devices_free": true,
+    "kv_content_position_and_append_checks": 360,
+    "main_unchanged": true,
+    "native_hf_and_readonly_probe_records_pass": true,
+    "native_noop_all_effective_logits_equal": true,
+    "normal_and_exception_hook_cleanup": true,
+    "official_modeling_source_sha256": "dd63ed3b124232735b3dca1bfa28f9d6b0d3f7182afcb75dde8f3e724b2b22da",
+    "old_source_reports_stop_checkpoints_unchanged": 24,
+    "positions_masks_mrope_pass": true,
+    "two_gpu_baseline_all_vectors_and_tokens_strict_equal": true
+  },
+  "extra_smokes_run": false,
+  "formal_quality_or_performance_ready": false,
+  "full_model_accuracy_run": false,
+  "limitations": [
+    "One fixed input only; no generalization claim",
+    "Detailed probes are Prefill; remaining Decode difference not fully operator-localized",
+    "BF16 shape sensitivity isolated; internal CUDA kernel not profiled",
+    "Repair dummy key relabeled only in CPU alignment sidecar; raw arrays unchanged",
+    "Model full-byte rehash performed at delivery stage"
+  ],
+  "repair_accepted": false,
+  "scientific_outcome": "ROOT_CAUSE_IDENTIFIED_REPAIR_FAILED",
+  "status": "DELIVERY_EVIDENCE_VALIDATED"
+}
