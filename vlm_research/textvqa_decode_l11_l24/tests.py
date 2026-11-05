@@ -2,14 +2,15 @@ import unittest
 
 import torch
 
-from .common import KEEP
+from .common import KEEP, FIRST_LAYER
 from .engine import writer
 from ..c3v2_middle_reaccess import tests as fixtures
 
 
 class Tests(fixtures.Tests):
     def test_new_region_scope_and_native_prefill(self):
-        self.assertEqual(KEEP, tuple(range(11, 25)))
+        self.assertEqual(KEEP, tuple(range(FIRST_LAYER, 25)))
+        self.assertEqual(len(KEEP), 25-FIRST_LAYER)
         c = writer(self.a, self.layout, True)
         with torch.inference_mode():
             native = self.decoder(inputs_embeds=self.h, use_cache=False).last_hidden_state
