@@ -1,0 +1,171 @@
+{
+  "status": "FROZEN_BEFORE_NEW_GPU_PREDICTIONS",
+  "at": "2026-11-05T17:41:34.045325+00:00",
+  "base_commit": "30d3e7a0c9318e71a5951aca9a05b6b78108db72",
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "dtype": "bfloat16",
+  "attention": "eager",
+  "transformers": "4.57.6",
+  "greedy": true,
+  "max_new_tokens": 32,
+  "logits_to_keep": 1,
+  "independent_dense_cache": true,
+  "conditions": [
+    "A",
+    "B",
+    "C",
+    "D",
+    "E"
+  ],
+  "condition_specs": {
+    "F": {
+      "p1": false,
+      "decode": false,
+      "early": false,
+      "late_writer": false
+    },
+    "A": {
+      "p1": true,
+      "decode": false,
+      "early": false,
+      "late_writer": false
+    },
+    "B": {
+      "p1": false,
+      "decode": true,
+      "early": false,
+      "late_writer": false
+    },
+    "C": {
+      "p1": true,
+      "decode": true,
+      "early": false,
+      "late_writer": false
+    },
+    "D": {
+      "p1": false,
+      "decode": false,
+      "early": true,
+      "late_writer": false
+    },
+    "E": {
+      "p1": false,
+      "decode": false,
+      "early": false,
+      "late_writer": true
+    }
+  },
+  "layer_index": "0-based; Qwen3-VL has 36 decoder layers",
+  "skip_layers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "late_layers": [
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35
+  ],
+  "restore_visual_only_non_skip_layers": true,
+  "R": "non-visual positions strictly after last original Image token and before P-1",
+  "sample_manifest_sha256": "bb09f894a04f111f430841f4d074ff0d770585956a04c5401436351e235d4a88",
+  "baseline_index_sha256": "b8b25844ea93aa4d82c3b94c491c59f21a05d13e800bef816087c4929cf16ca8",
+  "n": 1000,
+  "images": 918,
+  "sampling": "EXACT previous manifest, no new sampling or filtering",
+  "smoke": "same previous 20 frozen IDs, 10 per worker, all five interventions plus native/no-op/F reproduction",
+  "gpu_uuids": [
+    "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+    "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+  ],
+  "bootstrap": {
+    "unit": "Image SHA256 whole cluster",
+    "replicates": 20000,
+    "seed": 20261106,
+    "confidence": 0.95,
+    "exploratory": true,
+    "comparisons": [
+      [
+        "A",
+        "F"
+      ],
+      [
+        "A",
+        "Native"
+      ],
+      [
+        "B",
+        "F"
+      ],
+      [
+        "B",
+        "Native"
+      ],
+      [
+        "C",
+        "F"
+      ],
+      [
+        "C",
+        "Native"
+      ],
+      [
+        "D",
+        "F"
+      ],
+      [
+        "D",
+        "Native"
+      ],
+      [
+        "E",
+        "F"
+      ],
+      [
+        "E",
+        "Native"
+      ]
+    ],
+    "additional_frozen_comparisons": [
+      [
+        "C",
+        "A"
+      ],
+      [
+        "C",
+        "B"
+      ]
+    ],
+    "simultaneous_F_family": "Bonferroni percentile CI, 5 comparisons: quantiles .005/.995",
+    "best_selection": "highest full 1000-question accuracy; ties in fixed A,B,C,D,E order"
+  },
+  "continuation_gate": {
+    "minimum_improvement_pp": 3.0,
+    "paired_95ci_lower_strictly_above": 0,
+    "interpretation": "User gate evaluated on best condition pointwise paired CI; simultaneous CI additionally reported. Even if passed, no physical implementation or timing in this round."
+  },
+  "prohibitions": [
+    "E2E or any latency benchmark",
+    "FLOPs calculation",
+    "performance or peak memory benchmark",
+    "kernel search",
+    "additional conditions or layer combinations",
+    "prompt/tokenizer/model-weight changes",
+    "training"
+  ],
+  "accuracy_only": true
+}
