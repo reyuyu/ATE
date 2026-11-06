@@ -1,5 +1,12 @@
 # Seven-Benchmark Native / Physical C3 Quality
 
+Current user scope (2026-11-06): GQA and VQAv2 are deferred. The active
+dispatcher is
+`vlm_research/results/seven_benchmark_native_physical_quality/execution_scope/schedule.py`.
+It runs only POPE, ScienceQA-IMG, MMBench, TextVQA and MM-Vet, reusing the exact
+existing checkpoints. Do not use the original seven-benchmark launch command
+to resume this scope; it would also schedule the two deferred datasets.
+
 This runner reuses the unchanged original LLaVA engine from the completed
 MME/SEED quality experiment. It does not measure speed or alter the algorithm.
 Each worker owns one UUID-pinned GPU and keeps one resident model. Every image

@@ -5,10 +5,17 @@
 
 ## 本轮范围
 
-严格复用下载审计通过的367,028条原始记录：POPE 9,000、ScienceQA-IMG
+2026-11-06用户收紧执行范围：**暂时跳过GQA val_balanced 132,062题和
+VQAv2 val2014 214,354题**，不自动续跑。当前只继续POPE、ScienceQA-IMG、
+MMBench、TextVQA、MM-Vet，共20,612题、41,224条Native/Physical生成。
+原七项Manifest和科学协议原样保留，已完成POPE记录精确续用，不重新抽样。
+执行队列变更独立冻结在execution_scope/，不修改正在执行的Worker源码。
+
+原始七项冻结清单包含下载审计通过的367,028条记录：POPE 9,000、ScienceQA-IMG
 2,017、MMBench 4,377、TextVQA 5,000、MM-Vet 218、GQA 132,062、VQAv2
 214,354。图片SHA整簇确定性分成两片，各183,514题；同题的Native与
-Physical C3-V2在同一卡完成。LLaVA合计734,056次正式生成。
+Physical C3-V2在同一卡完成。原七项计划为734,056次生成；收紧后的本次
+实际执行上限为41,224条，不将两项DEFERRED标记为已完成。
 
 仅使用物理GPU2、GPU3，每卡一份固定FP16/eager LLaVA-1.5-7B；模型
 revision、Tokenizer、Processor和全部权重文件已重新验证SHA256。
