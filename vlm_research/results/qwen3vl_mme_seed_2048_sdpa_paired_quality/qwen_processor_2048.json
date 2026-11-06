@@ -1,0 +1,88 @@
+{
+  "capped": {
+    "_processor_class": "Qwen3VLProcessor",
+    "crop_size": null,
+    "data_format": "channels_first",
+    "default_to_square": true,
+    "device": null,
+    "disable_grouping": null,
+    "do_center_crop": null,
+    "do_convert_rgb": true,
+    "do_normalize": true,
+    "do_pad": null,
+    "do_rescale": true,
+    "do_resize": true,
+    "image_mean": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "image_processor_type": "Qwen2VLImageProcessorFast",
+    "image_std": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "input_data_format": null,
+    "max_pixels": null,
+    "merge_size": 2,
+    "min_pixels": null,
+    "pad_size": null,
+    "patch_size": 16,
+    "resample": 3,
+    "rescale_factor": 0.00392156862745098,
+    "return_tensors": null,
+    "size": {
+      "longest_edge": 2097152,
+      "shortest_edge": 65536
+    },
+    "temporal_patch_size": 2
+  },
+  "implementation_path": "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen2_vl/image_processing_qwen2_vl_fast.py",
+  "implementation_sha256": "09bfa9b17df7c3f0c6159bc34008ee50f21d2472cd5bae7e5c21ba1ca13a423c",
+  "max_image_tokens": 2048,
+  "merge_size": 2,
+  "original": {
+    "_processor_class": "Qwen3VLProcessor",
+    "crop_size": null,
+    "data_format": "channels_first",
+    "default_to_square": true,
+    "device": null,
+    "disable_grouping": null,
+    "do_center_crop": null,
+    "do_convert_rgb": true,
+    "do_normalize": true,
+    "do_pad": null,
+    "do_rescale": true,
+    "do_resize": true,
+    "image_mean": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "image_processor_type": "Qwen2VLImageProcessorFast",
+    "image_std": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "input_data_format": null,
+    "max_pixels": null,
+    "merge_size": 2,
+    "min_pixels": null,
+    "pad_size": null,
+    "patch_size": 16,
+    "resample": 3,
+    "rescale_factor": 0.00392156862745098,
+    "return_tensors": null,
+    "size": {
+      "longest_edge": 16777216,
+      "shortest_edge": 65536
+    },
+    "temporal_patch_size": 2
+  },
+  "output_gate": "Actual merged image positions <=2048 for every image; no token truncation",
+  "patch_size": 16,
+  "prompt": "unchanged original Qwen3-VL HF chat template; question only; no OCR",
+  "temporal_patch_size": 2
+}

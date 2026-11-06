@@ -1,0 +1,208 @@
+{
+  "answer_image_keys_forbidden": true,
+  "answer_skip_layers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "at": "2026-11-06T10:26:08.886860+00:00",
+  "backend": {
+    "text_config": "eager",
+    "vision_config": "sdpa"
+  },
+  "backend_comparison": [
+    {
+      "key": "MME__00798",
+      "rank": 0
+    },
+    {
+      "key": "MME__02358",
+      "rank": 1
+    },
+    {
+      "key": "SEED__05241",
+      "rank": 0
+    },
+    {
+      "key": "SEED__00167",
+      "rank": 1
+    }
+  ],
+  "backend_numerical_gates": {
+    "features_max_abs": 0.5,
+    "features_mean_abs": 0.02,
+    "finite_and_shape_equal": true,
+    "free_generation_token_equality": "observed and reported; not required across backends",
+    "native_same_prefix_logits_max_abs": 1.0,
+    "native_same_prefix_logits_mean_abs": 0.05,
+    "same_backend_hf_noop": "all effective logits torch.equal"
+  },
+  "batch_size": 1,
+  "bootstrap": {
+    "MME": "stratified by task-membership signature; whole clusters",
+    "SEED": "whole image clusters",
+    "clusters": "Image SHA256",
+    "interval": "exploratory unadjusted two-sided percentile 95%; no noninferiority claims",
+    "iterations": 20000,
+    "seed": 20261106
+  },
+  "conditions": [
+    "Native",
+    "Physical-C3"
+  ],
+  "cross_backend_numeric_thresholds_are_diagnostic_only": true,
+  "disk_min_free_bytes": 21474836480,
+  "dtype": "bfloat16",
+  "efficient_sdpa_allowlist": [
+    "FLASH_ATTENTION"
+  ],
+  "gate_order": [
+    "CPU and hashes",
+    "worst full requests",
+    "same-backend HF/No-op",
+    "Physical semantics",
+    "formal quality"
+  ],
+  "gpu_authorization_required_this_round": true,
+  "gpu_uuids": [
+    "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+    "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+  ],
+  "greedy": true,
+  "image_hidden_exit_before_layer": 22,
+  "llava_not_rerun": true,
+  "logits_to_keep": 1,
+  "math_and_cudnn_disabled": true,
+  "max_new_tokens": 32,
+  "memory_safety_margin_bytes": 536870912,
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "natural_eos": true,
+  "no_flops": true,
+  "no_profiler": true,
+  "no_search": true,
+  "no_timing": true,
+  "official_processor_max_language_image_tokens": 2048,
+  "parent_commit": "53e9cc1f52481de338ab1a3149a41b63eaa5d162",
+  "persistent_cache": "original compact text KV",
+  "physical": "unchanged qwen3vl_c3v2_physical.engine.Execution condition C / Physical-Original",
+  "preserved_dense_physical_strict_gate": {
+    "max_abs": 0.5,
+    "mean_abs": 0.02,
+    "status": "known historical failure; report without relaxing or using as new semantic gate",
+    "tokens_equal": true
+  },
+  "previous_cross_backend_stop_preserved": true,
+  "processor_longest_edge": 2097152,
+  "research_question": "Native vs Physical-Original at identical Vision SDPA / Text Eager, NOT cross-backend equivalence",
+  "scoring": {
+    "MME": "pinned official yes/no Acc + Acc+; Score Points",
+    "SEED": "frozen local HF full candidate mean conditional negative LogP; content only, no EOS; final ACC"
+  },
+  "smoke": [
+    {
+      "key": "MME__01341",
+      "rank": 0,
+      "reasons": [
+        "previous OOM; 8160 ViT patches",
+        "MME longest actual input"
+      ]
+    },
+    {
+      "key": "SEED__10726",
+      "rank": 0,
+      "reasons": [
+        "SEED longest actual input",
+        "longest complete SEED candidate path"
+      ]
+    },
+    {
+      "key": "SEED__09792",
+      "rank": 0,
+      "reasons": [
+        "median actual sequence length"
+      ]
+    },
+    {
+      "key": "MME__00798",
+      "rank": 0,
+      "reasons": [
+        "short input; backend numerical comparison"
+      ]
+    },
+    {
+      "key": "MME__01189",
+      "rank": 1,
+      "reasons": [
+        "maximum 8192 ViT patches",
+        "MME longest actual input"
+      ]
+    },
+    {
+      "key": "SEED__13226",
+      "rank": 1,
+      "reasons": [
+        "SEED longest actual input"
+      ]
+    },
+    {
+      "key": "SEED__13806",
+      "rank": 1,
+      "reasons": [
+        "longest complete SEED candidate path"
+      ]
+    },
+    {
+      "key": "SEED__12524",
+      "rank": 1,
+      "reasons": [
+        "median actual sequence length"
+      ]
+    },
+    {
+      "key": "MME__02358",
+      "rank": 1,
+      "reasons": [
+        "short input; backend numerical comparison"
+      ]
+    }
+  ],
+  "status": "FROZEN_BEFORE_GPU",
+  "stop_on": [
+    "OOM",
+    "nonfinite",
+    "new mask/position/cache semantics error",
+    "SHA mismatch",
+    "backend fallback"
+  ],
+  "text_layers": 36,
+  "torch": "2.6.0+cu124",
+  "transformers": "4.57.6",
+  "vision_blocks": 27,
+  "write_layers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ]
+}
