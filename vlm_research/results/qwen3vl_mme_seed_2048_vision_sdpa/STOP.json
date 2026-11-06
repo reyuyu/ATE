@@ -1,0 +1,59 @@
+{
+  "actual_input_shapes": {
+    "attention_mask": [
+      1,
+      102
+    ],
+    "image_grid_thw": [
+      1,
+      3
+    ],
+    "input_ids": [
+      1,
+      102
+    ],
+    "pixel_values": [
+      260,
+      1536
+    ]
+  },
+  "at": "2026-11-06T08:21:12.821544+00:00",
+  "kind": "qwen",
+  "last_actual_attention_shape": {
+    "dtype": "torch.bfloat16",
+    "key": [
+      1,
+      8,
+      103,
+      128
+    ],
+    "layer": 35,
+    "module": "Qwen3VLTextAttention",
+    "query": [
+      1,
+      32,
+      1,
+      128
+    ],
+    "value": [
+      1,
+      8,
+      103,
+      128
+    ]
+  },
+  "memory_summary": "|===========================================================================|\n|                  PyTorch CUDA memory summary, device ID 0                 |\n|---------------------------------------------------------------------------|\n|            CUDA OOMs: 0            |        cudaMalloc retries: 0         |\n|===========================================================================|\n|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |\n|---------------------------------------------------------------------------|\n| Allocated memory      |  16765 MiB |  16793 MiB |  38476 MiB |  21710 MiB |\n|       from large pool |  16763 MiB |  16775 MiB |  35996 MiB |  19232 MiB |\n|       from small pool |      2 MiB |     25 MiB |   2480 MiB |   2477 MiB |\n|---------------------------------------------------------------------------|\n| Active memory         |  16765 MiB |  16793 MiB |  38476 MiB |  21710 MiB |\n|       from large pool |  16763 MiB |  16775 MiB |  35996 MiB |  19232 MiB |\n|       from small pool |      2 MiB |     25 MiB |   2480 MiB |   2477 MiB |\n|---------------------------------------------------------------------------|\n| Requested memory      |  16754 MiB |  16782 MiB |  38142 MiB |  21387 MiB |\n|       from large pool |  16752 MiB |  16763 MiB |  35663 MiB |  18910 MiB |\n|       from small pool |      2 MiB |     25 MiB |   2479 MiB |   2476 MiB |\n|---------------------------------------------------------------------------|\n| GPU reserved memory   |  16836 MiB |  16836 MiB |  16870 MiB |  34816 KiB |\n|       from large pool |  16808 MiB |  16808 MiB |  16820 MiB |  12288 KiB |\n|       from small pool |     28 MiB |     28 MiB |     50 MiB |  22528 KiB |\n|---------------------------------------------------------------------------|\n| Non-releasable memory |  37211 KiB |  43628 KiB |  21319 MiB |  21283 MiB |\n|       from large pool |  33424 KiB |  39472 KiB |  18588 MiB |  18556 MiB |\n|       from small pool |   3787 KiB |  10204 KiB |   2731 MiB |   2727 MiB |\n|---------------------------------------------------------------------------|\n| Allocations           |     758    |     851    |   13327    |   12569    |\n|       from large pool |     373    |     380    |    2334    |    1961    |\n|       from small pool |     385    |     478    |   10993    |   10608    |\n|---------------------------------------------------------------------------|\n| Active allocs         |     758    |     851    |   13327    |   12569    |\n|       from large pool |     373    |     380    |    2334    |    1961    |\n|       from small pool |     385    |     478    |   10993    |   10608    |\n|---------------------------------------------------------------------------|\n| GPU reserved segments |      67    |      67    |      79    |      12    |\n|       from large pool |      53    |      53    |      54    |       1    |\n|       from small pool |      14    |      14    |      25    |      11    |\n|---------------------------------------------------------------------------|\n| Non-releasable allocs |      24    |      59    |    6133    |    6109    |\n|       from large pool |      20    |      21    |     962    |     942    |\n|       from small pool |       4    |      39    |    5171    |    5167    |\n|---------------------------------------------------------------------------|\n| Oversize allocations  |       0    |       0    |       0    |       0    |\n|---------------------------------------------------------------------------|\n| Oversize GPU segments |       0    |       0    |       0    |       0    |\n|===========================================================================|\n",
+  "model_manifest_sha256": "0d08d55344e614194fdc0bbae0b682778bd0755aa3dd087478b5afbd5dcd0163",
+  "peak_allocated_bytes": 17609433088,
+  "peak_reserved_bytes": 17653825536,
+  "pid": 3985519,
+  "protocol_sha256": "ddc12c9ae0433dd6b299cc36c116e4cf6c7f2bfeb1872148c6faaa2d67b22147",
+  "rank": 1,
+  "sample_manifest_sha256": "61df2843c3f3891e164e158dc4d7da70f4bda67c5658812cad3f5639c795308e",
+  "source_commit": "a0b0dc31e57615174c1b9246727541813e8fa981",
+  "source_manifest_sha256": "e16da152b04f22c5281edb53c4942fe583fcb489602f44d4eed2243fd45d58da",
+  "stage": "smoke",
+  "status": "FAILED_STOP",
+  "traceback": "Traceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/qwen_vision_sdpa/worker.py\", line 202, in main\n    (smoke if args.stage=='smoke' else run)(adapter,observer,rank,read(OUT/'sample_manifest.json'),\n  File \"/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/qwen_vision_sdpa/worker.py\", line 89, in smoke\n    backend_compare(adapter,observer,lookup[compare['key']],bindings,tag)\n  File \"/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/qwen_vision_sdpa/worker.py\", line 83, in backend_compare\n    assert passed,'Frozen backend numerical thresholds exceeded; see complete comparison'\n           ^^^^^^\nAssertionError: Frozen backend numerical thresholds exceeded; see complete comparison\n",
+  "uuid": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+}

@@ -1,47 +1,65 @@
-# Qwen3-VL：Vision SDPA / Text Eager 续测准备
+# Qwen3-VL：Vision SDPA / Text Eager 续测结果
 
-状态：**CPU_PREPARED_AWAITING_GPU_AUTHORIZATION**。本报告仅记录已完成的CPU审计与冻结执行入口。GPU Smoke、实际CUDA后端、完整质量分数均尚未运行，不应将本状态解释为修复成功或评测完成。
+**最终状态：STOPPED。** 本轮在两张已授权空闲RTX3090上完成两道短输入的Vision Eager/SDPA Native完整请求比较。两题所有27个Vision Block均确认使用实际CUDA Flash SDPA，Text保持36层Eager；两种后端生成Token完全一致且自然EOS结束。但4个有效Logits步骤的平均绝对差均超过事先冻结的0.05阈值，因此停止，未启动MME/SEED正式评估，也未运行最坏输入或Physical C3请求。不能据此报告C3的质量损失，不能宣称最坏输入OOM已解决。
 
-## 已完成
+## 固定条件与CPU审计
 
-- 基于 `213d4e3be766444e1ecd9a90ac479836f7756e9b` 创建独立分支 `codex/qwen3vl-mme-seed-2048-vision-sdpa`。旧 `mme_seed_physical_c3_quality` 的PARTIAL记录及全部LLaVA结果保留原样。
-- 固定Qwen3-VL-8B-Instruct revision `0c351dd01ed87e9c1b53cbc748cba10e6187ff3b`，BF16、PyTorch 2.6.0+cu124、Transformers 4.57.6。实际模型为27个Vision Block、36个Text Decoder层。
-- 官方模态配置字典及动态切换接口通过CPU小模型测试：Vision可设置SDPA或Eager，Text始终Eager。此测试证明配置接口可用，**不能证明GPU实际调用了高效SDPA**。
-- 前轮真实Processor的全量审计与输入绑定按字节复用，包括2048语言侧视觉Token上限、6811个图片路径、全部16607条输入与候选Token。
-- 重新核验全部6811个原始图片文件及固定模型文件SHA；原有SEED重复Question ID保留，以原始记录索引构建唯一键。
-- 4项CPU测试通过：官方模态配置、原子Checkpoint恢复及损坏拒绝、全部题目/重复ID/分片覆盖、冻结数值和后端协议。
+基于 `213d4e3be766444e1ecd9a90ac479836f7756e9b`，使用独立分支 `codex/qwen3vl-mme-seed-2048-vision-sdpa`。Qwen3-VL-8B-Instruct固定revision为 `0c351dd01ed87e9c1b53cbc748cba10e6187ff3b`；BF16、PyTorch 2.6.0+cu124、Transformers 4.57.6、batch1、Greedy、自然EOS、最多32个Token、`logits_to_keep=1`。原2048语言侧视觉Token上限、Processor、Prompt、模型文件及输入Tensor绑定保持不变。
 
-MME为2374问、1187图片路径；SEED为14233条原始图像问题记录、5624图片路径。相同图片SHA的所有问题与条件仍在同一Worker。
+完整复用前轮6811图片路径的真实Processor审计及16607题输入绑定，逐字节SHA与基线Commit一致；重新核验原始图片和模型文件SHA。MME2374问/1187路径、SEED14233条原始记录/5624路径，保留重复Question ID及整图分片。5项CPU测试通过，包括官方模态后端接口及只读SDPA观察器逐位一致的CPU测试。旧LLaVA结果、旧PARTIAL状态和main均未修改。
 
-## 冻结执行和门禁
+## 预声明数值门槛
 
-唯一允许的执行变更为官方Vision Attention改为SDPA。未修改历史Physical-Original引擎；仍保留L0–L21 R写入、L22前视觉Hidden物理退出、P−1/Decode禁图、L1–L6答案Attention物理跳算及原紧凑KV。没有加载Repaired、cuBLASLt或Zero-Key方案。
+GPU运行前冻结：Vision pooled与三个DeepStack特征Mean Abs≤0.02、Max Abs≤0.5；Native相同前缀的全部有效Logits Mean Abs≤0.05、Max Abs≤1.0。跨后端完整生成Token是否一致单独观察，不要求逐位Logits相等。同后端Native/HF/No-op仍须严格 `torch.equal`；该项因前置门禁失败尚未运行。上述门槛没有根据结果调整。
 
-新的GPU入口在官方PyTorch上下文中只允许Flash/Efficient SDPA，禁用Math/cuDNN回退。只读ATen运算符记录用于确认全部27个Vision Block的真实CUDA路径；36层Text仍须Eager。这里描述的是已写好的门禁，实际通过与否须GPU验证。没有性能计时、Profiler、FLOPs测量或Kernel搜索。
+## 两张卡的实际短输入结果
 
-短输入Vision Eager/SDPA比较在GPU运行前固定如下阈值：pooled及三个DeepStack特征的Mean Abs ≤0.02、Max Abs ≤0.5；Native相同生成前缀下的有效Logits Mean Abs ≤0.05、Max Abs ≤1.0。所有有效步骤逐项保存，生成Token是否相同单独报告。两种后端的输入Tensor必须不变；同一后端Native/HF/No-op仍要求所有有效Logits严格 `torch.equal`。
+| 问题键 | 有效步骤 | Logits Mean Abs | Logits Max Abs | Mean Abs门禁 |
+|---|---|---:|---:|---|
+| MME__00798 | first answer token | 0.100300 | 0.750000 | 未通过 |
+| MME__00798 | EOS prediction | 0.060077 | 0.398438 | 未通过 |
+| MME__02358 | first answer token | 0.057641 | 0.500000 | 未通过 |
+| MME__02358 | EOS prediction | 0.072049 | 0.437500 | 未通过 |
 
-Physical与Dense F的历史严格门槛仍为Mean Abs ≤0.02、Max Abs ≤0.5及完整Token一致；既有失败没有被修改。本轮只允许在语义及资源审计通过后，以明确披露数值不等价限制的方式开展探索性质量评估。
+`MME__00798`：264个ViT Patch、66个语言侧视觉Token；两种后端均输出 `Yes`，完整Token `[9454, 151645]`。`MME__02358`：260个Patch、65个视觉Token；均输出 `No`，Token `[2753, 151645]`。首Token和EOS预测均相同，不存在空答案或截断。这两道输入依据输入长度/视觉Token数事先选择，不能当作正式Benchmark样本分数。
 
-最坏输入Smoke名单由真实输入长度、Patch数和完整候选路径长度确定，未读取新预测。包含前轮OOM的8160 Patch输入、8192 Patch最大输入、两个Benchmark最长实际输入、最长SEED候选路径及中短输入。每张卡均须通过完整Native和Physical请求、SEED候选独立冷启动与Cache分叉严格一致验证，并保留至少512MiB显存余量。
+全部8份视觉特征的误差通过既定阈值，Mean Abs最大0.002857、Max Abs最大0.154297；输出形状、Patch数、语言侧视觉Token数、三个DeepStack索引 `[8,16,24]` 及输入Tensor绑定保持不变。特征小误差在语言模型中形成了上述Logits差异。这里只确认观测，不能据此推断大样本Accuracy损失。
 
-## 尚未运行
+实际调用 `aten._scaled_dot_product_flash_attention.default` 共54次，每道SDPA请求27次；Text未调用SDPA，Math/cuDNN回退被官方上下文禁用。没有计时、Profiler、FLOPs测量或Kernel搜索。
 
-| 项目 | 状态 |
+短输入两卡Peak Reserved均为16.4414GiB，余量7.1469GiB；没有OOM或NaN/Inf。此结果只覆盖260/264 Patch，**不覆盖原OOM的8160/8192 Patch**。
+
+## 初始审计器问题与修正记录
+
+第一次尝试被新写的只读观察器误拦：`inference_mode` 暴露外层 `aten.scaled_dot_product_attention.default`，观察器尚未看到内部CUDA算子就拒绝了它。这是本轮审计器错误，不是模型或C3语义失败，也未发生OOM。完整日志、源码SHA及失败现场保存在 `attempts/attempt1_observer_composite_wrapper_failure/`。
+
+修正仅让观察器进入PyTorch已注册的官方Composite分解以观察真实融合算子，不添加Attention算术或自定义Kernel，不改变后端选择和任何阈值。CPU观察前后结果严格相等；修正版本在GPU运行前重新测试、冻结并提交。之后真实GPU数值比较触发当前停止状态。审计器修正不能视为模型数值修复。
+
+## Physical C3与正式质量评估状态
+
+历史Physical-Original引擎保持原字节SHA `a719b590975e6282ad983fcd27b80f2e031c302caf47eaf54d50e1f3e36cca77`；保留L0–L21 R写入、L22前物理视觉Hidden退出、P−1/Decode禁图、L1–L6答案Attention物理跳算及原紧凑KV。没有加载Repaired、cuBLASLt或Zero-Key版本。
+
+历史Physical/Dense F的严格门槛Mean Abs≤0.02、Max Abs≤0.5及Token一致没有被修改，历史不等价记录仍有效。本轮没有执行Physical请求，因而没有新的Mask/mRoPE/Cache/退出/跳算验收结论，不能将配置或CPU检查冒充GPU语义验收。
+
+| 项目 | 实际状态 |
 |---|---|
-| 高效CUDA SDPA实际调用 | 未运行 |
-| Vision后端数值比较 | 未运行 |
-| 最坏输入显存及完整请求Smoke | 未运行 |
-| Native/HF/No-op逐位一致 | 未运行 |
-| Physical/Dense F语义及数值审计 | 未运行 |
-| MME Native / Physical完整得分 | 未运行 |
-| SEED Native / Physical完整ACC | 未运行 |
-| 配对Bootstrap与质量图 | 等待完整预测 |
+| 两卡短输入Native跨后端比较 | 已运行，数值门禁未通过 |
+| 真实Vision Flash SDPA / Text Eager | 短输入已确认 |
+| 最坏输入完整Native/Physical请求与显存门禁 | 未运行 |
+| 同后端Native/HF/No-op严格一致 | 未运行 |
+| Physical/Dense F语义及数值检查 | 未运行 |
+| MME Native / Physical完整得分 | 未运行，正式Checkpoint 0/4748 |
+| SEED Native / Physical完整ACC | 未运行，正式Checkpoint 0/28466 |
+| 图片簇配对20000次Bootstrap和质量图 | 无完整预测，不计算 |
 
-因此，目前不能回答Vision SDPA是否解决最坏输入OOM，也没有Qwen MME或SEED的实测质量损失可报告。不存在推测填入的分数。
+MME与SEED的CSV保留覆盖状态，不填入预测分数或零分。SEED仍冻结为本地HF完整候选平均条件负LogP排序、最终ACC，不冒充官方公布分数。没有转用自由生成或改变候选协议。
 
-## 后续执行边界
+## 文件与资源释放
 
-附件第九节要求“先确认本轮GPU授权及空闲状态”。已提交本轮最多两张空闲RTX3090的授权问题，当前尚未收到答复，未启动GPU模型或占用GPU。收到授权后需再次核查UUID、进程、显存及至少20GiB磁盘余量，然后先Smoke；两卡均通过才允许完整评估。任何OOM、非法Mask、Cache/位置错误、非有限数值或SHA不一致均停止，不自动改变配置。
+逐步骤Logits与特征误差分别见 `backend_logits_comparison.csv`、`backend_feature_comparison.csv`；真实运算符、显存及答案见 `actual_vision_backend.csv`、`smoke_memory.csv`、`backend_comparison_answers.csv`。图表PNG/PDF位于 `figures/`，只画真实观测的数值差异，不伪造质量图。
 
-MME继续使用冻结官方Acc、Acc+及Score；SEED继续使用本地冻结HF完整候选平均条件负LogP排序，最终指标为ACC，不冒充官方已公布分数。完整统计采用原冻结Image SHA整簇配对20000次Bootstrap。全部新输出位于本目录；旧结果不会被改写。
+完整特征与Logits数组保存在服务器 `/data/lk/ATE-resources/experiments/qwen3vl_mme_seed_2048_vision_sdpa/`，路径和SHA见 `raw_array_sha_index.json`；这些数组不在GitHub。原始停止日志与失败现场均保留。
+
+两张卡的本轮Worker均已退出，当前各27MiB，无计算进程；详见 `gpu_release_audit.json`。未启动正式评估、未追加GPU实验，也没有降低分辨率、改变精度或放宽数值门槛。
+
+**本轮最终回答：** 目前只能确认短输入能够通过官方Vision Flash SDPA完成Native请求，且这两题的生成答案保持一致；无法确认最坏输入OOM是否解决。由于预声明跨后端Logits门禁失败，MME和SEED的Native/Physical完整质量差均尚未测得，不能回答C3损失多少质量，也不能判断退化是否集中于OCR或空间关系。
