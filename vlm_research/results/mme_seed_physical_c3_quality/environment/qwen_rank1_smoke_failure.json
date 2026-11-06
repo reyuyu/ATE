@@ -1,0 +1,60 @@
+{
+  "actual_input_shapes": {
+    "attention_mask": [
+      1,
+      2081
+    ],
+    "image_grid_thw": [
+      1,
+      3
+    ],
+    "input_ids": [
+      1,
+      2081
+    ],
+    "pixel_values": [
+      8192,
+      1536
+    ]
+  },
+  "at": "2026-11-05T20:42:12.349432+00:00",
+  "kind": "qwen",
+  "last_actual_attention_shape": {
+    "dtype": "torch.bfloat16",
+    "key": [
+      1,
+      16,
+      8192,
+      72
+    ],
+    "layer": null,
+    "module": "Qwen3VLVisionAttention",
+    "query": [
+      1,
+      16,
+      8192,
+      72
+    ],
+    "value": [
+      1,
+      16,
+      8192,
+      72
+    ]
+  },
+  "memory_summary": "|===========================================================================|\n|                  PyTorch CUDA memory summary, device ID 0                 |\n|---------------------------------------------------------------------------|\n|            CUDA OOMs: 1            |        cudaMalloc retries: 2         |\n|===========================================================================|\n|        Metric         | Cur Usage  | Peak Usage | Tot Alloc  | Tot Freed  |\n|---------------------------------------------------------------------------|\n| Allocated memory      |  19006 MiB |  23102 MiB |  41408 MiB |  22402 MiB |\n|       from large pool |  19004 MiB |  23100 MiB |  41405 MiB |  22400 MiB |\n|       from small pool |      1 MiB |      2 MiB |      3 MiB |      1 MiB |\n|---------------------------------------------------------------------------|\n| Active memory         |  19006 MiB |  23102 MiB |  41408 MiB |  22402 MiB |\n|       from large pool |  19004 MiB |  23100 MiB |  41405 MiB |  22400 MiB |\n|       from small pool |      1 MiB |      2 MiB |      3 MiB |      1 MiB |\n|---------------------------------------------------------------------------|\n| Requested memory      |  18994 MiB |  23090 MiB |  41395 MiB |  22401 MiB |\n|       from large pool |  18992 MiB |  23088 MiB |  41392 MiB |  22399 MiB |\n|       from small pool |      1 MiB |      2 MiB |      3 MiB |      1 MiB |\n|---------------------------------------------------------------------------|\n| GPU reserved memory   |  23152 MiB |  23152 MiB |  25382 MiB |   2230 MiB |\n|       from large pool |  23150 MiB |  23150 MiB |  25378 MiB |   2228 MiB |\n|       from small pool |      2 MiB |      4 MiB |      4 MiB |      2 MiB |\n|---------------------------------------------------------------------------|\n| Non-releasable memory |  51043 KiB |  92976 KiB |  15039 MiB |  14990 MiB |\n|       from large pool |  50620 KiB |  92552 KiB |  15036 MiB |  14986 MiB |\n|       from small pool |    423 KiB |   1447 KiB |      3 MiB |      3 MiB |\n|---------------------------------------------------------------------------|\n| Allocations           |     772    |     774    |     843    |      71    |\n|       from large pool |     386    |     389    |     410    |      24    |\n|       from small pool |     386    |     396    |     433    |      47    |\n|---------------------------------------------------------------------------|\n| Active allocs         |     772    |     774    |     843    |      71    |\n|       from large pool |     386    |     389    |     410    |      24    |\n|       from small pool |     386    |     396    |     433    |      47    |\n|---------------------------------------------------------------------------|\n| GPU reserved segments |      60    |      66    |      67    |       7    |\n|       from large pool |      59    |      64    |      65    |       6    |\n|       from small pool |       1    |       2    |       2    |       1    |\n|---------------------------------------------------------------------------|\n| Non-releasable allocs |      22    |      25    |      70    |      48    |\n|       from large pool |      21    |      23    |      57    |      36    |\n|       from small pool |       1    |       3    |      13    |      12    |\n|---------------------------------------------------------------------------|\n| Oversize allocations  |       0    |       0    |       0    |       0    |\n|---------------------------------------------------------------------------|\n| Oversize GPU segments |       0    |       0    |       0    |       0    |\n|===========================================================================|\n",
+  "model_manifest_sha256": "0d08d55344e614194fdc0bbae0b682778bd0755aa3dd087478b5afbd5dcd0163",
+  "peak_allocated_bytes": 24224363520,
+  "peak_reserved_bytes": 24276631552,
+  "pid": 3945896,
+  "protocol_sha256": "3c5bb80c79c388fa77b1288ece8b332463252a4586fda8d1ecd70c7756f8a402",
+  "qwen_gpu_protocol_sha256": "4fb4385ec6d3a3fc4bb9f3f296f79489ed0ce6c15e24d3696c4542f888015d00",
+  "rank": 1,
+  "sample_manifest_sha256": "61df2843c3f3891e164e158dc4d7da70f4bda67c5658812cad3f5639c795308e",
+  "source_commit": "c4bf0ce4f81acc9f6ec623c5507857c1ddb7efe6",
+  "source_manifest_sha256": "3b9e62dfeb552c363a41f6ed352765604c40b60f60ef6aa06f97cc366ca13d4b",
+  "stage": "smoke",
+  "status": "FAILED_STOP",
+  "traceback": "Traceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/mme-seed-physical-c3-quality/vlm_research/mme_seed_quality/worker.py\", line 268, in main\n    (smoke if args.stage=='smoke' else run)(adapter,rank,rows,bindings,tag)\n  File \"/data/lk/ATE-worktrees/mme-seed-physical-c3-quality/vlm_research/mme_seed_quality/worker.py\", line 138, in smoke\n    native,nv=greedy(adapter,layout,'Native',capture=True)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/mme-seed-physical-c3-quality/vlm_research/mme_seed_quality/engine.py\", line 123, in greedy\n    v,cache=call(adapter,layout,cache,t,ids[-1] if t else None)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/mme-seed-physical-c3-quality/vlm_research/mme_seed_quality/engine.py\", line 103, in call\n    out=adapter.model(**kw)\n        ^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1739, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1750, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/utils/generic.py\", line 1072, in wrapper\n    outputs = func(self, *args, **kwargs)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py\", line 1344, in forward\n    outputs = self.model(\n              ^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1739, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1750, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/utils/generic.py\", line 1072, in wrapper\n    outputs = func(self, *args, **kwargs)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py\", line 1138, in forward\n    image_embeds, deepstack_image_embeds = self.get_image_features(pixel_values, image_grid_thw)\n                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py\", line 1061, in get_image_features\n    image_embeds, deepstack_image_embeds = self.visual(pixel_values, grid_thw=image_grid_thw)\n                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1739, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1750, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py\", line 739, in forward\n    hidden_states = blk(\n                    ^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/modeling_layers.py\", line 94, in __call__\n    return super().__call__(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1739, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1750, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py\", line 267, in forward\n    hidden_states = hidden_states + self.attn(\n                                    ^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1739, in _wrapped_call_impl\n    return self._call_impl(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py\", line 1750, in _call_impl\n    return forward_call(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py\", line 230, in forward\n    attn_outputs = [\n                   ^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py\", line 231, in <listcomp>\n    attention_interface(\n  File \"/data/lk/ATE-worktrees/mme-seed-physical-c3-quality/vlm_research/mme_seed_quality/worker.py\", line 20, in observed\n    return original(module,q,k,v,*args,**kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py\", line 160, in eager_attention_forward\n    attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query.dtype)\n                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/functional.py\", line 2142, in softmax\n    ret = input.softmax(dim, dtype=dtype)\n          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\ntorch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.00 GiB. GPU 0 has a total capacity of 23.59 GiB of which 632.31 MiB is free. Including non-PyTorch memory, this process has 22.94 GiB memory in use. Of the allocated memory 22.56 GiB is allocated by PyTorch, and 49.85 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)\n",
+  "uuid": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+}

@@ -20,7 +20,10 @@ def table(data,columns):
         for key,label in columns:
             v=r.get(key,'')
             if key not in ('model','task','metric','unit','benchmark','status'):
-                try:v=f'{float(v):.4f}'
+                try:
+                    if key in ('n','images','expected_questions','complete_paired_questions','missing_checkpoints','harm','recovered','min','max','above_2048','questions','eos','truncated','empty','repeated_3gram','unparsed'):
+                        v=str(int(float(v)))
+                    else:v=f'{float(v):.4f}'
                 except (TypeError,ValueError):pass
             values.append(str(v))
         lines.append('| '+' | '.join(values)+' |')
@@ -39,14 +42,18 @@ def figures(summary,mme,seed):
             a.bar(xx-.18,[float(lookup[c]['native']) for c in categories],.36,label='Native')
             a.bar(xx+.18,[float(lookup[c]['c3']) for c in categories],.36,label='Physical C3-V2')
             a.set_xticks(xx,categories);a.set_ylabel('MME score points');a.legend()
-        else:a.text(.5,.5,'NOT RUN / INCOMPLETE',ha='center',va='center',transform=a.transAxes)
+        else:
+            a.text(.5,.5,'STOPPED: Native vision encoder OOM\nNo quality score' if kind=='qwen' and (OUT/'qwen_stop_summary.json').exists() else 'NOT RUN / INCOMPLETE',ha='center',va='center',transform=a.transAxes)
+            a.set_xticks([]);a.set_yticks([])
         a.set_title(label+'\nMME');a.set_ylim(bottom=0)
         a=axes[i,1];vals=[r for r in summary if r['model']==kind and r['benchmark']=='SEED']
         if vals:
             r=vals[0];bars=a.bar([0,1],[float(r['native']),float(r['c3'])],color=['#1f77b4','#ff7f0e'])
             a.bar_label(bars,fmt='%.2f%%',padding=3);a.set_xticks([0,1],['Native','Physical C3-V2'])
             a.text(.5,.95,f"Δ = {float(r['delta']):+.2f} pp\n95% CI [{float(r['ci_low']):+.2f}, {float(r['ci_high']):+.2f}]",ha='center',va='top',transform=a.transAxes)
-        else:a.text(.5,.5,'NOT RUN / INCOMPLETE',ha='center',va='center',transform=a.transAxes)
+        else:
+            a.text(.5,.5,'STOPPED: Native vision encoder OOM\nNo quality score' if kind=='qwen' and (OUT/'qwen_stop_summary.json').exists() else 'NOT RUN / INCOMPLETE',ha='center',va='center',transform=a.transAxes)
+            a.set_xticks([]);a.set_yticks([])
         a.set_title(label+'\nSEED-Bench-1 Image');a.set_ylabel('Accuracy (%)');a.set_ylim(0,100)
     fig.savefig(folder/'quality_overview.png',dpi=240);fig.savefig(folder/'quality_overview.pdf');plt.close(fig)
     for kind in ('llava','qwen'):
@@ -96,6 +103,10 @@ def main():
 差值统一为 Physical C3-V2 − Native。MME单位为官方 **Score Points**；SEED终局指标是 **Accuracy**，差值单位为百分点。
 
 '''+table(summary,[('model','模型'),('benchmark','Benchmark'),('metric','指标'),('native','本地Native'),('c3','本地Physical C3'),('delta','C3−Native'),('ci_low','95%CI下界'),('ci_high','95%CI上界'),('unit','差值单位')])+'''
+![Native versus Physical C3-V2 quality](figures/quality_overview.png)
+
+图中缺失条件明确标为未测，不将其画成零分。配对区间为探索性95%CI；MME与SEED的单位分别标注。
+
 ## 数据和评分
 
 MME经典版全量2,374问、1,187个图片路径，14子任务。两道同图问题均保留。按官方工具的Yes/No解析，逐任务重算Accuracy与Accuracy+（两问均正确的图片比例），任务分数为二者百分数之和；Perception满分2000、Cognition满分800、合计满分2800。原始下载审计、逐文件图片SHA、原生标注对齐及官方工具输出均保留。
@@ -104,13 +115,15 @@ SEED-Bench-1 Image全量14,233条原始图像题、5,624个图片路径。官方
 
 候选首Token在原始P−1预测，其余候选Token全部经过真实增量Decode，因此C3的答案禁图及Attention物理跳算不会被Teacher Forcing绕过。各候选复制真实独立Prompt Cache，Smoke中与四次独立冷请求的全部有效Logits严格torch.equal。
 
-采用官方mean-NLL答案排序机制，并保留本地冻结模型的HF原生聊天模板和历史Processor。LLaVA候选包含原生助手空格及</s>；Qwen遵循官方Qwen接口对候选内容取均值，不额外计EOS。官方参考适配器中的聊天模板、图像预处理与本地HF实现可能不同，因此这是同题、本地Native配对对照，不能把公开表格分数直接填入本地列。
+采用官方mean-NLL答案排序机制，并保留本地冻结模型的HF原生聊天模板和历史Processor。LLaVA候选包含原生助手空格及`</s>`；Qwen遵循官方Qwen接口对候选内容取均值，不额外计EOS。官方参考适配器中的聊天模板、图像预处理与本地HF实现可能不同，因此这是同题、本地Native配对对照，不能把公开表格分数直接填入本地列。
+
+具体而言，官方LLaVA适配器使用`llava_v1`会话模板及其视觉预处理管线，本轮按预冻结协议保持HF Native聊天模板与Processor。因此本地SEED Native分数不能声称复现了官方发布表的58.6，也不能把本地分数与该参考分数相减当作C3损失；C3差值只相对于同题、同输入的本地Native。没有另加模板或预处理条件来解释绝对分数差。
 
 ## 两模型的固定物理实现
 
 LLaVA固定revision b234b804b114d9e37bb655e11cbbb5f5e971b7a9，FP16/Eager、Transformers4.49.0；R在L0–L19读图，L20前移除Image Hidden，P−1/Decode禁图，L2–L5答案Attention真实跳算。MLP、Norm、Residual、原始RoPE位置和真实压缩KV均保留。没有用Dense输出置零代替主要Physical条件。
 
-Qwen固定revision 0c351dd01ed87e9c1b53cbc748cba10e6187ff3b，BF16/Eager、Transformers4.57.6；R在L0–L21读图，L22前移除Image Hidden，P−1/Decode禁图，L1–L6答案Attention真实跳算，保留mRoPE与DeepStack。复用Physical-Original，不加载cuBLASLt、Zero-Key或后续Repaired路径。**历史Physical-Original尚未通过严格BF16数值等价验收；此次结果仍为探索性物理质量评估，不能宣称与Dense F严格等价。** Smoke中的同前缀数值差异单独保存，前缀已分叉后的Logits差不解释为纯数值误差。
+Qwen固定revision 0c351dd01ed87e9c1b53cbc748cba10e6187ff3b，BF16/Eager、Transformers4.57.6；R在L0–L21读图，L22前移除Image Hidden，P−1/Decode禁图，L1–L6答案Attention真实跳算，保留mRoPE与DeepStack。复用Physical-Original，不加载cuBLASLt、Zero-Key或后续Repaired路径。**历史Physical-Original尚未通过严格BF16数值等价验收，不能宣称与Dense F严格等价；本轮Qwen因资源门禁停止，没有新的质量分数或数值等价通过结论。** 已完成的LLaVA Smoke数值观察单独保存，前缀已分叉后的Logits差不解释为纯数值误差。
 
 ## Qwen统一2,048视觉Token协议
 
@@ -132,9 +145,13 @@ Qwen主结果若完成，Native与C3均在这一统一2,048视觉Token上限下�
 
 所有下降、恢复和答案改变均保留在逐题CSV及Checkpoint；异常输出不剔除。官方Published Reference独立列于published_references.csv，不参与本地配对统计。
 
+本轮仅对Native和原版Physical C3进行全量质量评估，Dense F只用于已完成Smoke的数值观察。因此Native−Physical的质量差同时包含算法约束与原版物理实现的影响，不能据此单独量化数值误差造成的质量损失，也不能从任务分数直接识别某个层或组件的独立因果贡献。
+
 ## 完成覆盖
 
 '''+table(coverage,[('model','模型'),('benchmark','Benchmark'),('expected_questions','应含题数'),('complete_paired_questions','完整配对题数'),('missing_checkpoints','缺失Checkpoint'),('status','状态')])
+    text+='\n## 输出异常\n\n'+table(rows('output_anomalies.csv'),[('model','模型'),('condition','条件'),('questions','题数'),('eos','EOS结束'),('truncated','截断'),('empty','空答案'),('repeated_3gram','重复3gram'),('unparsed','非Yes/No解析')])
+    text+='\nSEED使用完整候选评分，不适用自由生成EOS或截断计数；全部候选NLL在评分复核时检查有限，异常记录不按得分筛除。\n'
     text+='\n## 实测结论\n\n'
     if (OUT/'qwen_processor_validation.json').exists():
         qv=read(OUT/'qwen_processor_validation.json');dist=[]
@@ -150,9 +167,19 @@ Qwen主结果若完成，Native与C3均在这一统一2,048视觉Token上限下�
         if mm:
             worst=sorted(mm,key=lambda r:float(r['delta_score_points']))[:4]
             text+='MME任务分差最低的四项：'+ '；'.join(f"{r['task']} {float(r['delta_score_points']):+.2f} Score Points" for r in worst)+'。这描述分布，不等于已经隔离OCR或推理机制的因果来源。\n\n'
+            focus=[r for r in mm if r['task'] in ('OCR','text_translation','position','count')]
+            text+='预先关心的MME四项：'+'；'.join(f"{r['task']} {float(r['delta_score_points']):+.2f}" for r in focus)
+            text+=f" Score Points；四项合计{sum(float(r['delta_score_points']) for r in focus):+.2f}，全14项合计{sum(float(r['delta_score_points']) for r in mm):+.2f}。这里保留正负号，没有把其他任务的恢复删除后再宣称损失集中。\n\n"
         if ss:
             worst=sorted(ss,key=lambda r:float(r['delta_pp']))[:4]
             text+='SEED任务ACC分差最低的四项：'+ '；'.join(f"{r['task']} {float(r['delta_pp']):+.2f} pp" for r in worst)+'。Spatial Relation、Visual Reasoning与Text Understanding的全部结果均保留，未按结论选择类别。\n\n'
+            focus=[r for r in ss if r['task'] in ('Text Understanding','Spatial Relation','Visual Reasoning')]
+            text+='预先关心的SEED三项：'+'；'.join(f"{r['task']} {float(r['delta_pp']):+.2f} pp" for r in focus)
+            groupnet=sum(int(r['recovered'])-int(r['harm']) for r in focus)
+            overall=next(r for r in seed if r['model']==kind and r['task']=='Overall')
+            text+=f"。三类合计正确题净变化{groupnet:+d}，全体正确题净变化{int(overall['recovered'])-int(overall['harm']):+d}；不能直接相加不同任务的ACC百分点。\n\n"
+    if any(r['model']=='llava' and r['benchmark']=='SEED' for r in summary):
+        text+='本轮LLaVA没有呈现统一的“OCR、文字理解或空间关系集中退化”模式：相关任务点估计包括持平与上升，实例识别、场景、属性、计数及部分推理任务也出现损害。MME的code_reasoning下降12.50 Score Points，不能将全部推理任务概括为受保护。SEED Text Understanding仅85题，其差值95%CI为[−6.67, +6.58] pp，不能把零点估计解释为无损。这里只描述当前任务划分下的质量分布，不将其归因于单一视觉通路；Qwen没有测得质量分数，无法判断是否存在同样模式。\n\n'
     manifest=read(OUT/'sample_manifest.json')
     counts={bench:len({s['image_sha256'] for s in manifest if s['benchmark']==bench}) for bench in ('MME','SEED')}
     text+=f"\n实际内容SHA簇：MME {counts['MME']}，SEED {counts['SEED']}。图片路径数与内容簇数不同；全部原始记录仍保留，统计按内容SHA整簇配对。\n"
@@ -163,10 +190,12 @@ Qwen主结果若完成，Native与C3均在这一统一2,048视觉Token上限下�
             peak_allocated_bytes=e.get('peak_allocated_bytes'),peak_reserved_bytes=e.get('peak_reserved_bytes')))
     if stops:
         text+='\n## 停止记录\n\n'
+        text+='Qwen两卡均未完成Native Smoke，也未执行新的Physical C3、HF/No-op全路径或Dense F对照；这些门禁均没有标记通过。2,048个语言侧视觉Token对应最多8,192个ViT内部Patch。原生视觉Attention在这8,192个位置上构建矩阵，FP32 Softmax申请约4GiB时显存不足。此处没有把多层Attention矩阵保留在GPU，且每卡只加载一份模型。完整两卡现场见qwen_stop_summary.json及environment/qwen_rank*_smoke_failure.json。\n\n'
         for e in stops:
             text+=f"{e['kind']}路径触发停止；完整现场见{e['file']}。未降低2,048预算、未切换Attention Backend，也未补填未完成条件分数。\n\n"
+            text+='OOM错误中的GPU0是Worker内的逻辑cuda:0；实际物理设备由环境记录绑定到GPU2/3的UUID。此次OOM发生在Native的视觉编码器，早于语言Decoder与C3干预，因此不能据此评价C3的准确率或新预算下的Dense等价性。\n\n'
             text+='```json\n'+json.dumps({k:v for k,v in e.items() if k!='traceback'},ensure_ascii=False,indent=2)+'\n```\n'
-    text+='\n## 复现与文件\n\n源码与输入冻结见protocol.json、source_manifest.json、model_manifests.json；逐题结果见per_question.csv、checkpoints/；官方MME复算见official_mme/；图及其直接输入CSV均在结果目录。SEED完整候选均评分，不以32 Token生成上限截断候选；候选Cache容量取本题最长候选Token数+1，此值及候选全Token保留在执行源码和Checkpoint。GPU释放记录见gpu_release_audit.json。\n'
+    text+='\n## 复现与文件\n\n源码与输入冻结见protocol.json、source_manifest.json、model_manifests.json；逐题结果见per_question.csv、checkpoints/；官方MME复算见official_mme/；图及其直接输入CSV均在结果目录。SEED完整候选均评分，不以32 Token生成上限截断候选；候选Cache容量取本题最长候选Token数+1，此值及候选全Token保留在执行源码和Checkpoint。GPU释放记录见gpu_release_audit.json。\n\n原始Smoke Logits数组仅保存在服务器资源目录，GitHub保存路径与SHA索引smoke_raw_logits_index.json，不包含数组本身。官方MME工具额外使用隔离CPU目录中的固定版本评分依赖，版本见official_scoring_dependencies.json；没有修改运行中的模型环境。\n'
     (OUT/'report_zh.md').write_text(text,encoding='utf-8')
     print('REPORT AND FIGURES',status,flush=True)
 

@@ -104,6 +104,7 @@ def main():
                         pred=mme_parse(result['text']);assert pred==result['prediction']
                     else:
                         means=[float(-torch.tensor(lp,dtype=torch.float32).mean()) for lp in result['token_logps']]
+                        assert len(means)==4 and np.isfinite(means).all()
                         assert means==result['mean_nll']
                         pred='ABCD'[min(range(4),key=lambda i:(means[i],i))]
                         assert pred==result['prediction']
@@ -122,7 +123,8 @@ def main():
                         native_repeated_3gram=a.get('repeated_3gram'),c3_repeated_3gram=b.get('repeated_3gram'),
                         native_mean_candidate_nll=a.get('mean_nll'),c3_mean_candidate_nll=b.get('mean_nll')))
             coverage.append(dict(model=kind,benchmark=bench,expected_questions=expected,
-                complete_paired_questions=len(data),missing_checkpoints=len(missing),status='COMPLETE' if not missing else 'PARTIAL'))
+                complete_paired_questions=len(data),missing_checkpoints=len(missing),
+                status='COMPLETE' if not missing else 'STOPPED_OOM' if kind=='qwen' and (OUT/'qwen_stop_summary.json').exists() else 'PARTIAL'))
             per+=data;negative += [r for r in data if r['delta']<0]
             if missing:continue
             assert len(rows)==expected and len(data)==expected
@@ -158,6 +160,18 @@ def main():
     write_csv(OUT/'paired_comparisons.csv',paired);write_csv(OUT/'per_question.csv',per)
     write_csv(OUT/'negative_cases.csv',negative)
     write_csv(OUT/'recovered_cases.csv',[r for r in per if r['delta']>0])
+    anomalies=[]
+    for kind in ('llava','qwen'):
+        mm=[r for r in per if r['model']==kind and r['benchmark']=='MME']
+        if not mm:continue
+        for condition,prefix in [('Native','native'),('Physical-C3','c3')]:
+            anomalies.append(dict(model=kind,benchmark='MME',condition=condition,questions=len(mm),
+                eos=sum(bool(r[prefix+'_eos']) for r in mm),
+                truncated=sum(bool(r[prefix+'_truncated']) for r in mm),
+                empty=sum(bool(r[prefix+'_empty']) for r in mm),
+                repeated_3gram=sum(bool(r[prefix+'_repeated_3gram']) for r in mm),
+                unparsed=sum(r[prefix+'_prediction'] not in ('yes','no') for r in mm)))
+    write_csv(OUT/'output_anomalies.csv',anomalies)
     (OUT/'checkpoint_sha256_index.json.gz').write_bytes(gzip.compress(json.dumps(index,sort_keys=True).encode(),mtime=0))
     atomic(OUT/'analysis_validation.json',dict(at=now(),all_read_checkpoint_hashes_verified=True,
         all_saved_scores_reconstructed=True,score_discrepancies=0,coverage=coverage,
@@ -168,6 +182,7 @@ def main():
 
 def official_export(kind,rows,data,table):
     import subprocess
+    import os
     bytask=collections.defaultdict(list)
     for s,d in zip(rows,data):bytask[s['task']].append((s,d))
     for condition,field in [('Native','native_prediction'),('Physical-C3','c3_prediction')]:
@@ -181,12 +196,16 @@ def official_export(kind,rows,data,table):
                     for s,d in pair:
                         f.write('\t'.join([s['pair_id'],s['question'],s['answer'],d[field]])+'\n')
         tool=OUT/'official_reference/MME_calculation.py'
-        p=subprocess.run([__import__('sys').executable,str(tool),'--results_dir',str(folder)],capture_output=True,text=True)
+        env=os.environ.copy()
+        dependencies=PRIVATE/'official_eval_deps'
+        env['PYTHONPATH']=str(dependencies)+os.pathsep+env.get('PYTHONPATH','')
+        p=subprocess.run([__import__('sys').executable,str(tool),'--results_dir',str(folder)],capture_output=True,text=True,env=env)
         assert p.returncode==0,p.stderr
         measured={}
         for line in p.stdout.splitlines():
             if ' score:' in line:
-                task,value=line.strip().split(' score:');measured[task.strip()]=float(value)
+                task,value=line.strip().split(' score:')
+                if task.strip()!='total':measured[task.strip()]=float(value)
         assert set(measured)==set(sum(TASKS.values(),[]))
         scorefield='native_score' if condition=='Native' else 'c3_score'
         for taskrow in table:assert abs(measured[taskrow['task']]-taskrow[scorefield])<1e-8
