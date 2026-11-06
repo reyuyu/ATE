@@ -1,6 +1,7 @@
 # 七个完整Benchmark：Native / 原版Physical C3-V2
 
-状态：已冻结，准备启动双卡真实Smoke，尚无本轮正式完整分数。
+状态：2026-11-06 18:25（北京时间）启动。两卡POPE真实Smoke共6/6通过，
+已进入POPE完整Native/Physical配对评测；尚无本轮正式完整split分数。
 
 ## 本轮范围
 
