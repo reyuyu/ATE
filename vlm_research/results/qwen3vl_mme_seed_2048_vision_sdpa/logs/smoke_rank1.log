@@ -1,0 +1,104 @@
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:10,  3.57s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:07<00:07,  3.51s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:10<00:03,  3.52s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:12<00:00,  2.81s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:12<00:00,  3.07s/it]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/qwen_vision_sdpa/worker.py", line 217, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/qwen_vision_sdpa/worker.py", line 202, in main
+    (smoke if args.stage=='smoke' else run)(adapter,observer,rank,read(OUT/'sample_manifest.json'),
+  File "/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/qwen_vision_sdpa/worker.py", line 89, in smoke
+    backend_compare(adapter,observer,lookup[compare['key']],bindings,tag)
+  File "/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/qwen_vision_sdpa/worker.py", line 62, in backend_compare
+    (n,nv),na,nf=phase(observer,'SDPA-Vision Native',lambda:greedy(adapter,layout,'Native',capture=True),capture=True)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/qwen_vision_sdpa/worker.py", line 48, in phase
+    value=fn();torch.cuda.synchronize()
+          ^^^^
+  File "/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/qwen_vision_sdpa/worker.py", line 62, in <lambda>
+    (n,nv),na,nf=phase(observer,'SDPA-Vision Native',lambda:greedy(adapter,layout,'Native',capture=True),capture=True)
+                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/mme_seed_quality/engine.py", line 123, in greedy
+    v,cache=call(adapter,layout,cache,t,ids[-1] if t else None)
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/mme_seed_quality/engine.py", line 103, in call
+    out=adapter.model(**kw)
+        ^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1344, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1138, in forward
+    image_embeds, deepstack_image_embeds = self.get_image_features(pixel_values, image_grid_thw)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1061, in get_image_features
+    image_embeds, deepstack_image_embeds = self.visual(pixel_values, grid_thw=image_grid_thw)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1845, in _call_impl
+    return inner()
+           ^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1793, in inner
+    result = forward_call(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 739, in forward
+    hidden_states = blk(
+                    ^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/modeling_layers.py", line 94, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 267, in forward
+    hidden_states = hidden_states + self.attn(
+                                    ^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1845, in _call_impl
+    return inner()
+           ^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1793, in inner
+    result = forward_call(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 230, in forward
+    attn_outputs = [
+                   ^
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 231, in <listcomp>
+    attention_interface(
+  File "/data/lk/深度学习/.envs/ate-qwen3vl/lib/python3.11/site-packages/transformers/integrations/sdpa_attention.py", line 96, in sdpa_attention_forward
+    attn_output = torch.nn.functional.scaled_dot_product_attention(
+                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/qwen_vision_sdpa/backend.py", line 109, in observed_sdpa
+    with _OperatorTrace(self):out=original(*args,**kwargs)
+                                  ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/qwen_vision_sdpa/backend.py", line 65, in __torch_dispatch__
+    assert name in allowed,f'Unapproved SDPA dispatch: {name}'
+           ^^^^^^^^^^^^^^^
+AssertionError: Unapproved SDPA dispatch: aten.scaled_dot_product_attention.default

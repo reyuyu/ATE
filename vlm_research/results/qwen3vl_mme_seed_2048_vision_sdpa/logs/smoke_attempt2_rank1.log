@@ -1,0 +1,15 @@
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:11,  3.89s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:07<00:07,  3.74s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:11<00:03,  3.76s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:13<00:00,  2.96s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:13<00:00,  3.26s/it]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/qwen_vision_sdpa/worker.py", line 217, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/qwen_vision_sdpa/worker.py", line 202, in main
+    (smoke if args.stage=='smoke' else run)(adapter,observer,rank,read(OUT/'sample_manifest.json'),
+  File "/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/qwen_vision_sdpa/worker.py", line 89, in smoke
+    backend_compare(adapter,observer,lookup[compare['key']],bindings,tag)
+  File "/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-vision-sdpa/vlm_research/qwen_vision_sdpa/worker.py", line 83, in backend_compare
+    assert passed,'Frozen backend numerical thresholds exceeded; see complete comparison'
+           ^^^^^^
+AssertionError: Frozen backend numerical thresholds exceeded; see complete comparison
