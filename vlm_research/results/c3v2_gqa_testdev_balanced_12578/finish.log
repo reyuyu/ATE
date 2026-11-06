@@ -1,0 +1,10 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/c3v2-gqa-testdev-balanced-12578/vlm_research/gqa_testdev_c3/finish.py", line 88, in <module>
+    if __name__=='__main__':main()
+                            ^^^^^^
+  File "/data/lk/ATE-worktrees/c3v2-gqa-testdev-balanced-12578/vlm_research/gqa_testdev_c3/finish.py", line 31, in main
+    if any(g[k] for k in ['empty','truncated','repeated']):anomalies.append(dict(question_id=s['question_id'],condition=c,**g))
+                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: dict() got multiple values for keyword argument 'condition'
