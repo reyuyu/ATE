@@ -1,0 +1,104 @@
+{
+  "_id": "6779c2e514a3043a9dfc9fba",
+  "id": "vikhyatk/docvqa-val",
+  "author": "vikhyatk",
+  "sha": "94ab3ed9c10895c28f77a17847e8202e858628e6",
+  "lastModified": "2025-01-04T23:23:44.000Z",
+  "private": false,
+  "gated": false,
+  "disabled": false,
+  "tags": [
+    "size_categories:1K<n<10K",
+    "format:parquet",
+    "modality:image",
+    "modality:text",
+    "library:datasets",
+    "library:dask",
+    "library:mlcroissant",
+    "library:polars",
+    "region:us"
+  ],
+  "downloads": 46,
+  "likes": 3,
+  "cardData": {
+    "dataset_info": {
+      "features": [
+        {
+          "name": "image",
+          "dtype": "image"
+        },
+        {
+          "name": "qa",
+          "list": [
+            {
+              "name": "question",
+              "dtype": "string"
+            },
+            {
+              "name": "answers",
+              "list": "string"
+            }
+          ]
+        }
+      ],
+      "splits": [
+        {
+          "name": "validation",
+          "num_bytes": 833425459.25,
+          "num_examples": 1286
+        }
+      ],
+      "download_size": 832444471,
+      "dataset_size": 833425459.25
+    },
+    "configs": [
+      {
+        "config_name": "default",
+        "data_files": [
+          {
+            "split": "validation",
+            "path": "data/validation-*"
+          }
+        ]
+      }
+    ]
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes",
+      "blobId": "1ef325f1b111266a6b26e0196871bd78baa8c2f3",
+      "size": 2461
+    },
+    {
+      "rfilename": "README.md",
+      "blobId": "c1abe1952c484ff71351f2aaa06137677c6fb3d0",
+      "size": 404
+    },
+    {
+      "rfilename": "data/validation-00000-of-00002.parquet",
+      "blobId": "a6591e62ccfecc0e9aaa338b634517740e724632",
+      "size": 417586561,
+      "lfs": {
+        "sha256": "04147f66c0bd498a509d9fe720a39bdaa2018c79c8b006392fcbe71fed1f55c2",
+        "size": 417586561,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "data/validation-00001-of-00002.parquet",
+      "blobId": "4c7e7ee6c1ec6995b8021ff2e7d5e41fc494f3e3",
+      "size": 414857910,
+      "lfs": {
+        "sha256": "f82c13ebad2cf06c380f17c4df2fd0c5597c0166b0d5faf57c18fcbfec645796",
+        "size": 414857910,
+        "pointerSize": 134
+      }
+    }
+  ],
+  "createdAt": "2025-01-04T23:23:17.000Z",
+  "usedStorage": 832444471,
+  "_metadata_endpoint": "https://hf-mirror.com",
+  "_metadata_errors": [
+    "Metadata unavailable: https://huggingface.co/api/datasets/vikhyatk/docvqa-val?blobs=true: <urlopen error [Errno 101] Network is unreachable>"
+  ]
+}

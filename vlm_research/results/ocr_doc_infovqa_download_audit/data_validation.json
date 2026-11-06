@@ -1,0 +1,166 @@
+{
+  "utc": "2026-11-06T22:35:12.391093+00:00",
+  "datasets": {
+    "OCRBench-v1": {
+      "passed": true,
+      "qa": 1000,
+      "unique_images": 930,
+      "image_references": 1000,
+      "all_images_decoded_again": true,
+      "all_source_sha256_rechecked": true,
+      "answer_alignment": true,
+      "inference_input_has_no_gold": true,
+      "original_parquet_field_and_media_equivalence": true,
+      "media_count_distribution": {
+        "1": 1000
+      },
+      "questions_with_multiple_images": 0,
+      "original_id_nonnull_count": 0,
+      "image_stats": {
+        "bytes": {
+          "P50": 24713.0,
+          "P90": 170968.90000000002,
+          "P95": 372895.7499999996,
+          "P99": 1033720.4500000022,
+          "P100": 2072360.0
+        },
+        "width": {
+          "P50": 440.0,
+          "P90": 1024.0,
+          "P95": 1698.1,
+          "P99": 3265.5400000000136,
+          "P100": 4961.0
+        },
+        "height": {
+          "P50": 333.0,
+          "P90": 1805.6000000000001,
+          "P95": 2257.2999999999997,
+          "P99": 7016.0,
+          "P100": 14495.0
+        },
+        "pixels": {
+          "P50": 143750.0,
+          "P90": 1740604.2000000002,
+          "P95": 3809841.399999999,
+          "P99": 24895977.200000513,
+          "P100": 34806376.0
+        }
+      }
+    },
+    "DocVQA-val": {
+      "passed": true,
+      "qa": 5349,
+      "unique_images": 1285,
+      "image_references": 5349,
+      "all_images_decoded_again": true,
+      "all_source_sha256_rechecked": true,
+      "answer_alignment": true,
+      "inference_input_has_no_gold": true,
+      "original_parquet_field_and_media_equivalence": true,
+      "media_count_distribution": {
+        "1": 5349
+      },
+      "questions_with_multiple_images": 0,
+      "original_id_nonnull_count": 0,
+      "image_stats": {
+        "bytes": {
+          "P50": 295633.0,
+          "P90": 1609480.9999999993,
+          "P95": 1854718.9999999995,
+          "P99": 2329779.840000003,
+          "P100": 3020858.0
+        },
+        "width": {
+          "P50": 1706.0,
+          "P90": 2200.0,
+          "P95": 2287.8,
+          "P99": 4387.320000000091,
+          "P100": 6921.0
+        },
+        "height": {
+          "P50": 2208.0,
+          "P90": 2305.6,
+          "P95": 2382.7999999999997,
+          "P99": 4142.6800000001185,
+          "P100": 7184.0
+        },
+        "pixels": {
+          "P50": 3798540.0,
+          "P90": 4103359.1999999997,
+          "P95": 4380284.0,
+          "P99": 14389954.240002178,
+          "P100": 38556528.0
+        }
+      }
+    },
+    "InfoVQA-val": {
+      "passed": true,
+      "qa": 2801,
+      "unique_images": 500,
+      "image_references": 2801,
+      "all_images_decoded_again": true,
+      "all_source_sha256_rechecked": true,
+      "answer_alignment": true,
+      "inference_input_has_no_gold": true,
+      "original_parquet_field_and_media_equivalence": true,
+      "media_count_distribution": {
+        "1": 2801
+      },
+      "questions_with_multiple_images": 0,
+      "original_id_nonnull_count": 2801,
+      "image_stats": {
+        "bytes": {
+          "P50": 429129.5,
+          "P90": 1220005.6,
+          "P95": 1666617.2000000004,
+          "P99": 3361413.9,
+          "P100": 8822183.0
+        },
+        "width": {
+          "P50": 900.0,
+          "P90": 1999.1,
+          "P95": 2550.5,
+          "P99": 4466.049999999995,
+          "P100": 9024.0
+        },
+        "height": {
+          "P50": 2174.0,
+          "P90": 6256.0,
+          "P95": 7929.700000000001,
+          "P99": 10809.909999999998,
+          "P100": 14495.0
+        },
+        "pixels": {
+          "P50": 2057100.0,
+          "P90": 8610522.600000001,
+          "P95": 13494825.0,
+          "P99": 29085274.079999965,
+          "P100": 58593750.0
+        }
+      }
+    }
+  },
+  "complete": true,
+  "qa": 9150,
+  "cpu_unit_tests_passed": true,
+  "safety": {
+    "cpu_only": true,
+    "model_weights_loaded": false,
+    "cuda_initialized": false,
+    "gpu_inference_run": false,
+    "source_research_files_modified": false,
+    "existing_files_deleted": false,
+    "data_floor_gib": 15,
+    "before_free_bytes": 20186722304,
+    "after_free_bytes": 16289849344,
+    "minimum_observed_free_bytes": 16290136064,
+    "allocated_dataset_bytes": 3896586240,
+    "all_transfers_finished": true
+  },
+  "qwen_processor_audit": {
+    "status": "NOT_RUN_OPTIONAL",
+    "reason": "Local Qwen3-VL processor config exists, but the available validation Python environment has transformers 4.56.2 without the Qwen3-VL implementation. No extra dependencies/models were downloaded; resolution statistics are complete.",
+    "requested_visual_token_cap": 2048,
+    "no_token_counts_estimated_or_claimed": true
+  }
+}

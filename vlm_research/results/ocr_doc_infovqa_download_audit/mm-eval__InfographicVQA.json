@@ -1,0 +1,182 @@
+{
+  "_id": "6a106595f35fc8378a7b1cb8",
+  "id": "mm-eval/InfographicVQA",
+  "author": "mm-eval",
+  "sha": "c8e35ef221f0836de9c467e6da181b38d44b552a",
+  "lastModified": "2026-07-19T09:57:03.000Z",
+  "private": false,
+  "gated": false,
+  "disabled": false,
+  "tags": [
+    "size_categories:1K<n<10K",
+    "format:parquet",
+    "format:optimized-parquet",
+    "modality:image",
+    "modality:text",
+    "library:datasets",
+    "library:dask",
+    "library:polars",
+    "library:mlcroissant",
+    "region:us"
+  ],
+  "downloads": 2244,
+  "likes": 0,
+  "cardData": {
+    "dataset_info": {
+      "features": [
+        {
+          "name": "id",
+          "dtype": "string"
+        },
+        {
+          "name": "media",
+          "list": "image"
+        },
+        {
+          "name": "messages",
+          "dtype": "string"
+        },
+        {
+          "name": "answer",
+          "list": "string"
+        },
+        {
+          "name": "question_type",
+          "dtype": "string"
+        }
+      ],
+      "splits": [
+        {
+          "name": "validation",
+          "num_bytes": 1753699356,
+          "num_examples": 2801
+        },
+        {
+          "name": "test",
+          "num_bytes": 1884126269,
+          "num_examples": 3288
+        }
+      ],
+      "download_size": 3637309553,
+      "dataset_size": 3637825625
+    },
+    "configs": [
+      {
+        "config_name": "default",
+        "data_files": [
+          {
+            "split": "validation",
+            "path": "data/validation-*"
+          },
+          {
+            "split": "test",
+            "path": "data/test-*"
+          }
+        ]
+      }
+    ]
+  },
+  "siblings": [
+    {
+      "rfilename": ".gitattributes",
+      "blobId": "bed0738c7eeb449bca98b5d2f33c89a1ee56349a",
+      "size": 2504
+    },
+    {
+      "rfilename": "README.md",
+      "blobId": "eb7bd5db03c42d4e4a30b6ee76a5c4ee12cb9dd9",
+      "size": 543
+    },
+    {
+      "rfilename": "data/test-00000-of-00004.parquet",
+      "blobId": "00905fe502cd713b1dfe8571889091149fab62d0",
+      "size": 424121008,
+      "lfs": {
+        "sha256": "e6486e3e4489359eb76fca38b697f14fa956281e7a93caa84c6a7937d4260578",
+        "size": 424121008,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "data/test-00001-of-00004.parquet",
+      "blobId": "9c0db8bed94d257f721306f7a6e864030b6cf50d",
+      "size": 458919775,
+      "lfs": {
+        "sha256": "357754c0d09deabd8b9c28b3f68e3da84d710cd31a71dd64e3ce44aec64728c6",
+        "size": 458919775,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "data/test-00002-of-00004.parquet",
+      "blobId": "958634ff0898dc93a6091991348e58fafd94203a",
+      "size": 434756234,
+      "lfs": {
+        "sha256": "c5cb88325833cbae22aa02a09228dd134818a2bfe5df6ec9dd53093081f7c838",
+        "size": 434756234,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "data/test-00003-of-00004.parquet",
+      "blobId": "b378f4cdeeabf57d8e91a392473d64a8f0b2d263",
+      "size": 566048765,
+      "lfs": {
+        "sha256": "6f9f7c0a1511cee7ce37a41efbb8fc64732f5c64b38b5d903236beef4ec77d35",
+        "size": 566048765,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "data/validation-00000-of-00004.parquet",
+      "blobId": "50e8d7d9a0d35066f1e83928ef88ea23fc1df0ec",
+      "size": 474724131,
+      "lfs": {
+        "sha256": "1a2c5ca2af763d7daf5332d2d5bea6b3134f3b62d4285898cba2ae60957bf178",
+        "size": 474724131,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "data/validation-00001-of-00004.parquet",
+      "blobId": "6be0d9fd7717802f9038cad1adf112273fa9bd1d",
+      "size": 448716194,
+      "lfs": {
+        "sha256": "25adee77b620523960c3a70a87693317138fa2ff52b0a9d9f2ccd208075989af",
+        "size": 448716194,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "data/validation-00002-of-00004.parquet",
+      "blobId": "550b72e2f599c71f0572c3ef80ddf178929be22e",
+      "size": 355764085,
+      "lfs": {
+        "sha256": "8ab4446fe44efdcc646e5720bda3f8b7d30c98a28ff495a519c5b1dd1aa04394",
+        "size": 355764085,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "data/validation-00003-of-00004.parquet",
+      "blobId": "8aefc33a68eaff563e560ed94fb78548b8a264df",
+      "size": 474259361,
+      "lfs": {
+        "sha256": "9d5228949be239796260afbab8cd67e50db31c8fda065a0fd4079cbc7fe86ce4",
+        "size": 474259361,
+        "pointerSize": 134
+      }
+    },
+    {
+      "rfilename": "metadata.json",
+      "blobId": "f37a4b0f7996fcac740d2b5127a2787c9e0145c9",
+      "size": 1944
+    }
+  ],
+  "createdAt": "2026-05-22T14:17:57.000Z",
+  "usedStorage": 7109170751,
+  "_metadata_endpoint": "https://hf-mirror.com",
+  "_metadata_errors": [
+    "Metadata unavailable: https://huggingface.co/api/datasets/mm-eval/InfographicVQA?blobs=true: <urlopen error [Errno 101] Network is unreachable>"
+  ]
+}
