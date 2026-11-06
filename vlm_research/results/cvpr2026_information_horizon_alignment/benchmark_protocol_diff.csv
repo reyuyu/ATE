@@ -1,0 +1,51 @@
+benchmark,field,historical,stage_A,stage_B
+TextVQA,Model/Weights/Implementation,HF b234b804b114d9e37bb655e11cbbb5f5e971b7a9,Author 75909b; original liuhaotian 4481d270; unpruned parent dispatch repair,"Same fixed HF revision, all three conditions identical eager engine"
+TextVQA,Backend,FP16 eager / Transformers4.49,FP16 Flash2 / Transformers4.37.2,FP16 eager / Transformers4.49
+TextVQA,Prompt,"HF USER chat template, no Vicuna system preamble",Author vicuna_v1 with full system preamble,Identical author vicuna_v1 string
+TextVQA,Vision Processor,Historical HF processor; separate input binding,Native pad-to-square + CLIP336,"Same pad-to-square, CPU tensor hashes compared"
+TextVQA,Max Tokens,32,128,128
+TextVQA,EOS,Native model EOS,"Native model EOS, no added stop strings","HF native EOS, no added stop strings"
+TextVQA,OCR,Absent,Original supplied OCR text/order,Same supplied OCR
+TextVQA,Scorer,Frozen old scorer unchanged,Author official lexical/scorer; MMBench offline matcher,Same as stage A
+TextVQA,Split/Question Count,Original historical split,Author exact annotation rows; POPE8910 not9000,Exactly the same paper-input rows
+TextVQA,Image,Existing verified benchmark files,Same image bytes; SHA256 checked,Same bytes and CPU pixels checked
+MME,Model/Weights/Implementation,HF b234b804b114d9e37bb655e11cbbb5f5e971b7a9,Author 75909b; original liuhaotian 4481d270; unpruned parent dispatch repair,"Same fixed HF revision, all three conditions identical eager engine"
+MME,Backend,FP16 eager / Transformers4.49,FP16 Flash2 / Transformers4.37.2,FP16 eager / Transformers4.49
+MME,Prompt,"HF USER chat template, no Vicuna system preamble",Author vicuna_v1 with full system preamble,Identical author vicuna_v1 string
+MME,Vision Processor,Historical HF processor; separate input binding,Native pad-to-square + CLIP336,"Same pad-to-square, CPU tensor hashes compared"
+MME,Max Tokens,32,128,128
+MME,EOS,Native model EOS,"Native model EOS, no added stop strings","HF native EOS, no added stop strings"
+MME,OCR,Absent,Not applicable,Not applicable
+MME,Scorer,Frozen old scorer unchanged,Author official lexical/scorer; MMBench offline matcher,Same as stage A
+MME,Split/Question Count,Original historical split,Author exact annotation rows; POPE8910 not9000,Exactly the same paper-input rows
+MME,Image,Existing verified benchmark files,Same image bytes; SHA256 checked,Same bytes and CPU pixels checked
+ScienceQA-IMG,Model/Weights/Implementation,HF b234b804b114d9e37bb655e11cbbb5f5e971b7a9,Author 75909b; original liuhaotian 4481d270; unpruned parent dispatch repair,"Same fixed HF revision, all three conditions identical eager engine"
+ScienceQA-IMG,Backend,FP16 eager / Transformers4.49,FP16 Flash2 / Transformers4.37.2,FP16 eager / Transformers4.49
+ScienceQA-IMG,Prompt,"HF USER chat template, no Vicuna system preamble",Author vicuna_v1 with full system preamble,Identical author vicuna_v1 string
+ScienceQA-IMG,Vision Processor,Historical HF processor; separate input binding,Native pad-to-square + CLIP336,"Same pad-to-square, CPU tensor hashes compared"
+ScienceQA-IMG,Max Tokens,32,1024,1024
+ScienceQA-IMG,EOS,Native model EOS,"Native model EOS, no added stop strings","HF native EOS, no added stop strings"
+ScienceQA-IMG,OCR,Absent,Not applicable,Not applicable
+ScienceQA-IMG,Scorer,Frozen old scorer unchanged,Author official lexical/scorer; MMBench offline matcher,Same as stage A
+ScienceQA-IMG,Split/Question Count,Original historical split,Author exact annotation rows; POPE8910 not9000,Exactly the same paper-input rows
+ScienceQA-IMG,Image,Existing verified benchmark files,Same image bytes; SHA256 checked,Same bytes and CPU pixels checked
+MMBench,Model/Weights/Implementation,HF b234b804b114d9e37bb655e11cbbb5f5e971b7a9,Author 75909b; original liuhaotian 4481d270; unpruned parent dispatch repair,"Same fixed HF revision, all three conditions identical eager engine"
+MMBench,Backend,FP16 eager / Transformers4.49,FP16 Flash2 / Transformers4.37.2,FP16 eager / Transformers4.49
+MMBench,Prompt,"HF USER chat template, no Vicuna system preamble",Author vicuna_v1 with full system preamble,Identical author vicuna_v1 string
+MMBench,Vision Processor,Historical HF processor; separate input binding,Native pad-to-square + CLIP336,"Same pad-to-square, CPU tensor hashes compared"
+MMBench,Max Tokens,32,1024,1024
+MMBench,EOS,Native model EOS,"Native model EOS, no added stop strings","HF native EOS, no added stop strings"
+MMBench,OCR,Absent,Not applicable,Not applicable
+MMBench,Scorer,Frozen old scorer unchanged,Author official lexical/scorer; MMBench offline matcher,Same as stage A
+MMBench,Split/Question Count,Original historical split,Author exact annotation rows; POPE8910 not9000,Exactly the same paper-input rows
+MMBench,Image,Existing verified benchmark files,Same image bytes; SHA256 checked,Same bytes and CPU pixels checked
+POPE,Model/Weights/Implementation,HF b234b804b114d9e37bb655e11cbbb5f5e971b7a9,Author 75909b; original liuhaotian 4481d270; unpruned parent dispatch repair,"Same fixed HF revision, all three conditions identical eager engine"
+POPE,Backend,FP16 eager / Transformers4.49,FP16 Flash2 / Transformers4.37.2,FP16 eager / Transformers4.49
+POPE,Prompt,"HF USER chat template, no Vicuna system preamble",Author vicuna_v1 with full system preamble,Identical author vicuna_v1 string
+POPE,Vision Processor,Historical HF processor; separate input binding,Native pad-to-square + CLIP336,"Same pad-to-square, CPU tensor hashes compared"
+POPE,Max Tokens,32,128,128
+POPE,EOS,Native model EOS,"Native model EOS, no added stop strings","HF native EOS, no added stop strings"
+POPE,OCR,Absent,Not applicable,Not applicable
+POPE,Scorer,Frozen old scorer unchanged,Author official lexical/scorer; MMBench offline matcher,Same as stage A
+POPE,Split/Question Count,Original historical split,Author exact annotation rows; POPE8910 not9000,Exactly the same paper-input rows
+POPE,Image,Existing verified benchmark files,Same image bytes; SHA256 checked,Same bytes and CPU pixels checked

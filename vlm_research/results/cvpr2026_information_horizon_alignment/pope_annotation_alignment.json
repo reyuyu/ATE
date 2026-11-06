@@ -1,0 +1,30 @@
+{
+  "at": "2026-11-06T15:26:18.738115+00:00",
+  "note": "Use aligned label files with official lexical scorer. A shorter author Random file must not be zipped against the first 2910 labels without alignment. Dataset-size difference is not repaired by adding 90 questions.",
+  "strategies": [
+    {
+      "author_questions": 2910,
+      "label_alignment": "Exact image/question lookup; imange typo normalized only for lookup, not input",
+      "label_mismatches_if_naively_zipped": 1417,
+      "official_lexical_rule_preserved": true,
+      "original_gold_questions": 3000,
+      "strategy": "random"
+    },
+    {
+      "author_questions": 3000,
+      "label_alignment": "Exact image/question lookup; imange typo normalized only for lookup, not input",
+      "label_mismatches_if_naively_zipped": 0,
+      "official_lexical_rule_preserved": true,
+      "original_gold_questions": 3000,
+      "strategy": "popular"
+    },
+    {
+      "author_questions": 3000,
+      "label_alignment": "Exact image/question lookup; imange typo normalized only for lookup, not input",
+      "label_mismatches_if_naively_zipped": 0,
+      "official_lexical_rule_preserved": true,
+      "original_gold_questions": 3000,
+      "strategy": "adversarial"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+You are using a model of type llava to instantiate a model of type llava_llama. This is not supported for all configurations of models and can yield errors.
+/home/likai/anaconda3/envs/AFAC/lib/python3.11/site-packages/huggingface_hub/file_download.py:949: FutureWarning: `resume_download` is deprecated and will be removed in version 1.0.0. Downloads always resume when possible. If you want to force a new download, use `force_download=True`.
+  warnings.warn(
+Loading checkpoint shards:   0%|          | 0/2 [00:00<?, ?it/s]Loading checkpoint shards:  50%|█████     | 1/2 [00:02<00:02,  2.74s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.62s/it]Loading checkpoint shards: 100%|██████████| 2/2 [00:03<00:00,  1.79s/it]
+/data/lk/ATE-resources/information-horizon-alignment/author-env/lib/python3.11/site-packages/transformers/generation/configuration_utils.py:392: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/data/lk/ATE-resources/information-horizon-alignment/author-env/lib/python3.11/site-packages/transformers/generation/configuration_utils.py:397: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `None` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+SMOKE A 1 TextVQA:36140 PASSED
+SMOKE A 1 TextVQA:34809 PASSED
+SMOKE A 1 TextVQA:36157 PASSED
+SMOKE A 1 MME:commonsense_reasoning/0058.png:1 PASSED
+SMOKE A 1 MME:position/000000056127.jpg:1 PASSED
+SMOKE A 1 MME:commonsense_reasoning/0014.png:1 PASSED
+SMOKE A 1 ScienceQA-IMG:16436 PASSED
+SMOKE A 1 ScienceQA-IMG:14426 PASSED
+SMOKE A 1 ScienceQA-IMG:8732 PASSED
+SMOKE A 1 MMBench:1001085 PASSED
+SMOKE A 1 MMBench:1000592 PASSED
+SMOKE A 1 MMBench:382 PASSED
+SMOKE A 1 POPE:100 PASSED
+SMOKE A 1 POPE:10001819 PASSED
+SMOKE A 1 POPE:828 PASSED
+PROGRESS A 1 50 TextVQA TextVQA:34833
+PROGRESS A 1 100 TextVQA TextVQA:35077
+PROGRESS A 1 150 TextVQA TextVQA:35260
+PROGRESS A 1 200 TextVQA TextVQA:35470
+PROGRESS A 1 250 TextVQA TextVQA:35628
+PROGRESS A 1 300 TextVQA TextVQA:35786
+PROGRESS A 1 350 TextVQA TextVQA:36007
+PROGRESS A 1 400 TextVQA TextVQA:36228
+PROGRESS A 1 450 TextVQA TextVQA:36370
+PROGRESS A 1 500 TextVQA TextVQA:36539
+PROGRESS A 1 550 TextVQA TextVQA:36754
+PROGRESS A 1 600 TextVQA TextVQA:36927
+PROGRESS A 1 650 TextVQA TextVQA:37133
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/cvpr2026-information-horizon-alignment/vlm_research/information_horizon_alignment/worker.py", line 181, in <module>
+    main()
+  File "/data/lk/ATE-worktrees/cvpr2026-information-horizon-alignment/vlm_research/information_horizon_alignment/worker.py", line 165, in main
+    run(a,stage,rank,rows,p)
+  File "/data/lk/ATE-worktrees/cvpr2026-information-horizon-alignment/vlm_research/information_horizon_alignment/worker.py", line 105, in run
+    assert shutil.disk_usage('/data').free>1024**3, '1 GiB output safety floor'
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: 1 GiB output safety floor

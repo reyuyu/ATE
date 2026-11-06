@@ -1,0 +1,264 @@
+{
+  "all_mapped_learned_parameters_equal": true,
+  "all_mapped_shared_weights_equal": false,
+  "at": "2026-11-06T15:26:15.187986+00:00",
+  "backend_parity_not_assumed": true,
+  "checkpoint_rotary_buffers_differ_from_fp32_formula": 32,
+  "clip_original_fp32_cast_to_fp16": true,
+  "dependencies": {
+    "actual_author_flash": "2.8.3.post1",
+    "actual_author_python": "3.11",
+    "actual_author_torch": "2.5.1+cu124",
+    "actual_author_transformers": "4.37.2",
+    "author_required_flash": "2.5.9.post1",
+    "author_required_python": "3.10",
+    "author_required_torch": "2.1.2",
+    "author_required_transformers": "4.37.2",
+    "classification": "AUTHOR_CODE_REPRODUCTION, not exact environment reproduction"
+  },
+  "equal_matrices": 687,
+  "extra_hf_vocabulary_rows": 64,
+  "hf_configuration": {
+    "architectures": [
+      "LlavaForConditionalGeneration"
+    ],
+    "ignore_index": -100,
+    "image_token_index": 32000,
+    "model_type": "llava",
+    "pad_token_id": 32001,
+    "projector_hidden_act": "gelu",
+    "text_config": {
+      "_name_or_path": "lmsys/vicuna-7b-v1.5",
+      "architectures": [
+        "LlamaForCausalLM"
+      ],
+      "max_position_embeddings": 4096,
+      "model_type": "llama",
+      "rms_norm_eps": 1e-05,
+      "torch_dtype": "float16",
+      "vocab_size": 32064
+    },
+    "tie_word_embeddings": false,
+    "torch_dtype": "float16",
+    "transformers_version": "4.36.0.dev0",
+    "vision_config": {
+      "hidden_size": 1024,
+      "image_size": 336,
+      "intermediate_size": 4096,
+      "model_type": "clip_vision_model",
+      "num_attention_heads": 16,
+      "num_hidden_layers": 24,
+      "patch_size": 14,
+      "projection_dim": 768,
+      "vocab_size": 32000
+    },
+    "vision_feature_layer": -2,
+    "vision_feature_select_strategy": "default",
+    "vocab_size": 32064
+  },
+  "hf_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "matrices_compared": 719,
+  "native_code_fix": "Original PrunedLLM with None config raises UnboundLocalError; select author existing LlamaModel.forward",
+  "native_configuration": {
+    "_name_or_path": "llava-v1.5-7b",
+    "architectures": [
+      "LlavaLlamaForCausalLM"
+    ],
+    "bos_token_id": 1,
+    "eos_token_id": 2,
+    "freeze_mm_mlp_adapter": false,
+    "freeze_mm_vision_resampler": false,
+    "hidden_act": "silu",
+    "hidden_size": 4096,
+    "image_aspect_ratio": "pad",
+    "initializer_range": 0.02,
+    "intermediate_size": 11008,
+    "max_length": 4096,
+    "max_position_embeddings": 4096,
+    "mm_hidden_size": 1024,
+    "mm_projector_type": "mlp2x_gelu",
+    "mm_resampler_type": null,
+    "mm_use_im_patch_token": false,
+    "mm_use_im_start_end": false,
+    "mm_vision_select_feature": "patch",
+    "mm_vision_select_layer": -2,
+    "mm_vision_tower": "openai/clip-vit-large-patch14-336",
+    "model_type": "llava",
+    "num_attention_heads": 32,
+    "num_hidden_layers": 32,
+    "num_key_value_heads": 32,
+    "pad_token_id": 0,
+    "pretraining_tp": 1,
+    "rms_norm_eps": 1e-05,
+    "rope_scaling": null,
+    "tie_word_embeddings": false,
+    "torch_dtype": "float16",
+    "transformers_version": "4.31.0",
+    "tune_mm_mlp_adapter": false,
+    "tune_mm_vision_resampler": false,
+    "unfreeze_mm_vision_tower": false,
+    "use_cache": true,
+    "use_mm_proj": true,
+    "vocab_size": 32000
+  },
+  "native_revision": "4481d270cc22fd5c4d1bb5df129622006ccd9234",
+  "rotary_buffer_note": "Author Transformers4.37.2 registers inv_freq, sin_cached, cos_cached persistent=False; these checkpoint buffers are not learned parameters. CPU constructor reconstructs the FP32 formula exactly. Runtime/backend parity is not inferred from this audit.",
+  "shared_parameter_tensors": 686,
+  "source_download": {
+    "liuhaotian/llava-v1.5-7b": {
+      "downloaded": [
+        {
+          "bytes": 1161,
+          "path": "/data/lk/ATE-resources/information-horizon-alignment/hf-hub/models--liuhaotian--llava-v1.5-7b/snapshots/4481d270cc22fd5c4d1bb5df129622006ccd9234/config.json",
+          "reused": true,
+          "sha256": "f112de882e31171a105f0d3f69d9e6e8700a40149f0944f4b507d3a41789e492"
+        },
+        {
+          "bytes": 124,
+          "path": "/data/lk/ATE-resources/information-horizon-alignment/hf-hub/models--liuhaotian--llava-v1.5-7b/snapshots/4481d270cc22fd5c4d1bb5df129622006ccd9234/generation_config.json",
+          "reused": true,
+          "sha256": "e453057ea6a89d902d7326b3addbe312a7a6c8faabf777a521c9f2d563f79b8d"
+        },
+        {
+          "bytes": 9976634558,
+          "path": "/data/lk/ATE-resources/information-horizon-alignment/hf-hub/models--liuhaotian--llava-v1.5-7b/snapshots/4481d270cc22fd5c4d1bb5df129622006ccd9234/pytorch_model-00001-of-00002.bin",
+          "reused": false,
+          "sha256": "492fdfa63cf314097d99da81a3586d54a97adc1471a0ae0535f5caa269b86314"
+        },
+        {
+          "bytes": 3542276251,
+          "path": "/data/lk/ATE-resources/information-horizon-alignment/hf-hub/models--liuhaotian--llava-v1.5-7b/snapshots/4481d270cc22fd5c4d1bb5df129622006ccd9234/pytorch_model-00002-of-00002.bin",
+          "reused": true,
+          "sha256": "c0eb94eb3fa578a4c63567f2eca6b0acf6a44a891c257aca0df88ffa891de72e"
+        },
+        {
+          "bytes": 27068,
+          "path": "/data/lk/ATE-resources/information-horizon-alignment/hf-hub/models--liuhaotian--llava-v1.5-7b/snapshots/4481d270cc22fd5c4d1bb5df129622006ccd9234/pytorch_model.bin.index.json",
+          "reused": true,
+          "sha256": "487578d3f7ec21c057596d0f9dc71084acc349eb8f13bd8b5af86c26460f2d31"
+        },
+        {
+          "bytes": 438,
+          "path": "/data/lk/ATE-resources/information-horizon-alignment/hf-hub/models--liuhaotian--llava-v1.5-7b/snapshots/4481d270cc22fd5c4d1bb5df129622006ccd9234/special_tokens_map.json",
+          "reused": true,
+          "sha256": "719833ff26ac897a3ec8ed946028a135de2a351470af59b4008744ab1f0ee9b7"
+        },
+        {
+          "bytes": 499723,
+          "path": "/data/lk/ATE-resources/information-horizon-alignment/hf-hub/models--liuhaotian--llava-v1.5-7b/snapshots/4481d270cc22fd5c4d1bb5df129622006ccd9234/tokenizer.model",
+          "reused": true,
+          "sha256": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347"
+        },
+        {
+          "bytes": 749,
+          "path": "/data/lk/ATE-resources/information-horizon-alignment/hf-hub/models--liuhaotian--llava-v1.5-7b/snapshots/4481d270cc22fd5c4d1bb5df129622006ccd9234/tokenizer_config.json",
+          "reused": true,
+          "sha256": "cf01145c6de57f061991ff871e85d0402c38481f968daea8874c431cd0c7740f"
+        }
+      ],
+      "entries": [
+        {
+          "blobId": "0ce10a15ac0e34d9f7c25f598e6a237d88b99a46",
+          "rfilename": "config.json",
+          "size": 1161
+        },
+        {
+          "blobId": "0a2211d8cb8868624f2556fe27d138585e151fea",
+          "rfilename": "generation_config.json",
+          "size": 124
+        },
+        {
+          "blobId": "5cc87dfff58e36c1b04a5dd64aa669ed88dd5167",
+          "lfs": {
+            "pointerSize": 135,
+            "sha256": "492fdfa63cf314097d99da81a3586d54a97adc1471a0ae0535f5caa269b86314",
+            "size": 9976634558
+          },
+          "rfilename": "pytorch_model-00001-of-00002.bin",
+          "size": 9976634558
+        },
+        {
+          "blobId": "220c3d95d4ae7681650d330bfa306dc9d4742adf",
+          "lfs": {
+            "pointerSize": 135,
+            "sha256": "c0eb94eb3fa578a4c63567f2eca6b0acf6a44a891c257aca0df88ffa891de72e",
+            "size": 3542276251
+          },
+          "rfilename": "pytorch_model-00002-of-00002.bin",
+          "size": 3542276251
+        },
+        {
+          "blobId": "239de7c61647372780b7546a8df572ed42f7fc57",
+          "rfilename": "pytorch_model.bin.index.json",
+          "size": 27068
+        },
+        {
+          "blobId": "14761dcf1466dc232bd41de9c21d4c617b15755e",
+          "rfilename": "special_tokens_map.json",
+          "size": 438
+        },
+        {
+          "blobId": "6c00c742ce03c627d6cd5b795984876fa49fa899",
+          "lfs": {
+            "pointerSize": 131,
+            "sha256": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+            "size": 499723
+          },
+          "rfilename": "tokenizer.model",
+          "size": 499723
+        },
+        {
+          "blobId": "740756b4bef305e27d0bb4d2e1a40dd8847797f7",
+          "rfilename": "tokenizer_config.json",
+          "size": 749
+        }
+      ],
+      "revision": "4481d270cc22fd5c4d1bb5df129622006ccd9234"
+    },
+    "openai/clip-vit-large-patch14-336": {
+      "downloaded": [
+        {
+          "bytes": 4757,
+          "path": "/data/lk/ATE-resources/information-horizon-alignment/hf-hub/models--openai--clip-vit-large-patch14-336/snapshots/ce19dc912ca5cd21c8a653c79e251e808ccabcd1/config.json",
+          "reused": false,
+          "sha256": "51b1c14aabcdf639c4a0370eeda1010b773bbe1df78319c7d0f5882c22ac0ac0"
+        },
+        {
+          "bytes": 316,
+          "path": "/data/lk/ATE-resources/information-horizon-alignment/hf-hub/models--openai--clip-vit-large-patch14-336/snapshots/ce19dc912ca5cd21c8a653c79e251e808ccabcd1/preprocessor_config.json",
+          "reused": false,
+          "sha256": "d253881f65322dc546df59cf925a408e5538b8ecb5a1b496cdd36af9992686d4"
+        },
+        {
+          "bytes": 1711974081,
+          "path": "/data/lk/ATE-resources/information-horizon-alignment/hf-hub/models--openai--clip-vit-large-patch14-336/snapshots/ce19dc912ca5cd21c8a653c79e251e808ccabcd1/pytorch_model.bin",
+          "reused": false,
+          "sha256": "c6032c2e0caae3dc2d4fba35535fa6307dbb49df59c7e182b1bc4b3329b81801"
+        }
+      ],
+      "entries": [
+        {
+          "blobId": "e9c5a5dc325b017eda0b6e802f79283a1f68bf27",
+          "rfilename": "config.json",
+          "size": 4757
+        },
+        {
+          "blobId": "a4604d0a1564fa0c45a6ff087bada5066a6335ea",
+          "rfilename": "preprocessor_config.json",
+          "size": 316
+        },
+        {
+          "blobId": "d599938f87909461098a7856a49c4842c84fc214",
+          "lfs": {
+            "pointerSize": 135,
+            "sha256": "c6032c2e0caae3dc2d4fba35535fa6307dbb49df59c7e182b1bc4b3329b81801",
+            "size": 1711974081
+          },
+          "rfilename": "pytorch_model.bin",
+          "size": 1711974081
+        }
+      ],
+      "revision": "ce19dc912ca5cd21c8a653c79e251e808ccabcd1"
+    }
+  }
+}
