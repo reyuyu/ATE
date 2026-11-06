@@ -10,7 +10,7 @@ class Remote(io.RawIOBase):
     def fetch(self,a,b):
         if b-a+1>65536:
             spans=[(start,min(b,start+65535)) for start in range(a,b+1,65536)]
-            with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+            with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:
                 parts=list(pool.map(lambda span:self.fetch(*span),spans))
             return b''.join(p[0] for p in parts),parts[-1][1]
         import time
@@ -22,12 +22,14 @@ class Remote(io.RawIOBase):
             assert len(data)==b-a+1 and h(data)==headers['sha256']
             if self.etag:assert headers['ETag']==self.etag
             return data,headers
-        for attempt in range(5):
+        for attempt in range(8):
             # A distinct query avoids a cached origin 503 for another byte range.
-            req=urllib.request.Request(self.url+f'?ate_range={a}-{b}&attempt={attempt}',headers={'Range':f'bytes={a}-{b}'})
+            target=self.url if attempt%2==0 else self.url.replace('https:','http:')
+            req=urllib.request.Request(target+f'?ate_range={a}-{b}&retry={attempt}',headers={'Range':f'bytes={a}-{b}'})
             try:r=urllib.request.urlopen(req,timeout=45);break
-            except Exception:
-                if attempt==4:raise
+            except Exception as exc:
+                print('RANGE_RETRY',a,b,attempt,str(exc),flush=True)
+                if attempt==7:raise
                 time.sleep(2*(attempt+1))
         with r:
             assert r.status==206 and r.headers['Content-Range'].startswith(f'bytes {a}-{b}/')
@@ -82,6 +84,12 @@ def main():
         import struct,zlib
         assert shutil.disk_usage('/data').free>20*2**30
         info=members[i];a=info.header_offset
+        p=DEST/'images'/f'{i}.jpg'
+        if p.exists():
+            b=p.read_bytes();assert len(b)==info.file_size and zlib.crc32(b)&0xffffffff==info.CRC
+            from PIL import Image
+            with Image.open(p) as im:im.verify()
+            return dict(image_id=i,path=str(p),sha256=h(b),bytes=len(b),zip_member=info.filename,zip_crc32=info.CRC)
         header,_=r.fetch(a,a+29);assert header[:4]==b'PK\x03\x04'
         n,e=struct.unpack_from('<HH',header,26);offset=a+30+n+e
         comp,_=r.fetch(offset,offset+info.compress_size-1)
@@ -93,7 +101,7 @@ def main():
         from PIL import Image
         with Image.open(p) as im:im.verify()
         return dict(image_id=i,path=str(p),sha256=h(b),bytes=len(b),zip_member=info.filename,zip_crc32=info.CRC)
-    with concurrent.futures.ThreadPoolExecutor(max_workers=8) as pool:
+    with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
         for result in pool.map(fast,ids):
             audit.append(result)
             if len(audit)%100==0:print('OFFICIAL_IMAGES',len(audit),flush=True)
