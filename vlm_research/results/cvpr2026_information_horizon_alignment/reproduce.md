@@ -16,6 +16,41 @@ Run from `/data/lk/ATE-worktrees/cvpr2026-information-horizon-alignment`:
 
 ## GPU Admission
 
+On 2026-11-07 the user explicitly authorized idle-card relay. The task-local
+`information_horizon_alignment.supervise` module now automates the checks below
+without modifying any frozen inference source or protocol. The systemd user unit
+is `ate-information-horizon-relay.service` (no automatic restart after failure).
+Its live state is `relay/status.json`, with attempt-specific admission, worker,
+failure and release logs under `relay/attempts/`. Mutable relay files are not Git
+artifacts. Do not launch manual workers while the relay service is active.
+
+The relay checks every 10 seconds. Admission requires two consecutive checks
+with no compute process, at most 1,024 MiB used and at most 5% GPU utilization,
+followed by an immediate pre-launch recheck. The original shard/UUID mapping is
+preserved. An empty shard cannot be migrated to another GPU to bypass this
+binding. If an external task later appears on one of our running cards, the
+controller stops only its own children. There is no cross-user reservation
+mechanism, so admission cannot guarantee other users will not start later.
+
+Stage A resumes first. Only after all A checkpoints pass their full record and
+score audit can Stage B begin. Missing B smoke gates run as smoke-only jobs on
+available cards; no B formal worker launches until all four gates pass. All
+workers retain the original per-launch smoke checks. Completion of collection
+is not a claim that the final official-metric report has been reviewed.
+
+The controller stops on any worker error, hash mismatch, task STOP file or less
+than 3 GiB free disk. It does not clear failure markers or relax tolerances.
+Previous per-worker metadata and smoke logs are copied before each attempt;
+atomic SQLite answers are verified and skipped rather than overwritten.
+
+```bash
+systemctl --user status ate-information-horizon-relay.service
+systemctl --user stop ate-information-horizon-relay.service
+```
+
+The service is local to this server session and is not configured to survive a
+host reboot. Stopping it only affects processes owned by this relay.
+
 Check physical UUID, memory, utilization and compute processes immediately before
 each launch. Never launch on a card with an external task, even if nominal free
 VRAM would fit the model. No process has been killed, paused or migrated.
