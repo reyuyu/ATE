@@ -74,7 +74,7 @@ C3原版保持L0–L19 R写入、L20视觉Hidden退出、P−1/Decode禁图和L2
 
 每条件语言KV独立；当前图像视觉特征复用经GPU严格验证。短中长Smoke含Native/HF/No-op有效Logits、Mask、真实跳算、物理退出、RoPE、KV和Hook审计。详见CPU/GPU日志及源码/输入冻结文件。
 
-问题、官方Gold来自Stanford questions1.2.zip的testdev_balanced_questions.json；原图来自官方images.zip的398个成员。均验证ZIP CRC、图片SHA及可读性，无替代图片或跳题。来源及完整Manifest见data_audit.json、protocol.json与sample_manifest.jsonl.gz。
+问题、官方Gold来自Stanford questions1.2.zip的testdev_balanced_questions.json。图片通过lmms-lab-encoder/GQA镜像取得，398张JPEG的字节长度和CRC全部与官方images.zip成员相符；其中80张还与从Stanford直接下载的文件逐字节一致。其余图片记录了本地SHA，但未独立从Stanford重下载做第二次SHA对照。镜像Parquet SHA为ba0a57a72c483d6e4a390ecbbee05d07a55365aeac3e93f4a923ac61c9e465eb。全部图片可读，无重编码或跳题；来源、等价性审计与完整Manifest见source_dataset_audit.json、data_audit.json、protocol.json及sample_manifest.jsonl.gz。
 
 主评分为text.rstrip('.').lower()后与官方短答案严格匹配。官方GQA工具（LLaVA官方文档指定的兼容修订）独立执行，结果及差异见official_score_crosscheck.csv，完整stdout保留；不静默更改主指标。全部EOS、截断、空答案、重复、负面案例均保留。
 

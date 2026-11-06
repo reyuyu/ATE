@@ -8,9 +8,6 @@ from ..physical_visual_handoff.common import atomic, digest, read, sha, TOLERANC
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'vlm_research/results/c3v2_gqa_testdev_balanced_12578'
-DATA = Path('/data/lk/ATE-benchmarks-20261105/datasets/GQA')
-AUDIT = Path('/data/lk/ATE-benchmark-audit-20261105-2230')
-ANNOTATION = Path('/data/lk/ATE-resources/paper_rq1/annotations/gqa_val_balanced.parquet')
 REVISION = 'b234b804b114d9e37bb655e11cbbb5f5e971b7a9'
 MODEL = Path('/data/lk/ATE-resources/models/llava-1.5-7b-hf') / REVISION
 LABELS = ('C3-V2', 'C3-V2+L11-L24', 'Native')

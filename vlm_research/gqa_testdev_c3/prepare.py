@@ -84,7 +84,7 @@ def main():
         max_new_tokens=32,logits_to_keep=1,greedy=True,independent_KV=True,
         R='All post-image text queries before original P-1; no new R writing above L19.',
         scoring='Pinned LLaVA conversion text.rstrip(\'.\').lower(), then exact equality to official short answer; question weighted.',
-        image_caveat='Official Stanford images.zip members, original bytes and CRC verified; no MMEB substitutes.',
+        image_caveat='Mirror JPEGs match all 398 official ZIP member byte lengths/CRCs; 80 direct Stanford downloads additionally match byte-for-byte. Other SHA values are locally recorded, not independently re-downloaded. See source_dataset_audit.json.',
         comparison='C3 minus Native; Reaccess minus Native; Reaccess minus C3; image-SHA cluster bootstrap 20000; exploratory.',
         tolerances=TOLERANCES['llava'],devices=DEVICES,performance_benchmark=False,
         native_full_accuracy_run=True,expected_generations=37734,published_reference_only=62.0,
