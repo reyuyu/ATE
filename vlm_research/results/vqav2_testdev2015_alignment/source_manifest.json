@@ -1,0 +1,76 @@
+{
+  "benchmark": "VQAv2",
+  "version": "2.0",
+  "split": "test-dev2015",
+  "question_source": {
+    "url": "https://cvmlp.s3.amazonaws.com/vqa/mscoco/vqa/v2_Questions_Test_mscoco.zip",
+    "local_path": "/data1/likai/ATE-vqav2-testdev2015-sources-20261107/v2_Questions_Test_mscoco.zip",
+    "sha256": "982e2e687a86514b78ea83af356d151976c5e3fb4168a29ca543610574082ad7",
+    "etag": "\"32c60d37be7ca3b99f6e7fa226b7d97f\"",
+    "bytes": 8966943,
+    "zip_members": [
+      {
+        "name": "v2_OpenEnded_mscoco_test2015_questions.json",
+        "bytes": 41800665,
+        "crc32": 605591747
+      },
+      {
+        "name": "v2_OpenEnded_mscoco_test-dev2015_questions.json",
+        "bytes": 10032875,
+        "crc32": 67482933
+      }
+    ],
+    "official_testdev_subset_verified_against_full_test2015": true
+  },
+  "images": {
+    "url": "https://s3.amazonaws.com/images.cocodataset.org/zips/test2015.zip",
+    "etag": "\"caf5a3a275bf40dad9a3c8231caa4c76-1582\"",
+    "bytes": 13270587935,
+    "download_method": "Only selected official individual JPEGs; exact ZIP member size and CRC32 checked",
+    "selected_members_sha256": "e133b1eb14fb301a6e29adc3cfc38dc4c825328bd4801adf00bd50c78d7af0dc"
+  },
+  "llava_sources": [
+    {
+      "repository": "haotian-liu/LLaVA",
+      "revision": "c121f0432da27facab705978f83c4ada465e46fd",
+      "path": "scripts/v1_5/eval/vqav2.sh",
+      "url": "https://api.github.com/repos/haotian-liu/LLaVA/contents/scripts/v1_5/eval/vqav2.sh?ref=c121f0432da27facab705978f83c4ada465e46fd",
+      "local_path": "/data1/likai/ATE-vqav2-testdev2015-sources-20261107/LLaVA/scripts/v1_5/eval/vqav2.sh",
+      "sha256": "89c8705edee2b9be132b94a29f36f6d5114fab507de5dca1d621910d4d28ad7f"
+    },
+    {
+      "repository": "haotian-liu/LLaVA",
+      "revision": "c121f0432da27facab705978f83c4ada465e46fd",
+      "path": "scripts/convert_vqav2_for_submission.py",
+      "url": "https://api.github.com/repos/haotian-liu/LLaVA/contents/scripts/convert_vqav2_for_submission.py?ref=c121f0432da27facab705978f83c4ada465e46fd",
+      "local_path": "/data1/likai/ATE-vqav2-testdev2015-sources-20261107/LLaVA/scripts/convert_vqav2_for_submission.py",
+      "sha256": "7d932fcb5b91dc2fa54efc173a39a27c53c5aeb0eaccb3c71fd3559309e6f47c"
+    },
+    {
+      "repository": "haotian-liu/LLaVA",
+      "revision": "c121f0432da27facab705978f83c4ada465e46fd",
+      "path": "docs/Evaluation.md",
+      "url": "https://api.github.com/repos/haotian-liu/LLaVA/contents/docs/Evaluation.md?ref=c121f0432da27facab705978f83c4ada465e46fd",
+      "local_path": "/data1/likai/ATE-vqav2-testdev2015-sources-20261107/LLaVA/docs/Evaluation.md",
+      "sha256": "dec9d6676c621135cebf54ab8062df927ce095c968646c057d7f9ed94fa2e653"
+    },
+    {
+      "repository": "haotian-liu/LLaVA",
+      "revision": "c121f0432da27facab705978f83c4ada465e46fd",
+      "path": "llava/eval/m4c_evaluator.py",
+      "url": "https://api.github.com/repos/haotian-liu/LLaVA/contents/llava/eval/m4c_evaluator.py?ref=c121f0432da27facab705978f83c4ada465e46fd",
+      "local_path": "/data1/likai/ATE-vqav2-testdev2015-sources-20261107/LLaVA/llava/eval/m4c_evaluator.py",
+      "sha256": "8b49e1033e29d551c0bdd86d9149e2b54370e4cd17e52176ac9061b3521f0774"
+    }
+  ],
+  "llava_answer_processor_ast_matches_existing_vendor": true,
+  "llava_eval_zip": {
+    "url": "https://drive.google.com/file/d/1atZSBBrAX54yYpxtVVW33zFvcnaHeFPy/view",
+    "status": "UNAVAILABLE_CONNECTION_TIMEOUT",
+    "fallback": "VQA official test question archive, not a third-party question mirror"
+  },
+  "gold_available": false,
+  "official_server_scoring_required": true,
+  "official_submission_ids": 447793,
+  "inference_questions": 107394
+}

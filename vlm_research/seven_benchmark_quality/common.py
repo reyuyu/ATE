@@ -15,14 +15,15 @@ from functools import lru_cache
 
 from ..mme_seed_quality.common import atomic, digest, sha, now, read, MODELS
 from ..benchmarks.scoring import pope_answer, scienceqa_index, textvqa_score
-from ..ate_fulljoint_vqav2.common import score as vqa_score
+from ..benchmarks.dataset_registry import official_registry
 
 ROOT = Path(__file__).resolve().parents[2]
 OUT = ROOT / 'vlm_research/results/seven_benchmark_native_physical_quality'
 DATA = Path('/data/lk/ATE-benchmarks-20261105/datasets')
 AUDIT = Path('/data/lk/ATE-benchmark-audit-20261105-2230')
-ORDER = ('POPE', 'ScienceQA-IMG', 'MMBench', 'TextVQA', 'MM-Vet', 'GQA', 'VQAv2')
-COUNTS = dict(zip(ORDER, (9000, 2017, 4377, 5000, 218, 132062, 214354)))
+REGISTRY = official_registry()
+ORDER = tuple(REGISTRY['paper_queue'])
+COUNTS = {name: REGISTRY['benchmarks'][name]['expected_questions'] for name in ORDER}
 CONDITIONS = ('Native', 'Physical-C3')
 DEVICES = ('GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6',
            'GPU-96bc853f-ceea-2404-c704-c48a3d1ca185')
@@ -49,8 +50,11 @@ def official_mmbench_matcher():
 
 
 def sources():
-    return {str(p.relative_to(ROOT)): sha(p) for p in sorted(
+    bindings = {str(p.relative_to(ROOT)): sha(p) for p in sorted(
         (ROOT / 'vlm_research').rglob('*.py')) if 'results' not in p.parts}
+    registry_path = ROOT / 'vlm_research/benchmarks/official_registry.json'
+    bindings[str(registry_path.relative_to(ROOT))] = sha(registry_path)
+    return bindings
 
 
 def prompt(row, benchmark):
@@ -67,6 +71,10 @@ def prompt(row, benchmark):
 
 
 def score(sample, text):
+    if sample.get('gold_available') is False or sample['benchmark'] == 'vqav2_testdev':
+        if 'answer' in sample:
+            raise ValueError('Gold must not be attached to VQAv2 test-dev')
+        return dict(score=None, status='GENERATED_AWAITING_OFFICIAL_SCORING')
     bench, gold = sample['benchmark'], sample['answer']
     if bench == 'POPE':
         parsed = pope_answer(text)
@@ -77,6 +85,7 @@ def score(sample, text):
     if bench == 'TextVQA':
         return dict(score=float(textvqa_score(text, gold)))
     if bench == 'VQAv2':
+        from ..ate_fulljoint_vqav2.common import score as vqa_score
         return dict(score=float(vqa_score(text, [a['answer'] for a in gold['answers']])))
     if bench == 'GQA':
         # Same prediction conversion as the completed full-val historical run.
@@ -104,6 +113,7 @@ def samples(benchmark):
 
 def verify():
     protocol = read(OUT / 'protocol.json')
+    assert tuple(protocol['order']) == ORDER and protocol['counts'] == COUNTS, 'Old validation queue is not the official test-dev protocol'
     assert protocol['sources'] == sources(), 'Frozen source changed'
     for name, value in protocol['artifacts'].items():
         assert sha(OUT / name) == value, name

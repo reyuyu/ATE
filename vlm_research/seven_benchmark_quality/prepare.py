@@ -5,6 +5,7 @@ import os
 import subprocess
 
 from .common import *
+from ..benchmarks.dataset_registry import official_benchmark_path, load_prepared_benchmark
 
 
 def main():
@@ -34,7 +35,24 @@ def main():
     image_manifest = {}
     clusters = defaultdict(int)
     for bench in ORDER:
-        inp, ans = DATA / bench / 'inputs.jsonl', DATA / bench / 'answers.json'
+        directory = official_benchmark_path(bench, DATA)
+        inp, ans = directory / 'inputs.jsonl', directory / 'answers.json'
+        if not REGISTRY['benchmarks'][bench]['gold_available']:
+            entries = []
+            source_files[str(inp)] = sha(inp)
+            for index, raw in enumerate(load_prepared_benchmark(bench, DATA)):
+                item = dict(key=f'{bench}__{index:07d}', benchmark=bench, record_index=index,
+                    source_question_id=raw['question_id'], image_path=raw['image_path'],
+                    image_sha256=raw['image_sha256'], image_id=raw['image_id'],
+                    question=prompt(raw, bench), raw=raw, gold_available=False,
+                    official_server_scoring_required=True)
+                image_manifest.setdefault(raw['image_path'], dict(sha256=raw['image_sha256'], bytes=Path(raw['image_path']).stat().st_size))
+                clusters[raw['image_sha256']] += 1
+                entries.append(item)
+            assert len(entries) == COUNTS[bench]
+            rows[bench] = entries
+            print(f'Validated {bench}: {len(entries)} hidden-answer records', flush=True)
+            continue
         audit = read(AUDIT / f'{bench}_validated.json')
         assert audit['status'] == 'COMPLETE' and audit['questions'] == COUNTS[bench]
         source_files[str(inp)] = sha(inp)
@@ -102,6 +120,7 @@ def main():
         qwen_status='STOPPED_PREEXISTING_SDPA_NUMERICAL_GATE_FAILED',
         qwen_evidence_commit='53e9cc1f52481de338ab1a3149a41b63eaa5d162',
         mmvet_status='Generate only; paid official judge not authorized',
+        vqav2_status='test-dev2015 only; hidden gold; official server scoring required',
         mmbench_status='Generate all cyclic records; official matching/circular score pending',
         bootstrap_replicates=20000, bootstrap_seed=20261106,
         ci_scope='Exploratory, image SHA256 whole-cluster paired, question-weighted',

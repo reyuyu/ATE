@@ -4,7 +4,9 @@ from .common import *
 
 class ProtocolTests(unittest.TestCase):
     def test_counts(self):
-        self.assertEqual(sum(COUNTS.values()), 367028)
+        self.assertEqual(sum(COUNTS.values()), 260068)
+        self.assertEqual(COUNTS['vqav2_testdev'], 107394)
+        self.assertNotIn('VQAv2', ORDER)
     def test_choices_keep_hint_and_order(self):
         raw = dict(question='Q?', hint='real context', choices=['first', 'second'])
         text = prompt(raw, 'ScienceQA-IMG')

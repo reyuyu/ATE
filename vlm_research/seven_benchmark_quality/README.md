@@ -1,6 +1,19 @@
 # Seven-Benchmark Native / Physical C3 Quality
 
-Current user scope (2026-11-06): GQA and VQAv2 are deferred. The active
+## Test-dev data alignment, 2026-11-07
+
+The new paper registry is `vlm_research/benchmarks/official_registry.json`.
+Its `vqav2_testdev` entry uses exactly 107,394 official VQA v2 test-dev2015
+questions and hidden gold. The seven source splits now total 260,068 questions.
+The old val2014 source remains available as `vqav2_val2014_diagnostic` but is
+not in the paper queue. No historical freeze or checkpoint is migrated.
+The hidden-answer adapter never loads an answers file or computes local Accuracy.
+Offline export is `python -m vlm_research.benchmarks.vqav2_submission --help`.
+Only data preparation was authorized for this alignment; do not launch inference.
+
+## Historical execution scope
+
+Historical user scope (2026-11-06): GQA and VQAv2 were deferred. The active
 dispatcher is
 `vlm_research/results/seven_benchmark_native_physical_quality/execution_scope/schedule.py`.
 It runs only POPE, ScienceQA-IMG, MMBench, TextVQA and MM-Vet, reusing the exact
@@ -13,8 +26,9 @@ Each worker owns one UUID-pinned GPU and keeps one resident model. Every image
 SHA cluster belongs to exactly one worker, including cross-benchmark duplicates.
 Native and Physical requests have independent caches and identical input tensors.
 
-The seven source splits contain 367,028 questions. LLaVA requires 734,056
-generations. Full input manifests, image SHA checks and model file SHA checks
+The historical seven-source freeze contained 367,028 questions and required
+734,056 generations. Its queue is not the new test-dev paper protocol.
+Full input manifests, image SHA checks and model file SHA checks
 are frozen before GPU execution. Each benchmark passes three input-selected
 smoke cases on each GPU before either shard starts formal scoring.
 
@@ -28,7 +42,7 @@ and circular all-rotation hit criterion, not candidate likelihood ranking.
 MM-Vet predictions are generated but await an authorized official judge;
 no paid API is called and no score or confidence interval is fabricated.
 
-## Commands
+## Historical Commands (Not Run For Data Alignment)
 
 Run from `/data/lk/ATE-worktrees/seven-benchmark-native-physical-quality` with
 `/data/lk/深度学习/.envs/ate-vlm-research/bin/python`:

@@ -64,9 +64,9 @@ def main():
     output = dict(benchmark=bench, status='COMPLETE', questions=len(rows),
                   image_clusters=len({s['image_sha256'] for s in rows}), at=now(),
                   question_record_digest_verified=True, independent_scoring_recomputed=True)
-    if bench == 'MM-Vet':
+    if bench == 'MM-Vet' or REGISTRY['benchmarks'][bench]['gold_available'] is False:
         output.update(status='GENERATED_AWAITING_OFFICIAL_SCORING', scores=None,
-                      note='No paid external judge called; no fabricated score/CI')
+                      note='Official external scoring required; no fabricated local score/CI')
     else:
         units = paired
         if bench == 'MMBench':

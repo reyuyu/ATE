@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "data_root": "/data/lk/ATE-benchmarks-20261105/datasets",
+  "paper_queue": ["POPE", "ScienceQA-IMG", "MMBench", "TextVQA", "MM-Vet", "GQA", "vqav2_testdev"],
+  "benchmarks": {
+    "POPE": {"directory": "POPE", "expected_questions": 9000, "gold_available": true},
+    "ScienceQA-IMG": {"directory": "ScienceQA-IMG", "expected_questions": 2017, "gold_available": true},
+    "MMBench": {"directory": "MMBench", "expected_questions": 4377, "gold_available": true},
+    "TextVQA": {"directory": "TextVQA", "expected_questions": 5000, "gold_available": true},
+    "MM-Vet": {"directory": "MM-Vet", "expected_questions": 218, "gold_available": true},
+    "GQA": {"directory": "GQA", "expected_questions": 132062, "gold_available": true},
+    "vqav2_testdev": {
+      "directory": "VQAv2-testdev2015",
+      "dataset": "VQAv2",
+      "version": "2.0",
+      "split": "test-dev2015",
+      "expected_questions": 107394,
+      "gold_available": false,
+      "official_server_scoring_required": true,
+      "audit_filename": "dataset_audit.json"
+    },
+    "vqav2_val2014_diagnostic": {
+      "directory": "VQAv2",
+      "split": "val2014",
+      "expected_questions": 214354,
+      "gold_available": true,
+      "paper_queue_enabled": false,
+      "purpose": "Historical local diagnostics only; not the VQAv2 paper protocol"
+    }
+  }
+}

@@ -43,13 +43,22 @@ def freeze_json(path, value):
 
 
 def validate_sample(row):
-    if REQUIRED - row.keys():
-        raise ValueError(f'Missing fields: {REQUIRED - row.keys()}')
+    hidden = row.get('answer_type') == 'hidden'
+    required = REQUIRED - {'answer'} if hidden else REQUIRED
+    if required - row.keys():
+        raise ValueError(f'Missing fields: {required - row.keys()}')
     for key in ('dataset', 'question_id', 'image_id', 'question', 'source_revision'):
         if not isinstance(row[key], str) or not row[key].strip():
             raise ValueError(f'Invalid {key}')
     candidates = row['candidates']
-    if row['answer_type'] == 'closed':
+    if hidden:
+        if row.get('gold_available') is not False or row.get('official_server_scoring_required') is not True:
+            raise ValueError('Hidden-answer rows must explicitly require official scoring')
+        if hidden_gold_present(row):
+            raise ValueError('Never attach fabricated or leaked gold to hidden-answer rows')
+        if candidates is not None:
+            raise ValueError('Hidden open VQA must not fabricate candidates')
+    elif row['answer_type'] == 'closed':
         if not candidates or len(candidates) < 2 or len(set(candidates)) != len(candidates):
             raise ValueError('Closed task requires distinct real candidates')
         if row['answer'] not in candidates:
@@ -62,6 +71,15 @@ def validate_sample(row):
     else:
         raise ValueError('Unknown answer type')
     return row
+
+
+def hidden_gold_present(value):
+    if isinstance(value, dict):
+        return any(key in ('answer', 'answers', 'gold', 'lecture', 'solution') or
+                   hidden_gold_present(item) for key, item in value.items())
+    if isinstance(value, list):
+        return any(hidden_gold_present(item) for item in value)
+    return False
 
 
 def audit_image(path, expected_size=None):
@@ -94,7 +112,7 @@ def audit_rows(rows):
         raise ValueError(f'Duplicate Question IDs: {duplicate_ids}')
     return {'questions': len(rows), 'unique_images': len(images), 'duplicate_question_ids': duplicate_ids,
             'repeated_image_ids': {k: v for k, v in images.items() if v > 1},
-            'answers': dict(sorted(Counter(str(r['answer']) for r in rows).items())),
+            'answers': dict(sorted(Counter(str(r['answer']) for r in rows if 'answer' in r).items())),
             'answer_types': dict(Counter(r['answer_type'] for r in rows)),
             'choice_counts': dict(Counter(str(len(r['candidates'])) if r['candidates'] else 'open' for r in rows))}
 
@@ -162,3 +180,76 @@ def load_manifest(path, image_root=None, verify_images=True):
             if sha256(row['image_path']) != row['image_sha256']:
                 raise ValueError(f'Image hash mismatch: {row["image_id"]}')
     return manifest
+
+
+def official_registry():
+    registry = json.loads(Path(__file__).with_name('official_registry.json').read_text())
+    queue = registry['paper_queue']
+    if len(set(queue)) != len(queue) or 'vqav2_val2014_diagnostic' in queue or 'VQAv2' in queue:
+        raise ValueError('Paper queue must not include the old ambiguous/validation VQAv2 entry')
+    entry = registry['benchmarks']['vqav2_testdev']
+    if (queue.count('vqav2_testdev') != 1 or entry['split'] != 'test-dev2015'
+            or entry['expected_questions'] != 107394 or entry['gold_available'] is not False
+            or entry['official_server_scoring_required'] is not True):
+        raise ValueError('Invalid official VQAv2 test-dev protocol')
+    return registry
+
+
+def official_benchmark_path(identifier, data_root=None):
+    registry = official_registry()
+    if identifier not in registry['paper_queue']:
+        raise ValueError('Not an enabled paper benchmark: ' + identifier)
+    root = Path(data_root or registry['data_root'])
+    return root / registry['benchmarks'][identifier]['directory']
+
+
+def load_prepared_benchmark(identifier, data_root=None, verify_images=True):
+    """Load the unified inference-only JSONL; hidden tests intentionally lack gold."""
+    registry = official_registry()
+    entry = registry['benchmarks'][identifier]
+    root = official_benchmark_path(identifier, data_root)
+    hidden = entry['gold_available'] is False
+    if not hidden:
+        raise ValueError('This adapter is for hidden-answer paper benchmarks only')
+    if (root / 'answers.json').exists():
+        raise ValueError('Hidden test-dev directory must not contain answers.json')
+    audit = json.loads((root / entry['audit_filename']).read_text())
+    if (audit['status'] != 'COMPLETE' or audit['gold_available'] is not False
+            or audit['official_server_scoring_required'] is not True
+            or audit['actual_questions'] != entry['expected_questions']
+            or audit['split'] != entry['split']):
+        raise ValueError('Hidden benchmark has not passed complete data validation')
+    inputs = root / 'inputs.jsonl'
+    if sha256(inputs) != audit['inputs_sha256']:
+        raise ValueError('Inference manifest SHA changed')
+    if sha256(root / 'source_manifest.json') != audit['source_manifest_sha256']:
+        raise ValueError('Frozen source manifest SHA changed')
+    with inputs.open() as f:
+        rows = [json.loads(line) for line in f]
+    audit_rows(rows)
+    if len(rows) != entry['expected_questions']:
+        raise ValueError('Unexpected official question count')
+    manifest_path = root / 'image_manifest.json'
+    if sha256(manifest_path) != audit['image_manifest_sha256']:
+        raise ValueError('Image manifest SHA changed')
+    image_rows = json.loads(manifest_path.read_text())
+    infos = {i['image_id']: i for i in image_rows}
+    if len(infos) != len(image_rows):
+        raise ValueError('Duplicate image ID in hidden test manifest')
+    used = set()
+    for row in rows:
+        if row['dataset'] != entry['dataset'] or row['split'] != entry['split']:
+            raise ValueError('Mixed dataset/split in paper manifest')
+        if (row['answer_type'] != 'hidden' or row.get('gold_available') is not False
+                or row.get('official_server_scoring_required') is not True):
+            raise ValueError('Public/fabricated gold row in hidden benchmark')
+        info = infos[row['image_id']]
+        if row['image_path'] != info['image_path'] or row['image_sha256'] != info['image_sha256']:
+            raise ValueError('Broken frozen image reference')
+        if verify_images and row['image_id'] not in used:
+            if sha256(row['image_path']) != row['image_sha256']:
+                raise ValueError('Image hash mismatch')
+        used.add(row['image_id'])
+    if used != set(infos):
+        raise ValueError('Extra or missing images in hidden test manifest')
+    return rows
