@@ -1,6 +1,6 @@
 # Qwen3-VL同Backend全量质量评估：CPU准备记录
 
-状态：**CPU_PREPARED_AWAITING_GPU_AUTHORIZATION**。本轮尚未启动GPU请求，没有新的MME或SEED质量分数。
+状态：**CPU_ONLY_COMPLETE**。本轮尚未启动GPU请求，没有新的MME或SEED质量分数。
 
 基于Commit `53e9cc1f52481de338ab1a3149a41b63eaa5d162`，独立分支为 `codex/qwen3vl-mme-seed-2048-sdpa-paired-quality`，独立Worktree为 `/data/lk/ATE-worktrees/qwen3vl-mme-seed-2048-sdpa-paired-quality`。
 
