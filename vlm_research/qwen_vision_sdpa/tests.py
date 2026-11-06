@@ -8,6 +8,26 @@ from .common import *
 
 
 class CPU(unittest.TestCase):
+    def test_inference_sdpa_composite_observation(self):
+        import torch
+        from torch.utils._python_dispatch import TorchDispatchMode
+        class Observe(TorchDispatchMode):
+            def __init__(self):super().__init__();self.names=[]
+            def __torch_dispatch__(self,func,types,args=(),kwargs=None):
+                name=str(func)
+                if 'scaled_dot_product' in name:self.names.append(name)
+                if name=='aten.scaled_dot_product_attention.default':
+                    with self:return func.decompose(*args,**(kwargs or {}))
+                return func(*args,**(kwargs or {}))
+        with torch.inference_mode():
+            x=torch.arange(384,dtype=torch.float32).reshape(1,4,12,8)/384
+            a=torch.nn.functional.scaled_dot_product_attention(x,x,x)
+            observer=Observe()
+            with observer:b=torch.nn.functional.scaled_dot_product_attention(x,x,x)
+            self.assertTrue(torch.equal(a,b))
+            self.assertIn('aten.scaled_dot_product_attention.default',observer.names)
+            self.assertIn('aten._scaled_dot_product_flash_attention_for_cpu.default',observer.names)
+
     def test_official_modality_configuration(self):
         from transformers import Qwen3VLConfig,Qwen3VLForConditionalGeneration
         c=Qwen3VLConfig.from_pretrained(MODELS['qwen'],local_files_only=True)

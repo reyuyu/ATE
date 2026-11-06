@@ -59,6 +59,14 @@ class _OperatorTrace(TorchDispatchMode):
     def __init__(self,observer):super().__init__();self.observer=observer
     def __torch_dispatch__(self,func,types,args=(),kwargs=None):
         name=str(func)
+        if name=='aten.scaled_dot_product_attention.default':
+            # inference_mode exposes the CompositeImplicitAutograd wrapper.
+            # Run that same registered PyTorch decomposition with this read-only
+            # mode re-entered, so the selected fused CUDA operator is observable.
+            # No custom attention arithmetic or backend choice is introduced.
+            with self:result=func.decompose(*args,**(kwargs or {}))
+            assert result is not NotImplemented,'Official SDPA decomposition unavailable'
+            return result
         if 'scaled_dot_product' in name:
             allowed=('aten._scaled_dot_product_flash_attention.default',
                      'aten._scaled_dot_product_efficient_attention.default')
