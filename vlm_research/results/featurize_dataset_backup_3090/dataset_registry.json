@@ -1,0 +1,314 @@
+{
+  "schema_version": 1,
+  "task_status": "PARTIAL",
+  "created_at_utc": "2026-11-07T19:28:57.787292+00:00",
+  "upload_status": "BLOCKED_AUTH",
+  "successful_uploads": 0,
+  "requested_uploads": 6,
+  "dataset_payload_bytes": 2177052831,
+  "total_primary_questions": 35346,
+  "remote_content_verification": "REMOTE_CONTENT_NOT_FULLY_VERIFIED",
+  "github_branch": "codex/featurize-dataset-backup-3090",
+  "github_report_url": "https://github.com/reyuyu/ATE/blob/codex/featurize-dataset-backup-3090/vlm_research/results/featurize_dataset_backup_3090/report_zh.md",
+  "layout": [
+    "bundle_manifest.json",
+    "image_sha256.json",
+    "images/<original-dataset-subtree>/*",
+    "views/<view>/inputs.jsonl",
+    "views/<view>/answers.json",
+    "views/<view>/source_manifest.json",
+    "restore_bundle.py",
+    "source_annotations/* (selected original annotations only)"
+  ],
+  "path_restore_rule": "All portable image_path values are relative to the extracted bundle root. Run restore_bundle.py BUNDLE --output NEW_RUNTIME_DIR to generate absolute paths; frozen source inputs are not modified.",
+  "image_sha_policy": "Reuse prior complete SHA256/decode audit. Check all sizes, pre-audit image mtimes and paths; decode only 3 samples per bundle, plus 3 during TextVQA restore smoke.",
+  "environment_and_weights_backed_up": false,
+  "datasets": [
+    {
+      "benchmark": "TextVQA-OCR",
+      "version": "TextVQA v0.5.1 Validation + original LLaVA v1.5 Paper OCR protocol",
+      "split": "validation",
+      "urls": [
+        "https://dl.fbaipublicfiles.com/textvqa/data/TextVQA_0.5.1_val.json",
+        "https://dl.fbaipublicfiles.com/textvqa/images/train_val_images.zip",
+        "https://hf-mirror.com/datasets/Xiaodong/LLaVA-1.5-Eval/resolve/50547ed80a7844484d2849431144225841b9e935/eval.zip"
+      ],
+      "revision": "OCR mirror 50547ed80a7844484d2849431144225841b9e935; official image ZIP version ncyQEgyLZWkblorpGNAyzWbH_ssT6yG0",
+      "questions": 5000,
+      "images": 3166,
+      "file_count": 3178,
+      "bytes": 928886267,
+      "dataset_id": null,
+      "upload_status": "BLOCKED_AUTH",
+      "local_directory": "/home/featurize/data/ate-recovery/backup_staging_3090/ate3090-textvqa-ocr",
+      "bundle_directory_name": "ate3090-textvqa-ocr",
+      "manifest_file": "bundle_manifest.json",
+      "manifest_sha256": "c3f57d062491708ba50d75087143dc50bc8fb8cd80f8cf73c7b6179767fa7cf8",
+      "views": {
+        "TextVQA": {
+          "directory": "views/TextVQA",
+          "questions": 5000,
+          "image_paths": 3166,
+          "inputs_sha256": "6253ecd32c1fe54ccf5021b62edab77b20c77b47551bf7df7a350e8ace8c98fd",
+          "answers_sha256": "1c6397d70429df0705e2e8a348523d4605cf8d7949050c3413b82c5a0ef441e4",
+          "source_inputs_sha256": "0f756b3c284b97eba9e053988e80c1f12b5e170d4ff46f54338f7195b65651f9",
+          "source_answers_sha256": "1c6397d70429df0705e2e8a348523d4605cf8d7949050c3413b82c5a0ef441e4"
+        },
+        "TextVQA-OCR": {
+          "directory": "views/TextVQA-OCR",
+          "questions": 5000,
+          "image_paths": 3166,
+          "inputs_sha256": "ecc467a4a723a674abd4e144e03c63f2d6d811d150fe8a1269491730fe8079d5",
+          "answers_sha256": "1c6397d70429df0705e2e8a348523d4605cf8d7949050c3413b82c5a0ef441e4",
+          "source_inputs_sha256": "3f16d6a01622d20ea6e68cdbaae939477df83f0f73b8257f45541352c8b247c6",
+          "source_answers_sha256": "1c6397d70429df0705e2e8a348523d4605cf8d7949050c3413b82c5a0ef441e4"
+        }
+      },
+      "symlinks": 0,
+      "hardlinked_local_images": true,
+      "remote_content_verification": "REMOTE_CONTENT_NOT_FULLY_VERIFIED",
+      "cross_instance_platform_restore_ready": false
+    },
+    {
+      "benchmark": "MME",
+      "version": "MME Classic, 14 subtasks; pinned public mirror",
+      "split": "release",
+      "urls": [
+        "https://github.com/BradyFU/Awesome-Multimodal-Large-Language-Models/tree/Evaluation",
+        "https://hf-mirror.com/datasets/lmms-lab/MME/tree/d6c9023f017b564f7b3ccccf5348166bce8fdbcd"
+      ],
+      "revision": "d6c9023f017b564f7b3ccccf5348166bce8fdbcd",
+      "questions": 2374,
+      "images": 1187,
+      "file_count": 1197,
+      "bytes": 869354335,
+      "dataset_id": null,
+      "upload_status": "BLOCKED_AUTH",
+      "local_directory": "/home/featurize/data/ate-recovery/backup_staging_3090/ate3090-mme",
+      "bundle_directory_name": "ate3090-mme",
+      "manifest_file": "bundle_manifest.json",
+      "manifest_sha256": "ce0466edca5e0e4dfa6544eabd3954d0dd769bc8cf17102e24273d163021fc3f",
+      "views": {
+        "MME": {
+          "directory": "views/MME",
+          "questions": 2374,
+          "image_paths": 1187,
+          "inputs_sha256": "70af7b97eb3115c6415861bfb4b6e355837883d5bfef0afd57329046cb7c5e6b",
+          "answers_sha256": "cc313fcee2379497f79024ca80d659528066473c1808bd0ec070b9afa8f33919",
+          "source_inputs_sha256": "b6c63079fee8420342f0c98c170dd73e041a99fe382e24f957bd2278ca96e3a0",
+          "source_answers_sha256": "cc313fcee2379497f79024ca80d659528066473c1808bd0ec070b9afa8f33919"
+        },
+        "MME-paper": {
+          "directory": "views/MME-paper",
+          "questions": 2374,
+          "image_paths": 1187,
+          "inputs_sha256": "992608f355bb51b5e83c6b99ea213767f58fd447462c08419d7009db83192de3",
+          "answers_sha256": "39d2eb900d01910e718211a7335f1d6f8c1e4f0327065a36c0d1173a5ced7229",
+          "source_inputs_sha256": "b38f33c779997a5b4f3d3a8c20a1598e962e66186fa75b82a445fbca6224a5a1",
+          "source_answers_sha256": "39d2eb900d01910e718211a7335f1d6f8c1e4f0327065a36c0d1173a5ced7229"
+        }
+      },
+      "symlinks": 0,
+      "hardlinked_local_images": true,
+      "remote_content_verification": "REMOTE_CONTENT_NOT_FULLY_VERIFIED",
+      "cross_instance_platform_restore_ready": false
+    },
+    {
+      "benchmark": "POPE",
+      "version": "Official COCO random/popular/adversarial 3000 each; separate paper 8910 view",
+      "split": "coco_val2014",
+      "urls": [
+        "https://raw.githubusercontent.com/AoiDragon/POPE/08d957b917e5a378a2f99d35b6293c536a66298b/output/coco/coco_pope_random.json",
+        "https://raw.githubusercontent.com/AoiDragon/POPE/08d957b917e5a378a2f99d35b6293c536a66298b/output/coco/coco_pope_popular.json",
+        "https://raw.githubusercontent.com/AoiDragon/POPE/08d957b917e5a378a2f99d35b6293c536a66298b/output/coco/coco_pope_adversarial.json",
+        "http://images.cocodataset.org/val2014/"
+      ],
+      "revision": "08d957b917e5a378a2f99d35b6293c536a66298b",
+      "questions": 9000,
+      "images": 500,
+      "file_count": 523,
+      "bytes": 95318783,
+      "dataset_id": null,
+      "upload_status": "BLOCKED_AUTH",
+      "local_directory": "/home/featurize/data/ate-recovery/backup_staging_3090/ate3090-pope",
+      "bundle_directory_name": "ate3090-pope",
+      "manifest_file": "bundle_manifest.json",
+      "manifest_sha256": "070b1ab47b6413429f4e69fb23e9b194944ec0f58413de8c192ba7021d71a7d7",
+      "views": {
+        "POPE": {
+          "directory": "views/POPE",
+          "questions": 9000,
+          "image_paths": 500,
+          "inputs_sha256": "543dcfd33d09812937714914950c458e7cb1a3c200851a7a9a0de63645750aff",
+          "answers_sha256": "a64562e0e97d8bac8624f2882aa4db96e420a5e98d9c5644e43343e538b568ed",
+          "source_inputs_sha256": "b8e23fcbc052c0bd5f0c84b345121d09abb71c457b371f71cdc9d4d90e6890b8",
+          "source_answers_sha256": "a64562e0e97d8bac8624f2882aa4db96e420a5e98d9c5644e43343e538b568ed"
+        },
+        "POPE-random": {
+          "directory": "views/POPE-random",
+          "questions": 3000,
+          "image_paths": 500,
+          "inputs_sha256": "f1196446fe928502c96a77a58bba51332a5b2070bb4b09786309f0a079a2a036",
+          "answers_sha256": "fdc0966b08f6a987b764ba0bfbf123e74ca84aee3f3054e87cbb6b28fd74bdec",
+          "source_inputs_sha256": "48bffc13f0a84bddc0f471c898d16fab57b47988228edd5071aa533fabc132f1",
+          "source_answers_sha256": "fdc0966b08f6a987b764ba0bfbf123e74ca84aee3f3054e87cbb6b28fd74bdec"
+        },
+        "POPE-popular": {
+          "directory": "views/POPE-popular",
+          "questions": 3000,
+          "image_paths": 500,
+          "inputs_sha256": "d41e8b27818918a3255d84c3f3d17e4bbd04a71c71705e11412dbdfc2b026807",
+          "answers_sha256": "246eab8126cdfac49fed89ac6a15ff0a151d3d3b5c760618d66724fec9e19759",
+          "source_inputs_sha256": "bab5e9b48dcb74ead39604e46c225cdb7ecc38680285f310539429f0fddaaf91",
+          "source_answers_sha256": "246eab8126cdfac49fed89ac6a15ff0a151d3d3b5c760618d66724fec9e19759"
+        },
+        "POPE-adversarial": {
+          "directory": "views/POPE-adversarial",
+          "questions": 3000,
+          "image_paths": 500,
+          "inputs_sha256": "7f9f6d460de5d48032e0e8080564646952c8da2ec04b01091155c390d03cc4b7",
+          "answers_sha256": "29a705cae2edd3ff801a263153de564b3b0b32b759401ed3ae0cc31a6e9dbf66",
+          "source_inputs_sha256": "582342342f0e9e8c6bfb90c2b116193824b3d9ccbeaa453910aa9e0e462c5278",
+          "source_answers_sha256": "29a705cae2edd3ff801a263153de564b3b0b32b759401ed3ae0cc31a6e9dbf66"
+        },
+        "POPE-paper": {
+          "directory": "views/POPE-paper",
+          "questions": 8910,
+          "image_paths": 500,
+          "inputs_sha256": "706a2e04c62d6120a51d765aa3050771b3f52bffa54f848bdea3745170d3739a",
+          "answers_sha256": "4db02e853cae9e06dcae4e258e04bf44d9da6b7f9699955e4756180efb648bf1",
+          "source_inputs_sha256": "2176b2986d49a65b6efd702db60583e0667eb422056a5ccc6fc1150995cb23a5",
+          "source_answers_sha256": "4db02e853cae9e06dcae4e258e04bf44d9da6b7f9699955e4756180efb648bf1"
+        }
+      },
+      "symlinks": 0,
+      "hardlinked_local_images": true,
+      "remote_content_verification": "REMOTE_CONTENT_NOT_FULLY_VERIFIED",
+      "cross_instance_platform_restore_ready": false
+    },
+    {
+      "benchmark": "ScienceQA-IMG",
+      "version": "Official ScienceQA Test, image-present questions only",
+      "split": "test",
+      "urls": [
+        "https://raw.githubusercontent.com/lupantech/ScienceQA/2cbf8318e07b9ece895bb2ae605e71e38d623264/data/scienceqa/problems.json",
+        "https://raw.githubusercontent.com/lupantech/ScienceQA/2cbf8318e07b9ece895bb2ae605e71e38d623264/data/scienceqa/pid_splits.json",
+        "https://hf-mirror.com/datasets/derek-thomas/ScienceQA/tree/f18b0a70359ebfb41f658fd564208d0355b013f4"
+      ],
+      "revision": "official 2cbf8318e07b9ece895bb2ae605e71e38d623264; images f18b0a70359ebfb41f658fd564208d0355b013f4",
+      "questions": 2017,
+      "images": 2017,
+      "file_count": 2029,
+      "bytes": 169181496,
+      "dataset_id": null,
+      "upload_status": "BLOCKED_AUTH",
+      "local_directory": "/home/featurize/data/ate-recovery/backup_staging_3090/ate3090-scienceqa-img",
+      "bundle_directory_name": "ate3090-scienceqa-img",
+      "manifest_file": "bundle_manifest.json",
+      "manifest_sha256": "11171872f247063c164409e229ff8892eddaefc0404a1654ecebbee520db8745",
+      "views": {
+        "ScienceQA-IMG": {
+          "directory": "views/ScienceQA-IMG",
+          "questions": 2017,
+          "image_paths": 2017,
+          "inputs_sha256": "66e7942f462f1e9e2061a7bef76af99bd60eb65673fabd4e7fbb459d7a9ef7c2",
+          "answers_sha256": "5d51ddc6050fd83794f4d7913411998db11e8f5e0023d8af4dee728ac08d3b42",
+          "source_inputs_sha256": "02fcdd40e1305e5400458a9a6ee7d063ef4a2c9fc9a9d0185e13153620743858",
+          "source_answers_sha256": "5d51ddc6050fd83794f4d7913411998db11e8f5e0023d8af4dee728ac08d3b42"
+        },
+        "ScienceQA-IMG-paper": {
+          "directory": "views/ScienceQA-IMG-paper",
+          "questions": 2017,
+          "image_paths": 2017,
+          "inputs_sha256": "c0513bea68cc81af532e5494344b9fffc10a867ef42bd2d46687f470a599fe32",
+          "answers_sha256": "f4247b4e99175ef68ece7dd14c6a1a28baae9de44f1edbdd57a8a54f60f272cc",
+          "source_inputs_sha256": "0000a838748ebd698e7d7e507d78887fb3e36254e264515eb396fb92f688eedd",
+          "source_answers_sha256": "f4247b4e99175ef68ece7dd14c6a1a28baae9de44f1edbdd57a8a54f60f272cc"
+        }
+      },
+      "symlinks": 0,
+      "hardlinked_local_images": true,
+      "remote_content_verification": "REMOTE_CONTENT_NOT_FULLY_VERIFIED",
+      "cross_instance_platform_restore_ready": false
+    },
+    {
+      "benchmark": "MMBench",
+      "version": "MMBench-EN Dev20230712, circular rows retained",
+      "split": "dev",
+      "urls": [
+        "https://download.openmmlab.com/mmclassification/datasets/mmbench/mmbench_dev_20230712.tsv"
+      ],
+      "revision": "20230712",
+      "questions": 4377,
+      "images": 1132,
+      "file_count": 1142,
+      "bytes": 33861498,
+      "dataset_id": null,
+      "upload_status": "BLOCKED_AUTH",
+      "local_directory": "/home/featurize/data/ate-recovery/backup_staging_3090/ate3090-mmbench",
+      "bundle_directory_name": "ate3090-mmbench",
+      "manifest_file": "bundle_manifest.json",
+      "manifest_sha256": "4822d2e983a2dcf28f0d5d18a0c9f9623016559744dadf8cfa9e32b71525230a",
+      "views": {
+        "MMBench": {
+          "directory": "views/MMBench",
+          "questions": 4377,
+          "image_paths": 1132,
+          "inputs_sha256": "210d2a37c4ad12af483d6479fbbdabee8d7f831a0b248777482c2d0355e58550",
+          "answers_sha256": "e0b17dce2a1abb5fa3ab19de327655e7ab834b50df7919a35765d3c18adc9361",
+          "source_inputs_sha256": "e1911222a6db73624948864b3b8eeb44affa89b926ff5d7b64a45b927c68e7e3",
+          "source_answers_sha256": "e0b17dce2a1abb5fa3ab19de327655e7ab834b50df7919a35765d3c18adc9361"
+        },
+        "MMBench-paper": {
+          "directory": "views/MMBench-paper",
+          "questions": 4377,
+          "image_paths": 1132,
+          "inputs_sha256": "700876d296bc624a80c53aa18e91f50891e6e9a023132fb6cdee49404b708f05",
+          "answers_sha256": "b07649e7815bccc63276e9d59fd679dc3db3c0bc13e3e8f36f0175d85ec3a6a2",
+          "source_inputs_sha256": "aef55f6c9f2e13c2fda87db95e1f7e4ba9f66a07fa33b335d57a77a4c215f349",
+          "source_answers_sha256": "b07649e7815bccc63276e9d59fd679dc3db3c0bc13e3e8f36f0175d85ec3a6a2"
+        }
+      },
+      "symlinks": 0,
+      "hardlinked_local_images": true,
+      "remote_content_verification": "REMOTE_CONTENT_NOT_FULLY_VERIFIED",
+      "cross_instance_platform_restore_ready": false
+    },
+    {
+      "benchmark": "GQA-testdev-balanced",
+      "version": "Official GQA v1.2 testdev_balanced; 398 historical-SHA-matching images",
+      "split": "testdev_balanced",
+      "urls": [
+        "https://downloads.cs.stanford.edu/nlp/data/gqa/questions1.2.zip",
+        "https://downloads.cs.stanford.edu/nlp/data/gqa/images.zip",
+        "https://hf-mirror.com/datasets/lmms-lab-encoder/GQA/tree/a6e72d6e1b912da88af8b2f9eba05d5ea8ec2dd8"
+      ],
+      "revision": "official v1.2; image mirror a6e72d6e1b912da88af8b2f9eba05d5ea8ec2dd8",
+      "questions": 12578,
+      "images": 398,
+      "file_count": 406,
+      "bytes": 80450452,
+      "dataset_id": null,
+      "upload_status": "BLOCKED_AUTH",
+      "local_directory": "/home/featurize/data/ate-recovery/backup_staging_3090/ate3090-gqa-testdev-balanced",
+      "bundle_directory_name": "ate3090-gqa-testdev-balanced",
+      "manifest_file": "bundle_manifest.json",
+      "manifest_sha256": "42fcc4fe6eba5f7f0b614d074544e7df930c3be4814d360a5971219037d74f6c",
+      "views": {
+        "GQA-testdev-balanced": {
+          "directory": "views/GQA-testdev-balanced",
+          "questions": 12578,
+          "image_paths": 398,
+          "inputs_sha256": "b4348720c5cd498c77a68da98e475623b6764c29f5784a100ba0c4ab175d9f69",
+          "answers_sha256": "9837b3df5dc7a2db84fe79f93ffdbd6d9063e806c2c718e66257546ce311bd81",
+          "source_inputs_sha256": "0121ca34c02bdb0850bb5cffe8e3c9dceb9741cab40a0996f1d80cf463f0afdf",
+          "source_answers_sha256": "9837b3df5dc7a2db84fe79f93ffdbd6d9063e806c2c718e66257546ce311bd81"
+        }
+      },
+      "symlinks": 0,
+      "hardlinked_local_images": true,
+      "remote_content_verification": "REMOTE_CONTENT_NOT_FULLY_VERIFIED",
+      "cross_instance_platform_restore_ready": false
+    }
+  ]
+}
