@@ -17,6 +17,8 @@
 
 六包已实际依次执行 `featurize dataset upload <dir>`。CLI 均显示打包完成，随后“创建数据集失败: Server http code 401 Unauthorized”，退出码均为 **101**。预置认证变量存在，但被平台拒绝；没有成功提示、真实 Dataset ID 或远端元数据确认。不对确定性 401 盲目重试。`upload_status.json` 保留逐包时间、退出码及错误摘要。
 
+认证补充排查：预置 Token 与系统、工作区进程一致，无空白/引号或有效本地配置覆盖。当前官方 Linux CLI 已用独立用户目录中的兼容运行库成功启动（系统 libc/CLI 未替换）；只对最小的 MMBench 包补做 **1 次**真实上传，仍为 401 / exit 101。首次六次与这一次分开记录，共 7 次尝试，仍为 0/6 上传成功。未调用未文档化 API，也未找到公开认证刷新命令。需要平台修复实例认证或数据集创建权限；给客服的非敏感说明见 restore_guide.md。网页自动检查因工具无法可靠识别浏览器 URL 而停止，未操作网页。
+
 远端统一标记 **REMOTE_CONTENT_NOT_FULLY_VERIFIED**。未重新下载平台数据，也没有远端逐文件 SHA 校验；这里更不能宣称平台已安全保存。认证修复并取得六个真实 ID 前，不能销毁当前实例来依赖这些“平台备份”。
 
 ## 本轮复核与历史证据
@@ -45,7 +47,7 @@
 
 分支：`codex/featurize-dataset-backup-3090`，基于已存在 main `e89c8acce6e674ecfbd2c8acad57faf71bf4d547` 建立独立稀疏 worktree，只作为备份证据分支。研究源码实际基线仍是 alignment `e281754ef17b3accc09d6938b5b9f020048b2aec`，未假设 main 含最新实验。没有切换原研究目录或改动其他分支。
 
-本次只同步 report_zh.md、dataset_registry.json、upload_status.json、restore_guide.md、restore_bundle.py 共 **5 文件、37912 字节**，最大单文件 16085 字节。仅明确路径暂存，提交前审查 staged stat/name/size；无图片、权重、大型哈希表、日志、LFS 或原始数据。
+本次只同步 report_zh.md、dataset_registry.json、upload_status.json、restore_guide.md、restore_bundle.py 共 **5 文件、41826 字节**，最大单文件 16085 字节。仅明确路径暂存，提交前审查 staged stat/name/size；无图片、权重、大型哈希表、日志、LFS 或原始数据。
 
 本报告对应提交 SHA 可在 GitHub 文件历史中查看；最终实际 Push 状态和 Commit SHA 另写实例 `local_git_sync.json`，并在交付消息列出，避免把未执行的 Push 写为成功。
 

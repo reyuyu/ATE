@@ -2,14 +2,14 @@
   "schema_version": 1,
   "overall_status": "BLOCKED_AUTH",
   "started_at": "2026-11-07T19:22:59.083192+00:00",
-  "finished_at": "2026-11-07T19:23:07.842603+00:00",
+  "finished_at": "2026-11-07T19:35:06.356370+00:00",
   "success_count": 0,
   "failure_count": 6,
   "platform_dataset_creation_confirmed": false,
   "remote_content_verification": "REMOTE_CONTENT_NOT_FULLY_VERIFIED",
   "remote_metadata_verification": "NOT_VALIDATED",
   "authentication": "Instance-provided FEATURIZE_API_TOKEN is present but rejected with HTTP 401; no secret values recorded.",
-  "retry_policy": "One actual attempt per dataset. No blind retry on deterministic 401. Resume only after instance authentication is repaired; CLI documented resume support is used by rerunning the same upload command.",
+  "retry_policy": "Initial six attempts preserved. After diagnosis, exactly one MMBench upload using current official CLI also returned 401. Stop all retries pending platform credential/permission repair.",
   "cli_upload_help": "featurize dataset upload <path>",
   "cli_extract_help": "featurize dataset extract <dataset_id> [destination]",
   "documentation": [
@@ -113,7 +113,7 @@
       "benchmark": "MMBench",
       "dataset_id": null,
       "status": "BLOCKED_AUTH",
-      "attempts": 1,
+      "attempts": 2,
       "command": [
         "featurize",
         "dataset",
@@ -122,7 +122,7 @@
       ],
       "exit_code": 101,
       "started_at": "2026-11-07T19:23:06.894304+00:00",
-      "finished_at": "2026-11-07T19:23:07.166004+00:00",
+      "finished_at": "2026-11-07T19:35:06.356370+00:00",
       "elapsed_seconds": 0.268,
       "archive_packaging_completed": true,
       "upload_success_confirmed": false,
@@ -130,7 +130,23 @@
       "error_summary": "创建数据集失败: Server http code 401 Unauthorized",
       "remote_metadata_verified": false,
       "remote_content_verified": false,
-      "remote_content_verification": "REMOTE_CONTENT_NOT_FULLY_VERIFIED"
+      "remote_content_verification": "REMOTE_CONTENT_NOT_FULLY_VERIFIED",
+      "attempt_history": [
+        {
+          "client": "preinstalled CLI",
+          "exit_code": 101,
+          "http_status": 401,
+          "started_at": "2026-11-07T19:23:06.894304+00:00",
+          "finished_at": "2026-11-07T19:23:07.166004+00:00"
+        },
+        {
+          "client": "current official Linux CLI with private compatible loader",
+          "exit_code": 101,
+          "http_status": 401,
+          "started_at": "2026-11-07T19:35:06.321001+00:00",
+          "finished_at": "2026-11-07T19:35:06.356370+00:00"
+        }
+      ]
     },
     {
       "benchmark": "GQA-testdev-balanced",
@@ -155,5 +171,33 @@
       "remote_content_verified": false,
       "remote_content_verification": "REMOTE_CONTENT_NOT_FULLY_VERIFIED"
     }
-  ]
+  ],
+  "total_upload_attempts": 7,
+  "post_diagnosis_retry_scope": "Only the smallest existing bundle (MMBench), once; other five not retried.",
+  "authentication_diagnosis": {
+    "checked_at": "2026-11-07T19:35:06.356370+00:00",
+    "env_token_present": true,
+    "env_matches_etc_environment": true,
+    "workspace_process_token_matches": true,
+    "different_valid_local_token_found": false,
+    "token_whitespace_or_quote_problem": false,
+    "config_auth_values_set": false,
+    "config_help_subcommands": [
+      "set",
+      "get",
+      "help"
+    ],
+    "documented_login_or_refresh_command_found": false,
+    "cli_version_flag_supported": false,
+    "installed_cli_sha256": "21237f8f679ffca8feab06c88aa2076965453cbbe6e6edf498130b6f4bd30409",
+    "official_cli_url": "https://static.featurize.cn/featurize-cli/x86_64-unknown-linux-gnu.zip",
+    "official_cli_last_modified": "Tue, 28 Oct 2025 03:04:56 GMT",
+    "official_cli_sha256": "40b22040efbc53345337e013dbcf9b5902efee73d731693bf88869d375c9ea8a",
+    "official_cli_user_space_execution_successful": true,
+    "runtime_compatibility": "Instance GLIBC 2.35; official binary requires GLIBC 2.39. Extracted Ubuntu official libc6 into private tool directory; no installation or system changes.",
+    "system_environment_modified": false,
+    "credentials_recorded": false,
+    "undocumented_api_used": false,
+    "next_action": "Featurize support must inspect/refresh this instance token or dataset-creation permission; no further retries until authentication changes."
+  }
 }
