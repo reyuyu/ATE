@@ -1,0 +1,16 @@
+benchmark,question_id,input_view,raw_prediction,gold,independent_parsed,original_score,independent_score,matches_original,reason_zh
+MME,OCR/0001.jpg:0,MME-paper,No,"""yes""",no,0.0,0.0,True,原输出为完整单词 No；冻结规则解析为 no，Gold 为 yes，因此得分 0。
+MME,OCR/0001.jpg:1,MME-paper,No,"""no""",no,1.0,1.0,True,原输出为完整单词 No；冻结规则解析为 no，Gold 为 no，因此得分 1。
+ScienceQA-IMG,10001,ScienceQA-IMG-paper,A,2,0,0.0,0.0,True,原输出 A 是有效单字母选项，映射到零基索引 0；Gold 索引 2 即 C，因此得分 0。
+ScienceQA-IMG,10015,ScienceQA-IMG-paper,A,0,0,1.0,1.0,True,原输出 A 是有效单字母选项，映射到零基索引 0；Gold 索引 0 即 A，因此得分 1。
+POPE,10000001,POPE-paper,No,"""yes""",no,0.0,0.0,True,原输出为完整单词 No；冻结规则解析为 no，Gold 为 yes，因此得分 0。
+POPE,20000001,POPE-paper,No,"""yes""",no,0.0,0.0,True,原输出为完整单词 No；冻结规则解析为 no，Gold 为 yes，因此得分 0。
+POPE,1,POPE-paper,No,"""yes""",no,0.0,0.0,True,原输出为完整单词 No；冻结规则解析为 no，Gold 为 yes，因此得分 0。
+TextVQA,34602,TextVQA-OCR,Dakota digital,"[""nous les gosses"", ""dakota"", ""clos culombu"", ""dakota digital"", ""dakota"", ""dakota"", ""dakota digital"", ""dakota digital"", ""dakota"", ""dakota""]",dakota digital,0.9,0.9,True,"大小写归一化后预测=dakota digital；十个人类答案中匹配 3 次。十次留一法分值 1, 1, 1, 2/3, 1, 1, 2/3, 2/3, 1, 1，均值 9/10=0.9；不是二值 Accuracy。"
+TextVQA,34603,TextVQA-OCR,Drupalcon,"[""copenhagen"", ""copenhagen"", ""copenhagen"", ""copenhagen"", ""copenhagen"", ""thursday"", ""copenhagen"", ""copenhagen"", ""copenhagen"", ""copenhagen""]",drupalcon,0.0,0.0,True,"大小写归一化后预测=drupalcon；十个人类答案中匹配 0 次。十次留一法分值 0, 0, 0, 0, 0, 0, 0, 0, 0, 0，均值 0=0.0；不是二值 Accuracy。"
+MMBench,1,MMBench-paper,D,"""D""",D,1.0,1.0,True,原输出为有效单字母 D，无需文本回退或裁判；该轮 Gold=D，行级得分 1。Circular 另按四轮全对汇总。
+MMBench,1000001,MMBench-paper,A,"""A""",A,1.0,1.0,True,原输出为有效单字母 A，无需文本回退或裁判；该轮 Gold=A，行级得分 1。Circular 另按四轮全对汇总。
+MMBench,2000001,MMBench-paper,B,"""B""",B,1.0,1.0,True,原输出为有效单字母 B，无需文本回退或裁判；该轮 Gold=B，行级得分 1。Circular 另按四轮全对汇总。
+MMBench,3000001,MMBench-paper,C,"""C""",C,1.0,1.0,True,原输出为有效单字母 C，无需文本回退或裁判；该轮 Gold=C，行级得分 1。Circular 另按四轮全对汇总。
+GQA,201030233,GQA-testdev-balanced,No,"""yes""",no,0.0,0.0,True,原输出为完整单词 No；冻结规则解析为 no，Gold 为 yes，因此得分 0。
+GQA,201030272,GQA-testdev-balanced,Yes,"""yes""",yes,1.0,1.0,True,原输出为完整单词 Yes；冻结规则解析为 yes，Gold 为 yes，因此得分 1。

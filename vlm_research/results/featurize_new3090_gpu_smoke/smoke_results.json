@@ -1,0 +1,2259 @@
+{
+  "status": "PASS",
+  "started_at": "2026-11-08T04:04:10.498095+08:00",
+  "git_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+  "runner_path": "/home/featurize/data/ate-recovery/gpu-smoke-20261108-7ifdSS/smoke_runner_fixed.py",
+  "runner_sha256": "eaee58306ed2de7aa8df41b20c4e27e4c09ed2838f085080bea4f7ed0695ba5e",
+  "protocol": {
+    "protocol_path": "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_recovery/history/cvpr2026-information-horizon-alignment/vlm_research/results/cvpr2026_information_horizon_alignment/protocol_ate_paper.json",
+    "protocol_sha256": "5ab87f8d8690843cd01143bc3f2e865c3ccf9f242900ede894639beeaede3105",
+    "gqa_protocol_path": "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_recovery/history/c3v2-gqa-testdev-balanced-12578/vlm_research/results/c3v2_gqa_testdev_balanced_12578/protocol.json",
+    "gqa_protocol_sha256": "169b2f6a9b0c3e3206cea5a86b0cabf45d77f7e2f08201c67100f8ce5a6d6728",
+    "source_sha256": {
+      "vlm_research/information_horizon_alignment/engine.py": "edc2b8331512af12cdb881c4b0269c7fd744ebc3580e125a68afff11cd5df929",
+      "vlm_research/information_horizon_alignment/score.py": "50bc02bb5376af0f2aec9d32e0ce507e050b54f5b78137e1bd1ac8c8549a47f7",
+      "vlm_research/information_horizon_alignment/common.py": "3958686c179db7a1f8e67ff57a52a29080eb9fcf206d52a6590c8cd9f580e4e6",
+      "vlm_research/mme_seed_quality/engine.py": "f7f41d523c926354cf18bd7e4fbcfbd7aa46bb17bccf37b2fd8ce468ab0fc100",
+      "vlm_research/gqa_testdev_c3/engine.py": "390786063d1b9a9d719f91a7398e4a55c0433287ba4b486f0de1e3729b1d0f96",
+      "vlm_research/gqa_testdev_c3/common.py": "79f734f25225e08e2cceaad17af900a41417f1861f4789dfcdd71f37c8b7cc83",
+      "vlm_research/vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d",
+      "vlm_research/information_horizon_alignment/analyze.py": "ecccb86bd52f5c7fe9870ac8c14544cc9d6c786f9cf460973bc85026712406b7",
+      "vlm_research/mme_seed_quality/common.py": "e0c23bb9aecda2513d48b4053c86af6d0bba8c179eb07522ab164fa4733eeab4"
+    },
+    "datasets": {
+      "MME": {
+        "view": "MME-paper",
+        "total_rows": 2374,
+        "selected_ids": [
+          "OCR/0001.jpg:0",
+          "OCR/0001.jpg:1"
+        ],
+        "inputs_path": "/home/featurize/data/ate-recovery/normalized/MME-paper/inputs.jsonl",
+        "answers_path": "/home/featurize/data/ate-recovery/normalized/MME-paper/answers.json",
+        "inputs_sha256": "b38f33c779997a5b4f3d3a8c20a1598e962e66186fa75b82a445fbca6224a5a1",
+        "answers_sha256": "39d2eb900d01910e718211a7335f1d6f8c1e4f0327065a36c0d1173a5ced7229"
+      },
+      "ScienceQA-IMG": {
+        "view": "ScienceQA-IMG-paper",
+        "total_rows": 2017,
+        "selected_ids": [
+          "10001",
+          "10015"
+        ],
+        "inputs_path": "/home/featurize/data/ate-recovery/normalized/ScienceQA-IMG-paper/inputs.jsonl",
+        "answers_path": "/home/featurize/data/ate-recovery/normalized/ScienceQA-IMG-paper/answers.json",
+        "inputs_sha256": "0000a838748ebd698e7d7e507d78887fb3e36254e264515eb396fb92f688eedd",
+        "answers_sha256": "f4247b4e99175ef68ece7dd14c6a1a28baae9de44f1edbdd57a8a54f60f272cc"
+      },
+      "POPE": {
+        "view": "POPE-paper",
+        "total_rows": 8910,
+        "selected_ids": [
+          "10000001",
+          "20000001",
+          "1"
+        ],
+        "inputs_path": "/home/featurize/data/ate-recovery/normalized/POPE-paper/inputs.jsonl",
+        "answers_path": "/home/featurize/data/ate-recovery/normalized/POPE-paper/answers.json",
+        "inputs_sha256": "2176b2986d49a65b6efd702db60583e0667eb422056a5ccc6fc1150995cb23a5",
+        "answers_sha256": "4db02e853cae9e06dcae4e258e04bf44d9da6b7f9699955e4756180efb648bf1",
+        "strategy_counts": {
+          "adversarial": 3000,
+          "random": 2910,
+          "popular": 3000
+        }
+      },
+      "TextVQA": {
+        "view": "TextVQA-OCR",
+        "total_rows": 5000,
+        "selected_ids": [
+          "34602",
+          "34603"
+        ],
+        "inputs_path": "/home/featurize/data/ate-recovery/normalized/TextVQA-OCR/inputs.jsonl",
+        "answers_path": "/home/featurize/data/ate-recovery/normalized/TextVQA-OCR/answers.json",
+        "inputs_sha256": "3f16d6a01622d20ea6e68cdbaae939477df83f0f73b8257f45541352c8b247c6",
+        "answers_sha256": "1c6397d70429df0705e2e8a348523d4605cf8d7949050c3413b82c5a0ef441e4"
+      },
+      "MMBench": {
+        "view": "MMBench-paper",
+        "total_rows": 4377,
+        "selected_ids": [
+          "1",
+          "1000001",
+          "2000001",
+          "3000001"
+        ],
+        "inputs_path": "/home/featurize/data/ate-recovery/normalized/MMBench-paper/inputs.jsonl",
+        "answers_path": "/home/featurize/data/ate-recovery/normalized/MMBench-paper/answers.json",
+        "inputs_sha256": "aef55f6c9f2e13c2fda87db95e1f7e4ba9f66a07fa33b335d57a77a4c215f349",
+        "answers_sha256": "b07649e7815bccc63276e9d59fd679dc3db3c0bc13e3e8f36f0175d85ec3a6a2"
+      },
+      "GQA": {
+        "view": "GQA-testdev-balanced",
+        "total_rows": 12578,
+        "selected_ids": [
+          "201030233",
+          "201030272"
+        ],
+        "inputs_path": "/home/featurize/data/ate-recovery/normalized/GQA-testdev-balanced/inputs.jsonl",
+        "answers_path": "/home/featurize/data/ate-recovery/normalized/GQA-testdev-balanced/answers.json",
+        "inputs_sha256": "0121ca34c02bdb0850bb5cffe8e3c9dceb9741cab40a0996f1d80cf463f0afdf",
+        "answers_sha256": "9837b3df5dc7a2db84fe79f93ffdbd6d9063e806c2c718e66257546ce311bd81"
+      }
+    },
+    "selected_images_only_sha_checked": true,
+    "model_weight_prior_acceptance": "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_recovery/model_acceptance.json",
+    "model_weight_prior_acceptance_sha256": "5c775b869935be0f2844c321c94da6b197a4e2fc58ea6afd204d74f870dc2214",
+    "weights_not_redownloaded_or_rehashed": true,
+    "generation": {
+      "greedy": true,
+      "temperature": 0,
+      "num_beams": 1,
+      "batch_size": 1,
+      "use_cache": true,
+      "logits_to_keep": 1,
+      "eos": "unchanged model generation_config EOS; no added stop strings",
+      "max_new_tokens": {
+        "MMBench": 1024,
+        "MME": 128,
+        "POPE": 128,
+        "ScienceQA-IMG": 1024,
+        "TextVQA": 128,
+        "GQA": 32
+      }
+    },
+    "selection_policy": "MME first lexicographic image pair; ScienceQA/TextVQA/GQA first two lexicographic IDs; POPE smallest numeric paper ID per strategy; MMBench smallest modulo-1000000 group with all rotations"
+  },
+  "environment": {
+    "python": "3.11.8",
+    "torch": "2.6.0+cu124",
+    "cuda_runtime": "12.4",
+    "transformers": "4.49.0",
+    "pillow": "11.1.0"
+  },
+  "model": {
+    "id": "llava-hf/llava-1.5-7b-hf",
+    "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "path": "/home/featurize/data/ate-recovery/models/llava-1.5-7b-hf"
+  },
+  "model_load_count": 2,
+  "samples": [
+    {
+      "benchmark": "MME",
+      "input_view": "MME-paper",
+      "question_id": "OCR/0001.jpg:0",
+      "official_question_id": "OCR/0001.jpg:0",
+      "image_id": "OCR/0001.jpg",
+      "image_path": "/home/featurize/data/ate-recovery/images/mme/OCR/0001.jpg",
+      "image_sha256": "8c984d877d44eaa243998bd513276f68630c0be29ea37a129433927708f06eaa",
+      "image_size": [
+        320,
+        320
+      ],
+      "question": "Is the word in the logo \"angie's\"? Please answer yes or no.",
+      "options": null,
+      "gold": "yes",
+      "strategy": null,
+      "status": "PASS",
+      "max_new_tokens": 128,
+      "input_mapping_exact_to_frozen_manifest": true,
+      "scoring_sample": {
+        "benchmark": "MME",
+        "pair_id": "OCR/0001.jpg",
+        "task": "OCR",
+        "image_sha256": "8c984d877d44eaa243998bd513276f68630c0be29ea37a129433927708f06eaa"
+      },
+      "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nIs the word in the logo \"angie's\"?\nAnswer the question using a single word or phrase. ASSISTANT:",
+      "user_text": "Is the word in the logo \"angie's\"?\nAnswer the question using a single word or phrase.",
+      "input_binding": {
+        "prompt_sha256": "7f225663bb903be6391ae42c3910d2d7a370b4657e0bcc6e1e608998612aa20f",
+        "input_ids_sha256": "6060339929b782b99671330dd72d0be12ba3fdb66d6ffc62c4005a9b54b0bdc0",
+        "pixel_values_sha256": "032156052967977d520a89ee0217522de3861b95a4ec70f7f44162b4c540ad63",
+        "pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "input_length": 641,
+        "image_token_count": 576,
+        "preprocessing": "paper pad-to-square"
+      },
+      "generation": {
+        "text": "No",
+        "token_ids": [
+          1939,
+          2
+        ],
+        "eos": true,
+        "empty": false,
+        "truncated": false,
+        "first_token_id": 1939,
+        "repeated_3gram": false,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "first_logits_sha256": "5421393ac08ec42f24d60281628312199fc403dbe9581ea1be74900b8061a452",
+        "logits_to_keep": 1
+      },
+      "visual_and_cache_evidence": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "prefill_calls": 1,
+        "decode_calls": 1,
+        "image_features_inserted_exactly": true,
+        "layer_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cache_lengths": [
+          641,
+          642
+        ],
+        "vision_hidden_shape": [
+          1,
+          577,
+          1024
+        ],
+        "projected_features_shape": [
+          1,
+          576,
+          4096
+        ]
+      },
+      "scoring": {
+        "score": 0.0,
+        "parsed": "no",
+        "parse_failed": false
+      }
+    },
+    {
+      "benchmark": "MME",
+      "input_view": "MME-paper",
+      "question_id": "OCR/0001.jpg:1",
+      "official_question_id": "OCR/0001.jpg:1",
+      "image_id": "OCR/0001.jpg",
+      "image_path": "/home/featurize/data/ate-recovery/images/mme/OCR/0001.jpg",
+      "image_sha256": "8c984d877d44eaa243998bd513276f68630c0be29ea37a129433927708f06eaa",
+      "image_size": [
+        320,
+        320
+      ],
+      "question": "Is the word in the logo \"angle's\"? Please answer yes or no.",
+      "options": null,
+      "gold": "no",
+      "strategy": null,
+      "status": "PASS",
+      "max_new_tokens": 128,
+      "input_mapping_exact_to_frozen_manifest": true,
+      "scoring_sample": {
+        "benchmark": "MME",
+        "pair_id": "OCR/0001.jpg",
+        "task": "OCR",
+        "image_sha256": "8c984d877d44eaa243998bd513276f68630c0be29ea37a129433927708f06eaa"
+      },
+      "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nIs the word in the logo \"angle's\"?\nAnswer the question using a single word or phrase. ASSISTANT:",
+      "user_text": "Is the word in the logo \"angle's\"?\nAnswer the question using a single word or phrase.",
+      "input_binding": {
+        "prompt_sha256": "96935d9c8eecfba7af2d66a5ee2c10b6631e313b9d72c59bac30eb1f182611c9",
+        "input_ids_sha256": "b53dfa824a2b375cb4a11ce48a6144e5040c434c61838127e004bf240b81146b",
+        "pixel_values_sha256": "032156052967977d520a89ee0217522de3861b95a4ec70f7f44162b4c540ad63",
+        "pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "input_length": 640,
+        "image_token_count": 576,
+        "preprocessing": "paper pad-to-square"
+      },
+      "generation": {
+        "text": "No",
+        "token_ids": [
+          1939,
+          2
+        ],
+        "eos": true,
+        "empty": false,
+        "truncated": false,
+        "first_token_id": 1939,
+        "repeated_3gram": false,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "first_logits_sha256": "397919d0bfc0d7877c95878c91d2f46f794d0d9deb36367f0521020da7be4610",
+        "logits_to_keep": 1
+      },
+      "visual_and_cache_evidence": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "prefill_calls": 1,
+        "decode_calls": 1,
+        "image_features_inserted_exactly": true,
+        "layer_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cache_lengths": [
+          640,
+          641
+        ],
+        "vision_hidden_shape": [
+          1,
+          577,
+          1024
+        ],
+        "projected_features_shape": [
+          1,
+          576,
+          4096
+        ]
+      },
+      "scoring": {
+        "score": 1.0,
+        "parsed": "no",
+        "parse_failed": false
+      }
+    },
+    {
+      "benchmark": "ScienceQA-IMG",
+      "input_view": "ScienceQA-IMG-paper",
+      "question_id": "10001",
+      "official_question_id": "10001",
+      "image_id": "10001",
+      "image_path": "/home/featurize/data/ate-recovery/images/scienceqa/10001.png",
+      "image_sha256": "0fa2ee99ab2f8f3a93ca78feed81f72b67d3bfa3e2e2a75c7509440f57a753c2",
+      "image_size": [
+        484,
+        168
+      ],
+      "question": "Think about the magnetic force between the magnets in each pair. Which of the following statements is true?",
+      "options": {
+        "A": "The magnitude of the magnetic force is the same in both pairs.",
+        "B": "The magnitude of the magnetic force is smaller in Pair 1.",
+        "C": "The magnitude of the magnetic force is smaller in Pair 2."
+      },
+      "gold": 2,
+      "strategy": null,
+      "status": "PASS",
+      "max_new_tokens": 1024,
+      "input_mapping_exact_to_frozen_manifest": true,
+      "scoring_sample": {
+        "benchmark": "ScienceQA-IMG",
+        "image_sha256": "0fa2ee99ab2f8f3a93ca78feed81f72b67d3bfa3e2e2a75c7509440f57a753c2",
+        "options": {
+          "A": "The magnitude of the magnetic force is the same in both pairs.",
+          "B": "The magnitude of the magnetic force is smaller in Pair 1.",
+          "C": "The magnitude of the magnetic force is smaller in Pair 2."
+        }
+      },
+      "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nContext: The images below show two pairs of magnets. The magnets in different pairs do not affect each other. All the magnets shown are made of the same material, but some of them are different sizes.\nThink about the magnetic force between the magnets in each pair. Which of the following statements is true?\nA. The magnitude of the magnetic force is the same in both pairs.\nB. The magnitude of the magnetic force is smaller in Pair 1.\nC. The magnitude of the magnetic force is smaller in Pair 2.\nAnswer with the option's letter from the given choices directly. ASSISTANT:",
+      "user_text": "Context: The images below show two pairs of magnets. The magnets in different pairs do not affect each other. All the magnets shown are made of the same material, but some of them are different sizes.\nThink about the magnetic force between the magnets in each pair. Which of the following statements is true?\nA. The magnitude of the magnetic force is the same in both pairs.\nB. The magnitude of the magnetic force is smaller in Pair 1.\nC. The magnitude of the magnetic force is smaller in Pair 2.\nAnswer with the option's letter from the given choices directly.",
+      "input_binding": {
+        "prompt_sha256": "fa99b96b18b76e5efd37d176ad0278dabcc5a0058d177c4a574dc6199b7b23e4",
+        "input_ids_sha256": "aca77dfba10747d432f3de5e4b63481af2143708e1a5ca732e069bab8f18bbf4",
+        "pixel_values_sha256": "fca6ae1fd199195e712d4ba70d2097ac34584ee92307505f4f2ac25e11f9c038",
+        "pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "input_length": 749,
+        "image_token_count": 576,
+        "preprocessing": "paper pad-to-square"
+      },
+      "generation": {
+        "text": "A",
+        "token_ids": [
+          319,
+          2
+        ],
+        "eos": true,
+        "empty": false,
+        "truncated": false,
+        "first_token_id": 319,
+        "repeated_3gram": false,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "first_logits_sha256": "c8d70cbd9337e84072a733299137bc3a6a4cf616614511056edaa7b4645a0d1f",
+        "logits_to_keep": 1
+      },
+      "visual_and_cache_evidence": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "prefill_calls": 1,
+        "decode_calls": 1,
+        "image_features_inserted_exactly": true,
+        "layer_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cache_lengths": [
+          749,
+          750
+        ],
+        "vision_hidden_shape": [
+          1,
+          577,
+          1024
+        ],
+        "projected_features_shape": [
+          1,
+          576,
+          4096
+        ]
+      },
+      "scoring": {
+        "score": 0.0,
+        "parsed": 0,
+        "parse_failed": false
+      }
+    },
+    {
+      "benchmark": "ScienceQA-IMG",
+      "input_view": "ScienceQA-IMG-paper",
+      "question_id": "10015",
+      "official_question_id": "10015",
+      "image_id": "10015",
+      "image_path": "/home/featurize/data/ate-recovery/images/scienceqa/10015.png",
+      "image_sha256": "3641949db825d62b70f1b7187674d2faa6b223eeafcb5af52cef62094b563efe",
+      "image_size": [
+        198,
+        170
+      ],
+      "question": "Which material is these jeans made of?",
+      "options": {
+        "A": "metal",
+        "B": "rock"
+      },
+      "gold": 0,
+      "strategy": null,
+      "status": "PASS",
+      "max_new_tokens": 1024,
+      "input_mapping_exact_to_frozen_manifest": true,
+      "scoring_sample": {
+        "benchmark": "ScienceQA-IMG",
+        "image_sha256": "3641949db825d62b70f1b7187674d2faa6b223eeafcb5af52cef62094b563efe",
+        "options": {
+          "A": "metal",
+          "B": "rock"
+        }
+      },
+      "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nWhich material is these jeans made of?\nA. metal\nB. rock\nAnswer with the option's letter from the given choices directly. ASSISTANT:",
+      "user_text": "Which material is these jeans made of?\nA. metal\nB. rock\nAnswer with the option's letter from the given choices directly.",
+      "input_binding": {
+        "prompt_sha256": "831129bb6a5f472f8fb3bb824d23be35070ec8f2c816927999c512a2afc4d0e0",
+        "input_ids_sha256": "2fa8ee4bb41c9a5b001984607ee2163f9546b3b4c3d7b2f635c5d6d6aec0b6b4",
+        "pixel_values_sha256": "2456c0003da29552c655f71c24239d85df742304aa5d5b967b5238ef8a3081a5",
+        "pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "input_length": 650,
+        "image_token_count": 576,
+        "preprocessing": "paper pad-to-square"
+      },
+      "generation": {
+        "text": "A",
+        "token_ids": [
+          319,
+          2
+        ],
+        "eos": true,
+        "empty": false,
+        "truncated": false,
+        "first_token_id": 319,
+        "repeated_3gram": false,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "first_logits_sha256": "5accdd04e48d1743af1e9031b0e74aabbe16d7693cd5394a8203924313eb7a36",
+        "logits_to_keep": 1
+      },
+      "visual_and_cache_evidence": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "prefill_calls": 1,
+        "decode_calls": 1,
+        "image_features_inserted_exactly": true,
+        "layer_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cache_lengths": [
+          650,
+          651
+        ],
+        "vision_hidden_shape": [
+          1,
+          577,
+          1024
+        ],
+        "projected_features_shape": [
+          1,
+          576,
+          4096
+        ]
+      },
+      "scoring": {
+        "score": 1.0,
+        "parsed": 0,
+        "parse_failed": false
+      }
+    },
+    {
+      "benchmark": "POPE",
+      "input_view": "POPE-paper",
+      "question_id": "10000001",
+      "official_question_id": "random:1",
+      "image_id": "COCO_val2014_000000310196.jpg",
+      "image_path": "/home/featurize/data/ate-recovery/images/coco/val2014/COCO_val2014_000000310196.jpg",
+      "image_sha256": "0dcc39d91764e59e0e01c11b92ec31320f094a87ca2dce5e0c56c4f1a361daf4",
+      "image_size": [
+        640,
+        427
+      ],
+      "question": "Is there a snowboard in the image?",
+      "options": null,
+      "gold": "yes",
+      "strategy": "random",
+      "status": "PASS",
+      "max_new_tokens": 128,
+      "input_mapping_exact_to_frozen_manifest": true,
+      "scoring_sample": {
+        "benchmark": "POPE",
+        "image_sha256": "0dcc39d91764e59e0e01c11b92ec31320f094a87ca2dce5e0c56c4f1a361daf4"
+      },
+      "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nIs there a snowboard in the image?\nAnswer the question using a single word or phrase. ASSISTANT:",
+      "user_text": "Is there a snowboard in the image?\nAnswer the question using a single word or phrase.",
+      "input_binding": {
+        "prompt_sha256": "4523f44290227854785344aaa9fb9f733d2a8f56a7a94a4e02fe73f405e01a17",
+        "input_ids_sha256": "4cd15e34ce72122796585b5f36e8e4d8247b94a2afb65fe51de46904b971718d",
+        "pixel_values_sha256": "ab2c295aeca24eb49975fdfa51e8b5ea31e5201a901bb49b5ab8edc957f2fd40",
+        "pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "input_length": 638,
+        "image_token_count": 576,
+        "preprocessing": "paper pad-to-square"
+      },
+      "generation": {
+        "text": "No",
+        "token_ids": [
+          1939,
+          2
+        ],
+        "eos": true,
+        "empty": false,
+        "truncated": false,
+        "first_token_id": 1939,
+        "repeated_3gram": false,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "first_logits_sha256": "5a99d7cdcc66a5b540e213972ad34c97cf7faff6c079cf5389f5bac894e837f4",
+        "logits_to_keep": 1
+      },
+      "visual_and_cache_evidence": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "prefill_calls": 1,
+        "decode_calls": 1,
+        "image_features_inserted_exactly": true,
+        "layer_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cache_lengths": [
+          638,
+          639
+        ],
+        "vision_hidden_shape": [
+          1,
+          577,
+          1024
+        ],
+        "projected_features_shape": [
+          1,
+          576,
+          4096
+        ]
+      },
+      "scoring": {
+        "score": 0.0,
+        "parsed": "no",
+        "lexical_empty_defaults_yes": false
+      }
+    },
+    {
+      "benchmark": "POPE",
+      "input_view": "POPE-paper",
+      "question_id": "20000001",
+      "official_question_id": "popular:1",
+      "image_id": "COCO_val2014_000000310196.jpg",
+      "image_path": "/home/featurize/data/ate-recovery/images/coco/val2014/COCO_val2014_000000310196.jpg",
+      "image_sha256": "0dcc39d91764e59e0e01c11b92ec31320f094a87ca2dce5e0c56c4f1a361daf4",
+      "image_size": [
+        640,
+        427
+      ],
+      "question": "Is there a snowboard in the image?",
+      "options": null,
+      "gold": "yes",
+      "strategy": "popular",
+      "status": "PASS",
+      "max_new_tokens": 128,
+      "input_mapping_exact_to_frozen_manifest": true,
+      "scoring_sample": {
+        "benchmark": "POPE",
+        "image_sha256": "0dcc39d91764e59e0e01c11b92ec31320f094a87ca2dce5e0c56c4f1a361daf4"
+      },
+      "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nIs there a snowboard in the image?\nAnswer the question using a single word or phrase. ASSISTANT:",
+      "user_text": "Is there a snowboard in the image?\nAnswer the question using a single word or phrase.",
+      "input_binding": {
+        "prompt_sha256": "4523f44290227854785344aaa9fb9f733d2a8f56a7a94a4e02fe73f405e01a17",
+        "input_ids_sha256": "4cd15e34ce72122796585b5f36e8e4d8247b94a2afb65fe51de46904b971718d",
+        "pixel_values_sha256": "ab2c295aeca24eb49975fdfa51e8b5ea31e5201a901bb49b5ab8edc957f2fd40",
+        "pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "input_length": 638,
+        "image_token_count": 576,
+        "preprocessing": "paper pad-to-square"
+      },
+      "generation": {
+        "text": "No",
+        "token_ids": [
+          1939,
+          2
+        ],
+        "eos": true,
+        "empty": false,
+        "truncated": false,
+        "first_token_id": 1939,
+        "repeated_3gram": false,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "first_logits_sha256": "5a99d7cdcc66a5b540e213972ad34c97cf7faff6c079cf5389f5bac894e837f4",
+        "logits_to_keep": 1
+      },
+      "visual_and_cache_evidence": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "prefill_calls": 1,
+        "decode_calls": 1,
+        "image_features_inserted_exactly": true,
+        "layer_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cache_lengths": [
+          638,
+          639
+        ],
+        "vision_hidden_shape": [
+          1,
+          577,
+          1024
+        ],
+        "projected_features_shape": [
+          1,
+          576,
+          4096
+        ]
+      },
+      "scoring": {
+        "score": 0.0,
+        "parsed": "no",
+        "lexical_empty_defaults_yes": false
+      }
+    },
+    {
+      "benchmark": "POPE",
+      "input_view": "POPE-paper",
+      "question_id": "1",
+      "official_question_id": "adversarial:1",
+      "image_id": "COCO_val2014_000000310196.jpg",
+      "image_path": "/home/featurize/data/ate-recovery/images/coco/val2014/COCO_val2014_000000310196.jpg",
+      "image_sha256": "0dcc39d91764e59e0e01c11b92ec31320f094a87ca2dce5e0c56c4f1a361daf4",
+      "image_size": [
+        640,
+        427
+      ],
+      "question": "Is there a snowboard in the image?",
+      "options": null,
+      "gold": "yes",
+      "strategy": "adversarial",
+      "status": "PASS",
+      "max_new_tokens": 128,
+      "input_mapping_exact_to_frozen_manifest": true,
+      "scoring_sample": {
+        "benchmark": "POPE",
+        "image_sha256": "0dcc39d91764e59e0e01c11b92ec31320f094a87ca2dce5e0c56c4f1a361daf4"
+      },
+      "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nIs there a snowboard in the image?\nAnswer the question using a single word or phrase. ASSISTANT:",
+      "user_text": "Is there a snowboard in the image?\nAnswer the question using a single word or phrase.",
+      "input_binding": {
+        "prompt_sha256": "4523f44290227854785344aaa9fb9f733d2a8f56a7a94a4e02fe73f405e01a17",
+        "input_ids_sha256": "4cd15e34ce72122796585b5f36e8e4d8247b94a2afb65fe51de46904b971718d",
+        "pixel_values_sha256": "ab2c295aeca24eb49975fdfa51e8b5ea31e5201a901bb49b5ab8edc957f2fd40",
+        "pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "input_length": 638,
+        "image_token_count": 576,
+        "preprocessing": "paper pad-to-square"
+      },
+      "generation": {
+        "text": "No",
+        "token_ids": [
+          1939,
+          2
+        ],
+        "eos": true,
+        "empty": false,
+        "truncated": false,
+        "first_token_id": 1939,
+        "repeated_3gram": false,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "first_logits_sha256": "5a99d7cdcc66a5b540e213972ad34c97cf7faff6c079cf5389f5bac894e837f4",
+        "logits_to_keep": 1
+      },
+      "visual_and_cache_evidence": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "prefill_calls": 1,
+        "decode_calls": 1,
+        "image_features_inserted_exactly": true,
+        "layer_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cache_lengths": [
+          638,
+          639
+        ],
+        "vision_hidden_shape": [
+          1,
+          577,
+          1024
+        ],
+        "projected_features_shape": [
+          1,
+          576,
+          4096
+        ]
+      },
+      "scoring": {
+        "score": 0.0,
+        "parsed": "no",
+        "lexical_empty_defaults_yes": false
+      }
+    },
+    {
+      "benchmark": "TextVQA",
+      "input_view": "TextVQA-OCR",
+      "question_id": "34602",
+      "official_question_id": "34602",
+      "image_id": "003a8ae2ef43b901",
+      "image_path": "/home/featurize/data/ate-recovery/images/textvqa/003a8ae2ef43b901.jpg",
+      "image_sha256": "b40135cf9f1d1229ecd30a0c5e7fec3e02c452c33be9734523f0869f7428beb8",
+      "image_size": [
+        1024,
+        664
+      ],
+      "question": "what is the brand of this camera?",
+      "options": null,
+      "gold": [
+        "nous les gosses",
+        "dakota",
+        "clos culombu",
+        "dakota digital",
+        "dakota",
+        "dakota",
+        "dakota digital",
+        "dakota digital",
+        "dakota",
+        "dakota"
+      ],
+      "strategy": null,
+      "status": "PASS",
+      "max_new_tokens": 128,
+      "input_mapping_exact_to_frozen_manifest": true,
+      "scoring_sample": {
+        "benchmark": "TextVQA",
+        "image_sha256": "b40135cf9f1d1229ecd30a0c5e7fec3e02c452c33be9734523f0869f7428beb8"
+      },
+      "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nWhat is the brand of this camera?\nReference OCR token: DAKOTA, DIGITAL, Single-Use, Camera, Pire, digitat\nAnswer the question using a single word or phrase. ASSISTANT:",
+      "user_text": "What is the brand of this camera?\nReference OCR token: DAKOTA, DIGITAL, Single-Use, Camera, Pire, digitat\nAnswer the question using a single word or phrase.",
+      "input_binding": {
+        "prompt_sha256": "7679c5cb2a2604aff77b70c8d38df4e0353fb2284fc77e8c27d3e14f2e0f7b67",
+        "input_ids_sha256": "d480a05ea1ce6fbe1fdd55979d02e67c71270f2a031a7a35116ed50db733b400",
+        "pixel_values_sha256": "a1a952b10a2565d972674fccc37224d295a38ae1ed979958a4f9bd451a463ab4",
+        "pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "input_length": 664,
+        "image_token_count": 576,
+        "preprocessing": "paper pad-to-square"
+      },
+      "generation": {
+        "text": "Dakota digital",
+        "token_ids": [
+          22679,
+          4616,
+          13436,
+          2
+        ],
+        "eos": true,
+        "empty": false,
+        "truncated": false,
+        "first_token_id": 22679,
+        "repeated_3gram": false,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "first_logits_sha256": "fce99bdf5bb63ee6deb10a28e16ea7f74ac379c691cda9f28827aa64c625d99a",
+        "logits_to_keep": 1
+      },
+      "visual_and_cache_evidence": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "prefill_calls": 1,
+        "decode_calls": 3,
+        "image_features_inserted_exactly": true,
+        "layer_calls": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "cache_lengths": [
+          664,
+          665,
+          666,
+          667
+        ],
+        "vision_hidden_shape": [
+          1,
+          577,
+          1024
+        ],
+        "projected_features_shape": [
+          1,
+          576,
+          4096
+        ]
+      },
+      "scoring": {
+        "score": 0.9,
+        "parsed": "dakota digital"
+      }
+    },
+    {
+      "benchmark": "TextVQA",
+      "input_view": "TextVQA-OCR",
+      "question_id": "34603",
+      "official_question_id": "34603",
+      "image_id": "b9dc400eb20bad64",
+      "image_path": "/home/featurize/data/ate-recovery/images/textvqa/b9dc400eb20bad64.jpg",
+      "image_sha256": "31ae1fd1ca746602abd9024f8f0edec048c8a6428b85af6826e5e7fb973a2467",
+      "image_size": [
+        1024,
+        683
+      ],
+      "question": "what does the small white text spell?",
+      "options": null,
+      "gold": [
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "thursday",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen"
+      ],
+      "strategy": null,
+      "status": "PASS",
+      "max_new_tokens": 128,
+      "input_mapping_exact_to_frozen_manifest": true,
+      "scoring_sample": {
+        "benchmark": "TextVQA",
+        "image_sha256": "31ae1fd1ca746602abd9024f8f0edec048c8a6428b85af6826e5e7fb973a2467"
+      },
+      "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nWhat does the small white text spell?\nReference OCR token: D, RUPALCON, PALCON, COPENHAGEN\nAnswer the question using a single word or phrase. ASSISTANT:",
+      "user_text": "What does the small white text spell?\nReference OCR token: D, RUPALCON, PALCON, COPENHAGEN\nAnswer the question using a single word or phrase.",
+      "input_binding": {
+        "prompt_sha256": "0957f1e9cbd777200cb84d806d291471eecfe947eebbcc435854318c74caec68",
+        "input_ids_sha256": "75f09b703418173838ebc2e6f3402c05dc7e1d8661c8115a8607ef18ff308503",
+        "pixel_values_sha256": "fcc24b892871e5db5967e7766ab17ed70eb61847d4d20e5e0337b912e8c83e9f",
+        "pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "input_length": 660,
+        "image_token_count": 576,
+        "preprocessing": "paper pad-to-square"
+      },
+      "generation": {
+        "text": "Drupalcon",
+        "token_ids": [
+          16597,
+          7830,
+          535,
+          2
+        ],
+        "eos": true,
+        "empty": false,
+        "truncated": false,
+        "first_token_id": 16597,
+        "repeated_3gram": false,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "first_logits_sha256": "73938d0a800d4462a28f9b581944b0fd1f4f7e54a62e81aaa0e2ec415b5f31f5",
+        "logits_to_keep": 1
+      },
+      "visual_and_cache_evidence": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "prefill_calls": 1,
+        "decode_calls": 3,
+        "image_features_inserted_exactly": true,
+        "layer_calls": [
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4,
+          4
+        ],
+        "cache_lengths": [
+          660,
+          661,
+          662,
+          663
+        ],
+        "vision_hidden_shape": [
+          1,
+          577,
+          1024
+        ],
+        "projected_features_shape": [
+          1,
+          576,
+          4096
+        ]
+      },
+      "scoring": {
+        "score": 0.0,
+        "parsed": "drupalcon"
+      }
+    },
+    {
+      "benchmark": "MMBench",
+      "input_view": "MMBench-paper",
+      "question_id": "1",
+      "official_question_id": "1",
+      "image_id": "cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82",
+      "image_path": "/home/featurize/data/ate-recovery/images/mmbench/cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82.jpg",
+      "image_sha256": "cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82",
+      "image_size": [
+        286,
+        237
+      ],
+      "question": "What is correct Python code to generate the content of the image?",
+      "options": {
+        "A": "for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n",
+        "B": "thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))",
+        "C": "x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n",
+        "D": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)"
+      },
+      "gold": "D",
+      "strategy": null,
+      "status": "PASS",
+      "max_new_tokens": 1024,
+      "input_mapping_exact_to_frozen_manifest": true,
+      "scoring_sample": {
+        "benchmark": "MMBench",
+        "circular_group": 1,
+        "image_sha256": "cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82",
+        "options": {
+          "A": "for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n",
+          "B": "thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))",
+          "C": "x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n",
+          "D": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)"
+        }
+      },
+      "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nWhat is correct Python code to generate the content of the image?\nA. for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n\nB. thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))\nC. x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n\nD. fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)\nAnswer with the option's letter from the given choices directly. ASSISTANT:",
+      "user_text": "What is correct Python code to generate the content of the image?\nA. for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n\nB. thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))\nC. x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n\nD. fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)\nAnswer with the option's letter from the given choices directly.",
+      "input_binding": {
+        "prompt_sha256": "86815ea62eb4a34a599d1bc19333101df6861ef6c29d23a3af3aa470fc6e0feb",
+        "input_ids_sha256": "d3895494f779d9b867ccdffe3f614570994d77628e49bb81463558b52eb74567",
+        "pixel_values_sha256": "584ee6c6187d8a6225f3eeecfe8bf9776bcd903e9cc448c439c85e2523f072a8",
+        "pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "input_length": 804,
+        "image_token_count": 576,
+        "preprocessing": "paper pad-to-square"
+      },
+      "generation": {
+        "text": "D",
+        "token_ids": [
+          360,
+          2
+        ],
+        "eos": true,
+        "empty": false,
+        "truncated": false,
+        "first_token_id": 360,
+        "repeated_3gram": false,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "first_logits_sha256": "bccd08b7305736e010a4b70605d4f49a58b5dbd2b4873d638f2c834e332bff0a",
+        "logits_to_keep": 1
+      },
+      "visual_and_cache_evidence": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "prefill_calls": 1,
+        "decode_calls": 1,
+        "image_features_inserted_exactly": true,
+        "layer_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cache_lengths": [
+          804,
+          805
+        ],
+        "vision_hidden_shape": [
+          1,
+          577,
+          1024
+        ],
+        "projected_features_shape": [
+          1,
+          576,
+          4096
+        ]
+      },
+      "scoring": {
+        "score": 1.0,
+        "parsed": "D",
+        "parse_failed": false,
+        "score_protocol": "OFFLINE_REPRODUCTION/VLMEvalKit exact matching"
+      }
+    },
+    {
+      "benchmark": "MMBench",
+      "input_view": "MMBench-paper",
+      "question_id": "1000001",
+      "official_question_id": "1000001",
+      "image_id": "cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82",
+      "image_path": "/home/featurize/data/ate-recovery/images/mmbench/cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82.jpg",
+      "image_sha256": "cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82",
+      "image_size": [
+        286,
+        237
+      ],
+      "question": "What is correct Python code to generate the content of the image?",
+      "options": {
+        "A": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)",
+        "B": "for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n",
+        "C": "thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))",
+        "D": "x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n"
+      },
+      "gold": "A",
+      "strategy": null,
+      "status": "PASS",
+      "max_new_tokens": 1024,
+      "input_mapping_exact_to_frozen_manifest": true,
+      "scoring_sample": {
+        "benchmark": "MMBench",
+        "circular_group": 1,
+        "image_sha256": "cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82",
+        "options": {
+          "A": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)",
+          "B": "for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n",
+          "C": "thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))",
+          "D": "x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n"
+        }
+      },
+      "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nWhat is correct Python code to generate the content of the image?\nA. fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)\nB. for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n\nC. thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))\nD. x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n\nAnswer with the option's letter from the given choices directly. ASSISTANT:",
+      "user_text": "What is correct Python code to generate the content of the image?\nA. fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)\nB. for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n\nC. thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))\nD. x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n\nAnswer with the option's letter from the given choices directly.",
+      "input_binding": {
+        "prompt_sha256": "a5d1aa9006c5def6cfe3c3f32e7f1a67af99d684bcda15fb0568966f27eab055",
+        "input_ids_sha256": "4a69c76381b6687ab14015278eeab77f53be9b119b344271d14e636720878708",
+        "pixel_values_sha256": "584ee6c6187d8a6225f3eeecfe8bf9776bcd903e9cc448c439c85e2523f072a8",
+        "pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "input_length": 804,
+        "image_token_count": 576,
+        "preprocessing": "paper pad-to-square"
+      },
+      "generation": {
+        "text": "A",
+        "token_ids": [
+          319,
+          2
+        ],
+        "eos": true,
+        "empty": false,
+        "truncated": false,
+        "first_token_id": 319,
+        "repeated_3gram": false,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "first_logits_sha256": "0385f5fe7fc93ec63cedf9251be48b4ff944e745961d7acfafc367711e447f40",
+        "logits_to_keep": 1
+      },
+      "visual_and_cache_evidence": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "prefill_calls": 1,
+        "decode_calls": 1,
+        "image_features_inserted_exactly": true,
+        "layer_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cache_lengths": [
+          804,
+          805
+        ],
+        "vision_hidden_shape": [
+          1,
+          577,
+          1024
+        ],
+        "projected_features_shape": [
+          1,
+          576,
+          4096
+        ]
+      },
+      "scoring": {
+        "score": 1.0,
+        "parsed": "A",
+        "parse_failed": false,
+        "score_protocol": "OFFLINE_REPRODUCTION/VLMEvalKit exact matching"
+      }
+    },
+    {
+      "benchmark": "MMBench",
+      "input_view": "MMBench-paper",
+      "question_id": "2000001",
+      "official_question_id": "2000001",
+      "image_id": "cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82",
+      "image_path": "/home/featurize/data/ate-recovery/images/mmbench/cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82.jpg",
+      "image_sha256": "cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82",
+      "image_size": [
+        286,
+        237
+      ],
+      "question": "What is correct Python code to generate the content of the image?",
+      "options": {
+        "A": "x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n",
+        "B": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)",
+        "C": "for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n",
+        "D": "thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))"
+      },
+      "gold": "B",
+      "strategy": null,
+      "status": "PASS",
+      "max_new_tokens": 1024,
+      "input_mapping_exact_to_frozen_manifest": true,
+      "scoring_sample": {
+        "benchmark": "MMBench",
+        "circular_group": 1,
+        "image_sha256": "cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82",
+        "options": {
+          "A": "x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n",
+          "B": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)",
+          "C": "for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n",
+          "D": "thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))"
+        }
+      },
+      "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nWhat is correct Python code to generate the content of the image?\nA. x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n\nB. fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)\nC. for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n\nD. thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))\nAnswer with the option's letter from the given choices directly. ASSISTANT:",
+      "user_text": "What is correct Python code to generate the content of the image?\nA. x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n\nB. fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)\nC. for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n\nD. thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))\nAnswer with the option's letter from the given choices directly.",
+      "input_binding": {
+        "prompt_sha256": "7a4f3d4e754b8f5e904eaa93af02a9b4f58f8cdaf22ebc35c1823e1eaa118267",
+        "input_ids_sha256": "0aca8f7a70d2a432886adb15dc53d1730f25a5ac80b9cacc0e2c1b8fd06d629a",
+        "pixel_values_sha256": "584ee6c6187d8a6225f3eeecfe8bf9776bcd903e9cc448c439c85e2523f072a8",
+        "pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "input_length": 804,
+        "image_token_count": 576,
+        "preprocessing": "paper pad-to-square"
+      },
+      "generation": {
+        "text": "B",
+        "token_ids": [
+          350,
+          2
+        ],
+        "eos": true,
+        "empty": false,
+        "truncated": false,
+        "first_token_id": 350,
+        "repeated_3gram": false,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "first_logits_sha256": "0b28712a4fdececa36c9cd4061a788f5240902040d435afeab9df1f73e17a39b",
+        "logits_to_keep": 1
+      },
+      "visual_and_cache_evidence": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "prefill_calls": 1,
+        "decode_calls": 1,
+        "image_features_inserted_exactly": true,
+        "layer_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cache_lengths": [
+          804,
+          805
+        ],
+        "vision_hidden_shape": [
+          1,
+          577,
+          1024
+        ],
+        "projected_features_shape": [
+          1,
+          576,
+          4096
+        ]
+      },
+      "scoring": {
+        "score": 1.0,
+        "parsed": "B",
+        "parse_failed": false,
+        "score_protocol": "OFFLINE_REPRODUCTION/VLMEvalKit exact matching"
+      }
+    },
+    {
+      "benchmark": "MMBench",
+      "input_view": "MMBench-paper",
+      "question_id": "3000001",
+      "official_question_id": "3000001",
+      "image_id": "cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82",
+      "image_path": "/home/featurize/data/ate-recovery/images/mmbench/cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82.jpg",
+      "image_sha256": "cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82",
+      "image_size": [
+        286,
+        237
+      ],
+      "question": "What is correct Python code to generate the content of the image?",
+      "options": {
+        "A": "thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))",
+        "B": "x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n",
+        "C": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)",
+        "D": "for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n"
+      },
+      "gold": "C",
+      "strategy": null,
+      "status": "PASS",
+      "max_new_tokens": 1024,
+      "input_mapping_exact_to_frozen_manifest": true,
+      "scoring_sample": {
+        "benchmark": "MMBench",
+        "circular_group": 1,
+        "image_sha256": "cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82",
+        "options": {
+          "A": "thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))",
+          "B": "x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n",
+          "C": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)",
+          "D": "for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n"
+        }
+      },
+      "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nWhat is correct Python code to generate the content of the image?\nA. thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))\nB. x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n\nC. fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)\nD. for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n\nAnswer with the option's letter from the given choices directly. ASSISTANT:",
+      "user_text": "What is correct Python code to generate the content of the image?\nA. thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))\nB. x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n\nC. fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)\nD. for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n\nAnswer with the option's letter from the given choices directly.",
+      "input_binding": {
+        "prompt_sha256": "ea6e96de4f9c665793f45ca622b2921b862fe94322719d6f63adbd07ac28941b",
+        "input_ids_sha256": "58d5b1f25ea9c3ec134d6e2de30b753be1ccd9c5482fa3b2405beb8cee0db5ed",
+        "pixel_values_sha256": "584ee6c6187d8a6225f3eeecfe8bf9776bcd903e9cc448c439c85e2523f072a8",
+        "pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "input_length": 804,
+        "image_token_count": 576,
+        "preprocessing": "paper pad-to-square"
+      },
+      "generation": {
+        "text": "C",
+        "token_ids": [
+          315,
+          2
+        ],
+        "eos": true,
+        "empty": false,
+        "truncated": false,
+        "first_token_id": 315,
+        "repeated_3gram": false,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "first_logits_sha256": "24bf98786b821a159d630199fcb779b43b742f592663e4b3234cc9856371ddfb",
+        "logits_to_keep": 1
+      },
+      "visual_and_cache_evidence": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "prefill_calls": 1,
+        "decode_calls": 1,
+        "image_features_inserted_exactly": true,
+        "layer_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cache_lengths": [
+          804,
+          805
+        ],
+        "vision_hidden_shape": [
+          1,
+          577,
+          1024
+        ],
+        "projected_features_shape": [
+          1,
+          576,
+          4096
+        ]
+      },
+      "scoring": {
+        "score": 1.0,
+        "parsed": "C",
+        "parse_failed": false,
+        "score_protocol": "OFFLINE_REPRODUCTION/VLMEvalKit exact matching"
+      }
+    },
+    {
+      "benchmark": "GQA",
+      "input_view": "GQA-testdev-balanced",
+      "question_id": "201030233",
+      "official_question_id": "201030233",
+      "image_id": "n54424",
+      "image_path": "/home/featurize/data/ate-recovery/images/gqa/n54424.jpg",
+      "image_sha256": "138d9c70dd5484f4487fc1cafdf10531a924cf5a7328580223c85b20f5b3751c",
+      "image_size": [
+        640,
+        427
+      ],
+      "question": "Is the color of the pillow the same as that of the shuttle?",
+      "options": null,
+      "gold": "yes",
+      "strategy": null,
+      "status": "PASS",
+      "max_new_tokens": 32,
+      "input_mapping_exact_to_frozen_manifest": true,
+      "scoring_sample": {
+        "task": "compare",
+        "image_sha256": "138d9c70dd5484f4487fc1cafdf10531a924cf5a7328580223c85b20f5b3751c"
+      },
+      "prompt": "USER: <image>\nIs the color of the pillow the same as that of the shuttle?\nAnswer the question using a single word or phrase. ASSISTANT:",
+      "user_text": "Is the color of the pillow the same as that of the shuttle?\nAnswer the question using a single word or phrase.",
+      "input_binding": {
+        "prompt_sha256": "65fe28154abf2aaf7188e668608bf1c8446b68ac2cf2927f86ee7685af1cd9ff",
+        "input_ids_sha256": "3fd440289d9ea4437f1a2813cf72cf7b6f87fa689cf6e7dc47a7fe228bb1a41a",
+        "pixel_values_sha256": "dc2d6919f47c18f23cc6c9f9bf3cd6e2905358163f43bb6b9c4226faeb02f737",
+        "pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "input_length": 616,
+        "image_token_count": 576,
+        "preprocessing": "frozen GQA HF processor"
+      },
+      "generation": {
+        "condition": "Native",
+        "text": "No",
+        "token_ids": [
+          1939,
+          2
+        ],
+        "eos": true,
+        "truncated": false,
+        "empty": false,
+        "repeated": false,
+        "first_logits_sha256": "9eae2fdda028c28d8d2c6345ff8bdc466e6c664865a770b313e3ead9c2b85fa6",
+        "first_token_id": 1939,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "logits_to_keep": 1
+      },
+      "visual_and_cache_evidence": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "prefill_calls": 1,
+        "decode_calls": 1,
+        "image_features_inserted_exactly": true,
+        "layer_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cache_lengths": [
+          616,
+          617
+        ],
+        "vision_hidden_shape": [
+          1,
+          577,
+          1024
+        ],
+        "projected_features_shape": [
+          1,
+          576,
+          4096
+        ]
+      },
+      "scoring": {
+        "score": 0.0,
+        "parsed": "no"
+      }
+    },
+    {
+      "benchmark": "GQA",
+      "input_view": "GQA-testdev-balanced",
+      "question_id": "201030272",
+      "official_question_id": "201030272",
+      "image_id": "n54424",
+      "image_path": "/home/featurize/data/ate-recovery/images/gqa/n54424.jpg",
+      "image_sha256": "138d9c70dd5484f4487fc1cafdf10531a924cf5a7328580223c85b20f5b3751c",
+      "image_size": [
+        640,
+        427
+      ],
+      "question": "Does the Wii controller that looks oval have small size and white color?",
+      "options": null,
+      "gold": "yes",
+      "strategy": null,
+      "status": "PASS",
+      "max_new_tokens": 32,
+      "input_mapping_exact_to_frozen_manifest": true,
+      "scoring_sample": {
+        "task": "logical",
+        "image_sha256": "138d9c70dd5484f4487fc1cafdf10531a924cf5a7328580223c85b20f5b3751c"
+      },
+      "prompt": "USER: <image>\nDoes the Wii controller that looks oval have small size and white color?\nAnswer the question using a single word or phrase. ASSISTANT:",
+      "user_text": "Does the Wii controller that looks oval have small size and white color?\nAnswer the question using a single word or phrase.",
+      "input_binding": {
+        "prompt_sha256": "843fdf449ae092515b42f82e6f4fce571f90486720c6be906169cac8bc2f1b74",
+        "input_ids_sha256": "702782348d7b44b6768027546cbbd9d6d81f45934792b4867e4875461e74fc70",
+        "pixel_values_sha256": "dc2d6919f47c18f23cc6c9f9bf3cd6e2905358163f43bb6b9c4226faeb02f737",
+        "pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "input_length": 615,
+        "image_token_count": 576,
+        "preprocessing": "frozen GQA HF processor"
+      },
+      "generation": {
+        "condition": "Native",
+        "text": "Yes",
+        "token_ids": [
+          3869,
+          2
+        ],
+        "eos": true,
+        "truncated": false,
+        "empty": false,
+        "repeated": false,
+        "first_logits_sha256": "ef070d8e6a891bafdc75eb81060eb2464213ce2f01ae34a2e66c273b66a3f731",
+        "first_token_id": 3869,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "logits_to_keep": 1
+      },
+      "visual_and_cache_evidence": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "prefill_calls": 1,
+        "decode_calls": 1,
+        "image_features_inserted_exactly": true,
+        "layer_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "cache_lengths": [
+          615,
+          616
+        ],
+        "vision_hidden_shape": [
+          1,
+          577,
+          1024
+        ],
+        "projected_features_shape": [
+          1,
+          576,
+          4096
+        ]
+      },
+      "scoring": {
+        "score": 1.0,
+        "parsed": "yes"
+      }
+    }
+  ],
+  "benchmarks": {
+    "MME": {
+      "status": "PASS",
+      "selected_ids": [
+        "OCR/0001.jpg:0",
+        "OCR/0001.jpg:1"
+      ],
+      "generated": 2,
+      "expected": 2,
+      "input_view": "MME-paper",
+      "scorer": "frozen information_horizon_alignment.score.score",
+      "metrics_scope": "SMOKE ONLY; no benchmark accuracy claim",
+      "pair_id": "OCR/0001.jpg",
+      "pair_scoring_function": "information_horizon_alignment.analyze.mme_score",
+      "task_scope": {
+        "Smoke selected subtask": [
+          "OCR"
+        ]
+      },
+      "task_scope_only_adapter": true,
+      "task_metrics": [
+        {
+          "task": "OCR",
+          "accuracy": 50.0,
+          "accuracy_plus": 0.0,
+          "score": 50.0,
+          "questions": 2,
+          "pairs": 1
+        }
+      ],
+      "both_questions_correct": false,
+      "known_different_image_in_selected_samples": false,
+      "full_MME_total_not_computed": true
+    },
+    "ScienceQA-IMG": {
+      "status": "PASS",
+      "selected_ids": [
+        "10001",
+        "10015"
+      ],
+      "generated": 2,
+      "expected": 2,
+      "input_view": "ScienceQA-IMG-paper",
+      "scorer": "frozen information_horizon_alignment.score.score",
+      "metrics_scope": "SMOKE ONLY; no benchmark accuracy claim"
+    },
+    "POPE": {
+      "status": "PASS",
+      "selected_ids": [
+        "10000001",
+        "20000001",
+        "1"
+      ],
+      "generated": 3,
+      "expected": 3,
+      "input_view": "POPE-paper",
+      "scorer": "frozen information_horizon_alignment.score.score",
+      "metrics_scope": "SMOKE ONLY; no benchmark accuracy claim"
+    },
+    "TextVQA": {
+      "status": "PASS",
+      "selected_ids": [
+        "34602",
+        "34603"
+      ],
+      "generated": 2,
+      "expected": 2,
+      "input_view": "TextVQA-OCR",
+      "scorer": "frozen information_horizon_alignment.score.score",
+      "metrics_scope": "SMOKE ONLY; no benchmark accuracy claim"
+    },
+    "MMBench": {
+      "status": "PASS",
+      "selected_ids": [
+        "1",
+        "1000001",
+        "2000001",
+        "3000001"
+      ],
+      "generated": 4,
+      "expected": 4,
+      "input_view": "MMBench-paper",
+      "scorer": "frozen information_horizon_alignment.score.score",
+      "metrics_scope": "SMOKE ONLY; no benchmark accuracy claim",
+      "circular_group": 1,
+      "rotations": 4,
+      "circular_scoring_function": "information_horizon_alignment.analyze.circular_rows",
+      "circular_all_rotations_hit": true,
+      "official_matcher_blob": "84ee053d7d267ffe7ad397d3a99c2f5e80716c56"
+    },
+    "GQA": {
+      "status": "PASS",
+      "selected_ids": [
+        "201030233",
+        "201030272"
+      ],
+      "generated": 2,
+      "expected": 2,
+      "input_view": "GQA-testdev-balanced",
+      "scorer": "frozen gqa_testdev_c3.common.score",
+      "metrics_scope": "SMOKE ONLY; no benchmark accuracy claim"
+    }
+  },
+  "errors": [],
+  "gpu": {
+    "nvidia_smi_before": "NVIDIA GeForce RTX 3090, GPU-e392cec6-7ec8-1fee-397b-fde03a79e79e, 610.57.04, 24576 MiB, 1 MiB, 24123 MiB",
+    "free_before_load_mib": 23858.375,
+    "total_mib": 24123.5,
+    "allocated_after_load_mib": 13473.64794921875,
+    "all_parameters_cuda_fp16": true,
+    "peak_allocated_mib": 14097.6708984375,
+    "peak_reserved_mib": 14224.0,
+    "current_attempt_peak_allocated_mib": 13932.16552734375,
+    "current_attempt_peak_reserved_mib": 14012.0
+  },
+  "model_load_status": "PASS",
+  "persistence_roundtrip": "PASS: JSON written/read; all row scores and MME/Circular aggregate recomputed exactly",
+  "hf_native_readiness": "具备本次六类冻结输入的 HF Native 端到端运行条件（限本次 Smoke 覆盖范围）",
+  "gpu_release": {
+    "allocated_mib": 32.0,
+    "reserved_mib": 32.0,
+    "process_exit_releases_cuda_context": true
+  },
+  "finished_at": "2026-11-08T04:09:10.846975+08:00",
+  "gqa_hash_diagnosis": {
+    "cause": "Smoke harness hash encoding error; frozen code/data unchanged",
+    "fixed_runner": "/home/featurize/data/ate-recovery/gpu-smoke-20261108-7ifdSS/smoke_runner_fixed.py",
+    "gpu_retry_not_executed": false,
+    "requires_user_exception_to_single_model_load": true,
+    "samples": [
+      {
+        "question_id": "201030233",
+        "prompt": "USER: <image>\nIs the color of the pillow the same as that of the shuttle?\nAnswer the question using a single word or phrase. ASSISTANT:",
+        "erroneous_raw_utf8_sha256": "65fe28154abf2aaf7188e668608bf1c8446b68ac2cf2927f86ee7685af1cd9ff",
+        "correct_json_digest": "d973c9edbaf019a84805cb8bc7d093ba37f87b097a0f9ff6a71e9168a62d29f7",
+        "frozen_digest": "d973c9edbaf019a84805cb8bc7d093ba37f87b097a0f9ff6a71e9168a62d29f7",
+        "cpu_processor_expanded_ids_exact": true,
+        "cpu_processor_expanded_id_digest_exact": true,
+        "cpu_pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "cpu_processor_check_executed": true
+      },
+      {
+        "question_id": "201030272",
+        "prompt": "USER: <image>\nDoes the Wii controller that looks oval have small size and white color?\nAnswer the question using a single word or phrase. ASSISTANT:",
+        "erroneous_raw_utf8_sha256": "843fdf449ae092515b42f82e6f4fce571f90486720c6be906169cac8bc2f1b74",
+        "correct_json_digest": "821073ea6e250697bd9e305e2ca459469ffa5d7fa30813eeadc25daa7171ee9a",
+        "frozen_digest": "821073ea6e250697bd9e305e2ca459469ffa5d7fa30813eeadc25daa7171ee9a",
+        "cpu_processor_expanded_ids_exact": true,
+        "cpu_processor_expanded_id_digest_exact": true,
+        "cpu_pixel_shape": [
+          1,
+          3,
+          336,
+          336
+        ],
+        "cpu_processor_check_executed": true
+      }
+    ],
+    "extra_load_user_authorized": true,
+    "user_authorization": "允许额外加载一次，补完 GQA 两题",
+    "authorization_recorded_at": "2026-11-08T04:08:42.838825+08:00",
+    "final_status": "PASS after user-authorized two-question retry"
+  },
+  "attempt_history": [
+    {
+      "runner_path": "/home/featurize/data/ate-recovery/gpu-smoke-20261108-7ifdSS/smoke_runner.py",
+      "runner_sha256": "ad336eb79413c1f471218253343536a42ecee8fe021a0f25e36b326cccd174af",
+      "started_at": "2026-11-08T04:04:10.498095+08:00",
+      "finished_at": "2026-11-08T04:04:48.944487+08:00",
+      "status": "PARTIAL",
+      "gpu": {
+        "nvidia_smi_before": "NVIDIA GeForce RTX 3090, GPU-e392cec6-7ec8-1fee-397b-fde03a79e79e, 610.57.04, 24576 MiB, 1 MiB, 24123 MiB",
+        "free_before_load_mib": 23858.375,
+        "total_mib": 24123.5,
+        "allocated_after_load_mib": 13473.64794921875,
+        "all_parameters_cuda_fp16": true,
+        "peak_allocated_mib": 14097.6708984375,
+        "peak_reserved_mib": 14224.0
+      },
+      "gpu_release": {
+        "allocated_mib": 32.0,
+        "reserved_mib": 32.0,
+        "process_exit_releases_cuda_context": true
+      },
+      "errors": [
+        {
+          "phase": "GQA:201030233",
+          "error": "Smoke harness hash encoding AssertionError (before GQA generation)"
+        },
+        {
+          "phase": "GQA:201030272",
+          "error": "Smoke harness hash encoding AssertionError (before GQA generation)"
+        }
+      ],
+      "failed_samples": [
+        {
+          "benchmark": "GQA",
+          "input_view": "GQA-testdev-balanced",
+          "question_id": "201030233",
+          "official_question_id": "201030233",
+          "image_id": "n54424",
+          "image_path": "/home/featurize/data/ate-recovery/images/gqa/n54424.jpg",
+          "image_sha256": "138d9c70dd5484f4487fc1cafdf10531a924cf5a7328580223c85b20f5b3751c",
+          "image_size": [
+            640,
+            427
+          ],
+          "question": "Is the color of the pillow the same as that of the shuttle?",
+          "options": null,
+          "gold": "yes",
+          "strategy": null,
+          "status": "FAIL",
+          "max_new_tokens": 32,
+          "input_mapping_exact_to_frozen_manifest": true,
+          "scoring_sample": {
+            "task": "compare",
+            "image_sha256": "138d9c70dd5484f4487fc1cafdf10531a924cf5a7328580223c85b20f5b3751c"
+          },
+          "error": "Smoke harness compared raw UTF-8 SHA with frozen JSON digest; generation not run",
+          "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/data/ate-recovery/gpu-smoke-20261108-7ifdSS/smoke_runner.py\", line 374, in main\n    layout,binding=input_for(adapter,item)\n                   ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/data/ate-recovery/gpu-smoke-20261108-7ifdSS/smoke_runner.py\", line 239, in input_for\n    assert hashlib.sha256(text.encode()).hexdigest()==h['rendered_prompt_sha256']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+          "gpu_generation_status": "NOT_RUN",
+          "scorer_execution_status": "NOT_RUN"
+        },
+        {
+          "benchmark": "GQA",
+          "input_view": "GQA-testdev-balanced",
+          "question_id": "201030272",
+          "official_question_id": "201030272",
+          "image_id": "n54424",
+          "image_path": "/home/featurize/data/ate-recovery/images/gqa/n54424.jpg",
+          "image_sha256": "138d9c70dd5484f4487fc1cafdf10531a924cf5a7328580223c85b20f5b3751c",
+          "image_size": [
+            640,
+            427
+          ],
+          "question": "Does the Wii controller that looks oval have small size and white color?",
+          "options": null,
+          "gold": "yes",
+          "strategy": null,
+          "status": "FAIL",
+          "max_new_tokens": 32,
+          "input_mapping_exact_to_frozen_manifest": true,
+          "scoring_sample": {
+            "task": "logical",
+            "image_sha256": "138d9c70dd5484f4487fc1cafdf10531a924cf5a7328580223c85b20f5b3751c"
+          },
+          "error": "Smoke harness compared raw UTF-8 SHA with frozen JSON digest; generation not run",
+          "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/data/ate-recovery/gpu-smoke-20261108-7ifdSS/smoke_runner.py\", line 374, in main\n    layout,binding=input_for(adapter,item)\n                   ^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/data/ate-recovery/gpu-smoke-20261108-7ifdSS/smoke_runner.py\", line 239, in input_for\n    assert hashlib.sha256(text.encode()).hexdigest()==h['rendered_prompt_sha256']\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n",
+          "gpu_generation_status": "NOT_RUN",
+          "scorer_execution_status": "NOT_RUN"
+        }
+      ]
+    }
+  ],
+  "resume_scope": "only GQA 2 existing IDs; user-authorized second model load",
+  "final_verification": {
+    "status": "PASS",
+    "all_15_records_verified": true,
+    "frozen_source_hashes_unchanged": true,
+    "tracked_worktree_unchanged": true,
+    "gpu_compute_processes_after_exit": [],
+    "nvidia_smi_after": "NVIDIA GeForce RTX 3090, 24576 MiB, 1 MiB, 24123 MiB",
+    "generations_by_attempt": [
+      13,
+      2
+    ],
+    "model_loads": 2,
+    "second_load_explicitly_user_authorized": true,
+    "no_full_benchmark_or_physical_variant_run": true
+  },
+  "gqa_restored_code_commit": "57e37ce024b1b2adf9fa24fc24aabec32a1fed08"
+}

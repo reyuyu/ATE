@@ -1,0 +1,231 @@
+{
+  "status": "COMPLETE",
+  "at": "2026-11-08T06:31:27.965416+08:00",
+  "benchmarks": {
+    "MME": {
+      "status": "COMPLETE",
+      "questions": 2374,
+      "expected": 2374,
+      "condition": "Physical-C3",
+      "metric": "MME Score",
+      "scores": {
+        "Perception": 1478.8232292917169,
+        "Cognition": 348.92857142857144,
+        "Total": 1827.7518007202882
+      },
+      "tasks": [
+        {
+          "task": "existence",
+          "accuracy": 96.66666666666667,
+          "accuracy_plus": 93.33333333333333,
+          "score": 190.0,
+          "questions": 60,
+          "pairs": 30
+        },
+        {
+          "task": "count",
+          "accuracy": 76.66666666666667,
+          "accuracy_plus": 56.666666666666664,
+          "score": 133.33333333333334,
+          "questions": 60,
+          "pairs": 30
+        },
+        {
+          "task": "position",
+          "accuracy": 75.0,
+          "accuracy_plus": 53.333333333333336,
+          "score": 128.33333333333334,
+          "questions": 60,
+          "pairs": 30
+        },
+        {
+          "task": "color",
+          "accuracy": 90.0,
+          "accuracy_plus": 80.0,
+          "score": 170.0,
+          "questions": 60,
+          "pairs": 30
+        },
+        {
+          "task": "posters",
+          "accuracy": 83.6734693877551,
+          "accuracy_plus": 68.02721088435374,
+          "score": 151.70068027210885,
+          "questions": 294,
+          "pairs": 147
+        },
+        {
+          "task": "celebrity",
+          "accuracy": 76.47058823529412,
+          "accuracy_plus": 58.235294117647065,
+          "score": 134.7058823529412,
+          "questions": 340,
+          "pairs": 170
+        },
+        {
+          "task": "scene",
+          "accuracy": 86.75,
+          "accuracy_plus": 75.0,
+          "score": 161.75,
+          "questions": 400,
+          "pairs": 200
+        },
+        {
+          "task": "landmark",
+          "accuracy": 89.0,
+          "accuracy_plus": 78.5,
+          "score": 167.5,
+          "questions": 400,
+          "pairs": 200
+        },
+        {
+          "task": "artwork",
+          "accuracy": 73.5,
+          "accuracy_plus": 50.5,
+          "score": 124.0,
+          "questions": 400,
+          "pairs": 200
+        },
+        {
+          "task": "OCR",
+          "accuracy": 72.5,
+          "accuracy_plus": 45.0,
+          "score": 117.5,
+          "questions": 40,
+          "pairs": 20
+        },
+        {
+          "task": "commonsense_reasoning",
+          "accuracy": 68.57142857142857,
+          "accuracy_plus": 42.857142857142854,
+          "score": 111.42857142857142,
+          "questions": 140,
+          "pairs": 70
+        },
+        {
+          "task": "numerical_calculation",
+          "accuracy": 35.0,
+          "accuracy_plus": 15.0,
+          "score": 50.0,
+          "questions": 40,
+          "pairs": 20
+        },
+        {
+          "task": "text_translation",
+          "accuracy": 70.0,
+          "accuracy_plus": 45.0,
+          "score": 115.0,
+          "questions": 40,
+          "pairs": 20
+        },
+        {
+          "task": "code_reasoning",
+          "accuracy": 52.5,
+          "accuracy_plus": 20.0,
+          "score": 72.5,
+          "questions": 40,
+          "pairs": 20
+        }
+      ],
+      "MME_image_version_difference": true
+    },
+    "ScienceQA-IMG": {
+      "status": "COMPLETE",
+      "questions": 2017,
+      "expected": 2017,
+      "condition": "Physical-C3",
+      "metric": "Accuracy",
+      "value": 68.96380763510163,
+      "unit": "%"
+    },
+    "POPE": {
+      "status": "COMPLETE",
+      "questions": 8910,
+      "expected": 8910,
+      "condition": "Physical-C3",
+      "metric": "Accuracy",
+      "value": 87.20538720538721,
+      "unit": "%",
+      "strategies": {
+        "random": {
+          "official_generation_accuracy": 0.8886597938144329,
+          "official_generation_precision": 0.9734299516908212,
+          "official_generation_recall": 0.806,
+          "official_generation_f1": 0.8818380743982495,
+          "official_generation_yes_ratio": 0.4268041237113402,
+          "tp": 1209,
+          "tn": 1377,
+          "fp": 33,
+          "fn": 291,
+          "undefined_denominators": {
+            "precision": false,
+            "recall": false
+          }
+        },
+        "popular": {
+          "official_generation_accuracy": 0.877,
+          "official_generation_precision": 0.9393939393939394,
+          "official_generation_recall": 0.806,
+          "official_generation_f1": 0.8675995694294941,
+          "official_generation_yes_ratio": 0.429,
+          "tp": 1209,
+          "tn": 1422,
+          "fp": 78,
+          "fn": 291,
+          "undefined_denominators": {
+            "precision": false,
+            "recall": false
+          }
+        },
+        "adversarial": {
+          "official_generation_accuracy": 0.851,
+          "official_generation_precision": 0.8857142857142857,
+          "official_generation_recall": 0.806,
+          "official_generation_f1": 0.8439790575916231,
+          "official_generation_yes_ratio": 0.455,
+          "tp": 1209,
+          "tn": 1344,
+          "fp": 156,
+          "fn": 291,
+          "undefined_denominators": {
+            "precision": false,
+            "recall": false
+          }
+        }
+      }
+    },
+    "TextVQA": {
+      "status": "COMPLETE",
+      "questions": 5000,
+      "expected": 5000,
+      "condition": "Physical-C3",
+      "metric": "VQA Soft Accuracy",
+      "value": 50.40000000000001,
+      "unit": "%"
+    },
+    "MMBench": {
+      "status": "COMPLETE",
+      "questions": 4377,
+      "expected": 4377,
+      "condition": "Physical-C3",
+      "metric": "Circular Accuracy",
+      "value": 63.01020408163265,
+      "unit": "%",
+      "circular_groups": 1176,
+      "row_accuracy_secondary": 73.13228238519534,
+      "scorer": "frozen official VLMEvalKit matcher + all-rotations-correct",
+      "server_judge": false
+    }
+  },
+  "records": 22678,
+  "native_paired_delta": null,
+  "all_saved_scores_recomputed_with_frozen_scorer": true,
+  "independent_aggregation_check": {
+    "status": "PASS",
+    "records": 22678,
+    "MME_14_tasks_and_1187_pairs": true,
+    "MMBench_circular_groups": 1176,
+    "method": "Independent arithmetic from saved per-question scores; all row payload SHAs verified",
+    "native_15_prediction_independent_scoring_audit": "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_scoring_audit/audit_summary.json"
+  }
+}

@@ -1,0 +1,709 @@
+[
+  {
+    "benchmark": "MME",
+    "input_view": "MME-paper",
+    "question_id": "OCR/0001.jpg:0",
+    "official_question_id": "OCR/0001.jpg:0",
+    "image_id": "OCR/0001.jpg",
+    "image_path": "/home/featurize/data/ate-recovery/images/mme/OCR/0001.jpg",
+    "question": "Is the word in the logo \"angie's\"? Please answer yes or no.",
+    "options": null,
+    "gold": "yes",
+    "raw_prediction": "No",
+    "generated_token_ids": [
+      1939,
+      2
+    ],
+    "token_decode_exact": true,
+    "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nIs the word in the logo \"angie's\"?\nAnswer the question using a single word or phrase. ASSISTANT:",
+    "prompt_and_options_exact": true,
+    "input_token_hash_exact": true,
+    "source_evidence": {
+      "source": "frozen-revision MME parquet scalar annotation columns",
+      "source_image_id": "OCR/0001.jpg",
+      "source_gold": "Yes"
+    },
+    "original_scoring": {
+      "score": 0.0,
+      "parsed": "no",
+      "parse_failed": false
+    },
+    "independent_parsed": "no",
+    "independent_score": 0.0,
+    "manual_expected_score": 0.0,
+    "matches_original": true,
+    "reason_zh": "原输出为完整单词 No；冻结规则解析为 no，Gold 为 yes，因此得分 0。",
+    "details": {
+      "normalization": "lowercase exact no/yes; no ambiguous prefix branch"
+    }
+  },
+  {
+    "benchmark": "MME",
+    "input_view": "MME-paper",
+    "question_id": "OCR/0001.jpg:1",
+    "official_question_id": "OCR/0001.jpg:1",
+    "image_id": "OCR/0001.jpg",
+    "image_path": "/home/featurize/data/ate-recovery/images/mme/OCR/0001.jpg",
+    "question": "Is the word in the logo \"angle's\"? Please answer yes or no.",
+    "options": null,
+    "gold": "no",
+    "raw_prediction": "No",
+    "generated_token_ids": [
+      1939,
+      2
+    ],
+    "token_decode_exact": true,
+    "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nIs the word in the logo \"angle's\"?\nAnswer the question using a single word or phrase. ASSISTANT:",
+    "prompt_and_options_exact": true,
+    "input_token_hash_exact": true,
+    "source_evidence": {
+      "source": "frozen-revision MME parquet scalar annotation columns",
+      "source_image_id": "OCR/0001.jpg",
+      "source_gold": "No"
+    },
+    "original_scoring": {
+      "score": 1.0,
+      "parsed": "no",
+      "parse_failed": false
+    },
+    "independent_parsed": "no",
+    "independent_score": 1.0,
+    "manual_expected_score": 1.0,
+    "matches_original": true,
+    "reason_zh": "原输出为完整单词 No；冻结规则解析为 no，Gold 为 no，因此得分 1。",
+    "details": {
+      "normalization": "lowercase exact no/yes; no ambiguous prefix branch"
+    }
+  },
+  {
+    "benchmark": "ScienceQA-IMG",
+    "input_view": "ScienceQA-IMG-paper",
+    "question_id": "10001",
+    "official_question_id": "10001",
+    "image_id": "10001",
+    "image_path": "/home/featurize/data/ate-recovery/images/scienceqa/10001.png",
+    "question": "Think about the magnetic force between the magnets in each pair. Which of the following statements is true?",
+    "options": {
+      "A": "The magnitude of the magnetic force is the same in both pairs.",
+      "B": "The magnitude of the magnetic force is smaller in Pair 1.",
+      "C": "The magnitude of the magnetic force is smaller in Pair 2."
+    },
+    "gold": 2,
+    "raw_prediction": "A",
+    "generated_token_ids": [
+      319,
+      2
+    ],
+    "token_decode_exact": true,
+    "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nContext: The images below show two pairs of magnets. The magnets in different pairs do not affect each other. All the magnets shown are made of the same material, but some of them are different sizes.\nThink about the magnetic force between the magnets in each pair. Which of the following statements is true?\nA. The magnitude of the magnetic force is the same in both pairs.\nB. The magnitude of the magnetic force is smaller in Pair 1.\nC. The magnitude of the magnetic force is smaller in Pair 2.\nAnswer with the option's letter from the given choices directly. ASSISTANT:",
+    "prompt_and_options_exact": true,
+    "input_token_hash_exact": true,
+    "source_evidence": {
+      "source": "ScienceQA official problems.json and original paper CQM-A annotation",
+      "source_gold": 2,
+      "paper_gold_letter": "C"
+    },
+    "original_scoring": {
+      "score": 0.0,
+      "parsed": 0,
+      "parse_failed": false
+    },
+    "independent_parsed": 0,
+    "independent_score": 0.0,
+    "manual_expected_score": 0.0,
+    "matches_original": true,
+    "reason_zh": "原输出 A 是有效单字母选项，映射到零基索引 0；Gold 索引 2 即 C，因此得分 0。",
+    "details": {
+      "correct_option_letter": "C",
+      "correct_option_text": "The magnitude of the magnetic force is smaller in Pair 2."
+    }
+  },
+  {
+    "benchmark": "ScienceQA-IMG",
+    "input_view": "ScienceQA-IMG-paper",
+    "question_id": "10015",
+    "official_question_id": "10015",
+    "image_id": "10015",
+    "image_path": "/home/featurize/data/ate-recovery/images/scienceqa/10015.png",
+    "question": "Which material is these jeans made of?",
+    "options": {
+      "A": "metal",
+      "B": "rock"
+    },
+    "gold": 0,
+    "raw_prediction": "A",
+    "generated_token_ids": [
+      319,
+      2
+    ],
+    "token_decode_exact": true,
+    "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nWhich material is these jeans made of?\nA. metal\nB. rock\nAnswer with the option's letter from the given choices directly. ASSISTANT:",
+    "prompt_and_options_exact": true,
+    "input_token_hash_exact": true,
+    "source_evidence": {
+      "source": "ScienceQA official problems.json and original paper CQM-A annotation",
+      "source_gold": 0,
+      "paper_gold_letter": "A"
+    },
+    "original_scoring": {
+      "score": 1.0,
+      "parsed": 0,
+      "parse_failed": false
+    },
+    "independent_parsed": 0,
+    "independent_score": 1.0,
+    "manual_expected_score": 1.0,
+    "matches_original": true,
+    "reason_zh": "原输出 A 是有效单字母选项，映射到零基索引 0；Gold 索引 0 即 A，因此得分 1。",
+    "details": {
+      "correct_option_letter": "A",
+      "correct_option_text": "metal"
+    }
+  },
+  {
+    "benchmark": "POPE",
+    "input_view": "POPE-paper",
+    "question_id": "10000001",
+    "official_question_id": "random:1",
+    "image_id": "COCO_val2014_000000310196.jpg",
+    "image_path": "/home/featurize/data/ate-recovery/images/coco/val2014/COCO_val2014_000000310196.jpg",
+    "question": "Is there a snowboard in the image?",
+    "options": null,
+    "gold": "yes",
+    "raw_prediction": "No",
+    "generated_token_ids": [
+      1939,
+      2
+    ],
+    "token_decode_exact": true,
+    "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nIs there a snowboard in the image?\nAnswer the question using a single word or phrase. ASSISTANT:",
+    "prompt_and_options_exact": true,
+    "input_token_hash_exact": true,
+    "source_evidence": {
+      "source": "official per-strategy COCO JSON and 8910-row paper JSONL",
+      "official_question_id": "1",
+      "source_gold": "yes"
+    },
+    "original_scoring": {
+      "score": 0.0,
+      "parsed": "no",
+      "lexical_empty_defaults_yes": false
+    },
+    "independent_parsed": "no",
+    "independent_score": 0.0,
+    "manual_expected_score": 0.0,
+    "matches_original": true,
+    "reason_zh": "原输出为完整单词 No；冻结规则解析为 no，Gold 为 yes，因此得分 0。",
+    "details": {
+      "normalization": "first sentence is No; No is an official negative lexical word; no empty/unknown fallback"
+    }
+  },
+  {
+    "benchmark": "POPE",
+    "input_view": "POPE-paper",
+    "question_id": "20000001",
+    "official_question_id": "popular:1",
+    "image_id": "COCO_val2014_000000310196.jpg",
+    "image_path": "/home/featurize/data/ate-recovery/images/coco/val2014/COCO_val2014_000000310196.jpg",
+    "question": "Is there a snowboard in the image?",
+    "options": null,
+    "gold": "yes",
+    "raw_prediction": "No",
+    "generated_token_ids": [
+      1939,
+      2
+    ],
+    "token_decode_exact": true,
+    "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nIs there a snowboard in the image?\nAnswer the question using a single word or phrase. ASSISTANT:",
+    "prompt_and_options_exact": true,
+    "input_token_hash_exact": true,
+    "source_evidence": {
+      "source": "official per-strategy COCO JSON and 8910-row paper JSONL",
+      "official_question_id": "1",
+      "source_gold": "yes"
+    },
+    "original_scoring": {
+      "score": 0.0,
+      "parsed": "no",
+      "lexical_empty_defaults_yes": false
+    },
+    "independent_parsed": "no",
+    "independent_score": 0.0,
+    "manual_expected_score": 0.0,
+    "matches_original": true,
+    "reason_zh": "原输出为完整单词 No；冻结规则解析为 no，Gold 为 yes，因此得分 0。",
+    "details": {
+      "normalization": "first sentence is No; No is an official negative lexical word; no empty/unknown fallback"
+    }
+  },
+  {
+    "benchmark": "POPE",
+    "input_view": "POPE-paper",
+    "question_id": "1",
+    "official_question_id": "adversarial:1",
+    "image_id": "COCO_val2014_000000310196.jpg",
+    "image_path": "/home/featurize/data/ate-recovery/images/coco/val2014/COCO_val2014_000000310196.jpg",
+    "question": "Is there a snowboard in the image?",
+    "options": null,
+    "gold": "yes",
+    "raw_prediction": "No",
+    "generated_token_ids": [
+      1939,
+      2
+    ],
+    "token_decode_exact": true,
+    "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nIs there a snowboard in the image?\nAnswer the question using a single word or phrase. ASSISTANT:",
+    "prompt_and_options_exact": true,
+    "input_token_hash_exact": true,
+    "source_evidence": {
+      "source": "official per-strategy COCO JSON and 8910-row paper JSONL",
+      "official_question_id": "1",
+      "source_gold": "yes"
+    },
+    "original_scoring": {
+      "score": 0.0,
+      "parsed": "no",
+      "lexical_empty_defaults_yes": false
+    },
+    "independent_parsed": "no",
+    "independent_score": 0.0,
+    "manual_expected_score": 0.0,
+    "matches_original": true,
+    "reason_zh": "原输出为完整单词 No；冻结规则解析为 no，Gold 为 yes，因此得分 0。",
+    "details": {
+      "normalization": "first sentence is No; No is an official negative lexical word; no empty/unknown fallback"
+    }
+  },
+  {
+    "benchmark": "TextVQA",
+    "input_view": "TextVQA-OCR",
+    "question_id": "34602",
+    "official_question_id": "34602",
+    "image_id": "003a8ae2ef43b901",
+    "image_path": "/home/featurize/data/ate-recovery/images/textvqa/003a8ae2ef43b901.jpg",
+    "question": "what is the brand of this camera?",
+    "options": null,
+    "gold": [
+      "nous les gosses",
+      "dakota",
+      "clos culombu",
+      "dakota digital",
+      "dakota",
+      "dakota",
+      "dakota digital",
+      "dakota digital",
+      "dakota",
+      "dakota"
+    ],
+    "raw_prediction": "Dakota digital",
+    "generated_token_ids": [
+      22679,
+      4616,
+      13436,
+      2
+    ],
+    "token_decode_exact": true,
+    "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nWhat is the brand of this camera?\nReference OCR token: DAKOTA, DIGITAL, Single-Use, Camera, Pire, digitat\nAnswer the question using a single word or phrase. ASSISTANT:",
+    "prompt_and_options_exact": true,
+    "input_token_hash_exact": true,
+    "source_evidence": {
+      "source": "official TextVQA v0.5.1 annotations and paper OCR JSONL",
+      "source_gold": [
+        "nous les gosses",
+        "dakota",
+        "clos culombu",
+        "dakota digital",
+        "dakota",
+        "dakota",
+        "dakota digital",
+        "dakota digital",
+        "dakota",
+        "dakota"
+      ],
+      "paper_ocr_text_exact": true
+    },
+    "original_scoring": {
+      "score": 0.9,
+      "parsed": "dakota digital"
+    },
+    "independent_parsed": "dakota digital",
+    "independent_score": 0.9,
+    "manual_expected_score": 0.9,
+    "matches_original": true,
+    "reason_zh": "大小写归一化后预测=dakota digital；十个人类答案中匹配 3 次。十次留一法分值 1, 1, 1, 2/3, 1, 1, 2/3, 2/3, 1, 1，均值 9/10=0.9；不是二值 Accuracy。",
+    "details": {
+      "normalized_gold": [
+        "nous les gosses",
+        "dakota",
+        "clos culombu",
+        "dakota digital",
+        "dakota",
+        "dakota",
+        "dakota digital",
+        "dakota digital",
+        "dakota",
+        "dakota"
+      ],
+      "answer_counts": {
+        "nous les gosses": 1,
+        "dakota": 5,
+        "clos culombu": 1,
+        "dakota digital": 3
+      },
+      "normalized_matching_count": 3,
+      "annotator_exclusion_scores": [
+        "1",
+        "1",
+        "1",
+        "2/3",
+        "1",
+        "1",
+        "2/3",
+        "2/3",
+        "1",
+        "1"
+      ],
+      "exact_fraction": "9/10",
+      "normalization_case": "actual strings have no nontrivial punctuation/articles/numbers/contractions"
+    }
+  },
+  {
+    "benchmark": "TextVQA",
+    "input_view": "TextVQA-OCR",
+    "question_id": "34603",
+    "official_question_id": "34603",
+    "image_id": "b9dc400eb20bad64",
+    "image_path": "/home/featurize/data/ate-recovery/images/textvqa/b9dc400eb20bad64.jpg",
+    "question": "what does the small white text spell?",
+    "options": null,
+    "gold": [
+      "copenhagen",
+      "copenhagen",
+      "copenhagen",
+      "copenhagen",
+      "copenhagen",
+      "thursday",
+      "copenhagen",
+      "copenhagen",
+      "copenhagen",
+      "copenhagen"
+    ],
+    "raw_prediction": "Drupalcon",
+    "generated_token_ids": [
+      16597,
+      7830,
+      535,
+      2
+    ],
+    "token_decode_exact": true,
+    "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nWhat does the small white text spell?\nReference OCR token: D, RUPALCON, PALCON, COPENHAGEN\nAnswer the question using a single word or phrase. ASSISTANT:",
+    "prompt_and_options_exact": true,
+    "input_token_hash_exact": true,
+    "source_evidence": {
+      "source": "official TextVQA v0.5.1 annotations and paper OCR JSONL",
+      "source_gold": [
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "thursday",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen"
+      ],
+      "paper_ocr_text_exact": true
+    },
+    "original_scoring": {
+      "score": 0.0,
+      "parsed": "drupalcon"
+    },
+    "independent_parsed": "drupalcon",
+    "independent_score": 0.0,
+    "manual_expected_score": 0.0,
+    "matches_original": true,
+    "reason_zh": "大小写归一化后预测=drupalcon；十个人类答案中匹配 0 次。十次留一法分值 0, 0, 0, 0, 0, 0, 0, 0, 0, 0，均值 0=0.0；不是二值 Accuracy。",
+    "details": {
+      "normalized_gold": [
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "thursday",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen"
+      ],
+      "answer_counts": {
+        "copenhagen": 9,
+        "thursday": 1
+      },
+      "normalized_matching_count": 0,
+      "annotator_exclusion_scores": [
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0",
+        "0"
+      ],
+      "exact_fraction": "0",
+      "normalization_case": "actual strings have no nontrivial punctuation/articles/numbers/contractions"
+    }
+  },
+  {
+    "benchmark": "MMBench",
+    "input_view": "MMBench-paper",
+    "question_id": "1",
+    "official_question_id": "1",
+    "image_id": "cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82",
+    "image_path": "/home/featurize/data/ate-recovery/images/mmbench/cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82.jpg",
+    "question": "What is correct Python code to generate the content of the image?",
+    "options": {
+      "A": "for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n",
+      "B": "thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))",
+      "C": "x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n",
+      "D": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)"
+    },
+    "gold": "D",
+    "raw_prediction": "D",
+    "generated_token_ids": [
+      360,
+      2
+    ],
+    "token_decode_exact": true,
+    "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nWhat is correct Python code to generate the content of the image?\nA. for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n\nB. thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))\nC. x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n\nD. fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)\nAnswer with the option's letter from the given choices directly. ASSISTANT:",
+    "prompt_and_options_exact": true,
+    "input_token_hash_exact": true,
+    "source_evidence": {
+      "source": "original MMBench-EN Dev20230712 TSV",
+      "source_gold": "D"
+    },
+    "original_scoring": {
+      "score": 1.0,
+      "parsed": "D",
+      "parse_failed": false,
+      "score_protocol": "OFFLINE_REPRODUCTION/VLMEvalKit exact matching"
+    },
+    "independent_parsed": "D",
+    "independent_score": 1.0,
+    "manual_expected_score": 1.0,
+    "matches_original": true,
+    "reason_zh": "原输出为有效单字母 D，无需文本回退或裁判；该轮 Gold=D，行级得分 1。Circular 另按四轮全对汇总。",
+    "details": {
+      "predicted_option_text": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)",
+      "gold_option_text": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)"
+    }
+  },
+  {
+    "benchmark": "MMBench",
+    "input_view": "MMBench-paper",
+    "question_id": "1000001",
+    "official_question_id": "1000001",
+    "image_id": "cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82",
+    "image_path": "/home/featurize/data/ate-recovery/images/mmbench/cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82.jpg",
+    "question": "What is correct Python code to generate the content of the image?",
+    "options": {
+      "A": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)",
+      "B": "for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n",
+      "C": "thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))",
+      "D": "x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n"
+    },
+    "gold": "A",
+    "raw_prediction": "A",
+    "generated_token_ids": [
+      319,
+      2
+    ],
+    "token_decode_exact": true,
+    "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nWhat is correct Python code to generate the content of the image?\nA. fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)\nB. for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n\nC. thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))\nD. x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n\nAnswer with the option's letter from the given choices directly. ASSISTANT:",
+    "prompt_and_options_exact": true,
+    "input_token_hash_exact": true,
+    "source_evidence": {
+      "source": "original MMBench-EN Dev20230712 TSV",
+      "source_gold": "A"
+    },
+    "original_scoring": {
+      "score": 1.0,
+      "parsed": "A",
+      "parse_failed": false,
+      "score_protocol": "OFFLINE_REPRODUCTION/VLMEvalKit exact matching"
+    },
+    "independent_parsed": "A",
+    "independent_score": 1.0,
+    "manual_expected_score": 1.0,
+    "matches_original": true,
+    "reason_zh": "原输出为有效单字母 A，无需文本回退或裁判；该轮 Gold=A，行级得分 1。Circular 另按四轮全对汇总。",
+    "details": {
+      "predicted_option_text": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)",
+      "gold_option_text": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)"
+    }
+  },
+  {
+    "benchmark": "MMBench",
+    "input_view": "MMBench-paper",
+    "question_id": "2000001",
+    "official_question_id": "2000001",
+    "image_id": "cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82",
+    "image_path": "/home/featurize/data/ate-recovery/images/mmbench/cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82.jpg",
+    "question": "What is correct Python code to generate the content of the image?",
+    "options": {
+      "A": "x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n",
+      "B": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)",
+      "C": "for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n",
+      "D": "thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))"
+    },
+    "gold": "B",
+    "raw_prediction": "B",
+    "generated_token_ids": [
+      350,
+      2
+    ],
+    "token_decode_exact": true,
+    "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nWhat is correct Python code to generate the content of the image?\nA. x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n\nB. fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)\nC. for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n\nD. thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))\nAnswer with the option's letter from the given choices directly. ASSISTANT:",
+    "prompt_and_options_exact": true,
+    "input_token_hash_exact": true,
+    "source_evidence": {
+      "source": "original MMBench-EN Dev20230712 TSV",
+      "source_gold": "B"
+    },
+    "original_scoring": {
+      "score": 1.0,
+      "parsed": "B",
+      "parse_failed": false,
+      "score_protocol": "OFFLINE_REPRODUCTION/VLMEvalKit exact matching"
+    },
+    "independent_parsed": "B",
+    "independent_score": 1.0,
+    "manual_expected_score": 1.0,
+    "matches_original": true,
+    "reason_zh": "原输出为有效单字母 B，无需文本回退或裁判；该轮 Gold=B，行级得分 1。Circular 另按四轮全对汇总。",
+    "details": {
+      "predicted_option_text": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)",
+      "gold_option_text": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)"
+    }
+  },
+  {
+    "benchmark": "MMBench",
+    "input_view": "MMBench-paper",
+    "question_id": "3000001",
+    "official_question_id": "3000001",
+    "image_id": "cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82",
+    "image_path": "/home/featurize/data/ate-recovery/images/mmbench/cccbd2cab86bfe7c35035b991cd3ce0afd8407f8b141985f61c29e2e4dd29a82.jpg",
+    "question": "What is correct Python code to generate the content of the image?",
+    "options": {
+      "A": "thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))",
+      "B": "x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n",
+      "C": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)",
+      "D": "for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n"
+    },
+    "gold": "C",
+    "raw_prediction": "C",
+    "generated_token_ids": [
+      315,
+      2
+    ],
+    "token_decode_exact": true,
+    "prompt": "A chat between a curious user and an artificial intelligence assistant. The assistant gives helpful, detailed, and polite answers to the user's questions. USER: <image>\nWhat is correct Python code to generate the content of the image?\nA. thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))\nB. x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n\nC. fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)\nD. for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n\nAnswer with the option's letter from the given choices directly. ASSISTANT:",
+    "prompt_and_options_exact": true,
+    "input_token_hash_exact": true,
+    "source_evidence": {
+      "source": "original MMBench-EN Dev20230712 TSV",
+      "source_gold": "C"
+    },
+    "original_scoring": {
+      "score": 1.0,
+      "parsed": "C",
+      "parse_failed": false,
+      "score_protocol": "OFFLINE_REPRODUCTION/VLMEvalKit exact matching"
+    },
+    "independent_parsed": "C",
+    "independent_score": 1.0,
+    "manual_expected_score": 1.0,
+    "matches_original": true,
+    "reason_zh": "原输出为有效单字母 C，无需文本回退或裁判；该轮 Gold=C，行级得分 1。Circular 另按四轮全对汇总。",
+    "details": {
+      "predicted_option_text": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)",
+      "gold_option_text": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)"
+    }
+  },
+  {
+    "benchmark": "GQA",
+    "input_view": "GQA-testdev-balanced",
+    "question_id": "201030233",
+    "official_question_id": "201030233",
+    "image_id": "n54424",
+    "image_path": "/home/featurize/data/ate-recovery/images/gqa/n54424.jpg",
+    "question": "Is the color of the pillow the same as that of the shuttle?",
+    "options": null,
+    "gold": "yes",
+    "raw_prediction": "No",
+    "generated_token_ids": [
+      1939,
+      2
+    ],
+    "token_decode_exact": true,
+    "prompt": "USER: <image>\nIs the color of the pillow the same as that of the shuttle?\nAnswer the question using a single word or phrase. ASSISTANT:",
+    "prompt_and_options_exact": true,
+    "input_token_hash_exact": true,
+    "source_evidence": {
+      "source": "official testdev_balanced_questions.json",
+      "source_gold": "yes"
+    },
+    "original_scoring": {
+      "score": 0.0,
+      "parsed": "no"
+    },
+    "independent_parsed": "no",
+    "independent_score": 0.0,
+    "manual_expected_score": 0.0,
+    "matches_original": true,
+    "reason_zh": "原输出为完整单词 No；冻结规则解析为 no，Gold 为 yes，因此得分 0。",
+    "details": {
+      "normalization": "remove trailing periods, then lower; present output has no trailing period or extra whitespace"
+    }
+  },
+  {
+    "benchmark": "GQA",
+    "input_view": "GQA-testdev-balanced",
+    "question_id": "201030272",
+    "official_question_id": "201030272",
+    "image_id": "n54424",
+    "image_path": "/home/featurize/data/ate-recovery/images/gqa/n54424.jpg",
+    "question": "Does the Wii controller that looks oval have small size and white color?",
+    "options": null,
+    "gold": "yes",
+    "raw_prediction": "Yes",
+    "generated_token_ids": [
+      3869,
+      2
+    ],
+    "token_decode_exact": true,
+    "prompt": "USER: <image>\nDoes the Wii controller that looks oval have small size and white color?\nAnswer the question using a single word or phrase. ASSISTANT:",
+    "prompt_and_options_exact": true,
+    "input_token_hash_exact": true,
+    "source_evidence": {
+      "source": "official testdev_balanced_questions.json",
+      "source_gold": "yes"
+    },
+    "original_scoring": {
+      "score": 1.0,
+      "parsed": "yes"
+    },
+    "independent_parsed": "yes",
+    "independent_score": 1.0,
+    "manual_expected_score": 1.0,
+    "matches_original": true,
+    "reason_zh": "原输出为完整单词 Yes；冻结规则解析为 yes，Gold 为 yes，因此得分 1。",
+    "details": {
+      "normalization": "remove trailing periods, then lower; present output has no trailing period or extra whitespace"
+    }
+  }
+]

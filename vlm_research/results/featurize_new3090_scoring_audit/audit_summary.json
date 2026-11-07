@@ -1,0 +1,119 @@
+{
+  "overall_status": "PASS",
+  "records_audited": 15,
+  "records_score_exact": 15,
+  "scoring_mismatches": [],
+  "input_or_generation_protocol_issue": false,
+  "scoring_issue_affects_c3": false,
+  "audit_method": "Independent literal-answer reasoning; exact-fraction TextVQA annotator exclusions; source-annotation/manifest binding; tokenizer decode; no benchmark scorer called",
+  "audited_at": "2026-11-08T04:22:44.111138+08:00",
+  "cpu_only": true,
+  "cuda_visible_devices": "",
+  "cuda_initialized": false,
+  "hf_native_gpu_regenerated": false,
+  "benchmark_scorer_calls": 0,
+  "original_predictions_preserved": true,
+  "source_smoke_json": "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_gpu_smoke/smoke_results.json",
+  "source_smoke_json_sha256": "41160b6e0d08597cac83c13457a1dc2dd6d78209f53a88a084372ebe7eb5481c",
+  "only_original_prediction_file": "smoke_results.json stores both text and token_ids; no standalone prediction file existed",
+  "git_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+  "frozen_source_hashes": {
+    "vlm_research/information_horizon_alignment/engine.py": "edc2b8331512af12cdb881c4b0269c7fd744ebc3580e125a68afff11cd5df929",
+    "vlm_research/information_horizon_alignment/score.py": "50bc02bb5376af0f2aec9d32e0ce507e050b54f5b78137e1bd1ac8c8549a47f7",
+    "vlm_research/information_horizon_alignment/common.py": "3958686c179db7a1f8e67ff57a52a29080eb9fcf206d52a6590c8cd9f580e4e6",
+    "vlm_research/mme_seed_quality/engine.py": "f7f41d523c926354cf18bd7e4fbcfbd7aa46bb17bccf37b2fd8ce468ab0fc100",
+    "vlm_research/gqa_testdev_c3/engine.py": "390786063d1b9a9d719f91a7398e4a55c0433287ba4b486f0de1e3729b1d0f96",
+    "vlm_research/gqa_testdev_c3/common.py": "79f734f25225e08e2cceaad17af900a41417f1861f4789dfcdd71f37c8b7cc83",
+    "vlm_research/vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d",
+    "vlm_research/information_horizon_alignment/analyze.py": "ecccb86bd52f5c7fe9870ac8c14544cc9d6c786f9cf460973bc85026712406b7",
+    "vlm_research/mme_seed_quality/common.py": "e0c23bb9aecda2513d48b4053c86af6d0bba8c179eb07522ab164fa4733eeab4"
+  },
+  "manifest_sha256": {
+    "paper": "9344bf5cd7649b02f85982dcefec02b4b8c4fd95e24f8f62f9f34cd278ee6a79",
+    "gqa": "b2f40574d22547dc2fdb8a30a7e116fb2ddba7a2c8ca348a71effbef70e01d9e"
+  },
+  "gqa_hash_repair": {
+    "status": "PASS",
+    "input_for_changes": [
+      {
+        "before": "assert hashlib.sha256(text.encode()).hexdigest() == h['rendered_prompt_sha256']",
+        "after": "assert gqa_common.digest(text) == h['rendered_prompt_sha256']"
+      }
+    ],
+    "score_one_AST_unchanged": true,
+    "frozen_source_hashes_unchanged": true,
+    "prompt_checks": [
+      {
+        "question_id": "201030233",
+        "raw_utf8_sha": "65fe28154abf2aaf7188e668608bf1c8446b68ac2cf2927f86ee7685af1cd9ff",
+        "json_digest": "d973c9edbaf019a84805cb8bc7d093ba37f87b097a0f9ff6a71e9168a62d29f7",
+        "historical_json_digest": "d973c9edbaf019a84805cb8bc7d093ba37f87b097a0f9ff6a71e9168a62d29f7"
+      },
+      {
+        "question_id": "201030272",
+        "raw_utf8_sha": "843fdf449ae092515b42f82e6f4fce571f90486720c6be906169cac8bc2f1b74",
+        "json_digest": "821073ea6e250697bd9e305e2ca459469ffa5d7fa30813eeadc25daa7171ee9a",
+        "historical_json_digest": "821073ea6e250697bd9e305e2ca459469ffa5d7fa30813eeadc25daa7171ee9a"
+      }
+    ],
+    "note": "Other fixed-runner changes implement authorized two-question resume and evidence bookkeeping; original frozen inference/scorer files are byte-identical"
+  },
+  "summary_scope": "ALL METRICS BELOW ARE SMOKE DIAGNOSTICS; NOT FORMAL BENCHMARK SCORES",
+  "aggregates": {
+    "MME": {
+      "scope": "SMOKE_ONLY; not a formal benchmark result",
+      "records": 2,
+      "score_sum": 1.0,
+      "mean_score": 0.5,
+      "accuracy": 50.0,
+      "accuracy_plus": 0,
+      "selected_OCR_task_score": 50.0,
+      "full_MME_Total": null,
+      "full_MME_Total_status": "NOT_VALIDATED: only one OCR pair, other 13 task strata absent",
+      "previous_task_aggregate_matches": true
+    },
+    "ScienceQA-IMG": {
+      "scope": "SMOKE_ONLY; not a formal benchmark result",
+      "records": 2,
+      "score_sum": 1.0,
+      "mean_score": 0.5,
+      "metric": "binary per-question accuracy"
+    },
+    "POPE": {
+      "scope": "SMOKE_ONLY; not a formal benchmark result",
+      "records": 3,
+      "score_sum": 0.0,
+      "mean_score": 0.0,
+      "metric": "binary per-question accuracy"
+    },
+    "TextVQA": {
+      "scope": "SMOKE_ONLY; not a formal benchmark result",
+      "records": 2,
+      "score_sum": 0.9,
+      "mean_score": 0.45,
+      "metric": "VQA leave-one-out soft accuracy"
+    },
+    "MMBench": {
+      "scope": "SMOKE_ONLY; not a formal benchmark result",
+      "records": 4,
+      "score_sum": 4.0,
+      "mean_score": 1.0,
+      "circular_groups": 1,
+      "all_rotations_hit": 1,
+      "circular_group_score": 1.0,
+      "previous_circular_aggregate_matches": true
+    },
+    "GQA": {
+      "scope": "SMOKE_ONLY; not a formal benchmark result",
+      "records": 2,
+      "score_sum": 1.0,
+      "mean_score": 0.5,
+      "metric": "binary per-question accuracy"
+    }
+  },
+  "limitations": [
+    "No full MME Total can be computed from one OCR image pair.",
+    "Independent manual scoring covers the 15 actual bare outputs, not every fallback branch of generic parsers.",
+    "No model quality or full-benchmark claim follows from these 15 records."
+  ]
+}
