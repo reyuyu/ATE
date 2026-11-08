@@ -1,0 +1,9 @@
+{
+  "review": "Four changed cases inspected against the original images in the verified Windows GQA archive; no Gold/scorer changes and no additional generation.",
+  "cases": [
+    {"question_id":"20886973","image_id":"n282436","gold":"blue","historical":"Gray","A":"Gray","B":"Blue","C":"Blue","visual_review":"原图640x480，右下角有蓝色鼠标。短边缩放后中心裁剪会裁去横向两侧，鼠标位于右侧裁剪边缘；pad保留更完整的画面。B/C转为blue与Gold一致，支持预处理影响边缘视觉证据。该例不能代表全部改善案例。"},
+    {"question_id":"201896132","image_id":"n111390","gold":"blue","historical":"White","A":"White","B":"Blue","C":"Blue","visual_review":"原图425x640，桌上底部的蛋糕主体浅色且有蓝色装饰；中心裁剪改变下方内容可见范围。B/C答案符合官方Gold，但视觉上颜色/指代有一定歧义，不能把该例简单宣传成确定的视觉纠错，也不修改Gold。"},
+    {"question_id":"20482509","image_id":"n195249","gold":"racket","historical":"Racket","A":"Tennis racket","B":"Racket","C":"Tennis racket","visual_review":"图中女子持网球拍。tennis racket在语义上更具体，但官方exact-match Gold为racket，所以A/C必须记0。该项是答案表述改变造成的合法计分损失，不是解析器或Gold映射错误。"},
+    {"question_id":"201676091","image_id":"n233607","gold":"bottom","historical":"Bottom","A":"Bottom","B":"Top","C":"Top","visual_review":"图中有前景偏下粉色手柄，也有另一人举起的白色手柄；the controller的指代存在歧义。B/C改为top按官方Gold计错。说明pad并非保证每题改善，也不能凭该题认定图片版本有误。"}
+  ]
+}

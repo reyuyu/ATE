@@ -1,0 +1,81 @@
+{
+  "audit_status": "COMPLETE",
+  "causal_attribution_status": "LIKELY_PARTIAL_EXPLANATION_NOT_FULLY_ESTABLISHED",
+  "verified": [
+    "Official7B62.0 reference distinct from13B63.3",
+    "Same12578 prepared inputs and officialGold/score denominator",
+    "HistoricalNative7626correct;0missing/empty/truncated/scoring mismatch",
+    "SystemPrompt differs and389/398crop/pad pixels differ",
+    "3Native smoke exact;600ABC completed once",
+    "CombinedC127/200 vs121/200;10improvements4regressions"
+  ],
+  "likely": "Prompt与square-pad联合协议偏差是最有实证支持的部分原因；小样本存在联合正向变化，单独Prompt/预处理没有净提升。",
+  "unresolved": [
+    "完整1.370329pp中各因素占比",
+    "原生与HF权重逐tensor及Backend数值完全一致性",
+    "官方7B12578逐题预测及精确运行配置；官方eval.zip仅有13B预测",
+    "200题与有限Native smoke不足以排除全部跨GPU浮点argmax变化或小样本波动"
+  ],
+  "minimum_next_validation": "优先取得官方7B同split逐题预测与精确运行配置，先CPU比对具体错误集合；若拿不到，下一轮需原生LLaVA backend与HF在同一固定小样本上对齐权重与逐token输出，才能隔离转换/Backend残余差异。要量化完整1.37pp仍需更大、预先授权的配对证据，本轮不启动。",
+  "GPU_after_exit": "NVIDIA GeForce RTX 4090, 1 MiB, 24109 MiB, 0 %",
+  "model_loads": 1,
+  "formal_benchmark_rerun": false,
+  "frozen_history_modified": false,
+  "C3_gate_modified": false,
+  "GPU_summary": [
+    {
+      "condition": "A",
+      "questions": 200,
+      "correct": 120,
+      "accuracy_percent": 60.0,
+      "historical_correct": 121,
+      "historical_accuracy_percent": 60.5,
+      "paired_delta_pp": -0.5,
+      "answers_changed": 10,
+      "improved": 2,
+      "worsened": 3,
+      "changed_but_score_unchanged": 5,
+      "truncated": 0,
+      "empty": 0,
+      "image_cluster_bootstrap95_low_pp": -3.349684854619065,
+      "image_cluster_bootstrap95_high_pp": 1.9704433497536946
+    },
+    {
+      "condition": "B",
+      "questions": 200,
+      "correct": 121,
+      "accuracy_percent": 60.5,
+      "historical_correct": 121,
+      "historical_accuracy_percent": 60.5,
+      "paired_delta_pp": 0.0,
+      "answers_changed": 24,
+      "improved": 8,
+      "worsened": 8,
+      "changed_but_score_unchanged": 8,
+      "truncated": 0,
+      "empty": 0,
+      "image_cluster_bootstrap95_low_pp": -3.9603960396039604,
+      "image_cluster_bootstrap95_high_pp": 3.9603960396039604
+    },
+    {
+      "condition": "C",
+      "questions": 200,
+      "correct": 127,
+      "accuracy_percent": 63.5,
+      "historical_correct": 121,
+      "historical_accuracy_percent": 60.5,
+      "paired_delta_pp": 3.0,
+      "answers_changed": 23,
+      "improved": 10,
+      "worsened": 4,
+      "changed_but_score_unchanged": 9,
+      "truncated": 0,
+      "empty": 0,
+      "image_cluster_bootstrap95_low_pp": -0.5154639175257731,
+      "image_cluster_bootstrap95_high_pp": 6.730769230769231
+    }
+  ],
+  "image_clusters_in_sample": 156,
+  "bootstrap": "4000 image-cluster resamples, seed20261108; exploratory95%percentile interval; not a full-benchmark causal estimate.",
+  "finished_at": "2026-11-08T11:35:44.027320+00:00"
+}

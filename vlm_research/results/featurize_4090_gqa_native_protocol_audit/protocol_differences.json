@@ -1,0 +1,71 @@
+{
+  "official_release_commit": "ce1aa08d129bd7df931a7067bcb79cf3cb3a1af5",
+  "ATE_code_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+  "HF_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "original_model_metadata_revision": "4481d270cc22fd5c4d1bb5df129622006ccd9234",
+  "rows": [
+    {
+      "item": "公开参考成绩",
+      "official": "LLaVA-1.5 7B full_ft-1e:62.0%;13B:63.3%",
+      "ATE": "Native 7626/12578=60.6296709%",
+      "status": "VERIFIED",
+      "implication": "官方62.0是四舍五入数；不假定精确正确题数或用13B脚本默认配置替代7B。"
+    },
+    {
+      "item": "数据集与计分分母",
+      "official": "GQA testdev_balanced,12578,每题等权exact-match",
+      "ATE": "同12578题；所有qid/question/imageId/Gold/split匹配",
+      "status": "VERIFIED",
+      "implication": "官方eval.zip实际prepared文件qid、题干及短答后缀、imageId逐题一致；rawGold文件SHA与历史官方源一致。"
+    },
+    {
+      "item": "Prompt",
+      "official": "vicuna_v1 System + USER:<image> + question/short suffix + ASSISTANT:",
+      "ATE": "USER:<image> + 完全相同question/short suffix + ASSISTANT:，没有System",
+      "status": "VERIFIED",
+      "implication": "System带来30个额外文本token；图像标记由-200映射到HF32000并展开576个视觉位置，含义一致。"
+    },
+    {
+      "item": "Tokenizer",
+      "official": "原生SentencePiece，BOS1/EOS2",
+      "ATE": "同SentencePiece文件SHA；HF fast；所有12578官方Prompt token IDs与slow官方算法一致",
+      "status": "VERIFIED",
+      "implication": "没有发现分词器为额外差异来源。"
+    },
+    {
+      "item": "预处理",
+      "official": "RGB→按CLIP mean颜色补方形→CLIP336 bicubic/normalize",
+      "ATE": "RGB→短边336 resize→center crop336；不先pad",
+      "status": "VERIFIED",
+      "implication": "389/398图片pixel values不同；先外部pad后当前CLIP核心输出与官方CLIP处理器逐像素相同。"
+    },
+    {
+      "item": "图片版本",
+      "official": "Stanford GQA images.zip对应398张",
+      "ATE": "398张完整；旧官方ZIP CRC/size全匹配、80张Stanford直接byte匹配；当前像素哈希全部匹配历史Native",
+      "status": "VERIFIED_WITH_LIMIT",
+      "implication": "未发现缺图或错图；不是398张均重新向官方做独立SHA下载验证。"
+    },
+    {
+      "item": "生成与停止",
+      "official": "greedy/beam1/FP16/EOS2；2023release cap128",
+      "ATE": "greedy/beam1/FP16/EOS2/Eager，cap32",
+      "status": "VERIFIED",
+      "implication": "历史最长6token(含EOS)、0截断；cap32不是本次历史差距原因。对照仍固定32。"
+    },
+    {
+      "item": "Scorer",
+      "official": "输出strip后，text.rstrip('.').lower()；与官方answer完全相等；balanced等权",
+      "ATE": "同转换、同分母及exact-match；官方完整脚本离线复算一致",
+      "status": "VERIFIED",
+      "implication": "无大小写/句号/分母或评分实现问题；不做同义词宽松匹配。"
+    },
+    {
+      "item": "模型/权重/Backend",
+      "official": "原生LlavaLlamaForCausalLM；Vicuna7B32层4096；CLIP-L/14-336；原始词表32000",
+      "ATE": "HF LlavaForConditionalGeneration；同架构/视觉层-2/投影结构；词表扩至32064；Transformers4.49/Eager",
+      "status": "UNRESOLVED",
+      "implication": "同源转换模型，但未独立逐tensor对照官方原生权重或做原生backend数值对齐；历史无新增词表token输出，不把全部差异归因Prompt。"
+    }
+  ]
+}

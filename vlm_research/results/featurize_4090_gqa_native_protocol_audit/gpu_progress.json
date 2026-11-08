@@ -1,0 +1,121 @@
+{
+  "status": "COMPLETE",
+  "started_at": "2026-11-08T11:21:37.713952+00:00",
+  "unique_fixed_questions": 200,
+  "expected_control_generations": 600,
+  "completed_control_generations": 600,
+  "native_smoke": [
+    {
+      "question_id": "20416735",
+      "structural": "query",
+      "generation": {
+        "condition": "Native",
+        "text": "Brown",
+        "token_ids": [
+          9817,
+          2
+        ],
+        "eos": true,
+        "truncated": false,
+        "empty": false,
+        "repeated": false,
+        "first_logits_sha256": "d38d6637f41e6663eab90f99f76fe3f2c09dc4f90ab41d718c6dcd67c21b1ffc",
+        "first_token_id": 9817,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "logits_to_keep": 1
+      },
+      "historical_text": "Brown",
+      "historical_token_ids": [
+        9817,
+        2
+      ],
+      "input_tensors_exact": true,
+      "tokens_and_text_exact": true,
+      "vision_forward_calls": 1
+    },
+    {
+      "question_id": "201228265",
+      "structural": "verify",
+      "generation": {
+        "condition": "Native",
+        "text": "No",
+        "token_ids": [
+          1939,
+          2
+        ],
+        "eos": true,
+        "truncated": false,
+        "empty": false,
+        "repeated": false,
+        "first_logits_sha256": "c7c30607fbc4dca4c2787f0d8be03d6a36e11d7194ee466ba0b3d5052a832026",
+        "first_token_id": 1939,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "logits_to_keep": 1
+      },
+      "historical_text": "No",
+      "historical_token_ids": [
+        1939,
+        2
+      ],
+      "input_tensors_exact": true,
+      "tokens_and_text_exact": true,
+      "vision_forward_calls": 1
+    },
+    {
+      "question_id": "201896132",
+      "structural": "choose",
+      "generation": {
+        "condition": "Native",
+        "text": "White",
+        "token_ids": [
+          8037,
+          2
+        ],
+        "eos": true,
+        "truncated": false,
+        "empty": false,
+        "repeated": false,
+        "first_logits_sha256": "bc0cea9b147d43408e49ccd94796143a72b48fce42e793d14872f08e5fe7a97e",
+        "first_token_id": 8037,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "logits_to_keep": 1
+      },
+      "historical_text": "White",
+      "historical_token_ids": [
+        8037,
+        2
+      ],
+      "input_tensors_exact": true,
+      "tokens_and_text_exact": true,
+      "vision_forward_calls": 1
+    }
+  ],
+  "model_loads": 1,
+  "sample_plan_sha256": "7b19d5c7d3c7344efeb653c7a9e2f1431b87450b1efbbc0830e56646c13c3904",
+  "cpu_audit_sha256": "8fbbd3f48fd6175087e5cbc184d915e04211573c9eee98ca86c116ea73221d52",
+  "dtype": "float16",
+  "attention": "eager",
+  "backend": "Unmodified HF Native; frozen gqa_engine.generate(label=Native)",
+  "max_new_tokens": 32,
+  "EOS": 2,
+  "greedy": true,
+  "batch_size": 1,
+  "conditions": {
+    "A": "Official Vicuna-v1 prompt/tokenization only; historical crop",
+    "B": "Official square-pad preprocessing only; historical HF USER prompt/IDs",
+    "C": "Official prompt/tokenization and square-pad preprocessing"
+  },
+  "no_C3_execution": true,
+  "code_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+  "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "gpu_before_load": "NVIDIA GeForce RTX 4090, GPU-643a4d73-25eb-6b19-1acc-ccf94c744cec, 610.57.04, 23715 MiB",
+  "vision_forward_calls_total": 603,
+  "peak_allocated_mib": 13962.38818359375,
+  "peak_reserved_mib": 14046.0,
+  "allocated_mib_before_process_exit": 32.0,
+  "finished_at": "2026-11-08T11:23:53.868558+00:00",
+  "elapsed_seconds": 136.14964908899992
+}
