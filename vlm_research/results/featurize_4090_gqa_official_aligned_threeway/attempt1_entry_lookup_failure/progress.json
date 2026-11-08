@@ -1,0 +1,30 @@
+{
+  "status": "BLOCKED",
+  "phase": "PHYSICAL_SMOKE",
+  "started_at": "2026-11-08T11:52:24.825689+00:00",
+  "pid": 8818,
+  "protocol_sha256": "1a7db2cacd807105fe6ccd1bf9c91652032050c242c2a49ddd5d7f490dcdeec4",
+  "expected": 37734,
+  "completed": 0,
+  "counts": {
+    "Native": 0,
+    "C3-V2": 0,
+    "C3-V2+L11-L24": 0
+  },
+  "correct": {
+    "Native": 0,
+    "C3-V2": 0,
+    "C3-V2+L11-L24": 0
+  },
+  "model_loads": 1,
+  "GPU_before_load": "NVIDIA GeForce RTX 4090, GPU-643a4d73-25eb-6b19-1acc-ccf94c744cec, 610.57.04, 23715 MiB",
+  "failure": {
+    "error": "KeyError('C3-V2+L11-L24')",
+    "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/work/ATE/vlm_research/results/featurize_4090_gqa_official_aligned_threeway/run.py\", line 176, in main\n    if not (O/'physical_smoke.json').exists() or read(O/'physical_smoke.json')['status']!='AWAITING_REVIEW':physical_smoke(a,entries,p,prepare)\n                                                                                                            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/work/ATE/vlm_research/results/featurize_4090_gqa_official_aligned_threeway/run.py\", line 86, in physical_smoke\n    ref=controls[q]['controls'][label];assert hashes(x)==ref['input_binding']['input_hashes']\n        ~~~~~~~~~~~~~~~~~~~~~~~^^^^^^^\nKeyError: 'C3-V2+L11-L24'\n"
+  },
+  "finished_at": "2026-11-08T11:52:44.437184+00:00",
+  "vision_forward_calls_this_process": 1,
+  "elapsed_seconds": 19.611492302999977,
+  "peak_allocated_mib": 13653.7236328125,
+  "peak_reserved_mib": 13716.0
+}

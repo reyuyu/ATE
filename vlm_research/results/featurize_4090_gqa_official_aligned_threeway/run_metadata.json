@@ -1,0 +1,193 @@
+{
+  "status": "COMPLETE",
+  "finished_at": "2026-11-08T14:33:33.614681+00:00",
+  "protocol_sha256": "1a7db2cacd807105fe6ccd1bf9c91652032050c242c2a49ddd5d7f490dcdeec4",
+  "execution_config_sha256": "88d19e30a87098afbadfbf0fef5644bb097208ceae3ec170e91f22e61660c834",
+  "code_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+  "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "audit_reference_commit": "25989d8c0e00cf53a980c726be94d84feaabbc14",
+  "scores": [
+    {
+      "condition": "Native",
+      "questions": 12578,
+      "correct": 7788,
+      "accuracy_percent": 61.91763396406424,
+      "delta_native_pp": 0.0,
+      "empty": 0,
+      "truncated": 0,
+      "max_generated_tokens": 7,
+      "official_evaluator_status": "PASS"
+    },
+    {
+      "condition": "C3-V2",
+      "questions": 12578,
+      "correct": 7244,
+      "accuracy_percent": 57.59262203847989,
+      "delta_native_pp": -4.325011925584354,
+      "empty": 0,
+      "truncated": 0,
+      "max_generated_tokens": 8,
+      "official_evaluator_status": "PASS"
+    },
+    {
+      "condition": "C3-V2+L11-L24",
+      "questions": 12578,
+      "correct": 7453,
+      "accuracy_percent": 59.25425345841946,
+      "delta_native_pp": -2.663380505644777,
+      "empty": 0,
+      "truncated": 0,
+      "max_generated_tokens": 8,
+      "official_evaluator_status": "PASS"
+    }
+  ],
+  "paired_differences": [
+    {
+      "candidate": "C3-V2",
+      "reference": "Native",
+      "paired_questions": 12578,
+      "image_SHA_clusters": 398,
+      "accuracy_delta_pp": -4.325011925584354,
+      "improved": 588,
+      "worsened": 1132,
+      "both_correct": 6656,
+      "both_wrong": 4202,
+      "bootstrap95_low_pp": -5.1199577541790315,
+      "bootstrap95_high_pp": -3.54933786011425,
+      "resamples": 10000,
+      "bootstrap_seed": 20261108
+    },
+    {
+      "candidate": "C3-V2+L11-L24",
+      "reference": "Native",
+      "paired_questions": 12578,
+      "image_SHA_clusters": 398,
+      "accuracy_delta_pp": -2.663380505644777,
+      "improved": 562,
+      "worsened": 897,
+      "both_correct": 6891,
+      "both_wrong": 4228,
+      "bootstrap95_low_pp": -3.3420356581628625,
+      "bootstrap95_high_pp": -1.9966017441181618,
+      "resamples": 10000,
+      "bootstrap_seed": 20261108
+    },
+    {
+      "candidate": "C3-V2+L11-L24",
+      "reference": "C3-V2",
+      "paired_questions": 12578,
+      "image_SHA_clusters": 398,
+      "accuracy_delta_pp": 1.661631419939577,
+      "improved": 545,
+      "worsened": 336,
+      "both_correct": 6908,
+      "both_wrong": 4789,
+      "bootstrap95_low_pp": 1.0180862235908685,
+      "bootstrap95_high_pp": 2.289712646497778,
+      "resamples": 10000,
+      "bootstrap_seed": 20261108
+    },
+    {
+      "candidate": "Native",
+      "reference": "Historical Native",
+      "paired_questions": 12578,
+      "image_SHA_clusters": 398,
+      "accuracy_delta_pp": 1.2879631101923994,
+      "improved": 662,
+      "worsened": 500,
+      "both_correct": 7126,
+      "both_wrong": 4290,
+      "bootstrap95_low_pp": 0.6799720474369813,
+      "bootstrap95_high_pp": 1.8932964151285263,
+      "resamples": 10000,
+      "bootstrap_seed": 20261108
+    }
+  ],
+  "physical_validation": "PASS",
+  "strict_numerical_gate": "PASS",
+  "warning_waiver_used": false,
+  "generation_progress": {
+    "status": "GENERATIONS_COMPLETE",
+    "phase": "AWAITING_CPU_SCORING",
+    "started_at": "2026-11-08T11:54:52.604175+00:00",
+    "pid": 9261,
+    "protocol_sha256": "1a7db2cacd807105fe6ccd1bf9c91652032050c242c2a49ddd5d7f490dcdeec4",
+    "expected": 37734,
+    "completed": 37734,
+    "counts": {
+      "Native": 12578,
+      "C3-V2": 12578,
+      "C3-V2+L11-L24": 12578
+    },
+    "correct": {
+      "Native": 7788,
+      "C3-V2": 7244,
+      "C3-V2+L11-L24": 7453
+    },
+    "model_loads": 2,
+    "GPU_before_load": "NVIDIA GeForce RTX 4090, GPU-643a4d73-25eb-6b19-1acc-ccf94c744cec, 610.57.04, 23715 MiB",
+    "formal_started_at": "2026-11-08T11:56:18.253613+00:00",
+    "current_condition": "C3-V2+L11-L24",
+    "last_question_id": "201738903",
+    "last_index": 12577,
+    "updated_at": "2026-11-08T14:32:29.568166+00:00",
+    "elapsed_seconds": 9456.969714479,
+    "fresh_formal_generations": 37734,
+    "formal_generations_per_second": 4.026544099824226,
+    "finished_at": "2026-11-08T14:32:29.573907+00:00",
+    "vision_forward_calls_this_process": 37752,
+    "peak_allocated_mib": 13970.50244140625,
+    "peak_reserved_mib": 14142.0
+  },
+  "independent_scoring_audit": {
+    "status": "PASS",
+    "questions_per_condition": 12578,
+    "records": 37734,
+    "missing_records": 0,
+    "duplicate_records": 0,
+    "Gold_question_image_mismatches": 0,
+    "independent_score_mismatches": 0,
+    "token_decode_mismatches": 0,
+    "shared_input_hash_mismatches": 0,
+    "official_conversion_and_evaluators": "PASS",
+    "same_4090_prior_200_official_aligned_outputs_exact": true,
+    "manifest_sha256": "0ddd9d4112e7fe7ce9cd77b8ce48b603581c0abf6a3feefca4de4446587caeb8",
+    "protocol_sha256": "1a7db2cacd807105fe6ccd1bf9c91652032050c242c2a49ddd5d7f490dcdeec4",
+    "converted_predictions_sha256": {
+      "Native": "f328132f87eeed9cfc4f29f6a8219b602ccfb266a28e7b939b60d4a19fc580ca",
+      "C3-V2": "735df7b61d03dca8429d011b01b8e0df3b25c48b5558d75f75631f9c93e40936",
+      "C3-V2+L11-L24": "5342645af38f7dfe9debc5f878847c110ddc1a39c890e9c5097e0ef2e4a2218e"
+    },
+    "official_unrounded_metrics": {
+      "Native": {
+        "accuracy_percent_unrounded": 61.91763396406424,
+        "balanced_questions": 12578,
+        "predictions": 12578,
+        "correct": 7788,
+        "original_script_executed_unmodified": true
+      },
+      "C3-V2": {
+        "accuracy_percent_unrounded": 57.59262203847989,
+        "balanced_questions": 12578,
+        "predictions": 12578,
+        "correct": 7244,
+        "original_script_executed_unmodified": true
+      },
+      "C3-V2+L11-L24": {
+        "accuracy_percent_unrounded": 59.254253458419456,
+        "balanced_questions": 12578,
+        "predictions": 12578,
+        "correct": 7453,
+        "original_script_executed_unmodified": true
+      }
+    },
+    "all_errors_empty_and_truncations_retained": true,
+    "CPU_only": true,
+    "historical_native_correct": 7626,
+    "new_native_minus_historical_pp": 1.2879631101923994,
+    "new_native_minus_official_rounded_62_pp": -0.0823660359357632,
+    "official_62_reference_limit": "Rounded public 7B ModelZoo value; original native/HF backend and weight numerical parity remain unproven."
+  },
+  "GPU_after_exit": "NVIDIA GeForce RTX 4090, 1 MiB, 24109 MiB, 0 %",
+  "unrelated_experiments_started": false
+}
