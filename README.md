@@ -1,5 +1,19 @@
 # ATE：视觉语言模型 Attention 与视觉信息流研究
 
+## LLaVA 正式方法名称（2026-11-08）
+
+后续论文、实验汇报和讨论统一采用以下名称：
+
+| 正式名称 | 对应历史名称 | 物理视觉 Hidden 退出 | 答案阶段原始视觉 KV |
+| --- | --- | --- | --- |
+| **`llava-SVH`** | `C3-V2` / `Physical-C3` | L20 之前 | 0 层 |
+| **`llava-SVH-R`** | `C3-V2+L11-L24` / `Physical-L11-L24` | L25 之前 | 仅 L11–L24，共 14 层 |
+
+两者都保留 L0–L19 的视觉信息写入（Visual Writing），并在 L2–L5 物理跳过答案 Attention；`-R` 表示答案阶段的选择性视觉回看（Re-access）。层号均为从 0 开始。**这只是正式命名变更，不是算法、权重或冻结评测结果变更。** 旧标签、旧 Commit、旧报告与复现脚本原样保留以确保溯源；新实验优先使用正式名称。
+
+详细定义、向后兼容映射及不同 GQA 评测协议的标注规则见 [LLaVA-SVH 命名规范](vlm_research/SVH_NAMING.md)。
+
+
 当前已完成 Phase1～Phase3.5：单卡FP16基线、逐层Attention/Token定位、全局及定向Mask、240图Fixed-K Physical Exit、ROI/Sink诊断与离线边界分析。历史报告及统计可直接复用。
 
 **最新单案例Sink去偏/ROI增强已完成**：31条件真实7B、108项CPU回归和396审计通过。中层整体去偏变差，ROI增强微小改善仍错，深层Sink抑制未复现K24转正；仅L2～L4指定非ROI Sink抑制转正。单例FP16观察，[报告及全部图表](vlm_research/results/attention_sink_steering_case_15133706/README.md)。
