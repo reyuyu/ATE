@@ -1,0 +1,47 @@
+{
+  "condition": "V2Drop-prefix+SVH",
+  "benchmark": "MME-paper",
+  "questions": 2374,
+  "pairs": 1187,
+  "model": "llava-hf/llava-1.5-7b-hf",
+  "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "code_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+  "dtype": "float16",
+  "attention": "eager",
+  "torch": "2.6.0+cu124",
+  "transformers": "4.49.0",
+  "batch_size": 1,
+  "greedy": true,
+  "num_beams": 1,
+  "EOS": 2,
+  "max_new_tokens": 128,
+  "input_audit_sha256": "d98da11ecb806bcb9c22b235ec06b963d2a7c1964b96c6e060f9d40c0b874728",
+  "manifest_sha256": "d3e8cbcf8d71b1b93cf925ea3cd4b0357f562f84e4f4f91c843812bf2e3928a7",
+  "sources": {
+    "run_mme": "1f748b8003a33c40dda03e26dbd37faeb3c27f5f89206f0ee639a55527d1bf8b",
+    "fusion_engine.py": "c864d8762048f8615b5e5b9fdff31a1d1afd8bf2575dfbe2ca7b118f555dac38",
+    "run_fusion.py": "c086db2502fc09127864d6dace178379b47c1afa153cb966b8b36283860574d3"
+  },
+  "inherited_strict_numerical_smoke": {
+    "path": "/home/featurize/work/ATE/vlm_research/results/v2drop_prefix_svh_accuracy_3090/physical_smoke.json",
+    "sha256": "dd05d9715bae8f2cd32220cfe713d0e40cb7d5d7242b7ed33143ecc127414776",
+    "status": "PASS",
+    "unchanged_thresholds": true,
+    "same_GPU_and_implementation": true
+  },
+  "no_extra_algorithm_or_Native_generation": true,
+  "known_MME_image_difference": [
+    {
+      "key": "MME:landmark/03d5e3bfc958be38.jpg:0",
+      "image_id": "landmark/03d5e3bfc958be38.jpg",
+      "historical_image_sha256": "61d010ea9fabdc0bf930362d3cc1e4dc554789036f219feba927551effecd510",
+      "recovered_image_sha256": "ecd588bb65d6397126fec9dbe556b1759e47d72a735a7f8776f86598fbbf174a"
+    },
+    {
+      "key": "MME:landmark/03d5e3bfc958be38.jpg:1",
+      "image_id": "landmark/03d5e3bfc958be38.jpg",
+      "historical_image_sha256": "61d010ea9fabdc0bf930362d3cc1e4dc554789036f219feba927551effecd510",
+      "recovered_image_sha256": "ecd588bb65d6397126fec9dbe556b1759e47d72a735a7f8776f86598fbbf174a"
+    }
+  ]
+}

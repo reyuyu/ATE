@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "scope": "CPU synthetic randomly initialized 32-layer HF Llama, not GPU/7B validation",
+  "float32_dense_gate": {
+    "passed": true,
+    "max_abs_logits": 1.7881393432617188e-07,
+    "mean_relative_error": 5.495644662308526e-07,
+    "max_relative_error": 8.022236215765588e-06,
+    "hidden_relative_rmse": 6.526567375431114e-08,
+    "hidden_cosine_distance": 2.980232238769531e-07,
+    "all_argmax_equal": true,
+    "tolerances": {
+      "logit_atol": 0.1,
+      "logit_rtol": 0.003,
+      "hidden_relative_rmse": 0.01,
+      "hidden_cosine": 0.0001
+    }
+  },
+  "disabled_pruning_frozen_SVH_bit_exact": true,
+  "physical_hidden_576_288_144_0": true,
+  "original_positions_and_compact_KV": true,
+  "official_selector_starts_5_and_35_exact": true,
+  "CUDA_initialized": false
+}

@@ -1,0 +1,630 @@
+{
+  "status": "PASS",
+  "archived_records_audited": 600,
+  "selected_inputs": 200,
+  "baseline_summary": [
+    {
+      "method": "Native",
+      "benchmark": "GQA",
+      "questions": 100,
+      "score_sum": 59.0,
+      "accuracy_percent": 59.0,
+      "empty": 0,
+      "truncated": 0,
+      "source": "REUSED_ARCHIVE_NO_GPU"
+    },
+    {
+      "method": "Native",
+      "benchmark": "TextVQA",
+      "questions": 100,
+      "score_sum": 54.4,
+      "accuracy_percent": 54.4,
+      "empty": 0,
+      "truncated": 0,
+      "source": "REUSED_ARCHIVE_NO_GPU"
+    },
+    {
+      "method": "V2Drop",
+      "benchmark": "GQA",
+      "questions": 100,
+      "score_sum": 61.0,
+      "accuracy_percent": 61.0,
+      "empty": 0,
+      "truncated": 0,
+      "source": "REUSED_ARCHIVE_NO_GPU"
+    },
+    {
+      "method": "V2Drop",
+      "benchmark": "TextVQA",
+      "questions": 100,
+      "score_sum": 53.4,
+      "accuracy_percent": 53.4,
+      "empty": 0,
+      "truncated": 0,
+      "source": "REUSED_ARCHIVE_NO_GPU"
+    },
+    {
+      "method": "llava-SVH",
+      "benchmark": "GQA",
+      "questions": 100,
+      "score_sum": 55.0,
+      "accuracy_percent": 55.0,
+      "empty": 0,
+      "truncated": 0,
+      "source": "REUSED_ARCHIVE_NO_GPU"
+    },
+    {
+      "method": "llava-SVH",
+      "benchmark": "TextVQA",
+      "questions": 100,
+      "score_sum": 45.0,
+      "accuracy_percent": 45.0,
+      "empty": 2,
+      "truncated": 0,
+      "source": "REUSED_ARCHIVE_NO_GPU"
+    }
+  ],
+  "selection_rule_verified_against_full_manifests": true,
+  "efficiency_subset_not_used": true,
+  "TextVQA_independent_leave_one_out": true,
+  "GQA_official_exact_match": true,
+  "all_selected_current_Gold_mappings_verified": true,
+  "all_selected_image_paths_present": true,
+  "tensor_hashes_match_archived_SVH": true,
+  "current_images_not_rehashed": "Prior restored archive integrity reused; no full image SHA scan",
+  "model_weights_status": "RESTORED_PINNED_REVISION",
+  "GPU_generation_started": false,
+  "TextVQA_pixel_hash_stage": "Historical SVH FP32 and V2 actual FP16 both independently matched by prior CPU restoration acceptance",
+  "source_metadata": {
+    "v2_protocol": {
+      "status": "FROZEN",
+      "task": "V2Drop fixed quick reproduction",
+      "official_commit": "2a9431150f8ace3a1d9abcdc96a7d46acca597df",
+      "official_source": {
+        "source_sha256": "e39ed8d99c3e1f23bd156067bfd28179827771df3556631b6daed4427a7b8b61",
+        "original_selection_AST_sha256": "8fafe09da75462610ccad2ecf7b4ed0f9a24d453a5d01c0a71d0beeacbc531b4",
+        "only_AST_changes": "Four literal image-start constants 35 replaced with image_start",
+        "pruning_layers": [
+          3,
+          17,
+          22
+        ],
+        "retention_ratios": [
+          0.5,
+          0.5,
+          0.0
+        ],
+        "minimum_retained": 1
+      },
+      "code_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+      "model": "llava-hf/llava-1.5-7b-hf",
+      "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+      "model_path": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+      "environment": {
+        "torch": "2.6.0+cu124",
+        "transformers": "4.49.0",
+        "dtype": "float16",
+        "attention": "eager",
+        "batch_size": 1,
+        "greedy": true
+      },
+      "selection_rule": "Sort SHA256(seed|benchmark|question_id) ascending within the complete frozen manifest; take first100; no answer-based selection",
+      "seed": "ATE-V2Drop-quickcheck-20261108-v1",
+      "samples": {
+        "GQA": 100,
+        "TextVQA": 100
+      },
+      "manifest_sha256": "a2fc346eecb1dc023e3762d921d3682e324c2bcb7ca3b88ef0becab6ea295e2d",
+      "source_manifests": {
+        "GQA": "0ddd9d4112e7fe7ce9cd77b8ce48b603581c0abf6a3feefca4de4446587caeb8",
+        "TextVQA": "9344bf5cd7649b02f85982dcefec02b4b8c4fd95e24f8f62f9f34cd278ee6a79"
+      },
+      "smoke_keys": [
+        "GQA:202121628",
+        "GQA:20308802",
+        "TextVQA:38571",
+        "TextVQA:36647"
+      ],
+      "efficiency_keys": [
+        "GQA:202121628",
+        "GQA:20308802",
+        "GQA:202158870",
+        "GQA:201759069",
+        "GQA:20162504",
+        "GQA:20886934",
+        "GQA:201889314",
+        "GQA:201455854",
+        "GQA:20709953",
+        "GQA:202246655",
+        "GQA:202060056",
+        "GQA:20644736",
+        "GQA:20922878",
+        "GQA:201976841",
+        "GQA:201959618",
+        "TextVQA:38571",
+        "TextVQA:36647",
+        "TextVQA:34775",
+        "TextVQA:38508",
+        "TextVQA:36458",
+        "TextVQA:36282",
+        "TextVQA:35999",
+        "TextVQA:35026",
+        "TextVQA:36136",
+        "TextVQA:37087",
+        "TextVQA:37765",
+        "TextVQA:39047",
+        "TextVQA:39166",
+        "TextVQA:35607",
+        "TextVQA:36477"
+      ],
+      "efficiency_selection": "First15 of each selected100 in frozen hash rank",
+      "efficiency_lengths": [
+        32,
+        128
+      ],
+      "accuracy_methods": [
+        "Native",
+        "V2Drop"
+      ],
+      "efficiency_methods": [
+        "Native",
+        "V2Drop",
+        "C3-V2",
+        "C3-V2+L11-L24"
+      ],
+      "warmup_requests_per_method": 2,
+      "latency_repetitions_per_input": 1,
+      "preprocessing": "Unchanged frozen paper_pixels: RGB, CLIP-mean square-pad, CLIP336; same tensors for all methods",
+      "image_token_start_counts": {
+        "35": 200
+      },
+      "scoring": {
+        "GQA": "Frozen official rstrip periods, lowercase, exact match",
+        "TextVQA": "Frozen Paper-OCR ten-answer VQA soft scoring"
+      },
+      "frozen_ATE_sources": {
+        "vlm_research/accuracy_autoresearch/common.py": "01a68cc5b739a3d9172e351d5d68250e33d997639c35ecbf84376b8bbf0f9d58",
+        "vlm_research/accuracy_autoresearch/engine.py": "4a381e87cd69b5b1e20eb10f3b52a9e1470f6662d845daafba6639bfe7c7974e",
+        "vlm_research/ate_fulljoint_v2/engine.py": "ef59447163c47528be2fde44751c124df3d550a6e89244046c3d40d99b4e9e44",
+        "vlm_research/benchmarks/protocols.py": "c80e8011f8ba3f7f627398ec2a3bff300d479db46ccb04a564d5ed525abd4f48",
+        "vlm_research/c3v2_middle_reaccess/common.py": "a765d0731ef5e230c705e3c516353953869352f68cd5cc0054a7708226f1e6c1",
+        "vlm_research/c3v2_middle_reaccess/engine.py": "e541c9122636205aeaeb752346ea08aa1c1aff6a06cfd40a60319a1cfc2763ff",
+        "vlm_research/gqa_testdev_c3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "vlm_research/gqa_testdev_c3/analyze.py": "c2d58bb75fe9c9edd51083aeeaa347cde45e998184a3ac2f91b5c628e80fbac5",
+        "vlm_research/gqa_testdev_c3/common.py": "79f734f25225e08e2cceaad17af900a41417f1861f4789dfcdd71f37c8b7cc83",
+        "vlm_research/gqa_testdev_c3/download.py": "e5b0ec33eeb24f04f52e0c9920b2b11b94839b9732c581efd7a6baffb4abf73a",
+        "vlm_research/gqa_testdev_c3/download_via_local.py": "b61771d52b53f57769f4ce5810eee97a954dd715c062f8de48c24d3d424f3796",
+        "vlm_research/gqa_testdev_c3/engine.py": "390786063d1b9a9d719f91a7398e4a55c0433287ba4b486f0de1e3729b1d0f96",
+        "vlm_research/gqa_testdev_c3/finish.py": "199cea030ff350cefd1f7e3a904043b278365de5fa65eedc66608e825e9cba4a",
+        "vlm_research/gqa_testdev_c3/import_verified_images.py": "5e6643a568906356dba2a7ec6981d78438fc30496597e5d7eb297f355b7bbc74",
+        "vlm_research/gqa_testdev_c3/prepare.py": "a03a0c6ddaaf7a20443115b54e6902cd207090f07484df4ae375ac778af43160",
+        "vlm_research/gqa_testdev_c3/run.py": "60cf134959dea2339df034226337342545085bf7b9d14d9b9aae30ce91692464",
+        "vlm_research/gqa_testdev_c3/tests.py": "017dbe0cb3286b40a6bee633c3fd80375db76e5eac3d0c78b9926fd8b22df333",
+        "vlm_research/p1_layerwise_accuracy/common.py": "cb87d6c1f3f6156a14ae22ef3a1cb60304ec90bcc328faa239bf4481a138328c",
+        "vlm_research/p1_layerwise_accuracy/engine.py": "3cbf506f506c33fe34a636d2a3b5f19f751e2831b3bb299aae460ae8a5add46a",
+        "vlm_research/physical_handoff_fastpath/engine.py": "6e8abb7e04517678c189a896589abb97774652313ecedb57d58f97bd718b74a0",
+        "vlm_research/physical_visual_handoff/common.py": "071f04ecb8cbc07c03251da236a371843a217536917494914aee55cc5162fcf3",
+        "vlm_research/physical_visual_handoff/engine.py": "e46dd347bc5d4763c179a02459b7bd09ab87e45e7499107930928df3c98f295b",
+        "vlm_research/reverse_writer/common.py": "b49eb59480189742bf3caf126c01d9ddb05661d7c4eef1f489cb50a5d011b3b8",
+        "vlm_research/reverse_writer/engine.py": "e7a8d0e5d853cbddd21286ef690e3b8abbaaa34107cdd71e55c0107739b7709c",
+        "vlm_research/knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+        "vlm_research/vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d"
+      },
+      "original_GQA_result_untouched": true,
+      "no_weights_or_data_downloaded": true,
+      "Flops_convention": "Actual aten matrix products and convolutions, MAC=2 FLOPs, includes vision+projector, language prefill and real autoregressive decode. Non-matrix elementwise/norm/softmax/index/sort not counted; selection overhead reported separately.",
+      "fixed_length_definition": "32/128 output tokens = one prefill prediction +31/127 real decode calls; ignore EOS only during efficiency runs",
+      "CUDA_initialized": false
+    },
+    "gqa_protocol": {
+      "status": "FROZEN",
+      "created_at": "2026-11-08T11:49:04.171350+00:00",
+      "code_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+      "audit_commit": "25989d8c0e00cf53a980c726be94d84feaabbc14",
+      "model": "llava-hf/llava-1.5-7b-hf",
+      "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+      "model_path": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+      "data_path": "/home/featurize/ate-local-data-4090/ate-recovery",
+      "conditions": [
+        "Native",
+        "C3-V2",
+        "C3-V2+L11-L24"
+      ],
+      "questions_per_condition": 12578,
+      "expected_formal_generations": 37734,
+      "prompt": "Pinned official Vicuna-v1 system + <image> + original question + single word or phrase suffix",
+      "preprocessing": "RGB; official CLIP-mean square-pad; CLIP336 bicubic/crop/normalize",
+      "generation": {
+        "dtype": "float16",
+        "attention": "eager",
+        "greedy": true,
+        "batch_size": 1,
+        "max_new_tokens": 32,
+        "eos_token_id": 2,
+        "bos_token_id": 1,
+        "image_token_id": 32000,
+        "image_positions": 576
+      },
+      "scorer": "Official LLaVA convert: text.rstrip('.').lower(); exact match to official answer; denominator12578",
+      "order": "Original official eval.zip gqa/llava_gqa_testdev_balanced.jsonl order; same unchanged order for each of three complete conditions",
+      "official_order_equals_old_manifest_order": false,
+      "manifest_sha256": "0ddd9d4112e7fe7ce9cd77b8ce48b603581c0abf6a3feefca4de4446587caeb8",
+      "question_order_sha256": "afa1d769f9693c4707bc2fdae020f51d1ed59b57cd0493fc9a4b0a445083af9d",
+      "official_prepared_sha256": "515aab3142889269480c71212d3b5b8118704d8da6637d767a0cb5bdf80a3d35",
+      "official_Gold_sha256": "14039069c0b3c797c7aa9bcd5f4c2aa4b5976e02c0b6773e1a584d942a03a318",
+      "historical_manifest_sha256": "b2f40574d22547dc2fdb8a30a7e116fb2ddba7a2c8ca348a71effbef70e01d9e",
+      "historical_controls_sha256": "43a899a266ad0de521bdfbb194ed9fcbe810e3c5897933c0b89f82adb2f853f4",
+      "frozen_sources": {
+        "vlm_research/accuracy_autoresearch/common.py": "01a68cc5b739a3d9172e351d5d68250e33d997639c35ecbf84376b8bbf0f9d58",
+        "vlm_research/accuracy_autoresearch/engine.py": "4a381e87cd69b5b1e20eb10f3b52a9e1470f6662d845daafba6639bfe7c7974e",
+        "vlm_research/ate_fulljoint_v2/engine.py": "ef59447163c47528be2fde44751c124df3d550a6e89244046c3d40d99b4e9e44",
+        "vlm_research/benchmarks/protocols.py": "c80e8011f8ba3f7f627398ec2a3bff300d479db46ccb04a564d5ed525abd4f48",
+        "vlm_research/c3v2_middle_reaccess/common.py": "a765d0731ef5e230c705e3c516353953869352f68cd5cc0054a7708226f1e6c1",
+        "vlm_research/c3v2_middle_reaccess/engine.py": "e541c9122636205aeaeb752346ea08aa1c1aff6a06cfd40a60319a1cfc2763ff",
+        "vlm_research/gqa_testdev_c3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "vlm_research/gqa_testdev_c3/analyze.py": "c2d58bb75fe9c9edd51083aeeaa347cde45e998184a3ac2f91b5c628e80fbac5",
+        "vlm_research/gqa_testdev_c3/common.py": "79f734f25225e08e2cceaad17af900a41417f1861f4789dfcdd71f37c8b7cc83",
+        "vlm_research/gqa_testdev_c3/download.py": "e5b0ec33eeb24f04f52e0c9920b2b11b94839b9732c581efd7a6baffb4abf73a",
+        "vlm_research/gqa_testdev_c3/download_via_local.py": "b61771d52b53f57769f4ce5810eee97a954dd715c062f8de48c24d3d424f3796",
+        "vlm_research/gqa_testdev_c3/engine.py": "390786063d1b9a9d719f91a7398e4a55c0433287ba4b486f0de1e3729b1d0f96",
+        "vlm_research/gqa_testdev_c3/finish.py": "199cea030ff350cefd1f7e3a904043b278365de5fa65eedc66608e825e9cba4a",
+        "vlm_research/gqa_testdev_c3/import_verified_images.py": "5e6643a568906356dba2a7ec6981d78438fc30496597e5d7eb297f355b7bbc74",
+        "vlm_research/gqa_testdev_c3/prepare.py": "a03a0c6ddaaf7a20443115b54e6902cd207090f07484df4ae375ac778af43160",
+        "vlm_research/gqa_testdev_c3/run.py": "60cf134959dea2339df034226337342545085bf7b9d14d9b9aae30ce91692464",
+        "vlm_research/gqa_testdev_c3/tests.py": "017dbe0cb3286b40a6bee633c3fd80375db76e5eac3d0c78b9926fd8b22df333",
+        "vlm_research/p1_layerwise_accuracy/common.py": "cb87d6c1f3f6156a14ae22ef3a1cb60304ec90bcc328faa239bf4481a138328c",
+        "vlm_research/p1_layerwise_accuracy/engine.py": "3cbf506f506c33fe34a636d2a3b5f19f751e2831b3bb299aae460ae8a5add46a",
+        "vlm_research/physical_handoff_fastpath/engine.py": "6e8abb7e04517678c189a896589abb97774652313ecedb57d58f97bd718b74a0",
+        "vlm_research/physical_visual_handoff/common.py": "071f04ecb8cbc07c03251da236a371843a217536917494914aee55cc5162fcf3",
+        "vlm_research/physical_visual_handoff/engine.py": "e46dd347bc5d4763c179a02459b7bd09ab87e45e7499107930928df3c98f295b",
+        "vlm_research/reverse_writer/common.py": "b49eb59480189742bf3caf126c01d9ddb05661d7c4eef1f489cb50a5d011b3b8",
+        "vlm_research/reverse_writer/engine.py": "e7a8d0e5d853cbddd21286ef690e3b8abbaaa34107cdd71e55c0107739b7709c",
+        "vlm_research/knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+        "vlm_research/vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d"
+      },
+      "historical_external_sources_to_check_on_load": {},
+      "audit_helper_sha256": "3615ae2bc075d1f6d32778dfd4d026054fa91cc6b0851f38e55eeb4ddf45bb52",
+      "audit_source_manifest_sha256": "cbfa6af6f799bcc6360b9cb35de8131a4de15f11f2cbb229a2738bddf36bad8b",
+      "strict_numerical_tolerances_unchanged": {
+        "logit_atol": 0.1,
+        "logit_rtol": 0.003,
+        "hidden_relative_rmse": 0.01,
+        "hidden_cosine": 0.0001
+      },
+      "physical_smoke_question_ids": [
+        "201030233",
+        "201030272",
+        "20886973"
+      ],
+      "cross_hardware_old_protocol_question_ids": [
+        "201030233",
+        "201030272"
+      ],
+      "structural_counts": {
+        "verify": 2252,
+        "query": 6805,
+        "logical": 1803,
+        "choose": 1129,
+        "compare": 589
+      },
+      "image_sha_clusters": 398,
+      "CUDA_initialized": false,
+      "no_repeated_downloads": true,
+      "no_repeat_all_image_SHA": true,
+      "manifest_uses_accepted_image_SHA_and_verified_pad_pixels": true
+    },
+    "text_run_metadata": {
+      "status": "COMPLETE",
+      "created_at": "2026-11-08T04:24:30.643510+08:00",
+      "binding": "caba40eb23ecb5328220ad3137ca02e255721f81b668f2ab89e6440e1069e47f",
+      "config": {
+        "code_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+        "model": "llava-hf/llava-1.5-7b-hf",
+        "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+        "model_path": "/home/featurize/data/ate-recovery/models/llava-1.5-7b-hf",
+        "condition": "Physical-C3",
+        "algorithm": "Original Physical C3-V2",
+        "protocol_sha256": "5ab87f8d8690843cd01143bc3f2e865c3ccf9f242900ede894639beeaede3105",
+        "source_sha256": {
+          "vlm_research/accuracy_autoresearch/engine.py": "4a381e87cd69b5b1e20eb10f3b52a9e1470f6662d845daafba6639bfe7c7974e",
+          "vlm_research/ate_fulljoint_v2/engine.py": "ef59447163c47528be2fde44751c124df3d550a6e89244046c3d40d99b4e9e44",
+          "vlm_research/c3v2_middle_reaccess/engine.py": "e541c9122636205aeaeb752346ea08aa1c1aff6a06cfd40a60319a1cfc2763ff",
+          "vlm_research/information_horizon_alignment/__init__.py": "86e6338d67b342ae6e26bad7e8942e915ab483b3391e324d930d983a6f492de6",
+          "vlm_research/information_horizon_alignment/common.py": "3958686c179db7a1f8e67ff57a52a29080eb9fcf206d52a6590c8cd9f580e4e6",
+          "vlm_research/information_horizon_alignment/engine.py": "edc2b8331512af12cdb881c4b0269c7fd744ebc3580e125a68afff11cd5df929",
+          "vlm_research/information_horizon_alignment/freeze.py": "750a236043849c0f11e51d260242aec6bcd4c72a64d122fc5e78b4e233d439ca",
+          "vlm_research/information_horizon_alignment/prepare.py": "2e5605bf3fdae0449c8da8a1f477801960fd8078bc35050d879b43333382f306",
+          "vlm_research/information_horizon_alignment/score.py": "50bc02bb5376af0f2aec9d32e0ce507e050b54f5b78137e1bd1ac8c8549a47f7",
+          "vlm_research/information_horizon_alignment/tests.py": "697ed1a8cc852d4691daa257705a9a05f72aec66d99726257e58aee2bdbfd6d3",
+          "vlm_research/information_horizon_alignment/worker.py": "62f7e5cc48bdb2deec85d97d7ba79ceec7cf255038815fbc4a8db00d1295f755",
+          "vlm_research/mme_seed_quality/engine.py": "f7f41d523c926354cf18bd7e4fbcfbd7aa46bb17bccf37b2fd8ce468ab0fc100",
+          "vlm_research/physical_handoff_fastpath/engine.py": "6e8abb7e04517678c189a896589abb97774652313ecedb57d58f97bd718b74a0"
+        },
+        "original_manifest_sha256": "9344bf5cd7649b02f85982dcefec02b4b8c4fd95e24f8f62f9f34cd278ee6a79",
+        "mapped_manifest_digest": "a44b28b094342271b447914e19ff4a2e78839535e6d559e15491faaa54b24cb6",
+        "inputs": {
+          "MME": {
+            "view": "MME-paper",
+            "rows": 2374,
+            "inputs_sha256": "b38f33c779997a5b4f3d3a8c20a1598e962e66186fa75b82a445fbca6224a5a1",
+            "answers_sha256": "39d2eb900d01910e718211a7335f1d6f8c1e4f0327065a36c0d1173a5ced7229"
+          },
+          "ScienceQA-IMG": {
+            "view": "ScienceQA-IMG-paper",
+            "rows": 2017,
+            "inputs_sha256": "0000a838748ebd698e7d7e507d78887fb3e36254e264515eb396fb92f688eedd",
+            "answers_sha256": "f4247b4e99175ef68ece7dd14c6a1a28baae9de44f1edbdd57a8a54f60f272cc"
+          },
+          "POPE": {
+            "view": "POPE-paper",
+            "rows": 8910,
+            "inputs_sha256": "2176b2986d49a65b6efd702db60583e0667eb422056a5ccc6fc1150995cb23a5",
+            "answers_sha256": "4db02e853cae9e06dcae4e258e04bf44d9da6b7f9699955e4756180efb648bf1"
+          },
+          "TextVQA": {
+            "view": "TextVQA-OCR",
+            "rows": 5000,
+            "inputs_sha256": "3f16d6a01622d20ea6e68cdbaae939477df83f0f73b8257f45541352c8b247c6",
+            "answers_sha256": "1c6397d70429df0705e2e8a348523d4605cf8d7949050c3413b82c5a0ef441e4"
+          },
+          "MMBench": {
+            "view": "MMBench-paper",
+            "rows": 4377,
+            "inputs_sha256": "aef55f6c9f2e13c2fda87db95e1f7e4ba9f66a07fa33b335d57a77a4c215f349",
+            "answers_sha256": "b07649e7815bccc63276e9d59fd679dc3db3c0bc13e3e8f36f0175d85ec3a6a2",
+            "circular_groups": 1176,
+            "group_size_counts": {
+              "4": 938,
+              "3": 149,
+              "2": 89
+            },
+            "group_scope": "Every rotation present in original frozen Manifest; fixed D options can yield 3 rotations among 4 choices"
+          }
+        },
+        "expected_counts": {
+          "MME": 2374,
+          "ScienceQA-IMG": 2017,
+          "POPE": 8910,
+          "TextVQA": 5000,
+          "MMBench": 4377
+        },
+        "expected_total": 22678,
+        "max_new_tokens": {
+          "MMBench": 1024,
+          "MME": 128,
+          "POPE": 128,
+          "ScienceQA-IMG": 1024,
+          "TextVQA": 128
+        },
+        "dtype": "float16",
+        "attention": "eager",
+        "batch_size": 1,
+        "greedy": true,
+        "num_beams": 1,
+        "temperature": 0,
+        "eos": "model generation_config; no additional stop strings",
+        "semantics": {
+          "R_image_layers": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9,
+            10,
+            11,
+            12,
+            13,
+            14,
+            15,
+            16,
+            17,
+            18,
+            19
+          ],
+          "physical_visual_exit_before": 20,
+          "answer_image_layers": [],
+          "physical_answer_attention_skip": [
+            2,
+            3,
+            4,
+            5
+          ],
+          "norm_mlp_residual": "unchanged frozen decoder layers",
+          "rope": "original unrenumbered positions",
+          "cache": "physical compact SelectiveKV; no image persistence or concatenation"
+        },
+        "MME_difference": {
+          "image": "landmark/03d5e3bfc958be38.jpg",
+          "old_sha256": "61d010ea9fabdc0bf930362d3cc1e4dc554789036f219feba927551effecd510",
+          "recovered_sha256": "ecd588bb65d6397126fec9dbe556b1759e47d72a735a7f8776f86598fbbf174a",
+          "affected_questions": 2,
+          "data_not_replaced": true
+        },
+        "formal_condition_only": true,
+        "no_gqa": true,
+        "no_native_generation": true,
+        "no_reaccess_generation": true
+      },
+      "runtime": {
+        "python": "3.11.8",
+        "torch": "2.6.0+cu124",
+        "cuda_runtime": "12.4",
+        "transformers": "4.49.0"
+      },
+      "runner_path": "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_c3v2_evaluation/c3_runner.py",
+      "runner_sha256": "e2d5e505a5ca9c4e7e95266480a34a736b6df0e2e933063886f0e672b9792142",
+      "existing_result_check": {
+        "local_result_sqlite": [],
+        "historical_alignment_completion": {
+          "all_checkpoint_hashes_valid": true,
+          "all_saved_scores_recomputed": true,
+          "answers_completed": 2683,
+          "answers_expected": 90712,
+          "at": "2026-11-06T15:19:39.293637+00:00",
+          "checkpoint_inventory": [
+            {
+              "path": "/data/lk/ATE-worktrees/cvpr2026-information-horizon-alignment/vlm_research/results/cvpr2026_information_horizon_alignment/workers/A/rank0/results.sqlite",
+              "rank": 0,
+              "records": 678,
+              "sha256": "9ab55283dc473347de7b350d2d516e39ef802c388b366ec6d8db86df6625b835",
+              "stage": "A"
+            },
+            {
+              "path": "/data/lk/ATE-worktrees/cvpr2026-information-horizon-alignment/vlm_research/results/cvpr2026_information_horizon_alignment/workers/A/rank1/results.sqlite",
+              "rank": 1,
+              "records": 679,
+              "sha256": "3bafa8bfe6ebb2633f4a0bfbbcbc113e8ea5e66464085fc9440be371ce3beaaf",
+              "stage": "A"
+            },
+            {
+              "path": "/data/lk/ATE-worktrees/cvpr2026-information-horizon-alignment/vlm_research/results/cvpr2026_information_horizon_alignment/workers/A/rank2/results.sqlite",
+              "rank": 2,
+              "records": 653,
+              "sha256": "b64e291cd6e13e62557343608613312f10748a756cb294e663e85f983ae78f72",
+              "stage": "A"
+            },
+            {
+              "path": "/data/lk/ATE-worktrees/cvpr2026-information-horizon-alignment/vlm_research/results/cvpr2026_information_horizon_alignment/workers/A/rank3/results.sqlite",
+              "rank": 3,
+              "records": 673,
+              "sha256": "f35a8c2f7d668ab77a51a9bb8258a37af1769b460b5fe6ed6e4ace3247ad1965",
+              "stage": "A"
+            }
+          ],
+          "no_duplicate_records": true,
+          "no_partial_score_reported_as_full": true,
+          "stage_A_completed": 2683,
+          "stage_A_expected": 22678,
+          "stage_B_completed": 0,
+          "stage_B_expected": 68034,
+          "status": "PARTIAL"
+        },
+        "historical_stage_B_completed": 0,
+        "compatible_complete_C3_found": false,
+        "legacy_results_not_reused": "Different frozen prompt / OCR view / generation cap or implementation; GQA outside scope"
+      },
+      "native_comparison": {
+        "status": "NOT_COMPARABLE_FULL_CONTROL",
+        "reason": "Only same-protocol Native 15-question Smoke; no complete HF Paper Native cohort. Historical Image-only/Author-Native are different protocols/backends."
+      },
+      "model_loads_this_run": 1,
+      "physical_smoke_status": "PASS",
+      "gpu": {
+        "before": "NVIDIA GeForce RTX 3090, GPU-e392cec6-7ec8-1fee-397b-fde03a79e79e, 610.57.04, 24576 MiB, 266 MiB, 23859 MiB",
+        "peak_allocated_mib": 14427.97021484375,
+        "peak_reserved_mib": 15116.0
+      },
+      "cpu_audit_gate": {
+        "status": "PASS",
+        "path": "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_scoring_audit/audit_summary.json",
+        "sha256": "4ee1a0ada0c84cdef2deca0e36b16ff06ce1ab457245965d3b2c6f940ace251d"
+      },
+      "formal_started_at": "2026-11-08T04:26:12.805281+08:00",
+      "completed_at": "2026-11-08T06:31:28.028662+08:00",
+      "formal_records": 22678,
+      "release": {
+        "allocated_mib": 32.0,
+        "reserved_mib": 32.0,
+        "process_exit_releases_context": true
+      },
+      "last_updated_at": "2026-11-08T06:31:28.594131+08:00",
+      "final_verification": {
+        "status": "PASS",
+        "at": "2026-11-08T06:32:50.736070+08:00",
+        "all_record_hashes_verified": true,
+        "independent_aggregate_check": true,
+        "frozen_inference_sources_unchanged": true,
+        "tracked_worktree_unchanged": true,
+        "gpu_compute_processes_after": "",
+        "not_pushed_at_evaluation_completion": true
+      },
+      "native_scoring_audit_result": {
+        "status": "COMPLETE",
+        "scores_correct": "15/15",
+        "scoring_mismatches": [],
+        "input_or_prompt_mapping_issue": false,
+        "GQA_hash_repair_changes_only_independent_harness": true
+      },
+      "remote_refs_verified": {
+        "alignment": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+        "gqa": "57e37ce024b1b2adf9fa24fc24aabec32a1fed08"
+      },
+      "integration_notes": [
+        "Preflight Circular completeness follows exact frozen Manifest membership, not an assumption that rotation count equals option count; source data and frozen scoring were unchanged.",
+        "Frozen five-benchmark formal inputs use paper prepare pad-to-square; generic recovery processor bridge is not substituted.",
+        "Post-run verification helper was corrected to read official_generation_accuracy from the existing POPE summary; frozen scoring, raw predictions and scores were not modified."
+      ],
+      "textvqa_scorer_provenance": {
+        "status": "PASS",
+        "actual_path": "/home/featurize/data/ate-recovery/sources/Information-Horizon/llava/eval/m4c_evaluator.py",
+        "actual_sha256": "aa1d450ac2717da6c41dd86cd5fdafb0b1f3fd49fbd7c4bb6482e857f4e479c2",
+        "frozen_vendor_sha256": "8b49e1033e29d551c0bdd86d9149e2b54370e4cd17e52176ac9061b3521f0774",
+        "author_commit": "75909b2936a13d7214e83514f0bc0cb9cc91139e",
+        "all_module_AST_equal_after_removing_unused_best_answer": true,
+        "difference": "Author source adds an unused best_answer helper; normalization and soft-scoring methods are unchanged."
+      },
+      "github_sync": {
+        "status": "VERIFIED",
+        "verified_at": "2026-11-08T06:49:58.467109+08:00",
+        "branch": "codex/featurize-new3090-c3v2-results",
+        "commit": "2c5d1820679b5eaad844e06db9cf46dcad23316f",
+        "commit_url": "https://github.com/reyuyu/ATE/commit/2c5d1820679b5eaad844e06db9cf46dcad23316f",
+        "files": 15,
+        "payload_bytes": 209939,
+        "remote_ref_verified_after_push": true,
+        "scope": [
+          "C3-V2 formal results and configuration",
+          "compact physical smoke evidence",
+          "Native smoke",
+          "independent 15-prediction CPU scoring audit"
+        ],
+        "future_sync_policy": "User requests lightweight GitHub result synchronization after each experiment; keep full formal predictions, data, model and large logs on server."
+      }
+    }
+  },
+  "artifacts": {
+    "/home/featurize/work/ATE/vlm_research/results/v2drop_quick_reproduction/protocol.json": "63f20510d45738a9da66a4488f7f36c2bbd204598a155b5be2aa82c215302cf4",
+    "/home/featurize/work/ATE/vlm_research/results/v2drop_quick_reproduction/input_manifest.jsonl.gz": "a2fc346eecb1dc023e3762d921d3682e324c2bcb7ca3b88ef0becab6ea295e2d",
+    "/home/featurize/work/ATE/vlm_research/results/featurize_4090_gqa_official_aligned_threeway/input_manifest.jsonl.gz": "0ddd9d4112e7fe7ce9cd77b8ce48b603581c0abf6a3feefca4de4446587caeb8",
+    "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_recovery/history/cvpr2026-information-horizon-alignment/vlm_research/results/cvpr2026_information_horizon_alignment/sample_manifest.jsonl.gz": "9344bf5cd7649b02f85982dcefec02b4b8c4fd95e24f8f62f9f34cd278ee6a79",
+    "/home/featurize/work/ATE/vlm_research/results/featurize_4090_gqa_official_aligned_threeway/protocol.json": "1a7db2cacd807105fe6ccd1bf9c91652032050c242c2a49ddd5d7f490dcdeec4",
+    "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_c3v2_evaluation/run_metadata.json": "e9f9d87443474a987c259da796aa91e3195227072b545f2e690177579b74faad",
+    "/home/featurize/work/ATE/vlm_research/results/v2drop_quick_reproduction/predictions_light.jsonl": "c321e073f71638c329d9b14286d35d17746e09776091934f55e73cda52f99f47",
+    "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_c3v2_evaluation/predictions.jsonl.gz": "efe842a6ec01abf455dce17fec0b5b7ab34c221a560a27add377e8ad3c19a363",
+    "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_c3v2_evaluation/mapped_manifest.jsonl.gz": "f62d6906de26c4556ef35815a55ac47e25230cae6697ced8f3896d7113b93741",
+    "/home/featurize/work/ATE/vlm_research/results/v2drop_quick_reproduction/frozen_scoring_sources/m4c_evaluator.py": "aa1d450ac2717da6c41dd86cd5fdafb0b1f3fd49fbd7c4bb6482e857f4e479c2"
+  },
+  "frozen_ATE_sources": {
+    "vlm_research/accuracy_autoresearch/common.py": "01a68cc5b739a3d9172e351d5d68250e33d997639c35ecbf84376b8bbf0f9d58",
+    "vlm_research/accuracy_autoresearch/engine.py": "4a381e87cd69b5b1e20eb10f3b52a9e1470f6662d845daafba6639bfe7c7974e",
+    "vlm_research/ate_fulljoint_v2/engine.py": "ef59447163c47528be2fde44751c124df3d550a6e89244046c3d40d99b4e9e44",
+    "vlm_research/benchmarks/protocols.py": "c80e8011f8ba3f7f627398ec2a3bff300d479db46ccb04a564d5ed525abd4f48",
+    "vlm_research/c3v2_middle_reaccess/common.py": "a765d0731ef5e230c705e3c516353953869352f68cd5cc0054a7708226f1e6c1",
+    "vlm_research/c3v2_middle_reaccess/engine.py": "e541c9122636205aeaeb752346ea08aa1c1aff6a06cfd40a60319a1cfc2763ff",
+    "vlm_research/gqa_testdev_c3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "vlm_research/gqa_testdev_c3/analyze.py": "c2d58bb75fe9c9edd51083aeeaa347cde45e998184a3ac2f91b5c628e80fbac5",
+    "vlm_research/gqa_testdev_c3/common.py": "79f734f25225e08e2cceaad17af900a41417f1861f4789dfcdd71f37c8b7cc83",
+    "vlm_research/gqa_testdev_c3/download.py": "e5b0ec33eeb24f04f52e0c9920b2b11b94839b9732c581efd7a6baffb4abf73a",
+    "vlm_research/gqa_testdev_c3/download_via_local.py": "b61771d52b53f57769f4ce5810eee97a954dd715c062f8de48c24d3d424f3796",
+    "vlm_research/gqa_testdev_c3/engine.py": "390786063d1b9a9d719f91a7398e4a55c0433287ba4b486f0de1e3729b1d0f96",
+    "vlm_research/gqa_testdev_c3/finish.py": "199cea030ff350cefd1f7e3a904043b278365de5fa65eedc66608e825e9cba4a",
+    "vlm_research/gqa_testdev_c3/import_verified_images.py": "5e6643a568906356dba2a7ec6981d78438fc30496597e5d7eb297f355b7bbc74",
+    "vlm_research/gqa_testdev_c3/prepare.py": "a03a0c6ddaaf7a20443115b54e6902cd207090f07484df4ae375ac778af43160",
+    "vlm_research/gqa_testdev_c3/run.py": "60cf134959dea2339df034226337342545085bf7b9d14d9b9aae30ce91692464",
+    "vlm_research/gqa_testdev_c3/tests.py": "017dbe0cb3286b40a6bee633c3fd80375db76e5eac3d0c78b9926fd8b22df333",
+    "vlm_research/p1_layerwise_accuracy/common.py": "cb87d6c1f3f6156a14ae22ef3a1cb60304ec90bcc328faa239bf4481a138328c",
+    "vlm_research/p1_layerwise_accuracy/engine.py": "3cbf506f506c33fe34a636d2a3b5f19f751e2831b3bb299aae460ae8a5add46a",
+    "vlm_research/physical_handoff_fastpath/engine.py": "6e8abb7e04517678c189a896589abb97774652313ecedb57d58f97bd718b74a0",
+    "vlm_research/physical_visual_handoff/common.py": "071f04ecb8cbc07c03251da236a371843a217536917494914aee55cc5162fcf3",
+    "vlm_research/physical_visual_handoff/engine.py": "e46dd347bc5d4763c179a02459b7bd09ab87e45e7499107930928df3c98f295b",
+    "vlm_research/reverse_writer/common.py": "b49eb59480189742bf3caf126c01d9ddb05661d7c4eef1f489cb50a5d011b3b8",
+    "vlm_research/reverse_writer/engine.py": "e7a8d0e5d853cbddd21286ef690e3b8abbaaa34107cdd71e55c0107739b7709c",
+    "vlm_research/knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+    "vlm_research/vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d"
+  }
+}

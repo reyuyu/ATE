@@ -1,0 +1,215 @@
+{
+  "status": "PASS",
+  "questions": 2374,
+  "pairs": 1187,
+  "tasks": {
+    "OCR": 40,
+    "artwork": 400,
+    "celebrity": 340,
+    "code_reasoning": 40,
+    "color": 60,
+    "commonsense_reasoning": 140,
+    "count": 60,
+    "existence": 60,
+    "landmark": 400,
+    "numerical_calculation": 40,
+    "position": 60,
+    "posters": 294,
+    "scene": 400,
+    "text_translation": 40
+  },
+  "exact_current_frozen_input_and_Gold_SHA256": true,
+  "source_mapped_manifest_sha256": "f62d6906de26c4556ef35815a55ac47e25230cae6697ced8f3896d7113b93741",
+  "current_inputs_sha256": "b38f33c779997a5b4f3d3a8c20a1598e962e66186fa75b82a445fbca6224a5a1",
+  "current_Gold_sha256": "39d2eb900d01910e718211a7335f1d6f8c1e4f0327065a36c0d1173a5ced7229",
+  "mapped_manifest_sha256": "d3e8cbcf8d71b1b93cf925ea3cd4b0357f562f84e4f4f91c843812bf2e3928a7",
+  "SVH_reference_sha256": "8f0a679490c78e32e2ef0cc6fe15d901ddb0534ca94b2f99218e6c4130cfce83",
+  "known_MME_image_difference": [
+    {
+      "key": "MME:landmark/03d5e3bfc958be38.jpg:0",
+      "image_id": "landmark/03d5e3bfc958be38.jpg",
+      "historical_image_sha256": "61d010ea9fabdc0bf930362d3cc1e4dc554789036f219feba927551effecd510",
+      "recovered_image_sha256": "ecd588bb65d6397126fec9dbe556b1759e47d72a735a7f8776f86598fbbf174a"
+    },
+    {
+      "key": "MME:landmark/03d5e3bfc958be38.jpg:1",
+      "image_id": "landmark/03d5e3bfc958be38.jpg",
+      "historical_image_sha256": "61d010ea9fabdc0bf930362d3cc1e4dc554789036f219feba927551effecd510",
+      "recovered_image_sha256": "ecd588bb65d6397126fec9dbe556b1759e47d72a735a7f8776f86598fbbf174a"
+    }
+  ],
+  "data_not_replaced": true,
+  "all_image_paths_present": true,
+  "image_hash_policy": "Reuse verified restored archive manifests, check the paired smoke image and known changed image; no full image rehash",
+  "source_physical_smoke_sha256": "dd05d9715bae8f2cd32220cfe713d0e40cb7d5d7242b7ed33143ecc127414776",
+  "source_fusion_protocol_sha256": "422354c670337c4c53167f0d0068a40d7fb956065b94519d9f07b5f4a82ca009",
+  "previous_strict_GPU_numerical_gate": "PASS unchanged, same engine/GPU; no repeated GQA/TextVQA generation",
+  "frozen_sources": {
+    "vlm_research/accuracy_autoresearch/common.py": "01a68cc5b739a3d9172e351d5d68250e33d997639c35ecbf84376b8bbf0f9d58",
+    "vlm_research/accuracy_autoresearch/engine.py": "4a381e87cd69b5b1e20eb10f3b52a9e1470f6662d845daafba6639bfe7c7974e",
+    "vlm_research/ate_fulljoint_v2/engine.py": "ef59447163c47528be2fde44751c124df3d550a6e89244046c3d40d99b4e9e44",
+    "vlm_research/benchmarks/protocols.py": "c80e8011f8ba3f7f627398ec2a3bff300d479db46ccb04a564d5ed525abd4f48",
+    "vlm_research/c3v2_middle_reaccess/common.py": "a765d0731ef5e230c705e3c516353953869352f68cd5cc0054a7708226f1e6c1",
+    "vlm_research/c3v2_middle_reaccess/engine.py": "e541c9122636205aeaeb752346ea08aa1c1aff6a06cfd40a60319a1cfc2763ff",
+    "vlm_research/gqa_testdev_c3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "vlm_research/gqa_testdev_c3/analyze.py": "c2d58bb75fe9c9edd51083aeeaa347cde45e998184a3ac2f91b5c628e80fbac5",
+    "vlm_research/gqa_testdev_c3/common.py": "79f734f25225e08e2cceaad17af900a41417f1861f4789dfcdd71f37c8b7cc83",
+    "vlm_research/gqa_testdev_c3/download.py": "e5b0ec33eeb24f04f52e0c9920b2b11b94839b9732c581efd7a6baffb4abf73a",
+    "vlm_research/gqa_testdev_c3/download_via_local.py": "b61771d52b53f57769f4ce5810eee97a954dd715c062f8de48c24d3d424f3796",
+    "vlm_research/gqa_testdev_c3/engine.py": "390786063d1b9a9d719f91a7398e4a55c0433287ba4b486f0de1e3729b1d0f96",
+    "vlm_research/gqa_testdev_c3/finish.py": "199cea030ff350cefd1f7e3a904043b278365de5fa65eedc66608e825e9cba4a",
+    "vlm_research/gqa_testdev_c3/import_verified_images.py": "5e6643a568906356dba2a7ec6981d78438fc30496597e5d7eb297f355b7bbc74",
+    "vlm_research/gqa_testdev_c3/prepare.py": "a03a0c6ddaaf7a20443115b54e6902cd207090f07484df4ae375ac778af43160",
+    "vlm_research/gqa_testdev_c3/run.py": "60cf134959dea2339df034226337342545085bf7b9d14d9b9aae30ce91692464",
+    "vlm_research/gqa_testdev_c3/tests.py": "017dbe0cb3286b40a6bee633c3fd80375db76e5eac3d0c78b9926fd8b22df333",
+    "vlm_research/p1_layerwise_accuracy/common.py": "cb87d6c1f3f6156a14ae22ef3a1cb60304ec90bcc328faa239bf4481a138328c",
+    "vlm_research/p1_layerwise_accuracy/engine.py": "3cbf506f506c33fe34a636d2a3b5f19f751e2831b3bb299aae460ae8a5add46a",
+    "vlm_research/physical_handoff_fastpath/engine.py": "6e8abb7e04517678c189a896589abb97774652313ecedb57d58f97bd718b74a0",
+    "vlm_research/physical_visual_handoff/common.py": "071f04ecb8cbc07c03251da236a371843a217536917494914aee55cc5162fcf3",
+    "vlm_research/physical_visual_handoff/engine.py": "e46dd347bc5d4763c179a02459b7bd09ab87e45e7499107930928df3c98f295b",
+    "vlm_research/reverse_writer/common.py": "b49eb59480189742bf3caf126c01d9ddb05661d7c4eef1f489cb50a5d011b3b8",
+    "vlm_research/reverse_writer/engine.py": "e7a8d0e5d853cbddd21286ef690e3b8abbaaa34107cdd71e55c0107739b7709c",
+    "vlm_research/knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+    "vlm_research/vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d"
+  },
+  "fusion_sources": {
+    "fusion_engine.py": "c864d8762048f8615b5e5b9fdff31a1d1afd8bf2575dfbe2ca7b118f555dac38",
+    "run_fusion.py": "c086db2502fc09127864d6dace178379b47c1afa153cb966b8b36283860574d3"
+  },
+  "model": "llava-hf/llava-1.5-7b-hf",
+  "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "code_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+  "old_SVH_config": {
+    "code_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+    "model": "llava-hf/llava-1.5-7b-hf",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_path": "/home/featurize/data/ate-recovery/models/llava-1.5-7b-hf",
+    "condition": "Physical-C3",
+    "algorithm": "Original Physical C3-V2",
+    "protocol_sha256": "5ab87f8d8690843cd01143bc3f2e865c3ccf9f242900ede894639beeaede3105",
+    "source_sha256": {
+      "vlm_research/accuracy_autoresearch/engine.py": "4a381e87cd69b5b1e20eb10f3b52a9e1470f6662d845daafba6639bfe7c7974e",
+      "vlm_research/ate_fulljoint_v2/engine.py": "ef59447163c47528be2fde44751c124df3d550a6e89244046c3d40d99b4e9e44",
+      "vlm_research/c3v2_middle_reaccess/engine.py": "e541c9122636205aeaeb752346ea08aa1c1aff6a06cfd40a60319a1cfc2763ff",
+      "vlm_research/information_horizon_alignment/__init__.py": "86e6338d67b342ae6e26bad7e8942e915ab483b3391e324d930d983a6f492de6",
+      "vlm_research/information_horizon_alignment/common.py": "3958686c179db7a1f8e67ff57a52a29080eb9fcf206d52a6590c8cd9f580e4e6",
+      "vlm_research/information_horizon_alignment/engine.py": "edc2b8331512af12cdb881c4b0269c7fd744ebc3580e125a68afff11cd5df929",
+      "vlm_research/information_horizon_alignment/freeze.py": "750a236043849c0f11e51d260242aec6bcd4c72a64d122fc5e78b4e233d439ca",
+      "vlm_research/information_horizon_alignment/prepare.py": "2e5605bf3fdae0449c8da8a1f477801960fd8078bc35050d879b43333382f306",
+      "vlm_research/information_horizon_alignment/score.py": "50bc02bb5376af0f2aec9d32e0ce507e050b54f5b78137e1bd1ac8c8549a47f7",
+      "vlm_research/information_horizon_alignment/tests.py": "697ed1a8cc852d4691daa257705a9a05f72aec66d99726257e58aee2bdbfd6d3",
+      "vlm_research/information_horizon_alignment/worker.py": "62f7e5cc48bdb2deec85d97d7ba79ceec7cf255038815fbc4a8db00d1295f755",
+      "vlm_research/mme_seed_quality/engine.py": "f7f41d523c926354cf18bd7e4fbcfbd7aa46bb17bccf37b2fd8ce468ab0fc100",
+      "vlm_research/physical_handoff_fastpath/engine.py": "6e8abb7e04517678c189a896589abb97774652313ecedb57d58f97bd718b74a0"
+    },
+    "original_manifest_sha256": "9344bf5cd7649b02f85982dcefec02b4b8c4fd95e24f8f62f9f34cd278ee6a79",
+    "mapped_manifest_digest": "a44b28b094342271b447914e19ff4a2e78839535e6d559e15491faaa54b24cb6",
+    "inputs": {
+      "MME": {
+        "view": "MME-paper",
+        "rows": 2374,
+        "inputs_sha256": "b38f33c779997a5b4f3d3a8c20a1598e962e66186fa75b82a445fbca6224a5a1",
+        "answers_sha256": "39d2eb900d01910e718211a7335f1d6f8c1e4f0327065a36c0d1173a5ced7229"
+      },
+      "ScienceQA-IMG": {
+        "view": "ScienceQA-IMG-paper",
+        "rows": 2017,
+        "inputs_sha256": "0000a838748ebd698e7d7e507d78887fb3e36254e264515eb396fb92f688eedd",
+        "answers_sha256": "f4247b4e99175ef68ece7dd14c6a1a28baae9de44f1edbdd57a8a54f60f272cc"
+      },
+      "POPE": {
+        "view": "POPE-paper",
+        "rows": 8910,
+        "inputs_sha256": "2176b2986d49a65b6efd702db60583e0667eb422056a5ccc6fc1150995cb23a5",
+        "answers_sha256": "4db02e853cae9e06dcae4e258e04bf44d9da6b7f9699955e4756180efb648bf1"
+      },
+      "TextVQA": {
+        "view": "TextVQA-OCR",
+        "rows": 5000,
+        "inputs_sha256": "3f16d6a01622d20ea6e68cdbaae939477df83f0f73b8257f45541352c8b247c6",
+        "answers_sha256": "1c6397d70429df0705e2e8a348523d4605cf8d7949050c3413b82c5a0ef441e4"
+      },
+      "MMBench": {
+        "view": "MMBench-paper",
+        "rows": 4377,
+        "inputs_sha256": "aef55f6c9f2e13c2fda87db95e1f7e4ba9f66a07fa33b335d57a77a4c215f349",
+        "answers_sha256": "b07649e7815bccc63276e9d59fd679dc3db3c0bc13e3e8f36f0175d85ec3a6a2",
+        "circular_groups": 1176,
+        "group_size_counts": {
+          "4": 938,
+          "3": 149,
+          "2": 89
+        },
+        "group_scope": "Every rotation present in original frozen Manifest; fixed D options can yield 3 rotations among 4 choices"
+      }
+    },
+    "expected_counts": {
+      "MME": 2374,
+      "ScienceQA-IMG": 2017,
+      "POPE": 8910,
+      "TextVQA": 5000,
+      "MMBench": 4377
+    },
+    "expected_total": 22678,
+    "max_new_tokens": {
+      "MMBench": 1024,
+      "MME": 128,
+      "POPE": 128,
+      "ScienceQA-IMG": 1024,
+      "TextVQA": 128
+    },
+    "dtype": "float16",
+    "attention": "eager",
+    "batch_size": 1,
+    "greedy": true,
+    "num_beams": 1,
+    "temperature": 0,
+    "eos": "model generation_config; no additional stop strings",
+    "semantics": {
+      "R_image_layers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "physical_visual_exit_before": 20,
+      "answer_image_layers": [],
+      "physical_answer_attention_skip": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "norm_mlp_residual": "unchanged frozen decoder layers",
+      "rope": "original unrenumbered positions",
+      "cache": "physical compact SelectiveKV; no image persistence or concatenation"
+    },
+    "MME_difference": {
+      "image": "landmark/03d5e3bfc958be38.jpg",
+      "old_sha256": "61d010ea9fabdc0bf930362d3cc1e4dc554789036f219feba927551effecd510",
+      "recovered_sha256": "ecd588bb65d6397126fec9dbe556b1759e47d72a735a7f8776f86598fbbf174a",
+      "affected_questions": 2,
+      "data_not_replaced": true
+    },
+    "formal_condition_only": true,
+    "no_gqa": true,
+    "no_native_generation": true,
+    "no_reaccess_generation": true
+  }
+}
