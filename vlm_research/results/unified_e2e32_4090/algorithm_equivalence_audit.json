@@ -1,0 +1,13 @@
+{
+  "status": "PASS",
+  "FastV_commit": "d1659729b5bf1be225e99ee15783deeea80f63b1",
+  "official_archives_verified": true,
+  "frozen_source_files_verified": true,
+  "ApET_vision_bridge": "Uses the identical CLIP hidden_states[-2] including CLS before official encode_images removes CLS. Does not retain/stack auxiliary CLIP attention outputs discarded by encode_images; no ranking/merging uses them. Frozen Eager CLIP computes identical image features. This removes unused legacy auxiliary export, not algorithmic selection.",
+  "SparseVLM": "Official SDPA-named function is manual eager matmul/softmax/matmul; executed AST unchanged in independent API bridge. Explicit causal mask from original CPU helper and necessary transfers remain counted. Original broken class wiring not edited. Pruning block compiled unchanged. Actual post-merge sequence and cache lengths are audited.",
+  "DUET": "Official inference function with use_salient_tokens=False ranks all post-image text, C+all; not the last-token C variant. Complete source remains unmodified; legacy rotary wrapper uses the same frozen HF rotary module, exact compact position conventions.",
+  "timing": "One shared external generation lifecycle; independent algorithm controllers have necessary implementation overhead included. New method decoder API compatibility is independent, and BridgeNative stock logits/tokens exact. This does not assert cross-implementation kernel-level identity.",
+  "no_FastV_or_SVH_source_changes": true,
+  "no_quality_Benchmarks": true,
+  "no_GitHub_write": true
+}

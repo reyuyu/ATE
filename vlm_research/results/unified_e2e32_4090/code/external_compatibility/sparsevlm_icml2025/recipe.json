@@ -1,0 +1,10 @@
+{
+  "method": "SparseVLM",
+  "algorithm": "ICML v1.5 nominal192 schedule [300,200,110], prune AFTER zero-based L2/L6/L15, official recycling adds 9/4/3 clustered tokens: real visual layouts 576 (L0..2),309 (L3..6),204 (L7..15),113 (L16..31), mean206.5. Official scaled_dot_product_attention is actually explicit eager QK, FP16 softmax, AV; this exact function and original ranking/pruning/merging AST are called unchanged. Bridge bypasses broken old sdpa-only class wiring and deprecated APIs without using fused SDPA/Flash or changing core math. Compact RoPE and per-layer real cache Decode.",
+  "shared_adapter": "/home/featurize/work/ATE/vlm_research/external_baselines/e2e32_compatibility/e2e32_official_compat.py",
+  "shared_adapter_sha256": "85e551420aafc49adddcf42bce71636089923fe9001abe91127cf336b63bdcb9",
+  "core_commit": "734d9003879689713a132b83297dfad060a5c9af",
+  "runtime_result_path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090",
+  "fixed_GPU_UUID": "GPU-724fa9c3-d33a-df3f-e349-533cb4634a53",
+  "output_tokens": 32
+}

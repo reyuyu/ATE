@@ -1,0 +1,142 @@
+{
+  "rows": [
+    {
+      "method": "Native",
+      "label": "Native Full",
+      "audited": true,
+      "KV_MiB_mean": 351.5,
+      "E2E_ms_mean": 1950.497863733411,
+      "TTFT_ms_mean": 119.90053093322786,
+      "TPOT_ms_mean": 59.05152686452204,
+      "CUDA_Event_Decode_TPOT_ms_mean": 59.041205912764354,
+      "KV_MiB_reduction_vs_Native_pct": 0.0,
+      "E2E_ms_reduction_vs_Native_pct": 0.0,
+      "TPOT_ms_reduction_vs_Native_pct": 0.0
+    },
+    {
+      "method": "FastV",
+      "label": "FastV",
+      "audited": true,
+      "KV_MiB_mean": 177.5,
+      "E2E_ms_mean": 1973.4258297999986,
+      "TTFT_ms_mean": 106.66069120003765,
+      "TPOT_ms_mean": 60.218230277418094,
+      "CUDA_Event_Decode_TPOT_ms_mean": 60.20746379154985,
+      "KV_MiB_reduction_vs_Native_pct": 49.502133712660026,
+      "E2E_ms_reduction_vs_Native_pct": -1.175493010933204,
+      "TPOT_ms_reduction_vs_Native_pct": -1.9757379272728137
+    },
+    {
+      "method": "SparseVLM",
+      "label": "SparseVLM",
+      "audited": true,
+      "KV_MiB_mean": 166.75,
+      "E2E_ms_mean": 2026.045738200143,
+      "TTFT_ms_mean": 145.42503670005922,
+      "TPOT_ms_mean": 60.66518391935754,
+      "CUDA_Event_Decode_TPOT_ms_mean": 60.65626697745375,
+      "KV_MiB_reduction_vs_Native_pct": 52.56045519203414,
+      "E2E_ms_reduction_vs_Native_pct": -3.873261072028411,
+      "TPOT_ms_reduction_vs_Native_pct": -2.7326254552868745
+    },
+    {
+      "method": "V2Drop",
+      "label": "V²Drop",
+      "audited": true,
+      "KV_MiB_mean": 164.90625,
+      "E2E_ms_mean": 1952.9736502331314,
+      "TTFT_ms_mean": 107.95461873331078,
+      "TPOT_ms_mean": 59.516742951607114,
+      "CUDA_Event_Decode_TPOT_ms_mean": 59.50538904333627,
+      "KV_MiB_reduction_vs_Native_pct": 53.08499288762447,
+      "E2E_ms_reduction_vs_Native_pct": -0.12693100288669878,
+      "TPOT_ms_reduction_vs_Native_pct": -0.7878138158093462
+    },
+    {
+      "method": "ApET",
+      "label": "ApET",
+      "audited": true,
+      "KV_MiB_mean": 159.5,
+      "E2E_ms_mean": 1945.451429399812,
+      "TTFT_ms_mean": 115.03173343310966,
+      "TPOT_ms_mean": 59.045796644087176,
+      "CUDA_Event_Decode_TPOT_ms_mean": 59.03918759335754,
+      "KV_MiB_reduction_vs_Native_pct": 54.623044096728314,
+      "E2E_ms_reduction_vs_Native_pct": 0.2587254478679357,
+      "TPOT_ms_reduction_vs_Native_pct": 0.00970376337263712
+    },
+    {
+      "method": "DUET",
+      "label": "DUET-VLM (C+all)",
+      "audited": true,
+      "KV_MiB_mean": 159.375,
+      "E2E_ms_mean": 1970.826328100217,
+      "TTFT_ms_mean": 111.84869003318454,
+      "TPOT_ms_mean": 59.9670205828075,
+      "CUDA_Event_Decode_TPOT_ms_mean": 59.95142382960166,
+      "KV_MiB_reduction_vs_Native_pct": 54.65860597439545,
+      "E2E_ms_reduction_vs_Native_pct": -1.0422192582101086,
+      "TPOT_ms_reduction_vs_Native_pct": -1.5503303079458242
+    },
+    {
+      "method": "SVH",
+      "label": "llava-SVH",
+      "audited": true,
+      "KV_MiB_mean": 55.5625,
+      "E2E_ms_mean": 1766.342455033191,
+      "TTFT_ms_mean": 107.96625693328679,
+      "TPOT_ms_mean": 53.496006390319494,
+      "CUDA_Event_Decode_TPOT_ms_mean": 53.47977462686518,
+      "KV_MiB_reduction_vs_Native_pct": 84.1927453769559,
+      "E2E_ms_reduction_vs_Native_pct": 9.44145656984886,
+      "TPOT_ms_reduction_vs_Native_pct": 9.407920115170276
+    },
+    {
+      "method": "SVH-R",
+      "label": "llava-SVH-R",
+      "audited": true,
+      "KV_MiB_mean": 181.5625,
+      "E2E_ms_mean": 1780.8171077000225,
+      "TTFT_ms_mean": 111.46207183349664,
+      "TPOT_ms_mean": 53.850162447307284,
+      "CUDA_Event_Decode_TPOT_ms_mean": 53.83144016060778,
+      "KV_MiB_reduction_vs_Native_pct": 48.346372688477956,
+      "E2E_ms_reduction_vs_Native_pct": 8.699356158668415,
+      "TPOT_ms_reduction_vs_Native_pct": 8.808179387381287
+    }
+  ],
+  "validation": {
+    "status": "PASS",
+    "formal_requests": 240,
+    "audited_methods": [
+      "Native",
+      "FastV",
+      "SparseVLM",
+      "V2Drop",
+      "ApET",
+      "DUET",
+      "SVH",
+      "SVH-R"
+    ],
+    "rows_per_method": {
+      "Native": 30,
+      "FastV": 30,
+      "SparseVLM": 30,
+      "V2Drop": 30,
+      "ApET": 30,
+      "DUET": 30,
+      "SVH": 30,
+      "SVH-R": 30
+    },
+    "GPU_UUID": [
+      "GPU-724fa9c3-d33a-df3f-e349-533cb4634a53"
+    ],
+    "all_input_SHA_equal": true,
+    "physical_KV_layer_rows": 7680,
+    "one_prefill_31_decode": true,
+    "quality_requests": 0,
+    "formal_model_loads": 1,
+    "source_verification": "PASS",
+    "raw_annotation_correction": "SparseVLM position_convention CSV string corrected to compact; recorded positions and numerical RoPE tests unchanged"
+  }
+}
