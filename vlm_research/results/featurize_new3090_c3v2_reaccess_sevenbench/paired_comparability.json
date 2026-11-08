@@ -1,0 +1,77 @@
+{
+  "status": "PASS",
+  "conditions": {
+    "MME": {
+      "comparable": true,
+      "control": "Previous original Physical-C3",
+      "questions": 2374,
+      "control_value": 1827.7518007202882,
+      "reaccess_value": 1806.6025410164066,
+      "delta": -21.149259703881626,
+      "unit": "MME points",
+      "input_tensor_and_manifest_equality": true
+    },
+    "ScienceQA-IMG": {
+      "comparable": true,
+      "control": "Previous original Physical-C3",
+      "questions": 2017,
+      "control_value": 68.96380763510163,
+      "reaccess_value": 68.4680218145761,
+      "delta": -0.49578582052552633,
+      "unit": "percentage points",
+      "input_tensor_and_manifest_equality": true
+    },
+    "POPE": {
+      "comparable": true,
+      "control": "Previous original Physical-C3",
+      "questions": 8910,
+      "control_value": 87.20538720538721,
+      "reaccess_value": 87.31762065095398,
+      "delta": 0.11223344556677262,
+      "unit": "percentage points",
+      "input_tensor_and_manifest_equality": true
+    },
+    "TextVQA": {
+      "comparable": true,
+      "control": "Previous original Physical-C3",
+      "questions": 5000,
+      "control_value": 50.40000000000001,
+      "reaccess_value": 54.790000000000084,
+      "delta": 4.390000000000072,
+      "unit": "percentage points",
+      "input_tensor_and_manifest_equality": true
+    },
+    "MMBench": {
+      "comparable": true,
+      "control": "Previous original Physical-C3",
+      "questions": 4377,
+      "control_value": 63.01020408163265,
+      "reaccess_value": 63.01020408163265,
+      "delta": 0.0,
+      "unit": "percentage points",
+      "input_tensor_and_manifest_equality": true
+    },
+    "GQA": {
+      "comparable": true,
+      "source_commit": "57e37ce024b1b2adf9fa24fc24aabec32a1fed08",
+      "questions": 12578,
+      "correct": {
+        "C3-V2": 7204,
+        "C3-V2+L11-L24": 7537,
+        "Native": 7626
+      },
+      "native_accuracy": 60.629670853871836,
+      "original_c3_accuracy": 57.27460645571633,
+      "reaccess_accuracy": 59.92208618222293,
+      "reaccess_minus_native_pp": -0.7075846716489108,
+      "reaccess_minus_c3_pp": 2.647479726506599,
+      "all_control_input_bindings_identical": true
+    },
+    "OCRBench-v1": {
+      "comparable": false,
+      "reason": "No complete matching Native/original-C3 control; only current B2 score reported."
+    }
+  },
+  "no_new_control_generation": true,
+  "no_bootstrap_computation_requested": true
+}

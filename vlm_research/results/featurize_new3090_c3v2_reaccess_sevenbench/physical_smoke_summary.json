@@ -1,0 +1,2100 @@
+{
+  "status": "PASS",
+  "cases": [
+    {
+      "benchmark": "GQA",
+      "key": "GQA:201030233",
+      "status": "PASS",
+      "numerical_equivalence": {
+        "passed": true,
+        "max_abs_logits": 0.01953125,
+        "mean_relative_error": 0.07322444953024387,
+        "max_relative_error": 3417.96875,
+        "hidden_relative_rmse": 0.0016821414465084672,
+        "hidden_cosine_distance": 1.6689300537109375e-06,
+        "all_argmax_equal": true,
+        "tolerances": {
+          "logit_atol": 0.1,
+          "logit_rtol": 0.003,
+          "hidden_relative_rmse": 0.01,
+          "hidden_cosine": 0.0001
+        }
+      },
+      "rope_exact": true,
+      "visual_hidden_removed_before_L25": true,
+      "answer_attention_physically_skipped": true,
+      "compact_kv_original_positions_exact": true,
+      "blocked_image_probability_zero": true,
+      "actual_trace": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "image_embedding_exact": true,
+        "norm_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "post_norm_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "mlp_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "skip_residual_exact_checks": 8
+      },
+      "retained_image_layers": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "skipped_layer_projection_shapes": [
+        {
+          "layer": 2,
+          "op": "q_proj",
+          "shape": [
+            1,
+            615,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "k_proj",
+          "shape": [
+            1,
+            616,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "v_proj",
+          "shape": [
+            1,
+            616,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "o_proj",
+          "shape": [
+            1,
+            615,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "q_proj",
+          "shape": [
+            1,
+            615,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "k_proj",
+          "shape": [
+            1,
+            616,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "v_proj",
+          "shape": [
+            1,
+            616,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "o_proj",
+          "shape": [
+            1,
+            615,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "q_proj",
+          "shape": [
+            1,
+            615,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "k_proj",
+          "shape": [
+            1,
+            616,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "v_proj",
+          "shape": [
+            1,
+            616,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "o_proj",
+          "shape": [
+            1,
+            615,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "q_proj",
+          "shape": [
+            1,
+            615,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "k_proj",
+          "shape": [
+            1,
+            616,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "v_proj",
+          "shape": [
+            1,
+            616,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "o_proj",
+          "shape": [
+            1,
+            615,
+            4096
+          ]
+        }
+      ],
+      "smoke_tokens_only": [
+        1939,
+        2
+      ]
+    },
+    {
+      "benchmark": "MME",
+      "key": "MME:OCR/0001.jpg:0",
+      "status": "PASS",
+      "numerical_equivalence": {
+        "passed": true,
+        "max_abs_logits": 0.015625,
+        "mean_relative_error": 0.21920790895819664,
+        "max_relative_error": 7324.21875,
+        "hidden_relative_rmse": 0.006586851552128792,
+        "hidden_cosine_distance": 2.1338462829589844e-05,
+        "all_argmax_equal": true,
+        "tolerances": {
+          "logit_atol": 0.1,
+          "logit_rtol": 0.003,
+          "hidden_relative_rmse": 0.01,
+          "hidden_cosine": 0.0001
+        }
+      },
+      "rope_exact": true,
+      "visual_hidden_removed_before_L25": true,
+      "answer_attention_physically_skipped": true,
+      "compact_kv_original_positions_exact": true,
+      "blocked_image_probability_zero": true,
+      "actual_trace": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "image_embedding_exact": true,
+        "norm_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "post_norm_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "mlp_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "skip_residual_exact_checks": 8
+      },
+      "retained_image_layers": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "skipped_layer_projection_shapes": [
+        {
+          "layer": 2,
+          "op": "q_proj",
+          "shape": [
+            1,
+            640,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "k_proj",
+          "shape": [
+            1,
+            641,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "v_proj",
+          "shape": [
+            1,
+            641,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "o_proj",
+          "shape": [
+            1,
+            640,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "q_proj",
+          "shape": [
+            1,
+            640,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "k_proj",
+          "shape": [
+            1,
+            641,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "v_proj",
+          "shape": [
+            1,
+            641,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "o_proj",
+          "shape": [
+            1,
+            640,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "q_proj",
+          "shape": [
+            1,
+            640,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "k_proj",
+          "shape": [
+            1,
+            641,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "v_proj",
+          "shape": [
+            1,
+            641,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "o_proj",
+          "shape": [
+            1,
+            640,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "q_proj",
+          "shape": [
+            1,
+            640,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "k_proj",
+          "shape": [
+            1,
+            641,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "v_proj",
+          "shape": [
+            1,
+            641,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "o_proj",
+          "shape": [
+            1,
+            640,
+            4096
+          ]
+        }
+      ],
+      "smoke_tokens_only": [
+        1939,
+        2
+      ]
+    },
+    {
+      "benchmark": "ScienceQA-IMG",
+      "key": "ScienceQA-IMG:10001",
+      "status": "PASS",
+      "numerical_equivalence": {
+        "passed": true,
+        "max_abs_logits": 0.01806640625,
+        "mean_relative_error": 0.021315804682672024,
+        "max_relative_error": 976.5625,
+        "hidden_relative_rmse": 0.009022433310747147,
+        "hidden_cosine_distance": 2.8252601623535156e-05,
+        "all_argmax_equal": true,
+        "tolerances": {
+          "logit_atol": 0.1,
+          "logit_rtol": 0.003,
+          "hidden_relative_rmse": 0.01,
+          "hidden_cosine": 0.0001
+        }
+      },
+      "rope_exact": true,
+      "visual_hidden_removed_before_L25": true,
+      "answer_attention_physically_skipped": true,
+      "compact_kv_original_positions_exact": true,
+      "blocked_image_probability_zero": true,
+      "actual_trace": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "image_embedding_exact": true,
+        "norm_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "post_norm_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "mlp_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "skip_residual_exact_checks": 8
+      },
+      "retained_image_layers": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "skipped_layer_projection_shapes": [
+        {
+          "layer": 2,
+          "op": "q_proj",
+          "shape": [
+            1,
+            748,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "k_proj",
+          "shape": [
+            1,
+            749,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "v_proj",
+          "shape": [
+            1,
+            749,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "o_proj",
+          "shape": [
+            1,
+            748,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "q_proj",
+          "shape": [
+            1,
+            748,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "k_proj",
+          "shape": [
+            1,
+            749,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "v_proj",
+          "shape": [
+            1,
+            749,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "o_proj",
+          "shape": [
+            1,
+            748,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "q_proj",
+          "shape": [
+            1,
+            748,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "k_proj",
+          "shape": [
+            1,
+            749,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "v_proj",
+          "shape": [
+            1,
+            749,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "o_proj",
+          "shape": [
+            1,
+            748,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "q_proj",
+          "shape": [
+            1,
+            748,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "k_proj",
+          "shape": [
+            1,
+            749,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "v_proj",
+          "shape": [
+            1,
+            749,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "o_proj",
+          "shape": [
+            1,
+            748,
+            4096
+          ]
+        }
+      ],
+      "smoke_tokens_only": [
+        319,
+        2
+      ]
+    },
+    {
+      "benchmark": "POPE",
+      "key": "POPE:1",
+      "status": "PASS",
+      "numerical_equivalence": {
+        "passed": true,
+        "max_abs_logits": 0.02099609375,
+        "mean_relative_error": 0.19199255108833313,
+        "max_relative_error": 6347.65625,
+        "hidden_relative_rmse": 0.0016161915846168995,
+        "hidden_cosine_distance": 1.6689300537109375e-06,
+        "all_argmax_equal": true,
+        "tolerances": {
+          "logit_atol": 0.1,
+          "logit_rtol": 0.003,
+          "hidden_relative_rmse": 0.01,
+          "hidden_cosine": 0.0001
+        }
+      },
+      "rope_exact": true,
+      "visual_hidden_removed_before_L25": true,
+      "answer_attention_physically_skipped": true,
+      "compact_kv_original_positions_exact": true,
+      "blocked_image_probability_zero": true,
+      "actual_trace": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "image_embedding_exact": true,
+        "norm_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "post_norm_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "mlp_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "skip_residual_exact_checks": 8
+      },
+      "retained_image_layers": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "skipped_layer_projection_shapes": [
+        {
+          "layer": 2,
+          "op": "q_proj",
+          "shape": [
+            1,
+            637,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "k_proj",
+          "shape": [
+            1,
+            638,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "v_proj",
+          "shape": [
+            1,
+            638,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "o_proj",
+          "shape": [
+            1,
+            637,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "q_proj",
+          "shape": [
+            1,
+            637,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "k_proj",
+          "shape": [
+            1,
+            638,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "v_proj",
+          "shape": [
+            1,
+            638,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "o_proj",
+          "shape": [
+            1,
+            637,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "q_proj",
+          "shape": [
+            1,
+            637,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "k_proj",
+          "shape": [
+            1,
+            638,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "v_proj",
+          "shape": [
+            1,
+            638,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "o_proj",
+          "shape": [
+            1,
+            637,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "q_proj",
+          "shape": [
+            1,
+            637,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "k_proj",
+          "shape": [
+            1,
+            638,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "v_proj",
+          "shape": [
+            1,
+            638,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "o_proj",
+          "shape": [
+            1,
+            637,
+            4096
+          ]
+        }
+      ],
+      "smoke_tokens_only": [
+        1939,
+        2
+      ]
+    },
+    {
+      "benchmark": "TextVQA",
+      "key": "TextVQA:34602",
+      "status": "PASS",
+      "numerical_equivalence": {
+        "passed": true,
+        "max_abs_logits": 0.015625,
+        "mean_relative_error": 0.019263900971661013,
+        "max_relative_error": 1220.703125,
+        "hidden_relative_rmse": 0.007043995428830385,
+        "hidden_cosine_distance": 2.485513687133789e-05,
+        "all_argmax_equal": true,
+        "tolerances": {
+          "logit_atol": 0.1,
+          "logit_rtol": 0.003,
+          "hidden_relative_rmse": 0.01,
+          "hidden_cosine": 0.0001
+        }
+      },
+      "rope_exact": true,
+      "visual_hidden_removed_before_L25": true,
+      "answer_attention_physically_skipped": true,
+      "compact_kv_original_positions_exact": true,
+      "blocked_image_probability_zero": true,
+      "actual_trace": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "image_embedding_exact": true,
+        "norm_calls": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "post_norm_calls": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "mlp_calls": [
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3,
+          3
+        ],
+        "skip_residual_exact_checks": 12
+      },
+      "retained_image_layers": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "skipped_layer_projection_shapes": [
+        {
+          "layer": 2,
+          "op": "q_proj",
+          "shape": [
+            1,
+            663,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "k_proj",
+          "shape": [
+            1,
+            664,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "v_proj",
+          "shape": [
+            1,
+            664,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "o_proj",
+          "shape": [
+            1,
+            663,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "q_proj",
+          "shape": [
+            1,
+            663,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "k_proj",
+          "shape": [
+            1,
+            664,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "v_proj",
+          "shape": [
+            1,
+            664,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "o_proj",
+          "shape": [
+            1,
+            663,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "q_proj",
+          "shape": [
+            1,
+            663,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "k_proj",
+          "shape": [
+            1,
+            664,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "v_proj",
+          "shape": [
+            1,
+            664,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "o_proj",
+          "shape": [
+            1,
+            663,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "q_proj",
+          "shape": [
+            1,
+            663,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "k_proj",
+          "shape": [
+            1,
+            664,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "v_proj",
+          "shape": [
+            1,
+            664,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "o_proj",
+          "shape": [
+            1,
+            663,
+            4096
+          ]
+        }
+      ],
+      "smoke_tokens_only": [
+        22679,
+        4616,
+        2
+      ]
+    },
+    {
+      "benchmark": "MMBench",
+      "key": "MMBench:1",
+      "status": "PASS",
+      "numerical_equivalence": {
+        "passed": true,
+        "max_abs_logits": 0.017578125,
+        "mean_relative_error": 0.0719941295683384,
+        "max_relative_error": 2441.40625,
+        "hidden_relative_rmse": 0.007655148860067129,
+        "hidden_cosine_distance": 2.658367156982422e-05,
+        "all_argmax_equal": true,
+        "tolerances": {
+          "logit_atol": 0.1,
+          "logit_rtol": 0.003,
+          "hidden_relative_rmse": 0.01,
+          "hidden_cosine": 0.0001
+        }
+      },
+      "rope_exact": true,
+      "visual_hidden_removed_before_L25": true,
+      "answer_attention_physically_skipped": true,
+      "compact_kv_original_positions_exact": true,
+      "blocked_image_probability_zero": true,
+      "actual_trace": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "image_embedding_exact": true,
+        "norm_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "post_norm_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "mlp_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "skip_residual_exact_checks": 8
+      },
+      "retained_image_layers": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "skipped_layer_projection_shapes": [
+        {
+          "layer": 2,
+          "op": "q_proj",
+          "shape": [
+            1,
+            803,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "k_proj",
+          "shape": [
+            1,
+            804,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "v_proj",
+          "shape": [
+            1,
+            804,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "o_proj",
+          "shape": [
+            1,
+            803,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "q_proj",
+          "shape": [
+            1,
+            803,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "k_proj",
+          "shape": [
+            1,
+            804,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "v_proj",
+          "shape": [
+            1,
+            804,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "o_proj",
+          "shape": [
+            1,
+            803,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "q_proj",
+          "shape": [
+            1,
+            803,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "k_proj",
+          "shape": [
+            1,
+            804,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "v_proj",
+          "shape": [
+            1,
+            804,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "o_proj",
+          "shape": [
+            1,
+            803,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "q_proj",
+          "shape": [
+            1,
+            803,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "k_proj",
+          "shape": [
+            1,
+            804,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "v_proj",
+          "shape": [
+            1,
+            804,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "o_proj",
+          "shape": [
+            1,
+            803,
+            4096
+          ]
+        }
+      ],
+      "smoke_tokens_only": [
+        360,
+        2
+      ]
+    },
+    {
+      "benchmark": "OCRBench-v1",
+      "key": "OCRBench-v1:0000",
+      "status": "PASS",
+      "numerical_equivalence": {
+        "passed": true,
+        "max_abs_logits": 0.0234375,
+        "mean_relative_error": 0.0038277277490124106,
+        "max_relative_error": 30.0,
+        "hidden_relative_rmse": 0.0016964193200692534,
+        "hidden_cosine_distance": 1.6093254089355469e-06,
+        "all_argmax_equal": true,
+        "tolerances": {
+          "logit_atol": 0.1,
+          "logit_rtol": 0.003,
+          "hidden_relative_rmse": 0.01,
+          "hidden_cosine": 0.0001
+        }
+      },
+      "rope_exact": true,
+      "visual_hidden_removed_before_L25": true,
+      "answer_attention_physically_skipped": true,
+      "compact_kv_original_positions_exact": true,
+      "blocked_image_probability_zero": true,
+      "actual_trace": {
+        "vision_calls": 1,
+        "projector_calls": 1,
+        "image_embedding_exact": true,
+        "norm_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "post_norm_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "mlp_calls": [
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2,
+          2
+        ],
+        "skip_residual_exact_checks": 8
+      },
+      "retained_image_layers": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "skipped_layer_projection_shapes": [
+        {
+          "layer": 2,
+          "op": "q_proj",
+          "shape": [
+            1,
+            635,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "k_proj",
+          "shape": [
+            1,
+            636,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "v_proj",
+          "shape": [
+            1,
+            636,
+            4096
+          ]
+        },
+        {
+          "layer": 2,
+          "op": "o_proj",
+          "shape": [
+            1,
+            635,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "q_proj",
+          "shape": [
+            1,
+            635,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "k_proj",
+          "shape": [
+            1,
+            636,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "v_proj",
+          "shape": [
+            1,
+            636,
+            4096
+          ]
+        },
+        {
+          "layer": 3,
+          "op": "o_proj",
+          "shape": [
+            1,
+            635,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "q_proj",
+          "shape": [
+            1,
+            635,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "k_proj",
+          "shape": [
+            1,
+            636,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "v_proj",
+          "shape": [
+            1,
+            636,
+            4096
+          ]
+        },
+        {
+          "layer": 4,
+          "op": "o_proj",
+          "shape": [
+            1,
+            635,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "q_proj",
+          "shape": [
+            1,
+            635,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "k_proj",
+          "shape": [
+            1,
+            636,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "v_proj",
+          "shape": [
+            1,
+            636,
+            4096
+          ]
+        },
+        {
+          "layer": 5,
+          "op": "o_proj",
+          "shape": [
+            1,
+            635,
+            4096
+          ]
+        }
+      ],
+      "smoke_tokens_only": [
+        11319,
+        2
+      ]
+    }
+  ],
+  "proof": "Actual operator, hidden-row, vision/projector, selective KV and RoPE hooks; same-B2 three-token dense numerical reference only; full original thresholds unchanged."
+}

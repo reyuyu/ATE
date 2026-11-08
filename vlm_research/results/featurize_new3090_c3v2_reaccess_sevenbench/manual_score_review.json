@@ -1,0 +1,444 @@
+{
+  "status": "PASS",
+  "method": "逐项人工逻辑复核原始输出、Gold、选项与完整题组；不以再次调用同一score函数充当人工审计。",
+  "records_reviewed": 17,
+  "mismatches": [],
+  "raw_predictions_unchanged": true,
+  "MME_selected_pair": {
+    "questions": 2,
+    "correct": 1,
+    "accuracy_percent": 50,
+    "accuracy_plus_percent": 0,
+    "not_full_MME_score": true
+  },
+  "MMBench_selected_group": {
+    "group": 1,
+    "rotations": 4,
+    "correct": 4,
+    "circular_group_score": 1
+  },
+  "ScienceQA_10015_official_source_check": {
+    "status": "PASS",
+    "official_record": {
+      "question": "Which material is these jeans made of?",
+      "choices": [
+        "metal",
+        "rock"
+      ],
+      "answer": 0,
+      "hint": "",
+      "image": "image.png",
+      "task": "closed choice",
+      "grade": "grade3",
+      "subject": "natural science",
+      "topic": "physics",
+      "category": "Materials",
+      "skill": "Identify multiple materials in objects",
+      "lecture": "A material is a type of matter. Wood, glass, metal, and plastic are common materials.\nSome objects are made of just one material.\nMost nails are made of metal.\nOther objects are made of more than one material.\nThis hammer is made of metal and wood.",
+      "solution": "Look at the picture of the jeans.\nThe jeans are made of two different materials. The buttons and zipper of the jeans are made of metal. The rest of the jeans are made of cotton.\nJeans are made of a type of cotton fabric called denim. Denim is a fabric woven in a special way.",
+      "split": "test"
+    },
+    "image_visually_reviewed": true,
+    "image_shows": "Blue jeans with visible metal button; official solution explicitly discusses metal zipper/buttons."
+  },
+  "OCRBench_identity_check": {
+    "records": 1000,
+    "duplicate_whole_annotations": 0,
+    "duplicate_dataset_image_question": 0,
+    "source_sha256": "df75957e75ea052e9f38f2c67a4f6676103998517345cf49ef7d03b62c835864"
+  },
+  "rows": [
+    {
+      "key": "GQA:201030272",
+      "question": "Does the Wii controller that looks oval have small size and white color?",
+      "raw_prediction": "Yes",
+      "gold": "yes",
+      "scoring": {
+        "score": 1.0,
+        "parsed": "yes"
+      },
+      "options": null,
+      "group": null,
+      "category": null,
+      "dataset": null,
+      "benchmark": "GQA",
+      "expected_score": 1,
+      "original_score": 1.0,
+      "status": "PASS",
+      "independent_logic": "Yes按冻结规则去尾句点并小写为yes，与Gold yes相等。"
+    },
+    {
+      "key": "GQA:201030233",
+      "question": "Is the color of the pillow the same as that of the shuttle?",
+      "raw_prediction": "No",
+      "gold": "yes",
+      "scoring": {
+        "score": 0.0,
+        "parsed": "no"
+      },
+      "options": null,
+      "group": null,
+      "category": null,
+      "dataset": null,
+      "benchmark": "GQA",
+      "expected_score": 0,
+      "original_score": 0.0,
+      "status": "PASS",
+      "independent_logic": "No规范为no，Gold为yes，不相等；不能因问题是Yes/No就计为正确。"
+    },
+    {
+      "key": "MMBench:1",
+      "question": "What is correct Python code to generate the content of the image?",
+      "raw_prediction": "D",
+      "gold": "D",
+      "scoring": {
+        "score": 1.0,
+        "parsed": "D",
+        "parse_failed": false,
+        "score_protocol": "OFFLINE_REPRODUCTION/VLMEvalKit exact matching"
+      },
+      "options": {
+        "A": "for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n",
+        "B": "thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))",
+        "C": "x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n",
+        "D": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)"
+      },
+      "group": 1,
+      "category": null,
+      "dataset": null,
+      "benchmark": "MMBench",
+      "expected_score": 1,
+      "original_score": 1.0,
+      "status": "PASS",
+      "independent_logic": "字母D直接对应Gold D；正确选项内容为fruits循环。"
+    },
+    {
+      "key": "MMBench:1000001",
+      "question": "What is correct Python code to generate the content of the image?",
+      "raw_prediction": "A",
+      "gold": "A",
+      "scoring": {
+        "score": 1.0,
+        "parsed": "A",
+        "parse_failed": false,
+        "score_protocol": "OFFLINE_REPRODUCTION/VLMEvalKit exact matching"
+      },
+      "options": {
+        "A": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)",
+        "B": "for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n",
+        "C": "thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))",
+        "D": "x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n"
+      },
+      "group": 1,
+      "category": null,
+      "dataset": null,
+      "benchmark": "MMBench",
+      "expected_score": 1,
+      "original_score": 1.0,
+      "status": "PASS",
+      "independent_logic": "轮换后正确内容移到A；输出A与Gold A一致。"
+    },
+    {
+      "key": "MMBench:2000001",
+      "question": "What is correct Python code to generate the content of the image?",
+      "raw_prediction": "B",
+      "gold": "B",
+      "scoring": {
+        "score": 1.0,
+        "parsed": "B",
+        "parse_failed": false,
+        "score_protocol": "OFFLINE_REPRODUCTION/VLMEvalKit exact matching"
+      },
+      "options": {
+        "A": "x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n",
+        "B": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)",
+        "C": "for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n",
+        "D": "thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))"
+      },
+      "group": 1,
+      "category": null,
+      "dataset": null,
+      "benchmark": "MMBench",
+      "expected_score": 1,
+      "original_score": 1.0,
+      "status": "PASS",
+      "independent_logic": "轮换后正确内容移到B；输出B与Gold B一致。"
+    },
+    {
+      "key": "MMBench:3000001",
+      "question": "What is correct Python code to generate the content of the image?",
+      "raw_prediction": "C",
+      "gold": "C",
+      "scoring": {
+        "score": 1.0,
+        "parsed": "C",
+        "parse_failed": false,
+        "score_protocol": "OFFLINE_REPRODUCTION/VLMEvalKit exact matching"
+      },
+      "options": {
+        "A": "thisdict = {\\n  \"brand\": \"Ford\",\\n  \"model\": \"Mustang\",\\n  \"year\": 1964\\n}\\n\\nprint(len(thisdict))",
+        "B": "x = 1\\ny = 2.8\\nz = 1j\\n\\nprint(type(x))\\nprint(type(y))\\nprint(type(z))\\n",
+        "C": "fruits = [\"apple\", \"banana\", \"cherry\"]\\nfor x in fruits:\\n  print(x)",
+        "D": "for x in range(6):\\n  print(x)\\nelse:\\n  print(\"Finally finished!\")\\n"
+      },
+      "group": 1,
+      "category": null,
+      "dataset": null,
+      "benchmark": "MMBench",
+      "expected_score": 1,
+      "original_score": 1.0,
+      "status": "PASS",
+      "independent_logic": "轮换后正确内容移到C；输出C与Gold C一致；四轮均对，组分为1。"
+    },
+    {
+      "key": "MME:OCR/0001.jpg:0",
+      "question": "Is the word in the logo \"angie's\"? Please answer yes or no.",
+      "raw_prediction": "No",
+      "gold": "yes",
+      "scoring": {
+        "score": 0.0,
+        "parsed": "no",
+        "parse_failed": false
+      },
+      "options": null,
+      "group": "OCR/0001.jpg",
+      "category": null,
+      "dataset": null,
+      "benchmark": "MME",
+      "expected_score": 0,
+      "original_score": 0.0,
+      "status": "PASS",
+      "independent_logic": "No解析为no，但Gold yes，得0。"
+    },
+    {
+      "key": "MME:OCR/0001.jpg:1",
+      "question": "Is the word in the logo \"angle's\"? Please answer yes or no.",
+      "raw_prediction": "No",
+      "gold": "no",
+      "scoring": {
+        "score": 1.0,
+        "parsed": "no",
+        "parse_failed": false
+      },
+      "options": null,
+      "group": "OCR/0001.jpg",
+      "category": null,
+      "dataset": null,
+      "benchmark": "MME",
+      "expected_score": 1,
+      "original_score": 1.0,
+      "status": "PASS",
+      "independent_logic": "No解析为no，Gold no，得1；整对仅一题正确，Accuracy为50%，Accuracy+为0%，不能冒充全量MME Total。"
+    },
+    {
+      "key": "OCRBench-v1:0000",
+      "question": "what is written in the image?",
+      "raw_prediction": "Centre",
+      "gold": "CENTRE",
+      "scoring": {
+        "score": 1.0,
+        "parsed": "centre",
+        "protocol": "official-v1-substring"
+      },
+      "options": null,
+      "group": null,
+      "category": "Regular Text Recognition",
+      "dataset": "IIIT5K",
+      "benchmark": "OCRBench-v1",
+      "expected_score": 1,
+      "original_score": 1.0,
+      "status": "PASS",
+      "independent_logic": "IIIT5K非HME：Centre和CENTRE均小写为centre，Gold子串匹配，得1。"
+    },
+    {
+      "key": "OCRBench-v1:0010",
+      "question": "what is written in the image?",
+      "raw_prediction": "Paris",
+      "gold": "AIRES",
+      "scoring": {
+        "score": 0.0,
+        "parsed": "paris",
+        "protocol": "official-v1-substring"
+      },
+      "options": null,
+      "group": null,
+      "category": "Regular Text Recognition",
+      "dataset": "IIIT5K",
+      "benchmark": "OCRBench-v1",
+      "expected_score": 0,
+      "original_score": 0.0,
+      "status": "PASS",
+      "independent_logic": "非HME：aires不是paris的子串，得0。"
+    },
+    {
+      "key": "OCRBench-v1:0900",
+      "question": "Please write out the expression of the formula in the image using LaTeX format.",
+      "raw_prediction": "",
+      "gold": [
+        "y _ { 2 } = - 1\n",
+        "y_2 = - 1\n"
+      ],
+      "scoring": {
+        "score": 0.0,
+        "parsed": "",
+        "protocol": "official-v1-substring"
+      },
+      "options": null,
+      "group": null,
+      "category": "Handwritten Mathematical Expression Recognition",
+      "dataset": "HME100k",
+      "benchmark": "OCRBench-v1",
+      "expected_score": 0,
+      "original_score": 0.0,
+      "status": "PASS",
+      "independent_logic": "HME保留大小写并去空格/换行后，两个非空接受答案均不在空预测中，得0。保留原始空输出，未丢题或改分。"
+    },
+    {
+      "key": "POPE:10",
+      "question": "Is there a dining table in the image?",
+      "raw_prediction": "No",
+      "gold": "no",
+      "scoring": {
+        "score": 1.0,
+        "parsed": "no",
+        "lexical_empty_defaults_yes": false
+      },
+      "options": null,
+      "group": null,
+      "category": null,
+      "dataset": null,
+      "benchmark": "POPE",
+      "expected_score": 1,
+      "original_score": 1.0,
+      "status": "PASS",
+      "independent_logic": "首句中有独立词No，冻结词法规则解析no，与Gold no一致。"
+    },
+    {
+      "key": "POPE:1",
+      "question": "Is there a snowboard in the image?",
+      "raw_prediction": "No",
+      "gold": "yes",
+      "scoring": {
+        "score": 0.0,
+        "parsed": "no",
+        "lexical_empty_defaults_yes": false
+      },
+      "options": null,
+      "group": null,
+      "category": null,
+      "dataset": null,
+      "benchmark": "POPE",
+      "expected_score": 0,
+      "original_score": 0.0,
+      "status": "PASS",
+      "independent_logic": "No解析no，与Gold yes不同，得0。"
+    },
+    {
+      "key": "ScienceQA-IMG:10015",
+      "question": "Which material is these jeans made of?",
+      "raw_prediction": "A",
+      "gold": 0,
+      "scoring": {
+        "score": 1.0,
+        "parsed": 0,
+        "parse_failed": false
+      },
+      "options": {
+        "A": "metal",
+        "B": "rock"
+      },
+      "group": null,
+      "category": null,
+      "dataset": null,
+      "benchmark": "ScienceQA-IMG",
+      "expected_score": 1,
+      "original_score": 1.0,
+      "status": "PASS",
+      "independent_logic": "A提取为选项索引0，与Gold0一致。额外核对官方problems.json与图片：问题确为jeans、选项metal/rock；官方solution说明纽扣和拉链为金属，非映射错位。"
+    },
+    {
+      "key": "ScienceQA-IMG:10001",
+      "question": "Think about the magnetic force between the magnets in each pair. Which of the following statements is true?",
+      "raw_prediction": "A",
+      "gold": 2,
+      "scoring": {
+        "score": 0.0,
+        "parsed": 0,
+        "parse_failed": false
+      },
+      "options": {
+        "A": "The magnitude of the magnetic force is the same in both pairs.",
+        "B": "The magnitude of the magnetic force is smaller in Pair 1.",
+        "C": "The magnitude of the magnetic force is smaller in Pair 2."
+      },
+      "group": null,
+      "category": null,
+      "dataset": null,
+      "benchmark": "ScienceQA-IMG",
+      "expected_score": 0,
+      "original_score": 0.0,
+      "status": "PASS",
+      "independent_logic": "输出A解析索引0，但Gold索引2即C，得0。"
+    },
+    {
+      "key": "TextVQA:34619",
+      "question": "how many percent is shown on the poster?",
+      "raw_prediction": "10",
+      "gold": [
+        "5 and 10",
+        "0",
+        "0%",
+        "0",
+        "5% and 10% ",
+        "0",
+        "0",
+        "0",
+        "10",
+        "0"
+      ],
+      "scoring": {
+        "score": 0.3,
+        "parsed": "10"
+      },
+      "options": null,
+      "group": null,
+      "category": null,
+      "dataset": null,
+      "benchmark": "TextVQA",
+      "expected_score": 0.3,
+      "original_score": 0.3,
+      "status": "PASS",
+      "independent_logic": "规范化预测10仅匹配十个答案中的一个。留掉该答案的项为0，其余9项为1/3；(0+9/3)/10=0.3。不是二值准确率。"
+    },
+    {
+      "key": "TextVQA:34603",
+      "question": "what does the small white text spell?",
+      "raw_prediction": "Drupalcon",
+      "gold": [
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "thursday",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen",
+        "copenhagen"
+      ],
+      "scoring": {
+        "score": 0.0,
+        "parsed": "drupalcon"
+      },
+      "options": null,
+      "group": null,
+      "category": null,
+      "dataset": null,
+      "benchmark": "TextVQA",
+      "expected_score": 0,
+      "original_score": 0.0,
+      "status": "PASS",
+      "independent_logic": "Drupalcon规范化为drupalcon，不匹配copenhagen或thursday，十个留一项均为0。"
+    }
+  ]
+}

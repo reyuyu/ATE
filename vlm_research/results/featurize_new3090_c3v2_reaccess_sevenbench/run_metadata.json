@@ -1,0 +1,320 @@
+{
+  "status": "COMPLETE",
+  "created_at": "2026-11-08T07:42:43.122138+08:00",
+  "binding": "191f04aa369224d9889737fbd30d54e5f384ef8b9b79ce475567ace067cbcaf3",
+  "config": {
+    "code_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+    "model": "llava-hf/llava-1.5-7b-hf",
+    "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+    "model_path": "/home/featurize/data/ate-recovery/models/llava-1.5-7b-hf",
+    "condition": "Physical-L11-L24",
+    "algorithm": "Original frozen B2 Physical C3-V2 + L11-L24 Visual Re-access",
+    "dtype": "float16",
+    "attention": "eager",
+    "transformers": "4.49.0",
+    "torch": "2.6.0+cu124",
+    "batch_size": 1,
+    "greedy": true,
+    "num_beams": 1,
+    "temperature": 0,
+    "max_new_tokens": {
+      "MMBench": 1024,
+      "MME": 128,
+      "POPE": 128,
+      "ScienceQA-IMG": 1024,
+      "TextVQA": 128,
+      "GQA": 32,
+      "OCRBench-v1": 128
+    },
+    "inputs": {
+      "MME": {
+        "view": "MME-paper",
+        "rows": 2374,
+        "inputs_sha256": "b38f33c779997a5b4f3d3a8c20a1598e962e66186fa75b82a445fbca6224a5a1",
+        "answers_sha256": "39d2eb900d01910e718211a7335f1d6f8c1e4f0327065a36c0d1173a5ced7229"
+      },
+      "ScienceQA-IMG": {
+        "view": "ScienceQA-IMG-paper",
+        "rows": 2017,
+        "inputs_sha256": "0000a838748ebd698e7d7e507d78887fb3e36254e264515eb396fb92f688eedd",
+        "answers_sha256": "f4247b4e99175ef68ece7dd14c6a1a28baae9de44f1edbdd57a8a54f60f272cc"
+      },
+      "POPE": {
+        "view": "POPE-paper",
+        "rows": 8910,
+        "inputs_sha256": "2176b2986d49a65b6efd702db60583e0667eb422056a5ccc6fc1150995cb23a5",
+        "answers_sha256": "4db02e853cae9e06dcae4e258e04bf44d9da6b7f9699955e4756180efb648bf1"
+      },
+      "TextVQA": {
+        "view": "TextVQA-OCR",
+        "rows": 5000,
+        "inputs_sha256": "3f16d6a01622d20ea6e68cdbaae939477df83f0f73b8257f45541352c8b247c6",
+        "answers_sha256": "1c6397d70429df0705e2e8a348523d4605cf8d7949050c3413b82c5a0ef441e4"
+      },
+      "MMBench": {
+        "view": "MMBench-paper",
+        "rows": 4377,
+        "inputs_sha256": "aef55f6c9f2e13c2fda87db95e1f7e4ba9f66a07fa33b335d57a77a4c215f349",
+        "answers_sha256": "b07649e7815bccc63276e9d59fd679dc3db3c0bc13e3e8f36f0175d85ec3a6a2",
+        "circular_groups": 1176,
+        "group_size_counts": {
+          "4": 938,
+          "3": 149,
+          "2": 89
+        },
+        "group_scope": "Every rotation present in original frozen Manifest; fixed D options can yield 3 rotations among 4 choices"
+      },
+      "GQA": {
+        "view": "GQA-testdev-balanced",
+        "questions": 12578,
+        "reuse_audit_sha256": "8b33e6c545bd3cd5a8196aed2e41ea9f04e60c80cc6d48bcd6a89b5036f2ceb0",
+        "max_new_tokens": 32
+      },
+      "OCRBench-v1": {
+        "view": "OCRBench-v1-official",
+        "questions": 1000,
+        "inputs_sha256": "9472ae40763151ad4d53c3f3e77d8df8427f83abcf5ab5beeb8cf00eedfdf98c",
+        "protocol": {
+          "id": "OCRBench-v1-official-LLaVA1.5-HF-physical-20261108",
+          "model": "llava-hf/llava-1.5-7b-hf",
+          "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+          "template": "vicuna_v1",
+          "prompt_suffix": "\nAnswer the question using a single word or phrase.",
+          "generation": {
+            "greedy": true,
+            "temperature": 0,
+            "top_p": null,
+            "num_beams": 1,
+            "max_new_tokens": 128
+          },
+          "preprocessing": "Original RGB and official LLaVA pad-to-square mean background, CLIP processor 336; no external OCR.",
+          "scorer": {
+            "source": {
+              "url": "https://raw.githubusercontent.com/Yuliang-Liu/MultimodalOCR/6ddb0a570419ce7ccb6913cf1c5ed84930320e7e/OCRBench/scripts/LLaVA1_5.py",
+              "bytes": 11377,
+              "sha256": "c480b271cf71e18848aa637c9f6e5d5f8b22fdcd3b969cb63167b4fbeb450a68"
+            },
+            "rules": "Official answer substring match: HME100k strips spaces and newlines case-sensitively; other datasets lowercase, strip outer whitespace and replace newline with space. Any accepted answer gives one point.",
+            "scale": "Raw summed score 0–1000, not a percentage or VQA soft score.",
+            "categories": {
+              "Regular Text Recognition": 50,
+              "Irregular Text Recognition": 50,
+              "Artistic Text Recognition": 50,
+              "Handwriting Recognition": 50,
+              "Digit String Recognition": 50,
+              "Non-Semantic Text Recognition": 50,
+              "Scene Text-centric VQA": 200,
+              "Doc-oriented VQA": 200,
+              "Key Information Extraction": 200,
+              "Handwritten Mathematical Expression Recognition": 100
+            }
+          }
+        },
+        "source": {
+          "official_repository": "https://github.com/Yuliang-Liu/MultimodalOCR",
+          "official_commit": "6ddb0a570419ce7ccb6913cf1c5ed84930320e7e",
+          "annotation": {
+            "url": "https://raw.githubusercontent.com/Yuliang-Liu/MultimodalOCR/6ddb0a570419ce7ccb6913cf1c5ed84930320e7e/OCRBench/OCRBench/OCRBench.json",
+            "bytes": 296682,
+            "sha256": "df75957e75ea052e9f38f2c67a4f6676103998517345cf49ef7d03b62c835864"
+          },
+          "image_download_url": "https://drive.google.com/file/d/1a3VRJx3V3SdOmPr7499Ky0Ug8AwqGUHO/view",
+          "image_zip_sha256": "c82acb33a2f00cdb499ea13a3cee7f3d1584269af339aed3fcb4e381d5a9f975",
+          "image_zip_bytes": 109105033,
+          "mirror_used": false,
+          "transfer_route": "Official Google Drive downloaded on Windows, same ZIP uploaded via verified SSH/SFTP to Featurize; no re-encoding.",
+          "raw_annotation_preserved": true,
+          "full_test_or_v2_used": false,
+          "restored_at": "2026-11-08T07:32:55.532631+08:00"
+        }
+      }
+    },
+    "source_sha256": {
+      "vlm_research/accuracy_autoresearch/engine.py": "4a381e87cd69b5b1e20eb10f3b52a9e1470f6662d845daafba6639bfe7c7974e",
+      "vlm_research/ate_fulljoint_v2/engine.py": "ef59447163c47528be2fde44751c124df3d550a6e89244046c3d40d99b4e9e44",
+      "vlm_research/c3v2_middle_reaccess/engine.py": "e541c9122636205aeaeb752346ea08aa1c1aff6a06cfd40a60319a1cfc2763ff",
+      "vlm_research/information_horizon_alignment/__init__.py": "86e6338d67b342ae6e26bad7e8942e915ab483b3391e324d930d983a6f492de6",
+      "vlm_research/information_horizon_alignment/common.py": "3958686c179db7a1f8e67ff57a52a29080eb9fcf206d52a6590c8cd9f580e4e6",
+      "vlm_research/information_horizon_alignment/engine.py": "edc2b8331512af12cdb881c4b0269c7fd744ebc3580e125a68afff11cd5df929",
+      "vlm_research/information_horizon_alignment/freeze.py": "750a236043849c0f11e51d260242aec6bcd4c72a64d122fc5e78b4e233d439ca",
+      "vlm_research/information_horizon_alignment/prepare.py": "2e5605bf3fdae0449c8da8a1f477801960fd8078bc35050d879b43333382f306",
+      "vlm_research/information_horizon_alignment/score.py": "50bc02bb5376af0f2aec9d32e0ce507e050b54f5b78137e1bd1ac8c8549a47f7",
+      "vlm_research/information_horizon_alignment/tests.py": "697ed1a8cc852d4691daa257705a9a05f72aec66d99726257e58aee2bdbfd6d3",
+      "vlm_research/information_horizon_alignment/worker.py": "62f7e5cc48bdb2deec85d97d7ba79ceec7cf255038815fbc4a8db00d1295f755",
+      "vlm_research/mme_seed_quality/engine.py": "f7f41d523c926354cf18bd7e4fbcfbd7aa46bb17bccf37b2fd8ce468ab0fc100",
+      "vlm_research/physical_handoff_fastpath/engine.py": "6e8abb7e04517678c189a896589abb97774652313ecedb57d58f97bd718b74a0"
+    },
+    "paper_protocol_sha256": "5ab87f8d8690843cd01143bc3f2e865c3ccf9f242900ede894639beeaede3105",
+    "original_paper_manifest_sha256": "9344bf5cd7649b02f85982dcefec02b4b8c4fd95e24f8f62f9f34cd278ee6a79",
+    "mapped_manifest_digest": "cfa0e2493f99af85f868ad7e88058f15e55ecc16665578fed4a9f96cebc2f6a8",
+    "expected_counts": {
+      "GQA": 12578,
+      "MME": 2374,
+      "ScienceQA-IMG": 2017,
+      "POPE": 8910,
+      "TextVQA": 5000,
+      "MMBench": 4377,
+      "OCRBench-v1": 1000
+    },
+    "expected_total": 36256,
+    "formal_new_generations": 23678,
+    "reused_GQA": 12578,
+    "semantics": {
+      "R_image_layers": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19
+      ],
+      "answer_image_layers": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "physical_hidden_exit_before": 25,
+      "physical_answer_attention_skip": [
+        2,
+        3,
+        4,
+        5
+      ],
+      "norm_mlp_residual": "unchanged",
+      "rope": "original unrenumbered",
+      "cache": "SelectiveKV physical image persistence only 11-24; gather and in-place append"
+    },
+    "MME_difference": {
+      "image": "landmark/03d5e3bfc958be38.jpg",
+      "recovered_sha256": "ecd588bb65d6397126fec9dbe556b1759e47d72a735a7f8776f86598fbbf174a",
+      "affected_questions": 2,
+      "data_not_replaced": true
+    },
+    "no_native_or_original_c3_or_other_conditions_generated": true,
+    "runner_sha256": "f938ea5f3ab8edae93147dddc911b056ba21a4ef532278e3f9cf399a2eacc7c1"
+  },
+  "model_loads_this_run": 1,
+  "physical_smoke_status": "PASS",
+  "runtime": {
+    "python": "3.11.8",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "cuda_runtime": "12.4"
+  },
+  "history_reuse": {
+    "GQA": {
+      "status": "PASS",
+      "source_commit": "57e37ce024b1b2adf9fa24fc24aabec32a1fed08",
+      "historical_binding": "c51570bee80c823f0778148b4c0cf92b598cc735a073deac999b2b86b726663d",
+      "source_sha256": {
+        "vlm_research/accuracy_autoresearch/common.py": "01a68cc5b739a3d9172e351d5d68250e33d997639c35ecbf84376b8bbf0f9d58",
+        "vlm_research/accuracy_autoresearch/engine.py": "4a381e87cd69b5b1e20eb10f3b52a9e1470f6662d845daafba6639bfe7c7974e",
+        "vlm_research/ate_fulljoint_v2/engine.py": "ef59447163c47528be2fde44751c124df3d550a6e89244046c3d40d99b4e9e44",
+        "vlm_research/benchmarks/protocols.py": "c80e8011f8ba3f7f627398ec2a3bff300d479db46ccb04a564d5ed525abd4f48",
+        "vlm_research/c3v2_middle_reaccess/common.py": "a765d0731ef5e230c705e3c516353953869352f68cd5cc0054a7708226f1e6c1",
+        "vlm_research/c3v2_middle_reaccess/engine.py": "e541c9122636205aeaeb752346ea08aa1c1aff6a06cfd40a60319a1cfc2763ff",
+        "vlm_research/gqa_testdev_c3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "vlm_research/gqa_testdev_c3/analyze.py": "c2d58bb75fe9c9edd51083aeeaa347cde45e998184a3ac2f91b5c628e80fbac5",
+        "vlm_research/gqa_testdev_c3/common.py": "79f734f25225e08e2cceaad17af900a41417f1861f4789dfcdd71f37c8b7cc83",
+        "vlm_research/gqa_testdev_c3/download.py": "e5b0ec33eeb24f04f52e0c9920b2b11b94839b9732c581efd7a6baffb4abf73a",
+        "vlm_research/gqa_testdev_c3/download_via_local.py": "b61771d52b53f57769f4ce5810eee97a954dd715c062f8de48c24d3d424f3796",
+        "vlm_research/gqa_testdev_c3/engine.py": "390786063d1b9a9d719f91a7398e4a55c0433287ba4b486f0de1e3729b1d0f96",
+        "vlm_research/gqa_testdev_c3/finish.py": "199cea030ff350cefd1f7e3a904043b278365de5fa65eedc66608e825e9cba4a",
+        "vlm_research/gqa_testdev_c3/import_verified_images.py": "5e6643a568906356dba2a7ec6981d78438fc30496597e5d7eb297f355b7bbc74",
+        "vlm_research/gqa_testdev_c3/prepare.py": "a03a0c6ddaaf7a20443115b54e6902cd207090f07484df4ae375ac778af43160",
+        "vlm_research/gqa_testdev_c3/run.py": "60cf134959dea2339df034226337342545085bf7b9d14d9b9aae30ce91692464",
+        "vlm_research/gqa_testdev_c3/tests.py": "017dbe0cb3286b40a6bee633c3fd80375db76e5eac3d0c78b9926fd8b22df333",
+        "vlm_research/p1_layerwise_accuracy/common.py": "cb87d6c1f3f6156a14ae22ef3a1cb60304ec90bcc328faa239bf4481a138328c",
+        "vlm_research/p1_layerwise_accuracy/engine.py": "3cbf506f506c33fe34a636d2a3b5f19f751e2831b3bb299aae460ae8a5add46a",
+        "vlm_research/physical_handoff_fastpath/engine.py": "6e8abb7e04517678c189a896589abb97774652313ecedb57d58f97bd718b74a0",
+        "vlm_research/physical_visual_handoff/common.py": "071f04ecb8cbc07c03251da236a371843a217536917494914aee55cc5162fcf3",
+        "vlm_research/physical_visual_handoff/engine.py": "e46dd347bc5d4763c179a02459b7bd09ab87e45e7499107930928df3c98f295b",
+        "vlm_research/reverse_writer/common.py": "b49eb59480189742bf3caf126c01d9ddb05661d7c4eef1f489cb50a5d011b3b8",
+        "vlm_research/reverse_writer/engine.py": "e7a8d0e5d853cbddd21286ef690e3b8abbaaa34107cdd71e55c0107739b7709c",
+        "vlm_research/knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+        "vlm_research/vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d"
+      },
+      "weights_sha256": {
+        "added_tokens.json": "a94c56096001713e3eb9a34b1a545a8c1d5e8034ed2fb81f897c8cb54b420121",
+        "chat_template.json": "854445c0a45532ecbee1ae9aa31d4be19644060a156f2c88456f50f584261543",
+        "config.json": "0bde54495c54bcc346064a0d314b010d1c4d3ca7f7e583b6f711949a35352c0f",
+        "generation_config.json": "3a6dc8c202be258023f58a03f804bdcacf138b8a2cc7492be2530e16945a0951",
+        "model-00001-of-00003.safetensors": "c11dbf016ee7d35ee130c19b67e20eb04873996006f424b7bcbd453b6517ee66",
+        "model-00002-of-00003.safetensors": "46df6c6e5fad297fe7fbca4963dcf180cb1d0528cabc884d1f603311fed01328",
+        "model-00003-of-00003.safetensors": "4f06177c37ca13944e73b57dd6d051767b950dffc12400c700dfa2509c24c697",
+        "model.safetensors.index.json": "73af906b5ac12aea6eddf104d482d2a50bca30b20d61ee9f6c5269d3427a6991",
+        "preprocessor_config.json": "a8d5e64ee5c07ff6d70142856d178ac39d0563da3612e32110fa824f5337b7a1",
+        "processor_config.json": "fef918d6ba333f72a066877965bc4a162308568ba62aa90c806caedf7b45d64e",
+        "special_tokens_map.json": "358c249e2fb29060c6b73157d428853b0c48710deffc8ee670ab1013880946c9",
+        "tokenizer.json": "30e1294abd835edfebb24618fce6f47c21ffb2b2802520d150bdee0b808b47cb",
+        "tokenizer.model": "9e556afd44213b6bd1be2b850ebbbd98f5481437a8021afaf58ee7fb1818d347",
+        "tokenizer_config.json": "79b7f1ebceddf7235f3791c387d781818b0c7e7cf868d0e4f71896a55b949833"
+      },
+      "model_weight_hash_basis": "Already accepted shard hashes; no repeat large weight hashing.",
+      "records_validated": 37734,
+      "reaccess_records": 12578,
+      "conditions": {
+        "C3-V2": 12578,
+        "C3-V2+L11-L24": 12578,
+        "Native": 12578
+      },
+      "all_record_and_manifest_bindings_verified": true,
+      "all_questions_gold_and_exact_input_tensor_hashes_verified": true,
+      "distinct_preprocessed_images": 398,
+      "input_preprocessing": "Original HF crop and USER chat template without paper Vicuna system, unchanged GQA protocol.",
+      "max_new_tokens": 32,
+      "score": 7537,
+      "empty": 2,
+      "cuda_initialized": false,
+      "runtime_patch_difference": "Historical Python 3.11.15 vs current 3.11.8; identical torch2.6.0+cu124/tfm4.49.0/model FP16/Eager and exact input tensors. Driver/GPU instance identity differs.",
+      "raw_database_gzip_sha256": {
+        "worker0": "f3bb0c6fb09458dd800e066710261c9487d625699065a78e67c0b1a05dfca281",
+        "worker1": "949452493045d6264d11302c581a09d65f644e36334b055873be6dc53347ceda"
+      },
+      "manifest_sha256": "b2f40574d22547dc2fdb8a30a7e116fb2ddba7a2c8ca348a71effbef70e01d9e"
+    },
+    "paper_five": "Previous run was original Physical-C3 only; no complete matching B2 paper cohort exists.",
+    "OCRBench": "Newly restored official v1; no previous result"
+  },
+  "native_comparison": "GQA only has exact same-protocol historical full Native; paper five Native15 smoke is not a full control; OCR no control.",
+  "gpu": {
+    "before": "NVIDIA GeForce RTX 3090, GPU-e392cec6-7ec8-1fee-397b-fde03a79e79e, 610.57.04, 24576 MiB, 266 MiB, 23859 MiB",
+    "peak_allocated_mib": 14665.2099609375,
+    "peak_reserved_mib": 15366.0
+  },
+  "formal_started_at": "2026-11-08T07:44:39.316644+08:00",
+  "formal_records": 36256,
+  "completed_at": "2026-11-08T10:10:06.851939+08:00",
+  "release": {
+    "allocated_mib": 32.0,
+    "reserved_mib": 32.0,
+    "process_exit_releases_context": true
+  },
+  "independent_final_scoring": "PASS",
+  "final_scored_at": "2026-11-08T10:11:08.771987+08:00"
+}

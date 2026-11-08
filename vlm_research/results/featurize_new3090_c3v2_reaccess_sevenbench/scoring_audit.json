@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "records": 36256,
+  "all_row_scorings_recomputed_with_frozen_scorers": true,
+  "independent_non_MM_row_checks": 31879,
+  "MMBench": "Official frozen matcher result plus independent group-all-correct arithmetic for1176 complete groups.",
+  "TextVQA": "All5000: independently enumerate ten leave-one-out score terms after frozen answer normalization; not binary accuracy.",
+  "OCRBench": "Exact official scorer AST loop independently executed on preserved raw annotations/predictions; all1000 agree.",
+  "MME": "Independent14-task Accuracy + both-pair-correct Accuracy+ arithmetic for1187 pairs.",
+  "mismatches": [],
+  "input_or_prompt_issue": false,
+  "raw_predictions_unchanged": true,
+  "previous_native15_audit": "PASS15/15, retained in Windows previous-run archive; smoke is not a formal Native baseline.",
+  "manual_logic_review": {
+    "status": "PASS",
+    "records": 17,
+    "path": "manual_score_review.json",
+    "same_scorer_only_reinvocation": false,
+    "MME_pair_and_complete_Circular_group_included": true
+  },
+  "cpu_execution": "CUDA_VISIBLE_DEVICES empty throughout; only CPU score-function AST loaded, no GPU entry/model imported; torch.cuda.is_initialized() asserted false."
+}

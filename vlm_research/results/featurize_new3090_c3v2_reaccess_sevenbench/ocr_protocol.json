@@ -1,0 +1,36 @@
+{
+  "id": "OCRBench-v1-official-LLaVA1.5-HF-physical-20261108",
+  "model": "llava-hf/llava-1.5-7b-hf",
+  "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "template": "vicuna_v1",
+  "prompt_suffix": "\nAnswer the question using a single word or phrase.",
+  "generation": {
+    "greedy": true,
+    "temperature": 0,
+    "top_p": null,
+    "num_beams": 1,
+    "max_new_tokens": 128
+  },
+  "preprocessing": "Original RGB and official LLaVA pad-to-square mean background, CLIP processor 336; no external OCR.",
+  "scorer": {
+    "source": {
+      "url": "https://raw.githubusercontent.com/Yuliang-Liu/MultimodalOCR/6ddb0a570419ce7ccb6913cf1c5ed84930320e7e/OCRBench/scripts/LLaVA1_5.py",
+      "bytes": 11377,
+      "sha256": "c480b271cf71e18848aa637c9f6e5d5f8b22fdcd3b969cb63167b4fbeb450a68"
+    },
+    "rules": "Official answer substring match: HME100k strips spaces and newlines case-sensitively; other datasets lowercase, strip outer whitespace and replace newline with space. Any accepted answer gives one point.",
+    "scale": "Raw summed score 0–1000, not a percentage or VQA soft score.",
+    "categories": {
+      "Regular Text Recognition": 50,
+      "Irregular Text Recognition": 50,
+      "Artistic Text Recognition": 50,
+      "Handwriting Recognition": 50,
+      "Digit String Recognition": 50,
+      "Non-Semantic Text Recognition": 50,
+      "Scene Text-centric VQA": 200,
+      "Doc-oriented VQA": 200,
+      "Key Information Extraction": 200,
+      "Handwritten Mathematical Expression Recognition": 100
+    }
+  }
+}
