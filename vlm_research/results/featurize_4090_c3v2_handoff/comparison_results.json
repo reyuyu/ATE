@@ -1,0 +1,61 @@
+{
+  "status": "BLOCKED",
+  "started_at": "2026-11-08T10:55:11.859781+00:00",
+  "condition": "Original Physical C3-V2, no reaccess",
+  "formal_benchmark": false,
+  "code_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+  "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "model_path": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+  "model_loads": 1,
+  "dtype": "float16",
+  "attention": "eager",
+  "greedy": true,
+  "batch_size": 1,
+  "cases": [],
+  "expected": 15,
+  "environment": {
+    "status": "PASS",
+    "at": "2026-11-08T10:40:57.024480+00:00",
+    "python": "3.11.8",
+    "packages": {
+      "torch": "2.6.0+cu124",
+      "torchvision": "0.21.0+cu124",
+      "transformers": "4.49.0",
+      "accelerate": "1.4.0",
+      "huggingface-hub": "0.29.3",
+      "tokenizers": "0.21.4",
+      "safetensors": "0.5.3",
+      "Pillow": "11.1.0",
+      "numpy": "1.26.4",
+      "sentencepiece": "0.2.0",
+      "protobuf": "4.25.3",
+      "pandas": "2.2.2",
+      "packaging": "26.3",
+      "regex": "2026.11.7"
+    },
+    "cuda_runtime": "12.4",
+    "cuda_initialized": false,
+    "environment": "/home/featurize/.venvs/ate4090-frozen",
+    "storage": "Datasets, model and dedicated venv only on local ext4; /home/featurize/work contains code, reports and results only.",
+    "download_repair": "Preserved all complete original PyTorch/CUDA wheels; used Tsinghua PyPI mirror for frozen small dependencies after official generic dependency downloads were slow."
+  },
+  "local_storage_only": true,
+  "reference_sources": [
+    "2c5d1820679b5eaad844e06db9cf46dcad23316f",
+    "57e37ce024b1b2adf9fa24fc24aabec32a1fed08"
+  ],
+  "gpu": "NVIDIA GeForce RTX 4090, GPU-643a4d73-25eb-6b19-1acc-ccf94c744cec, 610.57.04, 24564 MiB, 23715 MiB",
+  "failure": {
+    "phase": "PHYSICAL_SMOKE",
+    "error": "AssertionError({'passed': False, 'max_abs_logits': 0.015625, 'mean_relative_error': 0.005348490085452795, 'max_relative_error': 24.10091781616211, 'hidden_relative_rmse': 0.010154514573514462, 'hidden_cosine_distance': 3.0875205993652344e-05, 'all_argmax_equal': True, 'tolerances': {'logit_atol': 0.1, 'logit_rtol': 0.003, 'hidden_relative_rmse': 0.01, 'hidden_cosine': 0.0001}})",
+    "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/work/ATE/vlm_research/results/featurize_4090_c3v2_handoff/compare_c3.py\", line 82, in run\n    physical=helper.smoke(adapter,[c['sample'] for c in plan['cases'] if c['sample']['benchmark']!='GQA'])\n             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/work/ATE/vlm_research/results/featurize_new3090_c3v2_evaluation/c3_runner.py\", line 238, in smoke\n    assert gate['passed'],gate\nAssertionError: {'passed': False, 'max_abs_logits': 0.015625, 'mean_relative_error': 0.005348490085452795, 'max_relative_error': 24.10091781616211, 'hidden_relative_rmse': 0.010154514573514462, 'hidden_cosine_distance': 3.0875205993652344e-05, 'all_argmax_equal': True, 'tolerances': {'logit_atol': 0.1, 'logit_rtol': 0.003, 'hidden_relative_rmse': 0.01, 'hidden_cosine': 0.0001}}\n"
+  },
+  "peak_allocated_mib": 14064.9443359375,
+  "peak_reserved_mib": 14174.0,
+  "release": {
+    "allocated_mib": 32.0,
+    "reserved_mib": 32.0,
+    "process_exit_releases_context": true
+  },
+  "finished_at": "2026-11-08T10:55:29.897671+00:00"
+}

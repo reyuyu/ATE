@@ -1,0 +1,14 @@
+LOADING_SINGLE_FP16_EAGER_MODEL
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:01<00:03,  1.86s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:03<00:02,  2.02s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:05<00:00,  1.94s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:05<00:00,  1.95s/it]
+PHYSICAL_SMOKE_PASS MME MME:OCR/0001.jpg:0 {'passed': True, 'max_abs_logits': 0.0234375, 'mean_relative_error': 0.034224983304739, 'max_relative_error': 869.1738891601562, 'hidden_relative_rmse': 0.0042853644117712975, 'hidden_cosine_distance': 8.821487426757812e-06, 'all_argmax_equal': True, 'tolerances': {'logit_atol': 0.1, 'logit_rtol': 0.003, 'hidden_relative_rmse': 0.01, 'hidden_cosine': 0.0001}}
+PHYSICAL_SMOKE_PASS ScienceQA-IMG ScienceQA-IMG:10001 {'passed': True, 'max_abs_logits': 0.01953125, 'mean_relative_error': 0.006242739851586521, 'max_relative_error': 41.592140197753906, 'hidden_relative_rmse': 0.006601392291486263, 'hidden_cosine_distance': 2.2172927856445312e-05, 'all_argmax_equal': True, 'tolerances': {'logit_atol': 0.1, 'logit_rtol': 0.003, 'hidden_relative_rmse': 0.01, 'hidden_cosine': 0.0001}}
+STOPPED PHYSICAL_SMOKE Traceback (most recent call last):
+  File "/home/featurize/work/ATE/vlm_research/results/featurize_4090_c3v2_handoff/compare_c3.py", line 82, in run
+    physical=helper.smoke(adapter,[c['sample'] for c in plan['cases'] if c['sample']['benchmark']!='GQA'])
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_c3v2_evaluation/c3_runner.py", line 238, in smoke
+    assert gate['passed'],gate
+AssertionError: {'passed': False, 'max_abs_logits': 0.015625, 'mean_relative_error': 0.005348490085452795, 'max_relative_error': 24.10091781616211, 'hidden_relative_rmse': 0.010154514573514462, 'hidden_cosine_distance': 3.0875205993652344e-05, 'all_argmax_equal': True, 'tolerances': {'logit_atol': 0.1, 'logit_rtol': 0.003, 'hidden_relative_rmse': 0.01, 'hidden_cosine': 0.0001}}
+
+FINAL_COMPARISON BLOCKED 0

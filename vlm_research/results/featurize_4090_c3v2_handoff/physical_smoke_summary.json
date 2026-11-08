@@ -1,0 +1,80 @@
+{
+  "status": "BLOCKED",
+  "passed_cases": [
+    {
+      "benchmark": "MME",
+      "key": "MME:OCR/0001.jpg:0",
+      "status": "PASS",
+      "numerical_equivalence": {
+        "passed": true,
+        "max_abs_logits": 0.0234375,
+        "mean_relative_error": 0.034224983304739,
+        "max_relative_error": 869.1738891601562,
+        "hidden_relative_rmse": 0.0042853644117712975,
+        "hidden_cosine_distance": 8.821487426757812e-06,
+        "all_argmax_equal": true,
+        "tolerances": {
+          "logit_atol": 0.1,
+          "logit_rtol": 0.003,
+          "hidden_relative_rmse": 0.01,
+          "hidden_cosine": 0.0001
+        }
+      },
+      "rope_exact": true,
+      "visual_hidden_removed_before_L20": true,
+      "answer_attention_physically_skipped": true,
+      "compact_kv_original_positions_exact": true,
+      "blocked_image_probability_zero": true
+    },
+    {
+      "benchmark": "ScienceQA-IMG",
+      "key": "ScienceQA-IMG:10001",
+      "status": "PASS",
+      "numerical_equivalence": {
+        "passed": true,
+        "max_abs_logits": 0.01953125,
+        "mean_relative_error": 0.006242739851586521,
+        "max_relative_error": 41.592140197753906,
+        "hidden_relative_rmse": 0.006601392291486263,
+        "hidden_cosine_distance": 2.2172927856445312e-05,
+        "all_argmax_equal": true,
+        "tolerances": {
+          "logit_atol": 0.1,
+          "logit_rtol": 0.003,
+          "hidden_relative_rmse": 0.01,
+          "hidden_cosine": 0.0001
+        }
+      },
+      "rope_exact": true,
+      "visual_hidden_removed_before_L20": true,
+      "answer_attention_physically_skipped": true,
+      "compact_kv_original_positions_exact": true,
+      "blocked_image_probability_zero": true
+    }
+  ],
+  "failed_benchmark": "POPE",
+  "failed_key": "POPE:10000001",
+  "failure_phase": "same-algorithm physical versus dense short numerical gate",
+  "numerical_failure": {
+    "passed": false,
+    "max_abs_logits": 0.015625,
+    "mean_relative_error": 0.005348490085452795,
+    "max_relative_error": 24.10091781616211,
+    "hidden_relative_rmse": 0.010154514573514462,
+    "hidden_cosine_distance": 3.0875205993652344e-05,
+    "all_argmax_equal": true,
+    "tolerances": {
+      "logit_atol": 0.1,
+      "logit_rtol": 0.003,
+      "hidden_relative_rmse": 0.01,
+      "hidden_cosine": 0.0001
+    }
+  },
+  "not_run": [
+    "TextVQA physical smoke",
+    "MMBench physical smoke",
+    "Dedicated fifteen-case comparison"
+  ],
+  "unchanged_frozen_tolerances": true,
+  "no_further_GPU_work": true
+}
