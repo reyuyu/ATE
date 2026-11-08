@@ -1,0 +1,330 @@
+{
+  "historical_only": true,
+  "C3_five_commit": "2c5d1820679b5eaad844e06db9cf46dcad23316f",
+  "Reaccess_seven_commit": "0414e553ba6fd1e21626ecf741489d225b44279c",
+  "migration_commit": "d6157216199f6e2bb6c03557c05317649fe9c7d6",
+  "GQA_protocol_audit_commit": "25989d8c0e00cf53a980c726be94d84feaabbc14",
+  "GQA_legacy_HF_crop": {
+    "Native": 60.6297,
+    "C3-V2": 57.2746,
+    "C3-V2+L11-L24": 59.92208618222293
+  },
+  "Reaccess_seven_scores": {
+    "GQA": {
+      "status": "COMPLETE",
+      "questions": 12578,
+      "generation_flags": {
+        "eos": 12578,
+        "empty": 2,
+        "truncated": 0
+      },
+      "answer_parse_failures": 0,
+      "metric": "Accuracy",
+      "value": 59.92208618222293,
+      "unit": "%",
+      "score_sum": 7537.0
+    },
+    "MMBench": {
+      "status": "COMPLETE",
+      "questions": 4377,
+      "generation_flags": {
+        "eos": 4377,
+        "empty": 0,
+        "truncated": 0
+      },
+      "answer_parse_failures": 3,
+      "metric": "Circular Accuracy",
+      "value": 63.01020408163265,
+      "unit": "%",
+      "groups": 1176,
+      "groups_correct": 741,
+      "row_accuracy_secondary": 72.92666209732694
+    },
+    "MME": {
+      "status": "COMPLETE",
+      "questions": 2374,
+      "generation_flags": {
+        "eos": 2374,
+        "empty": 0,
+        "truncated": 0
+      },
+      "answer_parse_failures": 2,
+      "metric": "MME Total",
+      "scores": {
+        "Perception": 1488.3882553021208,
+        "Cognition": 318.2142857142857,
+        "Total": 1806.6025410164066
+      },
+      "tasks": [
+        {
+          "task": "existence",
+          "accuracy": 96.66666666666667,
+          "accuracy_plus": 93.33333333333333,
+          "score": 190.0,
+          "questions": 60,
+          "pairs": 30
+        },
+        {
+          "task": "count",
+          "accuracy": 80.0,
+          "accuracy_plus": 63.33333333333333,
+          "score": 143.33333333333331,
+          "questions": 60,
+          "pairs": 30
+        },
+        {
+          "task": "position",
+          "accuracy": 73.33333333333333,
+          "accuracy_plus": 50.0,
+          "score": 123.33333333333333,
+          "questions": 60,
+          "pairs": 30
+        },
+        {
+          "task": "color",
+          "accuracy": 88.33333333333333,
+          "accuracy_plus": 76.66666666666667,
+          "score": 165.0,
+          "questions": 60,
+          "pairs": 30
+        },
+        {
+          "task": "posters",
+          "accuracy": 84.6938775510204,
+          "accuracy_plus": 70.74829931972789,
+          "score": 155.4421768707483,
+          "questions": 294,
+          "pairs": 147
+        },
+        {
+          "task": "celebrity",
+          "accuracy": 74.41176470588235,
+          "accuracy_plus": 54.11764705882353,
+          "score": 128.52941176470588,
+          "questions": 340,
+          "pairs": 170
+        },
+        {
+          "task": "scene",
+          "accuracy": 86.0,
+          "accuracy_plus": 73.5,
+          "score": 159.5,
+          "questions": 400,
+          "pairs": 200
+        },
+        {
+          "task": "landmark",
+          "accuracy": 89.25,
+          "accuracy_plus": 78.5,
+          "score": 167.75,
+          "questions": 400,
+          "pairs": 200
+        },
+        {
+          "task": "artwork",
+          "accuracy": 73.0,
+          "accuracy_plus": 50.0,
+          "score": 123.0,
+          "questions": 400,
+          "pairs": 200
+        },
+        {
+          "task": "OCR",
+          "accuracy": 77.5,
+          "accuracy_plus": 55.00000000000001,
+          "score": 132.5,
+          "questions": 40,
+          "pairs": 20
+        },
+        {
+          "task": "commonsense_reasoning",
+          "accuracy": 70.0,
+          "accuracy_plus": 45.714285714285715,
+          "score": 115.71428571428572,
+          "questions": 140,
+          "pairs": 70
+        },
+        {
+          "task": "numerical_calculation",
+          "accuracy": 37.5,
+          "accuracy_plus": 15.0,
+          "score": 52.5,
+          "questions": 40,
+          "pairs": 20
+        },
+        {
+          "task": "text_translation",
+          "accuracy": 60.0,
+          "accuracy_plus": 25.0,
+          "score": 85.0,
+          "questions": 40,
+          "pairs": 20
+        },
+        {
+          "task": "code_reasoning",
+          "accuracy": 50.0,
+          "accuracy_plus": 15.0,
+          "score": 65.0,
+          "questions": 40,
+          "pairs": 20
+        }
+      ],
+      "image_pairs": 1187,
+      "known_single_image_SHA_difference_preserved": true
+    },
+    "OCRBench-v1": {
+      "status": "COMPLETE",
+      "questions": 1000,
+      "generation_flags": {
+        "eos": 973,
+        "empty": 36,
+        "truncated": 27
+      },
+      "answer_parse_failures": 0,
+      "metric": "Official OCRBench v1 raw score",
+      "value": 281,
+      "unit": "/1000",
+      "categories": {
+        "Regular Text Recognition": {
+          "score": 42,
+          "questions": 50
+        },
+        "Irregular Text Recognition": {
+          "score": 39,
+          "questions": 50
+        },
+        "Artistic Text Recognition": {
+          "score": 42,
+          "questions": 50
+        },
+        "Handwriting Recognition": {
+          "score": 25,
+          "questions": 50
+        },
+        "Digit String Recognition": {
+          "score": 2,
+          "questions": 50
+        },
+        "Non-Semantic Text Recognition": {
+          "score": 4,
+          "questions": 50
+        },
+        "Scene Text-centric VQA": {
+          "score": 105,
+          "questions": 200
+        },
+        "Doc-oriented VQA": {
+          "score": 20,
+          "questions": 200
+        },
+        "Key Information Extraction": {
+          "score": 2,
+          "questions": 200
+        },
+        "Handwritten Mathematical Expression Recognition": {
+          "score": 0,
+          "questions": 100
+        }
+      }
+    },
+    "POPE": {
+      "status": "COMPLETE",
+      "questions": 8910,
+      "generation_flags": {
+        "eos": 8910,
+        "empty": 0,
+        "truncated": 0
+      },
+      "answer_parse_failures": 0,
+      "metric": "Accuracy",
+      "value": 87.31762065095398,
+      "unit": "%",
+      "score_sum": 7780.0,
+      "strategies": {
+        "random": {
+          "questions": 2910,
+          "accuracy": 89.45017182130584,
+          "tp": 1243,
+          "tn": 1360,
+          "fp": 50,
+          "fn": 257
+        },
+        "popular": {
+          "questions": 3000,
+          "accuracy": 88.03333333333333,
+          "tp": 1243,
+          "tn": 1398,
+          "fp": 102,
+          "fn": 257
+        },
+        "adversarial": {
+          "questions": 3000,
+          "accuracy": 84.53333333333333,
+          "tp": 1243,
+          "tn": 1293,
+          "fp": 207,
+          "fn": 257
+        }
+      }
+    },
+    "ScienceQA-IMG": {
+      "status": "COMPLETE",
+      "questions": 2017,
+      "generation_flags": {
+        "eos": 2017,
+        "empty": 0,
+        "truncated": 0
+      },
+      "answer_parse_failures": 10,
+      "metric": "Accuracy",
+      "value": 68.4680218145761,
+      "unit": "%",
+      "score_sum": 1381.0
+    },
+    "TextVQA": {
+      "status": "COMPLETE",
+      "questions": 5000,
+      "generation_flags": {
+        "eos": 4995,
+        "empty": 27,
+        "truncated": 5
+      },
+      "answer_parse_failures": 0,
+      "metric": "VQA Soft Accuracy",
+      "value": 54.790000000000084,
+      "unit": "%",
+      "score_sum": 2739.500000000004
+    }
+  },
+  "new_official_aligned_task_on_other_GPU_snapshot": {
+    "status": "RUNNING",
+    "phase": "FORMAL",
+    "started_at": "2026-11-08T11:54:52.604175+00:00",
+    "pid": 9261,
+    "protocol_sha256": "1a7db2cacd807105fe6ccd1bf9c91652032050c242c2a49ddd5d7f490dcdeec4",
+    "expected": 37734,
+    "completed": 24525,
+    "counts": {
+      "Native": 12578,
+      "C3-V2": 11947,
+      "C3-V2+L11-L24": 0
+    },
+    "correct": {
+      "Native": 7788,
+      "C3-V2": 6895,
+      "C3-V2+L11-L24": 0
+    },
+    "model_loads": 2,
+    "GPU_before_load": "NVIDIA GeForce RTX 4090, GPU-643a4d73-25eb-6b19-1acc-ccf94c744cec, 610.57.04, 23715 MiB",
+    "formal_started_at": "2026-11-08T11:56:18.253613+00:00",
+    "current_condition": "C3-V2",
+    "last_question_id": "2046334",
+    "last_index": 11946,
+    "updated_at": "2026-11-08T13:44:59.746708+00:00",
+    "elapsed_seconds": 6607.142511607,
+    "fresh_formal_generations": 24525,
+    "formal_generations_per_second": 3.7606434941828772
+  },
+  "other_task_touched": false,
+  "interpretation": "Official-aligned full three-way results still incomplete at snapshot; retain legacy results separately. No legacy/new-protocol delta computed."
+}

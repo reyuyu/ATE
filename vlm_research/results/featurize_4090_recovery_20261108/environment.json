@@ -1,0 +1,46 @@
+{
+  "status": "PASS",
+  "at": "2026-11-08T13:45:09.254883+00:00",
+  "python": "3.11.8",
+  "executable": "/home/featurize/.venvs/ate-frozen/bin/python",
+  "packages": {
+    "torch": "2.6.0+cu124",
+    "torchvision": "0.21.0+cu124",
+    "transformers": "4.49.0",
+    "accelerate": "1.15.0",
+    "huggingface-hub": "0.36.2",
+    "tokenizers": "0.21.4",
+    "safetensors": "0.8.0",
+    "Pillow": "10.3.0",
+    "numpy": "1.26.4",
+    "sentencepiece": "0.2.0"
+  },
+  "torch_cuda_runtime": "12.4",
+  "GPU": "NVIDIA GeForce RTX 4090, GPU-b1911368-563d-916d-cb16-e7c2c9ead04a, 610.57.04, 24564 MiB, 1 MiB, 0 %",
+  "nvidia_smi": "Sun Nov  8 13:45:09 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 610.57.04              KMD Version: 610.57.04     CUDA UMD Version: 13.3     |\n+-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 4090        Off |   00000000:09:00.0 Off |                  Off |\n| 30%   30C    P8             20W /  450W |       1MiB /  24564MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n\n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI              PID   Type   Process name                        GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|  No running processes found                                                             |\n+-----------------------------------------------------------------------------------------+",
+  "cuda_initialized_by_CPU_finalize": false,
+  "storage": {
+    "data": {
+      "path": "/home/featurize/ate-local-data/ate-recovery",
+      "filesystem": "ext4   /dev/vda3 /",
+      "free_GiB": 639.3858451843262
+    },
+    "model": {
+      "path": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+      "filesystem": "ext4   /dev/vda3 /",
+      "free_GiB": 639.3858451843262
+    },
+    "environment": {
+      "path": "/home/featurize/.venvs/ate-frozen",
+      "filesystem": "ext4   /dev/vda3 /",
+      "free_GiB": 639.3858451843262
+    },
+    "code": {
+      "path": "/home/featurize/work/ATE-4090-recovery-20261108",
+      "filesystem": "nfs    10.128.0.152:/featurize/o7HMLhjyUvvDnSjf08a7iUJIVJw7kLOkSQOlHS18EUkcQMkaNYp7dycmlLYHUTZs /home/featurize/work",
+      "free_GiB": 26.8017578125
+    }
+  },
+  "dependency_policy": "Base Python retained. Dedicated system-site-packages venv; only required Torch/vision and missing HF dependencies installed. No full requirements installation.",
+  "unused_base_package_note": "Base torchaudio 2.2.2 has its old Torch pin; it is unused by these image/text paths. Dynamo optree warning is unused; eager paths validated."
+}

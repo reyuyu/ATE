@@ -1,0 +1,570 @@
+{
+  "status": "READY_WITH_WARNING",
+  "started_at": "2026-11-08T13:33:15.194682+00:00",
+  "model_loads": 1,
+  "scope": "three frozen samples only; no formal accuracy",
+  "strict_thresholds": {
+    "logit_atol": 0.1,
+    "logit_rtol": 0.003,
+    "hidden_relative_rmse": 0.01,
+    "hidden_cosine": 0.0001
+  },
+  "checks": [
+    {
+      "protocol": "GQA-official-aligned-vicuna-pad",
+      "question_id": "201030233",
+      "condition": "C3-V2",
+      "structural_status": "PASS",
+      "strict_numerical_status": "PASS",
+      "numerical_equivalence": {
+        "passed": true,
+        "max_abs_logits": 0.046875,
+        "mean_relative_error": 0.01141464135920008,
+        "max_relative_error": 39.72442626953125,
+        "hidden_relative_rmse": 0.002429291605949402,
+        "hidden_cosine_distance": 3.3974647521972656e-06,
+        "all_argmax_equal": true,
+        "tolerances": {
+          "logit_atol": 0.1,
+          "logit_rtol": 0.003,
+          "hidden_relative_rmse": 0.01,
+          "hidden_cosine": 0.0001
+        }
+      },
+      "short_tokens": [
+        3869,
+        2,
+        13
+      ],
+      "short_text": "Yes",
+      "short_output_dense_exact": true,
+      "rope_exact": true,
+      "input_tensors_unchanged": true,
+      "visual_hidden_exit": 20,
+      "retained_visual_KV_layers": [],
+      "attention_L2_L5_physically_skipped": true,
+      "norm_MLP_residual_checks": "PASS",
+      "vision_calls": 1,
+      "projector_calls": 1,
+      "all_logits_finite": true
+    },
+    {
+      "protocol": "GQA-official-aligned-vicuna-pad",
+      "question_id": "201030233",
+      "condition": "C3-V2+L11-L24",
+      "structural_status": "PASS",
+      "strict_numerical_status": "PASS",
+      "numerical_equivalence": {
+        "passed": true,
+        "max_abs_logits": 0.0625,
+        "mean_relative_error": 0.014279943658038974,
+        "max_relative_error": 164.81817626953125,
+        "hidden_relative_rmse": 0.004527092445641756,
+        "hidden_cosine_distance": 5.9604644775390625e-06,
+        "all_argmax_equal": true,
+        "tolerances": {
+          "logit_atol": 0.1,
+          "logit_rtol": 0.003,
+          "hidden_relative_rmse": 0.01,
+          "hidden_cosine": 0.0001
+        }
+      },
+      "short_tokens": [
+        3869,
+        2,
+        13
+      ],
+      "short_text": "Yes",
+      "short_output_dense_exact": true,
+      "rope_exact": true,
+      "input_tensors_unchanged": true,
+      "visual_hidden_exit": 25,
+      "retained_visual_KV_layers": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "attention_L2_L5_physically_skipped": true,
+      "norm_MLP_residual_checks": "PASS",
+      "vision_calls": 1,
+      "projector_calls": 1,
+      "all_logits_finite": true
+    },
+    {
+      "protocol": "ScienceQA-IMG-paper",
+      "question_id": "10001",
+      "condition": "C3-V2",
+      "structural_status": "PASS",
+      "strict_numerical_status": "PASS",
+      "numerical_equivalence": {
+        "passed": true,
+        "max_abs_logits": 0.02734375,
+        "mean_relative_error": 0.008757248753681779,
+        "max_relative_error": 44.23600387573242,
+        "hidden_relative_rmse": 0.006601392291486263,
+        "hidden_cosine_distance": 2.2172927856445312e-05,
+        "all_argmax_equal": true,
+        "tolerances": {
+          "logit_atol": 0.1,
+          "logit_rtol": 0.003,
+          "hidden_relative_rmse": 0.01,
+          "hidden_cosine": 0.0001
+        }
+      },
+      "short_tokens": [
+        319,
+        2,
+        29871
+      ],
+      "short_text": "A",
+      "short_output_dense_exact": true,
+      "rope_exact": true,
+      "input_tensors_unchanged": true,
+      "visual_hidden_exit": 20,
+      "retained_visual_KV_layers": [],
+      "attention_L2_L5_physically_skipped": true,
+      "norm_MLP_residual_checks": "PASS",
+      "vision_calls": 1,
+      "projector_calls": 1,
+      "all_logits_finite": true
+    },
+    {
+      "protocol": "ScienceQA-IMG-paper",
+      "question_id": "10001",
+      "condition": "C3-V2+L11-L24",
+      "structural_status": "PASS",
+      "strict_numerical_status": "PASS",
+      "numerical_equivalence": {
+        "passed": true,
+        "max_abs_logits": 0.046875,
+        "mean_relative_error": 0.01062180295897027,
+        "max_relative_error": 73.80712890625,
+        "hidden_relative_rmse": 0.006405930034816265,
+        "hidden_cosine_distance": 2.0802021026611328e-05,
+        "all_argmax_equal": true,
+        "tolerances": {
+          "logit_atol": 0.1,
+          "logit_rtol": 0.003,
+          "hidden_relative_rmse": 0.01,
+          "hidden_cosine": 0.0001
+        }
+      },
+      "short_tokens": [
+        319,
+        2,
+        13
+      ],
+      "short_text": "A",
+      "short_output_dense_exact": true,
+      "rope_exact": true,
+      "input_tensors_unchanged": true,
+      "visual_hidden_exit": 25,
+      "retained_visual_KV_layers": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "attention_L2_L5_physically_skipped": true,
+      "norm_MLP_residual_checks": "PASS",
+      "vision_calls": 1,
+      "projector_calls": 1,
+      "all_logits_finite": true
+    },
+    {
+      "protocol": "POPE-paper",
+      "question_id": "random:1",
+      "condition": "C3-V2",
+      "structural_status": "PASS",
+      "strict_numerical_status": "FAIL",
+      "numerical_equivalence": {
+        "passed": false,
+        "max_abs_logits": 0.029296875,
+        "mean_relative_error": 0.01580770406872034,
+        "max_relative_error": 504.39495849609375,
+        "hidden_relative_rmse": 0.010154514573514462,
+        "hidden_cosine_distance": 3.0875205993652344e-05,
+        "all_argmax_equal": true,
+        "tolerances": {
+          "logit_atol": 0.1,
+          "logit_rtol": 0.003,
+          "hidden_relative_rmse": 0.01,
+          "hidden_cosine": 0.0001
+        }
+      },
+      "short_tokens": [
+        1939,
+        2,
+        13
+      ],
+      "short_text": "No",
+      "short_output_dense_exact": true,
+      "rope_exact": true,
+      "input_tensors_unchanged": true,
+      "visual_hidden_exit": 20,
+      "retained_visual_KV_layers": [],
+      "attention_L2_L5_physically_skipped": true,
+      "norm_MLP_residual_checks": "PASS",
+      "vision_calls": 1,
+      "projector_calls": 1,
+      "all_logits_finite": true
+    },
+    {
+      "protocol": "POPE-paper",
+      "question_id": "random:1",
+      "condition": "C3-V2+L11-L24",
+      "structural_status": "PASS",
+      "strict_numerical_status": "FAIL",
+      "numerical_equivalence": {
+        "passed": false,
+        "max_abs_logits": 0.029296875,
+        "mean_relative_error": 0.010538499957571426,
+        "max_relative_error": 50.530364990234375,
+        "hidden_relative_rmse": 0.010152915492653847,
+        "hidden_cosine_distance": 3.081560134887695e-05,
+        "all_argmax_equal": true,
+        "tolerances": {
+          "logit_atol": 0.1,
+          "logit_rtol": 0.003,
+          "hidden_relative_rmse": 0.01,
+          "hidden_cosine": 0.0001
+        }
+      },
+      "short_tokens": [
+        1939,
+        2,
+        13
+      ],
+      "short_text": "No",
+      "short_output_dense_exact": true,
+      "rope_exact": true,
+      "input_tensors_unchanged": true,
+      "visual_hidden_exit": 25,
+      "retained_visual_KV_layers": [
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+        17,
+        18,
+        19,
+        20,
+        21,
+        22,
+        23,
+        24
+      ],
+      "attention_L2_L5_physically_skipped": true,
+      "norm_MLP_residual_checks": "PASS",
+      "vision_calls": 1,
+      "projector_calls": 1,
+      "all_logits_finite": true
+    }
+  ],
+  "generations": [
+    {
+      "protocol": "GQA-official-aligned-vicuna-pad",
+      "question_id": "201030233",
+      "condition": "Native",
+      "generation": {
+        "condition": "Native",
+        "text": "No",
+        "token_ids": [
+          1939,
+          2
+        ],
+        "eos": true,
+        "truncated": false,
+        "empty": false,
+        "repeated": false,
+        "first_logits_sha256": "4ec748e29b7d57a5a62433f621b8a4db867f614a48d95d242fbdaa1ff2dec9e3",
+        "first_token_id": 1939,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "logits_to_keep": 1
+      },
+      "scoring": {
+        "score": 0,
+        "parsed": "no"
+      },
+      "input_hashes": {
+        "input_ids": "02583069aa676361ffef6a1aea469f8248fb83e8563f6c3275c66f0ea0e2b083",
+        "attention_mask": "6135f3d2a362e521f6e6920474326f6bdf71ceb5a8acc0754da621067db33cfa",
+        "pixel_values": "df67b91f7778eb9f8980a6a2084f7fafa9822c14ead453ae2b6eb8b94a9ceda0"
+      },
+      "gold": "yes"
+    },
+    {
+      "protocol": "GQA-official-aligned-vicuna-pad",
+      "question_id": "201030233",
+      "condition": "C3-V2",
+      "generation": {
+        "condition": "C3-V2",
+        "text": "Yes",
+        "token_ids": [
+          3869,
+          2
+        ],
+        "eos": true,
+        "truncated": false,
+        "empty": false,
+        "repeated": false,
+        "first_logits_sha256": "2248fad2db765484221df897d2f17d1f86111c917826910781ba546ad5cbb33a",
+        "first_token_id": 3869,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "logits_to_keep": 1
+      },
+      "scoring": {
+        "score": 1,
+        "parsed": "yes"
+      },
+      "gold": "yes"
+    },
+    {
+      "protocol": "GQA-official-aligned-vicuna-pad",
+      "question_id": "201030233",
+      "condition": "C3-V2+L11-L24",
+      "generation": {
+        "condition": "C3-V2+L11-L24",
+        "text": "Yes",
+        "token_ids": [
+          3869,
+          2
+        ],
+        "eos": true,
+        "truncated": false,
+        "empty": false,
+        "repeated": false,
+        "first_logits_sha256": "29b348a85dc83bab04b98775541b05ee2ea9ff8829e4af40e05df4f4a5d22cbd",
+        "first_token_id": 3869,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "logits_to_keep": 1
+      },
+      "scoring": {
+        "score": 1,
+        "parsed": "yes"
+      },
+      "gold": "yes"
+    },
+    {
+      "protocol": "ScienceQA-IMG-paper",
+      "question_id": "10001",
+      "condition": "Native",
+      "generation": {
+        "condition": "Native",
+        "text": "A",
+        "token_ids": [
+          319,
+          2
+        ],
+        "eos": true,
+        "truncated": false,
+        "empty": false,
+        "repeated": false,
+        "first_logits_sha256": "0f496a466a05f47b8861b5efbb3747f3948711bfaf0814b7e3ea062c3c50aca8",
+        "first_token_id": 319,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "logits_to_keep": 1
+      },
+      "scoring": {
+        "score": 0.0,
+        "parsed": 0,
+        "parse_failed": false
+      },
+      "input_hashes": {
+        "input_ids": "aca77dfba10747d432f3de5e4b63481af2143708e1a5ca732e069bab8f18bbf4",
+        "attention_mask": "6188c5549c986d89950e42a36ab7cc6ff608fd8d209e6eea9670049a4d00c53b",
+        "pixel_values": "fca6ae1fd199195e712d4ba70d2097ac34584ee92307505f4f2ac25e11f9c038"
+      },
+      "gold": 2
+    },
+    {
+      "protocol": "ScienceQA-IMG-paper",
+      "question_id": "10001",
+      "condition": "C3-V2",
+      "generation": {
+        "condition": "C3-V2",
+        "text": "A",
+        "token_ids": [
+          319,
+          2
+        ],
+        "eos": true,
+        "truncated": false,
+        "empty": false,
+        "repeated": false,
+        "first_logits_sha256": "307622d4a616b2b36542db61dd2acd581d40a74a6a16a988d795f72c8816ff8c",
+        "first_token_id": 319,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "logits_to_keep": 1
+      },
+      "scoring": {
+        "score": 0.0,
+        "parsed": 0,
+        "parse_failed": false
+      },
+      "gold": 2,
+      "historical_tokens_exact": true,
+      "historical_score_exact": true,
+      "reference_commit": "2c5d1820679b5eaad844e06db9cf46dcad23316f"
+    },
+    {
+      "protocol": "ScienceQA-IMG-paper",
+      "question_id": "10001",
+      "condition": "C3-V2+L11-L24",
+      "generation": {
+        "condition": "C3-V2+L11-L24",
+        "text": "A",
+        "token_ids": [
+          319,
+          2
+        ],
+        "eos": true,
+        "truncated": false,
+        "empty": false,
+        "repeated": false,
+        "first_logits_sha256": "82a1689271522ca7b9b21e16aaabb917af97de8afe33ad9715b2cfe1771d44d2",
+        "first_token_id": 319,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "logits_to_keep": 1
+      },
+      "scoring": {
+        "score": 0.0,
+        "parsed": 0,
+        "parse_failed": false
+      },
+      "gold": 2
+    },
+    {
+      "protocol": "POPE-paper",
+      "question_id": "random:1",
+      "condition": "Native",
+      "generation": {
+        "condition": "Native",
+        "text": "No",
+        "token_ids": [
+          1939,
+          2
+        ],
+        "eos": true,
+        "truncated": false,
+        "empty": false,
+        "repeated": false,
+        "first_logits_sha256": "62cae8b10f1e7b5a8ad4bde048969bbfb50f54834d6ed21d0bdd63869a1987f5",
+        "first_token_id": 1939,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "logits_to_keep": 1
+      },
+      "scoring": {
+        "score": 0.0,
+        "parsed": "no",
+        "lexical_empty_defaults_yes": false
+      },
+      "input_hashes": {
+        "input_ids": "4cd15e34ce72122796585b5f36e8e4d8247b94a2afb65fe51de46904b971718d",
+        "attention_mask": "4f789dbb6f2f77fb9f2347f58d1dbf702d9982b085781f627f10ce1e64033aef",
+        "pixel_values": "ab2c295aeca24eb49975fdfa51e8b5ea31e5201a901bb49b5ab8edc957f2fd40"
+      },
+      "gold": "yes"
+    },
+    {
+      "protocol": "POPE-paper",
+      "question_id": "random:1",
+      "condition": "C3-V2",
+      "generation": {
+        "condition": "C3-V2",
+        "text": "No",
+        "token_ids": [
+          1939,
+          2
+        ],
+        "eos": true,
+        "truncated": false,
+        "empty": false,
+        "repeated": false,
+        "first_logits_sha256": "432f12a8edcc5f296c82eb485e69c2adcefc3ff4db1043513128cda2c0c0f290",
+        "first_token_id": 1939,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "logits_to_keep": 1
+      },
+      "scoring": {
+        "score": 0.0,
+        "parsed": "no",
+        "lexical_empty_defaults_yes": false
+      },
+      "gold": "yes",
+      "historical_tokens_exact": true,
+      "historical_score_exact": true,
+      "reference_commit": "2c5d1820679b5eaad844e06db9cf46dcad23316f"
+    },
+    {
+      "protocol": "POPE-paper",
+      "question_id": "random:1",
+      "condition": "C3-V2+L11-L24",
+      "generation": {
+        "condition": "C3-V2+L11-L24",
+        "text": "No",
+        "token_ids": [
+          1939,
+          2
+        ],
+        "eos": true,
+        "truncated": false,
+        "empty": false,
+        "repeated": false,
+        "first_logits_sha256": "f12512c223fcafe8e6abf681c518f2de7726d696a63ea8500806abc13086a07e",
+        "first_token_id": 1939,
+        "all_effective_logits_finite": true,
+        "independent_cache": true,
+        "logits_to_keep": 1
+      },
+      "scoring": {
+        "score": 0.0,
+        "parsed": "no",
+        "lexical_empty_defaults_yes": false
+      },
+      "gold": "yes"
+    }
+  ],
+  "historical_warning": {
+    "commit": "d6157216199f6e2bb6c03557c05317649fe9c7d6",
+    "POPE_hidden_relative_rmse": 0.010154514573514462,
+    "strict_threshold": 0.01,
+    "historical_status": "FAIL, preserved"
+  },
+  "native_HF_and_noop_exact": true,
+  "peak_allocated_GiB": 13.875504493713379,
+  "peak_reserved_GiB": 14.060546875,
+  "finished_at": "2026-11-08T13:33:34.054663+00:00",
+  "numerical_warning_accepted_by_user": true
+}
