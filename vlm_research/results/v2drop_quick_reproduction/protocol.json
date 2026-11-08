@@ -1,0 +1,140 @@
+{
+  "status": "FROZEN",
+  "task": "V2Drop fixed quick reproduction",
+  "official_commit": "2a9431150f8ace3a1d9abcdc96a7d46acca597df",
+  "official_source": {
+    "source_sha256": "e39ed8d99c3e1f23bd156067bfd28179827771df3556631b6daed4427a7b8b61",
+    "original_selection_AST_sha256": "8fafe09da75462610ccad2ecf7b4ed0f9a24d453a5d01c0a71d0beeacbc531b4",
+    "only_AST_changes": "Four literal image-start constants 35 replaced with image_start",
+    "pruning_layers": [
+      3,
+      17,
+      22
+    ],
+    "retention_ratios": [
+      0.5,
+      0.5,
+      0.0
+    ],
+    "minimum_retained": 1
+  },
+  "code_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+  "model": "llava-hf/llava-1.5-7b-hf",
+  "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "model_path": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+  "environment": {
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "dtype": "float16",
+    "attention": "eager",
+    "batch_size": 1,
+    "greedy": true
+  },
+  "selection_rule": "Sort SHA256(seed|benchmark|question_id) ascending within the complete frozen manifest; take first100; no answer-based selection",
+  "seed": "ATE-V2Drop-quickcheck-20261108-v1",
+  "samples": {
+    "GQA": 100,
+    "TextVQA": 100
+  },
+  "manifest_sha256": "a2fc346eecb1dc023e3762d921d3682e324c2bcb7ca3b88ef0becab6ea295e2d",
+  "source_manifests": {
+    "GQA": "0ddd9d4112e7fe7ce9cd77b8ce48b603581c0abf6a3feefca4de4446587caeb8",
+    "TextVQA": "9344bf5cd7649b02f85982dcefec02b4b8c4fd95e24f8f62f9f34cd278ee6a79"
+  },
+  "smoke_keys": [
+    "GQA:202121628",
+    "GQA:20308802",
+    "TextVQA:38571",
+    "TextVQA:36647"
+  ],
+  "efficiency_keys": [
+    "GQA:202121628",
+    "GQA:20308802",
+    "GQA:202158870",
+    "GQA:201759069",
+    "GQA:20162504",
+    "GQA:20886934",
+    "GQA:201889314",
+    "GQA:201455854",
+    "GQA:20709953",
+    "GQA:202246655",
+    "GQA:202060056",
+    "GQA:20644736",
+    "GQA:20922878",
+    "GQA:201976841",
+    "GQA:201959618",
+    "TextVQA:38571",
+    "TextVQA:36647",
+    "TextVQA:34775",
+    "TextVQA:38508",
+    "TextVQA:36458",
+    "TextVQA:36282",
+    "TextVQA:35999",
+    "TextVQA:35026",
+    "TextVQA:36136",
+    "TextVQA:37087",
+    "TextVQA:37765",
+    "TextVQA:39047",
+    "TextVQA:39166",
+    "TextVQA:35607",
+    "TextVQA:36477"
+  ],
+  "efficiency_selection": "First15 of each selected100 in frozen hash rank",
+  "efficiency_lengths": [
+    32,
+    128
+  ],
+  "accuracy_methods": [
+    "Native",
+    "V2Drop"
+  ],
+  "efficiency_methods": [
+    "Native",
+    "V2Drop",
+    "C3-V2",
+    "C3-V2+L11-L24"
+  ],
+  "warmup_requests_per_method": 2,
+  "latency_repetitions_per_input": 1,
+  "preprocessing": "Unchanged frozen paper_pixels: RGB, CLIP-mean square-pad, CLIP336; same tensors for all methods",
+  "image_token_start_counts": {
+    "35": 200
+  },
+  "scoring": {
+    "GQA": "Frozen official rstrip periods, lowercase, exact match",
+    "TextVQA": "Frozen Paper-OCR ten-answer VQA soft scoring"
+  },
+  "frozen_ATE_sources": {
+    "vlm_research/accuracy_autoresearch/common.py": "01a68cc5b739a3d9172e351d5d68250e33d997639c35ecbf84376b8bbf0f9d58",
+    "vlm_research/accuracy_autoresearch/engine.py": "4a381e87cd69b5b1e20eb10f3b52a9e1470f6662d845daafba6639bfe7c7974e",
+    "vlm_research/ate_fulljoint_v2/engine.py": "ef59447163c47528be2fde44751c124df3d550a6e89244046c3d40d99b4e9e44",
+    "vlm_research/benchmarks/protocols.py": "c80e8011f8ba3f7f627398ec2a3bff300d479db46ccb04a564d5ed525abd4f48",
+    "vlm_research/c3v2_middle_reaccess/common.py": "a765d0731ef5e230c705e3c516353953869352f68cd5cc0054a7708226f1e6c1",
+    "vlm_research/c3v2_middle_reaccess/engine.py": "e541c9122636205aeaeb752346ea08aa1c1aff6a06cfd40a60319a1cfc2763ff",
+    "vlm_research/gqa_testdev_c3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "vlm_research/gqa_testdev_c3/analyze.py": "c2d58bb75fe9c9edd51083aeeaa347cde45e998184a3ac2f91b5c628e80fbac5",
+    "vlm_research/gqa_testdev_c3/common.py": "79f734f25225e08e2cceaad17af900a41417f1861f4789dfcdd71f37c8b7cc83",
+    "vlm_research/gqa_testdev_c3/download.py": "e5b0ec33eeb24f04f52e0c9920b2b11b94839b9732c581efd7a6baffb4abf73a",
+    "vlm_research/gqa_testdev_c3/download_via_local.py": "b61771d52b53f57769f4ce5810eee97a954dd715c062f8de48c24d3d424f3796",
+    "vlm_research/gqa_testdev_c3/engine.py": "390786063d1b9a9d719f91a7398e4a55c0433287ba4b486f0de1e3729b1d0f96",
+    "vlm_research/gqa_testdev_c3/finish.py": "199cea030ff350cefd1f7e3a904043b278365de5fa65eedc66608e825e9cba4a",
+    "vlm_research/gqa_testdev_c3/import_verified_images.py": "5e6643a568906356dba2a7ec6981d78438fc30496597e5d7eb297f355b7bbc74",
+    "vlm_research/gqa_testdev_c3/prepare.py": "a03a0c6ddaaf7a20443115b54e6902cd207090f07484df4ae375ac778af43160",
+    "vlm_research/gqa_testdev_c3/run.py": "60cf134959dea2339df034226337342545085bf7b9d14d9b9aae30ce91692464",
+    "vlm_research/gqa_testdev_c3/tests.py": "017dbe0cb3286b40a6bee633c3fd80375db76e5eac3d0c78b9926fd8b22df333",
+    "vlm_research/p1_layerwise_accuracy/common.py": "cb87d6c1f3f6156a14ae22ef3a1cb60304ec90bcc328faa239bf4481a138328c",
+    "vlm_research/p1_layerwise_accuracy/engine.py": "3cbf506f506c33fe34a636d2a3b5f19f751e2831b3bb299aae460ae8a5add46a",
+    "vlm_research/physical_handoff_fastpath/engine.py": "6e8abb7e04517678c189a896589abb97774652313ecedb57d58f97bd718b74a0",
+    "vlm_research/physical_visual_handoff/common.py": "071f04ecb8cbc07c03251da236a371843a217536917494914aee55cc5162fcf3",
+    "vlm_research/physical_visual_handoff/engine.py": "e46dd347bc5d4763c179a02459b7bd09ab87e45e7499107930928df3c98f295b",
+    "vlm_research/reverse_writer/common.py": "b49eb59480189742bf3caf126c01d9ddb05661d7c4eef1f489cb50a5d011b3b8",
+    "vlm_research/reverse_writer/engine.py": "e7a8d0e5d853cbddd21286ef690e3b8abbaaa34107cdd71e55c0107739b7709c",
+    "vlm_research/knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+    "vlm_research/vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d"
+  },
+  "original_GQA_result_untouched": true,
+  "no_weights_or_data_downloaded": true,
+  "Flops_convention": "Actual aten matrix products and convolutions, MAC=2 FLOPs, includes vision+projector, language prefill and real autoregressive decode. Non-matrix elementwise/norm/softmax/index/sort not counted; selection overhead reported separately.",
+  "fixed_length_definition": "32/128 output tokens = one prefill prediction +31/127 real decode calls; ignore EOS only during efficiency runs",
+  "CUDA_initialized": false
+}
