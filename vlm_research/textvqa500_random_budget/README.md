@@ -1,0 +1,11 @@
+# TextVQA500 random decode layer-budget extension
+
+One fixed permutation (Python 3.11 `random.Random(20261108).shuffle`) supplies nested subsets for k=4,8,12,14,16,21,24. The original 500 image-only questions, prompts, gold answers, image bindings, FP16/Eager LLaVA revision, greedy decoding and ten-answer scorer are frozen. Generation imports the historical dense-mask engine unchanged.
+
+`prepare.py` validates all 500 historical bindings against restored data. `run.py` checks the GPU is free, loads the model once, runs audited correctness smoke, generates the user-authorized unhooked RTX4090 Native500 calibration, and completes 3,500 Random records with recoverable, hashed per-question checkpoints. It refuses changed input/source/protocol freezes. All Random first tokens must match the same-GPU Native control. Original 255 Random4 checkpoints remain bound to their explicitly accepted parent freeze after the cross-GPU diagnostic stop.
+
+`analyze.py` requires complete generation and passing smoke. It verifies checkpoint digests/bindings and the official scores; retains all historical raw values; uses paired Image-SHA cluster bootstrap with 20,000 draws; and produces a single four-curve PNG/PDF. The 21 Random-versus-region contrasts use one Holm family (see the explicit analysis specification clarifying an inconsistent older protocol phrase). Random k32 uses measured RTX4090 Native; the other curves retain RTX3090 Native. The no-image endpoint is historical RTX3090. No accuracy offsets are applied. A single layer permutation does not estimate random-seed variability.
+
+Runtime paths are in `common.py` for this recovered instance. Outputs are in `vlm_research/results/textvqa500_early_middle_late_random_budget/`. Model/data/checkpoints remain outside Git; all 4,000 new checkpoints are included in the separately verified Windows evidence backup. Run modules from the repository root with the frozen environment (`python -m vlm_research.textvqa500_random_budget.prepare`, then `.run`, then `.analyze`). These are explicit commands, not background services. No experiment is launched on import.
+
+The extension is a dense functional attention-mask study. It makes no physical FLOP, cache-storage or latency-saving claim, and does not modify Physical C3.

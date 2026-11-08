@@ -1,0 +1,91 @@
+"""One model load; frozen decode-only masks; exactly 7x500 resumable generations."""
+import os
+os.environ.update(HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',HF_DATASETS_OFFLINE='1',CUDA_VISIBLE_DEVICES='0',CUBLAS_WORKSPACE_CONFIG=':4096:8',USE_TF='0',USE_FLAX='0',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',TOKENIZERS_PARALLELISM='false',PYTHONDONTWRITEBYTECODE='1')
+from .common import *
+import torch,transformers,subprocess,traceback,datetime,platform,fcntl,gc
+from unittest.mock import patch
+from ..textvqa500_budget.engine import generate
+from ..p1_layerwise_accuracy import engine as adapter_module
+from ..middle10_attribution.engine import prepare
+from ..benchmarks.scoring import textvqa_score
+
+def now():return datetime.datetime.now(datetime.timezone.utc).isoformat()
+
+def smoke(a,samples,hist,bindings,layers):
+ report={'status':'RUNNING','cases':[],'random_budget_checks':[]}
+ for key in list(samples)[:2]:
+  l,_,binding=prepare(a,samples[key]);assert digest(binding)==bindings[key]
+  native,ln,_=generate(a,l,None,audit=True)
+  noop,lno,base=generate(a,l,list(range(32)),audit=True)
+  assert native['token_ids']==noop['token_ids']==hist['Native'][key]['token_ids']
+  assert len(ln)==len(lno) and all(torch.equal(x,y) for x,y in zip(ln,lno))
+  other,lo,base2=generate(a,l,list(range(32)),audit=True)
+  assert base.cache_hashes==base2.cache_hashes and base.prefill_hashes==base2.prefill_hashes
+  assert all(torch.equal(x,y) for x,y in zip(lno,lo))
+  checks={}
+  for condition in ['NoImage','Middle14']:
+   keep=[] if condition=='NoImage' else list(range(11,25));g,lg,c=generate(a,l,keep,audit=True)
+   assert g['token_ids']==hist[condition][key]['token_ids'],('cross-hardware saved prediction',key,condition)
+   assert abs(textvqa_score(g['text'],samples[key]['answer'])-hist[condition][key]['score'])<1e-12
+   assert torch.equal(lg[0],ln[0]) and c.prefill_hashes==base.prefill_hashes and c.cache_hashes[0]==base.cache_hashes[0]
+   checks[condition]={'historical_tokens_and_score_exact':True,'first_logits_native_exact':True,'prefill_and_KV_native_exact':True,'audit':c.summary()}
+  report['cases'].append({'key':key,'native_history_exact':True,'native_noop_all_logits_exact':True,'no_op_KV_QKV_exact':True,'endpoint_and_mask_checks':checks})
+ key=next(iter(samples));l,_,_=prepare(a,samples[key]);native,ln,base=generate(a,l,list(range(32)),audit=True,max_tokens=4,fixed=True)
+ for condition,keep in layers.items():
+  g,lg,c=generate(a,l,keep,audit=True,max_tokens=4,fixed=True)
+  assert torch.equal(lg[0],ln[0]) and g['first_top1_token']==native['first_top1_token']
+  assert c.prefill_hashes==base.prefill_hashes and c.cache_hashes[0]==base.cache_hashes[0]
+  assert c.zero_checks==(32-len(keep))*3
+  report['random_budget_checks'].append({'condition':condition,'keep':keep,'first_logits_native_exact':True,'prefill_QKV_KV_native_exact':True,'audit':c.summary()})
+ report.update(status='PASS',finished_at=now());atomic(OUT/'gpu_smoke.json',report);print('RANDOM_GPU_SMOKE_PASS',flush=True)
+
+def main():
+ lock=(LOCAL/'run.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+ audit=read(OUT/'input_audit.json');assert audit['status']=='PASS'
+ assert torch.__version__=='2.6.0+cu124' and transformers.__version__=='4.49.0'
+ protocol=read(OUT/'protocol.json');layers={c:protocol['decode_image_layers'][c] for c in protocol['new_conditions']};assert len(layers)==7 and protocol['max_new_generations']==3500
+ sources=dict(audit['frozen_source_hashes'])
+ for p in [Path(__file__),Path(__file__).with_name('common.py'),Path(__file__).with_name('prepare.py')]:sources[str(p.relative_to(ROOT))]=sha(p)
+ for p,h in sources.items():assert sha(ROOT/p)==h,p
+ freeze={'protocol_sha256':sha(OUT/'protocol.json'),'input_audit_sha256':sha(OUT/'input_audit.json'),'source_hashes':sources}
+ fp=OUT/'execution_freeze.json'
+ if fp.exists():assert read(fp)==freeze,'Refuse checkpoint reuse after a freeze change'
+ else:atomic(fp,freeze)
+ run_id=digest(freeze)
+ jobs=subprocess.check_output(['nvidia-smi','--query-compute-apps=pid','--format=csv,noheader'],text=True).strip();assert not jobs,('GPU conflict',jobs)
+ gpu=subprocess.check_output(['nvidia-smi','--query-gpu=name,uuid,memory.total,memory.used','--format=csv,noheader'],text=True).strip();assert 'RTX 4090' in gpu
+ samples=load_samples();paths=read(LOCAL/'runtime_mapping.json');bindings=read(LOCAL/'input_bindings.json');hist=load_history()
+ for key,s in samples.items():s['image_path']=paths[key]
+ atomic(OUT/'run_status.json',dict(status='LOADING',gpu=gpu,at=now(),run_id=run_id,target=3500))
+ with patch.object(adapter_module,'OLD',ROOT/'vlm_research'),patch.object(adapter_module,'model_path',lambda kind:MODEL):a=adapter_module.Adapter('llava')
+ atomic(OUT/'runtime_environment.json',dict(python=platform.python_version(),torch=torch.__version__,transformers=transformers.__version__,cuda=torch.version.cuda,gpu=gpu,model=str(MODEL),model_loads=1,environment=a.environment))
+ print('RANDOM_MODEL_LOADED',flush=True);smoke(a,samples,hist,bindings,layers)
+ cp=LOCAL/'checkpoints';cp.mkdir(exist_ok=True)
+ if not (OUT/'checkpoints').exists():(OUT/'checkpoints').symlink_to(cp,target_is_directory=True)
+ total=0;new=0
+ for condition,keep in layers.items():
+  for index,(key,s) in enumerate(samples.items()):
+   target=cp/condition/(key+'.json')
+   if target.exists():
+    w=read(target);p=w['payload'];assert digest(p)==w['sha256'] and p['run_id']==run_id and p['input_binding_sha256']==bindings[key]
+   else:
+    l,_,b=prepare(a,s);assert digest(b)==bindings[key]
+    g,_,_=generate(a,l,keep);assert g['first_top1_token']==hist['Native'][key]['first_top1_token'],('Historical Native first-token changed',key,condition)
+    assert 0<len(g['token_ids'])<=32 and g['kv']['allocations']=='native DynamicCache'
+    score=textvqa_score(g['text'],s['answer']);assert 0<=score<=1
+    p=dict(run_id=run_id,key=key,condition=condition,question_id=s['question_id'],image_sha256=s['image_sha256'],input_binding_sha256=bindings[key],generation={k:v for k,v in g.items() if k not in ['kv','audit','visual_audit']},score=score,at=now())
+    atomic(target,dict(payload=p,sha256=digest(p)));new+=1
+   total+=1
+   if (index+1)%25==0 or index==499:
+    atomic(OUT/'run_status.json',dict(status='RUNNING',condition=condition,condition_completed=index+1,total_completed=total,target=3500,new_this_invocation=new,at=now(),run_id=run_id))
+    print(now(),condition,index+1,'/500 total',total,'/3500',flush=True)
+  print('RANDOM_CONDITION_COMPLETE',condition,flush=True)
+ assert total==3500
+ atomic(OUT/'run_status.json',dict(status='COMPLETE',total_completed=total,target=3500,new_this_invocation=new,run_id=run_id,model_loads=1,at=now(),peak_allocated_GiB=torch.cuda.max_memory_allocated()/2**30))
+ del a;gc.collect();torch.cuda.empty_cache();print('ALL_RANDOM_CONDITIONS_COMPLETE',flush=True)
+
+if __name__=='__main__':
+ try:main()
+ except BaseException as error:
+  atomic(OUT/'failure.json',dict(status='STOPPED',at=now(),error=repr(error),traceback=traceback.format_exc()))
+  print(traceback.format_exc(),flush=True);raise
