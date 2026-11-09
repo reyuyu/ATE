@@ -7,6 +7,7 @@ import select
 import sqlite3
 import subprocess
 import sys
+import time
 import traceback
 
 os.environ['CUDA_VISIBLE_DEVICES'] = ''
@@ -23,16 +24,28 @@ def git(*args):
 
 
 def main(pid):
-    # pidfd binds the existing driver instance, not a future reused process ID.
-    try:
-        fd = os.pidfd_open(pid)
-    except ProcessLookupError:
-        fd = None
-    if fd is not None:
+    # Older Python/kernel builds may lack pidfd; also guard against PID reuse.
+    if hasattr(os, 'pidfd_open'):
         try:
-            select.select([fd], [], [])
-        finally:
-            os.close(fd)
+            fd = os.pidfd_open(pid)
+        except ProcessLookupError:
+            fd = None
+        if fd is not None:
+            try:
+                select.select([fd], [], [])
+            finally:
+                os.close(fd)
+    else:
+        stat_path = Path('/proc') / str(pid) / 'stat'
+        def identity():
+            try:
+                fields = stat_path.read_text().rsplit(')', 1)[1].split()
+                return fields[19] if fields[0] != 'Z' else None
+            except FileNotFoundError:
+                return None
+        started = identity()
+        while started is not None and identity() == started:
+            time.sleep(10)
     receipt = dict(driver_pid=pid, at=datetime.datetime.now().astimezone().isoformat(),
                    new_gpu_work_started=False, branch=BRANCH)
     try:
