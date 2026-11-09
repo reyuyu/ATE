@@ -2,12 +2,13 @@
 from pathlib import Path
 from collections import defaultdict,Counter
 from datetime import datetime,timezone
-import csv,gzip,hashlib,json,os,statistics,sys
+import csv,gzip,hashlib,json,os,re,statistics,sys
 os.environ['CUDA_VISIBLE_DEVICES']=''
 O=Path('/home/featurize/work/ATE-qwen3vl-c3-3090-official-eval/vlm_research/results/qwen3vl_c3_3090_official_eval')
 sys.path.insert(0,str(O/'scripts'))
 import numpy as np
-from scorers_v2 import score
+from scorers_v3 import score
+from scorers_v2 import score as alternate_score
 from scorers import text_evaluator
 SEED=20261106;REPS=20000;CONDITIONS=['Native','Dense-F','Physical-Original']
 def read(p):return json.loads(p.read_text(encoding='utf-8'))
@@ -43,8 +44,16 @@ def independent(s,text,parsed):
  if b=='MME':
   prefix=text.lower()[:4];v='yes' if 'yes' in prefix else 'no' if 'no' in prefix else 'other';return float(v==gold)
  if b=='ScienceQA-IMG':
-  # Independently verify the integer-Gold bridge; extraction itself is frozen author matching.
-  return float(isinstance(parsed,str) and len(parsed)==1 and parsed in 'ABCDE' and ord(parsed)==65+gold)
+  # Independent explicit reading of the frozen ATE literal/prefix/regex rule.
+  answer=None
+  if len(text)==1 and text in 'ABCDE':answer=text
+  elif len(text)>2 and text[:1] in 'ABCDE' and text[1:3]=='. ':answer=text[0]
+  else:
+   matches=re.findall('The answer is ([A-Z]).',text)
+   if len(matches)==1:answer=matches[0]
+  count=len(s['choices']);index=ord(answer)-65 if answer in tuple('ABCDE'[:count]) else -1
+  assert index==parsed,('Independent ScienceQA parse mismatch',text,index,parsed)
+  return float(index==gold)
  if b=='MMBench':return float(parsed==gold)
  if b=='OCRBench-v1':
   ans=gold if isinstance(gold,list) else [gold]
@@ -62,7 +71,8 @@ def paired(rows,comparison,benchmark,label,metric='Accuracy',scale=100.):
   clusters[a['image_sha256']][0]+=d;clusters[a['image_sha256']][1]+=1
   harm+=d<0;fix+=d>0;equal+=d==0;first_change+=a.get('first_token')!=b.get('first_token');answer_change+=a['parsed']!=b['parsed']
  vals=list(clusters.values());ci=bootstrap([v[0] for v in vals],[v[1] for v in vals],scale)
- return dict(benchmark=benchmark,protocol_label=label,metric=metric,condition=left,reference=right,paired_questions=len(pairs),image_clusters=len(clusters),delta=sum(v[0] for v in vals)/len(pairs)*scale,CI95_low=ci[0],CI95_high=ci[1],score_decreases=harm,score_increases=fix,score_ties=equal,first_token_changed=first_change,parsed_answer_changed=answer_change,bootstrap_replicates=REPS,seed=SEED,unit='Image SHA256 cluster',soft_score=b'VQA' in benchmark.encode() and benchmark=='TextVQA')
+ circular=metric.startswith('Circular')
+ return dict(benchmark=benchmark,protocol_label=label,metric=metric,condition=left,reference=right,paired_questions=len(pairs),image_clusters=len(clusters),delta=sum(v[0] for v in vals)/len(pairs)*scale,CI95_low=ci[0],CI95_high=ci[1],score_decreases=harm,score_increases=fix,score_ties=equal,first_token_changed=None if circular else first_change,parsed_answer_changed=None if circular else answer_change,bootstrap_replicates=REPS,seed=SEED,unit='Image SHA256 cluster',soft_score=b'VQA' in benchmark.encode() and benchmark=='TextVQA')
 def paired_cases(rows,comparisons):
  by=defaultdict(dict)
  for r in rows:by[r['benchmark'],r['protocol_label'],r['key']][r['condition']]=r
@@ -103,7 +113,7 @@ def mme_paired(rows,label):
   ix=rng.integers(0,len(images),size=(min(64,REPS-start),len(images)));out.extend(total(num[ix].sum(1),den[ix].sum(1)).tolist())
  ci=np.quantile(out,[.025,.975]);return dict(benchmark='MME',protocol_label=label,metric='Official task-summed Acc+AccPlus points',condition='Physical-Original',reference='Native',paired_questions=len(by),image_clusters=len(images),delta=float(total(num.sum(0),den.sum(0))),CI95_low=float(ci[0]),CI95_high=float(ci[1]),bootstrap_replicates=REPS,seed=SEED,unit='Image SHA256 cluster across all tasks')
 def summarize(rows,benchmark,label,expected,complete):
- summary=[];details={};conds=sorted({r['condition'] for r in rows},key=lambda c:CONDITIONS.index(c))
+ summary=[];details={};conds=CONDITIONS if benchmark=='HISTORICAL_GQA1000_REPRODUCTION' else ['Native','Physical-Original']
  for c in conds:
   rr=[r for r in rows if r['condition']==c];full=complete and len(rr)==expected;formal=None;metric='Accuracy %';status='COMPLETE' if full else 'PARTIAL_NOT_A_FORMAL_SCORE'
   if full:
@@ -117,11 +127,11 @@ def summarize(rows,benchmark,label,expected,complete):
     details[c]=dict(groups=1176,all_correct=sum(all(r['score']==1 for r in g) for g in groups.values()),unresolved_rows=sum(r['parse_failed'] for r in rr),official_judge_status='AWAITING_OFFICIAL_SCORING' if any(r['parse_failed'] for r in rr) else 'NOT_REQUIRED_ALL_OPTIONS_PARSED')
    elif benchmark=='OCRBench-v1':formal=sum(r['score'] for r in rr);metric='Official raw points (0-1000)'
    else:formal=sum(r['score'] for r in rr)/expected*100
-  if benchmark=='POPE':
+  if benchmark=='POPE' and rr:
    tp=sum(r['parsed']=='yes' and r['gold']=='yes' for r in rr);fp=sum(r['parsed']=='yes' and r['gold']=='no' for r in rr);fn=sum(r['parsed']=='no' and r['gold']=='yes' for r in rr);tn=sum(r['parsed']=='no' and r['gold']=='no' for r in rr)
    precision=tp/(tp+fp) if tp+fp else 0.;recall=tp/(tp+fn) if tp+fn else 0.
    details[c]=dict(TP=tp,FP=fp,FN=fn,TN=tn,Accuracy=(tp+tn)/len(rr)*100,Precision=precision*100,Recall=recall*100,F1=(2*precision*recall/(precision+recall)*100 if precision+recall else 0.),Yes_ratio=(tp+fp)/len(rr)*100)
-  summary.append(dict(benchmark=benchmark,protocol_label=label,condition=c,status=status,completed=len(rr),expected=expected,formal_score=formal,metric=metric,observed_subset_mean_score=sum(r['score'] for r in rr)/len(rr)*100,empty=sum(r['empty'] for r in rr),truncated=sum(r['truncated'] for r in rr),parse_failed=sum(r['parse_failed'] for r in rr),duplicate_raw_outputs=len(rr)-len({r['raw_text'] for r in rr}),generated_tokens=sum(r['generated_tokens'] for r in rr),notes='Repeated yes/no/letter answers are legitimate; duplicate_raw_outputs is descriptive, not a data integrity error.'))
+  summary.append(dict(benchmark=benchmark,protocol_label=label,condition=c,status=status,completed=len(rr),expected=expected,formal_score=formal,metric=metric,observed_subset_mean_score=(sum(r['score'] for r in rr)/len(rr)*100 if rr else None),empty=sum(r['empty'] for r in rr),truncated=sum(r['truncated'] for r in rr),parse_failed=sum(r['parse_failed'] for r in rr),duplicate_raw_outputs=len(rr)-len({r['raw_text'] for r in rr}),generated_tokens=sum(r['generated_tokens'] for r in rr),notes='Repeated yes/no/letter answers are legitimate; duplicate_raw_outputs is descriptive, not a data integrity error.'))
  return summary,details
 def analyze_historical():
  manifest=read(O/'historical_inputs.json');rows=[];mismatches=[];expected_binding={k:sha(O/f'{k}.json') for k in ['protocol','source_manifest','model_manifest']}
@@ -155,7 +165,7 @@ def analyze_historical():
 def analyze_seven():
  manifest=read(O/'input_manifest.json');manifest_sha=sha(O/'input_manifest.json');grouped=defaultdict(list)
  for s in manifest['rows']:grouped[s['benchmark'],s['protocol_label']].append(s)
- summary=[];comparisons=[];allrows=[];allstrata=[];details={};corrections=[];mismatches=[]
+ summary=[];comparisons=[];allrows=[];allstrata=[];details={};corrections=[];mismatches=[];alternates=[]
  source=read(O/'data_restore.json');v=source['views']['GQA-testdev-balanced'];gqa_annotations=read(Path(v['root'])/'source_annotations/gqa/testdev_balanced_questions.json');v=source['views']['ScienceQA-IMG-paper'];sqa_annotations=read(Path(v['root'])/'source_annotations/scienceqa/problems.json')
  expected_binding={k+'_SHA256':sha(O/f'{k}.json') for k in ['protocol','source_manifest','model_manifest']}
  for (benchmark,label),samples in grouped.items():
@@ -184,13 +194,18 @@ def analyze_seven():
      for dim in ['semantic','structural','detailed']:
       if dim in types:row['question_type_'+dim]=types[dim]
     if benchmark=='ScienceQA-IMG':
+     alt=alternate_score(s,r['text']);row.update(alternate_generic_option_score=alt['score'],alternate_generic_option_parsed=alt['parsed'])
+     alternates.append(dict(key=s['key'],condition=c,raw_text=r['text'],gold=s['answer'],canonical_frozen_score=sc['score'],canonical_parsed_index=sc['parsed'],generic_option_score=alt['score'],generic_option_parsed=alt['parsed'],score_differs=abs(sc['score']-alt['score'])>1e-10))
      original=sqa_annotations[s['question_id']]
      for dim in ['subject','topic','grade','skill']:
       if dim in original:row['question_type_'+dim]=original[dim]
     rows.append(row)
   assert not mismatches,('Unexpected raw scorer mismatch',mismatches)
   completion=read(folder/'completion.json') if (folder/'completion.json').exists() else {};complete=completion.get('status')=='COMPLETE' and len(rows)==2*len(samples)
-  ss,dd=summarize(rows,benchmark,label,len(samples),complete);summary.extend(ss);details[benchmark+':'+label]=dd;allrows.extend(rows)
+  ss,dd=summarize(rows,benchmark,label,len(samples),complete)
+  if completion.get('status')=='BLOCKED':
+   for r in ss:r.update(status='BLOCKED_'+completion['failure']['error'],failure_question_id=completion['failure']['question_id'],failure_error=completion['failure']['detail'])
+  summary.extend(ss);details[benchmark+':'+label]=dd;allrows.extend(rows)
   if complete:
    if benchmark=='MME':comparisons.append(mme_paired(rows,label))
    elif benchmark=='MMBench':
@@ -206,8 +221,14 @@ def analyze_seven():
    for (dim,v,c),rr in strata.items():allstrata.append(dict(benchmark=benchmark,protocol_label=label,dimension=dim,stratum=v,condition=c,n=len(rr),mean_score=sum(r['score'] for r in rr)/len(rr)*100))
   print('CPU_SCORING_AUDITED',benchmark,label,len(rows),flush=True)
  table(O/'per_question.csv.gz',allrows);table(O/'accuracy_summary.csv',summary);table(O/'paired_comparisons.csv',comparisons);table(O/'stratified_results.csv',allstrata);table(O/'scienceqa_offline_score_corrections.csv',corrections)
+ table(O/'scienceqa_parser_alternate_per_question.csv',alternates)
+ alternate_summary=[]
+ for c in ['Native','Physical-Original']:
+  rr=[v for v in alternates if v['condition']==c]
+  if rr:alternate_summary.append(dict(condition=c,questions=len(rr),status='COMPLETE' if len(rr)==2017 else 'PARTIAL_NOT_A_FORMAL_SCORE',canonical_frozen_Accuracy_percent=(100*sum(v['canonical_frozen_score'] for v in rr)/2017 if len(rr)==2017 else None),alternate_generic_option_Accuracy_percent=(100*sum(v['generic_option_score'] for v in rr)/2017 if len(rr)==2017 else None),score_disagreements=sum(v['score_differs'] for v in rr),note='Explicit alternate parser only; not a change to frozen ATE scoring.'))
+ table(O/'scienceqa_parser_alternate_summary.csv',alternate_summary)
  table(O/'paired_cases.csv.gz',paired_cases(allrows,[('Physical-Original','Native')]))
- write(O/'scoring_details.json',details);write(O/'independent_scoring_audit.json',dict(status='PASS' if (O/'seven_completion.json').exists() else 'PARTIAL',checked_predictions=len(allrows),non_ScienceQA_disagreements=mismatches,ScienceQA_integer_Gold_bridge_corrections=len(corrections),ScienceQA_initial_scores_preserved=True,independent_logic='Exact full answer; ten-answer count formula; explicit POPE first-sentence word logic; explicit MME first-four-character and double-question arithmetic; explicit OCR substring normalization; option index and complete Circular aggregation checked independently. Official option extraction and TextVQA normalization source are shared, not claimed as independent implementations.',raw_outputs_and_frozen_input_unchanged=True))
+ write(O/'scoring_details.json',details);write(O/'independent_scoring_audit.json',dict(status='PASS' if (O/'seven_completion.json').exists() else 'PARTIAL',checked_predictions=len(allrows),non_ScienceQA_disagreements=mismatches,ScienceQA_offline_score_corrections=len(corrections),ScienceQA_canonical='Original frozen ATE extraction then official integer Gold match',ScienceQA_generic_parser_disagreements=sum(v['score_differs'] for v in alternates),ScienceQA_initial_scores_preserved=True,independent_logic='Exact full answer; ten-answer count formula; explicit POPE first-sentence word logic; explicit MME first-four-character and double-question arithmetic; explicit OCR substring normalization; independent ScienceQA literal/prefix/regex extraction; complete Circular aggregation checked independently. MMBench official option extraction and TextVQA normalization source are shared, not claimed as independent implementations.',raw_outputs_and_frozen_input_unchanged=True))
  return summary,comparisons
 def analyze_efficiency():
  manifest=read(O/'historical_inputs.json');qids=manifest['benchmark_question_ids'];records=defaultdict(list);rawrows=[];layouts={}

@@ -1,18 +1,28 @@
 {
-  "status": "FROZEN_BEFORE_FULL_RESULT_SCORING",
+  "version": 4,
+  "status": "FROZEN_BEFORE_SCIENCEQA_GENERATION_AND_FINAL_SCORING",
+  "at_UTC": "2026-11-09T17:57:51.565873+00:00",
+  "reason": "Keep zero-completed/blocked views visible with no formal score; do not mislabel absent Circular group first-token measurements as zero; add CPU shape reconstruction cross-check from measured cache rows/bytes and actual smoke B/H/D. No generation or scoring formula changes.",
   "bootstrap_replicates": 20000,
   "seed": 20261106,
   "unit": "Image SHA256 whole cluster",
   "question_weighted": true,
   "files": {
-    "analysis/analysis.py": "dbd78d07030cf8710b2a05ffd974bc8d29f93f8ac262672b870b20c9658ed054",
-    "analysis/analysis_tests.py": "2e6da890805936070c38ed7e8311df0eed6895c64bf6873b3484e89a335ee520",
-    "analysis/final_report.py": "4e81d2813f20216cab446748142e5c7bad59303e7f336ff702ae4d758e9da535",
+    "analysis/analysis.py": "85f2ad67c98b11725e0c0f95fb6c22e7281dd82522233999ef78c9b7ef736171",
+    "analysis/analysis_tests.py": "08a47e0ce1044c030e7f869c50ccb41b7d7ff03cfca40ef04512347f70d4b19e",
+    "analysis/final_report.py": "350951c25d84369d18e7fc8449781feb17503f31a346c3fb27d57145c6dc190f",
+    "scripts/scorers_v3.py": "4e276b959e0bbe49544325b61ea9c7d9d55e5d0fc7e0698965f2536d2772d503",
+    "scripts/scoring_correction_v3_tests.py": "07118456e2fea0b6833abb2e044c1f556debf44abba97477ba887971a23d8904",
     "scripts/scorers_v2.py": "39c12d4b9a5600473766f9bad9843c94af931fac55f7eef831ea849665ab6a8f",
-    "scripts/scoring_correction_tests.py": "422046a2dae7f0ea31de418479de21eb05f6bdb8fa7651c6ea35608d496deab7"
+    "scripts/scoring_correction_tests.py": "422046a2dae7f0ea31de418479de21eb05f6bdb8fa7651c6ea35608d496deab7",
+    "scoring_correction_zh.md": "280184a2f196a150b1d5a30cfcec6b2f6be814c84df36afb4587787ec5aa2f70",
+    "scoring_reference/score.py": "50bc02bb5376af0f2aec9d32e0ce507e050b54f5b78137e1bd1ac8c8549a47f7",
+    "scoring_reference/frozen_matching_util.py": "eac9202e7dfa11e35c9d8cfa7bb55e66141798c4cc46c5b96e69664567b8a7de",
+    "scoring_reference/official_llava_m4c_evaluator.py": "8b49e1033e29d551c0bdd86d9149e2b54370e4cd17e52176ac9061b3521f0774",
+    "scoring_reference/parser_reference_manifest.json": "d50146c0e5b74c38d4b23e70774fdb4aba63b1229095c29563a034c9b016dc08",
+    "scoring_reference/parser_AST_comparison.json": "1d7b8bd4f3c204449b46da4a0cc42c3db4cde3d6e44e4549fa1688fc2069b811",
+    "analysis/kv_shape_crosscheck.py": "f75b3c7e02f09a1103d7ba791d7965c02878d76aefd7522b105d593a8137217a"
   },
   "GPU_source_unchanged": true,
-  "version": 2,
-  "supersedes_manifest_SHA256": "3da6bb0a6ee7aefc8b79b480ef35aa31f293e37a58c44c4a3bc7d7db337be0e2",
-  "reason": "Report status distinguishes completed generation from unavailable official judge; expose recorded peak memory. Scoring, bootstrap, inference and raw results unchanged."
+  "supersedes_manifest_SHA256": "f6af9728d0bb57df37eefdb2df8f815243d6c0b7c20af26251bb945e54cfc6dd"
 }
