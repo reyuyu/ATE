@@ -2,75 +2,93 @@
   "benchmarks": [
     {
       "anomalies": {
-        "eos": 4383
+        "eos": 12578
       },
       "benchmark": "GQA",
-      "completed": 4383,
-      "delta_old_svh_r": null,
+      "completed": 12578,
+      "delta_old_svh_r": -0.9222451900143085,
       "expected": 12578,
       "metric": "Accuracy (%)",
-      "middle16": 59.20602327173169,
+      "middle16": 58.332008268405154,
       "middle16_ci95": [
-        57.401783483309046,
-        61.01891224580776
+        56.86627845998766,
+        59.80015752184087
       ],
       "native": 61.91763396406424,
       "old_svh_r": 59.25425345841946,
       "paired_ci95": null,
       "paired_status": "BLOCKED_MISSING_BOUND_SAME_PROTOCOL_PER_QUESTION_CONTROLS",
       "reference_commit": "71a5762cd8ccb8cc99efe9b6b0267d8abef70c46",
-      "status": "PARTIAL",
+      "status": "COMPLETE",
       "svh": 57.59262203847989
     },
     {
-      "anomalies": {},
+      "anomalies": {
+        "eos": 2017
+      },
       "benchmark": "ScienceQA-IMG",
-      "completed": 0,
-      "delta_old_svh_r": null,
+      "completed": 2017,
+      "delta_old_svh_r": -0.04957858205254695,
       "expected": 2017,
       "metric": "Accuracy (%)",
-      "middle16": null,
-      "middle16_ci95": null,
+      "middle16": 68.41844323252356,
+      "middle16_ci95": [
+        66.24137167385254,
+        70.52369374183588
+      ],
       "native": null,
       "old_svh_r": 68.4680218145761,
       "paired_ci95": null,
       "paired_status": "BLOCKED_MISSING_BOUND_SAME_PROTOCOL_PER_QUESTION_CONTROLS",
       "reference_commit": "0414e553ba6fd1e21626ecf741489d225b44279c",
-      "status": "PARTIAL",
+      "status": "COMPLETE",
       "svh": null
     },
     {
-      "anomalies": {},
+      "anomalies": {
+        "empty": 42,
+        "eos": 4999,
+        "repeated_3gram": 32,
+        "truncated": 1
+      },
       "benchmark": "TextVQA",
-      "completed": 0,
-      "delta_old_svh_r": null,
+      "completed": 5000,
+      "delta_old_svh_r": -0.190000000000083,
       "expected": 5000,
       "metric": "Soft Accuracy (%)",
-      "middle16": null,
-      "middle16_ci95": null,
+      "middle16": 54.6,
+      "middle16_ci95": [
+        53.231372672334345,
+        55.95060587374864
+      ],
       "native": null,
       "old_svh_r": 54.790000000000084,
       "paired_ci95": null,
       "paired_status": "BLOCKED_MISSING_BOUND_SAME_PROTOCOL_PER_QUESTION_CONTROLS",
       "reference_commit": "0414e553ba6fd1e21626ecf741489d225b44279c",
-      "status": "PARTIAL",
+      "status": "COMPLETE",
       "svh": null
     },
     {
-      "anomalies": {},
+      "anomalies": {
+        "eos": 8910
+      },
       "benchmark": "POPE",
-      "completed": 0,
-      "delta_old_svh_r": null,
+      "completed": 8910,
+      "delta_old_svh_r": 0.1571268237934902,
       "expected": 8910,
       "metric": "Accuracy (%)",
-      "middle16": null,
-      "middle16_ci95": null,
+      "middle16": 87.47474747474747,
+      "middle16_ci95": [
+        86.44369751480416,
+        88.48358826790749
+      ],
       "native": null,
       "old_svh_r": 87.31762065095398,
       "paired_ci95": null,
       "paired_status": "BLOCKED_MISSING_BOUND_SAME_PROTOCOL_PER_QUESTION_CONTROLS",
       "reference_commit": "0414e553ba6fd1e21626ecf741489d225b44279c",
-      "status": "PARTIAL",
+      "status": "COMPLETE",
       "svh": null
     },
     {
@@ -91,20 +109,25 @@
       "svh": null
     },
     {
-      "anomalies": {},
+      "anomalies": {
+        "eos": 4377
+      },
       "benchmark": "MMBench",
-      "completed": 0,
-      "delta_old_svh_r": null,
+      "completed": 4377,
+      "delta_old_svh_r": 0.4251700680272137,
       "expected": 4377,
-      "metric": "Accuracy (%)",
-      "middle16": null,
-      "middle16_ci95": null,
+      "metric": "Circular Accuracy (%)",
+      "middle16": 63.435374149659864,
+      "middle16_ci95": [
+        60.31472471840637,
+        66.43658326143228
+      ],
       "native": null,
       "old_svh_r": 63.01020408163265,
       "paired_ci95": null,
       "paired_status": "BLOCKED_MISSING_BOUND_SAME_PROTOCOL_PER_QUESTION_CONTROLS",
       "reference_commit": "0414e553ba6fd1e21626ecf741489d225b44279c",
-      "status": "PARTIAL",
+      "status": "COMPLETE",
       "svh": null
     },
     {
@@ -125,7 +148,7 @@
       "svh": null
     }
   ],
-  "completed": 4383,
+  "completed": 32882,
   "data_blockers": {
     "MME": {
       "actual_sha256": "61d010ea9fabdc0bf930362d3cc1e4dc554789036f219feba927551effecd510",
