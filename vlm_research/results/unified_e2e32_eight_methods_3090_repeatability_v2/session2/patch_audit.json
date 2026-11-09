@@ -1,0 +1,228 @@
+{
+  "status": "PASS",
+  "GPU_requests": 0,
+  "test_cases": [
+    {
+      "name": "Native exact",
+      "accepted": true,
+      "rule": "first_EOS_inclusive"
+    },
+    {
+      "name": "Native only post EOS different",
+      "accepted": true,
+      "rule": "first_EOS_inclusive"
+    },
+    {
+      "name": "Native pre EOS different rejected",
+      "accepted": false,
+      "rule": "first_EOS_inclusive"
+    },
+    {
+      "name": "Native EOS displaced rejected",
+      "accepted": false,
+      "rule": "first_EOS_inclusive"
+    },
+    {
+      "name": "Native one EOS missing rejected",
+      "accepted": false,
+      "rule": "EOS_presence_mismatch"
+    },
+    {
+      "name": "Native neither EOS exact",
+      "accepted": true,
+      "rule": "no_EOS_requires_full32"
+    },
+    {
+      "name": "Native neither EOS differing rejected",
+      "accepted": false,
+      "rule": "no_EOS_requires_full32"
+    },
+    {
+      "name": "Native first token EOS",
+      "accepted": true,
+      "rule": "first_EOS_inclusive"
+    },
+    {
+      "name": "Native missing history rejected",
+      "accepted": false,
+      "rule": "unchanged_no_reference"
+    },
+    {
+      "name": "FastV exact",
+      "accepted": true,
+      "rule": "first_EOS_inclusive"
+    },
+    {
+      "name": "FastV only post EOS different",
+      "accepted": true,
+      "rule": "first_EOS_inclusive"
+    },
+    {
+      "name": "FastV pre EOS different rejected",
+      "accepted": false,
+      "rule": "first_EOS_inclusive"
+    },
+    {
+      "name": "FastV EOS displaced rejected",
+      "accepted": false,
+      "rule": "first_EOS_inclusive"
+    },
+    {
+      "name": "FastV one EOS missing rejected",
+      "accepted": false,
+      "rule": "EOS_presence_mismatch"
+    },
+    {
+      "name": "FastV neither EOS exact",
+      "accepted": true,
+      "rule": "no_EOS_requires_full32"
+    },
+    {
+      "name": "FastV neither EOS differing rejected",
+      "accepted": false,
+      "rule": "no_EOS_requires_full32"
+    },
+    {
+      "name": "FastV first token EOS",
+      "accepted": true,
+      "rule": "first_EOS_inclusive"
+    },
+    {
+      "name": "FastV missing history rejected",
+      "accepted": false,
+      "rule": "unchanged_no_reference"
+    },
+    {
+      "name": "Other historical output diagnostic only",
+      "accepted": true,
+      "rule": "historical_difference_diagnostic_only"
+    },
+    {
+      "name": "BridgeNative has strict manual same-GPU checks",
+      "accepted": true,
+      "rule": "unchanged_no_reference"
+    }
+  ],
+  "request_entire_AST_identical": true,
+  "same_GPU_noop_AST_identical": true,
+  "cleanup_and_safety_AST_identical": true,
+  "old151_record_remains_PARTIAL": true,
+  "old151_revised_policy_evidence": {
+    "accepted": true,
+    "rule": "first_EOS_inclusive",
+    "full32_exact": false,
+    "first_difference_0based": 11,
+    "all_differing_positions_0based": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27,
+      28,
+      29,
+      30,
+      31
+    ],
+    "current_EOS_positions_0based": [
+      3,
+      27,
+      30
+    ],
+    "historical_EOS_positions_0based": [
+      3,
+      26,
+      29
+    ],
+    "comparison_last_index_0based": 3,
+    "post_EOS_only_difference": true,
+    "current_token_ids": [
+      29871,
+      29896,
+      7234,
+      2,
+      13,
+      5618,
+      338,
+      278,
+      2927,
+      310,
+      278,
+      1559,
+      297,
+      278,
+      3239,
+      29973,
+      13,
+      22550,
+      278,
+      1139,
+      773,
+      263,
+      2323,
+      1734,
+      470,
+      16549,
+      29889,
+      2,
+      13,
+      9039,
+      2,
+      13
+    ],
+    "historical_token_ids": [
+      29871,
+      29896,
+      7234,
+      2,
+      13,
+      5618,
+      338,
+      278,
+      2927,
+      310,
+      278,
+      610,
+      9292,
+      11134,
+      29973,
+      13,
+      22550,
+      278,
+      1139,
+      773,
+      263,
+      2323,
+      1734,
+      470,
+      16549,
+      29889,
+      2,
+      13,
+      9039,
+      2,
+      13,
+      5618
+    ]
+  },
+  "old_checkpoint_SHA256": "73a37baf448e5d4ea38232e2c6d3c59fd4dff4758b31322655bc8a8b92897f94",
+  "old_entry_SHA256": "9775421ee7569acc65f4fceb5b612090d256874436d2613847d3c6f80c409ae2",
+  "new_entry_SHA256": "636a77f2853ebbd3855eea55e46b7379cbab96fe1f20cfaa26029b034a099ae2",
+  "frozen_runtime_SHA256": "513a122ff5f4da008b74e4d5560b0b6ef50baf8ccf7feb2fa766a0cdcdc51a3b",
+  "new_policy_SHA256": "4f12e70e40114a5fd935c251ed5b107512b10662f4a1422c4df18a4d40068b9a",
+  "fixed_Native_warmup": 40,
+  "other_warmup_each": 2,
+  "performance_warn_only": true,
+  "scope": "Only cross-GPU Native historical acceptance extends the existing FastV first-EOS rule. Same request function, metrics, generation, physical gates and same-GPU strict No-op loops. Fixed40 warmup and one extra Native correctness Smoke are declared outside the request function."
+}

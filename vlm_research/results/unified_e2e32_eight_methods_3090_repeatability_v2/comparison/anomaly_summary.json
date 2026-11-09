@@ -1,0 +1,116 @@
+{
+  "statistical_flags": [
+    {
+      "scope": "within_session",
+      "session": 1,
+      "method": "SparseVLM",
+      "key": "GQA:202158870",
+      "ratio": 1.179167144173678,
+      "median_ratio": 1.0189969027167134,
+      "MAD": 0.014453573951860865,
+      "flag": "paired E2E ratio outlier; retained"
+    },
+    {
+      "scope": "within_session",
+      "session": 1,
+      "method": "V2Drop",
+      "key": "GQA:202121628",
+      "ratio": 1.0545082040815241,
+      "median_ratio": 0.9717789286273044,
+      "MAD": 0.006462366029916844,
+      "flag": "paired E2E ratio outlier; retained"
+    },
+    {
+      "scope": "within_session",
+      "session": 1,
+      "method": "V2Drop",
+      "key": "GQA:202158870",
+      "ratio": 1.086404135882025,
+      "median_ratio": 0.9717789286273044,
+      "MAD": 0.006462366029916844,
+      "flag": "paired E2E ratio outlier; retained"
+    },
+    {
+      "scope": "within_session",
+      "session": 1,
+      "method": "DUET",
+      "key": "GQA:202121628",
+      "ratio": 1.1423244657608762,
+      "median_ratio": 0.9989731339442232,
+      "MAD": 0.013884024311377363,
+      "flag": "paired E2E ratio outlier; retained"
+    },
+    {
+      "scope": "within_session",
+      "session": 1,
+      "method": "SVH",
+      "key": "GQA:202121628",
+      "ratio": 1.0115669185377807,
+      "median_ratio": 0.9038848743104342,
+      "MAD": 0.0046898131436081125,
+      "flag": "paired E2E ratio outlier; retained"
+    },
+    {
+      "scope": "within_session",
+      "session": 1,
+      "method": "SVH-R",
+      "key": "GQA:202121628",
+      "ratio": 1.0387000076234703,
+      "median_ratio": 0.9147584849825947,
+      "MAD": 0.004314843641364918,
+      "flag": "paired E2E ratio outlier; retained"
+    },
+    {
+      "scope": "within_session",
+      "session": 2,
+      "method": "FastV",
+      "key": "TextVQA:35607",
+      "ratio": 1.1392872211439797,
+      "median_ratio": 0.9776716812537394,
+      "MAD": 0.008886688984653779,
+      "flag": "paired E2E ratio outlier; retained"
+    },
+    {
+      "scope": "within_session",
+      "session": 2,
+      "method": "SparseVLM",
+      "key": "TextVQA:35607",
+      "ratio": 1.1740779460270359,
+      "median_ratio": 1.0107947186144957,
+      "MAD": 0.01654099697181355,
+      "flag": "paired E2E ratio outlier; retained"
+    },
+    {
+      "scope": "within_session",
+      "session": 2,
+      "method": "V2Drop",
+      "key": "GQA:201759069",
+      "ratio": 0.8191326967510207,
+      "median_ratio": 0.9647823556582745,
+      "MAD": 0.00699694298000092,
+      "flag": "paired E2E ratio outlier; retained"
+    },
+    {
+      "scope": "within_session",
+      "session": 2,
+      "method": "V2Drop",
+      "key": "TextVQA:35607",
+      "ratio": 1.0999214434649005,
+      "median_ratio": 0.9647823556582745,
+      "MAD": 0.00699694298000092,
+      "flag": "paired E2E ratio outlier; retained"
+    },
+    {
+      "scope": "within_session",
+      "session": 2,
+      "method": "ApET",
+      "key": "GQA:201759069",
+      "ratio": 0.8531721583666506,
+      "median_ratio": 0.9834982275778023,
+      "MAD": 0.012494758945084616,
+      "flag": "paired E2E ratio outlier; retained"
+    }
+  ],
+  "no_requests_removed": true,
+  "rule": "Paired E2E ratio distance from median > max(0.05,6*1.4826*MAD); fixed exploratory screen, no causal attribution"
+}
