@@ -1,0 +1,149 @@
+{
+  "benchmarks": [
+    {
+      "anomalies": {
+        "eos": 435
+      },
+      "benchmark": "GQA",
+      "completed": 435,
+      "delta_old_svh_r": null,
+      "expected": 12578,
+      "metric": "Accuracy (%)",
+      "middle16": 55.172413793103445,
+      "middle16_ci95": [
+        50.50498705649459,
+        59.823447757309346
+      ],
+      "native": 61.91763396406424,
+      "old_svh_r": 59.25425345841946,
+      "paired_ci95": null,
+      "paired_status": "BLOCKED_MISSING_BOUND_SAME_PROTOCOL_PER_QUESTION_CONTROLS",
+      "reference_commit": "71a5762cd8ccb8cc99efe9b6b0267d8abef70c46",
+      "status": "PARTIAL",
+      "svh": 57.59262203847989
+    },
+    {
+      "anomalies": {},
+      "benchmark": "ScienceQA-IMG",
+      "completed": 0,
+      "delta_old_svh_r": null,
+      "expected": 2017,
+      "metric": "Accuracy (%)",
+      "middle16": null,
+      "middle16_ci95": null,
+      "native": null,
+      "old_svh_r": 68.4680218145761,
+      "paired_ci95": null,
+      "paired_status": "BLOCKED_MISSING_BOUND_SAME_PROTOCOL_PER_QUESTION_CONTROLS",
+      "reference_commit": "0414e553ba6fd1e21626ecf741489d225b44279c",
+      "status": "PARTIAL",
+      "svh": null
+    },
+    {
+      "anomalies": {},
+      "benchmark": "TextVQA",
+      "completed": 0,
+      "delta_old_svh_r": null,
+      "expected": 5000,
+      "metric": "Soft Accuracy (%)",
+      "middle16": null,
+      "middle16_ci95": null,
+      "native": null,
+      "old_svh_r": 54.790000000000084,
+      "paired_ci95": null,
+      "paired_status": "BLOCKED_MISSING_BOUND_SAME_PROTOCOL_PER_QUESTION_CONTROLS",
+      "reference_commit": "0414e553ba6fd1e21626ecf741489d225b44279c",
+      "status": "PARTIAL",
+      "svh": null
+    },
+    {
+      "anomalies": {},
+      "benchmark": "POPE",
+      "completed": 0,
+      "delta_old_svh_r": null,
+      "expected": 8910,
+      "metric": "Accuracy (%)",
+      "middle16": null,
+      "middle16_ci95": null,
+      "native": null,
+      "old_svh_r": 87.31762065095398,
+      "paired_ci95": null,
+      "paired_status": "BLOCKED_MISSING_BOUND_SAME_PROTOCOL_PER_QUESTION_CONTROLS",
+      "reference_commit": "0414e553ba6fd1e21626ecf741489d225b44279c",
+      "status": "PARTIAL",
+      "svh": null
+    },
+    {
+      "anomalies": {},
+      "benchmark": "MME",
+      "completed": 0,
+      "delta_old_svh_r": null,
+      "expected": 2374,
+      "metric": "MME points",
+      "middle16": null,
+      "middle16_ci95": null,
+      "native": null,
+      "old_svh_r": 1806.6025410164066,
+      "paired_ci95": null,
+      "paired_status": "BLOCKED_MISSING_BOUND_SAME_PROTOCOL_PER_QUESTION_CONTROLS",
+      "reference_commit": "0414e553ba6fd1e21626ecf741489d225b44279c",
+      "status": "BLOCKED",
+      "svh": null
+    },
+    {
+      "anomalies": {},
+      "benchmark": "MMBench",
+      "completed": 0,
+      "delta_old_svh_r": null,
+      "expected": 4377,
+      "metric": "Accuracy (%)",
+      "middle16": null,
+      "middle16_ci95": null,
+      "native": null,
+      "old_svh_r": 63.01020408163265,
+      "paired_ci95": null,
+      "paired_status": "BLOCKED_MISSING_BOUND_SAME_PROTOCOL_PER_QUESTION_CONTROLS",
+      "reference_commit": "0414e553ba6fd1e21626ecf741489d225b44279c",
+      "status": "PARTIAL",
+      "svh": null
+    },
+    {
+      "anomalies": {},
+      "benchmark": "OCRBench-v1",
+      "completed": 0,
+      "delta_old_svh_r": null,
+      "expected": 1000,
+      "metric": "Official raw score /1000",
+      "middle16": null,
+      "middle16_ci95": null,
+      "native": null,
+      "old_svh_r": 281,
+      "paired_ci95": null,
+      "paired_status": "BLOCKED_MISSING_BOUND_SAME_PROTOCOL_PER_QUESTION_CONTROLS",
+      "reference_commit": "0414e553ba6fd1e21626ecf741489d225b44279c",
+      "status": "BLOCKED",
+      "svh": null
+    }
+  ],
+  "completed": 435,
+  "data_blockers": {
+    "MME": {
+      "actual_sha256": "61d010ea9fabdc0bf930362d3cc1e4dc554789036f219feba927551effecd510",
+      "expected": 2374,
+      "expected_sha256": "ecd588bb65d6397126fec9dbe556b1759e47d72a735a7f8776f86598fbbf174a",
+      "path": "/data/lk/ATE-benchmarks-20261105/datasets/MME/MME_Benchmark_release_version/landmark/03d5e3bfc958be38.jpg",
+      "reason": "Reference 0414 recovered-image bytes absent; original local bytes must not be substituted",
+      "status": "BLOCKED"
+    },
+    "OCRBench-v1": {
+      "annotation_verified": true,
+      "expected": 1000,
+      "image_cache": "/data/lk/ATE-benchmarks-20261105/datasets/OCRBench-v1",
+      "reason": "Official fixed image ZIP unavailable; HF mirror is not verified byte-identical",
+      "status": "BLOCKED"
+    }
+  },
+  "no_unmatched_paired_inference": true,
+  "requested": 36256,
+  "status": "PARTIAL"
+}

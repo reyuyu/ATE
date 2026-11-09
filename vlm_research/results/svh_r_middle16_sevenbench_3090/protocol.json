@@ -1,0 +1,173 @@
+{
+  "algorithm": {
+    "answer_skip": [
+      2,
+      3,
+      4,
+      5
+    ],
+    "exit_before": 24,
+    "name": "llava-SVH-R-Middle16",
+    "reaccess": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "writer_layers": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ]
+  },
+  "attention": "eager",
+  "base_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+  "batch_size": 1,
+  "condition_count": 1,
+  "controls": "Only row-bound same-protocol records may be reused; unavailable controls remain missing",
+  "data_blockers": {
+    "MME": {
+      "actual_sha256": "61d010ea9fabdc0bf930362d3cc1e4dc554789036f219feba927551effecd510",
+      "expected": 2374,
+      "expected_sha256": "ecd588bb65d6397126fec9dbe556b1759e47d72a735a7f8776f86598fbbf174a",
+      "path": "/data/lk/ATE-benchmarks-20261105/datasets/MME/MME_Benchmark_release_version/landmark/03d5e3bfc958be38.jpg",
+      "reason": "Reference 0414 recovered-image bytes absent; original local bytes must not be substituted",
+      "status": "BLOCKED"
+    },
+    "OCRBench-v1": {
+      "annotation_verified": true,
+      "expected": 1000,
+      "image_cache": "/data/lk/ATE-benchmarks-20261105/datasets/OCRBench-v1",
+      "reason": "Official fixed image ZIP unavailable; HF mirror is not verified byte-identical",
+      "status": "BLOCKED"
+    }
+  },
+  "dtype": "float16",
+  "greedy": true,
+  "inference_cap_policy": "Frozen per-benchmark cap; never reuse old GQA outputs for Middle16",
+  "logits_to_keep": 1,
+  "manifest_sha256": "2a83d76a622418c9925b3c4d3cd274c0ae8e320bb4065a85665ad586a0390943",
+  "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "numerical_gate": {
+    "hidden_cosine_distance": 0.0001,
+    "hidden_relative_rmse": 0.01,
+    "logits_atol": 0.1,
+    "logits_rtol": 0.003
+  },
+  "partition_sha256": "1edd490eeee629dcb7495999bd9601e903cb18d94bb50ac977282d07ca6cd67c",
+  "references": [
+    {
+      "git_path": "vlm_research/results/featurize_4090_gqa_official_aligned_threeway/protocol.json",
+      "path": "/data/lk/ATE-worktrees/llava-svh-r-middle16-3090-sevenbench/vlm_research/results/svh_r_middle16_sevenbench_3090/references/71a5762cd8ccb8cc99efe9b6b0267d8abef70c46/protocol.json",
+      "sha256": "1a7db2cacd807105fe6ccd1bf9c91652032050c242c2a49ddd5d7f490dcdeec4",
+      "source_commit": "71a5762cd8ccb8cc99efe9b6b0267d8abef70c46"
+    },
+    {
+      "git_path": "vlm_research/results/featurize_new3090_c3v2_reaccess_sevenbench/paper_protocol.json",
+      "path": "/data/lk/ATE-worktrees/llava-svh-r-middle16-3090-sevenbench/vlm_research/results/svh_r_middle16_sevenbench_3090/references/0414e553ba6fd1e21626ecf741489d225b44279c/paper_protocol.json",
+      "sha256": "5ab87f8d8690843cd01143bc3f2e865c3ccf9f242900ede894639beeaede3105",
+      "source_commit": "0414e553ba6fd1e21626ecf741489d225b44279c"
+    },
+    {
+      "git_path": "vlm_research/results/featurize_new3090_c3v2_reaccess_sevenbench/ocr_protocol.json",
+      "path": "/data/lk/ATE-worktrees/llava-svh-r-middle16-3090-sevenbench/vlm_research/results/svh_r_middle16_sevenbench_3090/references/0414e553ba6fd1e21626ecf741489d225b44279c/ocr_protocol.json",
+      "sha256": "688ae030b6b4380c3706718b66ab885004804a14245b8bb0ea12f0fb979273d9",
+      "source_commit": "0414e553ba6fd1e21626ecf741489d225b44279c"
+    },
+    {
+      "git_path": "vlm_research/results/featurize_new3090_c3v2_reaccess_sevenbench/ocr_SOURCE.json",
+      "path": "/data/lk/ATE-worktrees/llava-svh-r-middle16-3090-sevenbench/vlm_research/results/svh_r_middle16_sevenbench_3090/references/0414e553ba6fd1e21626ecf741489d225b44279c/ocr_SOURCE.json",
+      "sha256": "379120e35a60ca6ba8a1abfb164aa1357e86b1e3bb45c63a44892276c9aa68b6",
+      "source_commit": "0414e553ba6fd1e21626ecf741489d225b44279c"
+    },
+    {
+      "git_path": "vlm_research/results/featurize_new3090_c3v2_reaccess_sevenbench/seven_runner.py",
+      "path": "/data/lk/ATE-worktrees/llava-svh-r-middle16-3090-sevenbench/vlm_research/results/svh_r_middle16_sevenbench_3090/references/0414e553ba6fd1e21626ecf741489d225b44279c/seven_runner.py",
+      "sha256": "f938ea5f3ab8edae93147dddc911b056ba21a4ef532278e3f9cf399a2eacc7c1",
+      "source_commit": "0414e553ba6fd1e21626ecf741489d225b44279c"
+    },
+    {
+      "git_path": "vlm_research/results/featurize_new3090_c3v2_reaccess_sevenbench/report_zh.md",
+      "path": "/data/lk/ATE-worktrees/llava-svh-r-middle16-3090-sevenbench/vlm_research/results/svh_r_middle16_sevenbench_3090/references/0414e553ba6fd1e21626ecf741489d225b44279c/report_zh.md",
+      "sha256": "5d471da850ef20328a38e98c6f68b2739921e4208c0a99141e2f446396d12a42",
+      "source_commit": "0414e553ba6fd1e21626ecf741489d225b44279c"
+    },
+    {
+      "git_path": "vlm_research/results/featurize_new3090_c3v2_reaccess_sevenbench/score_summary.json",
+      "path": "/data/lk/ATE-worktrees/llava-svh-r-middle16-3090-sevenbench/vlm_research/results/svh_r_middle16_sevenbench_3090/references/0414e553ba6fd1e21626ecf741489d225b44279c/score_summary.json",
+      "sha256": "972b9f95298244f717ff6b451b370b5a61bea2593f9c11acd957f48ac40a091b",
+      "source_commit": "0414e553ba6fd1e21626ecf741489d225b44279c"
+    },
+    {
+      "git_path": "vlm_research/results/featurize_new3090_c3v2_reaccess_sevenbench/model_acceptance.json",
+      "path": "/data/lk/ATE-worktrees/llava-svh-r-middle16-3090-sevenbench/vlm_research/results/svh_r_middle16_sevenbench_3090/references/0414e553ba6fd1e21626ecf741489d225b44279c/model_acceptance.json",
+      "sha256": "5c775b869935be0f2844c321c94da6b197a4e2fc58ea6afd204d74f870dc2214",
+      "source_commit": "0414e553ba6fd1e21626ecf741489d225b44279c"
+    }
+  ],
+  "requested_counts": {
+    "GQA": 12578,
+    "MMBench": 4377,
+    "MME": 2374,
+    "OCRBench-v1": 1000,
+    "POPE": 8910,
+    "ScienceQA-IMG": 2017,
+    "TextVQA": 5000
+  },
+  "sources": {
+    "vlm_research/accuracy_autoresearch/common.py": "01a68cc5b739a3d9172e351d5d68250e33d997639c35ecbf84376b8bbf0f9d58",
+    "vlm_research/accuracy_autoresearch/engine.py": "4a381e87cd69b5b1e20eb10f3b52a9e1470f6662d845daafba6639bfe7c7974e",
+    "vlm_research/ate_fulljoint_v2/engine.py": "ef59447163c47528be2fde44751c124df3d550a6e89244046c3d40d99b4e9e44",
+    "vlm_research/c3v2_middle_reaccess/common.py": "a765d0731ef5e230c705e3c516353953869352f68cd5cc0054a7708226f1e6c1",
+    "vlm_research/c3v2_middle_reaccess/engine.py": "e541c9122636205aeaeb752346ea08aa1c1aff6a06cfd40a60319a1cfc2763ff",
+    "vlm_research/information_horizon_alignment/common.py": "3958686c179db7a1f8e67ff57a52a29080eb9fcf206d52a6590c8cd9f580e4e6",
+    "vlm_research/information_horizon_alignment/engine.py": "edc2b8331512af12cdb881c4b0269c7fd744ebc3580e125a68afff11cd5df929",
+    "vlm_research/information_horizon_alignment/score.py": "50bc02bb5376af0f2aec9d32e0ce507e050b54f5b78137e1bd1ac8c8549a47f7",
+    "vlm_research/mme_seed_quality/common.py": "e0c23bb9aecda2513d48b4053c86af6d0bba8c179eb07522ab164fa4733eeab4",
+    "vlm_research/mme_seed_quality/engine.py": "f7f41d523c926354cf18bd7e4fbcfbd7aa46bb17bccf37b2fd8ce468ab0fc100",
+    "vlm_research/p1_layerwise_accuracy/common.py": "cb87d6c1f3f6156a14ae22ef3a1cb60304ec90bcc328faa239bf4481a138328c",
+    "vlm_research/p1_layerwise_accuracy/engine.py": "3cbf506f506c33fe34a636d2a3b5f19f751e2831b3bb299aae460ae8a5add46a",
+    "vlm_research/physical_handoff_fastpath/engine.py": "6e8abb7e04517678c189a896589abb97774652313ecedb57d58f97bd718b74a0",
+    "vlm_research/physical_visual_handoff/common.py": "071f04ecb8cbc07c03251da236a371843a217536917494914aee55cc5162fcf3",
+    "vlm_research/physical_visual_handoff/engine.py": "e46dd347bc5d4763c179a02459b7bd09ab87e45e7499107930928df3c98f295b",
+    "vlm_research/svh_middle16/analyze.py": "3792ea57a3f103acbdd41d1912571373e3a507651315a5cbf8e81bb1bf794eb2",
+    "vlm_research/svh_middle16/common.py": "8392bdcbc8760772d3523a717a5965f573624d213c3794f2405c592acbe7f842",
+    "vlm_research/svh_middle16/engine.py": "3b0f748bfc73e4baae5c69eb401e79c07076ec16ef06ea2a387691dc63fb27ff",
+    "vlm_research/svh_middle16/prepare.py": "6b3f20426e7efb2ed2be90e9a7db4bfbbc9158f2086d547e0c3330b27c45d4e5",
+    "vlm_research/svh_middle16/run.py": "3cdfffb23cb806bb6a2046019126b1c625f1ba63a67e63c3f67739f0a526c1d4",
+    "vlm_research/svh_middle16/tests.py": "c38525dc0049a30b81f9f5f1e878b28e15d8f3e3ac69ce7dd6bf18371dbf4bf0"
+  },
+  "status": "FROZEN_WITH_DATA_BLOCKERS",
+  "torch": "2.6.0+cu124",
+  "transformers": "4.49.0"
+}
