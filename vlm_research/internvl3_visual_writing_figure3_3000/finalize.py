@@ -21,10 +21,12 @@ def main():
     no=next(r for r in summary if r["condition"]=="No-Writer")
     deep=next(r for r in summary if r["condition"]=="Keep-L0-L16")
     worst=sorted(overall,key=lambda r:(-float(r["delta_accuracy_pp"]),int(r["layer"])))[:5]
+    significant=[f"L{r['layer']}" for r in overall if float(r["Bonferroni28_low"])>0]
     figs={}
     for name in ["figure3_internvl_row","figure3_three_models"]:
         image=Image.open(OUT/(name+".png"));dpi=image.info.get("dpi");assert dpi and min(dpi)>=300
-        pdf=OUT/(name+".pdf");assert pdf.stat().st_size>1000 and pdf.read_bytes().startswith(b"%PDF")
+        pdf=OUT/(name+".pdf");pdf_bytes=pdf.read_bytes()
+        assert len(pdf_bytes)>1000 and pdf_bytes.startswith(b"%PDF") and b"/Subtype /Image" not in pdf_bytes
         figs[name]=dict(PNG_dimensions=list(image.size),PNG_DPI=dpi,PDF_bytes=pdf.stat().st_size)
     assert json.loads((OUT/"figure_render_validation.json").read_text())["PDF_vector_heatmap"]
     assert all(sha(path)==h for path,h in json.loads((OUT/"source_manifest.json").read_text()).items())
@@ -58,7 +60,7 @@ def main():
       "",
       f"**All-Writer {float(base['accuracy_pct']):.4f}%（{base['correct']}/3000）；No-Writer {float(no['accuracy_pct']):.4f}%；L17–L27 OFF {float(deep['accuracy_pct']):.4f}%（{deep['correct']}/3000）。**",
       f"深层联合关闭的损失（All-Writer减限制条件）**{float(deep['delta_accuracy_pp']):+.4f} pp**；整簇配对普通95%CI [{float(deep['delta_ci95_low']):+.4f}, {float(deep['delta_ci95_high']):+.4f}] pp；原对变错{deep['correct_to_wrong']}题，原错变对{deep['wrong_to_correct']}题。",
-      "CI跨0不证明等价或无损；L17边界在GPU执行前固定，没有按结果调整。",
+      ("本轮深层联合关闭的普通95%CI完全大于0，可检出质量损失，不能称为等价或无损。" if float(deep['delta_ci95_low'])>0 else "CI包含0不能证明等价或无损。")+"L17边界在GPU执行前固定，没有按结果调整。",
       "",
       "## 最敏感的五个单层","",
       "| Layer | ACC % | 损失 pp | 普通95%CI pp | Bonferroni-28 CI pp | 对→错 / 错→对 |",
@@ -66,18 +68,21 @@ def main():
     for r in worst:
         lines.append(f"| L{r['layer']} | {float(r['accuracy_pct']):.4f} | {float(r['delta_accuracy_pp']):+.4f} | [{float(r['delta_ci95_low']):+.4f}, {float(r['delta_ci95_high']):+.4f}] | [{float(r['Bonferroni28_low']):+.4f}, {float(r['Bonferroni28_high']):+.4f}] | {r['correct_to_wrong']} / {r['wrong_to_correct']} |")
     lines+=["","Top5按观察到的整体净损失排序；校正区间用于区分峰值与统计证据。",
-       "","## 六任务差异","","| Task | All-Writer % | 最大净损害层 | 损失 pp | L17–L27 OFF % |","| --- | ---: | --- | ---: | ---: |"]
+       "整体单层比较中，Bonferroni-28校正区间完全大于0的层："+("、".join(significant) if significant else "无")+"。点估计排序与校正后的统计证据不同，不能把Top5排序视为层之间差异已被显著性检验确认。",
+       "","## 六任务差异","","| Task | All-Writer % | 最大净损害层（含并列） | 单层损失 pp | L17–L27 OFF % | 联合损失 pp |","| --- | ---: | --- | ---: | ---: | ---: |"]
     for task in TASKS:
         ts=[r for r in tasks if r["subset"]==task];b=next(r for r in ts if r["condition"]=="All-Writer")
         d=next(r for r in ts if r["condition"]=="Keep-L0-L16")
         peak=max((r for r in ts if r["condition"].startswith("Drop-")),key=lambda r:float(r["delta_accuracy_pp"]))
-        lines.append(f"| {task} | {float(b['accuracy_pct']):.2f} | {peak['condition']} | {float(peak['delta_accuracy_pp']):+.3f} | {float(d['accuracy_pct']):.2f} |")
+        peaks=[r['condition'] for r in ts if r['condition'].startswith('Drop-') and abs(float(r['delta_accuracy_pp'])-float(peak['delta_accuracy_pp']))<1e-9]
+        lines.append(f"| {task} | {float(b['accuracy_pct']):.2f} | {', '.join(peaks)} | {float(peak['delta_accuracy_pp']):+.3f} | {float(d['accuracy_pct']):.2f} | {float(d['delta_accuracy_pp']):+.3f} |")
     lines+=["","## 集中性和统计限制","",
        "以下是事后探索性描述：Top5层占各层原对变错事件总数的比例。同一题可在不同层重复计数，不是互斥概率质量。"]
     for r in concentration:
         lines.append(f"- {r['model']}：Top5损害事件占比 {100*r['top5_damage_event_share']:.2f}%；净损失≥0.5pp的层 {r['layers_loss_ge_0_5pp']}/{r['layers']}。")
     negatives=[r["condition"] for r in overall if float(r["delta_accuracy_pp"])<0]
-    lines += [f"按上述探索性集中度距离，InternVL更接近{closest['model']}。不能由此把模型差异归因于架构。",
+    lines += [f"按上述探索性集中度距离，InternVL更接近{closest['model']}；前三个整体净损失层为"+'、'.join('L'+r['layer'] for r in worst[:3])+"，六任务峰位见表。这个描述不把跨模型差异归因于架构。",
+       "最后11/28层（39.29%）联合关闭的各任务损失见上表，存在明显的任务差异。没有预设等价界限，不能用整体分数看起来相近来宣称深层无损。",
        "整体负ΔACC（关闭后改善）的层："+("、".join(negatives) if negatives else "无")+"。负值、损害及恢复案例全部保留。",
        "Image SHA整簇Bootstrap20,000次、题数加权、同题配对。28项单层比较在Overall和各任务内分别给Bonferroni-28区间；六任务分析是探索性的，不声称覆盖全部196项比较的统一家族错误率。",
        "","## 正确性与历史复用","",

@@ -1,0 +1,18 @@
+FlashAttention2 is not installed.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:05,  1.91s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.84s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:05<00:01,  1.81s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:06<00:00,  1.39s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:06<00:00,  1.56s/it]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/featurize/work/ATE-internvl3-figure3-3000/vlm_research/internvl3_visual_writing_figure3_3000/run.py", line 170, in <module>
+    if __name__=="__main__":main()
+                            ^^^^^^
+  File "/home/featurize/.venvs/ate-frozen/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/work/ATE-internvl3-figure3-3000/vlm_research/internvl3_visual_writing_figure3_3000/run.py", line 97, in main
+    versions=[(p._version,p.data_ptr()) for p in model.parameters()];footprint=hooks_count(model)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/work/ATE-internvl3-figure3-3000/vlm_research/internvl3_visual_writing_figure3_3000/run.py", line 97, in <listcomp>
+    versions=[(p._version,p.data_ptr()) for p in model.parameters()];footprint=hooks_count(model)
+               ^^^^^^^^^^
+RuntimeError: Inference tensors do not track version counter.

@@ -1,0 +1,32 @@
+{
+  "sources": [
+    {
+      "model": "LLaVA-1.5-7B",
+      "path": "references/llava/vlm_research/results/gqa3000_visual_writing_necessity/task_summary.csv",
+      "sha256": "b0035cb25bbd69f2d11224cfd2f207ac9420277c5f842f36d5d009ac369d1132",
+      "commit": "6eb8328c9652342343395cf19bf7149e7d7f3047"
+    },
+    {
+      "model": "LLaVA-1.5-7B",
+      "path": "references/llava_joint/vlm_research/results/gqa3000_visual_writing_16_vs_20/accuracy_summary.csv",
+      "sha256": "613d7d9a1233f06b79e77fac75a8731a4feaf9254cbafc80837d30266093d6ac",
+      "commit": "b13a21b07e84a0095731d10dc1e8854f514a7877"
+    },
+    {
+      "model": "Qwen3-VL-8B",
+      "path": "references/qwen/vlm_research/results/qwen3vl_visual_writing_necessity_3000/task_accuracy.csv",
+      "sha256": "e1a84200833d0ca621d54ea30d91e29a53f35ee0f8bf5851ecc22c096f08c28b",
+      "commit": "96a66a30bc81db9ffe5c3ed77716673a81aaaa01"
+    },
+    {
+      "model": "Qwen3-VL-8B",
+      "path": "references/joint/vlm_research/results/qwen3vl_keep_l0_21_gqa3000/accuracy_summary.csv",
+      "sha256": "7c8863cf6fd6a0ac47c627a1c2fb994aad4a65778c268af1efcee939cf389d0f",
+      "commit": "dfe0cbacd09de9dfeacff980b911e6aec22a7665"
+    }
+  ],
+  "historical_rows_from_fixed_CSV": true,
+  "no_historical_generation": true,
+  "delta_convention": "All-Writer minus restriction; historical opposite-sign differences explicitly negated",
+  "answer_damage": "100*correct_to_wrong / All-Writer-correct count per task; not net accuracy or first-token flips"
+}

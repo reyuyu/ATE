@@ -1,0 +1,32 @@
+FlashAttention2 is not installed.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:05,  1.79s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.68s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:04<00:01,  1.64s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:19<00:00, 30.24s/it]Loading checkpoint shards: 100%|██████████| 4/4 [01:19<00:00, 19.77s/it]
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/home/featurize/work/ATE-internvl3-figure3-3000/vlm_research/internvl3_visual_writing_figure3_3000/run.py", line 170, in <module>
+    if __name__=="__main__":main()
+                            ^^^^^^
+  File "/home/featurize/.venvs/ate-frozen/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/work/ATE-internvl3-figure3-3000/vlm_research/internvl3_visual_writing_figure3_3000/run.py", line 102, in main
+    smoke(model,tokenizer,loader,samples,bindings)
+  File "/home/featurize/.venvs/ate-frozen/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/work/ATE-internvl3-figure3-3000/vlm_research/internvl3_visual_writing_figure3_3000/run.py", line 33, in smoke
+    text=model.chat(tokenizer,prepared["pixels"],prepared["request"],
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/.cache/huggingface/modules/transformers_modules/InternVL3-8B/modeling_internvl_chat.py", line 291, in chat
+    generation_output = self.generate(
+                        ^^^^^^^^^^^^^^
+  File "/home/featurize/work/ATE-internvl3-figure3-3000/vlm_research/internvl3_visual_writing_figure3_3000/engine.py", line 231, in generate
+    out=original(*args,**kwargs);self.ids=out[0].detach().cpu().tolist();return out
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/.venvs/ate-frozen/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/.cache/huggingface/modules/transformers_modules/InternVL3-8B/modeling_internvl_chat.py", line 340, in generate
+    outputs = self.language_model.generate(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+TypeError: transformers.generation.utils.GenerationMixin.generate() got multiple values for keyword argument 'use_cache'
