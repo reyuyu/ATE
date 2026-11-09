@@ -1,0 +1,55 @@
+{
+  "status": "PASS_FROZEN_DATA_AND_DECLARED_PROTOCOL_WITH_LIMITATIONS",
+  "at": "2026-11-10T05:33:19.171760+08:00",
+  "CPU_only": true,
+  "new_gpu_work": false,
+  "paper_source_manifest_sha256": "9344bf5cd7649b02f85982dcefec02b4b8c4fd95e24f8f62f9f34cd278ee6a79",
+  "datasets": {
+    "ScienceQA-IMG": {
+      "rows": 2017,
+      "exact_historical_manifest_rows": true,
+      "cap": 1024
+    },
+    "TextVQA": {
+      "rows": 5000,
+      "exact_historical_manifest_rows": true,
+      "cap": 128
+    },
+    "POPE": {
+      "rows": 8910,
+      "exact_historical_manifest_rows": true,
+      "cap": 128
+    },
+    "MMBench": {
+      "rows": 4377,
+      "exact_historical_manifest_rows": true,
+      "cap": 1024
+    },
+    "GQA": {
+      "rows": 12578,
+      "exact_official_question_id_question_gold_image_mapping": true,
+      "exact_official_prepared_user_text": true,
+      "cap": 32,
+      "protocol_sha256": "1a7db2cacd807105fe6ccd1bf9c91652032050c242c2a49ddd5d7f490dcdeec4",
+      "old_gpu": "NVIDIA GeForce RTX 4090, GPU-643a4d73-25eb-6b19-1acc-ccf94c744cec, 610.57.04, 23715 MiB",
+      "same_hardware": false
+    }
+  },
+  "unique_current_images_rehashed": 7213,
+  "image_hash_mismatches": [],
+  "common_frozen_source_hashes": {
+    "vlm_research/information_horizon_alignment/engine.py": "edc2b8331512af12cdb881c4b0269c7fd744ebc3580e125a68afff11cd5df929",
+    "vlm_research/information_horizon_alignment/score.py": "50bc02bb5376af0f2aec9d32e0ce507e050b54f5b78137e1bd1ac8c8549a47f7",
+    "vlm_research/c3v2_middle_reaccess/engine.py": "e541c9122636205aeaeb752346ea08aa1c1aff6a06cfd40a60319a1cfc2763ff"
+  },
+  "new_source_unchanged": true,
+  "historical_complete_predictions_restored": false,
+  "historical_per_question_input_tensor_hashes_restored": false,
+  "limitations": [
+    "GQA historical comparator used RTX4090; current inference uses RTX3090.",
+    "No same-hardware full historical control replay in this run.",
+    "Missing bound historical predictions prevent paired harm/rescue/CI.",
+    "MME and OCRBench are BLOCKED, not accepted as matching datasets.",
+    "No blanket claim of equivalence to all external paper methods."
+  ]
+}
