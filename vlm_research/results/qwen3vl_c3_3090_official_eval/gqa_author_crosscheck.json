@@ -1,0 +1,42 @@
+{
+  "status": "PASS",
+  "source": {
+    "repo": "stanfordnlp/mac-network",
+    "path": "main.py",
+    "commit": "4f3a052ac9e22f88216ef594f9bad024ba857a3f",
+    "SHA256": "1105c983d61dc1b728ea16b4ac516befcf1904d61c6699ae5ef40453a5609455",
+    "bytes": 31547,
+    "url": "https://github.com/stanfordnlp/mac-network/blob/4f3a052ac9e22f88216ef594f9bad024ba857a3f/main.py"
+  },
+  "scope": "Author-linked pure Python full-answer exact-match aggregation; not a claim to run the 784MB full auxiliary-metric package",
+  "predictions_or_Gold_changed": false,
+  "checks": [
+    {
+      "benchmark": "HISTORICAL_GQA1000_REPRODUCTION",
+      "condition": "Native",
+      "checked": 1000,
+      "expected": 1000,
+      "complete": true,
+      "author_avg_equals_independent_offline_score": true,
+      "observed_accuracy": 0.694
+    },
+    {
+      "benchmark": "HISTORICAL_GQA1000_REPRODUCTION",
+      "condition": "Dense-F",
+      "checked": 1000,
+      "expected": 1000,
+      "complete": true,
+      "author_avg_equals_independent_offline_score": true,
+      "observed_accuracy": 0.588
+    },
+    {
+      "benchmark": "HISTORICAL_GQA1000_REPRODUCTION",
+      "condition": "Physical-Original",
+      "checked": 1000,
+      "expected": 1000,
+      "complete": true,
+      "author_avg_equals_independent_offline_score": true,
+      "observed_accuracy": 0.59
+    }
+  ]
+}

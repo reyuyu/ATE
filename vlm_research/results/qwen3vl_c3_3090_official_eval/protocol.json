@@ -1,0 +1,117 @@
+{
+  "status": "FROZEN_BEFORE_GPU",
+  "model": "Qwen/Qwen3-VL-8B-Instruct",
+  "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "dtype": "bfloat16",
+  "attention": "eager",
+  "batch_size": 1,
+  "greedy": true,
+  "logits_to_keep": 1,
+  "model_path": "/home/featurize/work/ate-models/Qwen3-VL-8B-Instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "gpu_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+  "conditions": [
+    "Native",
+    "Dense-F",
+    "Physical-Original"
+  ],
+  "writer_layers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ],
+  "visual_hidden_exit_before_layer": 22,
+  "answer_attention_skip_layers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "original_visual_KV_answer_access": false,
+  "deepstack": "native three injections",
+  "rotary": "native mRoPE absolute positions, no renumbering",
+  "numerical_gate": {
+    "max_abs": 0.5,
+    "mean_abs": 0.02,
+    "top1_equal": true,
+    "full_tokens_equal": true,
+    "Native_noop_all_logits": "torch.equal",
+    "strict_failure_label": "NUMERICAL_EQUIVALENCE_FAILED",
+    "exploratory_continuation_only_if_all_structural_and_finite_checks_pass": true
+  },
+  "historical_GQA1000": {
+    "label": "HISTORICAL_GQA1000_REPRODUCTION",
+    "questions": 1000,
+    "image_clusters": 918,
+    "sample_manifest_SHA256": "bb09f894a04f111f430841f4d074ff0d770585956a04c5401436351e235d4a88",
+    "max_new_tokens": 32,
+    "new_GPU_predictions_required": true
+  },
+  "seven_benchmarks": {
+    "conditions": [
+      "Native",
+      "Physical-Original"
+    ],
+    "max_new_tokens": {
+      "GQA": 32,
+      "ScienceQA-IMG": 1024,
+      "TextVQA": 128,
+      "POPE": 128,
+      "MME": 128,
+      "MMBench": 1024,
+      "OCRBench-v1": 128
+    },
+    "processor": "exact fixed model default RGB Processor; no pixel/token reduction",
+    "protocol_views": "ATE paper and official split/scoring retained separately; unchanged identical input requests may share newly generated predictions, never old model predictions",
+    "MMBench": "author exact_matching circular; no paid LLM judge; unresolved official judge status explicit"
+  },
+  "benchmark": {
+    "questions": 48,
+    "regimes": [
+      "natural",
+      "fixed16",
+      "fixed32"
+    ],
+    "warmups": 2,
+    "measured_repeats": 5,
+    "condition_order": "cyclic Latin rotation by SHA256 canonical JSON(question_id), repeat modulo 3",
+    "cache": "fresh independent cache per request; fixed16=1 Prefill+15 real Decode; fixed32=1+31",
+    "timing": "same shared wrapper all conditions, synchronized request wall includes H2D, vision/projector, context/cache setup, Prefill, incremental Decode, greedy/EOS and context cleanup; excludes model load, file decode, processor, text postdecode and audit extraction",
+    "aggregation": "per-input repeat median; ratio of sums; paired image cluster bootstrap",
+    "measured_hooks": false
+  },
+  "bootstrap": {
+    "replicates": 20000,
+    "seed": 20261106,
+    "confidence": 0.95,
+    "unit": "image SHA256 cluster",
+    "question_weighted": true
+  },
+  "source_manifest_SHA256": "921e6a965199c87425fdb73afc275cb4b40ae4441a219f42cb301bddd0eb1a69",
+  "model_manifest_SHA256": "718d7f70cab7d4f2294cc231e1141d2d7d0cb783f438d797e500eab3793ac33b",
+  "historical_inputs_SHA256": "23b32635f614adece75685309c52a1332a144297f207a4e95fc42fec7f3584f5",
+  "no_push_authorized": true,
+  "no_training": true,
+  "no_search": true,
+  "no_repaired": true
+}

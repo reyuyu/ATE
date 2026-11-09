@@ -1,0 +1,151 @@
+{
+  "structural_status": "PASS",
+  "numerical_status": "NUMERICAL_EQUIVALENCE_FAILED",
+  "exploratory_only": true,
+  "thresholds_unchanged": true,
+  "smoke": [
+    {
+      "question_id": "08149474",
+      "input_length": 92,
+      "image_tokens": 64,
+      "binding": {
+        "protocol_SHA256": "1364d01da05358d45867e66c7f2315844a933165930416f3a5393cde994e33da",
+        "source_manifest_SHA256": "921e6a965199c87425fdb73afc275cb4b40ae4441a219f42cb301bddd0eb1a69",
+        "model_manifest_SHA256": "718d7f70cab7d4f2294cc231e1141d2d7d0cb783f438d797e500eab3793ac33b",
+        "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+        "question_id": "08149474",
+        "input_SHA256": "cae0a6844552b3af7a11d6f90a926b33e937892dbbd7c72c838ca14013631a96",
+        "sample_SHA256": "47ef860dc461a093b672d1cf29232ea020726a185c2e12a1a23cc768b658cf54"
+      },
+      "structural_status": "PASS",
+      "native_noop_all_logits_strict": true,
+      "native_manual_HF_all_logits_strict": true,
+      "audit_on_off_exact": true,
+      "numerical_status": "NUMERICAL_EQUIVALENCE_FAILED",
+      "complete_tokens_equal": true,
+      "logit_differences": [
+        {
+          "step": 0,
+          "max_abs": 0.5,
+          "mean_abs": 0.04212396964430809,
+          "top1_equal": true,
+          "identical_previous_tokens": true
+        },
+        {
+          "step": 1,
+          "max_abs": 0.375,
+          "mean_abs": 0.055575378239154816,
+          "top1_equal": true,
+          "identical_previous_tokens": true
+        }
+      ]
+    },
+    {
+      "question_id": "101022347",
+      "input_length": 217,
+      "image_tokens": 192,
+      "binding": {
+        "protocol_SHA256": "1364d01da05358d45867e66c7f2315844a933165930416f3a5393cde994e33da",
+        "source_manifest_SHA256": "921e6a965199c87425fdb73afc275cb4b40ae4441a219f42cb301bddd0eb1a69",
+        "model_manifest_SHA256": "718d7f70cab7d4f2294cc231e1141d2d7d0cb783f438d797e500eab3793ac33b",
+        "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+        "question_id": "101022347",
+        "input_SHA256": "cfc1de0b38fd27018106f89a4f4b89f3b84bc7a1777d531af62d788bbb52ed28",
+        "sample_SHA256": "fd87ad1d6eb07bc39a2cc78f6de0d3257f8780f24da6ebe4b3eeb50dd69f9953"
+      },
+      "structural_status": "PASS",
+      "native_noop_all_logits_strict": true,
+      "native_manual_HF_all_logits_strict": true,
+      "audit_on_off_exact": true,
+      "numerical_status": "NUMERICAL_EQUIVALENCE_FAILED",
+      "complete_tokens_equal": true,
+      "logit_differences": [
+        {
+          "step": 0,
+          "max_abs": 0.384765625,
+          "mean_abs": 0.05383864417672157,
+          "top1_equal": true,
+          "identical_previous_tokens": true
+        },
+        {
+          "step": 1,
+          "max_abs": 0.5625,
+          "mean_abs": 0.13710203766822815,
+          "top1_equal": true,
+          "identical_previous_tokens": true
+        },
+        {
+          "step": 2,
+          "max_abs": 0.703125,
+          "mean_abs": 0.09719032049179077,
+          "top1_equal": true,
+          "identical_previous_tokens": true
+        },
+        {
+          "step": 3,
+          "max_abs": 0.5,
+          "mean_abs": 0.08478696644306183,
+          "top1_equal": true,
+          "identical_previous_tokens": true
+        }
+      ]
+    },
+    {
+      "question_id": "12731033",
+      "input_length": 1105,
+      "image_tokens": 1080,
+      "binding": {
+        "protocol_SHA256": "1364d01da05358d45867e66c7f2315844a933165930416f3a5393cde994e33da",
+        "source_manifest_SHA256": "921e6a965199c87425fdb73afc275cb4b40ae4441a219f42cb301bddd0eb1a69",
+        "model_manifest_SHA256": "718d7f70cab7d4f2294cc231e1141d2d7d0cb783f438d797e500eab3793ac33b",
+        "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+        "question_id": "12731033",
+        "input_SHA256": "b1542d1153874847b0ede06854003f3378e2b5afd28b1d361a13a50dedddcea5",
+        "sample_SHA256": "5f072975ad76103d2f215924d51c2f00ff56770d11f30d3d9ec48730e7f01eca"
+      },
+      "structural_status": "PASS",
+      "native_noop_all_logits_strict": true,
+      "native_manual_HF_all_logits_strict": true,
+      "audit_on_off_exact": true,
+      "numerical_status": "NUMERICAL_EQUIVALENCE_FAILED",
+      "complete_tokens_equal": true,
+      "logit_differences": [
+        {
+          "step": 0,
+          "max_abs": 0.5,
+          "mean_abs": 0.08198458701372147,
+          "top1_equal": true,
+          "identical_previous_tokens": true
+        },
+        {
+          "step": 1,
+          "max_abs": 0.5,
+          "mean_abs": 0.0734621211886406,
+          "top1_equal": true,
+          "identical_previous_tokens": true
+        }
+      ]
+    }
+  ],
+  "CPU": {
+    "status": "PASS",
+    "tests": 12,
+    "all_1000_tensor_hash_bindings_exact": true,
+    "unique_images": 918,
+    "no_CUDA_initialization": true,
+    "relevant_frozen_source_SHA256": {
+      "vlm_research/qwen3vl_c3v2_physical/engine.py": "a719b590975e6282ad983fcd27b80f2e031c302caf47eaf54d50e1f3e36cca77",
+      "vlm_research/qwen3vl_early_windows/experiment.py": "ea65a64f5ac6842e6a821ae2d21222c211060bd4afa08dc2d26fbaf3581b1b9c",
+      "vlm_research/qwen3vl_smoke/common.py": "7d2832ea00133a8700366a9ba668473dc7febd391f64aabe807011990c709099",
+      "vlm_research/qwen_quality_speed/generate.py": "aaf44b249457568e1f347b1d8a83ba638a3fed208a435638c81b85bfd99c8544"
+    },
+    "at_UTC": "2026-11-09T15:48:25.249250+00:00"
+  },
+  "request_cache_isolation_and_hook_cleanup": "PASS",
+  "binding": {
+    "protocol_SHA256": "1364d01da05358d45867e66c7f2315844a933165930416f3a5393cde994e33da",
+    "source_manifest_SHA256": "921e6a965199c87425fdb73afc275cb4b40ae4441a219f42cb301bddd0eb1a69",
+    "model_manifest_SHA256": "718d7f70cab7d4f2294cc231e1141d2d7d0cb783f438d797e500eab3793ac33b",
+    "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6"
+  }
+}

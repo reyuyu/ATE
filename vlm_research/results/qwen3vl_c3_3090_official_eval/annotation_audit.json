@@ -1,0 +1,95 @@
+{
+  "status": "PASS",
+  "at_UTC": "2026-11-09T16:16:29.244345+00:00",
+  "checks": {
+    "GQA": {
+      "status": "PASS",
+      "questions": 12578,
+      "images": 398,
+      "official_question_image_Gold_join": true
+    },
+    "ScienceQA-IMG": {
+      "status": "PASS",
+      "questions": 2017,
+      "Hint_and_all_choices_preserved": true,
+      "official_has_image_filter": true,
+      "historical_paper_prompt_collapses_repeated_whitespace": [
+        "11502",
+        "13544",
+        "1412",
+        "14546",
+        "14800",
+        "14840",
+        "15229",
+        "15383",
+        "15528",
+        "16505",
+        "17258",
+        "17366",
+        "17707",
+        "17994",
+        "18048",
+        "18077",
+        "18291",
+        "18349",
+        "18895",
+        "19355",
+        "19397",
+        "19405",
+        "19533",
+        "2790",
+        "3113",
+        "332",
+        "3434",
+        "5618",
+        "6329",
+        "7014",
+        "7373",
+        "9169"
+      ]
+    },
+    "TextVQA": {
+      "status": "PASS",
+      "questions": 5000,
+      "ten_answers_exact": true,
+      "Paper_OCR_preserved": true
+    },
+    "MMBench": {
+      "status": "PASS",
+      "rows": 4377,
+      "complete_circular_groups": 1176,
+      "correct_option_text_consistent_through_rotation": true,
+      "Gold_source": "previously independently verified author Dev20230712 backup and fixed hashes"
+    },
+    "MME": {
+      "status": "PASS",
+      "rows_each_protocol": 2374,
+      "image_pairs": 1187,
+      "official_yes_no_instruction_preserved": true,
+      "known_single_image_difference_retained": true,
+      "Gold_source": "previously audited author Classic backup and fixed hashes"
+    },
+    "POPE": {
+      "status": "PASS",
+      "official": 9000,
+      "ATE_paper": 8910,
+      "all_three_strategies": true,
+      "source": "frozen original author strategy annotations and backup hashes"
+    },
+    "OCRBench-v1": {
+      "status": "PASS",
+      "official_rows": 1000,
+      "images": 930,
+      "original_annotation_order_ID_Gold_exact": true,
+      "ATE_and_official_newline_difference_preserved": true
+    }
+  },
+  "original_annotation_SHA256": {
+    "/home/featurize/work/ate-qwen3090-data/benchmarks/restored_bundles/ate3090-gqa-testdev-balanced/source_annotations/gqa/testdev_balanced_questions.json": "14039069c0b3c797c7aa9bcd5f4c2aa4b5976e02c0b6773e1a584d942a03a318",
+    "/home/featurize/work/ate-qwen3090-data/benchmarks/restored_bundles/ate3090-scienceqa-img/source_annotations/scienceqa/problems.json": "4d9b598da966d9736dd79e430a97da861a2216aeb7483a5092350e823ab20ce7",
+    "/home/featurize/work/ate-qwen3090-data/benchmarks/restored_bundles/ate3090-textvqa-ocr/source_annotations/textvqa/TextVQA_0.5.1_val.json": "4ceb5aadc1a41719d0a3e4dfdf06838bcfee1db569a9a65ee67d31c99893081d"
+  },
+  "input_manifest_SHA256": "4f95043737ca7be4c6e62442064406b9f81d91ca5974e7873c02f40d7780fb3f",
+  "no_model_load_or_GPU": true,
+  "no_frozen_data_modified": true
+}
