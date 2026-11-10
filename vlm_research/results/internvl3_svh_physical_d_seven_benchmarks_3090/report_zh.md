@@ -1,0 +1,41 @@
+# InternVL3-SVH 七项 Benchmark 单图块质量评测
+
+当前已完整完成 0/7 项。只有 COMPLETE 行为全集正式分数；其余不推断缺失分数。
+
+| Benchmark | N | Native | Physical-D | Δ | 95% CI | 单位 / 状态 |
+|---|---:|---:|---:|---:|---|---|
+| GQA | — | — | — | — | — | PAUSED_OUTPUT_FORMAL |
+| ScienceQA-IMG | — | — | — | — | — | READY_PREFLIGHT |
+| TextVQA | — | — | — | — | — | READY_PREFLIGHT |
+| POPE | — | — | — | — | — | READY_PREFLIGHT |
+| MME | — | — | — | — | — | READY_PREFLIGHT |
+| MMBench | — | — | — | — | — | READY_PREFLIGHT |
+| OCRBench | — | — | — | — | — | READY_PREFLIGHT |
+
+主标签：ATE_SVH_1TILE_SCORER_ALIGNED。不是 InternVL 作者完整排行榜配置；固定 1 tile、256 视觉 Token，与多图块、CoT、作者 max_new_tokens 等设置存在差异。MMBench 为 EN Dev20230712 Circular，采用官方 exact_matching，不调用 LLM judge。TextVQA 为 image-only，保留全部十答案共识软评分。MME 保留已知历史图片 SHA 差异，报告 Perception/Cognition 原始积分。
+
+数值状态保持 FAILED_WITH_PREVIOUSLY_AUTHORIZED_WAIVER，不宣称 NUMERICAL_PASS。Physical-D 核心来自 e288eee271b7aeb64e5df59783d3201bb2a6b313，SHA256 不变。Native/No-op/官方 Chat 严格一致及物理结构检查独立记录在各任务 smoke_validation.json。
+
+任务安全上限：POPE 8；MME/GQA/ScienceQA/MMBench 16；TextVQA 32；OCRBench 128。Greedy、B1、正常 EOS、每次全新 Cache。预检及正式异常记录完整保留；未通过长度门槛的任务暂停，不将子集成绩写成全集成绩。
+
+95%CI 为固定 seed=20261110、20,000 次 Image SHA256 整簇配对 Bootstrap 的普通区间，未作多重比较校正，不证明等价。OCRBench 使用固定1000题尺度的簇重采样均值；MME 每次重采样重新计算各类 acc+acc_plus；Circular 按完整发布题组聚合。不同原生单位不平均。
+
+每个任务的逐题完整答案、Token IDs、Gold、输入绑定和分数见对应 per_question.csv.gz；原始 SQLite 检查点保留在服务器 SSD，并经哈希校验同步持久化目录。图像读取时校验实际 SHA，未重新下载模型或图片。
+
+本轮不执行固定32 Token效率测试。自然生成耗时或长度不能解释为物理加速。
+
+| 任务 | 当前状态 / 错误 |
+|---|---|
+| GQA | PAUSED_OUTPUT_FORMAL:  |
+| ScienceQA-IMG | READY_PREFLIGHT:  |
+| TextVQA | READY_PREFLIGHT:  |
+| POPE | READY_PREFLIGHT:  |
+| MME | READY_PREFLIGHT:  |
+| MMBench | READY_PREFLIGHT:  |
+| OCRBench | READY_PREFLIGHT:  |
+
+GPU UUID：GPU-e392cec6-7ec8-1fee-397b-fde03a79e79e
+
+服务器持久化目录：/home/featurize/work/ATE-internvl3-svh-seven-benchmarks-3090/vlm_research/results/internvl3_svh_physical_d_seven_benchmarks_3090
+
+GitHub 分支：https://github.com/reyuyu/ATE/tree/codex/internvl3-svh-physical-d-seven-benchmarks-3090
