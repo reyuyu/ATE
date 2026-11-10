@@ -1,0 +1,9 @@
+{
+  "status": "GPU_RELEASED_ALL_GENERATIONS_COMPLETE",
+  "quality_generations": 1152,
+  "speed_formal_requests": 108,
+  "GPU_processes": "",
+  "post_run_logging_incident": "SQLite was closed before final progress logging; all outputs committed and model freed beforehand; no generation repeated",
+  "original_failure_preserved": true,
+  "reproduction_fix": "run_safe.py moves only SQLite close after status; not used for these measurements"
+}

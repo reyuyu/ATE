@@ -1,0 +1,129 @@
+{
+  "status": "EXPLORATORY_QUALITY_WITH_NUMERICAL_WAIVER",
+  "historical_numerical_status": "NUMERICAL_EQUIVALENCE_FAILED preserved; not reclassified",
+  "model": "OpenGVLab/InternVL3-8B",
+  "revision": "853e3a797a661694b1b8ece0cb72dc2b23e3dac9",
+  "gpu_uuid": "GPU-e392cec6-7ec8-1fee-397b-fde03a79e79e",
+  "dtype": "bfloat16",
+  "attention": "eager",
+  "torch": "2.6.0+cu124",
+  "transformers": "4.49.0",
+  "batch": 1,
+  "greedy": true,
+  "max_new_tokens": 16,
+  "use_cache": true,
+  "logits_to_keep": 1,
+  "visual_tokens": 256,
+  "image_shape": [
+    1,
+    3,
+    448,
+    448
+  ],
+  "single_model_load": true,
+  "engine_parent_commit": "9602d93869d4ccd11986573369d8fecc84b80f78",
+  "diagnosis_commit": "2d671f809c0866083a56fe5ecfcb7832fd92f884",
+  "base_commit": "3297559f21d3de55a6630a5491c9ecf66301c4b7",
+  "engine": "unchanged SVH-R V2; no C1/C2 repair",
+  "scratch": "transient zero-only K/V scratch retained and real overhead included in timing; not persistent visual KV",
+  "quality_audit": false,
+  "CPU_input_cache": "all selected images prepared before model loading; CPU BF16 tensors on ext4 SSD",
+  "sample_manifest_sha256": "c5f9903a6d060793c213a5ab9d35d5d031a14516d43165c005f3709a1cef0e9c",
+  "search_space": {
+    "R0": [],
+    "R2": [
+      16,
+      19
+    ],
+    "R4-M": [
+      12,
+      13,
+      14,
+      15
+    ],
+    "R4-L": [
+      16,
+      17,
+      18,
+      19
+    ],
+    "R6": [
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "R8": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "R10": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ]
+  },
+  "stage_A_selection": {
+    "score": "Query_gain_pp - max(0,NonQuery_loss_pp) - 100*max(0,anomaly_rate-R0_rate) - 0.5*max(0,mean_actual_KV_capacity_MiB-R0_capacity)",
+    "selected": "top three reaccess candidates plus R0",
+    "ties": "higher Query, lower measured KV capacity, fewer layers, frozen candidate order",
+    "anomaly": "any meta/repetition/empty/truncation/explanation flag; all included in scoring"
+  },
+  "stage_B_selection": {
+    "best_quality": "highest Query accuracy; ties lower actual KV capacity, fewer layers, frozen order",
+    "best_efficiency": "within 2.5pp of highest Query and NonQuery no worse than R0-2.5pp; minimize number of layers, then actual KV capacity; if no eligible candidate use R0",
+    "includes_R0": true,
+    "measured_KV_cost": "arithmetic mean of actual quality-EOS cache capacity; output lengths differ and are recorded; fixed32 KV measured separately",
+    "holdout_selection_frozen_before_predictions": true
+  },
+  "smoke_hard_gates": {
+    "structural": "any permission/KV/position/skip/exit/finite/input/Native-Noop/hook failure stops",
+    "severe_output": "per condition >=3 of 8 meta/empty/repetitive outputs stops",
+    "widespread_disagreement": "per condition >=4 of 8 parsed-answer disagreements Dense vs Physical stops",
+    "known_BF16_logit_error": "record only; no old MaxAbs gate",
+    "multitoken_coverage": "at least one observed valid multi-token answer; otherwise pause, do not add outcome-selected samples"
+  },
+  "quality_stop_policy": {
+    "structural": "immediate stop",
+    "systematic_output": "two consecutive nonoverlapping 32-request windows within a condition each have meta>=25% or empty/repeat>=12.5% or truncation>=50%; OR ten consecutive empty/repetitive outputs. Individual anomalies always retained and scored"
+  },
+  "bootstrap": {
+    "unit": "image_sha256 whole paired clusters",
+    "repetitions": 5000,
+    "seed": 20261110,
+    "CI": 95,
+    "multiplicity": "ordinary unadjusted exploratory intervals; selection and many subgroups prevent confirmatory claims"
+  },
+  "speed": {
+    "images": 12,
+    "conditions": "Native,R0,best_efficiency deduplicated",
+    "warmups_per_condition": 2,
+    "repeats": 3,
+    "output_tokens": 32,
+    "decode_steps": 31,
+    "ignore_EOS": true,
+    "boundary": "GPU-ready input through Vision/projector/prefill/decode and method cleanup; synchronized wall time; no disk/tokenizer/H2D/results writing; unmodified frozen engine",
+    "interleaved": true
+  },
+  "budget": {
+    "A": 448,
+    "B_max": 224,
+    "Holdout_max": 480,
+    "quality_max_excluding_unreusable_Native": 1152
+  }
+}

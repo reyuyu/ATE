@@ -1,0 +1,116 @@
+{
+  "stage": "B",
+  "ranking": [
+    {
+      "method": "R0",
+      "query_pct": 37.5,
+      "nonquery_pct": 82.5,
+      "penalized_gain": 0.0,
+      "mean_KV_capacity_MiB": 3.215625,
+      "K": 0
+    },
+    {
+      "method": "R10",
+      "query_pct": 41.25,
+      "nonquery_pct": 85.0,
+      "penalized_gain": 1.2505859375,
+      "mean_KV_capacity_MiB": 8.214453125,
+      "K": 10
+    },
+    {
+      "method": "R4-L",
+      "query_pct": 36.25,
+      "nonquery_pct": 85.0,
+      "penalized_gain": -2.2501953125,
+      "mean_KV_capacity_MiB": 5.216015625,
+      "K": 4
+    },
+    {
+      "method": "R4-M",
+      "query_pct": 38.75,
+      "nonquery_pct": 85.0,
+      "penalized_gain": 0.25,
+      "mean_KV_capacity_MiB": 5.215625,
+      "K": 4
+    }
+  ],
+  "best_quality": "R10",
+  "best_efficiency": "R4-M",
+  "holdout_methods": [
+    "R0",
+    "R10",
+    "R4-M"
+  ],
+  "stage_A": {
+    "stage": "A",
+    "ranking": [
+      {
+        "method": "R0",
+        "query_pct": 37.5,
+        "nonquery_pct": 87.5,
+        "penalized_gain": 0.0,
+        "mean_KV_capacity_MiB": 3.207275390625,
+        "K": 0
+      },
+      {
+        "method": "R10",
+        "query_pct": 41.66666666666667,
+        "nonquery_pct": 93.75,
+        "penalized_gain": 1.6670328776041714,
+        "mean_KV_capacity_MiB": 8.20654296875,
+        "K": 10
+      },
+      {
+        "method": "R2",
+        "query_pct": 35.41666666666667,
+        "nonquery_pct": 93.75,
+        "penalized_gain": -2.5826009114583286,
+        "mean_KV_capacity_MiB": 4.205810546875,
+        "K": 2
+      },
+      {
+        "method": "R4-L",
+        "query_pct": 37.5,
+        "nonquery_pct": 93.75,
+        "penalized_gain": -1.000732421875,
+        "mean_KV_capacity_MiB": 5.208740234375,
+        "K": 4
+      },
+      {
+        "method": "R4-M",
+        "query_pct": 37.5,
+        "nonquery_pct": 87.5,
+        "penalized_gain": -1.0003662109375,
+        "mean_KV_capacity_MiB": 5.2080078125,
+        "K": 4
+      },
+      {
+        "method": "R6",
+        "query_pct": 37.5,
+        "nonquery_pct": 93.75,
+        "penalized_gain": -1.5,
+        "mean_KV_capacity_MiB": 6.207275390625,
+        "K": 6
+      },
+      {
+        "method": "R8",
+        "query_pct": 35.41666666666667,
+        "nonquery_pct": 93.75,
+        "penalized_gain": -4.082967122395829,
+        "mean_KV_capacity_MiB": 7.20654296875,
+        "K": 8
+      }
+    ],
+    "selected": [
+      "R0",
+      "R10",
+      "R4-M",
+      "R4-L"
+    ],
+    "rule": "Frozen penalized query gain; no outcome-based candidate expansion"
+  },
+  "protocol_sha256": "3b8bef172e9a7e468e5a35a05864456d7af20b033a921f2ea11487f4fa875cb2",
+  "source_manifest_sha256": "d3c2046bf64ada82a4f4bb6b6129408fe94755d71773503955c00faf28432a70",
+  "selection_time_utc": "2026-11-10T13:59:40Z",
+  "holdout_predictions_generated_before_selection": 0
+}
