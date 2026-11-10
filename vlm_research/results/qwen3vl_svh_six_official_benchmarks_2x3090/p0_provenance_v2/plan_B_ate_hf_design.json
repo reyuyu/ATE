@@ -1,0 +1,115 @@
+{
+  "status": "DESIGN_ONLY_NOT_EXECUTED_NON_AUTHOR_OFFICIAL",
+  "source_audit_commit": "f238d375ffda785d3062069ce6e4fd0c729cd9a6",
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "framework_candidate_commits": {
+    "vlmeval": "051aa811ec27c494919bda944654de884fd70c41",
+    "lmms": "f9b577e76bac2fb5a17f6e2d5f9ad9b69156c292"
+  },
+  "runtime": {
+    "backend": "HF",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.57.6",
+    "dtype": "BF16",
+    "batch_size": 1,
+    "attention": "eager identical in Native and SVH",
+    "logits_to_keep": 1,
+    "generation": {
+      "do_sample": false,
+      "num_beams": 1,
+      "repetition_penalty": 1.0,
+      "presence_penalty": null,
+      "seed": 3407,
+      "eos_token_id": [
+        151645,
+        151643
+      ],
+      "pad_token_id": 151643
+    }
+  },
+  "input": {
+    "chat": "frozen model apply_chat_template(add_generation_prompt=True)",
+    "system_message": null,
+    "content_order": [
+      "image",
+      "task_body"
+    ],
+    "image_mode": "RGB",
+    "resize_once": true,
+    "pixel_budget": {
+      "min_pixels": 65536,
+      "max_pixels": 2097152,
+      "provenance": "ATE_PROPOSED_NOT_AUTHOR"
+    },
+    "ocr": "no external OCR/no reference OCR list; native vision OCR capability unchanged",
+    "fewshot": 0,
+    "all_rows": true
+  },
+  "total_questions": 35346,
+  "tasks": [
+    {
+      "task": "GQA",
+      "dataset_id": "GQA_TestDev_Balanced / original testdev_balanced",
+      "count": 12578,
+      "gold_mapping": "question_id -> imageId,question,answer",
+      "body_template": "{question}\nAnswer the question using a single word or phrase.",
+      "max_new_tokens": 32,
+      "scorer": "ATE exact normalized match: strip/lower only against original answer; no LLM judge"
+    },
+    {
+      "task": "ScienceQA-IMG",
+      "dataset_id": "ScienceQA official test where image nonempty",
+      "count": 2017,
+      "gold_mapping": "pid -> zero-based answer -> original choices[answer]",
+      "body_template": "[Hint: {hint}\n if nonempty]Question: {question}\nOptions:\nA. {choice0}\n...Please select the correct answer from the options above. \n",
+      "max_new_tokens": 128,
+      "scorer": "Pinned lmms sqa_process_results parser (L16) -> letter -> original integer Gold; invalid=wrong"
+    },
+    {
+      "task": "TextVQA",
+      "dataset_id": "TextVQA_0.5.1 validation",
+      "count": 5000,
+      "gold_mapping": "question_id -> image_id + ten original answers",
+      "body_template": "{question}\nAnswer the question using a single word or phrase.",
+      "max_new_tokens": 128,
+      "scorer": "Pinned MMF TextVQAAccuracyEvaluator (S02), all ten answers, no judge"
+    },
+    {
+      "task": "POPE",
+      "dataset_id": "RUCAIBox/POPE output/coco 3000 per strategy",
+      "count": 9000,
+      "gold_mapping": "(strategy,raw_question_id) -> image,text,label",
+      "body_template": "{question}\nPlease answer yes or no.",
+      "max_new_tokens": 128,
+      "scorer": "Pinned dataset-author evaluate.py extraction (S03); Accuracy/F1/Precision/Recall/yes ratio per strategy; separately flag empty"
+    },
+    {
+      "task": "MME",
+      "dataset_id": "MME classic release 14 tasks",
+      "count": 2374,
+      "gold_mapping": "(task,image_filename,question_index) -> original yes/no; preserve two-question pairs",
+      "body_template": "{original_question_including_original_yes_no_suffix}",
+      "max_new_tokens": 128,
+      "scorer": "Pinned original calculation.py (S04/S05);14 task Acc+Acc+;report perception,cognition,total"
+    },
+    {
+      "task": "MMBench",
+      "dataset_id": "MMBench legacy EN dev 20230712, NOT author V1.1",
+      "count": 4377,
+      "gold_mapping": "original index -> choices,Gold; Circular1176;1132 image hashes",
+      "body_template": "[Hint: {hint}\n if nonempty]Question: {question}\nOptions:\nA. {choiceA}\n...Please select the correct answer from the options above. \n",
+      "max_new_tokens": 128,
+      "scorer": "Pinned VLMEvalKit exact_matching extraction + CircularEval (V11,V13,V14); NO API fallback; diagnostic non-author-judge variant"
+    }
+  ],
+  "checks": [
+    "exact full-image SHA and input tensor binding before any reused predictions",
+    "full model/reference/no-op and same-row LM head strict torch.equal",
+    "physical-vs-dense original numerical gate unchanged; retained FAILED until future successful retest",
+    "full dataset processor/vision memory preflight; OOM -> BLOCKED, no silent cap/split/backend changes",
+    "MMBench exact_matching is diagnostic non-author-judge; any optional judge scored separately, no silent fallback",
+    "no runs authorized by this design artifact"
+  ],
+  "physical_status": "NUMERICAL_EQUIVALENCE_FAILED_UNCHANGED",
+  "confidence_intervals": "future image-SHA clustered paired bootstrap, preserve MME pairs/MMBench circular groups"
+}

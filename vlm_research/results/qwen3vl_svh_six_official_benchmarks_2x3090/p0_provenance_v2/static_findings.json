@@ -1,0 +1,43 @@
+{
+  "scope": "STATIC_PROVENANCE_ONLY",
+  "gpu_runs": 0,
+  "cuda_initialized": false,
+  "new_predictions": 0,
+  "vllm_installed": false,
+  "physical_algorithm_modified": false,
+  "official_author_reproduction_resolved": false,
+  "author_task_recipe_status": {
+    "GQA": "UNRESOLVED",
+    "ScienceQA-IMG": "UNRESOLVED",
+    "TextVQA": "UNRESOLVED",
+    "POPE": "UNRESOLVED",
+    "MME": "UNRESOLVED",
+    "MMBench": "MMBENCH_VERSION_AND_BODY_PROMPT_PARTIALLY_RESOLVED"
+  },
+  "retained_physical_gate": "NUMERICAL_EQUIVALENCE_FAILED",
+  "paper": {
+    "version": "2511.21631v1",
+    "html_sha256": "d50d81a0032c30ca97ee5d7e790ee2454c00b56ea97819c81d178de8abd2b498",
+    "extracted_text_sha256": "a89c5f92766b2debe8687d23f8956645161d7b8b0abf2927443713daf8b4048c",
+    "task_name_matches": {
+      "GQA": 0,
+      "ScienceQA-IMG": 0,
+      "TextVQA": 0,
+      "POPE": 0,
+      "MME": 1,
+      "MMBench": 7
+    },
+    "pdf_retrieval": "timeout; HTML+deterministic text extraction used; no PDF page anchors asserted"
+  },
+  "missing_candidate_dependencies": [
+    "VLMEvalKit utils/vqa_eval.py",
+    "VLMEvalKit utils/yorn.py",
+    "lmms TextVQA _default_template_textvqa_yaml"
+  ],
+  "network_failures_preserved": [
+    "additional_source_manifest.json",
+    "supplementary_fetch_manifest.json",
+    "targeted_fetch_manifest.json"
+  ],
+  "route_recommendation": "B is lower engineering cost but still blocked on Physical numerical parity; A needs author provenance and same-runtime port"
+}
