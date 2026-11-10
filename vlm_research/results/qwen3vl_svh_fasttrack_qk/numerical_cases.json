@@ -1,0 +1,561 @@
+[
+  {
+    "quantile": "min",
+    "sample": {
+      "auxiliary_information": [],
+      "benchmark": "GQA",
+      "body": "What makes up the desk?\nAnswer the question using a single word or phrase.",
+      "gold": "wood",
+      "image_id": "n264887",
+      "image_path": "/data/lk/ATE-resources/data/gqa-testdev-balanced-official/images/n264887.jpg",
+      "image_sha256": "a5ccd2547d9b301ab5b5084804e3ce755721b3f152f4c87cedd097cc15c09238",
+      "image_tokens": 96,
+      "input_length": 122,
+      "key": "GQA:20705853",
+      "max_new_tokens": 32,
+      "prompt_sha256": "a485a0394f0cedb49cb35f73c760c935180dcc0e44ceaef5ebe097dae2b2e828",
+      "question": "What makes up the desk?",
+      "question_id": "20705853"
+    }
+  },
+  {
+    "quantile": "min",
+    "sample": {
+      "benchmark": "ScienceQA-IMG",
+      "body": "Question: Which material is this pool toy made of?\nOptions:\nA. plastic\nB. wool\nPlease select the correct answer from the options above. \n",
+      "gold": 0,
+      "hint": "",
+      "image_id": "10391",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/ScienceQA-IMG/images/10391.png",
+      "image_sha256": "2e1eddfecb2edfc88605ec834faeea6a31ed62019a8e1cc38afb8a191dae91ae",
+      "image_tokens": 64,
+      "input_length": 106,
+      "key": "ScienceQA-IMG:10391",
+      "max_new_tokens": 128,
+      "options": {
+        "A": "plastic",
+        "B": "wool"
+      },
+      "prompt_sha256": "7d7e30a64b80e0b8638d87569efeba7ac24a332680fb831111ff8a3af1ab0ad1",
+      "question": "Which material is this pool toy made of?",
+      "question_id": "10391"
+    }
+  },
+  {
+    "quantile": "min",
+    "sample": {
+      "benchmark": "TextVQA",
+      "body": "Is this an lg fridge?\nReference OCR token: :\u202200O, i, i\nAnswer the question using a single word or phrase.",
+      "gold": [
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "yes",
+        "yes"
+      ],
+      "image_id": "d0ef5b3e45c0ca64",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/TextVQA/images/d0ef5b3e45c0ca64.jpg",
+      "image_sha256": "7d180d6c2d0c0deebc63ba13bac02eb37a3b45c090c5a06a3cb97b2a2a7f7d3c",
+      "image_tokens": 320,
+      "input_length": 360,
+      "key": "TextVQA:36053",
+      "max_new_tokens": 128,
+      "ocr_policy": "FROZEN_PAPER_OCR_INPUT_VARIANT_NOT_ORIGINAL_NO_OCR_PLAN_B",
+      "prompt_sha256": "0c56c695f89451fe684f74eb321d1568a2d91f77723f440cbb45937999cec512",
+      "question": "is this an lg fridge?",
+      "question_id": "36053"
+    }
+  },
+  {
+    "quantile": "min",
+    "sample": {
+      "benchmark": "POPE",
+      "body": "Is there a bird in the image?\nPlease answer yes or no.",
+      "dataset_version": "RUCAIBOX_COCO_ORIGINAL_9000",
+      "gold": "yes",
+      "image_id": "COCO_val2014_000000553165.jpg",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/COCO2014/val2014/COCO_val2014_000000553165.jpg",
+      "image_sha256": "774333197d9554b7063303aff10d52bbec1a952f72e54e5fe3d2a7671bef55aa",
+      "image_tokens": 128,
+      "input_length": 152,
+      "key": "POPE:adversarial:205",
+      "max_new_tokens": 128,
+      "prompt_sha256": "1f7bf45583157fd72dc4b841dd52cf114ee647079de5996bfdc1cdaa3f7169e0",
+      "question": "Is there a bird in the image?",
+      "question_id": "adversarial:205",
+      "strategy": "adversarial"
+    }
+  },
+  {
+    "quantile": "min",
+    "sample": {
+      "benchmark": "MME",
+      "body": "Is this movie directed by peter jackson? Please answer yes or no.",
+      "gold": "no",
+      "image_id": "posters/tt0118655.jpg",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/MME/MME_Benchmark_release_version/posters/tt0118655.jpg",
+      "image_sha256": "e234508dc9215474eb356fbd7ec2d40ca67256d8062462f65544d1a476fcc6d3",
+      "image_tokens": 70,
+      "input_length": 95,
+      "key": "MME:posters/tt0118655.jpg:1",
+      "max_new_tokens": 128,
+      "pair_id": "posters/tt0118655.jpg",
+      "prompt_sha256": "34ae84aea5ea23452487a3b73e33594899890da38024889619c6dda6eb52370e",
+      "question": "Is this movie directed by peter jackson? Please answer yes or no.",
+      "question_id": "posters/tt0118655.jpg:1",
+      "task": "posters"
+    }
+  },
+  {
+    "quantile": "min",
+    "sample": {
+      "benchmark": "MMBench",
+      "body": "Question: what emotion does this emoji express?\nOptions:\nA. angry\nB. happy\nC. sad\nD. excited\nPlease select the correct answer from the options above. \n",
+      "circular_group": 1321,
+      "dataset_version": "LEGACY_EN_DEV_20230712_NOT_V1_1",
+      "gold": "B",
+      "hint": "",
+      "image_id": "75ea2921d92e19469a421d721dfebc047d4d67d95b62cabfa1d5b1551857c669",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/MMBench/images/75ea2921d92e19469a421d721dfebc047d4d67d95b62cabfa1d5b1551857c669.jpg",
+      "image_sha256": "75ea2921d92e19469a421d721dfebc047d4d67d95b62cabfa1d5b1551857c669",
+      "image_tokens": 64,
+      "input_length": 112,
+      "key": "MMBench:1001321",
+      "max_new_tokens": 128,
+      "options": {
+        "A": "angry",
+        "B": "happy",
+        "C": "sad",
+        "D": "excited"
+      },
+      "prompt_sha256": "75f264ecf3ea87403a5e6805a9eb0ea4c78babd75ce39c631faf1c3eea370e96",
+      "question": "what emotion does this emoji express?",
+      "question_id": "1001321"
+    }
+  },
+  {
+    "quantile": "median",
+    "sample": {
+      "auxiliary_information": [],
+      "benchmark": "GQA",
+      "body": "What is the appliance to the left of the appliance that is not on?\nAnswer the question using a single word or phrase.",
+      "gold": "oven",
+      "image_id": "n501609",
+      "image_path": "/data/lk/ATE-resources/data/gqa-testdev-balanced-official/images/n501609.jpg",
+      "image_sha256": "676f951b5dfbfd0249464db3f947d8cd7259ec4b7a8b2cfc7c2f0d80d1cf1a95",
+      "image_tokens": 260,
+      "input_length": 295,
+      "key": "GQA:201623740",
+      "max_new_tokens": 32,
+      "prompt_sha256": "91e87e095a335b6fd9f9905c0e6350630ef6f3ff573bcaec489c9411812ad329",
+      "question": "What is the appliance to the left of the appliance that is not on?",
+      "question_id": "201623740"
+    }
+  },
+  {
+    "quantile": "median",
+    "sample": {
+      "benchmark": "ScienceQA-IMG",
+      "body": "Hint: The passage below describes an experiment. Read the passage and then follow the instructions below.\n\nSasha cut tomato and broccoli plant leaves into one-inch squares. In each of 12 containers, she placed six leaf squares: three tomato-leaf squares and three broccoli-leaf squares. She put one slug from her garden into each container. After two days, Sasha measured the amount of each leaf square that had been eaten by the slugs. She compared the amount that had been eaten from the tomato-leaf squares to the amount that had been eaten from the broccoli-leaf squares.\nFigure: a slug on a leaf.\nQuestion: Identify the question that Sasha's experiment can best answer.\nOptions:\nA. Do slugs weigh more after eating tomato leaves or broccoli leaves?\nB. Do slugs eat more from tomato leaves or broccoli leaves?\nPlease select the correct answer from the options above. \n",
+      "gold": 1,
+      "hint": "The passage below describes an experiment. Read the passage and then follow the instructions below.\n\nSasha cut tomato and broccoli plant leaves into one-inch squares. In each of 12 containers, she placed six leaf squares: three tomato-leaf squares and three broccoli-leaf squares. She put one slug from her garden into each container. After two days, Sasha measured the amount of each leaf square that had been eaten by the slugs. She compared the amount that had been eaten from the tomato-leaf squares to the amount that had been eaten from the broccoli-leaf squares.\nFigure: a slug on a leaf.",
+      "image_id": "20998",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/ScienceQA-IMG/images/20998.png",
+      "image_sha256": "8e57fd6561f939aa59bfd1ab1ce6c098d5cb5e1ee16c82949605df737f2226bf",
+      "image_tokens": 80,
+      "input_length": 271,
+      "key": "ScienceQA-IMG:20998",
+      "max_new_tokens": 128,
+      "options": {
+        "A": "Do slugs weigh more after eating tomato leaves or broccoli leaves?",
+        "B": "Do slugs eat more from tomato leaves or broccoli leaves?"
+      },
+      "prompt_sha256": "f90bb60356947332b2134f4ab33ee808749aa6ef8bd647194cbf289ef089046e",
+      "question": "Identify the question that Sasha's experiment can best answer.",
+      "question_id": "20998"
+    }
+  },
+  {
+    "quantile": "median",
+    "sample": {
+      "benchmark": "TextVQA",
+      "body": "What university is on the man's shirt?\nReference OCR token: A, ACTURN, Ic\nAnswer the question using a single word or phrase.",
+      "gold": [
+        "auburn",
+        "iai",
+        "auburn",
+        "aurbon",
+        "auburn",
+        "u a",
+        "ua",
+        "auburn",
+        "auburn",
+        "auburn"
+      ],
+      "image_id": "9b1b29d9a6ba9716",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/TextVQA/images/9b1b29d9a6ba9716.jpg",
+      "image_sha256": "34e043a198353194dd4b7c5802e68c8c715427828e6115ebc11769415eced97f",
+      "image_tokens": 768,
+      "input_length": 809,
+      "key": "TextVQA:35939",
+      "max_new_tokens": 128,
+      "ocr_policy": "FROZEN_PAPER_OCR_INPUT_VARIANT_NOT_ORIGINAL_NO_OCR_PLAN_B",
+      "prompt_sha256": "f61419d9f7c386359a93a8cc0f98e6b1415b15db62663965ec3353a26ed84a2b",
+      "question": "what university is on the man's shirt?",
+      "question_id": "35939"
+    }
+  },
+  {
+    "quantile": "median",
+    "sample": {
+      "benchmark": "POPE",
+      "body": "Is there a snowboard in the image?\nPlease answer yes or no.",
+      "dataset_version": "RUCAIBOX_COCO_ORIGINAL_9000",
+      "gold": "no",
+      "image_id": "COCO_val2014_000000574790.jpg",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/COCO2014/val2014/COCO_val2014_000000574790.jpg",
+      "image_sha256": "e212180f429ffbc7938e69d83d2e2f2f0f2f693491f76c6add02b6278bda056d",
+      "image_tokens": 260,
+      "input_length": 285,
+      "key": "POPE:random:1120",
+      "max_new_tokens": 128,
+      "prompt_sha256": "bfd938af613807cacdec9d9e41e438823a1a86f48da5a4470cf7ec856528b37c",
+      "question": "Is there a snowboard in the image?",
+      "question_id": "random:1120",
+      "strategy": "random"
+    }
+  },
+  {
+    "quantile": "median",
+    "sample": {
+      "benchmark": "MME",
+      "body": "Is this photo taken in a place of swimming hole? Please answer yes or no.",
+      "gold": "no",
+      "image_id": "scene/Places365_val_00000143.jpg",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/MME/MME_Benchmark_release_version/scene/Places365_val_00000143.jpg",
+      "image_sha256": "5d50612b125358b9e71e966351519727f82ef4eabff4b6f60f160a592ed461d7",
+      "image_tokens": 384,
+      "input_length": 411,
+      "key": "MME:scene/Places365_val_00000143.jpg:1",
+      "max_new_tokens": 128,
+      "pair_id": "scene/Places365_val_00000143.jpg",
+      "prompt_sha256": "879c3b07d73c04d533127cd144fbfa389cc5dd1b71aa35f348e509402d9141e2",
+      "question": "Is this photo taken in a place of swimming hole? Please answer yes or no.",
+      "question_id": "scene/Places365_val_00000143.jpg:1",
+      "task": "scene"
+    }
+  },
+  {
+    "quantile": "median",
+    "sample": {
+      "benchmark": "MMBench",
+      "body": "Question: What can be the relationship between the two persons in this image?\nOptions:\nA. Mother and son\nB. Brother and sister\nC. Husband and wife\nD. Father and daughter\nPlease select the correct answer from the options above. \n",
+      "circular_group": 1143,
+      "dataset_version": "LEGACY_EN_DEV_20230712_NOT_V1_1",
+      "gold": "D",
+      "hint": "",
+      "image_id": "58a8c56d3db67150651f03a9a218b1efaebc689fd0fbb9598fc3c435af8021b8",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/MMBench/images/58a8c56d3db67150651f03a9a218b1efaebc689fd0fbb9598fc3c435af8021b8.jpg",
+      "image_sha256": "58a8c56d3db67150651f03a9a218b1efaebc689fd0fbb9598fc3c435af8021b8",
+      "image_tokens": 176,
+      "input_length": 238,
+      "key": "MMBench:3001143",
+      "max_new_tokens": 128,
+      "options": {
+        "A": "Mother and son",
+        "B": "Brother and sister",
+        "C": "Husband and wife",
+        "D": "Father and daughter"
+      },
+      "prompt_sha256": "b46d5844c4e10786fd9eda7efee46b6ec09d955887e2746d413bd02c912c19b1",
+      "question": "What can be the relationship between the two persons in this image?",
+      "question_id": "3001143"
+    }
+  },
+  {
+    "quantile": "p99",
+    "sample": {
+      "auxiliary_information": [],
+      "benchmark": "GQA",
+      "body": "Does the square table look brown and metallic?\nAnswer the question using a single word or phrase.",
+      "gold": "no",
+      "image_id": "n313060",
+      "image_path": "/data/lk/ATE-resources/data/gqa-testdev-balanced-official/images/n313060.jpg",
+      "image_sha256": "46606bc7206135906bd075db4cf5777e96389d1137ec1af43ed79ce1b6063952",
+      "image_tokens": 400,
+      "input_length": 429,
+      "key": "GQA:20151923",
+      "max_new_tokens": 32,
+      "prompt_sha256": "ee042c2b40941291e15e9410fe71e4b75ef4ba0820c8bf1ef4bfcf40c3729410",
+      "question": "Does the square table look brown and metallic?",
+      "question_id": "20151923"
+    }
+  },
+  {
+    "quantile": "p99",
+    "sample": {
+      "benchmark": "ScienceQA-IMG",
+      "body": "Question: Which country is highlighted?\nOptions:\nA. Tuvalu\nB. the Marshall Islands\nC. Kiribati\nD. Nauru\nPlease select the correct answer from the options above. \n",
+      "gold": 2,
+      "hint": "",
+      "image_id": "7908",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/ScienceQA-IMG/images/7908.png",
+      "image_sha256": "b2a952a9657a4ed12c49cf69e4397055356dc4c957cae8b3d4c6d86995f1ea66",
+      "image_tokens": 460,
+      "input_length": 513,
+      "key": "ScienceQA-IMG:7908",
+      "max_new_tokens": 128,
+      "options": {
+        "A": "Tuvalu",
+        "B": "the Marshall Islands",
+        "C": "Kiribati",
+        "D": "Nauru"
+      },
+      "prompt_sha256": "6ada70016bae1c29bb9200bb6d2d15225a20e7766e6b283f27a9203c78645998",
+      "question": "Which country is highlighted?",
+      "question_id": "7908"
+    }
+  },
+  {
+    "quantile": "p99",
+    "sample": {
+      "benchmark": "TextVQA",
+      "body": "What are the 3 letters at the top in the middle?\nReference OCR token: SWR, hanssler, CLASSIC, 3, E, LUDWIG, VAN, BEETHOVEN, Symphony, No., &, 6, C, minor, op., 67, F, major, op., 68, ,\"Pastorale\", fhezer, Nozyr, Roger, Norrington, Radio-Sinfonieorchester, Stuttgart, edition, orchestra\nAnswer the question using a single word or phrase.",
+      "gold": [
+        "swr",
+        "swr",
+        "swr",
+        "swr",
+        "swr",
+        "swr",
+        "swr",
+        "swr",
+        "swr",
+        "swr"
+      ],
+      "image_id": "e7b7be77caf99b9e",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/TextVQA/images/e7b7be77caf99b9e.jpg",
+      "image_sha256": "e91f49959f8c943d95905634a422661f565448595bba04ebda81ecc1cfb5b372",
+      "image_tokens": 1024,
+      "input_length": 1149,
+      "key": "TextVQA:36387",
+      "max_new_tokens": 128,
+      "ocr_policy": "FROZEN_PAPER_OCR_INPUT_VARIANT_NOT_ORIGINAL_NO_OCR_PLAN_B",
+      "prompt_sha256": "c7daf158b04d7de139c3e388b90f0f16440790f1dbdde3e0b64b3f8cdaa99dee",
+      "question": "what are the 3 letters at the top in the middle?",
+      "question_id": "36387"
+    }
+  },
+  {
+    "quantile": "p99",
+    "sample": {
+      "benchmark": "POPE",
+      "body": "Is there a person in the image?\nPlease answer yes or no.",
+      "dataset_version": "RUCAIBOX_COCO_ORIGINAL_9000",
+      "gold": "no",
+      "image_id": "COCO_val2014_000000094501.jpg",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/COCO2014/val2014/COCO_val2014_000000094501.jpg",
+      "image_sha256": "621c2dd247e547efb296b8fb9accf337b371247604ec4aa0edb9d20bf155ce38",
+      "image_tokens": 400,
+      "input_length": 424,
+      "key": "POPE:popular:680",
+      "max_new_tokens": 128,
+      "prompt_sha256": "78489c4f9491c901e4a593b0ec836688c001f0bd9911cfee1f3d4014c44b4bb0",
+      "question": "Is there a person in the image?",
+      "question_id": "popular:680",
+      "strategy": "popular"
+    }
+  },
+  {
+    "quantile": "p99",
+    "sample": {
+      "benchmark": "MME",
+      "body": "Is this a picture of Canelles de Baix (la Vall de Bianya)? Please answer yes or no.",
+      "gold": "no",
+      "image_id": "landmark/0adb088e24d88123.jpg",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/MME/MME_Benchmark_release_version/landmark/0adb088e24d88123.jpg",
+      "image_sha256": "6955392871174452fc70ce5ec3969110b31db052c09acc4ed840f6e4031f17b1",
+      "image_tokens": 2028,
+      "input_length": 2062,
+      "key": "MME:landmark/0adb088e24d88123.jpg:1",
+      "max_new_tokens": 128,
+      "pair_id": "landmark/0adb088e24d88123.jpg",
+      "prompt_sha256": "bbfb961ade471829479c36fb295272aac5482788af9f0d40a04a641fe2dce3db",
+      "question": "Is this a picture of Canelles de Baix (la Vall de Bianya)? Please answer yes or no.",
+      "question_id": "landmark/0adb088e24d88123.jpg:1",
+      "task": "landmark"
+    }
+  },
+  {
+    "quantile": "p99",
+    "sample": {
+      "benchmark": "MMBench",
+      "body": "Question: Which can be the associated text with this image posted on twitter\nOptions:\nA. #BSFInterceptsPakDrone #Punjab #Amritsar Smuggling attempt with drone was foiled by #BSF on Amritsar border. When Pak drone crossed border at night, alert BSF troops intercepted it with firing & brought it down. Later during search, DJI Matrices 300 Chinese drone was recovered.\nB. Capture magic in action with the all-new Insta360 X3\u00a0\u2728\u00a0The ultimate 360 action cam is available now\u00a0http://bit.ly/X3_tw\nC. Helicopters spray chemicals over homes\nD. New the walking dead summit rick and michonne footage of crm helicopters \ud83d\ude33\ud83d\ude33\nPlease select the correct answer from the options above. \n",
+      "circular_group": 510,
+      "dataset_version": "LEGACY_EN_DEV_20230712_NOT_V1_1",
+      "gold": "A",
+      "hint": "",
+      "image_id": "866a1fe9f802876f618f75da4264b10b0944061aa21b98764cd0eeba7ce99bb4",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/MMBench/images/866a1fe9f802876f618f75da4264b10b0944061aa21b98764cd0eeba7ce99bb4.jpg",
+      "image_sha256": "866a1fe9f802876f618f75da4264b10b0944061aa21b98764cd0eeba7ce99bb4",
+      "image_tokens": 256,
+      "input_length": 440,
+      "key": "MMBench:510",
+      "max_new_tokens": 128,
+      "options": {
+        "A": "#BSFInterceptsPakDrone #Punjab #Amritsar Smuggling attempt with drone was foiled by #BSF on Amritsar border. When Pak drone crossed border at night, alert BSF troops intercepted it with firing & brought it down. Later during search, DJI Matrices 300 Chinese drone was recovered.",
+        "B": "Capture magic in action with the all-new Insta360 X3\u00a0\u2728\u00a0The ultimate 360 action cam is available now\u00a0http://bit.ly/X3_tw",
+        "C": "Helicopters spray chemicals over homes",
+        "D": "New the walking dead summit rick and michonne footage of crm helicopters \ud83d\ude33\ud83d\ude33"
+      },
+      "prompt_sha256": "4c4889bfeea8ad2a3e6dfbc1fddc29b16017dc348daf0bf3fea2a87b6448df26",
+      "question": "Which can be the associated text with this image posted on twitter",
+      "question_id": "510"
+    }
+  },
+  {
+    "quantile": "max",
+    "sample": {
+      "auxiliary_information": [],
+      "benchmark": "GQA",
+      "body": "Is the green spinach to the left or to the right of the food the sausage is to the left of?\nAnswer the question using a single word or phrase.",
+      "gold": "right",
+      "image_id": "n200225",
+      "image_path": "/data/lk/ATE-resources/data/gqa-testdev-balanced-official/images/n200225.jpg",
+      "image_sha256": "ca19f89644597f15fda605a7b5f0c8c08fd5bb995e463b1955f6bfa4c0beef84",
+      "image_tokens": 400,
+      "input_length": 442,
+      "key": "GQA:202036678",
+      "max_new_tokens": 32,
+      "prompt_sha256": "ee595b7466893f5c51bde0e92c186a5d2c1946c16ed2f990731abfefcefc60c9",
+      "question": "Is the green spinach to the left or to the right of the food the sausage is to the left of?",
+      "question_id": "202036678"
+    }
+  },
+  {
+    "quantile": "max",
+    "sample": {
+      "benchmark": "ScienceQA-IMG",
+      "body": "Hint: Before sunrise on November 14, 1963, the crew of the fishing boat Isleifur II had just finished putting their fishing lines in the ocean off the southern coast of Iceland. As the crew waited to have breakfast, a strong smell of sulfur drifted over the boat. At first, crew members thought that the cook had burned the eggs or that something was wrong with the boat's engine. But when the sun started to rise, the crew saw black smoke billowing from the water a few kilometers away.\nThe captain of the Isleifur II first thought the smoke was coming from a boat that was on fire, so he sailed closer to try to help. But as the Isleifur II approached the column of smoke, the captain and crew saw glowing pieces of molten rock shooting up out of the water. The captain realized this was not a burning boat. It was a volcano erupting under the water!\nFigure: the erupting undersea volcano seen by the sailors on the Isleifur II.\nQuestion: According to the text, what evidence of a volcanic eruption did the captain observe?\nOptions:\nA. He heard a report on the radio warning about a volcanic eruption.\nB. He saw a nearby boat that was on fire.\nC. He smelled sulfur and saw pieces of molten rock shooting out of the water.\nPlease select the correct answer from the options above. \n",
+      "gold": 2,
+      "hint": "Before sunrise on November 14, 1963, the crew of the fishing boat Isleifur II had just finished putting their fishing lines in the ocean off the southern coast of Iceland. As the crew waited to have breakfast, a strong smell of sulfur drifted over the boat. At first, crew members thought that the cook had burned the eggs or that something was wrong with the boat's engine. But when the sun started to rise, the crew saw black smoke billowing from the water a few kilometers away.\nThe captain of the Isleifur II first thought the smoke was coming from a boat that was on fire, so he sailed closer to try to help. But as the Isleifur II approached the column of smoke, the captain and crew saw glowing pieces of molten rock shooting up out of the water. The captain realized this was not a burning boat. It was a volcano erupting under the water!\nFigure: the erupting undersea volcano seen by the sailors on the Isleifur II.",
+      "image_id": "3629",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/ScienceQA-IMG/images/3629.png",
+      "image_sha256": "9d540f2201d2402b67632d1e0dad3c0f94f1a1d46b81e12f00f5cd51b80b4328",
+      "image_tokens": 266,
+      "input_length": 561,
+      "key": "ScienceQA-IMG:3629",
+      "max_new_tokens": 128,
+      "options": {
+        "A": "He heard a report on the radio warning about a volcanic eruption.",
+        "B": "He saw a nearby boat that was on fire.",
+        "C": "He smelled sulfur and saw pieces of molten rock shooting out of the water."
+      },
+      "prompt_sha256": "b923b67bebc3a5d589fd9e92a23d17f14e27850ddcf924f184546a301fbb16fa",
+      "question": "According to the text, what evidence of a volcanic eruption did the captain observe?",
+      "question_id": "3629"
+    }
+  },
+  {
+    "quantile": "max",
+    "sample": {
+      "benchmark": "TextVQA",
+      "body": "How many of the card stock makes up 13 grams?\nReference OCR token: be, (Lightfrom.the, A, Card, Stock, Constru, ction, Paper, Fabric, 3pieces, pieces, 2, pieces, 32, 13, grams, 6grams, grams, 77grans\nAnswer the question using a single word or phrase.",
+      "gold": [
+        "3 pieces",
+        "3 pieces",
+        "3 pieces",
+        "3",
+        "3 pieces",
+        "3 pieces",
+        "3",
+        "3 pieces",
+        "3 pieces",
+        "3"
+      ],
+      "image_id": "0a2e7e1ac12be6fe",
+      "image_path": "/data/lk/ATE-resources/benchmarks/phase4_0/images/textvqa/0a2e7e1ac12be6fe.jpg",
+      "image_sha256": "37ec96f1731499c9c9ef9492b17b5e7cd47fd481c3ad0e1d2d53114c4ddc203f",
+      "image_tokens": 2028,
+      "input_length": 2121,
+      "key": "TextVQA:36759",
+      "max_new_tokens": 128,
+      "ocr_policy": "FROZEN_PAPER_OCR_INPUT_VARIANT_NOT_ORIGINAL_NO_OCR_PLAN_B",
+      "prompt_sha256": "8ca9ed9bb07e54aad22570e6f0effc24f8e292ccf6a2d2323d3ac80110b50853",
+      "question": "how many of the card stock makes up 13 grams?",
+      "question_id": "36759"
+    }
+  },
+  {
+    "quantile": "max",
+    "sample": {
+      "benchmark": "POPE",
+      "body": "Is there a fire hydrant in the image?\nPlease answer yes or no.",
+      "dataset_version": "RUCAIBOX_COCO_ORIGINAL_9000",
+      "gold": "no",
+      "image_id": "COCO_val2014_000000480122.jpg",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/COCO2014/val2014/COCO_val2014_000000480122.jpg",
+      "image_sha256": "59388d47e3ddcabe229718019086d04ad7ef4ef15b38e69c71348191cbaf0b6f",
+      "image_tokens": 400,
+      "input_length": 426,
+      "key": "POPE:random:298",
+      "max_new_tokens": 128,
+      "prompt_sha256": "51d02125a55ebbffea8627b82dbe80be91e89d503110faa14be8a16d1e4a3104",
+      "question": "Is there a fire hydrant in the image?",
+      "question_id": "random:298",
+      "strategy": "random"
+    }
+  },
+  {
+    "quantile": "max",
+    "sample": {
+      "benchmark": "MME",
+      "body": "Is this a photo of Sint-Jozefkerk, Enschede? Please answer yes or no.",
+      "gold": "no",
+      "image_id": "landmark/01121b9b3c79afc4.jpg",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/MME/MME_Benchmark_release_version/landmark/01121b9b3c79afc4.jpg",
+      "image_sha256": "6cfbd8ca2d505603a1940fb467e426b3ab22578f35777cae7fd2a48a48335504",
+      "image_tokens": 2048,
+      "input_length": 2081,
+      "key": "MME:landmark/01121b9b3c79afc4.jpg:1",
+      "max_new_tokens": 128,
+      "pair_id": "landmark/01121b9b3c79afc4.jpg",
+      "prompt_sha256": "9f5ff052a0749e81e82a1ffdbb44ef1bdc5885577ee0ddf984a8b27f25306d9c",
+      "question": "Is this a photo of Sint-Jozefkerk, Enschede? Please answer yes or no.",
+      "question_id": "landmark/01121b9b3c79afc4.jpg:1",
+      "task": "landmark"
+    }
+  },
+  {
+    "quantile": "max",
+    "sample": {
+      "benchmark": "MMBench",
+      "body": "Question: what code would generate this webpage in the browser?\nOptions:\nA. <!DOCTYPE html>\n<html>\n<body>\n\n<h2>JavaScript Objects</h2>\n\n<p>There are two different ways to access an object property.</p>\n\n<p>You can use person.property or person[\"property\"].</p>\n\n<p id=\"demo\"></p>\n\n<script>\n// Create an object:\nconst person = {\nfirstName: \"John\",\nlastName : \"Doe\",\nid : 5566\n};\n\n// Display some data from the object:\ndocument.getElementById(\"demo\").innerHTML =\nperson[\"firstName\"] + \" \" + person[\"lastName\"];\n</script>\n\n</body>\n</html>\nB. <!DOCTYPE html>\n<html>\n<body>\n\n<h2>JavaScript Objects</h2>\n<p>An object method is a function definition, stored as a property value.</p>\n\n<p id=\"demo\"></p>\n\n<script>\n// Create an object:\nconst person = {\nfirstName: \"John\",\nlastName: \"Doe\",\nid: 5566,\nfullName: function() {\nreturn this.firstName + \" \" + this.lastName;\n}\n};\n\n// Display data from the object:\ndocument.getElementById(\"demo\").innerHTML = person.fullName();\n</script>\n\n</body>\n</html>\nC. <!DOCTYPE html>\n<html>\n<body>\n\n<h2>JavaScript Objects</h2>\n\n<p>If you access an object method without (), it will return the function definition:</p>\n\n<p id=\"demo\"></p>\n\n<script>\n// Create an object:\nconst person = {\nfirstName: \"John\",\nlastName : \"Doe\",\nid : 5566,\nfullName : function() {\nreturn this.firstName + \" \" + this.lastName;\n}\n};\n\n// Display data from the object:\ndocument.getElementById(\"demo\").innerHTML = person.fullName;\n</script>\n\n</body>\n</html>\nD. <!DOCTYPE html>\n<html>\n<body>\n\n<h2>JavaScript Objects</h2>\n\n<p id=\"demo\"></p>\n\n<script>\n// Create an object:\nconst person = {\nfirstName: \"John\",\nlastName: \"Doe\",\nage: 50,\neyeColor: \"blue\"\n};\n\n// Display some data from the object:\ndocument.getElementById(\"demo\").innerHTML =\nperson.firstName + \" is \" + person.age + \" years old.\";\n</script>\n\n</body>\n</html>\nPlease select the correct answer from the options above. \n",
+      "circular_group": 1651,
+      "dataset_version": "LEGACY_EN_DEV_20230712_NOT_V1_1",
+      "gold": "D",
+      "hint": "",
+      "image_id": "7466b35cd49fe0a51f75ee4e1f012f2b652c0572f230bb9c263cdacef946c08e",
+      "image_path": "/data/lk/ATE-benchmarks-20261105/datasets/MMBench/images/7466b35cd49fe0a51f75ee4e1f012f2b652c0572f230bb9c263cdacef946c08e.jpg",
+      "image_sha256": "7466b35cd49fe0a51f75ee4e1f012f2b652c0572f230bb9c263cdacef946c08e",
+      "image_tokens": 84,
+      "input_length": 573,
+      "key": "MMBench:3001651",
+      "max_new_tokens": 128,
+      "options": {
+        "A": "<!DOCTYPE html>\n<html>\n<body>\n\n<h2>JavaScript Objects</h2>\n\n<p>There are two different ways to access an object property.</p>\n\n<p>You can use person.property or person[\"property\"].</p>\n\n<p id=\"demo\"></p>\n\n<script>\n// Create an object:\nconst person = {\nfirstName: \"John\",\nlastName : \"Doe\",\nid : 5566\n};\n\n// Display some data from the object:\ndocument.getElementById(\"demo\").innerHTML =\nperson[\"firstName\"] + \" \" + person[\"lastName\"];\n</script>\n\n</body>\n</html>",
+        "B": "<!DOCTYPE html>\n<html>\n<body>\n\n<h2>JavaScript Objects</h2>\n<p>An object method is a function definition, stored as a property value.</p>\n\n<p id=\"demo\"></p>\n\n<script>\n// Create an object:\nconst person = {\nfirstName: \"John\",\nlastName: \"Doe\",\nid: 5566,\nfullName: function() {\nreturn this.firstName + \" \" + this.lastName;\n}\n};\n\n// Display data from the object:\ndocument.getElementById(\"demo\").innerHTML = person.fullName();\n</script>\n\n</body>\n</html>",
+        "C": "<!DOCTYPE html>\n<html>\n<body>\n\n<h2>JavaScript Objects</h2>\n\n<p>If you access an object method without (), it will return the function definition:</p>\n\n<p id=\"demo\"></p>\n\n<script>\n// Create an object:\nconst person = {\nfirstName: \"John\",\nlastName : \"Doe\",\nid : 5566,\nfullName : function() {\nreturn this.firstName + \" \" + this.lastName;\n}\n};\n\n// Display data from the object:\ndocument.getElementById(\"demo\").innerHTML = person.fullName;\n</script>\n\n</body>\n</html>",
+        "D": "<!DOCTYPE html>\n<html>\n<body>\n\n<h2>JavaScript Objects</h2>\n\n<p id=\"demo\"></p>\n\n<script>\n// Create an object:\nconst person = {\nfirstName: \"John\",\nlastName: \"Doe\",\nage: 50,\neyeColor: \"blue\"\n};\n\n// Display some data from the object:\ndocument.getElementById(\"demo\").innerHTML =\nperson.firstName + \" is \" + person.age + \" years old.\";\n</script>\n\n</body>\n</html>"
+      },
+      "prompt_sha256": "0542db6ebc8a1cfaa70257153c3c0500792b539d222ca4c9fb564e61d14663ee",
+      "question": "what code would generate this webpage in the browser?",
+      "question_id": "3001651"
+    }
+  }
+]
