@@ -1,0 +1,44 @@
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:01<00:05,  1.90s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:03<00:03,  1.72s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:05<00:01,  1.71s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:06<00:00,  1.53s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:06<00:00,  1.61s/it]
+NUMERICAL 1 / 59 GQA:20705744 Native tokens 3 peakMiB 16782.4
+NUMERICAL 1 / 59 GQA:20705744 Noop tokens 3 peakMiB 16782.4
+NUMERICAL 1 / 59 GQA:20705744 Dense tokens 3 peakMiB 16781.4
+NUMERICAL 1 / 59 GQA:20705744 Physical tokens 3 peakMiB 16778.4
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+GATE GQA:20705744 PASS
+NUMERICAL 2 / 59 GQA:201752756 Native tokens 2 peakMiB 16945.9
+NUMERICAL 2 / 59 GQA:201752756 Noop tokens 2 peakMiB 16946.4
+NUMERICAL 2 / 59 GQA:201752756 Dense tokens 2 peakMiB 16946.4
+NUMERICAL 2 / 59 GQA:201752756 Physical tokens 2 peakMiB 16946.4
+GATE GQA:201752756 PASS
+NUMERICAL 3 / 59 GQA:20204868 Native tokens 2 peakMiB 17071.9
+NUMERICAL 3 / 59 GQA:20204868 Noop tokens 2 peakMiB 17071.9
+NUMERICAL 3 / 59 GQA:20204868 Dense tokens 2 peakMiB 17071.9
+NUMERICAL 3 / 59 GQA:20204868 Physical tokens 2 peakMiB 17071.9
+GATE GQA:20204868 PASS
+NUMERICAL 4 / 59 GQA:202003652 Native tokens 3 peakMiB 17190.4
+NUMERICAL 4 / 59 GQA:202003652 Noop tokens 3 peakMiB 17190.4
+NUMERICAL 4 / 59 GQA:202003652 Dense tokens 3 peakMiB 17190.4
+NUMERICAL 4 / 59 GQA:202003652 Physical tokens 3 peakMiB 17190.4
+GATE GQA:202003652 PASS
+NUMERICAL 5 / 59 GQA:202004255 Native tokens 2 peakMiB 17190.4
+NUMERICAL 5 / 59 GQA:202004255 Noop tokens 2 peakMiB 17190.4
+NUMERICAL 5 / 59 GQA:202004255 Dense tokens 2 peakMiB 17190.4
+NUMERICAL 5 / 59 GQA:202004255 Physical tokens 2 peakMiB 17190.4
+GATE GQA:202004255 PASS
+NUMERICAL 6 / 59 GQA:20705853 Native tokens 2 peakMiB 16778.5
+NUMERICAL 6 / 59 GQA:20705853 Noop tokens 2 peakMiB 16778.5
+NUMERICAL 6 / 59 GQA:20705853 Dense tokens 2 peakMiB 16778.3
+NUMERICAL 6 / 59 GQA:20705853 Physical tokens 2 peakMiB 16778.3
+GATE GQA:20705853 FAIL
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/qwen3vl-svh-expanded-preflight48/vlm_research/qwen3vl_svh_preflight48/run.py", line 284, in <module>
+    main()
+  File "/data/lk/ATE-worktrees/qwen3vl-svh-expanded-preflight48/vlm_research/qwen3vl_svh_preflight48/run.py", line 264, in main
+    completion = numerical(model, processor)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/qwen3vl-svh-expanded-preflight48/vlm_research/qwen3vl_svh_preflight48/run.py", line 231, in numerical
+    assert passed, 'Enlarged Dense/Physical numerical gate failure; no 48-question evaluations'
+           ^^^^^^
+AssertionError: Enlarged Dense/Physical numerical gate failure; no 48-question evaluations

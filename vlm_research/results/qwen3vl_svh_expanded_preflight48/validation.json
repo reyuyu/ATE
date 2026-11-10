@@ -1,0 +1,66 @@
+{
+  "completed_numerical_cases": 6,
+  "cpu_tests_passed": 12,
+  "dual_gpu_full_evaluation_ready": false,
+  "failed_numerical_cases": 1,
+  "failure_sample": {
+    "benchmark": "GQA",
+    "dense_generated_tokens": 2,
+    "first_layer_difference": {
+      "equal": false,
+      "layer": 28,
+      "max_abs": 0.0625,
+      "mean_abs": 3.396089232410304e-05,
+      "step": 0
+    },
+    "hf_native_strict": true,
+    "key": "GQA:20705853",
+    "native_noop_strict": true,
+    "pass_gate": false,
+    "peak_allocated": 17593321984,
+    "peak_reserved": 18536726528,
+    "physical_generated_tokens": 2,
+    "reasons": [
+      "GQA/input_length/min"
+    ],
+    "structural": {
+      "capacity_KV_bytes": 7004160,
+      "image_tokens": 96,
+      "live_KV_bytes": 3317760,
+      "persistent_visual_tokens": 0,
+      "reported_memory_is_instrumented_not_latency_benchmark": true,
+      "status": "PASS",
+      "zero_alignment_decode_extra_flops": 47185920,
+      "zero_alignment_peak_live_KV_buffer_bytes": 503808,
+      "zero_alignment_prefill_extra_flops": 572522496
+    },
+    "worst_max_abs": 0.3046875,
+    "worst_mean_abs": 0.05127071216702461
+  },
+  "full_evaluation_started": false,
+  "gate_changed": false,
+  "gpu_released": true,
+  "hf_native_strict_all_completed": true,
+  "independent_saved_logits_recheck": "CONFIRMS_FAIL",
+  "long_decode_required": 16,
+  "long_decode_status": "NOT_VALIDATED",
+  "longest_incremental_steps": 2,
+  "model_and_algorithm_changed": false,
+  "nan_inf_in_observed_logits": false,
+  "native_noop_strict_all_completed": true,
+  "numerical_gate": "FAIL",
+  "oom_observed": false,
+  "passed_numerical_cases": 5,
+  "plan_A": "BLOCKED",
+  "plan_B": "ATE_UNIFIED_HF_NON_AUTHOR_OFFICIAL_PAPER_OCR_AMENDMENT",
+  "pretest_expected_records": 576,
+  "pretest_records": 0,
+  "six_task_pretest": "NOT_RUN",
+  "status": "FAIL",
+  "tasks_completed_numerically": [
+    "GQA_PARTIAL_ONLY"
+  ],
+  "total_numerical_cases": 59,
+  "unexecuted_numerical_cases": 53,
+  "worst_input_status": "NOT_EXECUTED_STOPPED_BEFORE_TEXTVQA_AND_MME_BOUNDARIES"
+}
