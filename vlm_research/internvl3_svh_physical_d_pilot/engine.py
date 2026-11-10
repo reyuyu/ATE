@@ -222,9 +222,10 @@ def generate(model,tok,ready,method,max_tokens=32,fixed=False,audit=False,prepar
  def event(name):
   if timed:
    e=torch.cuda.Event(enable_timing=True);e.record();events[name]=e
+ if timed:torch.cuda.synchronize()
+ start=time.perf_counter()
  with control:
-  if timed:torch.cuda.synchronize()
-  start=time.perf_counter();event('start')
+  event('start')
   embed=embeddings(model,ready,prepared,event if timed else None);event('vision_projector_injection_end')
   for step in range(max_tokens):
    control.step=step;control.prefill=step==0;control.masks={}
@@ -247,14 +248,14 @@ def generate(model,tok,ready,method,max_tokens=32,fixed=False,audit=False,prepar
   event('decode_end')
   # Release request intermediates in all conditions inside the E2E boundary; cache remains live for audit.
   del out,logits,embed
-  if timed:torch.cuda.synchronize()
-  end=time.perf_counter()
-  if timed:
-   peak_alloc=torch.cuda.max_memory_allocated()/1048576
-   peak_reserved=torch.cuda.max_memory_reserved()/1048576
-  ids=torch.stack(tokens).cpu().tolist()
-  rows,live,capacity=layout(cache,'Native' if method=='No-op' else method,ready['roles'],len(ids))
-  audit_record=control.validate(len(ids))
+ if timed:torch.cuda.synchronize()
+ end=time.perf_counter()
+ if timed:
+  peak_alloc=torch.cuda.max_memory_allocated()/1048576
+  peak_reserved=torch.cuda.max_memory_reserved()/1048576
+ ids=torch.stack(tokens).cpu().tolist()
+ rows,live,capacity=layout(cache,'Native' if method=='No-op' else method,ready['roles'],len(ids))
+ audit_record=control.validate(len(ids))
  assert before==frozen.hooks_count(model)
  text=tok.decode(ids,skip_special_tokens=True).split(model.conv_template.sep.strip())[0].strip()
  result=dict(method=method,token_ids=ids,text=text,prediction=text.rstrip('.').lower(),
