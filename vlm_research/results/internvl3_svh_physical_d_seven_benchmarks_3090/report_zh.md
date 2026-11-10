@@ -10,7 +10,7 @@ Physical-D 相比同卡 Native 的已完成全集差值：ScienceQA-IMG -0.050 p
 |---|---:|---:|---:|---:|---|---|
 | GQA | — | — | — | — | — | PAUSED_OUTPUT_FORMAL |
 | ScienceQA-IMG  | 2017 | 97.521 | 97.471 | -0.050 | [-0.289, +0.151] | pp / COMPLETE |
-| TextVQA | — | — | — | — | — | READY_PREFLIGHT |
+| TextVQA | — | — | — | — | — | PAUSED_OUTPUT_FORMAL |
 | POPE | — | — | — | — | — | READY_PREFLIGHT |
 | MME | — | — | — | — | — | READY_PREFLIGHT |
 | MMBench | — | — | — | — | — | READY_PREFLIGHT |
@@ -25,11 +25,14 @@ Physical-D 相比同卡 Native 的已完成全集差值：ScienceQA-IMG -0.050 p
 | GQA / physical_d | 772 | 2.27 | 2.0 | 3.0 | 13 | 100.00 | 0.00 | 0.00 |
 | ScienceQA-IMG / native | 2017 | 2.00 | 2.0 | 2.0 | 2 | 100.00 | 0.00 | 0.00 |
 | ScienceQA-IMG / physical_d | 2017 | 2.00 | 2.0 | 2.0 | 2 | 100.00 | 0.00 | 0.00 |
+| TextVQA / native | 358 | 4.19 | 3.0 | 8.1 | 32 | 99.72 | 0.28 | 0.00 |
+| TextVQA / physical_d | 358 | 6.42 | 4.0 | 14.0 | 21 | 100.00 | 0.00 | 0.00 |
 
 ## 输出异常
 全部原始异常和评分见 output_anomalies.csv。以下仅列前20条诊断，不删除其原始预测。
 
 - GQA / 201185759 / physical_d: ["UNEXPECTED_ANSWER_FORM"]; 原文：answering does not require reading text in the image.
+- TextVQA / 34935 / native: ["ABNORMAL_STOP_OR_TRUNCATION"]; 原文：saggio intorno diverse opinioni di alcuni moderni politici sopra i delitti e le pene dell'avvocato francescantonio
 
 主标签：ATE_SVH_1TILE_SCORER_ALIGNED。不是 InternVL 作者完整排行榜配置；固定 1 tile、256 视觉 Token，与多图块、CoT、作者 max_new_tokens 等设置存在差异。MMBench 为 EN Dev20230712 Circular，采用官方 exact_matching，不调用 LLM judge。TextVQA 为 image-only，保留全部十答案共识软评分。MME 保留已知历史图片 SHA 差异，报告 Perception/Cognition 原始积分。
 
@@ -47,7 +50,7 @@ Physical-D 相比同卡 Native 的已完成全集差值：ScienceQA-IMG -0.050 p
 |---|---|
 | GQA | PAUSED_OUTPUT_FORMAL:  |
 | ScienceQA-IMG | GENERATION_COMPLETE:  |
-| TextVQA | READY_PREFLIGHT:  |
+| TextVQA | PAUSED_OUTPUT_FORMAL:  |
 | POPE | READY_PREFLIGHT:  |
 | MME | READY_PREFLIGHT:  |
 | MMBench | READY_PREFLIGHT:  |

@@ -31,6 +31,20 @@
       "all_input_bindings_equal": true,
       "no_large_output_discarded": true,
       "numerical_status": "FAILED_WITH_PREVIOUSLY_AUTHORIZED_WAIVER"
+    },
+    "TextVQA": {
+      "status": "PAUSED_OUTPUT_FORMAL",
+      "expected_questions": 5000,
+      "saved_generation_rows": 716,
+      "paired_questions": 358,
+      "full_split_score_reported": false,
+      "all_raw_predictions_rescored_twice": true,
+      "scorers": {
+        "scalar_rescoring": "PASS"
+      },
+      "all_input_bindings_equal": true,
+      "no_large_output_discarded": true,
+      "numerical_status": "FAILED_WITH_PREVIOUSLY_AUTHORIZED_WAIVER"
     }
   },
   "runtime_states": {
@@ -713,10 +727,743 @@
     },
     "TextVQA": {
       "benchmark": "TextVQA",
-      "status": "READY_PREFLIGHT",
-      "updated_utc": "2026-11-10T03:07:27Z",
-      "questions": 5000,
-      "preflight": 24
+      "status": "PAUSED_OUTPUT_FORMAL",
+      "updated_utc": "2026-11-10T03:40:49Z",
+      "question_id": "34935",
+      "failures": [
+        {
+          "benchmark": "TextVQA",
+          "question_id": "34935",
+          "method": "native",
+          "phase": "formal",
+          "gold": [
+            "saggio",
+            "i delitti e le pene",
+            "i delitti e le pene",
+            "saggio",
+            "saggio",
+            "saggio",
+            "saggio",
+            "i delitti e le pene",
+            "saggio",
+            "saggio"
+          ],
+          "image_sha256": "65132141c82a06bdb137eae794a47ef12f70a7441a98b5598fafec53a64de384",
+          "prompt_sha256": "ba76ed528ebbe612c006a0e88eff46f92de1843dcd277d6cef7d959286de5876",
+          "input_binding": "1c734954730821c1520be0a2a134ca22b59b761e2732759e80603b619dec8ddd",
+          "input_binding_details": {
+            "input_ids_sha256": "54de93b3ad304f1f3e91f0da963011e4cad46ec4ca8188c38218e694945c94d1",
+            "pixels_bf16_sha256": "c4b5f91cd8c4fc28177b426b51e48cc9a04cfcfa2a04aac0852a17e9739f19ba",
+            "prompt_sha256": "ba76ed528ebbe612c006a0e88eff46f92de1843dcd277d6cef7d959286de5876",
+            "image_sha256": "65132141c82a06bdb137eae794a47ef12f70a7441a98b5598fafec53a64de384"
+          },
+          "input_tokens": 332,
+          "visual_tokens": 256,
+          "max_new_tokens": 32,
+          "protocol_sha256": "f68ed284c5874532b997100bc829b9e434ded282c2d12256c7a23dc0ab2a7ada",
+          "source_manifest_sha256": "9fb0eb9b68cf5406e1881bfe44f6c7f7d31d053bf65ed30657c7ac1ad30db816",
+          "sample_sha256": "f13fa02fa079aafcaadb28dc272f87a60ef12e031525f67be146e0c91ec37e22",
+          "token_ids": [
+            82,
+            34159,
+            526,
+            11121,
+            16807,
+            9459,
+            72,
+            1853,
+            96356,
+            6481,
+            72,
+            3354,
+            3375,
+            70204,
+            956,
+            600,
+            1594,
+            71766,
+            384,
+            512,
+            281,
+            1952,
+            24237,
+            48052,
+            85,
+            509,
+            4330,
+            1422,
+            3020,
+            66,
+            30954,
+            815
+          ],
+          "raw_decode_with_special_tokens": "saggio intorno diverse opinioni di alcuni moderni politici sopra i delitti e le pene dell'avvocato francescantonio",
+          "raw_decode": "saggio intorno diverse opinioni di alcuni moderni politici sopra i delitti e le pene dell'avvocato francescantonio",
+          "text": "saggio intorno diverse opinioni di alcuni moderni politici sopra i delitti e le pene dell'avvocato francescantonio",
+          "generated_tokens": 32,
+          "eos": false,
+          "truncated": true,
+          "empty": false,
+          "kv_layout": [
+            {
+              "method": "Native",
+              "layer": 0,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 1,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 2,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 3,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 4,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 5,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 6,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 7,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 8,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 9,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 10,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 11,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 12,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 13,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 14,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 15,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 16,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 17,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 18,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 19,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 20,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 21,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 22,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 23,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 24,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 25,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 26,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            },
+            {
+              "method": "Native",
+              "layer": 27,
+              "logical_length": 363,
+              "physical_length": 363,
+              "visual_kv": 256,
+              "k_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "v_shape": [
+                1,
+                4,
+                363,
+                128
+              ],
+              "dtype": "torch.bfloat16",
+              "live_bytes": 743424,
+              "capacity_bytes": 743424,
+              "skip_attention": false
+            }
+          ],
+          "KV_live_MiB": 19.8515625,
+          "category": "all",
+          "group": "34935",
+          "dataset_name": "",
+          "parsed_answer": "saggio intorno diverse opinioni di alcuni moderni politici sopra i delitti e le pene dell'avvocato francescantonio",
+          "parse_failure": false,
+          "explanation": false,
+          "repetition": false,
+          "flags": [
+            "ABNORMAL_STOP_OR_TRUNCATION"
+          ]
+        }
+      ],
+      "complete_rows": 716
     },
     "POPE": {
       "benchmark": "POPE",
