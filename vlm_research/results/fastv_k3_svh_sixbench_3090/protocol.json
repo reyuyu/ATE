@@ -1,0 +1,172 @@
+{
+  "R_writer_layers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19
+  ],
+  "algorithm": "FastV-K3 + llava-SVH",
+  "all_six_ready": false,
+  "answer_bypass_layers": [
+    2,
+    3,
+    4,
+    5
+  ],
+  "answer_image_access": false,
+  "attention": "eager",
+  "base_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+  "batch_size": 1,
+  "caps": {
+    "GQA": 32,
+    "MMBench": 1024,
+    "MME": 128,
+    "POPE": 128,
+    "ScienceQA-IMG": 1024,
+    "TextVQA": 128
+  },
+  "condition_count": 1,
+  "cpu_tests_passed": true,
+  "created_at": "2026-11-10T06:23:22.167599+08:00",
+  "data_acceptance_sha256": "2fd5527c6f1c4f2046612dc8af47d9824c9cc3d24c7a93b74d070e8ae64332a6",
+  "dtype": "float16",
+  "execution_schedule": {
+    "created_at": "2026-11-10T09:52:52.054651+08:00",
+    "deferred_benchmarks": [
+      "MME"
+    ],
+    "deferred_questions": 2374,
+    "ready_benchmarks": [
+      "GQA",
+      "ScienceQA-IMG",
+      "POPE",
+      "MMBench",
+      "TextVQA"
+    ],
+    "ready_questions": 32882,
+    "reason": "MME frozen reference image bytes unavailable; whole benchmark explicitly deferred",
+    "requested_questions": 35256,
+    "user_instruction": "Use idle GPUs to start; algorithm, samples and numerical gates unchanged"
+  },
+  "expected_counts": {
+    "GQA": 12578,
+    "MMBench": 4377,
+    "MME": 2374,
+    "POPE": 8910,
+    "ScienceQA-IMG": 2017,
+    "TextVQA": 5000
+  },
+  "fastv_archive_commit": "5ee2a0dbe78df336229b55fed14a4a6d0d880bed",
+  "fastv_official_commit": "d1659729b5bf1be225e99ee15783deeea80f63b1",
+  "gpu_smoke": "PENDING_FRESH_SMOKE",
+  "greedy": true,
+  "image_exit_before": 20,
+  "logits_to_keep": 1,
+  "manifest_sha256": "2a83d76a622418c9925b3c4d3cd274c0ae8e320bb4065a85665ad586a0390943",
+  "model_files_sha256": "e0b36e761fc50c3517d3ee3da42393673b3efa5981ee16b4bc5814d89026f72f",
+  "model_path": "/data/lk/ATE-resources/models/llava-1.5-7b-hf/b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "model_revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "no_push": true,
+  "numerical_gate": {
+    "hidden_cosine_distance": 0.0001,
+    "hidden_relative_rmse": 0.01,
+    "logits_atol": 0.1,
+    "logits_rtol": 0.003,
+    "native_noop": "torch.equal",
+    "pruning_disabled_svh": "torch.equal",
+    "selector_top192": "torch.equal"
+  },
+  "original_rope_positions": true,
+  "paired_controls": "Require exact row-level input and protocol bindings; missing remains missing",
+  "partition_sha256": "b9f4386646ac5daed6e84e4b8558494cacd9368f099585abf4384a522d071d1a",
+  "persistent_original_visual_kv": 0,
+  "previous_freeze_archive": "/data/lk/ATE-worktrees/fastv-k3-svh-sixbench-3090/vlm_research/results/fastv_k3_svh_sixbench_3090/revisions/20261110T095243+0800",
+  "previous_protocol_sha256": "e25b983c0e59c32e863d73a34ed9c74432badfb9366a9fadda350eab6f6b9538",
+  "references": [
+    {
+      "commit": "71a5762cd8ccb8cc99efe9b6b0267d8abef70c46",
+      "git_path": "vlm_research/results/featurize_4090_gqa_official_aligned_threeway/protocol.json",
+      "local_path": "/data/lk/ATE-worktrees/fastv-k3-svh-sixbench-3090/vlm_research/results/fastv_k3_svh_sixbench_3090/references/71a5762cd8ccb8cc99efe9b6b0267d8abef70c46/protocol.json",
+      "sha256": "1a7db2cacd807105fe6ccd1bf9c91652032050c242c2a49ddd5d7f490dcdeec4"
+    },
+    {
+      "commit": "0414e553ba6fd1e21626ecf741489d225b44279c",
+      "git_path": "vlm_research/results/featurize_new3090_c3v2_reaccess_sevenbench/paper_protocol.json",
+      "local_path": "/data/lk/ATE-worktrees/fastv-k3-svh-sixbench-3090/vlm_research/results/fastv_k3_svh_sixbench_3090/references/0414e553ba6fd1e21626ecf741489d225b44279c/paper_protocol.json",
+      "sha256": "5ab87f8d8690843cd01143bc3f2e865c3ccf9f242900ede894639beeaede3105"
+    },
+    {
+      "commit": "0414e553ba6fd1e21626ecf741489d225b44279c",
+      "git_path": "vlm_research/results/featurize_new3090_c3v2_reaccess_sevenbench/score_summary.json",
+      "local_path": "/data/lk/ATE-worktrees/fastv-k3-svh-sixbench-3090/vlm_research/results/fastv_k3_svh_sixbench_3090/references/0414e553ba6fd1e21626ecf741489d225b44279c/score_summary.json",
+      "sha256": "972b9f95298244f717ff6b451b370b5a61bea2593f9c11acd957f48ac40a091b"
+    },
+    {
+      "commit": "0414e553ba6fd1e21626ecf741489d225b44279c",
+      "git_path": "vlm_research/results/featurize_new3090_c3v2_reaccess_sevenbench/model_acceptance.json",
+      "local_path": "/data/lk/ATE-worktrees/fastv-k3-svh-sixbench-3090/vlm_research/results/fastv_k3_svh_sixbench_3090/references/0414e553ba6fd1e21626ecf741489d225b44279c/model_acceptance.json",
+      "sha256": "5c775b869935be0f2844c321c94da6b197a4e2fc58ea6afd204d74f870dc2214"
+    }
+  ],
+  "selector": {
+    "R": "2/3",
+    "algorithm": "unchanged official AST",
+    "extra_full_q_k_and_qk_counted": true,
+    "independent_same_svh_input": true,
+    "layer": 2,
+    "original_last_query": true,
+    "residual_injection": false,
+    "top_k": 192
+  },
+  "sources": {
+    "vlm_research/ate_fulljoint_v2/engine.py": "ef59447163c47528be2fde44751c124df3d550a6e89244046c3d40d99b4e9e44",
+    "vlm_research/c3v2_middle_reaccess/common.py": "a765d0731ef5e230c705e3c516353953869352f68cd5cc0054a7708226f1e6c1",
+    "vlm_research/c3v2_middle_reaccess/engine.py": "e541c9122636205aeaeb752346ea08aa1c1aff6a06cfd40a60319a1cfc2763ff",
+    "vlm_research/external_baselines/fastv/compatibility/fastv_hf_adapter.py": "b5a19e541082e4349db5c0ea2a9013ae31c397bda46fdb6458a5d74434d36e9d",
+    "vlm_research/external_baselines/fastv/official_source/src/FastV/llava-hf/transformers/src/transformers/models/llama/modeling_llama.py": "48dfd9351aafede82ccc15bbb772571293a0669e0b7051572dc344c8a40e0726",
+    "vlm_research/fastv_svh/__init__.py": "a2f3ca3f430938bb279e03498ef7ac2b18f7f211471618c228ecad2125f80895",
+    "vlm_research/fastv_svh/analyze.py": "a549fff0fca0d07575169ff862ac1bf6d3f46e0703c1e1b42c1bd4d4092b0522",
+    "vlm_research/fastv_svh/common.py": "56b464908d547b48f1c5e16182f226b529db517c007ec2a0382e3d4302e9d393",
+    "vlm_research/fastv_svh/engine.py": "c3ad02eb1adea514f949bfa6be5babe37973ddce42be9020da226d873bbf6d6b",
+    "vlm_research/fastv_svh/inputs.py": "0b53b7af8ee9db5a22613dcd71ee597055790963434d672eadd754afdc37c97d",
+    "vlm_research/fastv_svh/preflight.py": "31930df58e690b4090db15bd4287f70ef0a4f2d775e45e4bbe128abb3dfeafe6",
+    "vlm_research/fastv_svh/resume.py": "e32d769571b11eae651293744ffc95996ddce77cad5fb47aadb952ca4cadd175",
+    "vlm_research/fastv_svh/run.py": "bffbc46ab87dac4d8076c87de162a7c114ac56a05e0506d09a27df70f2ce8f1c",
+    "vlm_research/fastv_svh/smoke.py": "8638af0febb744042b79696560ca20f34608aaabd95b4692fc59edecfd288781",
+    "vlm_research/fastv_svh/tests.py": "1f3a7bc47a963cc86876c10b88b6177eeeec3b2fa235ebb67ce3abecbb843feb",
+    "vlm_research/information_horizon_alignment/analyze.py": "ecccb86bd52f5c7fe9870ac8c14544cc9d6c786f9cf460973bc85026712406b7",
+    "vlm_research/information_horizon_alignment/common.py": "3958686c179db7a1f8e67ff57a52a29080eb9fcf206d52a6590c8cd9f580e4e6",
+    "vlm_research/information_horizon_alignment/engine.py": "edc2b8331512af12cdb881c4b0269c7fd744ebc3580e125a68afff11cd5df929",
+    "vlm_research/information_horizon_alignment/score.py": "50bc02bb5376af0f2aec9d32e0ce507e050b54f5b78137e1bd1ac8c8549a47f7",
+    "vlm_research/mme_seed_quality/common.py": "e0c23bb9aecda2513d48b4053c86af6d0bba8c179eb07522ab164fa4733eeab4",
+    "vlm_research/mme_seed_quality/engine.py": "f7f41d523c926354cf18bd7e4fbcfbd7aa46bb17bccf37b2fd8ce468ab0fc100",
+    "vlm_research/physical_handoff_fastpath/engine.py": "6e8abb7e04517678c189a896589abb97774652313ecedb57d58f97bd718b74a0",
+    "vlm_research/physical_visual_handoff/common.py": "071f04ecb8cbc07c03251da236a371843a217536917494914aee55cc5162fcf3",
+    "vlm_research/physical_visual_handoff/engine.py": "e46dd347bc5d4763c179a02459b7bd09ab87e45e7499107930928df3c98f295b"
+  },
+  "status": "FROZEN_FIVE_READY_ONE_DEFERRED",
+  "torch": "2.6.0+cu124",
+  "total": 35256,
+  "transformers": "4.49.0",
+  "visual_rows": {
+    "L0_L2": 576,
+    "L20_L31": 0,
+    "L3_L19": 192
+  }
+}
