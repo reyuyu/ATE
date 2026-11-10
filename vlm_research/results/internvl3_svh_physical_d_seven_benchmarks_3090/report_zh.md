@@ -15,7 +15,7 @@ Physical-D 相比同卡 Native 的已完成全集差值：ScienceQA-IMG -0.050 p
 | MME Perception | 2374 | 1695.865 | 1699.253 | +3.388 | [-14.110, +21.826] | raw_points / COMPLETE |
 | MME Cognition | 2374 | 625.714 | 615.714 | -10.000 | [-28.125, +0.000] | raw_points / COMPLETE |
 | MMBench  | 4377 | 83.673 | 83.418 | -0.255 | [-0.673, +0.086] | Circular_pp / COMPLETE |
-| OCRBench | — | — | — | — | — | READY_PREFLIGHT |
+| OCRBench | — | — | — | — | — | PAUSED_OUTPUT_FORMAL |
 
 | POPE 子集 | 指标 | Native | Physical-D | Δpp | 95%CI |
 |---|---|---:|---:|---:|---|
@@ -45,12 +45,15 @@ Physical-D 相比同卡 Native 的已完成全集差值：ScienceQA-IMG -0.050 p
 | MME / physical_d | 2374 | 2.98 | 3.0 | 3.0 | 3 | 100.00 | 0.00 | 0.00 |
 | MMBench / native | 4377 | 2.00 | 2.0 | 2.0 | 2 | 100.00 | 0.00 | 0.00 |
 | MMBench / physical_d | 4377 | 2.00 | 2.0 | 2.0 | 2 | 100.00 | 0.00 | 0.00 |
+| OCRBench / native | 490 | 4.24 | 4.0 | 8.0 | 38 | 100.00 | 0.00 | 0.00 |
+| OCRBench / physical_d | 490 | 3.29 | 2.0 | 8.0 | 59 | 100.00 | 0.00 | 0.00 |
 
 ## 输出异常
 全部原始异常和评分见 output_anomalies.csv。以下仅列前20条诊断，不删除其原始预测。
 
 - GQA / 201185759 / physical_d: ["UNEXPECTED_ANSWER_FORM"]; 原文：answering does not require reading text in the image.
 - TextVQA / 34935 / native: ["ABNORMAL_STOP_OR_TRUNCATION"]; 原文：saggio intorno diverse opinioni di alcuni moderni politici sopra i delitti e le pene dell'avvocato francescantonio
+- OCRBench / 0480 / physical_d: ["REPETITION"]; 原文：2016 Calendar - 2016 Calendar - 2016 Wall Calendar - 2016 Monthly Wall Calendar - 2016 Calendar - 2016 Calendar - 2016 Calendar - 2016 Wall Calendar
 
 主标签：ATE_SVH_1TILE_SCORER_ALIGNED。不是 InternVL 作者完整排行榜配置；固定 1 tile、256 视觉 Token，与多图块、CoT、作者 max_new_tokens 等设置存在差异。MMBench 为 EN Dev20230712 Circular，采用官方 exact_matching，不调用 LLM judge。TextVQA 为 image-only，保留全部十答案共识软评分。MME 保留已知历史图片 SHA 差异，报告 Perception/Cognition 原始积分。
 
@@ -72,7 +75,7 @@ Native 保留原生答案读图；Physical-D 同时包含答案禁图、L20视�
 | POPE | GENERATION_COMPLETE:  |
 | MME | GENERATION_COMPLETE:  |
 | MMBench | GENERATION_COMPLETE:  |
-| OCRBench | READY_PREFLIGHT:  |
+| OCRBench | PAUSED_OUTPUT_FORMAL:  |
 
 GPU UUID：GPU-e392cec6-7ec8-1fee-397b-fde03a79e79e
 
