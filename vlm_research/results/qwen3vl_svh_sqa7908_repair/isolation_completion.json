@@ -1,0 +1,122 @@
+{
+  "conclusion": "Identical real input rows; original-M cuBLASLt descriptor aligns compact BF16 projection",
+  "no_model_loaded": true,
+  "pid": 2538828,
+  "rows": [
+    {
+      "K": 4096,
+      "N": 4096,
+      "after": {
+        "equal": true,
+        "max_abs": 0.0,
+        "mean_abs": 0.0
+      },
+      "before": {
+        "equal": false,
+        "max_abs": 0.00390625,
+        "mean_abs": 9.491505625192076e-05
+      },
+      "compact_config": {
+        "algo_id": 5,
+        "cta_swizzle": 1,
+        "reduction_scheme": 1,
+        "split_k": 4,
+        "stages_id": 7,
+        "tile_id": 20
+      },
+      "dense_M": 513,
+      "dense_descriptor_config": {
+        "algo_id": 5,
+        "cta_swizzle": 1,
+        "reduction_scheme": 1,
+        "split_k": 4,
+        "stages_id": 7,
+        "tile_id": 20
+      },
+      "dtype": "torch.bfloat16",
+      "input_prefix_equal": true,
+      "layer": 1,
+      "native_replays_dense": true,
+      "native_replays_physical": true,
+      "operator": "q_proj",
+      "physical_M": 512
+    },
+    {
+      "K": 4096,
+      "N": 1024,
+      "after": {
+        "equal": true,
+        "max_abs": 0.0,
+        "mean_abs": 0.0
+      },
+      "before": {
+        "equal": false,
+        "max_abs": 0.00390625,
+        "mean_abs": 5.312432404025458e-05
+      },
+      "compact_config": {
+        "algo_id": 6,
+        "cta_swizzle": 0,
+        "reduction_scheme": 0,
+        "split_k": 1,
+        "stages_id": 16,
+        "tile_id": 18
+      },
+      "dense_M": 513,
+      "dense_descriptor_config": {
+        "algo_id": 6,
+        "cta_swizzle": 0,
+        "reduction_scheme": 0,
+        "split_k": 1,
+        "stages_id": 16,
+        "tile_id": 18
+      },
+      "dtype": "torch.bfloat16",
+      "input_prefix_equal": true,
+      "layer": 1,
+      "native_replays_dense": true,
+      "native_replays_physical": true,
+      "operator": "k_proj",
+      "physical_M": 512
+    },
+    {
+      "K": 4096,
+      "N": 1024,
+      "after": {
+        "equal": true,
+        "max_abs": 0.0,
+        "mean_abs": 0.0
+      },
+      "before": {
+        "equal": false,
+        "max_abs": 0.001953125,
+        "mean_abs": 4.020617052447051e-05
+      },
+      "compact_config": {
+        "algo_id": 6,
+        "cta_swizzle": 0,
+        "reduction_scheme": 0,
+        "split_k": 1,
+        "stages_id": 16,
+        "tile_id": 18
+      },
+      "dense_M": 513,
+      "dense_descriptor_config": {
+        "algo_id": 6,
+        "cta_swizzle": 0,
+        "reduction_scheme": 0,
+        "split_k": 1,
+        "stages_id": 16,
+        "tile_id": 18
+      },
+      "dtype": "torch.bfloat16",
+      "input_prefix_equal": true,
+      "layer": 1,
+      "native_replays_dense": true,
+      "native_replays_physical": true,
+      "operator": "v_proj",
+      "physical_M": 512
+    }
+  ],
+  "status": "PASS"
+}
