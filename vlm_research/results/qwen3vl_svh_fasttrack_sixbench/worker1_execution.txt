@@ -1,0 +1,12 @@
+CASE GQA:20705853 min 122 96
+Native 'wood' peak_MiB 16778.4775390625
+Noop 'wood' peak_MiB 16778.4775390625
+Dense 'wood' peak_MiB 16778.29931640625
+Physical 'wood' peak_MiB 16778.29931640625
+PASS GQA:20705853 0.0 0.0
+CASE POPE:adversarial:205 min 152 128
+Native 'yes' peak_MiB 16801.220703125
+Noop 'yes' peak_MiB 16801.220703125
+Dense 'yes' peak_MiB 16801.220703125
+Physical 'yes' peak_MiB 16801.220703125
+NUMERICAL_FAIL {"status": "FAIL", "key": "POPE:adversarial:205", "task": "POPE", "quantile": "min", "shard": 1, "gpu_uuid": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185", "native_noop_equal": true, "mean_abs": 0.07556266337633133, "max_abs": 0.375, "all_tokens_equal": true, "first_hidden_difference": {"step": 0, "layer": 22, "equal": false, "max_abs": 0.03125, "mean_abs": 1.3671815395355225e-05}, "peak_allocated": 17617356800, "structural": {"status": "PASS", "image_tokens": 128, "persistent_visual_tokens": 0, "live_KV_bytes": 3072000, "capacity_KV_bytes": 18554880, "zero_alignment_decode_extra_flops": 62914560, "zero_alignment_prefill_extra_flops": 704643072, "zero_alignment_peak_live_KV_buffer_bytes": 626688, "reported_memory_is_instrumented_not_latency_benchmark": true}, "AV_extra_flops": 2231369728}

@@ -1,0 +1,58 @@
+{
+  "AV_extra_flops": 2231369728,
+  "all_tokens_equal": true,
+  "first_hidden_difference": {
+    "equal": false,
+    "layer": 22,
+    "max_abs": 0.03125,
+    "mean_abs": 1.3671815395355225e-05,
+    "step": 0
+  },
+  "first_operator_difference": {
+    "compared_shape": [
+      1,
+      32,
+      24,
+      24
+    ],
+    "dense_shape": [
+      1,
+      32,
+      24,
+      24
+    ],
+    "equal": false,
+    "layer": 22,
+    "max_abs": 0.125,
+    "mean_abs": 6.781684078305261e-06,
+    "operator": "QK_text",
+    "physical_shape": [
+      1,
+      32,
+      24,
+      24
+    ],
+    "step": 0
+  },
+  "gpu_uuid": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185",
+  "key": "POPE:adversarial:205",
+  "max_abs": 0.375,
+  "mean_abs": 0.07556266337633133,
+  "native_noop_equal": true,
+  "peak_allocated": 17617356800,
+  "quantile": "min",
+  "shard": 1,
+  "status": "FAIL",
+  "structural": {
+    "capacity_KV_bytes": 18554880,
+    "image_tokens": 128,
+    "live_KV_bytes": 3072000,
+    "persistent_visual_tokens": 0,
+    "reported_memory_is_instrumented_not_latency_benchmark": true,
+    "status": "PASS",
+    "zero_alignment_decode_extra_flops": 62914560,
+    "zero_alignment_peak_live_KV_buffer_bytes": 626688,
+    "zero_alignment_prefill_extra_flops": 704643072
+  },
+  "task": "POPE"
+}
