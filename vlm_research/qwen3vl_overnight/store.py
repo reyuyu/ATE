@@ -11,7 +11,11 @@ class Store:
     def __init__(self, path, protocol_hash):
         path.parent.mkdir(parents=True, exist_ok=True)
         self.lock = path.with_suffix('.lock').open('a')
-        fcntl.flock(self.lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        try:
+            fcntl.flock(self.lock, fcntl.LOCK_EX | fcntl.LOCK_NB)
+        except BaseException:
+            self.lock.close()
+            raise
         self.db = sqlite3.connect(path, timeout=60)
         self.db.execute('PRAGMA journal_mode=WAL')
         self.db.execute('PRAGMA synchronous=FULL')
