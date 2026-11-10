@@ -1,0 +1,177 @@
+{
+  "hypothesis": "Original query-row geometry changes BF16 AV reduction; zero-row restoration reproduces Dense real outputs exactly",
+  "layers": [
+    26,
+    27,
+    28
+  ],
+  "model_loaded": false,
+  "rows": [
+    {
+      "V_shape": [
+        1,
+        32,
+        122,
+        128
+      ],
+      "V_stride": [
+        499712,
+        15616,
+        128,
+        1
+      ],
+      "after": {
+        "equal": true,
+        "max_abs": 0.0,
+        "mean_abs": 0.0
+      },
+      "allow_bf16_reduced_precision_reduction": true,
+      "before": {
+        "equal": true,
+        "max_abs": 0.0,
+        "mean_abs": 0.0
+      },
+      "compact_P_shape": [
+        1,
+        32,
+        26,
+        122
+      ],
+      "compact_P_stride": [
+        101504,
+        3172,
+        122,
+        1
+      ],
+      "compact_reproduces_saved_physical": true,
+      "dense_P_shape": [
+        1,
+        32,
+        122,
+        122
+      ],
+      "dense_P_stride": [
+        476288,
+        14884,
+        122,
+        1
+      ],
+      "dtype": "torch.bfloat16",
+      "layer": 26,
+      "probabilities_equal": true,
+      "restored_reproduces_saved_dense": true,
+      "text_V_equal": true
+    },
+    {
+      "V_shape": [
+        1,
+        32,
+        122,
+        128
+      ],
+      "V_stride": [
+        499712,
+        15616,
+        128,
+        1
+      ],
+      "after": {
+        "equal": true,
+        "max_abs": 0.0,
+        "mean_abs": 0.0
+      },
+      "allow_bf16_reduced_precision_reduction": true,
+      "before": {
+        "equal": false,
+        "max_abs": 5.960464477539063e-08,
+        "mean_abs": 5.596890680949207e-13
+      },
+      "compact_P_shape": [
+        1,
+        32,
+        26,
+        122
+      ],
+      "compact_P_stride": [
+        101504,
+        3172,
+        122,
+        1
+      ],
+      "compact_reproduces_saved_physical": true,
+      "dense_P_shape": [
+        1,
+        32,
+        122,
+        122
+      ],
+      "dense_P_stride": [
+        476288,
+        14884,
+        122,
+        1
+      ],
+      "dtype": "torch.bfloat16",
+      "layer": 27,
+      "probabilities_equal": true,
+      "restored_reproduces_saved_dense": true,
+      "text_V_equal": true
+    },
+    {
+      "V_shape": [
+        1,
+        32,
+        122,
+        128
+      ],
+      "V_stride": [
+        499712,
+        15616,
+        128,
+        1
+      ],
+      "after": {
+        "equal": true,
+        "max_abs": 0.0,
+        "mean_abs": 0.0
+      },
+      "allow_bf16_reduced_precision_reduction": true,
+      "before": {
+        "equal": false,
+        "max_abs": 0.00048828125,
+        "mean_abs": 4.728252900321195e-09
+      },
+      "compact_P_shape": [
+        1,
+        32,
+        26,
+        122
+      ],
+      "compact_P_stride": [
+        101504,
+        3172,
+        122,
+        1
+      ],
+      "compact_reproduces_saved_physical": true,
+      "dense_P_shape": [
+        1,
+        32,
+        122,
+        122
+      ],
+      "dense_P_stride": [
+        476288,
+        14884,
+        122,
+        1
+      ],
+      "dtype": "torch.bfloat16",
+      "layer": 28,
+      "probabilities_equal": true,
+      "restored_reproduces_saved_dense": true,
+      "text_V_equal": true
+    }
+  ],
+  "status": "PASS"
+}
