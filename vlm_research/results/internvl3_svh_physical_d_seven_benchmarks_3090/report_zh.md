@@ -4,11 +4,11 @@
 
 # InternVL3-SVH 七项 Benchmark 单图块质量评测
 
-Physical-D 相比同卡 Native 的已完成全集差值：GQA -9.048 pp；ScienceQA-IMG -0.050 pp；TextVQA -55.744 pp；POPE -0.222 pp；MME Perception +3.388 raw_points；MME Cognition -10.000 raw_points；MMBench -0.255 Circular_pp。未完成项不推断得分或损失。
+Physical-D 相比同卡 Native 的已完成全集差值：GQA -9.048 pp；ScienceQA-IMG -0.050 pp；TextVQA -55.744 pp；POPE -0.222 pp；MME Perception +3.388 raw_points；MME Cognition -10.000 raw_points；MMBench -0.255 Circular_pp；OCRBench -719.000 raw_points_0_1000。未完成项不推断得分或损失。
 
-普通95%CI整体低于0的项目：GQA、TextVQA；区间包含0的项目：ScienceQA-IMG、POPE、MME、MME、MMBench。区间包含0不能解释为证明等价。固定单图块协议与作者多图块/完整推理配方不等同，单题异常保留、计分并继续；仅结构错误或预先冻结的系统性异常触发停止。
+普通95%CI整体低于0的项目：GQA、TextVQA、OCRBench；区间包含0的项目：ScienceQA-IMG、POPE、MME、MME、MMBench。区间包含0不能解释为证明等价。固定单图块协议与作者多图块/完整推理配方不等同，单题异常保留、计分并继续；仅结构错误或预先冻结的系统性异常触发停止。
 
-当前已完整完成 6/7 项。只有 COMPLETE 行为全集正式分数；其余不推断缺失分数。
+当前已完整完成 7/7 项。只有 COMPLETE 行为全集正式分数；其余不推断缺失分数。
 
 | Benchmark | N | Native | Physical-D | Δ | 95% CI | 单位 / 状态 |
 |---|---:|---:|---:|---:|---|---|
@@ -19,7 +19,7 @@ Physical-D 相比同卡 Native 的已完成全集差值：GQA -9.048 pp；Scienc
 | MME Perception | 2114 | 1695.865 | 1699.253 | +3.388 | [-14.110, +21.826] | raw_points / COMPLETE |
 | MME Cognition | 260 | 625.714 | 615.714 | -10.000 | [-28.125, +0.000] | raw_points / COMPLETE |
 | MMBench  | 4377 | 83.673 | 83.418 | -0.255 | [-0.673, +0.086] | Circular_pp / COMPLETE |
-| OCRBench | — | — | — | — | — | READY_RESUME_V2 |
+| OCRBench  | 1000 | 751.000 | 32.000 | -719.000 | [-750.250, -687.992] | raw_points_0_1000 / COMPLETE |
 
 | POPE 子集 | 指标 | Native | Physical-D | Δpp | 95%CI |
 |---|---|---:|---:|---:|---|
@@ -49,8 +49,8 @@ Physical-D 相比同卡 Native 的已完成全集差值：GQA -9.048 pp；Scienc
 | MME / physical_d | 2374 | 2.98 | 3.0 | 3.0 | 3 | 100.00 | 0.00 | 0.00 |
 | MMBench / native | 4377 | 2.00 | 2.0 | 2.0 | 2 | 100.00 | 0.00 | 0.00 |
 | MMBench / physical_d | 4377 | 2.00 | 2.0 | 2.0 | 2 | 100.00 | 0.00 | 0.00 |
-| OCRBench / native | 490 | 4.24 | 4.0 | 8.0 | 38 | 100.00 | 0.00 | 0.00 |
-| OCRBench / physical_d | 490 | 3.29 | 2.0 | 8.0 | 59 | 100.00 | 0.00 | 0.00 |
+| OCRBench / native | 1000 | 6.72 | 5.0 | 20.0 | 55 | 100.00 | 0.00 | 0.00 |
+| OCRBench / physical_d | 1000 | 5.10 | 3.0 | 11.0 | 128 | 99.70 | 0.30 | 0.00 |
 
 ## 输出异常
 全部原始异常和评分见 output_anomalies.csv。以下仅列前20条诊断，不删除其原始预测。
@@ -96,7 +96,7 @@ Native 保留原生答案读图；Physical-D 同时包含答案禁图、L20视�
 | POPE | GENERATION_COMPLETE:  |
 | MME | GENERATION_COMPLETE:  |
 | MMBench | GENERATION_COMPLETE:  |
-| OCRBench | READY_RESUME_V2:  |
+| OCRBench | GENERATION_COMPLETE:  |
 
 GPU UUID：GPU-e392cec6-7ec8-1fee-397b-fde03a79e79e
 
@@ -109,7 +109,7 @@ GitHub 分支：https://github.com/reyuyu/ATE/tree/codex/internvl3-svh-stop-poli
 
 - GQA：COMPLETE；复用原预测 1544 条，新生成 23612 条。完整原始JSON字节对照见prediction_provenance_v2.csv.gz。
 - TextVQA：COMPLETE；复用原预测 716 条，新生成 9284 条。完整原始JSON字节对照见prediction_provenance_v2.csv.gz。
-- OCRBench：PAUSED_OUTPUT_FORMAL；复用原预测 待分析 条，新生成 待分析 条。完整原始JSON字节对照见prediction_provenance_v2.csv.gz。
+- OCRBench：COMPLETE；复用原预测 980 条，新生成 1020 条。完整原始JSON字节对照见prediction_provenance_v2.csv.gz。
 
 原父版本暂停样本（GQA无关解释、TextVQA长书名截断、OCRBench重复标题）均原样保留且纳入本轮评分，没有重生成、跳过或修正。TextVQA始终为32 Token；任何未来64/128 Token版本须独立完整运行，不能混入本轮。
 OUTPUT_ANOMALY完整清单见各任务及根目录output_anomalies_v2.csv.gz：包括解释、重复、截断、零分/解析失败及部分TextVQA软评分。错误与部分分数只用于质量审计，不用于停止判断，也不改变官方评分。
