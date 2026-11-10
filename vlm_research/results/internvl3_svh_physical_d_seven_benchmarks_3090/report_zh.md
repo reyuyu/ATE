@@ -82,3 +82,19 @@ GPU UUID：GPU-e392cec6-7ec8-1fee-397b-fde03a79e79e
 服务器持久化目录：/home/featurize/work/ATE-internvl3-svh-seven-benchmarks-3090/vlm_research/results/internvl3_svh_physical_d_seven_benchmarks_3090
 
 GitHub 分支：https://github.com/reyuyu/ATE/tree/codex/internvl3-svh-physical-d-seven-benchmarks-3090
+
+## 最终独立审计与暂停解释
+
+全量完成 4/7 项：ScienceQA-IMG、POPE、MME、MMBench。GQA 保存 772 对，TextVQA 保存 358 对，OCRBench 保存 490 对；这三个子集不报告全量分数、差值或置信区间。
+
+- GQA Q201185759：Physical-D 输出无关元解释，13 Token 后正常 EOS；按冻结短答案规则暂停。
+- TextVQA Q34935：Native 转录较长意大利文书名，32 Token 达上限且无 EOS。可能是合理的真实长书名，但仍触发本轮预先冻结的保守规则；这不是 Physical-D 长输出或退化的证据，未事后提高上限。
+- OCRBench Q0480：Native 正确输出 The Botanical Garden 2012；Physical-D 输出反复的 2016 Calendar 词组，59 Token 后正常 EOS，未达128上限。按重复规则暂停，完整原文与Token保留。输入/Prompt相同、EOS正确、Native/No-op和结构Smoke通过、最终逐层KV审计通过；重复行为的内部原因尚未确定，未据此放宽门槛或修改机制。
+
+预检样本为冻结全集成员。输入、协议、源码绑定一致的预检预测在全集中复用一次，不重复计分；Smoke生成不计入Benchmark分数。各暂停项的保存数也包含已完成预检成员。
+
+MME Cognition下降10原始分：代码推理−7.5、数值计算−2.5；计数、位置、MME OCR的官方分数保持不变，颜色+5。其余子任务和损害案例均保留，不以总体平均掩盖。未完成TextVQA/OCRBench，故不能给出这两项总体OCR能力损失结论。POPE Random Accuracy的普通95%CI低于0，属于多重描述性比较，未作校正。
+
+最终CPU独立审计覆盖全部保存预测：冻结Question/Gold/Prompt/Image SHA/输入ID Tensor字节哈希、逐方法输入绑定、真实EOS/上限、完整题数及28层实际KV布局/Live字节均通过；九个冻结运行文件SHA256未变。官方数据/Scorer对齐、单图块口径与原严格数值Waiver仍须共同引用，不宣称作者排行榜或NUMERICAL_PASS。
+
+GPU最终释放检查见 gpu_release.json：指定3090无计算进程、无本轮Worker/Controller；不关闭服务器。全部原始检查点与日志留在服务器持久化工作盘，轻量源码/预测/报告通过独立分支同步；实际Commit以最终publication.json和GitHub分支头为准。

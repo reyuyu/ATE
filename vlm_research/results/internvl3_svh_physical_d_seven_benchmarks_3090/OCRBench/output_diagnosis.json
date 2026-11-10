@@ -1,0 +1,40 @@
+{
+  "status": "PAUSED_OUTPUT_FORMAL",
+  "question_id": "0480",
+  "question": "What is the title of this book?",
+  "gold": "The Botanical Garden 2012",
+  "native": {
+    "text": "The Botanical Garden 2012",
+    "token_ids": "[785,23007,44883,19021,220,17,15,16,17,151645]",
+    "score": "1.0",
+    "generated_tokens": "10",
+    "max_new_tokens": "128",
+    "eos": "True",
+    "truncated": "False",
+    "input_binding": "41db81b2d091b0326198b4b6482fb48e2b164addb5bbfda9d0385da704413df7",
+    "prompt_sha256": "d6a2c75c2b48eaea4891b9abaf7fd719392482479404558f9386ef170bbef2fb",
+    "sample_sha256": "6e8607182edf6f9d6b36e84b35c80e7a1f97a8d867bb522126e7cbdc6add8c8b"
+  },
+  "physical_d": {
+    "text": "2016 Calendar - 2016 Calendar - 2016 Wall Calendar - 2016 Monthly Wall Calendar - 2016 Calendar - 2016 Calendar - 2016 Calendar - 2016 Wall Calendar",
+    "token_ids": "[17,15,16,21,16841,481,220,17,15,16,21,16841,481,220,17,15,16,21,9736,16841,481,220,17,15,16,21,44334,9736,16841,481,220,17,15,16,21,16841,481,220,17,15,16,21,16841,481,220,17,15,16,21,16841,481,220,17,15,16,21,9736,16841,151645]",
+    "score": "0.0",
+    "generated_tokens": "59",
+    "max_new_tokens": "128",
+    "eos": "True",
+    "truncated": "False",
+    "input_binding": "41db81b2d091b0326198b4b6482fb48e2b164addb5bbfda9d0385da704413df7",
+    "prompt_sha256": "d6a2c75c2b48eaea4891b9abaf7fd719392482479404558f9386ef170bbef2fb",
+    "sample_sha256": "6e8607182edf6f9d6b36e84b35c80e7a1f97a8d867bb522126e7cbdc6add8c8b"
+  },
+  "image_sha256": "6322b15219785489b11928b1cc92ac3948ae778ec1ceb8907aac22406c24827c",
+  "actual_prompt_LF_count": 7,
+  "actual_prompt_literal_backslash_n_count": 0,
+  "cause_observed": "Physical-D repeated calendar-title phrases (59 tokens) before the correct EOS. Native answered the book title correctly. This is not a cap hit or missing-EOS failure.",
+  "structural_and_native_noop_smoke": "PASS with existing numerical waiver",
+  "all_final_KV_and_input_bindings": "PASS (independent_artifact_validation.json)",
+  "finite_output_guard": "No NaN/Inf exception; worker guard active on every LM forward.",
+  "cause_not_established": "The exact internal cause of the wrong/repetitive text is not proven. Do not infer that a protocol bug or a single physical component caused it.",
+  "action": "Preserve predictions and stop this benchmark under the frozen repetition rule; no prompt/cap/engine modification and no resumed generation.",
+  "full_1000_score": "NOT_REPORTED"
+}
