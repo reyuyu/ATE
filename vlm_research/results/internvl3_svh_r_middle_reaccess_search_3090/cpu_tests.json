@@ -1,0 +1,82 @@
+{
+  "status": "PASS",
+  "Native_noop_torch_equal": true,
+  "Qwen2_actual_cpu_float64_28_layers": true,
+  "all7_conditions": [
+    {
+      "condition": "R0",
+      "max_logits_abs": 0.0,
+      "max_aligned_hidden_abs": 0.0,
+      "steps": 4,
+      "real_decode": 3,
+      "final_KV_live_MiB": 0.087890625,
+      "final_KV_capacity_MiB": 0.087890625,
+      "all_layer_permissions_cache_positions_projection_skips": "PASS"
+    },
+    {
+      "condition": "R2",
+      "max_logits_abs": 0.0,
+      "max_aligned_hidden_abs": 0.0,
+      "steps": 4,
+      "real_decode": 3,
+      "final_KV_live_MiB": 0.212890625,
+      "final_KV_capacity_MiB": 0.212890625,
+      "all_layer_permissions_cache_positions_projection_skips": "PASS"
+    },
+    {
+      "condition": "R4",
+      "max_logits_abs": 0.0,
+      "max_aligned_hidden_abs": 0.0,
+      "steps": 4,
+      "real_decode": 3,
+      "final_KV_live_MiB": 0.337890625,
+      "final_KV_capacity_MiB": 0.337890625,
+      "all_layer_permissions_cache_positions_projection_skips": "PASS"
+    },
+    {
+      "condition": "R8",
+      "max_logits_abs": 0.0,
+      "max_aligned_hidden_abs": 0.0,
+      "steps": 4,
+      "real_decode": 3,
+      "final_KV_live_MiB": 0.587890625,
+      "final_KV_capacity_MiB": 0.587890625,
+      "all_layer_permissions_cache_positions_projection_skips": "PASS"
+    },
+    {
+      "condition": "R12",
+      "max_logits_abs": 0.0,
+      "max_aligned_hidden_abs": 0.0,
+      "steps": 4,
+      "real_decode": 3,
+      "final_KV_live_MiB": 0.837890625,
+      "final_KV_capacity_MiB": 0.837890625,
+      "all_layer_permissions_cache_positions_projection_skips": "PASS"
+    },
+    {
+      "condition": "R14",
+      "max_logits_abs": 0.0,
+      "max_aligned_hidden_abs": 0.0,
+      "steps": 4,
+      "real_decode": 3,
+      "final_KV_live_MiB": 0.962890625,
+      "final_KV_capacity_MiB": 0.962890625,
+      "all_layer_permissions_cache_positions_projection_skips": "PASS"
+    },
+    {
+      "condition": "RS4",
+      "max_logits_abs": 0.0,
+      "max_aligned_hidden_abs": 0.0,
+      "steps": 4,
+      "real_decode": 3,
+      "final_KV_live_MiB": 0.337890625,
+      "final_KV_capacity_MiB": 0.337890625,
+      "all_layer_permissions_cache_positions_projection_skips": "PASS"
+    }
+  ],
+  "independent_cache_exception_cleanup": "PASS",
+  "no_CUDA_initialized": true,
+  "Frozen_search_space_sha256": "e4b470e156930657a7c1de174f0c8529e5af44cc2030dca9485835533711f8bf",
+  "engine_sha256": "8751256f3a03d297d2cfc012101d53e2932a5d098ff8f49240e560a686617ff3",
+  "CPU_math_mock_softmax": "Explicit Float64; official backend otherwise forces FP32 even for Float64 weights. This mock-only change does not modify real GPU attention or numerical gates."
+}

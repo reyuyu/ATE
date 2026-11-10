@@ -1,0 +1,218 @@
+{
+  "bf16_reduced_precision_reduction_before": true,
+  "bf16_reduced_precision_reduction_during": false,
+  "status": "DIAGNOSTIC_ONLY_NUMERICAL_GATE_REMAINS_FAILED",
+  "question_id": "201337043",
+  "condition": "R0",
+  "first_recorded_divergent_operator": "k_proj",
+  "L0_L19_shared_hidden_strict_equal_in_prior_smoke": true,
+  "layer20_operators": [
+    {
+      "operator": "input_norm",
+      "dense_aligned_shape": [
+        1,
+        65,
+        3584
+      ],
+      "physical_shape": [
+        1,
+        65,
+        3584
+      ],
+      "torch_equal": true,
+      "different_elements": 0,
+      "max_abs": 0.0,
+      "mean_abs": 0.0
+    },
+    {
+      "operator": "q_proj",
+      "dense_aligned_shape": [
+        1,
+        65,
+        3584
+      ],
+      "physical_shape": [
+        1,
+        65,
+        3584
+      ],
+      "torch_equal": true,
+      "different_elements": 0,
+      "max_abs": 0.0,
+      "mean_abs": 0.0
+    },
+    {
+      "operator": "k_proj",
+      "dense_aligned_shape": [
+        1,
+        65,
+        512
+      ],
+      "physical_shape": [
+        1,
+        65,
+        512
+      ],
+      "torch_equal": false,
+      "different_elements": 15126,
+      "max_abs": 0.0625,
+      "mean_abs": 0.0020118337124586105
+    },
+    {
+      "operator": "v_proj",
+      "dense_aligned_shape": [
+        1,
+        65,
+        512
+      ],
+      "physical_shape": [
+        1,
+        65,
+        512
+      ],
+      "torch_equal": false,
+      "different_elements": 15639,
+      "max_abs": 0.03125,
+      "mean_abs": 0.0013912218855693936
+    },
+    {
+      "operator": "attention_probabilities",
+      "dense_aligned_shape": [
+        1,
+        28,
+        65,
+        321
+      ],
+      "physical_shape": [
+        1,
+        28,
+        65,
+        321
+      ],
+      "torch_equal": false,
+      "different_elements": 37442,
+      "max_abs": 0.01953125,
+      "mean_abs": 1.4421451851376332e-05
+    },
+    {
+      "operator": "o_proj_input",
+      "dense_aligned_shape": [
+        1,
+        65,
+        3584
+      ],
+      "physical_shape": [
+        1,
+        65,
+        3584
+      ],
+      "torch_equal": false,
+      "different_elements": 171433,
+      "max_abs": 0.0703125,
+      "mean_abs": 0.0014834525063633919
+    },
+    {
+      "operator": "o_proj",
+      "dense_aligned_shape": [
+        1,
+        65,
+        3584
+      ],
+      "physical_shape": [
+        1,
+        65,
+        3584
+      ],
+      "torch_equal": false,
+      "different_elements": 195272,
+      "max_abs": 0.125,
+      "mean_abs": 0.002093035029247403
+    },
+    {
+      "operator": "post_norm",
+      "dense_aligned_shape": [
+        1,
+        65,
+        3584
+      ],
+      "physical_shape": [
+        1,
+        65,
+        3584
+      ],
+      "torch_equal": false,
+      "different_elements": 104449,
+      "max_abs": 0.0625,
+      "mean_abs": 0.001478827092796564
+    },
+    {
+      "operator": "gate_proj",
+      "dense_aligned_shape": [
+        1,
+        65,
+        18944
+      ],
+      "physical_shape": [
+        1,
+        65,
+        18944
+      ],
+      "torch_equal": false,
+      "different_elements": 672359,
+      "max_abs": 0.0390625,
+      "mean_abs": 0.002117887604981661
+    },
+    {
+      "operator": "up_proj",
+      "dense_aligned_shape": [
+        1,
+        65,
+        18944
+      ],
+      "physical_shape": [
+        1,
+        65,
+        18944
+      ],
+      "torch_equal": false,
+      "different_elements": 763628,
+      "max_abs": 0.0390625,
+      "mean_abs": 0.0022186709102243185
+    },
+    {
+      "operator": "down_proj",
+      "dense_aligned_shape": [
+        1,
+        65,
+        3584
+      ],
+      "physical_shape": [
+        1,
+        65,
+        3584
+      ],
+      "torch_equal": false,
+      "different_elements": 169187,
+      "max_abs": 0.25,
+      "mean_abs": 0.002889440394937992
+    }
+  ],
+  "tokens": {
+    "Dense-R0": [
+      65714
+    ],
+    "Physical-R0": [
+      65714
+    ]
+  },
+  "input_binding": {
+    "input_ids_sha256": "964c0fc45564d5348372fc6587379dd1b186d804feb37224f2bdbd536fd313da",
+    "pixels_bf16_sha256": "1f9444b3652e01b3101f3c9ec7bab99e1d28d5d82b5fb8a79823a2fe71256e98",
+    "prompt_sha256": "12249d19de4526b84d571fdaf7ddb519d7494678c7e9d1eef6f81421daac060c",
+    "image_sha256": "af104e152d80b4390471490c0adf6762cc1d10e81d7ad3b849abef09e5fbdbef"
+  },
+  "causal_statement": "Operator-local differences are measured; no automatic claim that BF16 differences are acceptable or harmless.",
+  "formal_discovery": "NOT_RUN",
+  "formal_holdout": "NOT_RUN",
+  "formal_efficiency": "NOT_RUN"
+}

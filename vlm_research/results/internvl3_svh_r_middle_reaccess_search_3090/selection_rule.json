@@ -1,0 +1,15 @@
+{
+  "frozen_before_GPU": true,
+  "eligibility": [
+    "structure/numerical gates PASS",
+    "Non-Query point difference vs R0 >= -1pp"
+  ],
+  "order": "Query Accuracy descending",
+  "near_optimal_Query_gap_pp": 1,
+  "best_cost": "minimum measured actual KV Capacity among near-optimal; then fewer reaccess layers; then frozen candidate order",
+  "best_query": "max Query Accuracy; then frozen candidate order",
+  "max_holdout_candidates": 2,
+  "no_holdout_inference_or_candidate_predictions_before_selection_SHA": true,
+  "threshold_interpretation": "exploratory engineering screening, not noninferiority proof",
+  "confirmation_rule": "SEARCH_CONFIRMED only if selected cost candidate Holdout Query improvement vs R0 >0pp and Non-Query difference >=-1pp; report CI uncertainty separately, never retune"
+}

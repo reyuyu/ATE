@@ -1,0 +1,26 @@
+{
+  "phase": "POST_FAILURE_DIAGNOSIS_AND_CPU_ANALYSIS",
+  "inference_source_manifest_unchanged": true,
+  "code_sha256": {
+    "vlm_research/internvl3_svh_r_middle_reaccess_search/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "vlm_research/internvl3_svh_r_middle_reaccess_search/common.py": "ffc30b035a05d8fb191fcb972f06dd4622d56d4237a39f0a29430aaf11f1d74c",
+    "vlm_research/internvl3_svh_r_middle_reaccess_search/cpu_tests.py": "e46d25dd21f62c03141de8bffc35d8faabbe4b2f1ffd1e2c26bc6dddc4112a00",
+    "vlm_research/internvl3_svh_r_middle_reaccess_search/diagnose.py": "0ad0af81bcaf1e7dfdfc96dd7260257057296e2815b4d73f642e521b27e46070",
+    "vlm_research/internvl3_svh_r_middle_reaccess_search/diagnose_accumulation.py": "4d7d88d2e90497ce7a8c20670efe6bbe26aa9e6e179b6f23c723cff237d02bf6",
+    "vlm_research/internvl3_svh_r_middle_reaccess_search/engine.py": "8751256f3a03d297d2cfc012101d53e2932a5d098ff8f49240e560a686617ff3",
+    "vlm_research/internvl3_svh_r_middle_reaccess_search/final_audit.py": "d7effef5ab65a48d33d0d003c13f15b2fe288b22a61b0ab642cdf97f2ef8a0cb",
+    "vlm_research/internvl3_svh_r_middle_reaccess_search/finalize.py": "509a03bf49527ac855f93123267dfa8b66c3baa48f96e556597aa6100d4b9a74",
+    "vlm_research/internvl3_svh_r_middle_reaccess_search/gpu_smoke.py": "a1a5a27e683ac26edd6230cb8e574893462ecc40cdeaa87ff1441733f4bdf183",
+    "vlm_research/internvl3_svh_r_middle_reaccess_search/prepare.py": "59390d4a16c9464a3548886aa91bb8c0a9cbbe2f6ec42f73f53c9026ff69f16e",
+    "vlm_research/internvl3_svh_r_middle_reaccess_search/publish.py": "d1df9ccd2e4eb9ed3c3110c4f04b2ee6620798303b479548e8d0e8a3d8e4b398"
+  },
+  "diagnostic_process_flag_change": {
+    "setting": "torch.backends.cuda.matmul.allow_bf16_reduced_precision_reduction",
+    "before": true,
+    "during": false,
+    "restored_in_finally": true,
+    "official_reference": "https://docs.pytorch.org/docs/2.6/notes/numerical_accuracy.html#reduced-precision-reduction-for-fp16-and-bf16-gemms",
+    "outcome": "DID_NOT_ELIMINATE_K_V_PROJECTION_DIFFERENCES",
+    "did_not_start_new_formal_protocol": true
+  }
+}
