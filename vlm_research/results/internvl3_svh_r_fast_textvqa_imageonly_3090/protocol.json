@@ -1,0 +1,119 @@
+{
+  "status": "EXPLORATORY_QUALITY_WITH_NUMERICAL_WAIVER",
+  "historical_numerical_status": "NUMERICAL_EQUIVALENCE_FAILED remains unchanged",
+  "model": "OpenGVLab/InternVL3-8B",
+  "revision": "853e3a797a661694b1b8ece0cb72dc2b23e3dac9",
+  "GPU": "GPU-e392cec6-7ec8-1fee-397b-fde03a79e79e",
+  "dtype": "bfloat16",
+  "attention": "eager",
+  "torch": "2.6.0+cu124",
+  "transformers": "4.49.0",
+  "batch": 1,
+  "greedy": true,
+  "use_cache": true,
+  "logits_to_keep": 1,
+  "image_shape": [
+    1,
+    3,
+    448,
+    448
+  ],
+  "visual_tokens": 256,
+  "max_new_tokens": 32,
+  "native_EOS": true,
+  "prompt_protocol": "ATE_SVH_1TILE_SCORER_ALIGNED",
+  "instruction": "Answer with the text visible in the image, using a word or short phrase. Do not explain.",
+  "image_only": true,
+  "input_allowlist": "native chat template + original image and question + exact frozen short-answer instruction; no auxiliary OCR/hint/caption/Gold",
+  "single_model_load": true,
+  "parent_commit": "03ae6763a02bca30ae7bb553e1ff1c006d8c2552",
+  "engine_commit": "9602d93869d4ccd11986573369d8fecc84b80f78",
+  "engine": "unmodified V2; no C1/C2 projection repair",
+  "zero_only_scratch": "retained; real cost included if speed gate passes; not persistent original visual KV",
+  "sample_manifest_sha256": "271a9d40b0b3b32d07a0c3d57ff006e22b12f89bf32eba67bfa14740549eef50",
+  "search_space": {
+    "R0": [],
+    "R2": [
+      16,
+      19
+    ],
+    "R4-M": [
+      12,
+      13,
+      14,
+      15
+    ],
+    "R4-L": [
+      16,
+      17,
+      18,
+      19
+    ],
+    "R6": [
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "R8": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "R10": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ]
+  },
+  "selection_A": "rank highest official soft accuracy first; ties lower meta rate, lower actual mean quality-EOS KV capacity, fewer layers, frozen order; select top3 reaccess plus R0",
+  "selection_B": {
+    "best_quality": "highest soft accuracy; same tie-breaks",
+    "best_efficiency": "within 2.0 percentage points of highest soft accuracy; choose fewest retained layers, then lower actual KV capacity, lower meta rate, higher accuracy, frozen order; R0 eligible",
+    "holdout_no_reselection": true
+  },
+  "bootstrap": {
+    "unit": "whole paired image SHA256 clusters",
+    "repetitions": 5000,
+    "seed": 20261111,
+    "CI": 95,
+    "multiplicity": "ordinary unadjusted exploratory CI; not confirmatory noninferiority"
+  },
+  "hard_stop": "input/source hash mismatch, Native/Noop failure, NaN/Inf, OOM, illegal token length, KV/Mask/RoPE/exit/skip/cache/hook structural error",
+  "output_policy": "all meta/repeat/empty/truncated/wrong answers retained and scored; known frequent Physical meta outputs do not stop this task",
+  "smoke": "8 frozen Discovery; Native/Noop strict; Dense/Physical R0,R4-M,R8; full structural audit shortest and longest, light logits for remaining six; BF16 errors recorded not gated",
+  "Native_reuse": "sample freeze first, exact input/model/processor/tokenizer/cap/source binding; Holdout prediction text/tokens/scores not loaded before final selection",
+  "formal_quality_max": 816,
+  "counts": {
+    "A": 336,
+    "B_max": 192,
+    "Holdout_max": 288
+  },
+  "quality_feature_reuse": false,
+  "speed_gate": "at least one preselected non-R0 candidate has Holdout soft gain>0 AND paired image-cluster ordinary95%CI lower>0; speed precedence fixed as best_quality then best_efficiency among confirmed candidates; no Holdout reranking, new layers or quality generation",
+  "speed": {
+    "images": 12,
+    "warmups_per_method": 2,
+    "repeats_per_image": 3,
+    "methods": "Native,R0,confirmed final candidate",
+    "output_tokens": 32,
+    "real_decode": 31,
+    "ignore_EOS": true,
+    "boundary": "GPU-ready input through Vision/projector/prefill/decode/method cleanup, synchronized wall time; exclude disk/tokenizer/preprocessor/H2D/write",
+    "no_positive_confirmed_gain": "NOT_RUN; never reuse GQA timing"
+  }
+}
