@@ -4,6 +4,8 @@
 
 # InternVL3-SVH 七项 Benchmark 单图块质量评测
 
+**执行偏差：TextVQA Physical-D出现系统性无关元回答，原监测漏检，发现时已完成5000对，未能及时停止。所有记录和得分保留；不宣称本轮输出监测完全通过。详见末尾验收及systemic_output_audit_v2.json。**
+
 Physical-D 相比同卡 Native 的已完成全集差值：GQA -9.048 pp；ScienceQA-IMG -0.050 pp；TextVQA -55.744 pp；POPE -0.222 pp；MME Perception +3.388 raw_points；MME Cognition -10.000 raw_points；MMBench -0.255 Circular_pp；OCRBench -719.000 raw_points_0_1000。未完成项不推断得分或损失。
 
 普通95%CI整体低于0的项目：GQA、TextVQA、OCRBench；区间包含0的项目：ScienceQA-IMG、POPE、MME、MME、MMBench。区间包含0不能解释为证明等价。固定单图块协议与作者多图块/完整推理配方不等同，单题异常保留、计分并继续；仅结构错误或预先冻结的系统性异常触发停止。
@@ -116,3 +118,15 @@ OUTPUT_ANOMALY完整清单见各任务及根目录output_anomalies_v2.csv.gz：�
 系统性监测按100题/方法的非重叠窗口：连续两个窗口空输出≥10%、重复≥10%、其他行为格式异常≥25%或截断≥50%时暂停；连续10题空输出/重复也暂停。阈值在新增GPU生成前冻结，不使用Gold或Accuracy来决定停止、不自动调整。逐窗口及长度P50/P95/最大值见各任务output_monitor_v2.json。
 MME完整Benchmark为2374条；表中Perception为2114条、Cognition为260条，分别按官方原始积分计算。MMBench为4377条已发布旋转记录、1176个Circular组。原四项汇总与逐题产物的SHA256保持父版本一致。
 数值状态仍是FAILED_WITH_PREVIOUSLY_AUTHORIZED_WAIVER，Native/No-op及新结构性错误仍为硬门槛。所有比较仍是单图块ATE协议，不能冒充作者完整多图块排行榜结果。
+
+## V2最终验收
+
+CPU独立输入/Gold/Prompt/Token/EOS/逐层KV核验通过；原记录JSON及新记录出处SHA全部通过；原四项完整产物逐文件SHA与父Commit一致，未重新推理或计分。原protocol.json与九个冻结运行文件未改变，v2只改变停止/继续执行策略。
+
+**TextVQA监测执行偏差：** 全量后内容审计发现Physical-D有1782/5000（35.64%）条以answering开头的无关元回答；Native对应26/5000，宽匹配包含does not require时为27/5000。原格式/长度检测未充分识别短元回答，未及时触发应有的系统性停止。发现时该任务已全部生成，没有后续TextVQA请求；未重跑、删题或改参数。全部原文、Token及得分保留，详见systemic_output_audit_v2.json和meta_response_cases_v2.csv.gz。此处的PASS指文件/输入/KV/评分完整性，不代表输出监测无偏差或Physical-D质量通过。
+
+- GQA：COMPLETE；复用 1544 条原预测，新增 23612 条预测。
+- TextVQA：COMPLETE；复用 716 条原预测，新增 9284 条预测。
+- OCRBench：COMPLETE；复用 980 条原预测，新增 1020 条预测。
+
+指定RTX3090无计算进程，GPU已释放，服务器保持运行。详细证据见final_validation_v2.json；最终Commit以publication.json/远端分支头为准。

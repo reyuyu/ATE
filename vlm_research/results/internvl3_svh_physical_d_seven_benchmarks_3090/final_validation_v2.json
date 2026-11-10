@@ -1,0 +1,74 @@
+{
+  "status": "PASS",
+  "benchmarks": {
+    "GQA": {
+      "status": "COMPLETE",
+      "predictions": 25156,
+      "V1_REUSED": 1544,
+      "V2_GENERATED": 23612,
+      "all_original_JSON_bytes_preserved": true,
+      "SQLite_integrity": "PASS",
+      "prediction_provenance_SHA256": "PASS",
+      "Native_noop_and_full_v1_smoke_tokens": "PASS",
+      "generation_protocol_unchanged": true
+    },
+    "TextVQA": {
+      "status": "COMPLETE",
+      "predictions": 10000,
+      "V1_REUSED": 716,
+      "V2_GENERATED": 9284,
+      "all_original_JSON_bytes_preserved": true,
+      "SQLite_integrity": "PASS",
+      "prediction_provenance_SHA256": "PASS",
+      "Native_noop_and_full_v1_smoke_tokens": "PASS",
+      "generation_protocol_unchanged": true
+    },
+    "OCRBench": {
+      "status": "COMPLETE",
+      "predictions": 2000,
+      "V1_REUSED": 980,
+      "V2_GENERATED": 1020,
+      "all_original_JSON_bytes_preserved": true,
+      "SQLite_integrity": "PASS",
+      "prediction_provenance_SHA256": "PASS",
+      "Native_noop_and_full_v1_smoke_tokens": "PASS",
+      "generation_protocol_unchanged": true
+    }
+  },
+  "unchanged_full_benchmarks": {
+    "ScienceQA-IMG": {
+      "status": "EXACT_PARENT_BYTES",
+      "files_checked": 15,
+      "new_GPU_generations": 0
+    },
+    "POPE": {
+      "status": "EXACT_PARENT_BYTES",
+      "files_checked": 15,
+      "new_GPU_generations": 0
+    },
+    "MME": {
+      "status": "EXACT_PARENT_BYTES",
+      "files_checked": 16,
+      "new_GPU_generations": 0
+    },
+    "MMBench": {
+      "status": "EXACT_PARENT_BYTES",
+      "files_checked": 15,
+      "new_GPU_generations": 0
+    }
+  },
+  "original_protocol_sha256": "f68ed284c5874532b997100bc829b9e434ded282c2d12256c7a23dc0ab2a7ada",
+  "stop_policy_sha256": "7903d595df56aae9733221da2f5220344c8a9295987edcffd50c11e4958f2ac4",
+  "numerical_status": "FAILED_WITH_PREVIOUSLY_AUTHORIZED_WAIVER",
+  "GPU_UUID": "GPU-e392cec6-7ec8-1fee-397b-fde03a79e79e",
+  "GPU_final_state": "GPU-e392cec6-7ec8-1fee-397b-fde03a79e79e, NVIDIA GeForce RTX 3090, 1 MiB, 32",
+  "GPU_compute_processes": "",
+  "GPU_released": true,
+  "no_CUDA_context_or_model_load_in_audit": true,
+  "server_not_shutdown": true,
+  "checked_utc": "2026-11-10T11:20:19Z",
+  "output_monitor_coverage_status": "KNOWN_MONITOR_FALSE_NEGATIVES_TEXTVQA",
+  "TextVQA_monitoring_deviation": "A systematic irrelevant short meta-answer pattern was not captured by the original format/length heuristic. Detected after all 5000 pairs had already been generated. The benchmark was not stopped at the intended earlier point; this is an execution/monitoring deviation. All original answers and scores are retained. No rerun or parameter change.",
+  "artifact_integrity_status": "PASS",
+  "unqualified_monitoring_PASS": false
+}
