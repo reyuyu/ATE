@@ -57,7 +57,11 @@ def table(p, rows):
 def metrics(a, b):
     assert a.shape == b.shape
     bad = ~(torch.isfinite(a) & torch.isfinite(b))
-    assert not bool((bad & (a != b)).any()), "Nonfinite mismatch"
+    mismatch = int((bad & (a != b)).sum())
+    if mismatch:
+        # A causal finfo.min and a hard -inf must be recorded, not subtracted.
+        # Logits and real activations have independent finite-value assertions.
+        return dict(equal=False, max_abs=None, mean_abs=None, nonfinite_mismatch=mismatch)
     d = torch.where(bad, 0., a.float() - b.float()).abs()
     return dict(equal=torch.equal(a, b), max_abs=float(d.max()), mean_abs=float(d.mean()))
 
@@ -67,7 +71,7 @@ def compare(a, av, b, bv):
     for t, (x, y) in enumerate(zip(av, bv)):
         r = dict(step=t, **metrics(x, y), top1_equal=int(x.argmax()) == int(y.argmax()),
                  complete_tokens_equal=a["token_ids"] == b["token_ids"], steps_equal=len(av) == len(bv))
-        r["pass"] = r["max_abs"] <= GATE["max_abs"] and r["mean_abs"] <= GATE["mean_abs"] and r["top1_equal"] and r["complete_tokens_equal"] and r["steps_equal"]
+        r["pass"] = r["max_abs"] is not None and r["max_abs"] <= GATE["max_abs"] and r["mean_abs"] <= GATE["mean_abs"] and r["top1_equal"] and r["complete_tokens_equal"] and r["steps_equal"]
         rows.append(r)
     return rows
 
@@ -292,12 +296,14 @@ def live_preflight():
     return dict(gpus=state, processes=raw, selected_uuid=UUID)
 
 
-def gpu_run(verify=False):
+def gpu_run(verify=False, label=None):
     protocol = json.loads((OUT / "protocol.json").read_text())
     assert protocol["source_files"] == source_files(), "Changed execution snapshot"
     assert protocol["gate"] == GATE
-    tag = "independent" if verify else "diagnosis"
+    tag = label or ("independent" if verify else "diagnosis")
+    assert not (OUT / tag).exists(), "Preserve earlier attempts; select a new label"
     write(OUT / tag / "preflight.json", live_preflight())
+    write(OUT / tag / "execution_protocol.json", protocol)
     torch.set_num_threads(1)
     torch.manual_seed(3407)
     processor = AutoProcessor.from_pretrained(MODEL, local_files_only=True)
@@ -377,9 +383,10 @@ def gpu_run(verify=False):
 if __name__ == "__main__":
     parser = argparse.ArgumentParser()
     parser.add_argument("mode", choices=["prepare", "diagnose", "verify"])
+    parser.add_argument("--label")
     args = parser.parse_args()
     try:
-        cpu_prepare() if args.mode == "prepare" else gpu_run(args.mode == "verify")
+        cpu_prepare() if args.mode == "prepare" else gpu_run(args.mode == "verify", args.label)
     except BaseException as exc:
-        write(OUT / (args.mode + "_failure.json"), dict(error=repr(exc), traceback=traceback.format_exc()))
+        write(OUT / ((args.label or args.mode) + "_failure.json"), dict(error=repr(exc), traceback=traceback.format_exc()))
         raise
