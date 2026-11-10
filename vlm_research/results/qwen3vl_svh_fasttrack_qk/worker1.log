@@ -1,0 +1,36 @@
+CASE GQA:20705853 min 122 96
+Native 'wood' peak_MiB 16778.4775390625
+Noop 'wood' peak_MiB 16778.4775390625
+Dense 'wood' peak_MiB 16778.29931640625
+Physical 'wood' peak_MiB 16778.29931640625
+PASS GQA:20705853 0.0 0.0
+CASE POPE:adversarial:205 min 152 128
+Native 'yes' peak_MiB 16801.220703125
+Noop 'yes' peak_MiB 16801.220703125
+Dense 'yes' peak_MiB 16801.220703125
+Physical 'yes' peak_MiB 16801.220703125
+PASS POPE:adversarial:205 0.0 0.0
+CASE MMBench:1001321 min 112 64
+Native 'B. happy' peak_MiB 16773.69921875
+Noop 'B. happy' peak_MiB 16773.69921875
+Dense 'B. happy' peak_MiB 16772.98193359375
+Physical 'B. happy' peak_MiB 16780.0146484375
+PASS MMBench:1001321 0.0 0.0
+CASE POPE:random:1120 median 285 260
+Native 'no' peak_MiB 16945.80322265625
+Noop 'no' peak_MiB 16945.80322265625
+Dense 'no' peak_MiB 16945.80322265625
+Physical 'no' peak_MiB 16945.80322265625
+PASS POPE:random:1120 0.0 0.0
+CASE MMBench:3001143 median 238 176
+Native 'D. Father and daughter' peak_MiB 16843.2705078125
+Noop 'D. Father and daughter' peak_MiB 16843.2705078125
+Dense 'D. Father and daughter' peak_MiB 16843.2705078125
+Physical 'D. Father and daughter' peak_MiB 16843.2705078125
+PASS MMBench:3001143 0.0 0.0
+CASE ScienceQA-IMG:7908 p99 513 460
+Native 'C. Kiribati' peak_MiB 17323.84912109375
+Noop 'C. Kiribati' peak_MiB 17323.84912109375
+Dense 'The highlighted country in the image is **Kiribati**.\n\nLooking at the map, the highlighted area is a large, elongated archipelago stretching from the western Pacific Ocean, including the Gilbert Islands, the Phoenix Islands, and the Line Islands. This is the **Republic of Kiribati**, which is a country in the Pacific Ocean.\n\nLet’s check the options:\nA. Tuvalu — a small island nation in the central Pacific, not matching the shape.\nB. The Marshall Islands — a group of islands in the central Pacific, but the highlighted area is much larger and extends further eastward.\nC. Nauru' peak_MiB 17323.84912109375
+Physical 'The highlighted country in the image is **Kiribati**.\n\nLooking at the map, the highlighted area consists of multiple islands spread across a large expanse of the Pacific Ocean, stretching from the Gilbert Islands in the south to the Line Islands in the north. This is the **Republic of Kiribati**, which is a country in the Pacific Ocean.\n\nKiribati is a country made up of 33 islands and atolls, and it is the largest country in the Pacific Ocean by land area. It is a member of the United Nations and the Pacific Islands.\n\nTherefore, the correct answer is **C. Kiribati**' peak_MiB 17323.84912109375
+NUMERICAL_FAIL {"status": "FAIL", "key": "ScienceQA-IMG:7908", "task": "ScienceQA-IMG", "quantile": "p99", "shard": 1, "gpu_uuid": "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185", "native_noop_equal": true, "mean_abs": 7.642667770385742, "max_abs": 45.765625, "all_tokens_equal": false, "first_hidden_difference": {"step": 0, "layer": 1, "equal": false, "max_abs": 0.25, "mean_abs": 0.0006618862971663475}, "peak_allocated": 18165372416, "structural": {"status": "PASS", "image_tokens": 460, "persistent_visual_tokens": 0, "live_KV_bytes": 22118400, "capacity_KV_bytes": 22118400, "zero_alignment_decode_extra_flops": 28714598400, "zero_alignment_prefill_extra_flops": 5592186880, "zero_alignment_peak_live_KV_buffer_bytes": 2621440, "reported_memory_is_instrumented_not_latency_benchmark": true}, "AV_extra_flops": 27064074240}
