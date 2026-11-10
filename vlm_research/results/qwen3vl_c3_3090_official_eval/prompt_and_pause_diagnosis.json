@@ -1,0 +1,151 @@
+{
+  "scope": "CPU inspection of existing predictions on matched IDs/images; prompt views differ, no controlled speedup claim",
+  "progress": {
+    "status": "RUNNING",
+    "phase": "SEVEN_BENCHMARK_QUALITY",
+    "benchmark": "POPE",
+    "protocol_label": "OFFICIAL_PROTOCOL",
+    "completed_questions": 820,
+    "total_questions": 9000,
+    "elapsed_seconds": 4370.816759941004,
+    "at_UTC": "2026-11-10T00:25:09.216033+00:00"
+  },
+  "matched_question_pairs": 39,
+  "matched_prompt_statistics": [
+    {
+      "protocol_label": "OFFICIAL_PROTOCOL",
+      "condition": "Native",
+      "requests": 39,
+      "tokens_mean": 71.35897435897436,
+      "tokens_median": 65,
+      "truncated": 2,
+      "E2E_mean_ms": 3736.403649102729,
+      "TPOT_mean_ms": 50.64324238733239
+    },
+    {
+      "protocol_label": "OFFICIAL_PROTOCOL",
+      "condition": "Physical-Original",
+      "requests": 39,
+      "tokens_mean": 33.743589743589745,
+      "tokens_median": 30,
+      "truncated": 0,
+      "E2E_mean_ms": 1551.962097871859,
+      "TPOT_mean_ms": 42.96820497884796
+    },
+    {
+      "protocol_label": "ATE_PAPER_PROTOCOL",
+      "condition": "Native",
+      "requests": 39,
+      "tokens_mean": 2,
+      "tokens_median": 2,
+      "truncated": 0,
+      "E2E_mean_ms": 224.73148459045123,
+      "TPOT_mean_ms": 50.82810445932242
+    },
+    {
+      "protocol_label": "ATE_PAPER_PROTOCOL",
+      "condition": "Physical-Original",
+      "requests": 39,
+      "tokens_mean": 2,
+      "tokens_median": 2,
+      "truncated": 0,
+      "E2E_mean_ms": 188.1270551280184,
+      "TPOT_mean_ms": 42.52264942267002
+    }
+  ],
+  "prompt_example": [
+    {
+      "question_id": "random:781",
+      "official_body": "Is there a dog in the image?",
+      "paper_body": "Is there a dog in the image?\nAnswer the question using a single word or phrase."
+    }
+  ],
+  "earlier_591_to_630_intervals": {
+    "intervals": 39,
+    "mean_outside_ms": 5395.608603127561,
+    "median_outside_ms": 55.38037783844629,
+    "max_outside_ms": 95091.63007074676,
+    "intervals_over_1_second": 3,
+    "largest_intervals": [
+      {
+        "question_id": "random:615",
+        "at_UTC": "2026-11-09T23:58:20.675869+00:00",
+        "total_wall_ms": 100829.84900474548,
+        "model_timer_ms": 5738.2189339987235,
+        "outside_model_timer_ms": 95091.63007074676
+      },
+      {
+        "question_id": "random:623",
+        "at_UTC": "2026-11-10T00:00:44.431510+00:00",
+        "total_wall_ms": 91325.02508163452,
+        "model_timer_ms": 6246.18426500092,
+        "outside_model_timer_ms": 85078.8408166336
+      },
+      {
+        "question_id": "random:598",
+        "at_UTC": "2026-11-09T23:54:53.963763+00:00",
+        "total_wall_ms": 37230.417013168335,
+        "model_timer_ms": 9137.19557600416,
+        "outside_model_timer_ms": 28093.221437164175
+      },
+      {
+        "question_id": "random:601",
+        "at_UTC": "2026-11-09T23:55:03.255757+00:00",
+        "total_wall_ms": 3387.47501373291,
+        "model_timer_ms": 3149.367180001718,
+        "outside_model_timer_ms": 238.10783373119193
+      },
+      {
+        "question_id": "random:619",
+        "at_UTC": "2026-11-09T23:58:47.349290+00:00",
+        "total_wall_ms": 8976.579904556274,
+        "model_timer_ms": 8915.956625001854,
+        "outside_model_timer_ms": 60.62327955442015
+      }
+    ]
+  },
+  "latest_40_intervals": {
+    "intervals": 39,
+    "mean_outside_ms": 1035.8998086361307,
+    "median_outside_ms": 53.892636598902754,
+    "max_outside_ms": 30394.019725819817,
+    "intervals_over_1_second": 2,
+    "largest_intervals": [
+      {
+        "question_id": "random:791",
+        "at_UTC": "2026-11-10T00:22:13.026737+00:00",
+        "total_wall_ms": 35765.93589782715,
+        "model_timer_ms": 5371.916172007332,
+        "outside_model_timer_ms": 30394.019725819817
+      },
+      {
+        "question_id": "random:819",
+        "at_UTC": "2026-11-10T00:25:01.749475+00:00",
+        "total_wall_ms": 13748.019933700562,
+        "model_timer_ms": 5896.268272997986,
+        "outside_model_timer_ms": 7851.7516607025755
+      },
+      {
+        "question_id": "random:801",
+        "at_UTC": "2026-11-10T00:22:59.382958+00:00",
+        "total_wall_ms": 5737.623929977417,
+        "model_timer_ms": 5478.494764000061,
+        "outside_model_timer_ms": 259.129165977356
+      },
+      {
+        "question_id": "random:799",
+        "at_UTC": "2026-11-10T00:22:49.974287+00:00",
+        "total_wall_ms": 6535.943031311035,
+        "model_timer_ms": 6464.673763002793,
+        "outside_model_timer_ms": 71.26926830824232
+      },
+      {
+        "question_id": "random:804",
+        "at_UTC": "2026-11-10T00:23:12.764537+00:00",
+        "total_wall_ms": 3968.6460494995117,
+        "model_timer_ms": 3902.4515510027413,
+        "outside_model_timer_ms": 66.1944984967704
+      }
+    ]
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "scope": "Read-only 25-second main-thread filesystem syscall observation on the sole authorized GPU worker; no new GPU requests",
+  "start_UTC": "2026-11-10T00:04:42.347948+00:00",
+  "end_UTC": "2026-11-10T00:05:07.376612+00:00",
+  "PID": 40161,
+  "trace_exit_code": 124,
+  "worker_alive_after_detach": true,
+  "formal_efficiency_phase_not_started": true,
+  "syscalls": {
+    "openat": {
+      "calls": 23,
+      "sum_seconds": 0.0011910000000000002,
+      "mean_seconds": 5.178260869565217e-05,
+      "max_seconds": 0.000126
+    },
+    "write": {
+      "calls": 27,
+      "sum_seconds": 0.0007689999999999999,
+      "mean_seconds": 2.8481481481481482e-05,
+      "max_seconds": 7.9e-05
+    },
+    "fsync": {
+      "calls": 18,
+      "sum_seconds": 0.050429999999999996,
+      "mean_seconds": 0.0028016666666666667,
+      "max_seconds": 0.004385
+    },
+    "close": {
+      "calls": 23,
+      "sum_seconds": 0.00040200000000000007,
+      "mean_seconds": 1.747826086956522e-05,
+      "max_seconds": 5.8e-05
+    },
+    "rename": {
+      "calls": 18,
+      "sum_seconds": 0.0008309999999999999,
+      "mean_seconds": 4.6166666666666666e-05,
+      "max_seconds": 8.1e-05
+    },
+    "read": {
+      "calls": 18,
+      "sum_seconds": 0.0030369999999999993,
+      "mean_seconds": 0.0001687222222222222,
+      "max_seconds": 0.002649
+    }
+  },
+  "slowest_syscalls": [],
+  "raw_trace_path": "/home/featurize/work/ate-qwen3090-control-29535/checkpoint_io_20261110T000442.log",
+  "trace_stderr": "strace: Process 40161 attached\nstrace: Process 40161 detached",
+  "measurement_caveat": "Only quality-generation interval observed; attachment can perturb these quality timing records; excluded from future controlled efficiency measurements"
+}

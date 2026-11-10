@@ -1,0 +1,158 @@
+{
+  "scope": "Read existing most recent 40 complete question pairs only; no GPU inference or input changes",
+  "progress": {
+    "status": "RUNNING",
+    "phase": "SEVEN_BENCHMARK_QUALITY",
+    "benchmark": "POPE",
+    "protocol_label": "OFFICIAL_PROTOCOL",
+    "completed_questions": 630,
+    "total_questions": 9000,
+    "elapsed_seconds": 2955.9166004420003,
+    "at_UTC": "2026-11-10T00:01:34.315873+00:00"
+  },
+  "conditions": {
+    "Native": {
+      "requests": 40,
+      "tokens_mean": 89.725,
+      "tokens_median": 94.5,
+      "tokens_max": 128,
+      "tokens_sum": 3589,
+      "truncated": 8,
+      "input_tokens_mean": 311.125,
+      "image_tokens_mean": 293,
+      "timing_mean_ms": {
+        "vision_ms": 67.31761512756347,
+        "prefill_language_ms": 129.21965217590332,
+        "ttft_gpu_ms": 196.5372673034668,
+        "ttft_wall_ms": 200.38372592453015,
+        "decode_gpu_ms": 4340.578850269318,
+        "decode_gpu_ms_per_token": 49.058911487528505,
+        "e2e_wall_ms": 4556.120147050024
+      }
+    },
+    "Physical-Original": {
+      "requests": 40,
+      "tokens_mean": 50.3,
+      "tokens_median": 48.0,
+      "tokens_max": 128,
+      "tokens_sum": 2012,
+      "truncated": 1,
+      "input_tokens_mean": 311.125,
+      "image_tokens_mean": 293,
+      "timing_mean_ms": {
+        "vision_ms": 67.97622766494752,
+        "prefill_language_ms": 92.89714117050171,
+        "ttft_gpu_ms": 160.8733688354492,
+        "ttft_wall_ms": 165.81509697516594,
+        "decode_gpu_ms": 2055.683382987976,
+        "decode_gpu_ms_per_token": 41.76231630689607,
+        "e2e_wall_ms": 2230.1620553997964
+      }
+    }
+  },
+  "paired_intervals": 39,
+  "interval_means_ms": {
+    "paired_total_wall_ms": 12153.45287322998,
+    "paired_model_timer_ms": 6757.84427010242,
+    "outside_model_timer_ms": 5395.608603127561,
+    "before_native_residual_ms": 2486.3872081654195,
+    "between_conditions_residual_ms": 2909.2213949621414
+  },
+  "longest_examples": [
+    {
+      "key": "POPE:OFFICIAL_PROTOCOL:random:591",
+      "question_id": "random:591",
+      "condition": "Native",
+      "at_UTC": "2026-11-09T23:53:21.839372+00:00",
+      "tokens": 128,
+      "image_tokens": 320,
+      "input_tokens": 338,
+      "eos": false,
+      "truncated": true,
+      "finite_checked": true,
+      "timing": {
+        "vision_ms": 72.18303680419922,
+        "prefill_language_ms": 142.21593475341797,
+        "ttft_gpu_ms": 214.3989715576172,
+        "ttft_wall_ms": 218.48780599975726,
+        "decode_gpu_ms": 6164.1481285095215,
+        "decode_gpu_ms_per_token": 48.53659943708285,
+        "e2e_wall_ms": 6403.4595459997945
+      },
+      "output_excerpt": "Based on the image provided, there is no bicycle visible.\n\nThe image shows a view from inside a car, looking out onto a rural road. The main subjects on the road are:\n- A man ridin"
+    },
+    {
+      "key": "POPE:OFFICIAL_PROTOCOL:random:592",
+      "question_id": "random:592",
+      "condition": "Native",
+      "at_UTC": "2026-11-09T23:53:46.974745+00:00",
+      "tokens": 128,
+      "image_tokens": 320,
+      "input_tokens": 338,
+      "eos": false,
+      "truncated": true,
+      "finite_checked": true,
+      "timing": {
+        "vision_ms": 72.10431671142578,
+        "prefill_language_ms": 141.47443389892578,
+        "ttft_gpu_ms": 213.57875061035156,
+        "ttft_wall_ms": 217.7024079974217,
+        "decode_gpu_ms": 6361.101348876953,
+        "decode_gpu_ms_per_token": 50.08741219588152,
+        "e2e_wall_ms": 6602.949590997014
+      },
+      "output_excerpt": "Based on a careful examination of the image, there is no visible tie.\n\nHere's a breakdown of what can be seen:\n\n-   **The Driver:** We see the driver's hand on the steering wheel a"
+    },
+    {
+      "key": "POPE:OFFICIAL_PROTOCOL:random:593",
+      "question_id": "random:593",
+      "condition": "Native",
+      "at_UTC": "2026-11-09T23:53:55.882105+00:00",
+      "tokens": 128,
+      "image_tokens": 320,
+      "input_tokens": 338,
+      "eos": false,
+      "truncated": true,
+      "finite_checked": true,
+      "timing": {
+        "vision_ms": 72.3901138305664,
+        "prefill_language_ms": 141.56957244873047,
+        "ttft_gpu_ms": 213.95968627929688,
+        "ttft_wall_ms": 217.97974899891415,
+        "decode_gpu_ms": 6505.336620330811,
+        "decode_gpu_ms_per_token": 51.223122994730794,
+        "e2e_wall_ms": 6746.249706000526
+      },
+      "output_excerpt": "Yes, there is a car in the image.\n\nThe photograph is taken from the perspective of someone sitting inside a vehicle, looking out through the windshield and side window. The visible"
+    },
+    {
+      "key": "POPE:OFFICIAL_PROTOCOL:random:610",
+      "question_id": "random:610",
+      "condition": "Native",
+      "at_UTC": "2026-11-09T23:56:04.294628+00:00",
+      "tokens": 128,
+      "image_tokens": 300,
+      "input_tokens": 318,
+      "eos": false,
+      "truncated": true,
+      "finite_checked": true,
+      "timing": {
+        "vision_ms": 68.72611236572266,
+        "prefill_language_ms": 129.72406768798828,
+        "ttft_gpu_ms": 198.45018005371094,
+        "ttft_wall_ms": 201.83701499627205,
+        "decode_gpu_ms": 6231.699382781982,
+        "decode_gpu_ms_per_token": 49.06849907702348,
+        "e2e_wall_ms": 6455.315196995798
+      },
+      "output_excerpt": "Based on a thorough examination of the image provided, there is no remote control visible.\n\nThe image shows:\n- An orange bicycle with a white basket and a metal rack, parked next t"
+    }
+  ],
+  "process_wchan": "0",
+  "process_state": "PID STAT %CPU WCHAN                              ELAPSED\n  40161 Rsl  82.8 -                                    49:38",
+  "open_home_files": [
+    "/home/featurize/work/ATE-qwen3vl-c3-3090-official-eval/vlm_research/results/qwen3vl_c3_3090_official_eval/GPU_run.lock",
+    "/home/featurize/work/ATE-qwen3vl-c3-3090-official-eval/vlm_research/results/qwen3vl_c3_3090_official_eval/execution.log"
+  ],
+  "GPU": "54 %, 17838 MiB, 274.78 W, 1965 MHz"
+}

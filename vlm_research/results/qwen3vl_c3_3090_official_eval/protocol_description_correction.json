@@ -1,0 +1,40 @@
+{
+  "status": "PROTOCOL_DESCRIPTION_CORRECTION_INPUTS_UNCHANGED",
+  "at_UTC": "2026-11-09T23:39:56.208400+00:00",
+  "benchmark": "OCRBench-v1",
+  "affected_field": "input_manifest.json.protocol_differences OCR newline description",
+  "original_description": "Restored ATE user_text contains literal backslash-n; official uses a real newline",
+  "verified_correction": "All 1000 restored ATE and official bodies already use the same real newline and are byte-identical; no literal backslash-n exists in these user_text fields",
+  "trusted_backup_archive": "/home/featurize/work/ate-qwen3090-data/benchmarks/backup_packages/ocrbench_windows_restore.zip",
+  "archive_expected_SHA256": "1280d885b8d544016d770fdea29aa41553e200d60e5284475630c76eb46e8f07",
+  "archive_integrity_provenance": "Previously verified full archive SHA256 in data_restore; not rehashed in this audit",
+  "source_member": "OCRBench-v1/inputs.jsonl",
+  "source_member_SHA256": "9472ae40763151ad4d53c3f3e77d8df8427f83abcf5ab5beeb8cf00eedfdf98c",
+  "restored_source_exact_backup_member": true,
+  "source_input_SHA256_matches_frozen_manifest": true,
+  "question_pairs": 1000,
+  "identical_prompt_pairs": 1000,
+  "identical_request_pairs": 1000,
+  "official_prompt_matches_author_real_newline": 1000,
+  "model_input_changed": false,
+  "scorer_changed": false,
+  "algorithm_changed": false,
+  "frozen_manifest_changed": false,
+  "predictions_changed": false,
+  "request_sharing_valid": true,
+  "GPU_rerun_required": false,
+  "examples": [
+    {
+      "question_id": "0000",
+      "ATE_body_repr": "'what is written in the image?\\nAnswer the question using a single word or phrase.'",
+      "OFFICIAL_body_repr": "'what is written in the image?\\nAnswer the question using a single word or phrase.'",
+      "request_SHA256": "ce1acd8d00c46b4b9e5d89518b4e2d42e176f228b757fee486180f0b8e325db0"
+    },
+    {
+      "question_id": "0001",
+      "ATE_body_repr": "'what is written in the image?\\nAnswer the question using a single word or phrase.'",
+      "OFFICIAL_body_repr": "'what is written in the image?\\nAnswer the question using a single word or phrase.'",
+      "request_SHA256": "574f63343871c9dd84010998625d14c24e238b8645be86075403f88faa0eea96"
+    }
+  ]
+}

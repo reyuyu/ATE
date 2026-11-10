@@ -1,0 +1,108 @@
+{
+  "status": "PARTIAL_DIAGNOSTICS_ONLY",
+  "full_Benchmark_scores_inferred": false,
+  "predictions_or_Gold_changed": false,
+  "all_incomplete_views_included": true,
+  "diagnostics": [
+    {
+      "benchmark": "TextVQA",
+      "protocol_label": "ATE_PAPER_OCR_AND_OFFICIAL_SOFT_SCORING",
+      "metric": "Observed subset soft-Accuracy pp",
+      "condition": "Physical-Original",
+      "reference": "Native",
+      "paired_questions": 787,
+      "image_clusters": 499,
+      "delta": -19.949174078780175,
+      "CI95_low": -23.159933273292943,
+      "CI95_high": -16.82213623867224,
+      "score_decreases": 203,
+      "score_increases": 29,
+      "score_ties": 555,
+      "first_token_changed": 260,
+      "parsed_answer_changed": 304,
+      "bootstrap_replicates": 20000,
+      "seed": 20261106,
+      "unit": "Image SHA256 cluster",
+      "soft_score": true,
+      "scope": "PARTIAL_OBSERVED_SUBSET_NOT_OFFICIAL_BENCHMARK_SCORE",
+      "expected_full_questions": 5000,
+      "Native_observed_mean_percent": 80.05082592121978,
+      "C3_observed_mean_percent": 60.101651842439665,
+      "unmatched_prediction_rows": 0,
+      "missing_full_question_pairs": 4213,
+      "selection": "Frozen original order until first OOM/stop; not a random sample",
+      "CI_limitation": "Conditional image-cluster resampling of observed subset only; does not cover OOM missingness bias or infer the full Benchmark score."
+    },
+    {
+      "benchmark": "POPE",
+      "protocol_label": "OFFICIAL_PROTOCOL",
+      "metric": "Observed subset question hit-rate pp; not official task/circular/raw-point aggregation",
+      "condition": "Physical-Original",
+      "reference": "Native",
+      "paired_questions": 878,
+      "image_clusters": 147,
+      "delta": -1.8223234624145785,
+      "CI95_low": -2.8604118993135015,
+      "CI95_high": -0.7972665148063782,
+      "score_decreases": 20,
+      "score_increases": 4,
+      "score_ties": 854,
+      "first_token_changed": 144,
+      "parsed_answer_changed": 24,
+      "bootstrap_replicates": 20000,
+      "seed": 20261106,
+      "unit": "Image SHA256 cluster",
+      "soft_score": false,
+      "scope": "PARTIAL_OBSERVED_SUBSET_NOT_OFFICIAL_BENCHMARK_SCORE",
+      "expected_full_questions": 9000,
+      "Native_observed_mean_percent": 92.59681093394077,
+      "C3_observed_mean_percent": 90.7744874715262,
+      "unmatched_prediction_rows": 1,
+      "missing_full_question_pairs": 8122,
+      "selection": "Frozen original order until first OOM/stop; not a random sample",
+      "CI_limitation": "Conditional image-cluster resampling of observed subset only; does not cover OOM missingness bias or infer the full Benchmark score."
+    }
+  ],
+  "uncomputed": [
+    {
+      "benchmark": "MME",
+      "protocol_label": "ATE_PAPER_PROTOCOL",
+      "expected": 2374,
+      "available_rows": 0,
+      "complete_pairs": 0,
+      "diagnostic_status": "NO_COMPLETE_PAIRS"
+    },
+    {
+      "benchmark": "MME",
+      "protocol_label": "OFFICIAL_PROTOCOL",
+      "expected": 2374,
+      "available_rows": 0,
+      "complete_pairs": 0,
+      "diagnostic_status": "NO_COMPLETE_PAIRS"
+    },
+    {
+      "benchmark": "MMBench",
+      "protocol_label": "ATE_PAPER_INPUT_OFFICIAL_CIRCULAR_EXACT_MATCHING",
+      "expected": 4377,
+      "available_rows": 0,
+      "complete_pairs": 0,
+      "diagnostic_status": "NOT_COMPUTED_INCOMPLETE_CIRCULAR_VIEW"
+    },
+    {
+      "benchmark": "OCRBench-v1",
+      "protocol_label": "ATE_PAPER_PROTOCOL",
+      "expected": 1000,
+      "available_rows": 0,
+      "complete_pairs": 0,
+      "diagnostic_status": "NO_COMPLETE_PAIRS"
+    },
+    {
+      "benchmark": "OCRBench-v1",
+      "protocol_label": "OFFICIAL_PROTOCOL",
+      "expected": 1000,
+      "available_rows": 0,
+      "complete_pairs": 0,
+      "diagnostic_status": "NO_COMPLETE_PAIRS"
+    }
+  ]
+}
