@@ -1,0 +1,103 @@
+{
+  "status": "EXPLORATORY_QUALITY_WITH_NUMERICAL_WAIVER",
+  "historical_status": "NUMERICAL_EQUIVALENCE_FAILED unchanged",
+  "model": "OpenGVLab/InternVL3-8B",
+  "revision": "853e3a797a661694b1b8ece0cb72dc2b23e3dac9",
+  "GPU": "GPU-e392cec6-7ec8-1fee-397b-fde03a79e79e",
+  "dtype": "bfloat16",
+  "attention": "eager",
+  "torch": "2.6.0+cu124",
+  "transformers": "4.49.0",
+  "batch": 1,
+  "greedy": true,
+  "use_cache": true,
+  "logits_to_keep": 1,
+  "visual_tokens": 256,
+  "image_shape": [
+    1,
+    3,
+    448,
+    448
+  ],
+  "max_new_tokens": 32,
+  "native_EOS": true,
+  "prompt_protocol": "ATE_SVH_1TILE_SCORER_ALIGNED",
+  "instruction": "Answer with the text visible in the image, using a word or short phrase. Do not explain.",
+  "image_only": true,
+  "parent_commit": "3af6596b1ce59d80e203ebf68c6760e242d4df47",
+  "parent_protocol_sha256": "99e1e48948a7ef93e39407632e9a7d93f48f27605fa637319085707def097c59",
+  "parent_source_manifest_sha256": "e0b71514337f378c5c738c229102b12a69eaeca9568de399b7dd2234405cb754",
+  "physical_engine_commit": "9602d93869d4ccd11986573369d8fecc84b80f78",
+  "physical_engine": "unchanged V2; no C1/C2 projection repair",
+  "R14_scope": "L6-L19 only; NOT restoration of L0-L1 or L2-L5 answer attention, L20-L27 hidden/image access, or Native28-layer image access",
+  "physical_invariants": "delete256 image hidden beforeL20; answer attention/QKV skippedL2-L5; onlyK persistent original imageKV; original logicalRoPE; allNormMLPResidual",
+  "search_space": {
+    "R0": [],
+    "R6": [
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ],
+    "R14": [
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19
+    ]
+  },
+  "sample_manifest_sha256": "e1630f459f7285aeeb8ac111cfe19568e2728bf081bf17906745fbe8a92192f0",
+  "formal_quality_budget": 480,
+  "GroupA_new": "R14 only96; Native/R0/R6 all reused after strict matching",
+  "GroupB_new": "R0/R6/R14 each128; Native individual frozen predictions strictly bound",
+  "single_model_load": true,
+  "quality_audit": false,
+  "vision_feature_reuse": false,
+  "smoke": "six parent Smoke images outsideA/B; Dense-R14 vs Physical-R14; heavy short/long audit, light logits onother4; NativeNoop strict onfirst; known BF16 logit errors recorded only",
+  "hard_stop": "source/input mismatch, NaN/Inf, OOM, illegal cap, KV/Mask/RoPE/exit/skip/cache/hook structural failure",
+  "meta_policy": "all anomalous and truncated outputs retained and officially scored, no stopping merely for known meta outputs",
+  "bootstrap": {
+    "unit": "whole paired imageSHA clusters",
+    "repetitions": 5000,
+    "seed": 20261112,
+    "CI": 95,
+    "multiplicity": "ordinary unadjusted exploratory intervals"
+  },
+  "soft_change_definitions": {
+    "improved_declined": "difference in actual ten-answer soft score",
+    "zero_to_positive": "0 to >0",
+    "positive_to_zero": ">0 to0",
+    "not_full_to_full": "<1 to1",
+    "full_to_not_full": "1 to<1"
+  },
+  "recovery_ratio": "(R14-R0)/(Native-R0) within same group; undefined if denominator zero; no clamping",
+  "speed_gate": "GroupB R14-R0 AND R14-R6 both have ordinary paired95%CI lower>0; otherwise NOT_RUN; no new conditions or sample expansion",
+  "speed": {
+    "methods": [
+      "Native",
+      "R0",
+      "R6",
+      "R14"
+    ],
+    "images": 8,
+    "warmups_per_method": 2,
+    "repeats": 3,
+    "output_tokens": 32,
+    "real_decode": 31,
+    "ignore_EOS": true,
+    "boundary": "GPU-ready input through real Vision/projector/prefill/31decode and necessary method cleanup; synchronized wall time; exclude model loading/disk/tokenizer/processing/H2D/write; no heavy audit",
+    "scratch": "V2 transient zero K/V scratch remains; actual work included in timing, not persistent original visualKV"
+  }
+}
