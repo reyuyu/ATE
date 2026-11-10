@@ -2,6 +2,7 @@ import unittest
 import torch
 from .run import GATE, compare_records, samples
 from ..qwen3vl_svh_numerical_repair.engine import restore_columns
+from .engine import restore_query_rows
 
 
 class Tests(unittest.TestCase):
@@ -38,6 +39,20 @@ class Tests(unittest.TestCase):
 
     def test_no_cuda(self):
         self.assertFalse(torch.cuda.is_initialized())
+
+    def test_AV_zero_rows_do_not_change_real_query_math(self):
+        p=torch.randn(1,2,3,6,dtype=torch.float64)
+        v=torch.randn(1,2,6,4,dtype=torch.float64)
+        before=p.clone()
+        expanded,ix=restore_query_rows(p,[0,3,5],6)
+        self.assertTrue(torch.equal(p,before))
+        self.assertTrue(torch.equal(expanded[:,:,ix],p))
+        self.assertEqual(float(expanded[:,:,[1,2,4]].abs().max()),0.)
+        self.assertTrue(torch.allclose(torch.matmul(p,v),torch.matmul(expanded,v)[:,:,ix],atol=1e-12,rtol=1e-12))
+
+    def test_AV_positions_reject_duplicates(self):
+        with self.assertRaises(ValueError):
+            restore_query_rows(torch.ones(1,2,3,6),[0,0,5],6)
 
 
 if __name__=='__main__':unittest.main()
