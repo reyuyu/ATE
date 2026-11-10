@@ -1,0 +1,275 @@
+{
+  "status": "DIAGNOSTIC_ONLY",
+  "question_id": "00902652",
+  "exact_same_L2_input": true,
+  "first_changed_operator": {
+    "operator": "AV_prefix",
+    "equal": false,
+    "max_abs": 0.00048828125,
+    "mean_abs": 1.2743819333138617e-09,
+    "changed_elements": 33,
+    "elements": 1139712,
+    "full_shape": [
+      1,
+      28,
+      318,
+      128
+    ],
+    "short_shape": [
+      1,
+      28,
+      318,
+      128
+    ]
+  },
+  "first_changed_hidden": [
+    {
+      "step": 0,
+      "layer": 2,
+      "max_abs": 0.0078125
+    },
+    {
+      "step": 0,
+      "layer": 3,
+      "max_abs": 0.03125
+    },
+    {
+      "step": 0,
+      "layer": 4,
+      "max_abs": 0.0625
+    },
+    {
+      "step": 0,
+      "layer": 5,
+      "max_abs": 0.125
+    },
+    {
+      "step": 0,
+      "layer": 6,
+      "max_abs": 0.125
+    }
+  ],
+  "causal_Pminus_key_unused_by_earlier_queries": true,
+  "mask_and_original_logical_positions_checked": true,
+  "original_RoPE_used_without_reindex": true,
+  "physical_decode_steps": 8,
+  "dense_tokens": [
+    49,
+    558,
+    13,
+    151645,
+    151645,
+    151645,
+    151645,
+    151645,
+    151645
+  ],
+  "physical_tokens": [
+    49,
+    558,
+    13,
+    151645,
+    151645,
+    151645,
+    151645,
+    151645,
+    151645
+  ],
+  "tokens_equal": true,
+  "numerical_gates_unchanged": true,
+  "formal_quality": "NOT_RUN",
+  "formal_efficiency": "NOT_RUN",
+  "conclusion": "Direct same-input operator isolation identifies a shape-dependent BF16 arithmetic difference. This is a localized observation, not permission to dismiss or waive failed numerical gates.",
+  "operators": [
+    {
+      "operator": "q_proj_same_input_prefix_changed_matrix_rows",
+      "equal": true,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "changed_elements": 0,
+      "elements": 1139712,
+      "full_shape": [
+        1,
+        318,
+        3584
+      ],
+      "short_shape": [
+        1,
+        318,
+        3584
+      ]
+    },
+    {
+      "operator": "k_proj_same_input_prefix_changed_matrix_rows",
+      "equal": true,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "changed_elements": 0,
+      "elements": 162816,
+      "full_shape": [
+        1,
+        318,
+        512
+      ],
+      "short_shape": [
+        1,
+        318,
+        512
+      ]
+    },
+    {
+      "operator": "v_proj_same_input_prefix_changed_matrix_rows",
+      "equal": true,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "changed_elements": 0,
+      "elements": 162816,
+      "full_shape": [
+        1,
+        318,
+        512
+      ],
+      "short_shape": [
+        1,
+        318,
+        512
+      ]
+    },
+    {
+      "operator": "o_proj_same_context_prefix_changed_matrix_rows",
+      "equal": true,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "changed_elements": 0,
+      "elements": 1139712,
+      "full_shape": [
+        1,
+        318,
+        3584
+      ],
+      "short_shape": [
+        1,
+        318,
+        3584
+      ]
+    },
+    {
+      "operator": "RoPE_query_prefix",
+      "equal": true,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "changed_elements": 0,
+      "elements": 1139712,
+      "full_shape": [
+        1,
+        28,
+        318,
+        128
+      ],
+      "short_shape": [
+        1,
+        28,
+        318,
+        128
+      ]
+    },
+    {
+      "operator": "RoPE_key_prefix",
+      "equal": true,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "changed_elements": 0,
+      "elements": 1139712,
+      "full_shape": [
+        1,
+        28,
+        318,
+        128
+      ],
+      "short_shape": [
+        1,
+        28,
+        318,
+        128
+      ]
+    },
+    {
+      "operator": "QK_prefix",
+      "equal": true,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "changed_elements": 0,
+      "elements": 2831472,
+      "full_shape": [
+        1,
+        28,
+        318,
+        318
+      ],
+      "short_shape": [
+        1,
+        28,
+        318,
+        318
+      ]
+    },
+    {
+      "operator": "Softmax_prefix",
+      "equal": true,
+      "max_abs": 0.0,
+      "mean_abs": 0.0,
+      "changed_elements": 0,
+      "elements": 2831472,
+      "full_shape": [
+        1,
+        28,
+        318,
+        318
+      ],
+      "short_shape": [
+        1,
+        28,
+        318,
+        318
+      ]
+    },
+    {
+      "operator": "AV_prefix",
+      "equal": false,
+      "max_abs": 0.00048828125,
+      "mean_abs": 1.2743819333138617e-09,
+      "changed_elements": 33,
+      "elements": 1139712,
+      "full_shape": [
+        1,
+        28,
+        318,
+        128
+      ],
+      "short_shape": [
+        1,
+        28,
+        318,
+        128
+      ]
+    },
+    {
+      "operator": "complete_attention_non_answer_prefix_same_layer_input",
+      "equal": false,
+      "max_abs": 0.00048828125,
+      "mean_abs": 4.813363929656589e-08,
+      "changed_elements": 1177,
+      "elements": 1139712,
+      "full_shape": [
+        1,
+        318,
+        3584
+      ],
+      "short_shape": [
+        1,
+        318,
+        3584
+      ]
+    }
+  ]
+}
