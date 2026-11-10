@@ -40,11 +40,21 @@ def main(label):
     uploaded=[]
     # Exclude self-referential checksum/index and all server-only raw artifacts.
     for p in sorted(OUT.rglob("*")):
-        if not p.is_file() or p.name in ("artifact_manifest.json","SHA256SUMS","publication.json"):continue
+        if not p.is_file() or p.name in ("artifact_manifest.json","artifact_safety_audit.json","SHA256SUMS","publication.json"):continue
         if "__pycache__" in p.parts or p.suffix in (".pyc",".sqlite",".pt",".bin",".safetensors",".jpg",".jpeg"):raise RuntimeError("FORBIDDEN_ARTIFACT "+str(p))
         if p.stat().st_size>45*1024**2:raise RuntimeError("ARTIFACT_TOO_LARGE "+str(p))
         rel=REL/p.relative_to(OUT);uploaded.append({"path":str(rel),"sha256":sha(p),"bytes":p.stat().st_size})
     sourcefiles=[{"path":n,"sha256":sha(ROOT/n),"bytes":(ROOT/n).stat().st_size} for n in files]
+    checked=[]
+    import re
+    secret=re.compile(rb"-----BEGIN [A-Z ]*PRIVATE KEY-----|gh[pousr]_[A-Za-z0-9]{20,}|hf_[A-Za-z0-9]{20,}")
+    for x in uploaded+sourcefiles:
+        p=ROOT/x["path"] if x["path"].startswith(str(PKG)+"/") else OUT/Path(x["path"]).relative_to(REL)
+        if p.suffix in (".py",".json",".md",".csv",".log",".sh") and secret.search(p.read_bytes()):
+            raise RuntimeError("POSSIBLE_SECRET_IN_LIGHT_ARTIFACT "+x["path"])
+        checked.append(x["path"])
+    writej(OUT/"artifact_safety_audit.json",{"status":"PASS","explicit_files_checked":checked,"no_model_images_private_keys_or_bytecode":True,"text_secret_pattern_scan":True,"maximum_artifact_MiB":max(x["bytes"] for x in uploaded+sourcefiles)/1048576})
+    uploaded.append({"path":str(REL/"artifact_safety_audit.json"),"sha256":sha(OUT/"artifact_safety_audit.json"),"bytes":(OUT/"artifact_safety_audit.json").stat().st_size})
     artifact={"status":readj(OUT/"validation.json")["status"],"source_commit":SOURCE,"model_revision":REV,"GPU_UUID":GPU,"protocol_sha256":sha(OUT/"protocol.json"),"dataset_manifest_sha256":sha(OUT/"dataset_manifest.json"),"github_branch":BRANCH,"uploaded_files":uploaded+sourcefiles,"server_only":raw,"commit_binding":"This manifest is bound by its enclosing commit. The non-self-referential publication receipt records that commit separately."}
     writej(OUT/"artifact_manifest.json",artifact)
     sums=[f'{x["sha256"]}  {x["path"]}' for x in uploaded+sourcefiles]+[sha(OUT/"artifact_manifest.json")+"  "+str(REL/"artifact_manifest.json")]

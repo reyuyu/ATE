@@ -19,15 +19,15 @@ def measure(bench,rows,metric,subset="all"):
         n,p,ci,clusters=stats.mme(rows,tasks);unit="raw_points"
     elif bench=="MMBench":
         (n,p,ci,clusters),groups=stats.circular(rows);unit="Circular_pp"
-    elif metric=="F1":n,p,ci,clusters=stats.pope_f1(rows);unit="F1_pp"
+    elif metric=="F1":n,p,ci,clusters=(stats.pope_macro_f1(rows) if subset=="macro_3_strategies" else stats.pope_f1(rows));unit="F1_pp"
     else:n,p,ci,clusters=stats.linear(rows,1000 if bench=="OCRBench" else 100);unit="raw_points_0_1000" if bench=="OCRBench" else "pp"
     return {"benchmark":bench,"metric":metric,"subset":subset,"N":len(rows),"native_score":n,"physical_score":p,"delta":p-n,"ci_low":ci[0],"ci_high":ci[1],"units":unit,"image_clusters":clusters,"status":"COMPLETE","bootstrap_reps":20000,"bootstrap_seed":20261110}
 def official_checks(bench,rows):
     result={"scalar_rescoring":"PASS"}
     if bench=="OCRBench":
         for method in METHODS:
-            data=[dict(r,text=r[method+"_text"]) for r in rows];orig=official_ocr_batch(data)
-            assert orig==[int(r[method+"_score"]) for r in rows]
+            data=[dict(r,text=r[("physical" if method=="physical_d" else method)+"_text"]) for r in rows];orig=official_ocr_batch(data)
+            assert orig==[int(r[("physical" if method=="physical_d" else method)+"_score"]) for r in rows]
         result["original_MultimodalOCR_loop"]="PASS"
     if bench=="POPE":
         f=ast_scope(RUN/"references/InternVL/internvl_chat/eval/pope/eval_pope.py",{"eval_pope"},{"json":json})["eval_pope"]
@@ -35,11 +35,28 @@ def official_checks(bench,rows):
             rs=[r for r in rows if r["category"]==subset];path=RUN/("pope_labels_"+subset+".jsonl");path.write_text("".join(json.dumps({"label":r["gold"]})+"\n" for r in rs))
             for m in METHODS:
                 s=io.StringIO()
-                with contextlib.redirect_stdout(s):value=f([{"text":r[m+"_text"]} for r in rs],str(path))
-                tp=sum(r["gold"]=="yes" and r[m+"_parsed"]=="yes" for r in rs);fp=sum(r["gold"]=="no" and r[m+"_parsed"]=="yes" for r in rs);fn=sum(r["gold"]=="yes" and r[m+"_parsed"]=="no" for r in rs)
+                with contextlib.redirect_stdout(s):value=f([{"text":r[("physical" if m=="physical_d" else m)+"_text"]} for r in rs],str(path))
+                tp=sum(r["gold"]=="yes" and r[("physical" if m=="physical_d" else m)+"_parsed"]=="yes" for r in rs);fp=sum(r["gold"]=="no" and r[("physical" if m=="physical_d" else m)+"_parsed"]=="yes" for r in rs);fn=sum(r["gold"]=="yes" and r[("physical" if m=="physical_d" else m)+"_parsed"]=="no" for r in rs)
                 expected=2*tp/(2*tp+fp+fn) if 2*tp+fp+fn else 0
                 assert abs(value-expected)<1e-12
         result["official_POPE_confusion_and_F1"]="PASS"
+    if bench=="MME":
+        # Independent integer-count form of the official per-category acc+acc_plus aggregation.
+        groups=collections.defaultdict(list)
+        for r in rows:groups[(r["category"],r["group"])].append(r)
+        totals={}
+        for tasks,label in [(PERCEPTION,"Perception"),(COGNITION,"Cognition")]:
+            ns=ps=0.
+            for cat in tasks:
+                images=[rs for (c,g),rs in groups.items() if c==cat];assert images and all(len(x)==2 for x in images)
+                for prefix in ["native","physical"]:
+                    vals=[[int(r[prefix+"_score"]) for r in rs] for rs in images]
+                    points=100*sum(sum(v) for v in vals)/(2*len(vals))+100*sum(v==[1,1] for v in vals)/len(vals)
+                    if prefix=="native":ns+=points
+                    else:ps+=points
+            # Compare deterministic aggregate only; bootstrap is separately tested, not rerun here.
+            totals[label]={"native":ns,"physical":ps}
+        result["independent_official_MME_integer_aggregation"]=totals
     if bench=="MMBench":
         # Execute official prefetch_circular_group verbatim, with its frozen matcher.
         path=RUN/"references/VLMEvalKit/vlmeval/dataset/utils/multiple_choice.py"
@@ -52,11 +69,11 @@ def official_checks(bench,rows):
         for r in rows:groups[r["group"]].append(r)
         for rs in groups.values():
             for m in METHODS:
-                frame=pd.DataFrame([dict(index=int(r["question_id"]),prediction=r[m+"_text"],GT=r["gold"],**r["choices"]) for r in rs])
+                frame=pd.DataFrame([dict(index=int(r["question_id"]),prediction=r[("physical" if m=="physical_d" else m)+"_text"],GT=r["gold"],**r["choices"]) for r in rs])
                 out=scope["prefetch_circular_group"](frame,verbose=False)
                 # None requires judge; frozen exact_matching policy scores it zero.
                 hit=out["hit"] if out is not None else 0
-                assert hit==int(all(r[m+"_score"]==1 for r in rs))
+                assert hit==int(all(r[("physical" if m=="physical_d" else m)+"_score"]==1 for r in rs))
         result["official_circular_prefetch_exact_matching"]="PASS"
     return result
 def analyze_one(bench):
@@ -93,9 +110,16 @@ def analyze_one(bench):
         else:
             summary=[measure(bench,paired,"Circular Accuracy" if bench=="MMBench" else "OCRBench" if bench=="OCRBench" else "Soft Accuracy" if bench=="TextVQA" else "Accuracy")]
             if bench=="POPE":
-                summary.append(measure(bench,paired,"F1"))
+                summary.append(measure(bench,paired,"F1","micro_all"))
+                summary.append(measure(bench,paired,"F1","macro_3_strategies"))
                 for sub in ["random","popular","adversarial"]:
                     rs=[r for r in paired if r["category"]==sub];summary.extend([measure(bench,rs,"Accuracy",sub),measure(bench,rs,"F1",sub)])
+        if bench=="MME":
+            for row in summary:
+                if row["subset"] in ("Perception","Cognition"):
+                    expected=official["independent_official_MME_integer_aggregation"][row["subset"]]
+                    assert abs(row["native_score"]-expected["native"])<1e-9
+                    assert abs(row["physical_score"]-expected["physical"])<1e-9
         csvwrite(out/"accuracy_summary.csv",summary)
         changes={"native_correct_to_physical_wrong":sum(r["native_score"]==1 and r["physical_score"]==0 for r in paired),"native_wrong_to_physical_correct":sum(r["native_score"]==0 and r["physical_score"]==1 for r in paired),"first_token_flips":sum(r["first_token_flip"] for r in paired),"complete_token_changes":sum(r["complete_token_change"] for r in paired),"full_text_changes":sum(r["text_change"] for r in paired)}
         writej(out/"paired_change_counts.json",changes)
@@ -137,12 +161,27 @@ def aggregate():
                 for row in reader:writer.writerow(row)
     complete=[b for b,v in valid.items() if v["status"]=="COMPLETE"]
     writej(OUT/"validation.json",{"status":"COMPLETE" if len(complete)==7 else "PARTIAL","completed_benchmarks":complete,"benchmarks":valid,"runtime_states":states,"numerical_status":"FAILED_WITH_PREVIOUSLY_AUTHORIZED_WAIVER","protocol_sha256":sha(OUT/"protocol.json")})
-    lines=["# InternVL3-SVH 七项 Benchmark 单图块质量评测","",f"当前已完整完成 {len(complete)}/7 项。只有 COMPLETE 行为全集正式分数；其余不推断缺失分数。","","| Benchmark | N | Native | Physical-D | Δ | 95% CI | 单位 / 状态 |","|---|---:|---:|---:|---:|---|---|"]
+    mainrows=[r for r in summaries if r["metric"]!="F1" and (r["subset"]=="all" or (r["benchmark"]=="MME" and r["subset"] in ("Perception","Cognition")))]
+    delta_text="；".join(r["benchmark"]+(" "+r["subset"] if r["benchmark"]=="MME" else "")+f' {float(r["delta"]):+.3f} {r["units"]}' for r in mainrows) or "暂无全集正式分数"
+    negative=[r["benchmark"]+(" "+r["subset"] if r["benchmark"]=="MME" else "") for r in mainrows if float(r["ci_high"])<0]
+    uncertain=[r["benchmark"] for r in mainrows if float(r["ci_low"])<=0<=float(r["ci_high"])]
+    lines=["# InternVL3-SVH 七项 Benchmark 单图块质量评测","",f"Physical-D 相比同卡 Native 的已完成全集差值：{delta_text}。未完成项不推断得分或损失。","",
+    "普通95%CI整体低于0的项目："+("、".join(negative) or "暂无")+"；区间包含0的项目："+("、".join(uncertain) or "暂无")+"。区间包含0不能解释为证明等价。固定单图块协议与作者多图块/完整推理配方不等同，异常输出项按门槛暂停并保留原文。","",
+    f"当前已完整完成 {len(complete)}/7 项。只有 COMPLETE 行为全集正式分数；其余不推断缺失分数。","","| Benchmark | N | Native | Physical-D | Δ | 95% CI | 单位 / 状态 |","|---|---:|---:|---:|---:|---|---|"]
     for bench in BENCHES:
         ss=[r for r in summaries if r["benchmark"]==bench and (r["subset"]=="all" or (bench=="MME" and r["subset"] in ("Perception","Cognition"))) and r["metric"]!="F1"]
         if ss:
             for r in ss:lines.append(f'| {bench} {r["subset"] if bench=="MME" else ""} | {r["N"]} | {float(r["native_score"]):.3f} | {float(r["physical_score"]):.3f} | {float(r["delta"]):+.3f} | [{float(r["ci_low"]):+.3f}, {float(r["ci_high"]):+.3f}] | {r["units"]} / COMPLETE |')
         else:lines.append(f'| {bench} | — | — | — | — | — | {states[bench]["status"]} |')
+    pope=[r for r in summaries if r["benchmark"]=="POPE" and (r["subset"]!="all")]
+    if pope:
+        lines+=["","| POPE 子集 | 指标 | Native | Physical-D | Δpp | 95%CI |","|---|---|---:|---:|---:|---|"]
+        for r in pope:lines.append(f'| {r["subset"]} | {r["metric"]} | {float(r["native_score"]):.3f} | {float(r["physical_score"]):.3f} | {float(r["delta"]):+.3f} | [{float(r["ci_low"]):+.3f}, {float(r["ci_high"]):+.3f}] |')
+    lines+=["","## 自然生成长度审计","各行N为该条件实际保存的生成数；暂停任务为子集诊断，不是全集。Token长度包含真实EOS Token。","","| 任务 / 条件 | N | 均值 | P50 | P95 | 最大 | EOS% | 截断% | 解析失败% |","|---|---:|---:|---:|---:|---:|---:|---:|---:|"]
+    for r in lengths:lines.append(f'| {r["benchmark"]} / {r["method"]} | {r["N"]} | {float(r["mean"]):.2f} | {float(r["P50"]):.1f} | {float(r["P95"]):.1f} | {r["max"]} | {100*float(r["EOS_rate"]):.2f} | {100*float(r["truncation_rate"]):.2f} | {100*float(r["parse_failure_rate"]):.2f} |')
+    if anomalies_all:
+        lines+=["","## 输出异常","全部原始异常和评分见 output_anomalies.csv。以下仅列前20条诊断，不删除其原始预测。",""]
+        for r in anomalies_all[:20]:lines.append(f'- {r["benchmark"]} / {r["question_id"]} / {r["method"]}: {r["flags"]}; 原文：{r["text"]}')
     lines+=["","主标签：ATE_SVH_1TILE_SCORER_ALIGNED。不是 InternVL 作者完整排行榜配置；固定 1 tile、256 视觉 Token，与多图块、CoT、作者 max_new_tokens 等设置存在差异。MMBench 为 EN Dev20230712 Circular，采用官方 exact_matching，不调用 LLM judge。TextVQA 为 image-only，保留全部十答案共识软评分。MME 保留已知历史图片 SHA 差异，报告 Perception/Cognition 原始积分。","",
     "数值状态保持 FAILED_WITH_PREVIOUSLY_AUTHORIZED_WAIVER，不宣称 NUMERICAL_PASS。Physical-D 核心来自 e288eee271b7aeb64e5df59783d3201bb2a6b313，SHA256 不变。Native/No-op/官方 Chat 严格一致及物理结构检查独立记录在各任务 smoke_validation.json。","",
     "任务安全上限：POPE 8；MME/GQA/ScienceQA/MMBench 16；TextVQA 32；OCRBench 128。Greedy、B1、正常 EOS、每次全新 Cache。预检及正式异常记录完整保留；未通过长度门槛的任务暂停，不将子集成绩写成全集成绩。","",

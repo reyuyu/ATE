@@ -50,3 +50,24 @@ def pope_f1(rows):
     for start in range(0,REPS,128):
         counts=rng.multinomial(len(a),np.full(len(a),1/len(a)),size=min(128,REPS-start));s=counts@a;dist.extend(f1(s[:,3:])-f1(s[:,:3]))
     return n,p,np.quantile(dist,[.025,.975]).tolist(),len(a)
+
+def pope_macro_f1(rows):
+    strategies=["random","popular","adversarial"]
+    groups=defaultdict(lambda:np.zeros(18))
+    for r in rows:
+        slot=strategies.index(r["category"])*6;gt=r["gold"]=="yes";v=[]
+        for prefix in ["native","physical"]:
+            yes=r[prefix+"_parsed"]=="yes";v.extend([int(gt and yes),int(not gt and yes),int(gt and not yes)])
+        groups[r["image_sha256"]][slot:slot+6]+=v
+    a=np.stack(list(groups.values()))
+    def macro(x):
+        values=[]
+        for i in range(3):
+            sub=x[...,i*6:i*6+6]
+            f=lambda z:np.divide(2*z[...,0],2*z[...,0]+z[...,1]+z[...,2],out=np.zeros_like(z[...,0],dtype=float),where=(2*z[...,0]+z[...,1]+z[...,2])!=0)*100
+            values.append(np.stack([f(sub[...,:3]),f(sub[...,3:])],axis=-1))
+        return np.mean(values,axis=0)
+    totals=macro(a.sum(0));rng=np.random.default_rng(SEED);dist=[]
+    for start in range(0,REPS,128):
+        count=rng.multinomial(len(a),np.full(len(a),1/len(a)),size=min(128,REPS-start));m=macro(count@a);dist.extend(m[:,1]-m[:,0])
+    return float(totals[0]),float(totals[1]),np.quantile(dist,[.025,.975]).tolist(),len(a)

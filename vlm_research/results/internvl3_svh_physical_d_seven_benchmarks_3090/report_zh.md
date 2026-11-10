@@ -1,16 +1,35 @@
 # InternVL3-SVH 七项 Benchmark 单图块质量评测
 
-当前已完整完成 0/7 项。只有 COMPLETE 行为全集正式分数；其余不推断缺失分数。
+Physical-D 相比同卡 Native 的已完成全集差值：ScienceQA-IMG -0.050 pp。未完成项不推断得分或损失。
+
+普通95%CI整体低于0的项目：暂无；区间包含0的项目：ScienceQA-IMG。区间包含0不能解释为证明等价。固定单图块协议与作者多图块/完整推理配方不等同，异常输出项按门槛暂停并保留原文。
+
+当前已完整完成 1/7 项。只有 COMPLETE 行为全集正式分数；其余不推断缺失分数。
 
 | Benchmark | N | Native | Physical-D | Δ | 95% CI | 单位 / 状态 |
 |---|---:|---:|---:|---:|---|---|
 | GQA | — | — | — | — | — | PAUSED_OUTPUT_FORMAL |
-| ScienceQA-IMG | — | — | — | — | — | READY_PREFLIGHT |
+| ScienceQA-IMG  | 2017 | 97.521 | 97.471 | -0.050 | [-0.289, +0.151] | pp / COMPLETE |
 | TextVQA | — | — | — | — | — | READY_PREFLIGHT |
 | POPE | — | — | — | — | — | READY_PREFLIGHT |
 | MME | — | — | — | — | — | READY_PREFLIGHT |
 | MMBench | — | — | — | — | — | READY_PREFLIGHT |
 | OCRBench | — | — | — | — | — | READY_PREFLIGHT |
+
+## 自然生成长度审计
+各行N为该条件实际保存的生成数；暂停任务为子集诊断，不是全集。Token长度包含真实EOS Token。
+
+| 任务 / 条件 | N | 均值 | P50 | P95 | 最大 | EOS% | 截断% | 解析失败% |
+|---|---:|---:|---:|---:|---:|---:|---:|---:|
+| GQA / native | 772 | 2.31 | 2.0 | 4.0 | 5 | 100.00 | 0.00 | 0.00 |
+| GQA / physical_d | 772 | 2.27 | 2.0 | 3.0 | 13 | 100.00 | 0.00 | 0.00 |
+| ScienceQA-IMG / native | 2017 | 2.00 | 2.0 | 2.0 | 2 | 100.00 | 0.00 | 0.00 |
+| ScienceQA-IMG / physical_d | 2017 | 2.00 | 2.0 | 2.0 | 2 | 100.00 | 0.00 | 0.00 |
+
+## 输出异常
+全部原始异常和评分见 output_anomalies.csv。以下仅列前20条诊断，不删除其原始预测。
+
+- GQA / 201185759 / physical_d: ["UNEXPECTED_ANSWER_FORM"]; 原文：answering does not require reading text in the image.
 
 主标签：ATE_SVH_1TILE_SCORER_ALIGNED。不是 InternVL 作者完整排行榜配置；固定 1 tile、256 视觉 Token，与多图块、CoT、作者 max_new_tokens 等设置存在差异。MMBench 为 EN Dev20230712 Circular，采用官方 exact_matching，不调用 LLM judge。TextVQA 为 image-only，保留全部十答案共识软评分。MME 保留已知历史图片 SHA 差异，报告 Perception/Cognition 原始积分。
 
@@ -27,7 +46,7 @@
 | 任务 | 当前状态 / 错误 |
 |---|---|
 | GQA | PAUSED_OUTPUT_FORMAL:  |
-| ScienceQA-IMG | READY_PREFLIGHT:  |
+| ScienceQA-IMG | GENERATION_COMPLETE:  |
 | TextVQA | READY_PREFLIGHT:  |
 | POPE | READY_PREFLIGHT:  |
 | MME | READY_PREFLIGHT:  |
