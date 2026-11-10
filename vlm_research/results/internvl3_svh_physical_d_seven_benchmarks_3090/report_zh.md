@@ -1,21 +1,25 @@
+# stop_policy_v2 补完：原推理协议不变
+
+父结果Commit：6c294aae67ddb2a5cb3706ded76dcf3edb26c859。本分支保留原protocol.json字节及全部原始暂停证据；v2不改变模型、Prompt、图片、评分器、原生EOS、生成上限或Physical-D。原四项全量结果按父Commit直接复用，不重新推理或重计分。
+
 # InternVL3-SVH 七项 Benchmark 单图块质量评测
 
-Physical-D 相比同卡 Native 的已完成全集差值：ScienceQA-IMG -0.050 pp；POPE -0.222 pp；MME Perception +3.388 raw_points；MME Cognition -10.000 raw_points；MMBench -0.255 Circular_pp。未完成项不推断得分或损失。
+Physical-D 相比同卡 Native 的已完成全集差值：GQA -9.048 pp；ScienceQA-IMG -0.050 pp；POPE -0.222 pp；MME Perception +3.388 raw_points；MME Cognition -10.000 raw_points；MMBench -0.255 Circular_pp。未完成项不推断得分或损失。
 
-普通95%CI整体低于0的项目：暂无；区间包含0的项目：ScienceQA-IMG、POPE、MME、MME、MMBench。区间包含0不能解释为证明等价。固定单图块协议与作者多图块/完整推理配方不等同，异常输出项按门槛暂停并保留原文。
+普通95%CI整体低于0的项目：GQA；区间包含0的项目：ScienceQA-IMG、POPE、MME、MME、MMBench。区间包含0不能解释为证明等价。固定单图块协议与作者多图块/完整推理配方不等同，异常输出项按门槛暂停并保留原文。
 
-当前已完整完成 4/7 项。只有 COMPLETE 行为全集正式分数；其余不推断缺失分数。
+当前已完整完成 5/7 项。只有 COMPLETE 行为全集正式分数；其余不推断缺失分数。
 
 | Benchmark | N | Native | Physical-D | Δ | 95% CI | 单位 / 状态 |
 |---|---:|---:|---:|---:|---|---|
-| GQA | — | — | — | — | — | PAUSED_OUTPUT_FORMAL |
+| GQA  | 12578 | 62.156 | 53.109 | -9.048 | [-10.044, -8.066] | pp / COMPLETE |
 | ScienceQA-IMG  | 2017 | 97.521 | 97.471 | -0.050 | [-0.289, +0.151] | pp / COMPLETE |
-| TextVQA | — | — | — | — | — | PAUSED_OUTPUT_FORMAL |
+| TextVQA | — | — | — | — | — | READY_RESUME_V2 |
 | POPE  | 9000 | 90.444 | 90.222 | -0.222 | [-0.533, +0.078] | pp / COMPLETE |
 | MME Perception | 2374 | 1695.865 | 1699.253 | +3.388 | [-14.110, +21.826] | raw_points / COMPLETE |
 | MME Cognition | 2374 | 625.714 | 615.714 | -10.000 | [-28.125, +0.000] | raw_points / COMPLETE |
 | MMBench  | 4377 | 83.673 | 83.418 | -0.255 | [-0.673, +0.086] | Circular_pp / COMPLETE |
-| OCRBench | — | — | — | — | — | PAUSED_OUTPUT_FORMAL |
+| OCRBench | — | — | — | — | — | READY_RESUME_V2 |
 
 | POPE 子集 | 指标 | Native | Physical-D | Δpp | 95%CI |
 |---|---|---:|---:|---:|---|
@@ -33,8 +37,8 @@ Physical-D 相比同卡 Native 的已完成全集差值：ScienceQA-IMG -0.050 p
 
 | 任务 / 条件 | N | 均值 | P50 | P95 | 最大 | EOS% | 截断% | 解析失败% |
 |---|---:|---:|---:|---:|---:|---:|---:|---:|
-| GQA / native | 772 | 2.31 | 2.0 | 4.0 | 5 | 100.00 | 0.00 | 0.00 |
-| GQA / physical_d | 772 | 2.27 | 2.0 | 3.0 | 13 | 100.00 | 0.00 | 0.00 |
+| GQA / native | 12578 | 2.32 | 2.0 | 4.0 | 15 | 100.00 | 0.00 | 0.00 |
+| GQA / physical_d | 12578 | 2.28 | 2.0 | 3.0 | 14 | 100.00 | 0.00 | 0.00 |
 | ScienceQA-IMG / native | 2017 | 2.00 | 2.0 | 2.0 | 2 | 100.00 | 0.00 | 0.00 |
 | ScienceQA-IMG / physical_d | 2017 | 2.00 | 2.0 | 2.0 | 2 | 100.00 | 0.00 | 0.00 |
 | TextVQA / native | 358 | 4.19 | 3.0 | 8.1 | 32 | 99.72 | 0.28 | 0.00 |
@@ -52,6 +56,13 @@ Physical-D 相比同卡 Native 的已完成全集差值：ScienceQA-IMG -0.050 p
 全部原始异常和评分见 output_anomalies.csv。以下仅列前20条诊断，不删除其原始预测。
 
 - GQA / 201185759 / physical_d: ["UNEXPECTED_ANSWER_FORM"]; 原文：answering does not require reading text in the image.
+- GQA / 201322641 / physical_d: ["UNEXPECTED_ANSWER_FORM"]; 原文：answering does not require reading the text in the image.
+- GQA / 201548912 / physical_d: ["UNEXPECTED_ANSWER_FORM"]; 原文：answering does not require reading the text in the image
+- GQA / 201682270 / native: ["UNEXPECTED_ANSWER_FORM"]; 原文：answering does not require reading text in the image
+- GQA / 201758426 / physical_d: ["UNEXPECTED_ANSWER_FORM"]; 原文：answering does not require reading text in the image.
+- GQA / 202241127 / native: ["UNEXPECTED_ANSWER_FORM"]; 原文：answering does not require reading text in the image
+- GQA / 20340893 / physical_d: ["UNEXPECTED_ANSWER_FORM"]; 原文：answering does not require reading text in the image.
+- GQA / 20929402 / physical_d: ["UNEXPECTED_ANSWER_FORM"]; 原文：answering does not require reading the text in the image.
 - TextVQA / 34935 / native: ["ABNORMAL_STOP_OR_TRUNCATION"]; 原文：saggio intorno diverse opinioni di alcuni moderni politici sopra i delitti e le pene dell'avvocato francescantonio
 - OCRBench / 0480 / physical_d: ["REPETITION"]; 原文：2016 Calendar - 2016 Calendar - 2016 Wall Calendar - 2016 Monthly Wall Calendar - 2016 Calendar - 2016 Calendar - 2016 Calendar - 2016 Wall Calendar
 
@@ -59,7 +70,7 @@ Physical-D 相比同卡 Native 的已完成全集差值：ScienceQA-IMG -0.050 p
 
 Native 保留原生答案读图；Physical-D 同时包含答案禁图、L20视觉退出、L2–L5答案Attention跳算。因此配对差值是联合策略效果，不能归因于单一机制。数值状态保持 FAILED_WITH_PREVIOUSLY_AUTHORIZED_WAIVER，不宣称 NUMERICAL_PASS。Physical-D 核心来自 e288eee271b7aeb64e5df59783d3201bb2a6b313，SHA256 不变。Native/No-op/官方 Chat 严格一致及物理结构检查独立记录在各任务 smoke_validation.json。
 
-任务安全上限：POPE 8；MME/GQA/ScienceQA/MMBench 16；TextVQA 32；OCRBench 128。Greedy、B1、正常 EOS、每次全新 Cache。预检及正式异常记录完整保留；未通过长度门槛的任务暂停，不将子集成绩写成全集成绩。
+任务安全上限：POPE 8；MME/GQA/ScienceQA/MMBench 16；TextVQA 32；OCRBench 128。Greedy、B1、正常 EOS、每次全新 Cache。v1预检、暂停和异常原文均保留在history/stop_policy_v1及父Commit。本轮stop_policy_v2仅改变继续执行策略：单题解释、重复、错误/解析失败或原上限截断均保留并计分，不据此停止全集；结构性错误、NaN/Inf/OOM、哈希不符和冻结系统性监测规则仍硬停止。
 
 95%CI 为固定 seed=20261110、20,000 次 Image SHA256 整簇配对 Bootstrap 的普通区间，未作多重比较校正，不证明等价。OCRBench 使用固定1000题尺度的簇重采样均值；MME 每次重采样重新计算各类 acc+acc_plus；Circular 按完整发布题组聚合。不同原生单位不平均。
 
@@ -69,32 +80,29 @@ Native 保留原生答案读图；Physical-D 同时包含答案禁图、L20视�
 
 | 任务 | 当前状态 / 错误 |
 |---|---|
-| GQA | PAUSED_OUTPUT_FORMAL:  |
+| GQA | GENERATION_COMPLETE:  |
 | ScienceQA-IMG | GENERATION_COMPLETE:  |
-| TextVQA | PAUSED_OUTPUT_FORMAL:  |
+| TextVQA | READY_RESUME_V2:  |
 | POPE | GENERATION_COMPLETE:  |
 | MME | GENERATION_COMPLETE:  |
 | MMBench | GENERATION_COMPLETE:  |
-| OCRBench | PAUSED_OUTPUT_FORMAL:  |
+| OCRBench | READY_RESUME_V2:  |
 
 GPU UUID：GPU-e392cec6-7ec8-1fee-397b-fde03a79e79e
 
-服务器持久化目录：/home/featurize/work/ATE-internvl3-svh-seven-benchmarks-3090/vlm_research/results/internvl3_svh_physical_d_seven_benchmarks_3090
+服务器持久化目录：/home/featurize/work/ATE-internvl3-svh-stop-policy-v2-3090/vlm_research/results/internvl3_svh_physical_d_seven_benchmarks_3090
 
-GitHub 分支：https://github.com/reyuyu/ATE/tree/codex/internvl3-svh-physical-d-seven-benchmarks-3090
+GitHub 分支：https://github.com/reyuyu/ATE/tree/codex/internvl3-svh-stop-policy-v2-three-benchmarks-3090
 
-## 最终独立审计与暂停解释
 
-全量完成 4/7 项：ScienceQA-IMG、POPE、MME、MMBench。GQA 保存 772 对，TextVQA 保存 358 对，OCRBench 保存 490 对；这三个子集不报告全量分数、差值或置信区间。
+## V2恢复与异常保留
 
-- GQA Q201185759：Physical-D 输出无关元解释，13 Token 后正常 EOS；按冻结短答案规则暂停。
-- TextVQA Q34935：Native 转录较长意大利文书名，32 Token 达上限且无 EOS。可能是合理的真实长书名，但仍触发本轮预先冻结的保守规则；这不是 Physical-D 长输出或退化的证据，未事后提高上限。
-- OCRBench Q0480：Native 正确输出 The Botanical Garden 2012；Physical-D 输出反复的 2016 Calendar 词组，59 Token 后正常 EOS，未达128上限。按重复规则暂停，完整原文与Token保留。输入/Prompt相同、EOS正确、Native/No-op和结构Smoke通过、最终逐层KV审计通过；重复行为的内部原因尚未确定，未据此放宽门槛或修改机制。
+- GQA：COMPLETE；复用原预测 1544 条，新生成 23612 条。完整原始JSON字节对照见prediction_provenance_v2.csv.gz。
+- TextVQA：PAUSED_OUTPUT_FORMAL；复用原预测 待分析 条，新生成 待分析 条。完整原始JSON字节对照见prediction_provenance_v2.csv.gz。
+- OCRBench：PAUSED_OUTPUT_FORMAL；复用原预测 待分析 条，新生成 待分析 条。完整原始JSON字节对照见prediction_provenance_v2.csv.gz。
 
-预检样本为冻结全集成员。输入、协议、源码绑定一致的预检预测在全集中复用一次，不重复计分；Smoke生成不计入Benchmark分数。各暂停项的保存数也包含已完成预检成员。
-
-MME Cognition下降10原始分：代码推理−7.5、数值计算−2.5；计数、位置、MME OCR的官方分数保持不变，颜色+5。其余子任务和损害案例均保留，不以总体平均掩盖。未完成TextVQA/OCRBench，故不能给出这两项总体OCR能力损失结论。POPE Random Accuracy的普通95%CI低于0，属于多重描述性比较，未作校正。
-
-最终CPU独立审计覆盖全部保存预测：冻结Question/Gold/Prompt/Image SHA/输入ID Tensor字节哈希、逐方法输入绑定、真实EOS/上限、完整题数及28层实际KV布局/Live字节均通过；九个冻结运行文件SHA256未变。官方数据/Scorer对齐、单图块口径与原严格数值Waiver仍须共同引用，不宣称作者排行榜或NUMERICAL_PASS。
-
-GPU最终释放检查见 gpu_release.json：指定3090无计算进程、无本轮Worker/Controller；不关闭服务器。全部原始检查点与日志留在服务器持久化工作盘，轻量源码/预测/报告通过独立分支同步；实际Commit以最终publication.json和GitHub分支头为准。
+原父版本暂停样本（GQA无关解释、TextVQA长书名截断、OCRBench重复标题）均原样保留且纳入本轮评分，没有重生成、跳过或修正。TextVQA始终为32 Token；任何未来64/128 Token版本须独立完整运行，不能混入本轮。
+OUTPUT_ANOMALY完整清单见各任务及根目录output_anomalies_v2.csv.gz：包括解释、重复、截断、零分/解析失败及部分TextVQA软评分。错误与部分分数只用于质量审计，不用于停止判断，也不改变官方评分。
+系统性监测按100题/方法的非重叠窗口：连续两个窗口空输出≥10%、重复≥10%、其他行为格式异常≥25%或截断≥50%时暂停；连续10题空输出/重复也暂停。阈值在新增GPU生成前冻结，不使用Gold或Accuracy来决定停止、不自动调整。逐窗口及长度P50/P95/最大值见各任务output_monitor_v2.json。
+MME表中N=2374指完整Benchmark输入总数；Perception实际2114条、Cognition260条，分别按官方原始积分计算。MMBench为4377条已发布旋转记录、1176个Circular组。原四项汇总与逐题产物的SHA256保持父版本一致。
+数值状态仍是FAILED_WITH_PREVIOUSLY_AUTHORIZED_WAIVER，Native/No-op及新结构性错误仍为硬门槛。所有比较仍是单图块ATE协议，不能冒充作者完整多图块排行榜结果。

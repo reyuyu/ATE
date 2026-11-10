@@ -22,3 +22,13 @@ Default storage:
 Only launch the controller after freezing runtime source fingerprints and checking cpu_tests.json. Resume uses the exact protocol, sample and source bindings; it never silently changes prompts, caps or the physical algorithm.
 
 Preflight requests are deterministic members of the frozen split. Their predictions are reused in the full split only when protocol, runtime source and input bindings match exactly; they are not counted twice. Smoke generations are excluded from benchmark scores. Output-form pauses during formal generation preserve both paired predictions and never produce a full-split score.
+
+V2 continuation adds stop_policy_v2.py / resume_worker_v2.py without changing any of the nine frozen v1 runtime files. Set ATE_SEVEN_RUN and ATE_SEVEN_ROOT to the independent v2 directories before importing the package. The unmodified v1 request(), Inputs, model loader, smoke and physical generate() are called directly. Existing checkpoint record JSON bytes are preserved.
+
+Run resume_cpu_v2 before any GPU use: it verifies the original SQLite SHA256 and integrity, paired input/prompt/source/protocol/Gold bindings and the exact four inherited benchmark artifacts. It freezes the separate execution_source_manifest_v2 and records V1_REUSED / V2_GENERATED prediction hashes in a separate SQLite provenance table.
+
+Run controller_v2 only for GQA, TextVQA and OCRBench. It adopts an already running resume_worker_v2, runs tasks sequentially on the specified GPU, independently scores completed splits with the original scorer/statistics code, and publishes each stage on codex/internvl3-svh-stop-policy-v2-three-benchmarks-3090. It never launches the other four benchmarks or efficiency/quality experiments outside these three.
+
+Single-question wrong answers, unrelated explanations, repetitions, parse failures and original-cap truncations are included in official scores. A separate frozen monitor stops only structural/integrity failures or sustained system-wide output anomalies. Gold / accuracy never controls continuation. Full anomaly exports include wrong answers and partial TextVQA consensus scores as quality outcomes. No prediction is silently discarded or retried to obtain a different answer.
+
+Original protocol.json and source_manifest.json remain byte-identical. The generation protocol remains ATE_SVH_1TILE_SCORER_ALIGNED with the prior numerical waiver. V1 pause states, diagnostics, partial predictions and report are retained under history/stop_policy_v1 and the immutable parent commit 6c294aae67ddb2a5cb3706ded76dcf3edb26c859.
