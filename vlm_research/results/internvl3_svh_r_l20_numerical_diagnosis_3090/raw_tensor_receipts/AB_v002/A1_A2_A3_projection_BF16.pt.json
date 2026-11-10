@@ -1,0 +1,262 @@
+{
+  "file": "/home/featurize/ate-runs/internvl3-svh-r-l20-numerical-diagnosis-3090/raw/AB_v002/A1_A2_A3_projection_BF16.pt",
+  "sha256": "4b473b40b7d055a728669b9e5c663e34e6485e74c96ca2aec5a22b0af9b41b48",
+  "bytes": 6871532,
+  "origin": "Same native L20 projection module, BF16, same frozen weights; A3 image rows strictly zero",
+  "tensors": {
+    "inputs": {
+      "A1_Dense": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "a7fc204efae8ec9b441a4ae0d56a582a3939ce4d5847955242202084b440019c",
+        "data_ptr": 3298260288,
+        "storage_offset": 0
+      },
+      "A2_Compact": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "6d5e2696316eab07ffbdc17e2f4ab78b118baf68dfa93e24c70f777542caf735",
+        "data_ptr": 3250572224,
+        "storage_offset": 0
+      },
+      "A3_ZeroPad": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "2f761128b979b9a3cdd570d4d98592ac81995c18bea1e10d0eae396b2dfc3c14",
+        "data_ptr": 3300561344,
+        "storage_offset": 0
+      }
+    },
+    "outputs": {
+      "A1_Dense": {
+        "q_proj": {
+          "shape": [
+            1,
+            65,
+            3584
+          ],
+          "stride": [
+            232960,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "48238f6060d136bec5cc7153fd73691ef42f13b280aa5c37f57dbc5ea712ecda",
+          "data_ptr": 3076445376,
+          "storage_offset": 0
+        },
+        "k_proj": {
+          "shape": [
+            1,
+            65,
+            512
+          ],
+          "stride": [
+            33280,
+            512,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "de28c91796dac575b9459afdca539446195f0c0a120f65cf32e7c768a3b1ed00",
+          "data_ptr": 3099511360,
+          "storage_offset": 0
+        },
+        "v_proj": {
+          "shape": [
+            1,
+            65,
+            512
+          ],
+          "stride": [
+            33280,
+            512,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "41a324e52c9e22e2f5e99559bc10d76016ad1ffd8fc25bf72cf7f2b8ee51808a",
+          "data_ptr": 3237190656,
+          "storage_offset": 0
+        }
+      },
+      "A2_Compact": {
+        "q_proj": {
+          "shape": [
+            1,
+            65,
+            3584
+          ],
+          "stride": [
+            232960,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "48238f6060d136bec5cc7153fd73691ef42f13b280aa5c37f57dbc5ea712ecda",
+          "data_ptr": 3070676288,
+          "storage_offset": 0
+        },
+        "k_proj": {
+          "shape": [
+            1,
+            65,
+            512
+          ],
+          "stride": [
+            33280,
+            512,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "8220af4184ff78ffb252c632c42e966a333c99d1cc44398b7466f1a7ea488646",
+          "data_ptr": 3237257344,
+          "storage_offset": 0
+        },
+        "v_proj": {
+          "shape": [
+            1,
+            65,
+            512
+          ],
+          "stride": [
+            33280,
+            512,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "a33b3102edc055595f30e0e182a307e2aae23f360c26bc738ba37f1a453e3a00",
+          "data_ptr": 3237324032,
+          "storage_offset": 0
+        }
+      },
+      "A3_ZeroPad": {
+        "q_proj": {
+          "shape": [
+            1,
+            65,
+            3584
+          ],
+          "stride": [
+            232960,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "48238f6060d136bec5cc7153fd73691ef42f13b280aa5c37f57dbc5ea712ecda",
+          "data_ptr": 3120312192,
+          "storage_offset": 0
+        },
+        "k_proj": {
+          "shape": [
+            1,
+            65,
+            512
+          ],
+          "stride": [
+            33280,
+            512,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "de28c91796dac575b9459afdca539446195f0c0a120f65cf32e7c768a3b1ed00",
+          "data_ptr": 3247147648,
+          "storage_offset": 0
+        },
+        "v_proj": {
+          "shape": [
+            1,
+            65,
+            512
+          ],
+          "stride": [
+            33280,
+            512,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "41a324e52c9e22e2f5e99559bc10d76016ad1ffd8fc25bf72cf7f2b8ee51808a",
+          "data_ptr": 3252073216,
+          "storage_offset": 0
+        }
+      }
+    },
+    "text_positions": {
+      "shape": [
+        65
+      ],
+      "stride": [
+        1
+      ],
+      "contiguous": true,
+      "dtype": "torch.int64",
+      "device": "cpu",
+      "sha256": "ba82752fbed4bc1cd04daa516a5385220d9e67af692e4948b3d5b0b8aebff7b2",
+      "data_ptr": 203273728,
+      "storage_offset": 0
+    },
+    "image_positions": {
+      "shape": [
+        256
+      ],
+      "stride": [
+        1
+      ],
+      "contiguous": true,
+      "dtype": "torch.int64",
+      "device": "cpu",
+      "sha256": "e65cdc371a590ff5ab7eb375cafb4fe24835c6949a368c65f43848c3dcfafbcb",
+      "data_ptr": 3252228416,
+      "storage_offset": 0
+    }
+  }
+}

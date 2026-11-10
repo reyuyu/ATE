@@ -1,0 +1,4 @@
+question_id,variant,input_rows,text_rows,actual_projection_rows,CUDA_event_mean_ms,CUDA_event_median_ms,warmups,repeats,peak_incremental_allocated_bytes,zero_hidden_scratch_bytes,projection_multiply_add_FLOPs,scope
+201337043,A1_Dense,321,65,321,0.13715455889701844,0.13414399325847626,25,100,1705984,0,2356150272,"Local K/V only; gather included; A3 shares one padded input across K/V, not exact installed C1 two-pad wrapper; not request E2E"
+201337043,A2_Compact,321,65,65,0.10808319866657257,0.10547199845314026,25,100,1181696,0,477102080,"Local K/V only; gather included; A3 shares one padded input across K/V, not exact installed C1 two-pad wrapper; not request E2E"
+201337043,A3_ZeroPad,321,65,321,0.1817190393805504,0.17817600071430206,25,100,4327424,2300928,2356150272,"Local K/V only; gather included; A3 shares one padded input across K/V, not exact installed C1 two-pad wrapper; not request E2E"

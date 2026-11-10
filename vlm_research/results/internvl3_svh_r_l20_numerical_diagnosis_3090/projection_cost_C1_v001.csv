@@ -1,0 +1,4 @@
+question_id,variant,CUDA_event_mean_ms,CUDA_event_median_ms,warmups,repeats,actual_KV_projection_rows,KV_projection_multiply_add_FLOPs,peak_incremental_allocated_bytes,scope,C2_other_operator_cost_included
+201337043,Dense_L20_KV,0.14124031960964203,0.14028799533843994,25,100,321,2356150272,1705984,"Actual L20 K/V module adapter, two independent pad allocations for repair; no full request E2E; CPU Tensor audit disabled",False
+201337043,Compact_L20_KV,0.1116441597789526,0.11110400035977364,25,100,65,477102080,1181696,"Actual L20 K/V module adapter, two independent pad allocations for repair; no full request E2E; CPU Tensor audit disabled",False
+201337043,Actual_C1_v001,0.37335040003061293,0.36505600810050964,25,100,321,2356150272,4066304,"Actual L20 K/V module adapter, two independent pad allocations for repair; no full request E2E; CPU Tensor audit disabled",False

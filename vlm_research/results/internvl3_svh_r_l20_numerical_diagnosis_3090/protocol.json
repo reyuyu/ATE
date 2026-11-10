@@ -1,0 +1,56 @@
+{
+  "parent_commit": "9602d93869d4ccd11986573369d8fecc84b80f78",
+  "GPU_UUID": "GPU-e392cec6-7ec8-1fee-397b-fde03a79e79e",
+  "model": "OpenGVLab/InternVL3-8B",
+  "revision": "853e3a797a661694b1b8ece0cb72dc2b23e3dac9",
+  "dtype": "BF16",
+  "attention": "eager",
+  "torch": "2.6.0+cu124",
+  "transformers": "4.49.0",
+  "greedy": true,
+  "batch_size": 1,
+  "max_num": 1,
+  "image_size": 448,
+  "visual_tokens": 256,
+  "quality_max_new_tokens": 16,
+  "native_EOS": true,
+  "use_cache": true,
+  "logits_to_keep": 1,
+  "numerical_gate": {
+    "native_noop": "torch.equal all effective logits and complete tokens",
+    "physical_dense": {
+      "per_step_logits_max_abs_le": 0.125,
+      "per_step_logits_mean_abs_le": 0.01,
+      "per_layer_shared_hidden_relative_RMS_le": 0.015625,
+      "all_step_top1_equal": true,
+      "complete_tokens_equal": true,
+      "all_finite": true
+    },
+    "same_prefix_comparison": true,
+    "rationale": "Reuse original pre-waiver BF16 engineering bounds unchanged (max .125, mean .01, hidden1/64). Previous waiver is not inherited.",
+    "failure_policy": "No formal Physical-R search on structural/No-op/KV failure; a numeric failure is diagnosed and remains FAILED, never waived or relaxed based on accuracy."
+  },
+  "sample_binding_sha256": "48b8ab2e95344453d6c3a1d96bc36714c87183e0554168724e74045b55de7eb9",
+  "scope": "A/B frozen R0 L20 operator diagnosis; <=2 local repairs; complete R0 first sample, further prior 7 Smoke only if first passes; no Discovery/Holdout/quality scoring/E2E32 benchmark",
+  "A_variants": {
+    "A1": "original321 normalized Hidden native Q/K/V then gather65 text rows",
+    "A2": "gather65 actual text normalized Hidden then same native Q/K/V",
+    "A3": "zero321 scratch populated only at same65 original text positions; native Q/K/V then gather65"
+  },
+  "B": "Independent native-operator replay, same frozen L20 Hidden/RoPE/mask, compare legal original logical keys only; no QK norm exists in actual Qwen2",
+  "C1": "L20 K/V projections only, Prefill only: zero pad original sequence rows, gather text results, no persistent padding or visual data",
+  "C2": "NOT_YET_DEFINED; may target only next operator proven after C1, separately frozen before test; no precision/kernel/layer search",
+  "cost": {
+    "warmup": 25,
+    "repeats": 100,
+    "order": "rotate A1/A2/A3 by repeat",
+    "CUDA_event": true,
+    "include_in_repair": "allocation+zero+index_copy+native K/V+gather",
+    "no_CPU_audit_in_timing": true,
+    "inputs": "primary frozen sample; additional frozen Smoke lengths only if needed",
+    "not_E2E32": true
+  },
+  "raw_evidence": "unique phase paths with atomic no-clobber writes; full BF16 tensors server-only, SHA/shape/dtype metadata GitHub",
+  "old_waiver_inherited": false,
+  "prepared_utc": "2026-11-10T13:01:25Z"
+}

@@ -1,0 +1,18 @@
+{
+  "max_candidates": 2,
+  "C1": {
+    "layer": 20,
+    "modules": [
+      "k_proj",
+      "v_proj"
+    ],
+    "stage": "Prefill only",
+    "input": "zero scratch at original positions, no original image Hidden",
+    "cache": "compact unchanged",
+    "condition": "run only if A/B establish shape-related K/V differences"
+  },
+  "C2": {
+    "status": "UNDEFINED_NOT_RUN",
+    "freeze_rule": "next independently proven local divergence only; immutable separate candidate document before GPU execution"
+  }
+}

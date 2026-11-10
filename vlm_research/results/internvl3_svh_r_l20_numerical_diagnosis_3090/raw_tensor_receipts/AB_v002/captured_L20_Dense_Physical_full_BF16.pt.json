@@ -1,0 +1,6716 @@
+{
+  "file": "/home/featurize/ate-runs/internvl3-svh-r-l20-numerical-diagnosis-3090/raw/AB_v002/captured_L20_Dense_Physical_full_BF16.pt",
+  "sha256": "495f37627e4cd5367f06709c30d779e270e3db9513faa54989177e47201156f8",
+  "bytes": 203646054,
+  "origin": "Actual frozen R0 full generation; capture first Prefill L20 only; no repair",
+  "tensors": {
+    "Dense": {
+      "hidden_input": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "174246c3937031672579bfe06e4af2b63784214c369bbcae1a49860ef0051e44",
+        "data_ptr": 3034560832,
+        "storage_offset": 0
+      },
+      "input_norm": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "a7fc204efae8ec9b441a4ae0d56a582a3939ce4d5847955242202084b440019c",
+        "data_ptr": 3039162880,
+        "storage_offset": 0
+      },
+      "input_norm_input": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "174246c3937031672579bfe06e4af2b63784214c369bbcae1a49860ef0051e44",
+        "data_ptr": 3043764992,
+        "storage_offset": 0
+      },
+      "hidden_states": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "a7fc204efae8ec9b441a4ae0d56a582a3939ce4d5847955242202084b440019c",
+        "data_ptr": 3041463872,
+        "storage_offset": 0
+      },
+      "attention_mask": {
+        "shape": [
+          1,
+          1,
+          321,
+          321
+        ],
+        "stride": [
+          103041,
+          103041,
+          321,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "f681f5d352197ec45f578ba7bc564d75bb0e6cea5ea058e3c64151f1270ff6f7",
+        "data_ptr": 479915904,
+        "storage_offset": 0
+      },
+      "position_ids": {
+        "shape": [
+          1,
+          321
+        ],
+        "stride": [
+          321,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.int64",
+        "device": "cpu",
+        "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+        "data_ptr": 480124672,
+        "storage_offset": 0
+      },
+      "rope_cos": {
+        "shape": [
+          1,
+          321,
+          128
+        ],
+        "stride": [
+          41088,
+          128,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "c26d282e2e83e1e12dd31adad5dc59ab7b3c3179e5eede127fb6414911d56d62",
+        "data_ptr": 479792064,
+        "storage_offset": 0
+      },
+      "rope_sin": {
+        "shape": [
+          1,
+          321,
+          128
+        ],
+        "stride": [
+          41088,
+          128,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "bfb29370829418160c55cabb867f520ac9f49d1829837b7f559b69bb1dd3ec36",
+        "data_ptr": 258901376,
+        "storage_offset": 0
+      },
+      "q_proj": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "56d0911e952f8441f69903baeb89e7de4b1464de9312f0d26d36fb429c05210e",
+        "data_ptr": 3048367104,
+        "storage_offset": 0
+      },
+      "q_proj_input": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "a7fc204efae8ec9b441a4ae0d56a582a3939ce4d5847955242202084b440019c",
+        "data_ptr": 3055270272,
+        "storage_offset": 0
+      },
+      "k_proj": {
+        "shape": [
+          1,
+          321,
+          512
+        ],
+        "stride": [
+          164352,
+          512,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "e9781c6ebb0655c9169f7eef48ede7633fe872017fca456c9b1e334408835e61",
+        "data_ptr": 275723904,
+        "storage_offset": 0
+      },
+      "k_proj_input": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "a7fc204efae8ec9b441a4ae0d56a582a3939ce4d5847955242202084b440019c",
+        "data_ptr": 3057571264,
+        "storage_offset": 0
+      },
+      "v_proj": {
+        "shape": [
+          1,
+          321,
+          512
+        ],
+        "stride": [
+          164352,
+          512,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "4e18fb434e29c42ffec72e990f3923024a15471bde35fd62f40151ac2d8a69e4",
+        "data_ptr": 276381504,
+        "storage_offset": 0
+      },
+      "v_proj_input": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "a7fc204efae8ec9b441a4ae0d56a582a3939ce4d5847955242202084b440019c",
+        "data_ptr": 3062173248,
+        "storage_offset": 0
+      },
+      "o_proj": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "fe70395e6a6e81fa0ddb0a2954e4c76c2e4df2518a5de722ae08e8e53a2cc16c",
+        "data_ptr": 3066775232,
+        "storage_offset": 0
+      },
+      "o_proj_input": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "f12d5179ea39ffba230d42264dc4ff00dd7741de0d90fc8cf5120abcd52e0276",
+        "data_ptr": 3071377280,
+        "storage_offset": 0
+      },
+      "post_norm": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "346d7318c97de80ce98b1cbde05472a450ab5bdfb044572cc10b0c686151f70a",
+        "data_ptr": 3078280448,
+        "storage_offset": 0
+      },
+      "post_norm_input": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "2ed9cc8c0507bfc239e43184171d0e92cca6aae54761a10261c84c95c044521c",
+        "data_ptr": 3082882560,
+        "storage_offset": 0
+      },
+      "gate_proj": {
+        "shape": [
+          1,
+          321,
+          18944
+        ],
+        "stride": [
+          6081024,
+          18944,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "84b4a9ca69cb4ebd73e49062a1282b6af0576bebf9088f7bf7e02ff3b3b3d6b4",
+        "data_ptr": 3099646848,
+        "storage_offset": 0
+      },
+      "gate_proj_input": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "346d7318c97de80ce98b1cbde05472a450ab5bdfb044572cc10b0c686151f70a",
+        "data_ptr": 3111809024,
+        "storage_offset": 0
+      },
+      "up_proj": {
+        "shape": [
+          1,
+          321,
+          18944
+        ],
+        "stride": [
+          6081024,
+          18944,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "64381f939c4c4357ac9aeae54a13d1d514eec097e189e30be62de178e52e82cc",
+        "data_ptr": 3146322944,
+        "storage_offset": 0
+      },
+      "up_proj_input": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "346d7318c97de80ce98b1cbde05472a450ab5bdfb044572cc10b0c686151f70a",
+        "data_ptr": 3116411136,
+        "storage_offset": 0
+      },
+      "down_proj": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "5e38037626adf90e647e952306726634b7de018d73949fd11c40bf653ea42ad9",
+        "data_ptr": 3160786176,
+        "storage_offset": 0
+      },
+      "down_proj_input": {
+        "shape": [
+          1,
+          321,
+          18944
+        ],
+        "stride": [
+          6081024,
+          18944,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "75cbad5e4fdef4c686accc848be674122c4bd0b8a8b63f3ca47593968a345230",
+        "data_ptr": 3121998592,
+        "storage_offset": 0
+      },
+      "layer_hidden": {
+        "shape": [
+          1,
+          321,
+          3584
+        ],
+        "stride": [
+          1150464,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "e1e41661e773a37ad90520b824bcc778129554f2e8b9b027feb46380c02ef5de",
+        "data_ptr": 2982284480,
+        "storage_offset": 0
+      }
+    },
+    "Physical": {
+      "hidden_input": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "1fff4de482989cd76d885cecf94da69e44a8f7f8c7d2faaa01b8d66c1d8fd5af",
+        "data_ptr": 291394368,
+        "storage_offset": 0
+      },
+      "input_norm": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "6d5e2696316eab07ffbdc17e2f4ab78b118baf68dfa93e24c70f777542caf735",
+        "data_ptr": 292326336,
+        "storage_offset": 0
+      },
+      "input_norm_input": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "1fff4de482989cd76d885cecf94da69e44a8f7f8c7d2faaa01b8d66c1d8fd5af",
+        "data_ptr": 280377792,
+        "storage_offset": 0
+      },
+      "hidden_states": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "6d5e2696316eab07ffbdc17e2f4ab78b118baf68dfa93e24c70f777542caf735",
+        "data_ptr": 3011550784,
+        "storage_offset": 0
+      },
+      "attention_mask": {
+        "shape": [
+          1,
+          1,
+          65,
+          321
+        ],
+        "stride": [
+          20865,
+          20865,
+          321,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "f16bfec2e317eb135834c03a07afa12a44b81c9ba391d96a7cafac4a7af8c834",
+        "data_ptr": 419274176,
+        "storage_offset": 0
+      },
+      "position_ids": {
+        "shape": [
+          1,
+          65
+        ],
+        "stride": [
+          65,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.int64",
+        "device": "cpu",
+        "sha256": "ba82752fbed4bc1cd04daa516a5385220d9e67af692e4948b3d5b0b8aebff7b2",
+        "data_ptr": 418977536,
+        "storage_offset": 0
+      },
+      "rope_cos": {
+        "shape": [
+          1,
+          65,
+          128
+        ],
+        "stride": [
+          8320,
+          128,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "1421b2e032986120bd10ab8c8af61fe44c61f5a5f0c3a560775da8664fc5d227",
+        "data_ptr": 419249088,
+        "storage_offset": 0
+      },
+      "rope_sin": {
+        "shape": [
+          1,
+          65,
+          128
+        ],
+        "stride": [
+          8320,
+          128,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "8e14d7a92edc5820104b9d986d8aff74dbc34b2bfc46fab2ad67eca85f174891",
+        "data_ptr": 3138796224,
+        "storage_offset": 0
+      },
+      "q_proj": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "48238f6060d136bec5cc7153fd73691ef42f13b280aa5c37f57dbc5ea712ecda",
+        "data_ptr": 3012016768,
+        "storage_offset": 0
+      },
+      "q_proj_input": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "6d5e2696316eab07ffbdc17e2f4ab78b118baf68dfa93e24c70f777542caf735",
+        "data_ptr": 3012948800,
+        "storage_offset": 0
+      },
+      "k_proj": {
+        "shape": [
+          1,
+          65,
+          512
+        ],
+        "stride": [
+          33280,
+          512,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "8220af4184ff78ffb252c632c42e966a333c99d1cc44398b7466f1a7ea488646",
+        "data_ptr": 3098160128,
+        "storage_offset": 0
+      },
+      "k_proj_input": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "6d5e2696316eab07ffbdc17e2f4ab78b118baf68dfa93e24c70f777542caf735",
+        "data_ptr": 3098759488,
+        "storage_offset": 0
+      },
+      "v_proj": {
+        "shape": [
+          1,
+          65,
+          512
+        ],
+        "stride": [
+          33280,
+          512,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "a33b3102edc055595f30e0e182a307e2aae23f360c26bc738ba37f1a453e3a00",
+        "data_ptr": 3099292224,
+        "storage_offset": 0
+      },
+      "v_proj_input": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "6d5e2696316eab07ffbdc17e2f4ab78b118baf68dfa93e24c70f777542caf735",
+        "data_ptr": 3076911488,
+        "storage_offset": 0
+      },
+      "o_proj": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "1ed888e603b6a00d6d3651608894273186d25a235bf172d20c48ac533a4c0c0d",
+        "data_ptr": 3235785088,
+        "storage_offset": 0
+      },
+      "o_proj_input": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "33870b92907f54fd0d6e313c0727337814fbccc46169c77a30fdb3aa0d5e426a",
+        "data_ptr": 473260992,
+        "storage_offset": 0
+      },
+      "post_norm": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "81d71c64abd126ab45857188b4b32be80c5c7b59f1c13b512453c9e5e2708535",
+        "data_ptr": 3075979392,
+        "storage_offset": 0
+      },
+      "post_norm_input": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "da2adb7fe5abb86c8a90017c5ea4efb5a5286c4580764cc685965480bd10b904",
+        "data_ptr": 473726976,
+        "storage_offset": 0
+      },
+      "gate_proj": {
+        "shape": [
+          1,
+          65,
+          18944
+        ],
+        "stride": [
+          1231360,
+          18944,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "63ea4e2d6cf4fc267f8d6584ed735d4c6eb63341fe192aa3ca361b2c523aeac6",
+        "data_ptr": 3242383808,
+        "storage_offset": 0
+      },
+      "gate_proj_input": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "81d71c64abd126ab45857188b4b32be80c5c7b59f1c13b512453c9e5e2708535",
+        "data_ptr": 474659008,
+        "storage_offset": 0
+      },
+      "up_proj": {
+        "shape": [
+          1,
+          65,
+          18944
+        ],
+        "stride": [
+          1231360,
+          18944,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "889ec5c35827549b2efab4711a5d5720b39398943a8ed690142456050063fe22",
+        "data_ptr": 3247309376,
+        "storage_offset": 0
+      },
+      "up_proj_input": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "81d71c64abd126ab45857188b4b32be80c5c7b59f1c13b512453c9e5e2708535",
+        "data_ptr": 3037327808,
+        "storage_offset": 0
+      },
+      "down_proj": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "65fe61554a3ae8acf1e318f384222aaf192356b6065f0e32c6d3227679f36b5d",
+        "data_ptr": 3038259776,
+        "storage_offset": 0
+      },
+      "down_proj_input": {
+        "shape": [
+          1,
+          65,
+          18944
+        ],
+        "stride": [
+          1231360,
+          18944,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "58c10a203fff86ed6c4b6740d66c6749726767661938a01454c2b262edb92e6e",
+        "data_ptr": 3252234944,
+        "storage_offset": 0
+      },
+      "layer_hidden": {
+        "shape": [
+          1,
+          65,
+          3584
+        ],
+        "stride": [
+          232960,
+          3584,
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "32735ba99216db482a7c23ceb0de2721b24cde8208863882a5c3aed0165b377e",
+        "data_ptr": 3064474240,
+        "storage_offset": 0
+      }
+    },
+    "dense_scores": [
+      {
+        "shape": [
+          151674
+        ],
+        "stride": [
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "2aae65c8b2dc620450890212f38fe0ea58bbebff8b09dbe55fe03edd99917135",
+        "data_ptr": 418624320,
+        "storage_offset": 0
+      },
+      {
+        "shape": [
+          151674
+        ],
+        "stride": [
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "88e5415b56ca691188391f9ab04820b7fd44bce2b6766a1fb2ab104dddddc979",
+        "data_ptr": 419332416,
+        "storage_offset": 0
+      },
+      {
+        "shape": [
+          151674
+        ],
+        "stride": [
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "16d984f341c1d2d76f61437eb3033e43540ea32ce1786a9238c70ef9ef6b7626",
+        "data_ptr": 291090944,
+        "storage_offset": 0
+      }
+    ],
+    "physical_scores": [
+      {
+        "shape": [
+          151674
+        ],
+        "stride": [
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "bd26eddc51e10073b660f9caa8c1a2464aafa1f7735f97b164d4d0f4e990c247",
+        "data_ptr": 3077843584,
+        "storage_offset": 0
+      },
+      {
+        "shape": [
+          151674
+        ],
+        "stride": [
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "be189204b2559bfdad54b69ceb718dacdb25a16d448016cfe1a0ef36365918b6",
+        "data_ptr": 3218775040,
+        "storage_offset": 0
+      },
+      {
+        "shape": [
+          151674
+        ],
+        "stride": [
+          1
+        ],
+        "contiguous": true,
+        "dtype": "torch.bfloat16",
+        "device": "cpu",
+        "sha256": "5ede4bc5081b0877728d8847b4cd55d6cee7d783d948411144690ca61fde7dd6",
+        "data_ptr": 3038725760,
+        "storage_offset": 0
+      }
+    ],
+    "dense_hidden_all_layers": {
+      "(0, 0)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 295574272,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "2819becfc98af197564107ee14097dd027c8a355de1c797ccd69763b9cde5c30",
+          "data_ptr": 421954368,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 1)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 295571456,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "0a2658e58eb85253f88824568111dbd6927a89131b885b356e55b6fcede49c06",
+          "data_ptr": 2977682368,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 2)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 479691264,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "644882a89593a0b63633abadb671afe0540d79ea0488c7fd9108802326717251",
+          "data_ptr": 426556480,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 3)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 479701888,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "b45737c0f51ee27e5e9a487e010f32d421000fd17c87a0205e39a14d5c92432d",
+          "data_ptr": 491667072,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 4)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 479707136,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "78b0f8c2aae772e149b364f742b492f2318582af46419f03af24a9ce1b26f53d",
+          "data_ptr": 256435776,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 5)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293091264,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "c633882044e53692a5d19a2125e94ece61c3f97f12e064a565f1578d696f1c29",
+          "data_ptr": 281746752,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 6)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293097728,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "949894a263ea4e31d64ebbdc77a811d4552cf93be0b8f122aa2477a9e8bb2e8b",
+          "data_ptr": 466358016,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 7)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293104896,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "d8f387b4fed2b1f6e7da480b5b6d0f2d9da487a0859556d8954e9a7c1de0bb84",
+          "data_ptr": 468659008,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 8)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293112960,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "091162faa6b0e3f19e7015d0978f38a904c0566d6abace2f2325b7c8a1a4f2a7",
+          "data_ptr": 2966177152,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 9)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293121024,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "1716c5ac7a1e0700e77983b7ebe63f9200c24de7989bbe369e24f7ef980e6a0e",
+          "data_ptr": 2968478144,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 10)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293128960,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "f48a350dbeb425dac24b2890e2447638a472aeafaaef908fae411b302806a4a0",
+          "data_ptr": 2973080128,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 11)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293134272,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "038f41ff10bc505ac947819f4d448dcbdf0cb50e4debda7e8ac7ee1e349aae0c",
+          "data_ptr": 259288192,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 12)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293142336,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "e6af78b2d19a296e86d18c7d2bcfbf98cb1794b3c209889284d8ce722a3be959",
+          "data_ptr": 263890176,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 13)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293150400,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "44ec75b0fa5dd565a81d6897111eec536a7210ae2d03515817490031195a7740",
+          "data_ptr": 268492160,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 14)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293158464,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "4b66f714322a519dee577cf76d48a5a3028dffeeff5229e868ff2b7cc6879338",
+          "data_ptr": 273094144,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 15)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293166528,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "9fb384324dd97be3dedc29e92cd6b7ca42338373d1c0f17f555ec283142f3d01",
+          "data_ptr": 3013851840,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 16)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293171904,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "6307c9d44a2c07d117ca125370ae1f291ce8a62bc887dd06b3b7b7985b57b874",
+          "data_ptr": 3016152896,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 17)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293177280,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "05437336de97b797e068260e4fd60042d88d9af0bdb3013f92e301d84cfe1e4a",
+          "data_ptr": 3020754880,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 18)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293185344,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "6a8e341aeb7efd69608f460666c7cfff33bbb33269d568255f67e007a3cc8a7a",
+          "data_ptr": 3025356864,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 19)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293193408,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "174246c3937031672579bfe06e4af2b63784214c369bbcae1a49860ef0051e44",
+          "data_ptr": 3029958848,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 20)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 479874368,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "e1e41661e773a37ad90520b824bcc778129554f2e8b9b027feb46380c02ef5de",
+          "data_ptr": 2982284480,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 21)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 479882304,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "04adf8ab59e9c74a06be1e09edea4d0590c89734e6ecae839f85ff3d5bafefaa",
+          "data_ptr": 3163087168,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 22)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 479892736,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "c83e57a8a3e354d7c2e573d42fed5e1830d36889cd0e15f21eab085b94677f5e",
+          "data_ptr": 3167689152,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 23)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 479898240,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "d719d13f3aa7dd565d090dd40c1f2b5a4cd8d6dc80cba2c0c5fa548638dd34a4",
+          "data_ptr": 3085183552,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 24)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 479906304,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "ebb0af95786785028c523c9abd13aa2afb1993c3619940ec8ccf89563a6d5d13",
+          "data_ptr": 3073678336,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 25)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293196096,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "b21df98fcfc81c169f1e00642577d1363217531f84d9d45870ff0fe436ed2130",
+          "data_ptr": 3089785536,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 26)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293204032,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "b429c5e938db618ffcdecdf3ca2b60855c2b8cefd20ab3be48e2588fe03dde44",
+          "data_ptr": 3092086528,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 27)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 293209344,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "8f211a1df22bd394ca6fd0811fd95053e4a6e3171b5e102e124d26ba60310834",
+          "data_ptr": 3114110016,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 0)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418326336,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "d87cae7b6a387912fbed540a5e4a3845f2f3f8b83ae3fd742850a357ae0cec78",
+          "data_ptr": 418333760,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 1)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418328448,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "e9e600413e26ddf6e44d7c99084c463b68cf0b9e7659995bbec34a5160663fbc",
+          "data_ptr": 418348224,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 2)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418329664,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "fccaee58665d06e39c0e5b9463c6e5e539281c3e7470b9fa657d54fab56c6af1",
+          "data_ptr": 418362688,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 3)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418324160,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "81ac347b134841cd9f67686378a513f4ef8395409143271ee4f33940fdabce14",
+          "data_ptr": 418377152,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 4)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418331584,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "efd24f6d5fcafa3879ec7ea88cb59aacd0ece344a5ccb146583438900dc19ee2",
+          "data_ptr": 418391616,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 5)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418333696,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "3917f4b04745681d39f31ca9c554497ff0f4c396f79b937c59d3c7b24e886202",
+          "data_ptr": 418406080,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 6)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418399744,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "0bfd11373758caca99ff4f9017d18a28a7592cb861f70524217b07506bfbca58",
+          "data_ptr": 418420544,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 7)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418401024,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "a82d79f077e742b88a8e3516acb21b3a88f16ad0dd03edcdad55f76c2e8ec3e1",
+          "data_ptr": 418435008,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 8)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418401792,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "a6fb1645c796db374494ca46aa45f9d0ed623e8d1ce3648d16259980ce09fad3",
+          "data_ptr": 418449472,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 9)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418330624,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "21d7a6114b288333587104716f853a39f09b93a4b8df385abb6918c49a5e6e5a",
+          "data_ptr": 418463936,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 10)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418404736,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "9c3feb652080dac2586bf168a29a32302b2be49c3c3c4ecd421b174ea1af5087",
+          "data_ptr": 418478400,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 11)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418405248,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "d28275b4afc2e46c94027a70b0f40ca633b2e639c82ad45dcb3a27b2e88f403f",
+          "data_ptr": 418492864,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 12)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418405504,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "554797c3b9df4c725ec1070d83527fcfc468afdef61fc2a5b10fe3598f57ac65",
+          "data_ptr": 418507328,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 13)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418500416,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "79324aef25cae1b84f3334ae3ff058dcef8ffad1fcc95e7d120aeb8aa2d1598a",
+          "data_ptr": 418521792,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 14)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418501376,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "436d5fd4c4b75a107821c52127a61a5163bb029ab263fee5d4a48a00cc69de7f",
+          "data_ptr": 418536256,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 15)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418333056,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "2305ef1d2ce853d058ffb5cf34f2889f25b49678e9e1f44e2f7509bfc77981ba",
+          "data_ptr": 418550720,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 16)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418402624,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "666bf14207e9a1844675848ec57f52c52f69d604b05c3723ba07c22a8bed991d",
+          "data_ptr": 418565184,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 17)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418505280,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "3862d68c5847de501a206b921225cd9b785a4f1f34eb1ad16eabbee6898ecda3",
+          "data_ptr": 418579648,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 18)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418506240,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "9107d275dd44b2457867a00fe248e39c4164ca6be313dfb0bb0430a69cca363e",
+          "data_ptr": 418594112,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 19)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418507072,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "3de9e53a4e57e57110e75dd4464e429d7035bccc9dccf69267168ad1ad21bd19",
+          "data_ptr": 418608576,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 20)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418602368,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "2038a631451b3c8b58a6b21690902759cfd7d818a91219fde09197e7083e92aa",
+          "data_ptr": 418927744,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 21)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418506496,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "e29eb6aeb7bd9244f70ac98c618c6b9c397b75fab483a4b141e49a3bfae9258c",
+          "data_ptr": 418935040,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 22)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 293100928,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "1539f035cc59bbdf42df29d823e97a370f67d17190b7807e57a97fea4c7f60e7",
+          "data_ptr": 418949504,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 23)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418504192,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "847d6f8325119953bf4cc0ab658a3d4ba1b602daeb39ded2bd238a168aa8acd5",
+          "data_ptr": 418963968,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 24)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418504512,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "04ab6ef363d3a3f1aaef9760365763a428842dfd6ee391517a6bdd9ad135d986",
+          "data_ptr": 418978432,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 25)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418605056,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "06d4ecbbea736979e8462de21a4f5f5ed20310439920265254490b26648012c5",
+          "data_ptr": 418992896,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 26)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418505984,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "1b2f1db1968e9ec08b978f539794b0c5f982ea53398ea5cfbad064cc7c3e8a61",
+          "data_ptr": 419007360,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 27)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418505728,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "426983ed0093105aff979fc0380326eab5ca5d5c9984a0373581affecfaf02d8",
+          "data_ptr": 419021824,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 0)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418985664,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "65a797c956aa51094eaba75b70718e216d7bdd3957aff8130836d619670cb28d",
+          "data_ptr": 419643264,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 1)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 419650560,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "3715f11a72ca1b6aea40a521962d10e50243033f44fbbd23cba5ecf9754746f2",
+          "data_ptr": 419029056,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 2)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418603712,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "1bb81eb1ba2036cfe065cdadd299f4caafc6e202c05c7f7b0f11bfb8a006931e",
+          "data_ptr": 419036288,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 3)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418616320,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "c417a58c06b4af73e19992acc72123d2b555f1220cd66d6be11439f6b2281672",
+          "data_ptr": 419043520,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 4)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418617152,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "161006ca698140dcc08a8df0accc2f41f4b17fb7987578b34a40e77467a1d794",
+          "data_ptr": 419050752,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 5)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418607744,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "d0c5c18d5567e14ba52e3ec31e30ab3d36faa3c50dbd7ada8018229022da6d65",
+          "data_ptr": 419057984,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 6)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418617408,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "944bd41a4e610a0392aaea6b9ac8f23442935444ec564005604137c99d2404a8",
+          "data_ptr": 419065216,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 7)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418618944,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "424dc661692abb0642a4f3b920cdebf2b991c5cdeff7169b5428c5ac82e7ee7c",
+          "data_ptr": 419072448,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 8)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418620288,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "4e132b6745d1a045555826f33ef00efa68ad66a2fddd1836e907c052b8b56538",
+          "data_ptr": 419079680,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 9)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418621120,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "eac17ea13d6599b091fe53e3e65f2c864591948a4dbb570726bead5b23dd2b5e",
+          "data_ptr": 419086912,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 10)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418605888,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "f918d0e2e2e396ea2f08d9f8b736c79fa555b8cf8d6f638ef9885f5e861b0fa6",
+          "data_ptr": 419094144,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 11)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418621952,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "de1067e344a2a943c2d24627db87b89062966bc2e93a31fb6c8da1aafe576921",
+          "data_ptr": 419101376,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 12)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 419651136,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "e75d95c60bb4ef34b9f88eac3c22da33553606ca24d50c506c20619c33b2f440",
+          "data_ptr": 419108608,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 13)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418621760,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "1881536dfad406e31252275ac535ee0054d9f2abbb64586f8117303d55d78d5a",
+          "data_ptr": 419115840,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 14)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418621568,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "b9ba0ffe17ff6d5b9f222430435b5ad76bfafb74223f1331a570e43530b2b622",
+          "data_ptr": 419123072,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 15)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418617472,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "75230c09131e07b5e4d58c0cd0fcbb8acbd9f74544a50f29bfaef7462472d432",
+          "data_ptr": 419130304,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 16)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418989312,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "5dcd305cb63f2c32da10cafa86b6007f630ce39c848bfa0e119a195db54bac95",
+          "data_ptr": 419137536,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 17)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418990400,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "795929c862007dbad8ea777b58a677493d1b6fbc2d92100c6cd3ee9f4746d345",
+          "data_ptr": 419144768,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 18)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418990144,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "735179c9af1e8975fe6788544b9ea257f385569c7f5d2ffc4741a56f9d74fae4",
+          "data_ptr": 419152000,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 19)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418619200,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "55fecfdb87b2d470f7232816b8ba79dc218b6d120666df0121001f491f191e08",
+          "data_ptr": 419159232,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 20)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418399104,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "93f88a17a3ef12817e8b23f07dd35cea8deea9ddb18979b221c8dfeada48c17a",
+          "data_ptr": 419166464,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 21)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418943808,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "9aeca94c831ec7ae53f8309bb1fbeb72a42e5afce5a45e6d5c88d3f7637ed55a",
+          "data_ptr": 419173696,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 22)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418986688,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "b8b8847188bc76cb026396ac2b9b5b8de77ef9d6b2826fb5fbcc99d17123b8bf",
+          "data_ptr": 419180928,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 23)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418987328,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "c0e04d7ac6faca2589c038d380be6d11f18523018af6d9fbc5dcfca830fc4416",
+          "data_ptr": 419188160,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 24)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418987648,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "4518826d2cf104094778007149f7cbfc1383ff84b98cac96578e8b76782496bc",
+          "data_ptr": 419195392,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 25)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418429312,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "1669efa7eceaa84cf1046c1c2161639412d58100d0682eead1f176bc1cd64e19",
+          "data_ptr": 419202624,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 26)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418429376,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "4fdd127244c29379ae66686485360f9c524a0df05ab5ad0f30859969491abeb5",
+          "data_ptr": 419209856,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 27)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418430848,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "66941e097c36ac0c502be5fb23979e7894f7a7204517df9f4ecb4be117a15ab8",
+          "data_ptr": 419217088,
+          "storage_offset": 0
+        }
+      ]
+    },
+    "physical_hidden_all_layers": {
+      "(0, 0)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 419000128,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "2819becfc98af197564107ee14097dd027c8a355de1c797ccd69763b9cde5c30",
+          "data_ptr": 3046065984,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 1)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 419014592,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "0a2658e58eb85253f88824568111dbd6927a89131b885b356e55b6fcede49c06",
+          "data_ptr": 3094387520,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 2)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 418355456,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "644882a89593a0b63633abadb671afe0540d79ea0488c7fd9108802326717251",
+          "data_ptr": 3143703680,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 3)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 418340992,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "b45737c0f51ee27e5e9a487e010f32d421000fd17c87a0205e39a14d5c92432d",
+          "data_ptr": 3134160704,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 4)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 418369920,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "78b0f8c2aae772e149b364f742b492f2318582af46419f03af24a9ce1b26f53d",
+          "data_ptr": 3136461696,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 5)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 418442240,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "c633882044e53692a5d19a2125e94ece61c3f97f12e064a565f1578d696f1c29",
+          "data_ptr": 3175493248,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 6)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 418413312,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "949894a263ea4e31d64ebbdc77a811d4552cf93be0b8f122aa2477a9e8bb2e8b",
+          "data_ptr": 3180095232,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 7)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 418456704,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "d8f387b4fed2b1f6e7da480b5b6d0f2d9da487a0859556d8954e9a7c1de0bb84",
+          "data_ptr": 3184697216,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 8)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 418471168,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "091162faa6b0e3f19e7015d0978f38a904c0566d6abace2f2325b7c8a1a4f2a7",
+          "data_ptr": 3186998208,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 9)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 418529024,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "1716c5ac7a1e0700e77983b7ebe63f9200c24de7989bbe369e24f7ef980e6a0e",
+          "data_ptr": 3191600192,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 10)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 418517184,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "f48a350dbeb425dac24b2890e2447638a472aeafaaef908fae411b302806a4a0",
+          "data_ptr": 3196202176,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 11)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 418546176,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "038f41ff10bc505ac947819f4d448dcbdf0cb50e4debda7e8ac7ee1e349aae0c",
+          "data_ptr": 3200804160,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 12)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 418589568,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "e6af78b2d19a296e86d18c7d2bcfbf98cb1794b3c209889284d8ce722a3be959",
+          "data_ptr": 3205406144,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 13)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 418575104,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "44ec75b0fa5dd565a81d6897111eec536a7210ae2d03515817490031195a7740",
+          "data_ptr": 3210008128,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 14)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 418488320,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "4b66f714322a519dee577cf76d48a5a3028dffeeff5229e868ff2b7cc6879338",
+          "data_ptr": 3214610112,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 15)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 418560640,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "9fb384324dd97be3dedc29e92cd6b7ca42338373d1c0f17f555ec283142f3d01",
+          "data_ptr": 3219212096,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 16)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 418973888,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "6307c9d44a2c07d117ca125370ae1f291ce8a62bc887dd06b3b7b7985b57b874",
+          "data_ptr": 3223814080,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 17)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 418387072,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "05437336de97b797e068260e4fd60042d88d9af0bdb3013f92e301d84cfe1e4a",
+          "data_ptr": 3228416064,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 18)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 419224320,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "6a8e341aeb7efd69608f460666c7cfff33bbb33269d568255f67e007a3cc8a7a",
+          "data_ptr": 3233018048,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 19)": [
+        {
+          "shape": [
+            321
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "40ebb4ff888eef1b0ca3cf3bf4487b6bc1fb89cf00f824c36622912a288f1664",
+          "data_ptr": 419229632,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            321,
+            3584
+          ],
+          "stride": [
+            1150464,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "174246c3937031672579bfe06e4af2b63784214c369bbcae1a49860ef0051e44",
+          "data_ptr": 3237620032,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 20)": [
+        {
+          "shape": [
+            65
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "ba82752fbed4bc1cd04daa516a5385220d9e67af692e4948b3d5b0b8aebff7b2",
+          "data_ptr": 3099421184,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            65,
+            3584
+          ],
+          "stride": [
+            232960,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "32735ba99216db482a7c23ceb0de2721b24cde8208863882a5c3aed0165b377e",
+          "data_ptr": 3064474240,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 21)": [
+        {
+          "shape": [
+            65
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "ba82752fbed4bc1cd04daa516a5385220d9e67af692e4948b3d5b0b8aebff7b2",
+          "data_ptr": 3099269824,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            65,
+            3584
+          ],
+          "stride": [
+            232960,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "e8e1956d8822ff0ae87f34edabca7b0659c811d16855729a5c44e846b9145830",
+          "data_ptr": 3065406208,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 22)": [
+        {
+          "shape": [
+            65
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "ba82752fbed4bc1cd04daa516a5385220d9e67af692e4948b3d5b0b8aebff7b2",
+          "data_ptr": 3099276288,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            65,
+            3584
+          ],
+          "stride": [
+            232960,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "9d0bfb1f02e9233409508c9f32f0ed837941d7d2144c9002dcfb569a1a2f54e6",
+          "data_ptr": 3065872192,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 23)": [
+        {
+          "shape": [
+            65
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "ba82752fbed4bc1cd04daa516a5385220d9e67af692e4948b3d5b0b8aebff7b2",
+          "data_ptr": 3099279552,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            65,
+            3584
+          ],
+          "stride": [
+            232960,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "38abd50f2d20f40c5b2a24d9ab0f3767e6b1c1c73cf1fcbe91ddc8ff2e9cd670",
+          "data_ptr": 3080581440,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 24)": [
+        {
+          "shape": [
+            65
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "ba82752fbed4bc1cd04daa516a5385220d9e67af692e4948b3d5b0b8aebff7b2",
+          "data_ptr": 3099283456,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            65,
+            3584
+          ],
+          "stride": [
+            232960,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "eba1bad74978f644856aa881083499f90199b44ee2e71bfaa114e9d8b3a896ff",
+          "data_ptr": 3081047424,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 25)": [
+        {
+          "shape": [
+            65
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "ba82752fbed4bc1cd04daa516a5385220d9e67af692e4948b3d5b0b8aebff7b2",
+          "data_ptr": 3099286208,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            65,
+            3584
+          ],
+          "stride": [
+            232960,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "0ba5db63b38e2715f5372df6525bf4045cd540ccff76c428e10c32d6c85ca65c",
+          "data_ptr": 3081979392,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 26)": [
+        {
+          "shape": [
+            65
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "ba82752fbed4bc1cd04daa516a5385220d9e67af692e4948b3d5b0b8aebff7b2",
+          "data_ptr": 3099290048,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            65,
+            3584
+          ],
+          "stride": [
+            232960,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "4967851ae6f328922e29ac3b252a4bbbaa9d49682ca0083fadcd762dab5007f1",
+          "data_ptr": 3217377088,
+          "storage_offset": 0
+        }
+      ],
+      "(0, 27)": [
+        {
+          "shape": [
+            65
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "ba82752fbed4bc1cd04daa516a5385220d9e67af692e4948b3d5b0b8aebff7b2",
+          "data_ptr": 3098125376,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            65,
+            3584
+          ],
+          "stride": [
+            232960,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "626dd7e51f7d30963b4eb39aee608a90d214c845dea8a671b9c896a8a715fe70",
+          "data_ptr": 3218309056,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 0)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098129152,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "d87cae7b6a387912fbed540a5e4a3845f2f3f8b83ae3fd742850a357ae0cec78",
+          "data_ptr": 3098136576,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 1)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098125952,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "e9e600413e26ddf6e44d7c99084c463b68cf0b9e7659995bbec34a5160663fbc",
+          "data_ptr": 3098151040,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 2)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098128896,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "fccaee58665d06e39c0e5b9463c6e5e539281c3e7470b9fa657d54fab56c6af1",
+          "data_ptr": 3098234048,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 3)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 293101952,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "81ac347b134841cd9f67686378a513f4ef8395409143271ee4f33940fdabce14",
+          "data_ptr": 3098248512,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 4)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098126976,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "efd24f6d5fcafa3879ec7ea88cb59aacd0ece344a5ccb146583438900dc19ee2",
+          "data_ptr": 3098262976,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 5)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098127552,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "3917f4b04745681d39f31ca9c554497ff0f4c396f79b937c59d3c7b24e886202",
+          "data_ptr": 3098277440,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 6)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098133504,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "0bfd11373758caca99ff4f9017d18a28a7592cb861f70524217b07506bfbca58",
+          "data_ptr": 3078147136,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 7)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 479905856,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "a82d79f077e742b88a8e3516acb21b3a88f16ad0dd03edcdad55f76c2e8ec3e1",
+          "data_ptr": 3078154432,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 8)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098130496,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "a6fb1645c796db374494ca46aa45f9d0ed623e8d1ce3648d16259980ce09fad3",
+          "data_ptr": 3078169024,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 9)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098134272,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "21d7a6114b288333587104716f853a39f09b93a4b8df385abb6918c49a5e6e5a",
+          "data_ptr": 3078176320,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 10)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098293248,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "9c3feb652080dac2586bf168a29a32302b2be49c3c3c4ecd421b174ea1af5087",
+          "data_ptr": 3078183616,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 11)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098285440,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "d28275b4afc2e46c94027a70b0f40ca633b2e639c82ad45dcb3a27b2e88f403f",
+          "data_ptr": 3078190912,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 12)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098286720,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "554797c3b9df4c725ec1070d83527fcfc468afdef61fc2a5b10fe3598f57ac65",
+          "data_ptr": 3078198208,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 13)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 479881024,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "79324aef25cae1b84f3334ae3ff058dcef8ffad1fcc95e7d120aeb8aa2d1598a",
+          "data_ptr": 3078205504,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 14)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098288320,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "436d5fd4c4b75a107821c52127a61a5163bb029ab263fee5d4a48a00cc69de7f",
+          "data_ptr": 3078212800,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 15)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418403584,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "2305ef1d2ce853d058ffb5cf34f2889f25b49678e9e1f44e2f7509bfc77981ba",
+          "data_ptr": 3078220096,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 16)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098290944,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "666bf14207e9a1844675848ec57f52c52f69d604b05c3723ba07c22a8bed991d",
+          "data_ptr": 3078227392,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 17)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 418322816,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "3862d68c5847de501a206b921225cd9b785a4f1f34eb1ad16eabbee6898ecda3",
+          "data_ptr": 3078234688,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 18)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098291584,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "9107d275dd44b2457867a00fe248e39c4164ca6be313dfb0bb0430a69cca363e",
+          "data_ptr": 3078241984,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 19)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 419007104,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "3de9e53a4e57e57110e75dd4464e429d7035bccc9dccf69267168ad1ad21bd19",
+          "data_ptr": 3078249280,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 20)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098287424,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "0accae7142703bf0a3e46815997d3e689d38f9c184cf45c4c365e6e4d5493797",
+          "data_ptr": 3078256576,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 21)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098286976,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "05f57bb4d803aa251e5571805f8a5a48755b7816efe02c5f3f1f4b9c4dca2ec0",
+          "data_ptr": 3078263872,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 22)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098230848,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "3436a9d909e8067a267df4dd8e584a3ee8ccff9ccce9548769e17f21f3782837",
+          "data_ptr": 3078271168,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 23)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3078279424,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "3e70874caf6c5fbe3e0bb2e0d2821c47e1bbc8f9b1cc4f28cd0638b76fc9925c",
+          "data_ptr": 3237486784,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 24)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3078278848,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "7a855998ed61ab344f32f929268491e551c140e6c0ebed33a7443f0e48a8d1ac",
+          "data_ptr": 3237494080,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 25)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098134784,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "c42e7db8df8c5551b0b0468973ca37a1cc2a32215c9725d91a3b852ef11b978b",
+          "data_ptr": 3237501376,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 26)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3098291648,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "78f91abe382d9259893f444458f91b98502f26158d5fc6fcbd810eb03a7f2e51",
+          "data_ptr": 3237508672,
+          "storage_offset": 0
+        }
+      ],
+      "(1, 27)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "480f75f6afcb3b47b06b3e665d94ccdae7016b0c458bc2fbc46c4bacb213b58e",
+          "data_ptr": 3078278656,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "0944b6f3dcf37449f8eebe13c11eb5343649fcd54b5abac4f5063704dc7afd2e",
+          "data_ptr": 3237515968,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 0)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3099284288,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "65a797c956aa51094eaba75b70718e216d7bdd3957aff8130836d619670cb28d",
+          "data_ptr": 3237523264,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 1)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3098259008,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "3715f11a72ca1b6aea40a521962d10e50243033f44fbbd23cba5ecf9754746f2",
+          "data_ptr": 3237530560,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 2)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 496296896,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "1bb81eb1ba2036cfe065cdadd299f4caafc6e202c05c7f7b0f11bfb8a006931e",
+          "data_ptr": 3237537856,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 3)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3098134336,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "c417a58c06b4af73e19992acc72123d2b555f1220cd66d6be11439f6b2281672",
+          "data_ptr": 3237545152,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 4)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3098259072,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "161006ca698140dcc08a8df0accc2f41f4b17fb7987578b34a40e77467a1d794",
+          "data_ptr": 3237552448,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 5)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3098259520,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "d0c5c18d5567e14ba52e3ec31e30ab3d36faa3c50dbd7ada8018229022da6d65",
+          "data_ptr": 3237559744,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 6)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3098241344,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "944bd41a4e610a0392aaea6b9ac8f23442935444ec564005604137c99d2404a8",
+          "data_ptr": 3237567040,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 7)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3098127616,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "424dc661692abb0642a4f3b920cdebf2b991c5cdeff7169b5428c5ac82e7ee7c",
+          "data_ptr": 3237574336,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 8)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3098232064,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "4e132b6745d1a045555826f33ef00efa68ad66a2fddd1836e907c052b8b56538",
+          "data_ptr": 3237581632,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 9)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3098259136,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "eac17ea13d6599b091fe53e3e65f2c864591948a4dbb570726bead5b23dd2b5e",
+          "data_ptr": 3237588928,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 10)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3098286400,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "f918d0e2e2e396ea2f08d9f8b736c79fa555b8cf8d6f638ef9885f5e861b0fa6",
+          "data_ptr": 3237596224,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 11)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3099276032,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "de1067e344a2a943c2d24627db87b89062966bc2e93a31fb6c8da1aafe576921",
+          "data_ptr": 3237603520,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 12)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3098262720,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "e75d95c60bb4ef34b9f88eac3c22da33553606ca24d50c506c20619c33b2f440",
+          "data_ptr": 3237610816,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 13)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3237619072,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "1881536dfad406e31252275ac535ee0054d9f2abbb64586f8117303d55d78d5a",
+          "data_ptr": 475428608,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 14)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3098232128,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "b9ba0ffe17ff6d5b9f222430435b5ad76bfafb74223f1331a570e43530b2b622",
+          "data_ptr": 475435904,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 15)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418603776,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "75230c09131e07b5e4d58c0cd0fcbb8acbd9f74544a50f29bfaef7462472d432",
+          "data_ptr": 475443200,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 16)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3098246400,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "5dcd305cb63f2c32da10cafa86b6007f630ce39c848bfa0e119a195db54bac95",
+          "data_ptr": 475450496,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 17)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3098262400,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "795929c862007dbad8ea777b58a677493d1b6fbc2d92100c6cd3ee9f4746d345",
+          "data_ptr": 475457792,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 18)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3098247360,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "735179c9af1e8975fe6788544b9ea257f385569c7f5d2ffc4741a56f9d74fae4",
+          "data_ptr": 475465088,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 19)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3099289792,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "55fecfdb87b2d470f7232816b8ba79dc218b6d120666df0121001f491f191e08",
+          "data_ptr": 475472384,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 20)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3098245504,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "eab3ca3034a34be3b16a22e94a9560964a654a3d2d1e1f0e69ef671f1e042190",
+          "data_ptr": 475479680,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 21)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3099419712,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "9bde8137429307836419fa32c25bdf6e2ae268b97a4a05d508a6a3f1d1adfac8",
+          "data_ptr": 475486976,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 22)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3237619328,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "c75ece54b7f2f7a5d744c841f55019e477f2921c33bfdabd82443ba012e504b8",
+          "data_ptr": 475494272,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 23)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3099273920,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "7d2cc082a30174f2fb7fa6e2a6a1db912093808210d57af9cd04a3136cba7eaf",
+          "data_ptr": 475501568,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 24)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418987904,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "b827053222c73e30b8aaa269e1aa55a49ffc7dbdc234d46cc15f85591f2d2e55",
+          "data_ptr": 475508864,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 25)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418959808,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "f59eec3df1c680ed4b2c245958ccef02c79918f5b40762709f818ce6e2c91106",
+          "data_ptr": 475516160,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 26)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 418329728,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "1eb7771191048383ebeeb632f3dc540e154e6cfc2b33cc3fff2418478c1fe4f7",
+          "data_ptr": 475523456,
+          "storage_offset": 0
+        }
+      ],
+      "(2, 27)": [
+        {
+          "shape": [
+            1
+          ],
+          "stride": [
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.int64",
+          "device": "cpu",
+          "sha256": "5549fba707ce69a4578d5bc3950f9f7fd3aea6c406c8bc013f55950e975980f2",
+          "data_ptr": 3098260160,
+          "storage_offset": 0
+        },
+        {
+          "shape": [
+            1,
+            1,
+            3584
+          ],
+          "stride": [
+            3584,
+            3584,
+            1
+          ],
+          "contiguous": true,
+          "dtype": "torch.bfloat16",
+          "device": "cpu",
+          "sha256": "e4304a67602ad9007983f24139b786e523a56f6ad7ff6d425d1c4c735b657d82",
+          "data_ptr": 475530752,
+          "storage_offset": 0
+        }
+      ]
+    }
+  }
+}

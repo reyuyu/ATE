@@ -1,0 +1,40 @@
+{
+  "status": "PASS",
+  "A1_A3_all_projections_equal": true,
+  "A1_A2_differing_projections": [
+    "k_proj",
+    "v_proj"
+  ],
+  "first_B_divergence": "k_proj",
+  "replay_outputs_strict_match_actual": {
+    "Dense": {
+      "input_norm": true,
+      "q_proj": true,
+      "k_proj": true,
+      "v_proj": true,
+      "o_proj": true,
+      "post_norm": true,
+      "gate_proj": true,
+      "up_proj": true,
+      "down_proj": true,
+      "layer_hidden": true
+    },
+    "Physical": {
+      "input_norm": true,
+      "q_proj": true,
+      "k_proj": true,
+      "v_proj": true,
+      "o_proj": true,
+      "post_norm": true,
+      "gate_proj": true,
+      "up_proj": true,
+      "down_proj": true,
+      "layer_hidden": true
+    }
+  },
+  "same_hidden_norm_inputs_weights": true,
+  "same_text_original_positions": true,
+  "C1_may_run": true,
+  "no_gate_relaxation": true,
+  "audit_capture_correction": "Prior pre-hook captured Dense mask before functional Control hook. Independent replay now applies exact frozen e.edit_mask, proven equal to actual compact shared mask and all native operator outputs. No model mask or algorithm modified."
+}
