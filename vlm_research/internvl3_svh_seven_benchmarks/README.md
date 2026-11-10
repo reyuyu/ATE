@@ -20,3 +20,5 @@ Default storage:
 - Persistent results: /home/featurize/work/ATE-internvl3-svh-seven-benchmarks-3090/vlm_research/results/internvl3_svh_physical_d_seven_benchmarks_3090
 
 Only launch the controller after freezing runtime source fingerprints and checking cpu_tests.json. Resume uses the exact protocol, sample and source bindings; it never silently changes prompts, caps or the physical algorithm.
+
+Preflight requests are deterministic members of the frozen split. Their predictions are reused in the full split only when protocol, runtime source and input bindings match exactly; they are not counted twice. Smoke generations are excluded from benchmark scores. Output-form pauses during formal generation preserve both paired predictions and never produce a full-split score.

@@ -1,0 +1,88 @@
+{
+  "status": "PASS",
+  "benchmarks": {
+    "GQA": {
+      "N": 12578,
+      "unique_image_SHA256": 398,
+      "sample_binding_recomputed": true
+    },
+    "ScienceQA-IMG": {
+      "N": 2017,
+      "unique_image_SHA256": 1799,
+      "sample_binding_recomputed": true,
+      "official_image_test_ID_set_exact": true
+    },
+    "TextVQA": {
+      "N": 5000,
+      "unique_image_SHA256": 3166,
+      "sample_binding_recomputed": true,
+      "ten_answers_all_5000": true
+    },
+    "POPE": {
+      "N": 9000,
+      "unique_image_SHA256": 500,
+      "sample_binding_recomputed": true,
+      "strategies": {
+        "random": 3000,
+        "popular": 3000,
+        "adversarial": 3000
+      },
+      "Gold": {
+        "yes": 4500,
+        "no": 4500
+      }
+    },
+    "MME": {
+      "N": 2374,
+      "unique_image_SHA256": 1177,
+      "sample_binding_recomputed": true,
+      "paired_images": 1187,
+      "categories": {
+        "code_reasoning": 40,
+        "artwork": 400,
+        "celebrity": 340,
+        "numerical_calculation": 40,
+        "text_translation": 40,
+        "count": 60,
+        "color": 60,
+        "commonsense_reasoning": 140,
+        "position": 60,
+        "OCR": 40,
+        "landmark": 400,
+        "scene": 400,
+        "existence": 60,
+        "posters": 294
+      }
+    },
+    "MMBench": {
+      "N": 4377,
+      "unique_image_SHA256": 1132,
+      "sample_binding_recomputed": true,
+      "circular_groups": 1176,
+      "published_rotations": {
+        "2": 89,
+        "3": 149,
+        "4": 938
+      },
+      "aggregation": "all published rows in each group; no synthetic rotations"
+    },
+    "OCRBench": {
+      "N": 1000,
+      "unique_image_SHA256": 930,
+      "sample_binding_recomputed": true,
+      "categories": {
+        "Regular Text Recognition": 50,
+        "Irregular Text Recognition": 50,
+        "Artistic Text Recognition": 50,
+        "Handwriting Recognition": 50,
+        "Digit String Recognition": 50,
+        "Non-Semantic Text Recognition": 50,
+        "Scene Text-centric VQA": 200,
+        "Doc-oriented VQA": 200,
+        "Key Information Extraction": 200,
+        "Handwritten Mathematical Expression Recognition": 100
+      }
+    }
+  },
+  "no_GPU_or_full_image_hash_scan": true
+}

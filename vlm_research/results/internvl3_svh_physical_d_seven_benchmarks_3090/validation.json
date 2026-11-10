@@ -1,7 +1,8 @@
 {
   "status": "PARTIAL",
   "completed_benchmarks": [
-    "ScienceQA-IMG"
+    "ScienceQA-IMG",
+    "POPE"
   ],
   "benchmarks": {
     "GQA": {
@@ -41,6 +42,21 @@
       "all_raw_predictions_rescored_twice": true,
       "scorers": {
         "scalar_rescoring": "PASS"
+      },
+      "all_input_bindings_equal": true,
+      "no_large_output_discarded": true,
+      "numerical_status": "FAILED_WITH_PREVIOUSLY_AUTHORIZED_WAIVER"
+    },
+    "POPE": {
+      "status": "COMPLETE",
+      "expected_questions": 9000,
+      "saved_generation_rows": 18000,
+      "paired_questions": 9000,
+      "full_split_score_reported": true,
+      "all_raw_predictions_rescored_twice": true,
+      "scorers": {
+        "scalar_rescoring": "PASS",
+        "official_POPE_confusion_and_F1": "PASS"
       },
       "all_input_bindings_equal": true,
       "no_large_output_discarded": true,
@@ -1467,10 +1483,10 @@
     },
     "POPE": {
       "benchmark": "POPE",
-      "status": "READY_PREFLIGHT",
-      "updated_utc": "2026-11-10T03:07:48Z",
-      "questions": 9000,
-      "preflight": 24
+      "status": "GENERATION_COMPLETE",
+      "updated_utc": "2026-11-10T04:34:45Z",
+      "complete_questions": 9000,
+      "generation_rows": 18000
     },
     "MME": {
       "benchmark": "MME",

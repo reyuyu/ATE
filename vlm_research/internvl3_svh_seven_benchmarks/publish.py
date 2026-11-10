@@ -33,6 +33,8 @@ def main(label):
     for p in list((RUN/"checkpoints").glob("*.sqlite"))+[p for p in RUN.glob("*.log") if not p.name.startswith("controller")]:
         rel=Path("server_raw")/p.name;h=copy_verified(p,PERSIST/rel)
         raw.append({"ssd_path":str(p),"persistent_path":str(PERSIST/rel),"bytes":p.stat().st_size,"sha256":h,"uploaded":False,"reason":"Raw resumable SQLite/checkpoint or detailed log; light predictions and input/prompt manifests are uploaded separately."})
+    snapshot_receipt=OUT/"checkpoint_snapshot_manifest.json"
+    if snapshot_receipt.exists():raw.extend(readj(snapshot_receipt).values())
     files=[]
     for p in (RUN/"code"/PKG).iterdir():
         if p.is_file() and (p.suffix==".py" or p.name in ("README.md",".gitignore")):

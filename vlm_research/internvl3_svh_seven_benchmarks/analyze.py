@@ -128,6 +128,18 @@ def analyze_one(bench):
             rs=[r for r in paired if r["category"]==cat]
             subgroups.append({"benchmark":bench,"category":cat,"N":len(rs),"native_correct_or_soft_sum":sum(r["native_score"] for r in rs),"physical_correct_or_soft_sum":sum(r["physical_score"] for r in rs),"delta_pp":100*sum(r["physical_score"]-r["native_score"] for r in rs)/len(rs),"note":"MME category raw official scores in main metric; this row describes question-level answers only." if bench=="MME" else ""})
         csvwrite(out/"category_diagnostics.csv",subgroups)
+        if bench=="MME":
+            category_points=[]
+            for cat in PERCEPTION+COGNITION:
+                rs=[r for r in paired if r["category"]==cat];by_image=collections.defaultdict(list)
+                for r in rs:by_image[r["group"]].append(r)
+                points={}
+                for prefix in ["native","physical"]:
+                    accuracy=sum(r[prefix+"_score"] for r in rs)/len(rs)
+                    both=sum(all(r[prefix+"_score"]==1 for r in group) for group in by_image.values())/len(by_image)
+                    points[prefix]=100*(accuracy+both)
+                category_points.append({"category":cat,"questions":len(rs),"image_pairs":len(by_image),"native_points":points["native"],"physical_points":points["physical"],"delta_raw_points":points["physical"]-points["native"]})
+            csvwrite(out/"mme_category_scores.csv",category_points)
         csv_gz(out/"harm_cases.csv.gz",[{k:r[k] for k in ["question_id","image_sha256","question","gold","category","native_text","physical_text","native_score","physical_score"]} for r in paired if r["physical_score"]<r["native_score"]])
         status="COMPLETE"
     else:
@@ -183,7 +195,7 @@ def aggregate():
         lines+=["","## 输出异常","全部原始异常和评分见 output_anomalies.csv。以下仅列前20条诊断，不删除其原始预测。",""]
         for r in anomalies_all[:20]:lines.append(f'- {r["benchmark"]} / {r["question_id"]} / {r["method"]}: {r["flags"]}; 原文：{r["text"]}')
     lines+=["","主标签：ATE_SVH_1TILE_SCORER_ALIGNED。不是 InternVL 作者完整排行榜配置；固定 1 tile、256 视觉 Token，与多图块、CoT、作者 max_new_tokens 等设置存在差异。MMBench 为 EN Dev20230712 Circular，采用官方 exact_matching，不调用 LLM judge。TextVQA 为 image-only，保留全部十答案共识软评分。MME 保留已知历史图片 SHA 差异，报告 Perception/Cognition 原始积分。","",
-    "数值状态保持 FAILED_WITH_PREVIOUSLY_AUTHORIZED_WAIVER，不宣称 NUMERICAL_PASS。Physical-D 核心来自 e288eee271b7aeb64e5df59783d3201bb2a6b313，SHA256 不变。Native/No-op/官方 Chat 严格一致及物理结构检查独立记录在各任务 smoke_validation.json。","",
+    "Native 保留原生答案读图；Physical-D 同时包含答案禁图、L20视觉退出、L2–L5答案Attention跳算。因此配对差值是联合策略效果，不能归因于单一机制。数值状态保持 FAILED_WITH_PREVIOUSLY_AUTHORIZED_WAIVER，不宣称 NUMERICAL_PASS。Physical-D 核心来自 e288eee271b7aeb64e5df59783d3201bb2a6b313，SHA256 不变。Native/No-op/官方 Chat 严格一致及物理结构检查独立记录在各任务 smoke_validation.json。","",
     "任务安全上限：POPE 8；MME/GQA/ScienceQA/MMBench 16；TextVQA 32；OCRBench 128。Greedy、B1、正常 EOS、每次全新 Cache。预检及正式异常记录完整保留；未通过长度门槛的任务暂停，不将子集成绩写成全集成绩。","",
     "95%CI 为固定 seed=20261110、20,000 次 Image SHA256 整簇配对 Bootstrap 的普通区间，未作多重比较校正，不证明等价。OCRBench 使用固定1000题尺度的簇重采样均值；MME 每次重采样重新计算各类 acc+acc_plus；Circular 按完整发布题组聚合。不同原生单位不平均。","",
     "每个任务的逐题完整答案、Token IDs、Gold、输入绑定和分数见对应 per_question.csv.gz；原始 SQLite 检查点保留在服务器 SSD，并经哈希校验同步持久化目录。图像读取时校验实际 SHA，未重新下载模型或图片。","",
@@ -210,7 +222,7 @@ def plot(summary):
         vals=[float(r["native_score"]),float(r["physical_score"])];ax.barh(["Native","Physical-D"],vals,color=["#607d8b","#e87838"]);ax.invert_yaxis();ax.set_title(r["benchmark"]+" "+(r["subset"] if r["benchmark"]=="MME" else "")+" ("+r["units"]+")")
         for j,v in enumerate(vals):ax.text(v,j,f" {v:.2f}",va="center")
         ax.set_xlim(0,max(vals)*1.2);ax.spines[["top","right"]].set_visible(False)
-    fig.suptitle("ATE single-tile quality; numerical waiver retained",fontsize=11);fig.tight_layout();fig.savefig(OUT/"figure_quality.png",dpi=160);fig.savefig(OUT/"figure_quality.pdf");plt.close(fig)
+    fig.suptitle(f"Complete paired splits: {len({r['benchmark'] for r in rows})}/7; single tile; numerical waiver",fontsize=11);fig.tight_layout();fig.savefig(OUT/"figure_quality.png",dpi=160);fig.savefig(OUT/"figure_quality.pdf");plt.close(fig)
 if __name__=="__main__":
     import argparse
     a=argparse.ArgumentParser();a.add_argument("--benchmark");args=a.parse_args()
