@@ -43,6 +43,8 @@ def aggregate():
     report=OUT/"report_zh.md";text=report.read_text()
     text=text.replace("https://github.com/reyuyu/ATE/tree/codex/internvl3-svh-physical-d-seven-benchmarks-3090","https://github.com/reyuyu/ATE/tree/"+BRANCH)
     text=text.replace("预检及正式异常记录完整保留；未通过长度门槛的任务暂停，不将子集成绩写成全集成绩。","v1预检、暂停和异常原文均保留在history/stop_policy_v1及父Commit。本轮stop_policy_v2仅改变继续执行策略：单题解释、重复、错误/解析失败或原上限截断均保留并计分，不据此停止全集；结构性错误、NaN/Inf/OOM、哈希不符和冻结系统性监测规则仍硬停止。")
+    text=text.replace("异常输出项按门槛暂停并保留原文。","单题异常保留、计分并继续；仅结构错误或预先冻结的系统性异常触发停止。")
+    text=text.replace("| MME Perception | 2374 |","| MME Perception | 2114 |").replace("| MME Cognition | 2374 |","| MME Cognition | 260 |")
     prefix="# stop_policy_v2 补完：原推理协议不变\n\n"
     prefix+="父结果Commit："+PARENT+"。本分支保留原protocol.json字节及全部原始暂停证据；v2不改变模型、Prompt、图片、评分器、原生EOS、生成上限或Physical-D。原四项全量结果按父Commit直接复用，不重新推理或重计分。\n\n"
     text=prefix+text
@@ -54,7 +56,7 @@ def aggregate():
     notes+=["","原父版本暂停样本（GQA无关解释、TextVQA长书名截断、OCRBench重复标题）均原样保留且纳入本轮评分，没有重生成、跳过或修正。TextVQA始终为32 Token；任何未来64/128 Token版本须独立完整运行，不能混入本轮。",
     "OUTPUT_ANOMALY完整清单见各任务及根目录output_anomalies_v2.csv.gz：包括解释、重复、截断、零分/解析失败及部分TextVQA软评分。错误与部分分数只用于质量审计，不用于停止判断，也不改变官方评分。",
     "系统性监测按100题/方法的非重叠窗口：连续两个窗口空输出≥10%、重复≥10%、其他行为格式异常≥25%或截断≥50%时暂停；连续10题空输出/重复也暂停。阈值在新增GPU生成前冻结，不使用Gold或Accuracy来决定停止、不自动调整。逐窗口及长度P50/P95/最大值见各任务output_monitor_v2.json。",
-    "MME表中N=2374指完整Benchmark输入总数；Perception实际2114条、Cognition260条，分别按官方原始积分计算。MMBench为4377条已发布旋转记录、1176个Circular组。原四项汇总与逐题产物的SHA256保持父版本一致。",
+    "MME完整Benchmark为2374条；表中Perception为2114条、Cognition为260条，分别按官方原始积分计算。MMBench为4377条已发布旋转记录、1176个Circular组。原四项汇总与逐题产物的SHA256保持父版本一致。",
     "数值状态仍是FAILED_WITH_PREVIOUSLY_AUTHORIZED_WAIVER，Native/No-op及新结构性错误仍为硬门槛。所有比较仍是单图块ATE协议，不能冒充作者完整多图块排行榜结果。"]
     report.write_text(text+"\n"+"\n".join(notes)+"\n")
 if __name__=="__main__":
