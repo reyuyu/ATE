@@ -1,0 +1,23 @@
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:09,  3.07s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:06<00:06,  3.38s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:11<00:03,  3.85s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:13<00:00,  3.38s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:13<00:00,  3.44s/it]
+diagnosis historical_06905471 Native [2152, 151645]
+diagnosis historical_06905471 Noop [2152, 151645]
+diagnosis historical_06905471 Dense [2152, 151645]
+diagnosis historical_06905471 Original [2152, 151645]
+diagnosis historical_06905471 Physical [2152, 151645]
+The following generation flags are not valid and may be ignored: ['temperature', 'top_p', 'top_k']. Set `TRANSFORMERS_VERBOSITY=info` for more details.
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/qwen3vl-svh-physical-numerical-repair/vlm_research/qwen3vl_svh_numerical_repair/run.py", line 382, in <module>
+    cpu_prepare() if args.mode == "prepare" else gpu_run(args.mode == "verify")
+                                                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/qwen3vl-svh-physical-numerical-repair/vlm_research/qwen3vl_svh_numerical_repair/run.py", line 355, in gpu_run
+    differences, first = trace_diff(traces["Dense"], traces[name])
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/qwen3vl-svh-physical-numerical-repair/vlm_research/qwen3vl_svh_numerical_repair/run.py", line 263, in trace_diff
+    r = dict(step=key[0], layer=key[1], component=key[2], **metrics(xx, yy))
+                                                            ^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/qwen3vl-svh-physical-numerical-repair/vlm_research/qwen3vl_svh_numerical_repair/run.py", line 60, in metrics
+    assert not bool((bad & (a != b)).any()), "Nonfinite mismatch"
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: Nonfinite mismatch

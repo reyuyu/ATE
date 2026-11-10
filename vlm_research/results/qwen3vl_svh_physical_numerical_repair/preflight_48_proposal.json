@@ -1,0 +1,18 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_STARTED",
+  "prerequisite": "PASS_FIXED_SMOKE_ONLY; does not certify all benchmark shapes",
+  "protocol": "ATE unified HF Plan B; NOT author official reproduction",
+  "tasks": ["GQA", "ScienceQA-IMG", "TextVQA", "POPE", "MME", "MMBench"],
+  "target_per_task": 48,
+  "target_total": 288,
+  "selection": "Freeze input-hash selection within visual-token-length strata before inference; preserve full MME image pairs and MMBench Circular groups; if exact48 is incompatible with group integrity, declare actual count before execution, do not split groups",
+  "coverage": ["short", "median", "long", "near fixed Plan-B pixel ceiling", "multi-token and genuine multi-step Decode"],
+  "conditions": ["Native/No-op correctness", "SVH Dense numerical reference", "repaired Physical"],
+  "gates": {"mean_abs": 0.02, "max_abs": 0.5, "top1_equal": true, "complete_generated_tokens_equal": true, "native_noop": "torch.equal"},
+  "checks": ["original image/input hashes", "dynamic image positions", "mRoPE", "DeepStack", "Prefill R and P-1 mapping", "actual Decode", "all MLP", "no persistent original image KV", "zero forbidden probability", "independent cache", "hook cleanup"],
+  "stop_on": ["OOM", "nonfinite", "numerical gate failure", "unsupported fixed Lt algorithm", "incorrect dataset/gold mapping"],
+  "no_silent_changes": ["pixel budget", "dtype", "mask", "algorithm", "tolerances", "scorers"],
+  "MMBench": "Plan-B exact_matching/Circular diagnostic only, not author judge",
+  "automatic_full_benchmark_launch": false,
+  "executed_predictions": 0
+}
