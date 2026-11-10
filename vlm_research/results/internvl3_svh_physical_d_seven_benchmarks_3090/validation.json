@@ -2,7 +2,8 @@
   "status": "PARTIAL",
   "completed_benchmarks": [
     "ScienceQA-IMG",
-    "POPE"
+    "POPE",
+    "MME"
   ],
   "benchmarks": {
     "GQA": {
@@ -57,6 +58,30 @@
       "scorers": {
         "scalar_rescoring": "PASS",
         "official_POPE_confusion_and_F1": "PASS"
+      },
+      "all_input_bindings_equal": true,
+      "no_large_output_discarded": true,
+      "numerical_status": "FAILED_WITH_PREVIOUSLY_AUTHORIZED_WAIVER"
+    },
+    "MME": {
+      "status": "COMPLETE",
+      "expected_questions": 2374,
+      "saved_generation_rows": 4748,
+      "paired_questions": 2374,
+      "full_split_score_reported": true,
+      "all_raw_predictions_rescored_twice": true,
+      "scorers": {
+        "scalar_rescoring": "PASS",
+        "independent_official_MME_integer_aggregation": {
+          "Perception": {
+            "native": 1695.8653461384552,
+            "physical": 1699.253401360544
+          },
+          "Cognition": {
+            "native": 625.7142857142858,
+            "physical": 615.7142857142858
+          }
+        }
       },
       "all_input_bindings_equal": true,
       "no_large_output_discarded": true,
@@ -1490,10 +1515,10 @@
     },
     "MME": {
       "benchmark": "MME",
-      "status": "READY_PREFLIGHT",
-      "updated_utc": "2026-11-10T03:07:53Z",
-      "questions": 2374,
-      "preflight": 42
+      "status": "GENERATION_COMPLETE",
+      "updated_utc": "2026-11-10T04:52:47Z",
+      "complete_questions": 2374,
+      "generation_rows": 4748
     },
     "MMBench": {
       "benchmark": "MMBench",

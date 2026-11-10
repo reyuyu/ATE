@@ -1,10 +1,10 @@
 # InternVL3-SVH 七项 Benchmark 单图块质量评测
 
-Physical-D 相比同卡 Native 的已完成全集差值：ScienceQA-IMG -0.050 pp；POPE -0.222 pp。未完成项不推断得分或损失。
+Physical-D 相比同卡 Native 的已完成全集差值：ScienceQA-IMG -0.050 pp；POPE -0.222 pp；MME Perception +3.388 raw_points；MME Cognition -10.000 raw_points。未完成项不推断得分或损失。
 
-普通95%CI整体低于0的项目：暂无；区间包含0的项目：ScienceQA-IMG、POPE。区间包含0不能解释为证明等价。固定单图块协议与作者多图块/完整推理配方不等同，异常输出项按门槛暂停并保留原文。
+普通95%CI整体低于0的项目：暂无；区间包含0的项目：ScienceQA-IMG、POPE、MME、MME。区间包含0不能解释为证明等价。固定单图块协议与作者多图块/完整推理配方不等同，异常输出项按门槛暂停并保留原文。
 
-当前已完整完成 2/7 项。只有 COMPLETE 行为全集正式分数；其余不推断缺失分数。
+当前已完整完成 3/7 项。只有 COMPLETE 行为全集正式分数；其余不推断缺失分数。
 
 | Benchmark | N | Native | Physical-D | Δ | 95% CI | 单位 / 状态 |
 |---|---:|---:|---:|---:|---|---|
@@ -12,7 +12,8 @@ Physical-D 相比同卡 Native 的已完成全集差值：ScienceQA-IMG -0.050 p
 | ScienceQA-IMG  | 2017 | 97.521 | 97.471 | -0.050 | [-0.289, +0.151] | pp / COMPLETE |
 | TextVQA | — | — | — | — | — | PAUSED_OUTPUT_FORMAL |
 | POPE  | 9000 | 90.444 | 90.222 | -0.222 | [-0.533, +0.078] | pp / COMPLETE |
-| MME | — | — | — | — | — | READY_PREFLIGHT |
+| MME Perception | 2374 | 1695.865 | 1699.253 | +3.388 | [-14.110, +21.826] | raw_points / COMPLETE |
+| MME Cognition | 2374 | 625.714 | 615.714 | -10.000 | [-28.125, +0.000] | raw_points / COMPLETE |
 | MMBench | — | — | — | — | — | READY_PREFLIGHT |
 | OCRBench | — | — | — | — | — | READY_PREFLIGHT |
 
@@ -40,6 +41,8 @@ Physical-D 相比同卡 Native 的已完成全集差值：ScienceQA-IMG -0.050 p
 | TextVQA / physical_d | 358 | 6.42 | 4.0 | 14.0 | 21 | 100.00 | 0.00 | 0.00 |
 | POPE / native | 9000 | 2.83 | 3.0 | 3.0 | 3 | 100.00 | 0.00 | 0.00 |
 | POPE / physical_d | 9000 | 2.88 | 3.0 | 3.0 | 3 | 100.00 | 0.00 | 0.00 |
+| MME / native | 2374 | 2.97 | 3.0 | 3.0 | 3 | 100.00 | 0.00 | 0.00 |
+| MME / physical_d | 2374 | 2.98 | 3.0 | 3.0 | 3 | 100.00 | 0.00 | 0.00 |
 
 ## 输出异常
 全部原始异常和评分见 output_anomalies.csv。以下仅列前20条诊断，不删除其原始预测。
@@ -65,7 +68,7 @@ Native 保留原生答案读图；Physical-D 同时包含答案禁图、L20视�
 | ScienceQA-IMG | GENERATION_COMPLETE:  |
 | TextVQA | PAUSED_OUTPUT_FORMAL:  |
 | POPE | GENERATION_COMPLETE:  |
-| MME | READY_PREFLIGHT:  |
+| MME | GENERATION_COMPLETE:  |
 | MMBench | READY_PREFLIGHT:  |
 | OCRBench | READY_PREFLIGHT:  |
 
