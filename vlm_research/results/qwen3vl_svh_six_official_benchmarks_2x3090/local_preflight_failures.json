@@ -1,0 +1,24 @@
+{
+  "scope": "CPU-only audit tooling; no model loaded and no GPU requests",
+  "failures": [
+    {
+      "stage": "first resource inventory",
+      "error": "nvidia-smi output contained a non-UTF8 byte and strict UTF8 decoding failed",
+      "resolution": "Collect raw subprocess bytes, preserve raw SHA256, decode non-UTF8 bytes with backslashreplace",
+      "regression_test": "test_non_utf8_resource_output_is_preserved"
+    },
+    {
+      "stage": "second CPU freeze attempt",
+      "error": "Audit output root used parents[2] rather than parents[1]; historical manifest lookup failed",
+      "resolution": "Correct root to vlm_research and move only this task's newly generated source snapshots to the requested output directory",
+      "regression_test": "test_output_is_under_vlm_research"
+    },
+    {
+      "stage": "first report plot",
+      "error": "No matplotlib in the existing Qwen inference environment",
+      "resolution": "Use the existing LLaVA CPU plotting interpreter; do not install or modify shared environments"
+    }
+  ],
+  "historical_numerical_gate_changed": false,
+  "gpu_model_or_algorithm_changes": false
+}

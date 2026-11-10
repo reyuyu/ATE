@@ -1,0 +1,36 @@
+{
+  "status": "NO_GPU_ALLOCATED_BY_THIS_TASK",
+  "collected_at": "2026-11-10T12:42:44.802476+00:00",
+  "gpu_requests": 0,
+  "model_loaded": false,
+  "cuda_started": false,
+  "task_owned_gpu_processes": [],
+  "selected_gpu_uuids": [
+    "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+    "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+  ],
+  "other_processes_untouched": true,
+  "gpus": {
+    "command": [
+      "nvidia-smi",
+      "--query-gpu=index,uuid,memory.used,utilization.gpu",
+      "--format=csv,noheader"
+    ],
+    "returncode": 0,
+    "stdout": "0, GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 4524 MiB, 99 %\n1, GPU-b08489af-0a8a-eb48-55ba-8346733af417, 15364 MiB, 34 %\n2, GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6, 18110 MiB, 0 %\n3, GPU-96bc853f-ceea-2404-c704-c48a3d1ca185, 5 MiB, 0 %\n",
+    "stderr": "",
+    "stdout_raw_sha256": "cb444aab40c51b2a1df43683d554555ff87a3a7f0127a326612732bba1610f19"
+  },
+  "processes": {
+    "command": [
+      "nvidia-smi",
+      "--query-compute-apps=gpu_uuid,pid,process_name,used_memory",
+      "--format=csv,noheader"
+    ],
+    "returncode": 0,
+    "stdout": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 2134375, python, 4514 MiB\nGPU-b08489af-0a8a-eb48-55ba-8346733af417, 2209227, /data/lk/深度学习/.envs/ate-vlm-research/bin/python, 15354 MiB\nGPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6, 2255753, python, 18098 MiB\n",
+    "stderr": "",
+    "stdout_raw_sha256": "88a538b04c03517ea35b21844aaab0fab91fcc007139441657b76694f6df4239"
+  },
+  "note": "This task never loaded a model. Foreign GPU allocations are recorded, not terminated."
+}

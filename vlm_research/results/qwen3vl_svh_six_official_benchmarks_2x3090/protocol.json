@@ -1,0 +1,82 @@
+{
+  "status": "BLOCKED_AUTHOR_PROTOCOL",
+  "additional_blocker": "BLOCKED_SVH_OFFICIAL_RUNTIME_PORT",
+  "data_status": "INVENTORY_ONLY",
+  "generation_count": 0,
+  "author_recipe_verified_complete": [],
+  "model_revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "base": "7e18895a6ccd57c4cb3aaedd5d512789e7467b59",
+  "methods": [
+    "Native Full",
+    "Qwen-SVH Physical-Original"
+  ],
+  "conditions": {
+    "writer_layers": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "physical_exit_before": 22,
+    "answer_skip_layers": [
+      1,
+      2,
+      3,
+      4,
+      5,
+      6
+    ],
+    "answer_direct_image_access": false
+  },
+  "environment_modified": false,
+  "gpu_execution_mode": "NOT_FROZEN_P0_BLOCKED",
+  "source_runtime_port_missing": true,
+  "deadline_or_budget_reset": false,
+  "historical_results_reused": false,
+  "sampling_overridden": false,
+  "gates": [
+    "P0 author recipe",
+    "P1 shared official runtime",
+    "P2 worst input",
+    "P3 48-sample output audit",
+    "P4 full evaluation"
+  ],
+  "p0": {
+    "status": "BLOCKED_AUTHOR_PROTOCOL",
+    "missing": [
+      "framework_commit",
+      "adapter",
+      "task_prompt",
+      "vision_budget",
+      "runtime_version",
+      "attention_backend",
+      "sampling",
+      "effective_eos",
+      "max_new_tokens",
+      "scorer",
+      "judge_policy"
+    ]
+  },
+  "model_binding_passed": true,
+  "no_model_or_dataset_download": true,
+  "no_gpu_inference": true,
+  "created_at": "2026-11-10T12:30:56.234589+00:00"
+}

@@ -1,0 +1,19 @@
+{
+  "status": "BLOCKED_SVH_OFFICIAL_RUNTIME_PORT",
+  "engine": "/data/lk/ATE-worktrees/qwen3vl-svh-six-official-benchmarks-2x3090/vlm_research/qwen3vl_c3v2_physical/engine.py",
+  "engine_sha256": "a719b590975e6282ad983fcd27b80f2e031c302caf47eaf54d50e1f3e36cca77",
+  "base": "7e18895a6ccd57c4cb3aaedd5d512789e7467b59",
+  "hf_dependencies": [
+    "from transformers.models.qwen3_vl import modeling_qwen3_vl as qmodel",
+    "from transformers.modeling_outputs import BaseModelOutputWithPast",
+    "from transformers.cache_utils import DynamicCache",
+    "from transformers.masking_utils import create_causal_mask"
+  ],
+  "uses_hf_eager_attention": true,
+  "uses_hf_dynamic_cache": true,
+  "vllm_port_verified": false,
+  "tp2_port_verified": false,
+  "known_dense_physical_numeric_gate": "NUMERICAL_EQUIVALENCE_FAILED",
+  "native_svh_different_runtime_comparison_allowed": false,
+  "new_gpu_requests": 0
+}

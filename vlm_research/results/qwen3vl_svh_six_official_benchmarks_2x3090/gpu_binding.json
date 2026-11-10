@@ -1,0 +1,139 @@
+{
+  "collected_at": "2026-11-10T12:30:28.585085+00:00",
+  "hostname": {
+    "command": [
+      "hostname"
+    ],
+    "returncode": 0,
+    "stdout": "user-Super-Server\n",
+    "stderr": "",
+    "stdout_raw_sha256": "3db4c2d1fa30680755ff1b82d03931fd61912755160f9f34cc83952b97afd6b2"
+  },
+  "gpus": {
+    "command": [
+      "nvidia-smi",
+      "--query-gpu=index,name,uuid,pci.bus_id,driver_version,memory.total,memory.used,memory.free,utilization.gpu",
+      "--format=csv,noheader"
+    ],
+    "returncode": 0,
+    "stdout": "0, NVIDIA GeForce RTX 3090, GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 00000000:81:00.0, 560.35.03, 24576 MiB, 4524 MiB, 19631 MiB, 99 %\n1, NVIDIA GeForce RTX 3090, GPU-b08489af-0a8a-eb48-55ba-8346733af417, 00000000:82:00.0, 560.35.03, 24576 MiB, 15364 MiB, 8791 MiB, 21 %\n2, NVIDIA GeForce RTX 3090, GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6, 00000000:C1:00.0, 560.35.03, 24576 MiB, 5 MiB, 24151 MiB, 0 %\n3, NVIDIA GeForce RTX 3090, GPU-96bc853f-ceea-2404-c704-c48a3d1ca185, 00000000:C2:00.0, 560.35.03, 24576 MiB, 5 MiB, 24151 MiB, 0 %\n",
+    "stderr": "",
+    "stdout_raw_sha256": "0c2208b677825486bdbc79e7c9bc679d48811851f295d8ec874ee56e5b99c9ae"
+  },
+  "compute_processes": {
+    "command": [
+      "nvidia-smi",
+      "--query-compute-apps=gpu_uuid,pid,process_name,used_memory",
+      "--format=csv,noheader"
+    ],
+    "returncode": 0,
+    "stdout": "GPU-a63c6362-dcfd-4a26-c44b-014b40127c89, 2134375, python, 4514 MiB\nGPU-b08489af-0a8a-eb48-55ba-8346733af417, 2209227, /data/lk/深度学习/.envs/ate-vlm-research/bin/python, 15354 MiB\n",
+    "stderr": "",
+    "stdout_raw_sha256": "9580127c936352d92fa75e73c506b09aba73afcefaf1d827b64e7ace0016e0c7"
+  },
+  "nvidia_smi": {
+    "command": [
+      "nvidia-smi"
+    ],
+    "returncode": 0,
+    "stdout": "Tue Nov 10 20:30:28 2026       \n+-----------------------------------------------------------------------------------------+\n| NVIDIA-SMI 560.35.03              Driver Version: 560.35.03      CUDA Version: 12.6     |\n|-----------------------------------------+------------------------+----------------------+\n| GPU  Name                 Persistence-M | Bus-Id          Disp.A | Volatile Uncorr. ECC |\n| Fan  Temp   Perf          Pwr:Usage/Cap |           Memory-Usage | GPU-Util  Compute M. |\n|                                         |                        |               MIG M. |\n|=========================================+========================+======================|\n|   0  NVIDIA GeForce RTX 3090        Off |   00000000:81:00.0 Off |                  N/A |\n| 73%   64C    P0            334W /  350W |    4524MiB /  24576MiB |     99%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n|   1  NVIDIA GeForce RTX 3090        Off |   00000000:82:00.0 Off |                  N/A |\n| 40%   52C    P0            193W /  350W |   15364MiB /  24576MiB |     12%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n|   2  NVIDIA GeForce RTX 3090        Off |   00000000:C1:00.0 Off |                  N/A |\n| 38%   27C    P8             30W /  350W |       5MiB /  24576MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n|   3  NVIDIA GeForce RTX 3090        Off |   00000000:C2:00.0 Off |                  N/A |\n| 36%   28C    P8             28W /  350W |       5MiB /  24576MiB |      0%      Default |\n|                                         |                        |                  N/A |\n+-----------------------------------------+------------------------+----------------------+\n                                                                                         \n+-----------------------------------------------------------------------------------------+\n| Processes:                                                                              |\n|  GPU   GI   CI        PID   Type   Process name                              GPU Memory |\n|        ID   ID                                                               Usage      |\n|=========================================================================================|\n|    0   N/A  N/A   2134375      C   python                                       4514MiB |\n|    1   N/A  N/A   2209227      C   ...\\xa0/.envs/ate-vlm-research/bin/python      15354MiB |\n+-----------------------------------------------------------------------------------------+\n",
+    "stderr": "",
+    "stdout_raw_sha256": "bdb685a2b50c5e3ed39c1d274ad63874bd37a5174f0241c03c69ad4fe47f978b"
+  },
+  "memory": {
+    "command": [
+      "free",
+      "-b"
+    ],
+    "returncode": 0,
+    "stdout": "              total        used        free      shared  buff/cache   available\nMem:    270077440000 18875191296 10325319680   363511808 240876929024 248454021120\nSwap:    2147479552  1327259648   820219904\n",
+    "stderr": "",
+    "stdout_raw_sha256": "61834db72c6a165851d91d72344106a393c474cf73ca74945ae0264a21cdf1b7"
+  },
+  "disk": {
+    "command": [
+      "df",
+      "-hT",
+      "/data"
+    ],
+    "returncode": 0,
+    "stdout": "Filesystem     Type  Size  Used Avail Use% Mounted on\n/dev/nvme0n1   ext4  3.5T  3.3T  6.7G 100% /data\n",
+    "stderr": "",
+    "stdout_raw_sha256": "7985970e5a4fbd34a4ecc4b99a39d9e4a46768cdff9192b4de46d663d1189b98"
+  },
+  "parents": [
+    {
+      "command": [
+        "findmnt",
+        "-T",
+        "/data/lk/ATE-worktrees/qwen3vl-svh-six-official-benchmarks-2x3090/vlm_research/results/qwen3vl_svh_six_official_benchmarks_2x3090",
+        "-o",
+        "TARGET,SOURCE,FSTYPE,OPTIONS"
+      ],
+      "returncode": 0,
+      "stdout": "TARGET SOURCE       FSTYPE OPTIONS\n/data  /dev/nvme0n1 ext4   rw,relatime,stripe=32\n",
+      "stderr": "",
+      "stdout_raw_sha256": "3cb69cd6be84a3e1d0dc900c45473a52758ad04fe750984bbbece9179339377a"
+    },
+    {
+      "command": [
+        "findmnt",
+        "-T",
+        "/data/lk/ATE-worktrees/qwen3vl-svh-six-official-benchmarks-2x3090/vlm_research",
+        "-o",
+        "TARGET,SOURCE,FSTYPE,OPTIONS"
+      ],
+      "returncode": 0,
+      "stdout": "TARGET SOURCE       FSTYPE OPTIONS\n/data  /dev/nvme0n1 ext4   rw,relatime,stripe=32\n",
+      "stderr": "",
+      "stdout_raw_sha256": "3cb69cd6be84a3e1d0dc900c45473a52758ad04fe750984bbbece9179339377a"
+    },
+    {
+      "command": [
+        "findmnt",
+        "-T",
+        "/data/lk",
+        "-o",
+        "TARGET,SOURCE,FSTYPE,OPTIONS"
+      ],
+      "returncode": 0,
+      "stdout": "TARGET SOURCE       FSTYPE OPTIONS\n/data  /dev/nvme0n1 ext4   rw,relatime,stripe=32\n",
+      "stderr": "",
+      "stdout_raw_sha256": "3cb69cd6be84a3e1d0dc900c45473a52758ad04fe750984bbbece9179339377a"
+    },
+    {
+      "command": [
+        "findmnt",
+        "-T",
+        "/data",
+        "-o",
+        "TARGET,SOURCE,FSTYPE,OPTIONS"
+      ],
+      "returncode": 0,
+      "stdout": "TARGET SOURCE       FSTYPE OPTIONS\n/data  /dev/nvme0n1 ext4   rw,relatime,stripe=32\n",
+      "stderr": "",
+      "stdout_raw_sha256": "3cb69cd6be84a3e1d0dc900c45473a52758ad04fe750984bbbece9179339377a"
+    },
+    {
+      "command": [
+        "findmnt",
+        "-T",
+        "/",
+        "-o",
+        "TARGET,SOURCE,FSTYPE,OPTIONS"
+      ],
+      "returncode": 0,
+      "stdout": "TARGET SOURCE    FSTYPE OPTIONS\n/      /dev/sda2 ext4   rw,relatime,errors=remount-ro\n",
+      "stderr": "",
+      "stdout_raw_sha256": "cf2d831a99f4966e966424c2da4c249347d00a425e88346020b9918bf165b9a8"
+    }
+  ],
+  "selected_gpu_uuids": [
+    "GPU-a50cb044-679e-9a05-557d-4ddbd19ac3c6",
+    "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+  ],
+  "execution_mode": "NOT_FROZEN_P0_BLOCKED",
+  "gpu_requests_started": 0,
+  "model_loaded": false,
+  "cuda_started": false
+}
