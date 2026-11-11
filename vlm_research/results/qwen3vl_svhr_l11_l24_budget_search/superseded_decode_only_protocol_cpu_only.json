@@ -1,0 +1,209 @@
+{
+  "answer_skip_layers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "attention": "eager",
+  "auxiliary_not_ranked": true,
+  "auxiliary_prefill_layers": [
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21,
+    22,
+    23,
+    24
+  ],
+  "auxiliary_view": "FIXED_P1_L11_L24_COMPARE_DECODE_MARGINAL",
+  "bootstrap": {
+    "cluster": "Image SHA, complete Circular groups",
+    "repeats": 20000,
+    "seed": 20261111
+  },
+  "candidate_source": "Predeclared windows and budgets; bounded adaptive deletion/sparse search after Discovery only",
+  "discovery_ranking": "TextVQA first; protection tasks reject extra point loss >1pp vs frozen SVH for efficiency",
+  "disk_min_free_bytes": 2147483648,
+  "dtype": "bfloat16",
+  "efficiency_order": "Measured fixed32 E2E; if indistinguishable compare KV then peak VRAM then K",
+  "exit_before": 22,
+  "final_selection": "Best TextVQA; BestEfficiency within1pp of best and protection-loss<=1pp; MinK best K<=4",
+  "frozen_model_files": {
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/chat_template.json": {
+      "sha256": "5c72a170d2a4a1a3bc5adad2e689ae28138a9700e5b8c96c0266331e86c0acce",
+      "stat": [
+        5499,
+        1793506566841109404
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/config.json": {
+      "sha256": "5cd452860dc1e9c29dd71cc3cef7f39b338b7a40793f7a260655c2d3568f3661",
+      "stat": [
+        1474,
+        1793506567345093987
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/generation_config.json": {
+      "sha256": "8469742d1fce0de951c8909b26a2c0c0d8490837ce476efb114da9e0cefc4d44",
+      "stat": [
+        269,
+        1793506568053072352
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/merges.txt": {
+      "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+      "stat": [
+        1671839,
+        1793506572796928366
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model-00001-of-00004.safetensors": {
+      "sha256": "d5d0aef0eb170fc7453a296c43c0849a56f510555d3588e4fd662bb35490aefa",
+      "stat": [
+        4902275944,
+        1793507485703333525
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model-00002-of-00004.safetensors": {
+      "sha256": "8be88fb5501e4d5719a6d4cc212e6a13480330e74f3e8c77daa1a68f199106b5",
+      "stat": [
+        4915962496,
+        1793507405127335593
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model-00003-of-00004.safetensors": {
+      "sha256": "83de00eafe6e0d57ccd009dbcf71c9974d74df2f016c27afb7e95aafd16b2192",
+      "stat": [
+        4999831048,
+        1793507672591612406
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model-00004-of-00004.safetensors": {
+      "sha256": "0a88b98e9f96270973f567e6a2c103ede6ccdf915ca3075e21c755604d0377a5",
+      "stat": [
+        2716270024,
+        1793507453035324170
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model.safetensors.index.json": {
+      "sha256": "520b2e05079402e9468a8701d03d1154d14b2599593afb6effa7fb60c1bff070",
+      "stat": [
+        67759,
+        1793506573856896414
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/preprocessor_config.json": {
+      "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+      "stat": [
+        390,
+        1793506574588874400
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/tokenizer.json": {
+      "sha256": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7",
+      "stat": [
+        7032403,
+        1793506588268469949
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/tokenizer_config.json": {
+      "sha256": "c2da771801886ad9ae98181793ffd3dfb7f1af30f6f7c6a4e15d7dbba52e2399",
+      "stat": [
+        10868,
+        1793506589072446584
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/video_preprocessor_config.json": {
+      "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+      "stat": [
+        385,
+        1793506589780426055
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/vocab.json": {
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "stat": [
+        2776833,
+        1793506600652115108
+      ]
+    }
+  },
+  "gpu_uuids": [
+    "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+    "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+  ],
+  "heldout": "Used once after final configurations frozen; historical cohort, not independent external validation",
+  "historical_strict_status": "FAIL_RETAINED",
+  "main_candidates_max": 40,
+  "main_view": "EXACT_FROZEN_SVH_PREFIX_DECODE_ONLY_REACCESS",
+  "manifest_sha256": "a4c9ed9bc7b452828ffa45f9890f6a88033b285dafb77ac5ab797feafa2d7908",
+  "mode": "B_ATE_UNIFIED_HF_NOT_AUTHOR_OFFICIAL",
+  "model": "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "name": "QWEN3VL_SVHR_LOCAL_BUDGET_SEARCH",
+  "notes": [
+    "P1 stays image-OFF in main view",
+    "Dense search caches real visual KV but uses frozen physical prefix",
+    "Original prefix computed once per image request and forked into disjoint per-condition caches",
+    "All temporary QK/AV padding and sidecar construction charged in physical timing"
+  ],
+  "output_max_bytes": 1572864000,
+  "prior_known_images": 1766,
+  "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "seed": 20261111,
+  "sources": {
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_c3v2_numerical_debug/repair.py": "86286c6507d74c9ed4f9877a404023bbd005b7713555abb98a3384786bee5fb9",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_c3v2_numerical_repair2/repair.py": "89d4654a856aac2aa7b9f0e54e9c89f53f06a6ad0cb9fa87e7c760730980ef87",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_c3v2_physical/engine.py": "a719b590975e6282ad983fcd27b80f2e031c302caf47eaf54d50e1f3e36cca77",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_svh_l28_repair/engine.py": "7c79eb6a468f7d36a27b969a69cd314d33d39b647d962d6a9c41cf21d37e5f9a",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_svh_numerical_repair/engine.py": "8461abb1f9899bc5ed7400bd98bd321cc301703e84dabecf7fc88e451ecb96dd",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_svh_preflight48/freeze.py": "58ce8c0018488be43a12503268d1f8951034f91ee168efd2c5b28bd28d4297cd",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_svh_preflight48/score.py": "843591c726e7ea4b96eadd4e792968cc9e75322eb33e59d311607f1f1d8da93b",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_svh_qk_repair/engine.py": "8ba0e033da3bb04795025114723992634149b48dd0a5a40b3f5a24b7b88e8ecb",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_svh_sqa7908_repair/engine.py": "aa05647bc4832bccae22ab371b18f3f41cd979f439ffb010787723c6c812a506",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_svhr_search/physical.py": "97abb61c0739c045e00c8cdf4e62a9e89e3461d84fe682419aed50d2dadba070",
+    "/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/common.py": "30a279b0c5d9b28462e9a082f81c67b7d2e72f6a6a31b3a7ada7cd5888bb6c08",
+    "/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/engine.py": "6f881d1d7a04749577cf7bc22bbadd7cb5c9e22f4cc87f081fa02559955c4cd8",
+    "/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/freeze.py": "d55900636d0f9bfbd956826c917f3b0838291a36eb06a650212b0de5c3f3e6b2",
+    "/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/tests.py": "0a340cb91633b7a6f056cfbfa5be5d4b8317082e483b1c07f490040d8e82d59d",
+    "/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/worker.py": "fcd3a67bb7edf6b72806679ad2e6f3ea4b9521048c30bc70d3297082b182af34"
+  },
+  "validation_selection": "3-5 Discovery finalists frozen before Validation; no returning to search",
+  "visual_pixels": [
+    65536,
+    2097152
+  ],
+  "writer_layers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ]
+}
