@@ -1,0 +1,31 @@
+--- parent_dynamic_cutoff_engine.py
++++ terminal_cutoff28_engine.py
+@@ -1,4 +1,6 @@
+-"""Dynamic physical cutoff and selective image-KV retention; frozen R boundary L20.
++"""Dynamic cutoff including terminal cutoff28 afterL27, before final norm.
++Parent core is unchanged; one terminal-exit branch is added in this independent file.
++Dynamic physical cutoff and selective image-KV retention; frozen R boundary L20.
+ Derived from the frozen InternVL V2 engine; old files are never modified.
+ Physical lifetime checks use cutoff, while permission checks keep the constant20.
+ Physical selective image-KV retention, plus independent Dense-R reference.
+@@ -180,6 +182,11 @@
+    else:
+     att,_=layer.self_attn(hidden_states=norm,attention_mask=m,position_ids=pos.unsqueeze(0),past_key_value=cache,use_cache=True,cache_position=pos,position_embeddings=rope,output_attentions=False)
+    h=residual+att;h=h+layer.mlp(layer.post_attention_layernorm(h));self.capture(i,h,pos)
++  if self.prefill and self.cutoff==len(decoder.layers):
++   # Terminal exit: every language block has consumed real image Hidden.
++   # Final RMSNorm is tokenwise; remove visual rows only afterL27.
++   before=h.shape[1];h=h.index_select(1,text)
++   if self.audit:self.exits.append(dict(before=before,after=h.shape[1],removed=before-h.shape[1]))
+   h=decoder.norm(h);out=BaseModelOutputWithPast(last_hidden_state=h,past_key_values=cache)
+   return out if return_dict else out.to_tuple()
+  def validate(self,steps):
+@@ -203,7 +210,7 @@
+      expected=[] if i in SKIP else list(range(self.roles["n"])) if i in self.K else [p for p in range(self.roles["n"]) if p not in self.roles["image"]]
+      if i not in SKIP:expected+=list(range(self.roles["n"],self.roles["n"]+steps-1))
+      assert positions==expected,("PERSISTENT_KV_ORIGINAL_POSITIONS",i)
+-   result.update(cutoff=self.cutoff,R_image_permission_boundary=20,MLP_input_rows=self.mlp,norm_input_rows=self.norms,persistent_KV_original_positions=self.cache.original_positions if self.physical else None,reaccess_layers=sorted(self.K),allowed_image_probability_samples=self.allowed_image_probabilities,blocked_image_probability_samples=self.blocked,R_image_probability_samples=self.R_image_probabilities,transient_zero_padding_skipped_prefill_and_nonK_deep_decode=self.physical,attention_reduction_width_preserved_with_zero_scratch=self.physical,non_target_queries_preserved=True)
++   result.update(cutoff=self.cutoff,exit_stage="after_L27_before_final_norm" if self.cutoff==28 else "before_L"+str(self.cutoff),prefill_visual_rows_removed_from_language_blocks=256*(28-self.cutoff),R_image_permission_boundary=20,MLP_input_rows=self.mlp,norm_input_rows=self.norms,persistent_KV_original_positions=self.cache.original_positions if self.physical else None,reaccess_layers=sorted(self.K),allowed_image_probability_samples=self.allowed_image_probabilities,blocked_image_probability_samples=self.blocked,R_image_probability_samples=self.R_image_probabilities,transient_zero_padding_skipped_prefill_and_nonK_deep_decode=self.physical,attention_reduction_width_preserved_with_zero_scratch=self.physical,non_target_queries_preserved=True)
+   return result
+ @torch.inference_mode()
+ def generate(model,tok,ready,name,K,max_tokens=16,fixed=False,audit=False,timed=False,forced=None,physical=True,cutoff=20):
