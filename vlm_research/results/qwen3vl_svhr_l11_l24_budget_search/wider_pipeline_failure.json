@@ -1,0 +1,5 @@
+{
+  "error": "AssertionError('WORKER_FAILURE')",
+  "time": 1794419725.959123,
+  "traceback": "Traceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/wider_reaccess.py\", line 190, in run\n    submit(14,'Held-out',['K0']+final)\n  File \"/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/wider_reaccess.py\", line 129, in submit\n    wait_for([path.with_name(path.stem+f'.done{i}') for i in (0,1)])\n  File \"/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/wider_reaccess.py\", line 117, in wait_for\n    assert not any((OUT/f'failure{i}.json').exists() for i in (0,1)),'WORKER_FAILURE'\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: WORKER_FAILURE\n"
+}

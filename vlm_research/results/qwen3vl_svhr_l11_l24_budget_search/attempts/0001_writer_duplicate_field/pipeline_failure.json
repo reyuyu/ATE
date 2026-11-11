@@ -1,0 +1,5 @@
+{
+  "error": "AssertionError(('WORKER_EXIT', [None, 1]))",
+  "time": 1794406732.376375,
+  "traceback": "Traceback (most recent call last):\n  File \"/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/pipeline.py\", line 44, in main\n    ranking=submit(1,'Discovery',['K0','R14','R11','R8','R6','R4','R2','R1'])\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/pipeline.py\", line 30, in submit\n    wait_for([path.with_name(path.stem+f'.done{i}') for i in [0,1]])\n  File \"/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/pipeline.py\", line 19, in wait_for\n    assert all(j.poll() is None for j in jobs),('WORKER_EXIT',[j.poll() for j in jobs])\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ('WORKER_EXIT', [None, 1])\n"
+}
