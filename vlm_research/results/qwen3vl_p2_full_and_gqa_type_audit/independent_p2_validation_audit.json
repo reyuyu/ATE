@@ -1,0 +1,49 @@
+{
+  "discovery_validation_image_disjoint": true,
+  "exact_prompt_reconstruction": true,
+  "generated_token_decode_matches": true,
+  "identical_native_svh_scores": 701,
+  "identical_native_svh_token_sequences": 701,
+  "no_gold_lecture_solution_render_fields": true,
+  "old_strict_numerical_status": "FAIL_RETAINED",
+  "raw_choice_rotation_mapping": true,
+  "scores": [
+    {
+      "accuracy": 98.66666666666667,
+      "benchmark": "ScienceQA-IMG",
+      "condition": "Native",
+      "correct": 148.0,
+      "n": 150
+    },
+    {
+      "accuracy": 98.66666666666667,
+      "benchmark": "ScienceQA-IMG",
+      "condition": "SVH",
+      "correct": 148.0,
+      "n": 150
+    },
+    {
+      "accuracy": 85.33333333333333,
+      "benchmark": "MMBench",
+      "condition": "Native",
+      "correct": 128.0,
+      "n": 150
+    },
+    {
+      "accuracy": 85.33333333333333,
+      "benchmark": "MMBench",
+      "condition": "SVH",
+      "correct": 128.0,
+      "n": 150
+    }
+  ],
+  "separate_native_svh_calls_verified": true,
+  "source_files": {
+    "/data/lk/ATE-benchmarks-20261105/datasets/MMBench/mmbench_dev_20230712.tsv": "52d45f29876e56138d3d4feb169dc9a7323f6ed2ee3f439ae7e4af94192b3324",
+    "/data/lk/ATE-resources/benchmarks/phase4_0/sources/scienceqa/data/scienceqa/problems.json": "4d9b598da966d9736dd79e430a97da861a2216aeb7483a5092350e823ab20ce7",
+    "/data/lk/ATE-worktrees/qwen3vl-short-answer-prompt-ablation/run_prompts.py": "30efccf3cc2351a731dbb104a3d6ebcee2be2ac4b826e4932a9007a6b1f65cc4",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_overnight/engine.py": "69d5227160679ff2345e311eeb7e5428fee603c6e579788a5c2d982f592d2449"
+  },
+  "status": "PASS_INDEPENDENT_P2_VALIDATION_AUDIT",
+  "validation_rows": 702
+}
