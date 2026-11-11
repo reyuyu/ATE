@@ -41,7 +41,7 @@ def freeze():
         source_commit=subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip(),
         previous_result_commit='b0bc419ddf7dca0a50a68f84e5602be07ed09bf0',
         storage='FULL_FUNCTIONAL_REFERENCE_NOT_A_PHYSICAL_SPEED_TEST', performance='NOT_PLANNED', time=time.time())
-    for path in [ROOT/'l22_l35.py', ROOT/'l22_l35_tests.py', ROOT/'cpu_checks.py',
+    for path in [ROOT/'l22_l35.py', ROOT/'l22_l35_tests.py', ROOT/'l22_l35_cpu.py',
                  OLD_ROOT/'cpu_cache_checks.py', config_path]:
         p['source_sha256'][str(path)] = sha(path)
     write(OUT / 'protocol.json', p)
