@@ -1,0 +1,27 @@
+{
+  "status": "PASS_COMPLETENESS_STRUCTURAL_AND_SCORING",
+  "numerical_status": "EXPLORATORY_QUALITY_WITH_NUMERICAL_WAIVER",
+  "historical_numerical_status": "NUMERICAL_EQUIVALENCE_FAILED",
+  "all_960_record_checksums_verified": true,
+  "quality_records": 864,
+  "new_formal_quality": 352,
+  "reused_quality": 512,
+  "speed_formal_requests": 96,
+  "independent_official_scores_all_equal": true,
+  "all_26880_layer_layouts_verified": true,
+  "actual_KV_live_and_storage_verified": true,
+  "input_source_protocol_hashes_verified": true,
+  "Native_NoOp_strict_equal": true,
+  "main_unique_images": 128,
+  "all_source_sha256_unchanged": true,
+  "model_loads": 1,
+  "GPU_released": true,
+  "limitations": [
+    "historical same-question reuse across explicitly authorized different GPU",
+    "128 historical questions are NOT independent Holdout",
+    "BF16 Dense/Physical numerical equivalence NOT passed",
+    "unadjusted exploratory 95% CI; multiple comparisons",
+    "speed 8 images x3 not full benchmark",
+    "scratch retains attention reduction width; cache savings do not equal FLOPs savings"
+  ]
+}
