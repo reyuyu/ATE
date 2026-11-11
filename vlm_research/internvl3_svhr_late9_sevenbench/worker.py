@@ -18,7 +18,8 @@ from vlm_research.internvl3_svh_r_terminal_windows_textvqa import engine as late
 def configure(uuid):
     assert os.environ.get("CUDA_VISIBLE_DEVICES") == uuid
     assert torch.cuda.device_count() == 1
-    assert str(torch.cuda.get_device_properties(0).uuid) == uuid
+    actual = "GPU-" + str(torch.cuda.get_device_properties(0).uuid).removeprefix("GPU-")
+    assert actual == uuid, ("CUDA_UUID_MISMATCH", actual, uuid)
     assert "3090" in torch.cuda.get_device_name(0)
     processes = subprocess.check_output(["nvidia-smi", "--query-compute-apps=gpu_uuid,pid,process_name", "--format=csv,noheader"], text=True)
     others = [line for line in processes.splitlines() if uuid in line and int(line.split(",")[1]) != os.getpid()]
