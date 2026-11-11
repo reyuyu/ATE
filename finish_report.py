@@ -39,7 +39,8 @@ def main():
                 r=json.loads(path.read_text())
                 assert not Path('/proc/'+str(r['pid'])).exists(),('Own worker still exists',r)
                 assert str(r['pid']) not in [line.split(',')[-1].strip() for line in apps.splitlines()]
-                assert r['allocated']==0 and r['reserved']==0
+                # The saved counters precede process exit; the live resource gate is PID/context disappearance.
+                r=dict(r,post_exit_process_absent=True,pre_exit_allocator_nonzero=bool(r['allocated'] or r['reserved']))
                 release.append(r)
     write(OUT/'gpu_release_audit.json',dict(status='PASS_OWN_PROCESSES_RELEASED',workers=release,
         final_compute_processes=apps,final_gpu_sample=subprocess.check_output(['nvidia-smi','--query-gpu=index,uuid,memory.used,utilization.gpu','--format=csv'],text=True),
@@ -53,7 +54,8 @@ def main():
         score=scored(row,r['text'],r['truncated'])
         assert score['score']==r['scoring']['score']
         pp[row['key']][r['condition']]=dict(image_sha256=row['image_sha256'],score=score['score'],
-            diagnostic=score.get('diagnostic_score',score['score']),circular_group=row.get('circular_group'))
+            diagnostic=score.get('diagnostic_score',score['score']),circular_group=row.get('circular_group'),
+            generated_tokens=r['generated_tokens'],e2e_ms=r['e2e_ms'])
     background=[]
     for task in TASKS:
         for condition in ['Native','SVH']:
@@ -68,7 +70,8 @@ def main():
                 values=[float(all(v)) for v in groups.values()]
                 diagnostic=values
             background.append(dict(benchmark=task,condition=condition,protocol='Original P0 only; NOT same-prompt P2 comparison',
-                n=len(values),accuracy=100*sum(values)/len(values),diagnostic_accuracy=100*sum(diagnostic)/len(diagnostic)))
+                n=len(values),accuracy=100*sum(values)/len(values),diagnostic_accuracy=100*sum(diagnostic)/len(diagnostic),
+                mean_generated_tokens=sum(r['generated_tokens'] for r in pool)/len(pool)))
     table(OUT/'p0_background_only.csv',background)
     scores=read_csv('p2_paired_comparisons.csv')
     results=[]
@@ -115,10 +118,30 @@ def main():
             diag.append(dict(metric=r['metric'],native=float(r['native_acc']),svh=float(r['svh_acc']),delta=float(r['delta_pp'])))
     lines+=markdown(diag,[('metric','评分'),('native','Native %'),('svh','SVH %'),('delta','Δpp')])
     lines+=['','以下P0只供不同Prompt协议的历史背景；不把P2-SVH对P0-Native当主配对方法差：','']
-    lines+=markdown(background,[('benchmark','任务'),('condition','条件'),('n','题/组'),('accuracy','P0严格 %'),('diagnostic_accuracy','P0诊断 %')])
+    lines+=markdown(background,[('benchmark','任务'),('condition','条件'),('n','题/组'),('accuracy','P0严格 %'),('diagnostic_accuracy','P0诊断 %'),('mean_generated_tokens','P0均生成Token')])
     lines+=['','### 输出长度、异常与时延','',
         '全量每请求的平均/P50/P95生成Token、E2E、TTFT、TPOT、EOS、截断、空答案及解析失败见`p2_output_length_and_latency.csv`；答案字母分布见`p2_letter_distribution.csv`。E2E计时为已有执行器的Vision+语言计算边界，不含图片读取/Processor，不能冒称完整服务端端到端。',
+        '生成Token统计包含EOS；常见的2 Token序列是一个选项字母加EOS，不是两个答案字母。正式评分仍用自然生成的完整文本，不从Gold或候选LogP取答案。',
         '固定32 Token性能仅严格复用上一轮完全相同代码、P2输入绑定、模型和视觉预算的独立小型计时探针：每任务2个输入、每输入每方法3次正式重复。原始日志、来源路径与哈希绑定保留，不称为本轮全量固定32测速。它与自然EOS全量每题计时分列；不把回答从几十Token变成一个字母带来的时延下降称为SVH算子加速。',
+        '']
+    timing=read_csv('p2_output_length_and_latency.csv')
+    short=[]
+    fixed=[]
+    for task in TASKS:
+        for cond in ['Native','SVH']:
+            block={r['metric']:r for r in timing if r['benchmark']==task and r['condition']==cond and r['cohort']=='P2_full_natural_EOS'}
+            tok=block['generated_tokens']
+            short.append(dict(task=task,condition=cond,tokens=float(tok['mean']),tokens_p50=float(tok['p50']),tokens_p95=float(tok['p95']),
+                e2e=float(block['e2e_ms']['mean']),ttft=float(block['ttft_ms']['mean']),tpot=float(block['decode_ms_per_token']['mean']),
+                eos_pct=100*float(tok['eos_rate']),truncated=int(tok['truncated']),empty=int(tok['empty']),parse_failed=int(tok['parse_failed'])))
+        block={r['condition']:r for r in timing if r['benchmark']==task and r['metric']=='e2e_ms' and r['cohort'].startswith('AUDITED_PRIOR_P2_FIXED32')}
+        fixed.append(dict(task=task,native=float(block['Native']['mean']),svh=float(block['SVH']['mean']),
+            native_over_svh=float(block['Native']['mean'])/float(block['SVH']['mean'])))
+    lines+=markdown(short,[('task','任务'),('condition','方法'),('tokens','均Token'),('tokens_p50','P50'),('tokens_p95','P95'),
+        ('e2e','E2E ms'),('ttft','TTFT ms'),('tpot','TPOT ms'),('eos_pct','EOS %'),('truncated','截断'),('empty','空答'),('parse_failed','解析失败')])
+    lines+=['','历史同P2固定32探针（不是新增全量测速）：','']
+    lines+=markdown(fixed,[('task','任务'),('native','Native E2E ms'),('svh','SVH E2E ms'),('native_over_svh','Native/SVH倍率')])
+    lines+=['','倍率低于1表示SVH在该固定Token小样本中更慢。不能从自然EOS输出变短或KV减少推导SVH本体加速。',
         '','## 二、GQA12578官方题型归因','',
         f"原始Checkpoint独立重评分：Native {gqa['native']:.5f}%，SVH {gqa['svh']:.5f}%，Δ={gqa['delta_pp']:+.5f}pp；原对→错{gqa['harms']}题，原错→对{gqa['rescues']}题。共有{gqa['image_clusters']}个图片SHA簇（不是12,578张独立图片），所有本地图像文件SHA均核对，问题/Gold/Prompt及两方法输入绑定完全匹配。官方types覆盖100%，UNKNOWN=0。",'']
     group_rows=[]
@@ -159,6 +182,7 @@ def main():
         '历史严格Dense/Physical数值状态仍为**FAIL_RETAINED**；本轮双卡Smoke仅确认Native/No-op严格torch.equal、SVH重复前向一致、冻结结构/位置/MLP/独立Cache/Hook/输入/权重审计正常。本轮质量成功不能补判严格数值等价。方案B为ATE统一HF协议，不是作者官方协议复现；方案A继续BLOCKED。',
         '全量运行与历史记录全部只读继承；只新增独立工作树文件，未改主实验Prompt/Checkpoint/SVH算法/共享环境，未推送GitHub。为了读取25MB历史Parquet，复用已有video-model环境中的PyArrow子进程，未安装或修改Qwen环境；初次CPU缺少PyArrow的日志原样保留。',
         'GPU1/GPU3各自常驻一份模型，按图片分片，同图规范记录Native/SVH均来自同一物理卡。4道混合复用/新增图簇中的Validation题预先按UUID规则补跑8次，旧记录保留，规范结果不重复计数。GPU0/2外部任务不触碰。任务进程已退出，GPU释放审计见`gpu_release_audit.json`。',
+        '进程finally内保存的allocator计数仍有约8MiB，原样保留；资源释放的最终依据是进程退出后PID/compute context消失及nvidia-smi回到约5MiB显示基线，不把退出前计数伪写成0。首次报告打包脚本对此误用断言，诊断日志同样保留；没有GPU生成失败或OOM。',
         '所有模型、图片和旧大数组均共享只读，没有复制。本任务压缩检查点和报告使用独立300MiB输出上限、512MiB磁盘最低余量，不改主实验原2GiB保护。',
         '','复现命令（从本工作树执行；正式已有结果应先执行只读审计，不重复生成）：','```bash',
         'CUDA_VISIBLE_DEVICES=\"\" PYTHONDONTWRITEBYTECODE=1 /data/lk/深度学习/.envs/ate-qwen3vl/bin/python -m unittest -v test_full test_analysis',

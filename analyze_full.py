@@ -9,6 +9,9 @@ def main():
     p=check()
     rows=json.loads((OUT/'sample_manifest.json').read_text())
     index={r['key']:r for r in rows}
+    image_files={r['image_path']:r['image_sha256'] for r in rows}
+    for path,expected in image_files.items():
+        assert sha(path)==expected,('Final actual image SHA mismatch',path)
     records={}
     bindings={}
     for shard in [0,1]:
@@ -23,15 +26,21 @@ def main():
         assert key not in records and index[r['key']]['reuse_validation']
         records[key]=r
     aligned=0
+    alignment_changes=[]
     for shard in [0,1]:
         if (OUT/f'aligned{shard}.sqlite').exists():
             for key,r in read_store(OUT/f'aligned{shard}.sqlite'):
                 assert key in records and records[key]['source']=='AUDITED_PRIOR_VALIDATION'
                 assert index[r['key']]['shard']==shard and r['gpu_uuid']==UUIDS[shard]
                 assert r['input_binding_sha256']==records[key]['input_binding_sha256']
+                alignment_changes.append(dict(key=key,condition=r['condition'],old_gpu=records[key]['gpu_uuid'],new_gpu=r['gpu_uuid'],
+                    old_text=records[key]['text'],new_text=r['text'],old_score=records[key]['score'],new_score=r['score'],
+                    token_ids_identical=records[key]['token_ids']==r['token_ids'],
+                    input_binding_sha256=r['input_binding_sha256'],selection='Frozen GPU-only rule, not score-based'))
                 records[key]=r
                 aligned+=1
     assert aligned==json.loads((OUT/'hardware_alignment_plan.json').read_text())['extra_generations']
+    table(OUT/'hardware_alignment_changes.csv',alignment_changes)
     old_bindings={}
     for shard in [0,1]:
         old_bindings.update(dict(read_store(OLD/f'bindings{shard}.sqlite')))
@@ -46,6 +55,7 @@ def main():
     pairs=defaultdict(dict)
     outputs=[]
     for key,r in records.items():
+        assert key==r['key']+'|'+r['condition']
         row=index[r['key']]
         if r.get('state','COMPLETE')!='COMPLETE':
             continue
@@ -174,6 +184,7 @@ def main():
         new_predictions=sum(r['source'] in ['NEW_GENERATION','REALIGNED_VALIDATION_NEW_GENERATION'] for r in records.values() if r.get('state','COMPLETE')=='COMPLETE'),
         same_image_methods_on_same_gpu=True,hardware_realigned_predictions=aligned,
         all_records_independently_rescored=True,all_generated_token_ids_decoded=True,all_prompt_bindings_verified=True,
+        actual_image_files_sha256_verified=len(image_files),
         sources_unchanged=bool(check()),old_dense_physical_gate='FAIL_RETAINED',author_official=False,
         cpu_audit=json.loads((OUT/'independent_p2_validation_audit.json').read_text())['status'])
     write(OUT/'p2_completion.json',validation)
