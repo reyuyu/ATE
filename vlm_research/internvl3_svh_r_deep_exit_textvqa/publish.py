@@ -29,24 +29,31 @@ def main():
     assert ("-----BEGIN "+kind+" PRIVATE KEY-----").encode() not in b
    assert not re.search(rb"(?:gh[pousr]_[A-Za-z0-9]{25,}|hf_[A-Za-z0-9]{25,})",b)
  git("add","-f","--",*paths)
- staged=git("diff","--cached","--name-only").splitlines();assert staged and set(staged)<=set(paths)
+ staged=git("diff","--cached","--name-only").splitlines();assert set(staged)<=set(paths)
  assert not any(p.startswith("main/") for p in staged)
- git("-c","user.name=Codex","-c","user.email=codex@openai.com","commit","-m","Add InternVL3 deep visual reaccess TextVQA experiment and audited evidence")
+ if staged:git("-c","user.name=Codex","-c","user.email=codex@openai.com","commit","-m","Add InternVL3 deep visual reaccess TextVQA experiment and audited evidence")
  commit=git("rev-parse","HEAD")
  receipt_data=dict(status="LOCAL_COMMIT_CREATED",branch=BRANCH,commit=commit,parent=PARENT_COMMIT,files=len(paths),allowlist_sha256=sha(RUN/"publish_plan.json"),source_manifest_sha256=sha(ROOT/REL/"source_manifest.json"),protocol_sha256=sha(ROOT/REL/"protocol.json"),server_data_preserved=True)
  write(receipt,receipt_data)
  try:
-  git("push","origin","HEAD:refs/heads/"+BRANCH)
+  before=git("ls-remote","--heads","origin","refs/heads/"+BRANCH).split()
+  if not before or before[0]!=commit:git("push","origin","HEAD:refs/heads/"+BRANCH)
   head=git("ls-remote","--heads","origin","refs/heads/"+BRANCH).split()[0];assert head==commit,"REMOTE_HEAD_MISMATCH"
   # Read bytes independently from GitHub at the immutable Commit URL.
   # Avoid Git 2.34 partial-fetch blob negotiation; all source data stay on server.
   def remote_file(x):
    url="https://raw.githubusercontent.com/reyuyu/ATE/"+commit+"/"+urllib.parse.quote(x["path"],safe="/")
    request=urllib.request.Request(url,headers={"User-Agent":"ATE-evidence-integrity-check"})
-   with urllib.request.urlopen(request,timeout=60) as response:b=response.read()
+   for attempt in range(3):
+    try:
+     with urllib.request.urlopen(request,timeout=40) as response:b=response.read()
+     break
+    except (urllib.error.URLError,TimeoutError,OSError):
+     if attempt==2:raise
+     time.sleep(2*(attempt+1))
    assert hashlib.sha256(b).hexdigest()==x["sha256"] and len(b)==x["bytes"],("REMOTE_FILE_MISMATCH",x["path"])
    return dict(path=x["path"],sha256=x["sha256"],git_blob=git("rev-parse",commit+":"+x["path"]),remote_verified=True,transport="GitHub raw HTTPS immutable Commit")
-  with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:verified=list(pool.map(remote_file,plan["files"]))
+  with concurrent.futures.ThreadPoolExecutor(max_workers=2) as pool:verified=list(pool.map(remote_file,plan["files"]))
   assert git("ls-remote","--heads","origin","refs/heads/"+BRANCH).split()[0]==commit
   assert not git("diff","HEAD","--",*paths)
   receipt_data.update(status="PUSHED_REMOTE_ALL_FILES_VERIFIED",remote_head=commit,verification_transport="SSH remote branch head plus independent immutable-Commit GitHub raw HTTPS bytes",verified_files=verified,branch_url="https://github.com/reyuyu/ATE/tree/"+BRANCH,commit_url="https://github.com/reyuyu/ATE/commit/"+commit,report_url="https://github.com/reyuyu/ATE/blob/"+commit+"/"+str(REL)+"/report_zh.md",checked_utc=time.strftime("%Y-%m-%dT%H:%M:%SZ",time.gmtime()))

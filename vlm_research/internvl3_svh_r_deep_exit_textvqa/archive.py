@@ -110,7 +110,7 @@ The post-push receipt is server_only/git_publish_receipt.json, outside Git to av
  (ROOT/PKG/"README.md").write_text(readme)
  files=sorted([p for p in DEST.rglob("*") if p.is_file() and "server_only" not in p.relative_to(DEST).parts and p.name not in ("artifact_manifest.json","SHA256SUMS")]+[p for p in (ROOT/PKG).glob("*") if p.is_file()])
  def item(p):return dict(path=str(p.relative_to(ROOT)),bytes=p.stat().st_size,sha256=sha(p))
- raw=sorted(p for p in server.rglob("*") if p.is_file())
+ raw=sorted(p for p in server.rglob("*") if p.is_file() and p.name!="git_publish_receipt.json")
  write(DEST/"artifact_manifest.json",dict(status="COMPLETE_EXPLORATORY_WITH_NUMERICAL_WAIVER",GitHub_branch="codex/internvl3-svh-r-deep-exit-textvqa-3090",parent_source_commit=PARENT_COMMIT,model_revision=read(OUT/"protocol.json")["revision"],GPU_UUID=GPU,protocol_sha256=sha(OUT/"protocol.json"),input_manifest_sha256=sha(OUT/"sample_manifest.json"),GitHub_files=[item(p) for p in files],server_only_files=[item(p) for p in raw],self_index_exclusions=["artifact_manifest.json","SHA256SUMS"],publish_receipt="server_only/git_publish_receipt.json generated after successful push",excluded_resources=["model weights","images","prepared tensor .pt files","dependencies","SSH private keys"]))
  files.append(DEST/"artifact_manifest.json")
  (DEST/"SHA256SUMS").write_text("".join(sha(p)+"  "+str(p.relative_to(ROOT))+"\n" for p in sorted(files)))
