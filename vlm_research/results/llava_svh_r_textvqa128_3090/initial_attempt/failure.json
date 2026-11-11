@@ -1,0 +1,5 @@
+{
+  "status": "FAILED",
+  "error": "AssertionError(('36148', 2, {'MaxAbs': 0.1044921875, 'MeanAbs': 0.015672289563748176, 'relative_RMSE': 0.0069962625530431794, 'cosine_error': 2.2269536345875807e-05, 'qid': '36148', 'type': 'logits', 'step': 2}))",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/ate-runs/llava-svh-r-textvqa128-3090/code/run.py\", line 142, in run\n    smoke(a,samples['Smoke']);gpu_check(True)\n    ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-runs/llava-svh-r-textvqa128-3090/code/run.py\", line 116, in smoke\n    assert torch.allclose(x,y,atol=.10,rtol=.003),(qid,step,v)\nAssertionError: ('36148', 2, {'MaxAbs': 0.1044921875, 'MeanAbs': 0.015672289563748176, 'relative_RMSE': 0.0069962625530431794, 'cosine_error': 2.2269536345875807e-05, 'qid': '36148', 'type': 'logits', 'step': 2})\n"
+}
