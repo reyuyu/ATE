@@ -1,0 +1,11 @@
+Traceback (most recent call last):
+  File "<frozen runpy>", line 198, in _run_module_as_main
+  File "<frozen runpy>", line 88, in _run_code
+  File "/data/lk/ATE-worktrees/internvl3-svhr-late9-sevenbench-2x3090/vlm_research/internvl3_svhr_late9_sevenbench/worker.py", line 248, in <module>
+    main()
+  File "/data/lk/ATE-worktrees/internvl3-svhr-late9-sevenbench-2x3090/vlm_research/internvl3_svhr_late9_sevenbench/worker.py", line 223, in main
+    configure(uuid)
+  File "/data/lk/ATE-worktrees/internvl3-svhr-late9-sevenbench-2x3090/vlm_research/internvl3_svhr_late9_sevenbench/worker.py", line 21, in configure
+    assert str(torch.cuda.get_device_properties(0).uuid) == uuid
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError
