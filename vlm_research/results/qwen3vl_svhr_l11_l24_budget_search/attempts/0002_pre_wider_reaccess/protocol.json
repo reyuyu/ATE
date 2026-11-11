@@ -1,0 +1,383 @@
+{
+  "additional_protection_counts": {
+    "MME": 224,
+    "POPE": 96
+  },
+  "answer_skip_layers": [
+    1,
+    2,
+    3,
+    4,
+    5,
+    6
+  ],
+  "attention": "eager",
+  "auxiliary_not_ranked": true,
+  "auxiliary_prefill_layers": null,
+  "auxiliary_view": "P1_ONLY_AND_DECODE_ONLY_FOR_FINAL_1_TO_2_SETS_NOT_RANKED",
+  "bootstrap": {
+    "cluster": "Image SHA, complete Circular groups",
+    "repeats": 20000,
+    "seed": 20261111
+  },
+  "candidate_source": "Predeclared windows and budgets; bounded adaptive deletion/sparse search after Discovery only",
+  "discovery_ranking": "TextVQA first; protection tasks reject extra point loss >1pp vs frozen SVH for efficiency",
+  "disk_min_free_bytes": 2147483648,
+  "dtype": "bfloat16",
+  "efficiency_order": "Measured fixed32 E2E; if indistinguishable compare KV then peak VRAM then K",
+  "execution_source_commit": "51b0433d5c2c5b6590e1c264d2c89df6920311f6",
+  "exit_before": 22,
+  "final_selection": "Best TextVQA; BestEfficiency within1pp of best and protection-loss<=1pp; MinK best K<=4",
+  "frozen_model_files": {
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/chat_template.json": {
+      "sha256": "5c72a170d2a4a1a3bc5adad2e689ae28138a9700e5b8c96c0266331e86c0acce",
+      "stat": [
+        5499,
+        1793506566841109404
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/config.json": {
+      "sha256": "5cd452860dc1e9c29dd71cc3cef7f39b338b7a40793f7a260655c2d3568f3661",
+      "stat": [
+        1474,
+        1793506567345093987
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/generation_config.json": {
+      "sha256": "8469742d1fce0de951c8909b26a2c0c0d8490837ce476efb114da9e0cefc4d44",
+      "stat": [
+        269,
+        1793506568053072352
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/merges.txt": {
+      "sha256": "599bab54075088774b1733fde865d5bd747cbcc7a547c5bc12610e874e26f5e3",
+      "stat": [
+        1671839,
+        1793506572796928366
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model-00001-of-00004.safetensors": {
+      "sha256": "d5d0aef0eb170fc7453a296c43c0849a56f510555d3588e4fd662bb35490aefa",
+      "stat": [
+        4902275944,
+        1793507485703333525
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model-00002-of-00004.safetensors": {
+      "sha256": "8be88fb5501e4d5719a6d4cc212e6a13480330e74f3e8c77daa1a68f199106b5",
+      "stat": [
+        4915962496,
+        1793507405127335593
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model-00003-of-00004.safetensors": {
+      "sha256": "83de00eafe6e0d57ccd009dbcf71c9974d74df2f016c27afb7e95aafd16b2192",
+      "stat": [
+        4999831048,
+        1793507672591612406
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model-00004-of-00004.safetensors": {
+      "sha256": "0a88b98e9f96270973f567e6a2c103ede6ccdf915ca3075e21c755604d0377a5",
+      "stat": [
+        2716270024,
+        1793507453035324170
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/model.safetensors.index.json": {
+      "sha256": "520b2e05079402e9468a8701d03d1154d14b2599593afb6effa7fb60c1bff070",
+      "stat": [
+        67759,
+        1793506573856896414
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/preprocessor_config.json": {
+      "sha256": "27225450ac9c6529872ee1924fcb0962ff5634834f817040f444118116f4e516",
+      "stat": [
+        390,
+        1793506574588874400
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/tokenizer.json": {
+      "sha256": "a5d85b6dcc535e6b93115a9ef287e6132fdbf30270da6218194ba742261173c7",
+      "stat": [
+        7032403,
+        1793506588268469949
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/tokenizer_config.json": {
+      "sha256": "c2da771801886ad9ae98181793ffd3dfb7f1af30f6f7c6a4e15d7dbba52e2399",
+      "stat": [
+        10868,
+        1793506589072446584
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/video_preprocessor_config.json": {
+      "sha256": "7768af27c1fafa9cc9011c1dc20067e03f8915e03b63504550e11d5066986d13",
+      "stat": [
+        385,
+        1793506589780426055
+      ]
+    },
+    "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b/vocab.json": {
+      "sha256": "ca10d7e9fb3ed18575dd1e277a2579c16d108e32f27439684afa0e10b1440910",
+      "stat": [
+        2776833,
+        1793506600652115108
+      ]
+    }
+  },
+  "gpu_uuids": [
+    "GPU-b08489af-0a8a-eb48-55ba-8346733af417",
+    "GPU-96bc853f-ceea-2404-c704-c48a3d1ca185"
+  ],
+  "heldout": "Used once after final configurations frozen; historical cohort, not independent external validation",
+  "historical_strict_status": "FAIL_RETAINED",
+  "main_candidate_definitions": {
+    "Deep2": [
+      23,
+      24
+    ],
+    "Deep4": [
+      21,
+      22,
+      23,
+      24
+    ],
+    "Deep6": [
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ],
+    "Deep8": [
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ],
+    "K0": [],
+    "Prior1": [
+      26
+    ],
+    "Prior2": [
+      24,
+      26
+    ],
+    "Prior4": [
+      21,
+      23,
+      24,
+      26
+    ],
+    "R1": [
+      21
+    ],
+    "R11": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "R14": [
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24
+    ],
+    "R2": [
+      20,
+      21
+    ],
+    "R4": [
+      18,
+      19,
+      20,
+      21
+    ],
+    "R6": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "R8": [
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ],
+    "W10_23": [
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23
+    ],
+    "W12_25": [
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "W14_27": [
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25,
+      26,
+      27
+    ],
+    "W8_21": [
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21
+    ]
+  },
+  "main_candidates_max": 40,
+  "main_view": "UNIFIED_P1_AND_DECODE_SAME_LAYER_SET",
+  "manifest_sha256": "779481b1cff26bd32573f6b6c03cedde0b893f93f929cff43ba34446aac98460",
+  "mode": "B_ATE_UNIFIED_HF_NOT_AUTHOR_OFFICIAL",
+  "model": "/data/lk/ATE-resources/models/qwen3-vl-8b-instruct/0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "name": "QWEN3VL_SVHR_LOCAL_BUDGET_SEARCH",
+  "no_gpu_executed_under_old_protocol": true,
+  "notes": [
+    "P1 stays image-OFF in main view",
+    "Dense search caches real visual KV but uses frozen physical prefix",
+    "Original prefix computed once per image request and forked into disjoint per-condition caches",
+    "All temporary QK/AV padding and sidecar construction charged in physical timing"
+  ],
+  "output_max_bytes": 1572864000,
+  "pre_execution_cpu_tests": "8 tests, including per-layer capacity, independent cache and disjoint manifest",
+  "prior_attempt_records": {
+    "0": 0,
+    "1": 0
+  },
+  "prior_known_images": 1766,
+  "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "revision_request": "USER_UNIFIED_P_MINUS_1_AND_REAL_DECODE_SAME_SET",
+  "seed": 20261111,
+  "selection_constraints_unchanged": true,
+  "serializer_repair": "Avoid duplicate prefill_layers keyword when merging model result; algorithm and input unchanged",
+  "sources": {
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_c3v2_numerical_debug/repair.py": "86286c6507d74c9ed4f9877a404023bbd005b7713555abb98a3384786bee5fb9",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_c3v2_numerical_repair2/repair.py": "89d4654a856aac2aa7b9f0e54e9c89f53f06a6ad0cb9fa87e7c760730980ef87",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_c3v2_physical/engine.py": "a719b590975e6282ad983fcd27b80f2e031c302caf47eaf54d50e1f3e36cca77",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_svh_l28_repair/engine.py": "7c79eb6a468f7d36a27b969a69cd314d33d39b647d962d6a9c41cf21d37e5f9a",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_svh_numerical_repair/engine.py": "8461abb1f9899bc5ed7400bd98bd321cc301703e84dabecf7fc88e451ecb96dd",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_svh_preflight48/freeze.py": "58ce8c0018488be43a12503268d1f8951034f91ee168efd2c5b28bd28d4297cd",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_svh_preflight48/score.py": "843591c726e7ea4b96eadd4e792968cc9e75322eb33e59d311607f1f1d8da93b",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_svh_qk_repair/engine.py": "8ba0e033da3bb04795025114723992634149b48dd0a5a40b3f5a24b7b88e8ecb",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_svh_sqa7908_repair/engine.py": "aa05647bc4832bccae22ab371b18f3f41cd979f439ffb010787723c6c812a506",
+    "/data/lk/ATE-worktrees/qwen3vl-svh-quality-then-svhr-search-2x3090/vlm_research/qwen3vl_svhr_search/physical.py": "97abb61c0739c045e00c8cdf4e62a9e89e3461d84fe682419aed50d2dadba070",
+    "/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/analysis.py": "0690d2ae2041e09295d9ad4b1591ef3ec024d928286a2a42d29fed082022a0a3",
+    "/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/common.py": "5643246179143daa16c40deefbe2b9aeaedd3365ae289c3c87903a1d63e15ae4",
+    "/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/engine.py": "40d0b14a3fee574aaa67e324114218511e7596daf76a1905f03b7df4f9b44c20",
+    "/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/freeze.py": "d55900636d0f9bfbd956826c917f3b0838291a36eb06a650212b0de5c3f3e6b2",
+    "/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/freeze_execution.py": "ff8da57fc0d7d1104c14a3427cae731e5f318c0616a64b754de5093bb443addb",
+    "/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/performance.py": "a0d70740bd343bf6062fa5be6e0ff83a586b30feffff79a1adbdc6261e29aa7a",
+    "/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/pipeline.py": "5d262d9c1bedea346e9508cd3e9ebff5206e1d050338cfbb1cd26da5e8c6fe2e",
+    "/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/resume_freeze.py": "bb5fca85a342e11e6a4212ceef64643114c4a3cc5d4340150a60d25e78b41db3",
+    "/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/revise_protocol.py": "bc7b72de1c6619ad45a590cc99a8d449f7389de8dddd865c2b967fe97f5ac19a",
+    "/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/tests.py": "de025297d5b36fd8c208bf4757cd8a1557dce278ef4001956ac65157e66aab9e",
+    "/data/lk/ATE-worktrees/qwen3vl-svhr-l11-l24-local-budget-search/worker.py": "498a98befdf006c1d0093afa3ac82ea0d71544c85e4afe7da6aaa2afc66560ba"
+  },
+  "superseded_protocol": "superseded_decode_only_protocol_cpu_only.json",
+  "validation_selection": "3-5 Discovery finalists frozen before Validation; no returning to search",
+  "visual_pixels": [
+    65536,
+    2097152
+  ],
+  "writer_layers": [
+    0,
+    1,
+    2,
+    3,
+    4,
+    5,
+    6,
+    7,
+    8,
+    9,
+    10,
+    11,
+    12,
+    13,
+    14,
+    15,
+    16,
+    17,
+    18,
+    19,
+    20,
+    21
+  ]
+}
