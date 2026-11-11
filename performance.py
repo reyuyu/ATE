@@ -6,6 +6,8 @@ from common import *
 
 
 def execute(model,processor,pool,job,shard,bound):
+    if job.get('phase')=='GATE':
+        return physical_gate(model,processor,pool,job,shard,bound)
     import torch
     from engine import Request
     from vlm_research.qwen3vl_svh_sqa7908_repair.engine import generate as frozen_svh
@@ -80,3 +82,32 @@ def execute(model,processor,pool,job,shard,bound):
                 print('PERF_DONE',shard,row['key'],mode,flush=True)
     finally:
         store.conn.close()
+
+
+def physical_gate(model,processor,pool,job,shard,bound):
+    import torch
+    from engine import Request,ACTIVE
+    cases=[]
+    try:
+        for row in pool:
+            inputs,layout=bound(row)
+            for name,layers in job['conditions'].items():
+                with Request(model,processor,inputs,layout,collect=ACTIVE,prefill_layers=layers,audit=True,cap=4) as request:
+                    reference,a=request.generate(layers,capture=True)
+                with Request(model,processor,inputs,layout,collect=layers,prefill_layers=layers,audit=True,cap=4) as request:
+                    physical,b=request.generate(layers,physical=True,capture=True)
+                error=max(float((x-y).abs().max()) for x,y in zip(a,b))
+                case=dict(key=row['key'],condition=name,layers=layers,max_logit_error=error,
+                    vector_counts=[len(a),len(b)],same_tokens=reference['token_ids']==physical['token_ids'],
+                    prefill_non_target_unchanged=reference['prefill_non_target_hashes']==physical['prefill_non_target_hashes'],
+                    physical_kv=physical['kv'],historical_strict_gate='FAIL_RETAINED')
+                cases.append(case)
+                write(OUT/f'physical_gate{shard}.json',dict(status='IN_PROGRESS',cases=cases,gpu_uuid=UUIDS[shard]))
+                assert len(a)==len(b) and error<=.02 and case['same_tokens'] and case['prefill_non_target_unchanged'],case
+            del inputs
+        write(OUT/f'physical_gate{shard}.json',dict(status='PASS_SELECTED_STORAGE_ONLY',cases=cases,
+            historical_strict_gate='FAIL_RETAINED',gpu_uuid=UUIDS[shard],time=time.time()))
+    except BaseException as exc:
+        write(OUT/f'physical_gate{shard}.json',dict(status='FAIL',cases=cases,error=repr(exc),
+            historical_strict_gate='FAIL_RETAINED',gpu_uuid=UUIDS[shard],time=time.time()))
+        raise

@@ -13,7 +13,7 @@ def prediction_record(result, **metadata):
     return value
 
 
-def main(shard,smoke_only=False):
+def main(shard,smoke_only=False,wide_smoke=False):
     import torch
     from transformers import AutoProcessor,Qwen3VLForConditionalGeneration
     from vlm_research.qwen3vl_overnight.engine import run as frozen_run
@@ -78,8 +78,22 @@ def main(shard,smoke_only=False):
                 assert uerror<=0.02,('UNIFIED_DECODE_PORT_ERROR',uerror)
                 smoke[-1].update(unified_non_target_prefill='TORCH_EQUAL',unified_physical_decode_error=uerror,
                     unified_prefill_layers=unified['prefill_layers'])
+            if wide_smoke:
+                from wider_reaccess import EXPANSION
+                checks=[]
+                for name,layers in EXPANSION.items():
+                    with Request(model,processor,inputs,layout,collect=ACTIVE,prefill_layers=layers,audit=True,cap=3) as request:
+                        wide,_=request.generate(layers)
+                        assert wide['prefill_non_target_hashes']==non_target,'WIDE_NON_TARGET_PREFILL_CHANGED'
+                        assert wide['prefill_layers']==wide['decode_layers']==layers
+                        assert all(item['allowed']==(item['layer'] in layers) for item in wide['permissions'])
+                        assert all(item['image_mass']==0 for item in wide['permissions'] if not item['allowed'])
+                        checks.append(dict(condition=name,layers=layers,token_ids=wide['token_ids'],
+                            non_target_prefill='TORCH_EQUAL',permissions=wide['permissions']))
+                smoke[-1]['wide_cases']=checks
             del inputs,native,noop,frozen,a,b,c,d,e
-        write(OUT/f'smoke{shard}.json',dict(status='PASS_NEW_PATH_ONLY',cases=smoke,gpu_uuid=UUIDS[shard],time=time.time()))
+        write(OUT/f'smoke{shard}.json',dict(status='PASS_NEW_PATH_ONLY',cases=smoke,gpu_uuid=UUIDS[shard],
+            wide_reaccess_checked=wide_smoke,time=time.time()))
         print('SMOKE_PASS',shard,flush=True)
         if smoke_only:
             return
@@ -125,22 +139,30 @@ def main(shard,smoke_only=False):
                 write(OUT/f'current{shard}.json',dict(job=job_path.name,key=row['key'],conditions=[x[1] for x in todo],time=time.time()))
                 inputs,layout=bound(row)
                 for key,name,layers in todo:
-                    prefill=layers if job['view']=='Unified' else layers if job['view']=='P1Only' else job.get('prefill_layers',[])
+                    prefill=layers if job['view'] in ['Unified','Physical','P1Only'] else job.get('prefill_layers',[])
                     decode=[] if job['view']=='P1Only' else layers
-                    with Request(model,processor,inputs,layout,collect=ACTIVE,prefill_layers=prefill,cap=row['max_new_tokens']) as request:
-                        result,_=request.generate(decode)
+                    physical=job.get('storage')=='SELECTED_PHYSICAL'
+                    with Request(model,processor,inputs,layout,collect=layers if physical else ACTIVE,prefill_layers=prefill,cap=row['max_new_tokens']) as request:
+                        result,_=request.generate(decode,physical=physical)
                         value=prediction_record(result,key=row['key'],condition=name,stage=job['stage'],view=job['view'],
                             benchmark=row['benchmark'],analysis_task=row['analysis_task'],image_sha256=row['image_sha256'],
                             circular_group=row.get('circular_group'),question=row['question'],gold=row['gold'],
                             mme_task=row.get('task'),pair_id=row.get('pair_id'),strategy=row.get('strategy'),
                             gpu_uuid=UUIDS[shard],protocol_sha256=sha(OUT/'protocol.json'),input_binding_sha256=digest(layout),
-                            prompt_sha256=row['prompt_sha256'],layers=layers,prefill_layers=prefill)
+                            prompt_sha256=row['prompt_sha256'],layers=layers,prefill_layers=prefill,
+                            job_sha256=sha(job_path),storage=job.get('storage','FULL_FUNCTIONAL_REFERENCE'))
                         value.update(scored(row,result['text'],result['truncated']))
                         old=hist.get(row['key']+'|SVH')
                         value['first_token_flip_vs_svh']=result['token_ids'][0]!=old['token_ids'][0]
                         if job['view']=='DecodeOnly':
                             assert not value['first_token_flip_vs_svh'],'MAIN_VIEW_CHANGED_FIRST_TOKEN'
+                        if physical:
+                            reference=store.get(job['stage']+'|Unified|'+row['key']+'|'+name)
+                            assert reference is not None,'PHYSICAL_MISSING_SAME_INPUT_FUNCTIONAL_REFERENCE'
+                            value['same_tokens_as_functional']=result['token_ids']==reference['token_ids']
                         store.put(key,value)
+                        if physical:
+                            assert value['same_tokens_as_functional'],('PHYSICAL_TOKEN_MISMATCH_RETAINED',row['key'],name)
                         done+=1
                 del inputs
                 if done%20==0:
@@ -165,5 +187,6 @@ if __name__=='__main__':
     parser=argparse.ArgumentParser()
     parser.add_argument('--shard',type=int,required=True)
     parser.add_argument('--smoke-only',action='store_true')
+    parser.add_argument('--wide-smoke',action='store_true')
     args=parser.parse_args()
-    main(args.shard,args.smoke_only)
+    main(args.shard,args.smoke_only,args.wide_smoke)
