@@ -1,0 +1,92 @@
+{
+  "summary": [
+    {
+      "method": "Native",
+      "N": 128,
+      "origin": "REUSED",
+      "score_sum": 64.19999999999999,
+      "accuracy_percent": 50.15624999999999,
+      "empty": 0,
+      "truncated": 0,
+      "EOS": 128,
+      "repeated": 1,
+      "length_P50": 3.0,
+      "length_P95": 7.6499999999999915,
+      "length_max": 12,
+      "natural_EOS_KV_live_MiB": 305.203125,
+      "natural_EOS_KV_capacity_MiB": 305.203125
+    },
+    {
+      "method": "SVH-R_L11_L24",
+      "N": 128,
+      "origin": "REUSED",
+      "score_sum": 55.69999999999999,
+      "accuracy_percent": 43.51562499999999,
+      "empty": 1,
+      "truncated": 1,
+      "EOS": 127,
+      "repeated": 3,
+      "length_P50": 3.0,
+      "length_P95": 8.299999999999983,
+      "length_max": 32,
+      "natural_EOS_KV_live_MiB": 141.12109375,
+      "natural_EOS_KV_capacity_MiB": 153.384765625
+    },
+    {
+      "method": "L0_L25",
+      "N": 128,
+      "origin": "NEW",
+      "score_sum": 60.19999999999999,
+      "accuracy_percent": 47.03124999999999,
+      "empty": 0,
+      "truncated": 0,
+      "EOS": 128,
+      "repeated": 1,
+      "length_P50": 3.0,
+      "length_P95": 7.6499999999999915,
+      "length_max": 11,
+      "natural_EOS_KV_live_MiB": 213.04248046875,
+      "natural_EOS_KV_capacity_MiB": 225.384765625
+    }
+  ],
+  "paired": [
+    {
+      "comparison": "L0_L25 minus Native",
+      "delta_pp": -3.125,
+      "CI95_low_pp": -6.876953124999999,
+      "CI95_high_pp": 0.23437500000000022,
+      "image_SHA_clusters": 128,
+      "bootstrap": 20000,
+      "CI": "ordinary unadjusted95%,2 exploratory contrasts",
+      "improved": 2,
+      "declined": 7,
+      "unchanged": 119,
+      "full_correct_to_not_full": 5,
+      "not_full_to_full": 1,
+      "positive_to_zero": 5,
+      "zero_to_positive": 2,
+      "first_token_changed": 13,
+      "complete_tokens_changed": 33,
+      "text_changed": 33
+    },
+    {
+      "comparison": "L0_L25 minus SVH-R_L11_L24",
+      "delta_pp": 3.515625,
+      "CI95_low_pp": -0.07812499999999989,
+      "CI95_high_pp": 7.34375,
+      "image_SHA_clusters": 128,
+      "bootstrap": 20000,
+      "CI": "ordinary unadjusted95%,2 exploratory contrasts",
+      "improved": 9,
+      "declined": 2,
+      "unchanged": 117,
+      "full_correct_to_not_full": 1,
+      "not_full_to_full": 4,
+      "positive_to_zero": 1,
+      "zero_to_positive": 8,
+      "first_token_changed": 8,
+      "complete_tokens_changed": 27,
+      "text_changed": 27
+    }
+  ]
+}
