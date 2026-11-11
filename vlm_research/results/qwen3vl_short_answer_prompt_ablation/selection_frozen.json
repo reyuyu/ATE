@@ -1,0 +1,66 @@
+{
+  "discovery_scores_sha256": "8a2fad545aacba234cff875f481b2827d8838837f4af92192870db593d013e1f",
+  "ranking": {
+    "GQA": [
+      {
+        "mean_accuracy": 64.0,
+        "mean_tokens": 2.2733333333333334,
+        "prompt": "P0",
+        "worst_delta": 0.0
+      },
+      {
+        "mean_accuracy": 62.66666666666667,
+        "mean_tokens": 2.2766666666666664,
+        "prompt": "P1",
+        "worst_delta": -2.0
+      }
+    ],
+    "MMBench": [
+      {
+        "mean_accuracy": 84.0,
+        "mean_tokens": 2.0,
+        "prompt": "P2",
+        "worst_delta": 8.666666666666671
+      },
+      {
+        "mean_accuracy": 84.0,
+        "mean_tokens": 2.0839222614840986,
+        "prompt": "P1",
+        "worst_delta": 8.666666666666671
+      },
+      {
+        "mean_accuracy": 67.66666666666666,
+        "mean_tokens": 30.002650176678447,
+        "prompt": "P0",
+        "worst_delta": 0.0
+      }
+    ],
+    "ScienceQA-IMG": [
+      {
+        "mean_accuracy": 94.33333333333334,
+        "mean_tokens": 2.0,
+        "prompt": "P2",
+        "worst_delta": 44.0
+      },
+      {
+        "mean_accuracy": 94.0,
+        "mean_tokens": 2.05,
+        "prompt": "P1",
+        "worst_delta": 44.0
+      },
+      {
+        "mean_accuracy": 35.666666666666664,
+        "mean_tokens": 76.28333333333333,
+        "prompt": "P0",
+        "worst_delta": 0.0
+      }
+    ]
+  },
+  "selected": {
+    "GQA": "P0",
+    "MMBench": "P2",
+    "ScienceQA-IMG": "P2"
+  },
+  "selection_rule": "Maximize mean of Native/SVH frozen strict scores (Circular for MMBench); ties minimize worst-method damage vs P0, then mean token count, then P0/P1/P2 order. No Validation scores opened before freeze.",
+  "validation_candidate_scores_accessed": false
+}
