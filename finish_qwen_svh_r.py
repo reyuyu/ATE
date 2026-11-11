@@ -55,9 +55,18 @@ def main():
     live_pids = {int(line.split(',')[1].strip()) for line in processes.splitlines() if ',' in line}
     assert not set(launch['worker_pids']) & live_pids, 'Own workers still own CUDA'
     pools = {name: {} for name in ['Native','SVH',run.NAME]}
+    historical_states, oom_rows = {}, []
     with gzip.open(run.OUT/'full_records.jsonl.gz', 'rt') as stream:
         for item in map(json.loads, stream):
             r = item['record']
+            if item['condition'] in ['Native','SVH']:
+                historical_states[item['condition'],r['key']] = run.state(r)
+            elif 'OOM' in run.state(r):
+                trace = r.get('failure_trace','')
+                oom_rows.append(dict(key=r['key'], benchmark=r['benchmark'], image_tokens=r.get('image_tokens'),
+                    native_state=historical_states['Native',r['key']], svh_state=historical_states['SVH',r['key']],
+                    component='VISION_ENCODER' if 'get_image_features' in trace else 'UNCLASSIFIED_REVIEW_TRACE',
+                    error=r.get('error'), full_trace_in='full_records.jsonl.gz'))
             if r['benchmark'] == 'POPE':
                 assert run.state(r) == 'COMPLETE'
                 pools[item['condition']][r['key']] = r
@@ -75,6 +84,7 @@ def main():
                 **f1_paired(selected[baseline], selected[run.NAME])))
     run.table(run.OUT/'pope_overall_and_strategy_scores.csv', scores)
     run.table(run.OUT/'pope_f1_paired_comparisons.csv', intervals)
+    run.table(run.OUT/'oom_attribution.csv', oom_rows)
     env = dict(python=platform.python_version(), platform=platform.platform(),
         packages={name: importlib.metadata.version(name) for name in ['torch','transformers','numpy','Pillow']},
         model_revision=run.MODEL.name, model_loaded_by_this_script=False,
@@ -111,8 +121,15 @@ def main():
         delta = f"{float(r['delta']):+.4f}" if r['delta'] else 'N/A'
         ci = f"[{float(r['low']):.4f}, {float(r['high']):.4f}]" if r.get('low') else 'N/A'
         lines.append(f"| {r['benchmark']} | {r['baseline']} | {delta} | {ci} | {r['harm']}/{r['rescue']} | {r['n']} |")
-    lines += ['', '全部为20,000次Image SHA整簇配对Bootstrap；保持MME双题、MMBench完整Circular。TextVQA损害/纠正为软分下降/上升。',
+    tv_native = next(r for r in comparisons if r['benchmark'] == 'TextVQA' and r['baseline'] == 'Native')
+    tv_svh = next(r for r in comparisons if r['benchmark'] == 'TextVQA' and r['baseline'] == 'SVH')
+    new_mme_oom = sum(r['benchmark'] == 'MME' and r['native_state'] == 'COMPLETE' for r in oom_rows)
+    lines += ['', '可定义的统计量采用20,000次Image SHA整簇配对Bootstrap；保持MME双题、MMBench完整Circular。MME因缺少完整14任务覆盖，总分及总分CI均不可计算，不插补。TextVQA损害/纠正为软分下降/上升。',
         '普通探索性区间，不据CI跨0宣称无损、等效或非劣效；本队列包含选层时重复使用的Discovery图片。', '',
+        '## 主要结论', '',
+        f"- TextVQA共同4995题相对SVH恢复{float(tv_svh['delta']):+.4f}pp，但相对Native仍为{float(tv_native['delta']):+.4f}pp，95%CI [{float(tv_native['low']):.4f}, {float(tv_native['high']):.4f}]。不能宣称无损。",
+        '- GQA、ScienceQA、MMBench和POPE均得到完整质量分数；TextVQA仅有4995题共同有效子集，MME没有可比较的完整14任务总分。',
+        f"- MME中有{new_mme_oom}条Native已有有效预测、本轮参考路径却OOM的记录，不能把所有缺失都解释为历史基线限制；具体算子线索见oom_attribution.csv和原始Trace。", '',
         '## 完整性与局限', '',
         '- 所有35,346个固定输入均已核验并处理，含292条严格复用；实际成功、OOM与分组覆盖逐项保存在accuracy_summary.csv。',
         '- 原Eager Native在TextVQA已有5条OOM、MME已有406条OOM；历史失败未删除或改判。新配置失败同样保留。',
