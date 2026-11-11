@@ -7,6 +7,12 @@ import traceback
 from common import *
 
 
+def prediction_record(result, **metadata):
+    value=dict(result)
+    value.update(metadata)
+    return value
+
+
 def main(shard,smoke_only=False):
     import torch
     from transformers import AutoProcessor,Qwen3VLForConditionalGeneration
@@ -123,12 +129,12 @@ def main(shard,smoke_only=False):
                     decode=[] if job['view']=='P1Only' else layers
                     with Request(model,processor,inputs,layout,collect=ACTIVE,prefill_layers=prefill,cap=row['max_new_tokens']) as request:
                         result,_=request.generate(decode)
-                        value=dict(key=row['key'],condition=name,stage=job['stage'],view=job['view'],
+                        value=prediction_record(result,key=row['key'],condition=name,stage=job['stage'],view=job['view'],
                             benchmark=row['benchmark'],analysis_task=row['analysis_task'],image_sha256=row['image_sha256'],
                             circular_group=row.get('circular_group'),question=row['question'],gold=row['gold'],
                             mme_task=row.get('task'),pair_id=row.get('pair_id'),strategy=row.get('strategy'),
                             gpu_uuid=UUIDS[shard],protocol_sha256=sha(OUT/'protocol.json'),input_binding_sha256=digest(layout),
-                            prompt_sha256=row['prompt_sha256'],layers=layers,prefill_layers=prefill,**result)
+                            prompt_sha256=row['prompt_sha256'],layers=layers,prefill_layers=prefill)
                         value.update(scored(row,result['text'],result['truncated']))
                         old=hist.get(row['key']+'|SVH')
                         value['first_token_flip_vs_svh']=result['token_ids'][0]!=old['token_ids'][0]

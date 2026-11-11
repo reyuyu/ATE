@@ -4,9 +4,18 @@ from common import *
 import torch
 from engine import PrefixKV, DecodeKV, permissions, SKIP, ACTIVE
 from freeze import grid
+from worker import prediction_record
 
 
 class Tests(unittest.TestCase):
+    def test_prediction_metadata_overlap(self):
+        result={'prefill_layers':[11,12], 'token_ids':[42], 'text':'yes'}
+        value=prediction_record(result,prefill_layers=[11,12],condition='R2',key='POPE:1')
+        self.assertEqual(value['prefill_layers'],[11,12])
+        self.assertEqual(value['token_ids'],[42])
+        self.assertEqual(value['condition'],'R2')
+        self.assertNotIn('condition',result)
+
     def test_mask_only_final_image_row(self):
         m = torch.zeros(1,1,8,8)
         m[..., -1,[1,2,3]] = -torch.inf

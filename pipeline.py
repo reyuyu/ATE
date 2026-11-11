@@ -24,8 +24,10 @@ def main():
         path=OUT/'jobs'/f'{number:03d}_{stage}_{view}.json'
         pool=[r for r in rows if r['split']==stage]
         payload=dict(stage=stage,view=view,conditions={n:grid[n] for n in names},rows=[{'key':r['key']} for r in pool],prefill_layers=prefill_layers or [])
-        assert not path.exists()
-        write(path,payload)
+        if path.exists():
+            assert json.loads(path.read_text())==payload,'IMMUTABLE_JOB_CONFIG_CHANGED'
+        else:
+            write(path,payload)
         print('STAGE_START',number,stage,names,len(pool),flush=True)
         wait_for([path.with_name(path.stem+f'.done{i}') for i in [0,1]])
         summary=summarize(stage,view)
