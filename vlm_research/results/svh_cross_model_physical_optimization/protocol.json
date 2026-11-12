@@ -1,0 +1,58 @@
+{
+  "status": "FROZEN_BEFORE_GPU",
+  "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+  "original_result": "/home/featurize/work/ATE/vlm_research/results/rtx3090_unified_efficiency_18conditions",
+  "source_workspace": "/home/featurize/ate-experiments/rtx3090-18conditions-20261113",
+  "independent_workspace": "/home/featurize/ate-experiments/svh-cross-opt-20261113",
+  "stages": {
+    "A": "Frozen original",
+    "B": "CPU index/mask metadata caching; audit-only sync removed from timed path; no mathematical changes",
+    "C": "B + direct/preallocated KV buffer, same allowed keys and original positions",
+    "D": "Verified B/C + remove inaccessible zero alignment; keep necessary visual builder",
+    "E": "Only correct measured beneficial stages selected, no automatic parameter search"
+  },
+  "regression": {
+    "B_C": "All32 effective logits torch.equal and exact tokens on fixed short/median/long plus all30 inputs before formal eligibility; any numerical change rejects that implementation stage",
+    "D": {
+      "BF16_unit_roundoff": 0.00390625,
+      "hidden_relative_L2_max": 0.0078125,
+      "logits_relative_L2_max": 0.00390625,
+      "logits_max_abs_max": 0.125,
+      "reason": "Hidden at most2 BF16 unit roundoffs; logits normalized L2 at most1 unit roundoff; 0.125 absolute is one BF16 spacing at magnitude16. Fixed before observing D output. No relaxed retry.",
+      "all_finite": true,
+      "allowed_key_set_exact": true,
+      "forbidden_probability_zero": true,
+      "token_change_policy": "Any changed greedy/EOS must trigger explicitly limited paired quality regression; no automatic historical Accuracy binding. Numerical failures excluded from formal."
+    }
+  },
+  "smoke_inputs": "Same original30 min/median/max N by CPU binding, tie key; all stages compare same sample, independent caches",
+  "formal": {
+    "inputs": 30,
+    "outputs": 32,
+    "decode": 31,
+    "sessions": 2,
+    "EOS": "ignored for efficiency only",
+    "batch": 1,
+    "logits_to_keep": 1,
+    "use_cache": true,
+    "timing": "Same frozen request boundaries; all method-specific setup/teardown included; no image preprocessing,H2D,verification or I/O",
+    "interleave": "Native,Original,Eligible optimized per input, rotating order and second-session offset",
+    "warmup": "12 fixed Native then2 per method;3 rounds frozen Native baseline;2 rounds probes every5inputs",
+    "drift": "Record all >5% E2E/TPOT warnings, preserve slow samples, investigate; no rebaselining or selective retries",
+    "scope": "Only genuinely changed methods, corresponding originals and same-backbone Native; no standalone external methods"
+  },
+  "dtypes": {
+    "LLaVA": "FP16 Eager TF4.49.0",
+    "InternVL": "BF16 Eager TF4.49.0",
+    "Qwen": "BF16 Eager TF4.57.6"
+  },
+  "no_algorithm_parameter_changes": true,
+  "no_Git_writes": true,
+  "no_quality_full_benchmarks": true,
+  "output": "/home/featurize/work/ATE/vlm_research/results/svh_cross_model_physical_optimization",
+  "screen_selection": {
+    "repeats": 3,
+    "inputs": 3,
+    "benefit": "Any TTFT/TPOT/E2E improvement >=1%; E2E regression no more0.5%; among eligible useful stages retain lowest screening E2E for formal two-session validation; all ablations and negatives reported. No numerical selection or parameter search."
+  }
+}

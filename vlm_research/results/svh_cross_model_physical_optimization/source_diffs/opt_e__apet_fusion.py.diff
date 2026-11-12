@@ -1,0 +1,36 @@
+--- /home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/results/rtx3090_unified_efficiency_18conditions/code/apet_fusion.py
++++ /home/featurize/ate-experiments/svh-cross-opt-20261113/opt_e/apet_fusion.py
+@@ -23,7 +23,7 @@
+  def decoder_forward(self,decoder,input_ids=None,inputs_embeds=None,**kwargs):
+   h=decoder.embed_tokens(input_ids) if inputs_embeds is None else inputs_embeds
+   pre=self.step==0;self.cache.prefill=pre;self.aw.step=self.step
+-  visual=288;pos=None;rope=None;mask=None
++  visual=288;pos=None;rope=None;mask=None;decode_geometry={}
+   for i,layer in enumerate(decoder.layers):
+    if pre:
+     if i==0 or i==16:
+@@ -37,10 +37,12 @@
+       mask[0,0,relay[:,None],torch.arange(self.layout.image[0],self.layout.image[0]+visual,device=h.device)[None,:]]=-torch.inf
+      else:
+       h=h.index_select(1,ti);pos=pos.index_select(0,ti);rope=tuple(v.index_select(1,ti) for v in rope);mask=mask.index_select(-2,ti).index_select(-1,ti);visual=0
+-    self.cache.text_index=torch.cat((torch.arange(self.layout.image[0],device=h.device),torch.arange(self.layout.image[0]+visual,h.shape[1],device=h.device))) if visual else torch.arange(h.shape[1],device=h.device)
++    if i in (0,16,20):self.cache.text_index=torch.cat((torch.arange(self.layout.image[0],device=h.device),torch.arange(self.layout.image[0]+visual,h.shape[1],device=h.device))) if visual else torch.arange(h.shape[1],device=h.device)
+    else:
+     logical=self.original_layout.length-576+(288 if i<16 else 96)+self.step-1
+-    pos=torch.tensor([logical],device=h.device);rope=decoder.rotary_emb(h,pos[None]);mask=None
++    if logical not in decode_geometry:
++     pos=torch.tensor([logical],device=h.device);decode_geometry[logical]=(pos,decoder.rotary_emb(h,pos[None]))
++    pos,rope=decode_geometry[logical];mask=None
+    self.aw.active_mask=None if mask is None else mask[...,:-1,:]
+    self.aw.current=(i,pre,mask,pos,h.shape[1] if pre else self.cache.used[i]+1)
+    if pre:self.structure.append(dict(layer=i,hidden_rows=h.shape[1],visual_rows=visual))
+@@ -48,7 +50,8 @@
+    h=layer(h,attention_mask=mask,position_ids=pos[None],cache_position=pos,position_embeddings=rope,past_key_value=self.cache,use_cache=True)[0]
+    if pre and i==15:
+     pp,mm,hh,ll=self.prune(self.proxy,0,16,h,pos[None],None,None,None,None,None)
+-    assert hh.shape[1]==h.shape[1]-192 and torch.equal(pp,torch.arange(hh.shape[1],device=h.device)[None])
++    assert hh.shape[1]==h.shape[1]-192
++    if self.trace:assert torch.equal(pp,torch.arange(hh.shape[1],device=h.device)[None])
+     self.events.append(dict(before_layer=16,visual_before=288,visual_after=96,official_AST_unmodified=True))
+     h=hh;visual=96
+   self.cache.logical_length=self.compact_layout.length+self.step;self.step+=1

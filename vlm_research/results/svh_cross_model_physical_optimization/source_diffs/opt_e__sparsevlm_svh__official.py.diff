@@ -1,0 +1,11 @@
+--- /home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/sparsevlm_svh/official.py
++++ /home/featurize/ate-experiments/svh-cross-opt-20261113/opt_e/sparsevlm_svh/official.py
+@@ -6,7 +6,7 @@
+ import einops as ein
+ import torch
+ 
+-from ..external_baselines.e2e32_compatibility.e2e32_official_compat import (
++from e2e32_official_compat import (
+     extract, sparse_pruning_block,
+ )
+ from .common import OFFICIAL, OFFICIAL_COMMIT, read, sha

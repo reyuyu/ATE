@@ -1,0 +1,65 @@
+--- /home/featurize/work/ATE/vlm_research/results/v2drop_prefix_svh_accuracy_3090/fusion_engine.py
++++ /home/featurize/ate-experiments/svh-cross-opt-20261113/opt_c/prefix_fusion.py
+@@ -28,7 +28,7 @@
+         original_layout,original_index=self.layout,self.text_index
+         assert keys.shape[-2]==self.active_positions.numel()
+         try:
+-            self.layout=replace(original_layout,length=keys.shape[-2],text=tuple(self.local_text.tolist()))
++            self.layout=replace(original_layout,length=keys.shape[-2],text=self.local_text_cpu)
+             self.text_index=self.local_text
+             return super().update(keys,values,layer_idx,cache_kwargs)
+         finally:self.layout,self.text_index=original_layout,original_index
+@@ -50,10 +50,11 @@
+         self.local_text=torch.where(~image)[0]
+         assert torch.equal(self.active.index_select(0,self.local_text),self.text_positions),'Text row lost or reordered'
+         self.cache.active_positions=self.active;self.cache.local_text=self.local_text
++        self.cache.local_text_cpu=tuple(self.local_text.tolist())
+ 
+     def prune(self,h,previous,layer):
+-        amount=self.local_image.numel();start=int(self.local_image[0])
+-        assert torch.equal(self.local_image,torch.arange(start,start+amount,device=self.device))
++        amount=self.local_image.numel();start=self.layout.image[0]
++        if self.audit_enabled:assert torch.equal(self.local_image,torch.arange(start,start+amount,device=self.device))
+         keep,selected,scores=SELECT(h,previous,start,amount,layer)
+         assert selected.numel()==amount//2
+         # The unchanged official fixed-35 kernel independently verifies adaptation.
+@@ -63,7 +64,7 @@
+             assert torch.equal(rs-35,selected-start) and torch.equal(rv,scores)
+         h=h.index_select(1,keep);self.active=self.active.index_select(0,keep);self.refresh()
+         self.selection_events.append(dict(layer=layer,visual_before=amount,visual_after=self.local_image.numel(),
+-            retained_original_image_positions=self.active.index_select(0,self.local_image).tolist(),
++            retained_original_image_positions=self.active.index_select(0,self.local_image).tolist() if self.audit_enabled else None,
+             official_fixed35_selection_exact=bool(self.audit_enabled),text_preserved=True))
+         return h
+ 
+@@ -72,21 +73,24 @@
+         pre=self.step==0;n=self.layout.length
+         original=self.positions[:n] if pre else self.positions[n+self.step-1:n+self.step]
+         full_ids=original.unsqueeze(0) if position_ids is None else position_ids
+-        assert torch.equal(full_ids[0],original),'Unexpected RoPE input positions'
++        if self.audit_enabled:assert torch.equal(full_ids[0],original),'Unexpected RoPE input positions'
+         full_rotary=self.decoder.rotary_emb(h,full_ids)
+         if self.audit_enabled:self.rotary.append(dict(position_ids=full_ids.detach().cpu().clone(),cos=full_rotary[0].detach().cpu().clone(),sin=full_rotary[1].detach().cpu().clone()))
+         self.cache.prefill=pre;previous=None
+         for i,layer in enumerate(self.a.layers):
+             if pre:
++                stage_changed=(i==0 or self.enabled and i in (3,17) or i==20)
+                 if self.enabled and i in (3,17):h=self.prune(h,previous,i)
+                 if i==20:
+                     h=h.index_select(1,self.local_text);self.active=self.active.index_select(0,self.local_text);self.refresh()
+                 positions=self.active
+-                if i>=20:mask=self.prefill_late
+-                elif self.active.numel()==n:mask=self.prefill_early
+-                else:mask=self.prefill_early.index_select(-2,self.active).index_select(-1,self.active)
+-                ids=full_ids if self.active.numel()==n else full_ids.index_select(-1,self.active)
+-                rotary=full_rotary if self.active.numel()==n else tuple(t.index_select(1,self.active) for t in full_rotary)
++                if stage_changed:
++                    if i>=20:stage_mask=self.prefill_late
++                    elif self.active.numel()==n:stage_mask=self.prefill_early
++                    else:stage_mask=self.prefill_early.index_select(-2,self.active).index_select(-1,self.active)
++                    stage_ids=full_ids if self.active.numel()==n else full_ids.index_select(-1,self.active)
++                    stage_rope=full_rotary if self.active.numel()==n else tuple(t.index_select(1,self.active) for t in full_rotary)
++                mask,ids,rotary=stage_mask,stage_ids,stage_rope
+                 self.active_mask=mask[...,:-1,:]
+                 key_count=h.shape[1]
+             else:

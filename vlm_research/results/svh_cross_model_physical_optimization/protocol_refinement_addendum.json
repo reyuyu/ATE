@@ -1,0 +1,19 @@
+{
+  "status": "FROZEN_BEFORE_REFINEMENT_GPU",
+  "reason": "Profiler revealed repeated same-step Qwen SVH dead-column metadata H2D; original Intern SVH C rejected by used-length guard because Decode still cat. Independent E revision fixes these implementation paths only.",
+  "model_and_layer_parameters_unchanged": true,
+  "methods": [
+    "Qwen SVH",
+    "InternVL SVH"
+  ],
+  "stage": "E(B2 or C2)",
+  "reference_stages": [
+    "A",
+    "B"
+  ],
+  "numerical_gate": "All30 full32 logits torch.equal and full tokens exact, plus actual KV lifetimes and Audit Mode. No threshold relaxation.",
+  "candidate_attention_padding": "Retained unchanged; failed D still excluded",
+  "screen": "Same3 frozen length representatives,3 ordinary repeats; A/B/E with Native; use predeclared1percent usefulness rule and preserve all stages.",
+  "formal": "Only if E benefits vs B; original30,2 independent sessions, Native/A/E same-input interleaved, no historical Native times",
+  "no_full_quality_or_git": true
+}

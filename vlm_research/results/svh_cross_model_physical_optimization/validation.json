@@ -1,0 +1,1041 @@
+{
+  "status": "PASS_WITH_REJECTED_CANDIDATES",
+  "scope": "Completed all allowed optimization stages; failed numerical stages excluded, negatives preserved",
+  "formal_requests": 1200,
+  "phases": [
+    {
+      "kind": "Qwen",
+      "phase": "session1",
+      "formal": 150,
+      "status": "COMPLETE"
+    },
+    {
+      "kind": "Qwen",
+      "phase": "session2",
+      "formal": 150,
+      "status": "COMPLETE"
+    },
+    {
+      "kind": "InternVL",
+      "phase": "session1",
+      "formal": 90,
+      "status": "COMPLETE"
+    },
+    {
+      "kind": "InternVL",
+      "phase": "session2",
+      "formal": 90,
+      "status": "COMPLETE"
+    },
+    {
+      "kind": "LLaVA",
+      "phase": "session1",
+      "formal": 270,
+      "status": "COMPLETE"
+    },
+    {
+      "kind": "LLaVA",
+      "phase": "session2",
+      "formal": 270,
+      "status": "COMPLETE"
+    },
+    {
+      "kind": "Qwen",
+      "phase": "refine_session1",
+      "formal": 90,
+      "status": "COMPLETE"
+    },
+    {
+      "kind": "Qwen",
+      "phase": "refine_session2",
+      "formal": 90,
+      "status": "COMPLETE"
+    }
+  ],
+  "checks": [
+    {
+      "check": "frozen_source_manifest.json",
+      "status": "PASS",
+      "count": 6360
+    },
+    {
+      "check": "additional_frozen_sources.json",
+      "status": "PASS",
+      "count": 22
+    },
+    {
+      "check": "Runtime_and_model_sources_and_reference_evidence",
+      "status": "PASS"
+    },
+    {
+      "check": "Native_NoOp_all_backbones",
+      "status": "PASS",
+      "backbones": 3
+    },
+    {
+      "check": "All30_full32_logits_tokens",
+      "status": "PASS",
+      "conditions": [
+        {
+          "kind": "Qwen",
+          "method": "SVH",
+          "stage": "B",
+          "n": 30,
+          "status": "PASS"
+        },
+        {
+          "kind": "Qwen",
+          "method": "SVH",
+          "stage": "C",
+          "n": 30,
+          "status": "PASS"
+        },
+        {
+          "kind": "Qwen",
+          "method": "SVH-R",
+          "stage": "B",
+          "n": 30,
+          "status": "PASS"
+        },
+        {
+          "kind": "Qwen",
+          "method": "SVH-R",
+          "stage": "C",
+          "n": 30,
+          "status": "PASS"
+        },
+        {
+          "kind": "InternVL",
+          "method": "SVH",
+          "stage": "B",
+          "n": 30,
+          "status": "PASS"
+        },
+        {
+          "kind": "InternVL",
+          "method": "SVH-R",
+          "stage": "B",
+          "n": 30,
+          "status": "PASS"
+        },
+        {
+          "kind": "InternVL",
+          "method": "SVH-R",
+          "stage": "C",
+          "n": 30,
+          "status": "PASS"
+        },
+        {
+          "kind": "LLaVA",
+          "method": "FastV+SVH",
+          "stage": "B",
+          "n": 30,
+          "status": "PASS"
+        },
+        {
+          "kind": "LLaVA",
+          "method": "SparseVLM+SVH",
+          "stage": "B",
+          "n": 30,
+          "status": "PASS"
+        },
+        {
+          "kind": "LLaVA",
+          "method": "V2Drop+SVH",
+          "stage": "B",
+          "n": 30,
+          "status": "PASS"
+        },
+        {
+          "kind": "LLaVA",
+          "method": "ApET+SVH",
+          "stage": "B",
+          "n": 30,
+          "status": "PASS"
+        },
+        {
+          "kind": "Qwen",
+          "method": "SVH",
+          "stage": "E",
+          "n": 30,
+          "status": "PASS"
+        },
+        {
+          "kind": "InternVL",
+          "method": "SVH",
+          "stage": "E",
+          "n": 30,
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "check": "Actual_Audit_Mode",
+      "status": "PASS",
+      "results": [
+        {
+          "kind": "Qwen",
+          "status": "PASS",
+          "checks": [
+            {
+              "method": "SVH",
+              "stage": "B",
+              "full_tokens_equal": true,
+              "all32_logits_equal": true,
+              "audit_enabled": true
+            },
+            {
+              "method": "SVH",
+              "stage": "C",
+              "full_tokens_equal": true,
+              "all32_logits_equal": true,
+              "audit_enabled": true
+            },
+            {
+              "method": "SVH-R",
+              "stage": "B",
+              "full_tokens_equal": true,
+              "all32_logits_equal": true,
+              "audit_enabled": true
+            },
+            {
+              "method": "SVH-R",
+              "stage": "C",
+              "full_tokens_equal": true,
+              "all32_logits_equal": true,
+              "audit_enabled": true
+            }
+          ]
+        },
+        {
+          "kind": "InternVL",
+          "status": "PASS",
+          "checks": [
+            {
+              "method": "SVH",
+              "stage": "B",
+              "full_tokens_equal": true,
+              "all32_logits_equal": true,
+              "audit_enabled": true
+            },
+            {
+              "method": "SVH-R",
+              "stage": "B",
+              "full_tokens_equal": true,
+              "all32_logits_equal": true,
+              "audit_enabled": true
+            },
+            {
+              "method": "SVH-R",
+              "stage": "C",
+              "full_tokens_equal": true,
+              "all32_logits_equal": true,
+              "audit_enabled": true
+            }
+          ]
+        },
+        {
+          "kind": "LLaVA",
+          "status": "PASS",
+          "checks": [
+            {
+              "method": "FastV+SVH",
+              "stage": "B",
+              "full_tokens_equal": true,
+              "all32_logits_equal": true,
+              "audit_enabled": true
+            },
+            {
+              "method": "SparseVLM+SVH",
+              "stage": "B",
+              "full_tokens_equal": true,
+              "all32_logits_equal": true,
+              "audit_enabled": true
+            },
+            {
+              "method": "V2Drop+SVH",
+              "stage": "B",
+              "full_tokens_equal": true,
+              "all32_logits_equal": true,
+              "audit_enabled": true
+            },
+            {
+              "method": "ApET+SVH",
+              "stage": "B",
+              "full_tokens_equal": true,
+              "all32_logits_equal": true,
+              "audit_enabled": true
+            }
+          ]
+        },
+        {
+          "kind": "Qwen",
+          "campaign": "refinement_E",
+          "status": "PASS",
+          "checks": [
+            {
+              "method": "SVH",
+              "stage": "E",
+              "full_tokens_equal": true,
+              "all32_logits_equal": true,
+              "audit_enabled": true
+            }
+          ]
+        },
+        {
+          "kind": "InternVL",
+          "campaign": "refinement_E",
+          "status": "PASS",
+          "checks": [
+            {
+              "method": "SVH",
+              "stage": "E",
+              "full_tokens_equal": true,
+              "all32_logits_equal": true,
+              "audit_enabled": true
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "check": "C_actual_KV_growth_pointer_storage",
+      "status": "PASS",
+      "cases": 414
+    }
+  ],
+  "independent_cpu_recomputation": true,
+  "input_and_KV_and_checkpoint_checks": {
+    "status": "PASS_DERIVED_DATA_CHECKS",
+    "formal_requests": 1200,
+    "all_requests": 2835,
+    "phases": [
+      {
+        "status": "COMPLETE_AUDIT_MODE",
+        "kind": "Qwen",
+        "phase": "audit",
+        "pid": 35892,
+        "completed": 6,
+        "formal_completed": 0,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE_DIAGNOSIS",
+        "kind": "Qwen",
+        "phase": "diagnosis",
+        "pid": 33846,
+        "completed": 2,
+        "formal_completed": 0,
+        "candidate_status": "FAILED_RETAINED_NOT_FORMAL",
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE_PROFILE",
+        "kind": "Qwen",
+        "phase": "profile",
+        "pid": 37692,
+        "completed": 20,
+        "formal_completed": 0,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE_AUDIT_MODE",
+        "kind": "Qwen",
+        "phase": "refine_audit",
+        "pid": 48598,
+        "completed": 2,
+        "formal_completed": 0,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE_PROFILE",
+        "kind": "Qwen",
+        "phase": "refine_profile",
+        "pid": 50584,
+        "completed": 14,
+        "formal_completed": 0,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE_SCREEN",
+        "kind": "Qwen",
+        "phase": "refine_screen",
+        "pid": 47714,
+        "completed": 118,
+        "formal_completed": 0,
+        "eligible": {
+          "SVH": {
+            "stage": "E",
+            "status": "ELIGIBLE_FOR_FORMAL",
+            "decisions": [
+              {
+                "stage": "E",
+                "relative_improvement": {
+                  "TTFT_ms": -0.0014752528017756283,
+                  "TPOT_ms": 0.03765442720029921,
+                  "E2E_ms": 0.03201298797985441
+                },
+                "useful": true
+              }
+            ]
+          }
+        },
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE",
+        "kind": "Qwen",
+        "phase": "refine_session1",
+        "pid": 48651,
+        "completed": 138,
+        "formal_completed": 90,
+        "formal_expected": 90,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE",
+        "kind": "Qwen",
+        "phase": "refine_session2",
+        "pid": 49659,
+        "completed": 138,
+        "formal_completed": 90,
+        "formal_expected": 90,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE_SCREEN",
+        "kind": "Qwen",
+        "phase": "screen",
+        "pid": 32026,
+        "completed": 272,
+        "formal_completed": 0,
+        "eligible": {
+          "SVH": {
+            "stage": "B",
+            "status": "ELIGIBLE_FOR_FORMAL",
+            "decisions": [
+              {
+                "stage": "B",
+                "relative_improvement": {
+                  "TTFT_ms": 0.03144450733176363,
+                  "TPOT_ms": 0.04990563085993582,
+                  "E2E_ms": 0.04731876904567611
+                },
+                "useful": true
+              },
+              {
+                "stage": "C",
+                "relative_improvement": {
+                  "TTFT_ms": 0.029041621708963183,
+                  "TPOT_ms": 0.047877895366397416,
+                  "E2E_ms": 0.04523846570367929
+                },
+                "useful": true
+              }
+            ]
+          },
+          "SVH-R": {
+            "stage": "C",
+            "status": "ELIGIBLE_FOR_FORMAL",
+            "decisions": [
+              {
+                "stage": "B",
+                "relative_improvement": {
+                  "TTFT_ms": 0.07595451269682885,
+                  "TPOT_ms": 0.2335039697182305,
+                  "E2E_ms": 0.20984327930605362
+                },
+                "useful": true
+              },
+              {
+                "stage": "C",
+                "relative_improvement": {
+                  "TTFT_ms": 0.07971640932850277,
+                  "TPOT_ms": 0.2335036571984701,
+                  "E2E_ms": 0.21040797327810135
+                },
+                "useful": true
+              }
+            ]
+          }
+        },
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE",
+        "kind": "Qwen",
+        "phase": "session1",
+        "pid": 33894,
+        "completed": 202,
+        "formal_completed": 150,
+        "formal_expected": 150,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE",
+        "kind": "Qwen",
+        "phase": "session2",
+        "pid": 36077,
+        "completed": 202,
+        "formal_completed": 150,
+        "formal_expected": 150,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE_AUDIT_MODE",
+        "kind": "InternVL",
+        "phase": "audit",
+        "pid": 40067,
+        "completed": 5,
+        "formal_completed": 0,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE_DIAGNOSIS",
+        "kind": "InternVL",
+        "phase": "diagnosis",
+        "pid": 41596,
+        "completed": 2,
+        "formal_completed": 0,
+        "candidate_status": "FAILED_RETAINED_NOT_FORMAL",
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE_PROFILE",
+        "kind": "InternVL",
+        "phase": "profile",
+        "pid": 41438,
+        "completed": 18,
+        "formal_completed": 0,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE_AUDIT_MODE",
+        "kind": "InternVL",
+        "phase": "refine_audit",
+        "pid": 51254,
+        "completed": 2,
+        "formal_completed": 0,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE_PROFILE",
+        "kind": "InternVL",
+        "phase": "refine_profile",
+        "pid": 51294,
+        "completed": 14,
+        "formal_completed": 0,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE_SCREEN",
+        "kind": "InternVL",
+        "phase": "refine_screen",
+        "pid": 50796,
+        "completed": 118,
+        "formal_completed": 0,
+        "eligible": {
+          "SVH": {
+            "stage": null,
+            "status": "NO_MEASURED_USEFUL_GAIN",
+            "decisions": [
+              {
+                "stage": "E",
+                "relative_improvement": {
+                  "TTFT_ms": 0.010273884702162062,
+                  "TPOT_ms": -0.006541844599764701,
+                  "E2E_ms": -0.005330832135299612
+                },
+                "useful": false
+              }
+            ]
+          }
+        },
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE_SCREEN",
+        "kind": "InternVL",
+        "phase": "screen",
+        "pid": 38798,
+        "completed": 231,
+        "formal_completed": 0,
+        "eligible": {
+          "SVH": {
+            "stage": "B",
+            "status": "ELIGIBLE_FOR_FORMAL",
+            "decisions": [
+              {
+                "stage": "B",
+                "relative_improvement": {
+                  "TTFT_ms": 0.02060783970859814,
+                  "TPOT_ms": 0.00047101110661051937,
+                  "E2E_ms": 0.001922844851869665
+                },
+                "useful": true
+              }
+            ]
+          },
+          "SVH-R": {
+            "stage": null,
+            "status": "NO_MEASURED_USEFUL_GAIN",
+            "decisions": [
+              {
+                "stage": "B",
+                "relative_improvement": {
+                  "TTFT_ms": -0.0033386328666258347,
+                  "TPOT_ms": 0.0041451053790132475,
+                  "E2E_ms": 0.0035691985915977664
+                },
+                "useful": false
+              },
+              {
+                "stage": "C",
+                "relative_improvement": {
+                  "TTFT_ms": -0.0034918275282476152,
+                  "TPOT_ms": -0.00477013570155238,
+                  "E2E_ms": -0.004671764228733277
+                },
+                "useful": false
+              }
+            ]
+          }
+        },
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE",
+        "kind": "InternVL",
+        "phase": "session1",
+        "pid": 40170,
+        "completed": 138,
+        "formal_completed": 90,
+        "formal_expected": 90,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE",
+        "kind": "InternVL",
+        "phase": "session2",
+        "pid": 40798,
+        "completed": 138,
+        "formal_completed": 90,
+        "formal_expected": 90,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE_AUDIT_MODE",
+        "kind": "LLaVA",
+        "phase": "audit",
+        "pid": 43931,
+        "completed": 8,
+        "formal_completed": 0,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "FAILED",
+        "kind": "LLaVA",
+        "phase": "instrumentation_failed_capture_ApET",
+        "pid": 41638,
+        "completed": 10,
+        "formal_completed": 0,
+        "error": "ValueError('max() arg is an empty sequence')",
+        "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v3.py\", line 220, in <module>\n    if not compare(ref,r,rv,vs,rh,hs,method,stage,key):\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v3.py\", line 177, in compare\n    max_abs=max(float((x-y).abs().max()) for x,y in zip(rv,vs))\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: max() arg is an empty sequence\n"
+      },
+      {
+        "status": "COMPLETE_PROFILE",
+        "kind": "LLaVA",
+        "phase": "profile",
+        "pid": 47339,
+        "completed": 24,
+        "formal_completed": 0,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE_SCREEN",
+        "kind": "LLaVA",
+        "phase": "screen",
+        "pid": 42027,
+        "completed": 353,
+        "formal_completed": 0,
+        "eligible": {
+          "FastV+SVH": {
+            "stage": "B",
+            "status": "ELIGIBLE_FOR_FORMAL",
+            "decisions": [
+              {
+                "stage": "B",
+                "relative_improvement": {
+                  "TTFT_ms": 0.06313180987321554,
+                  "TPOT_ms": 0.0009225593560079348,
+                  "E2E_ms": 0.006386661231358226
+                },
+                "useful": true
+              }
+            ]
+          },
+          "SparseVLM+SVH": {
+            "stage": "B",
+            "status": "ELIGIBLE_FOR_FORMAL",
+            "decisions": [
+              {
+                "stage": "B",
+                "relative_improvement": {
+                  "TTFT_ms": 0.04703544096036316,
+                  "TPOT_ms": 0.00011347284991303219,
+                  "E2E_ms": 0.004579597846615324
+                },
+                "useful": true
+              }
+            ]
+          },
+          "V2Drop+SVH": {
+            "stage": "B",
+            "status": "ELIGIBLE_FOR_FORMAL",
+            "decisions": [
+              {
+                "stage": "B",
+                "relative_improvement": {
+                  "TTFT_ms": 0.05221305601237758,
+                  "TPOT_ms": -0.000391944171824532,
+                  "E2E_ms": 0.0044207115868566405
+                },
+                "useful": true
+              }
+            ]
+          },
+          "ApET+SVH": {
+            "stage": "B",
+            "status": "ELIGIBLE_FOR_FORMAL",
+            "decisions": [
+              {
+                "stage": "B",
+                "relative_improvement": {
+                  "TTFT_ms": -0.0012082141677822733,
+                  "TPOT_ms": 0.18906528876548145,
+                  "E2E_ms": 0.17536022603528234
+                },
+                "useful": true
+              }
+            ]
+          }
+        },
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE",
+        "kind": "LLaVA",
+        "phase": "session1",
+        "pid": 44126,
+        "completed": 330,
+        "formal_completed": 270,
+        "formal_expected": 270,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      },
+      {
+        "status": "COMPLETE",
+        "kind": "LLaVA",
+        "phase": "session2",
+        "pid": 45727,
+        "completed": 330,
+        "formal_completed": 270,
+        "formal_expected": 270,
+        "source_unchanged": true,
+        "original_records_unchanged": true
+      }
+    ],
+    "checks": [
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "Qwen",
+        "phase": "audit",
+        "count": 6,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "Qwen",
+        "phase": "diagnosis",
+        "count": 2,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "Qwen",
+        "phase": "profile",
+        "count": 20,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "Qwen",
+        "phase": "refine_audit",
+        "count": 2,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "Qwen",
+        "phase": "refine_profile",
+        "count": 14,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "Qwen",
+        "phase": "refine_screen",
+        "count": 118,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "Qwen",
+        "phase": "refine_session1",
+        "count": 138,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "Qwen",
+        "phase": "refine_session2",
+        "count": 138,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "Qwen",
+        "phase": "screen",
+        "count": 272,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "Qwen",
+        "phase": "session1",
+        "count": 202,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "Qwen",
+        "phase": "session2",
+        "count": 202,
+        "status": "PASS"
+      },
+      {
+        "check": "30_same_inputs_each_condition",
+        "kind": "Qwen",
+        "phase": "session1",
+        "methods": 5,
+        "status": "PASS"
+      },
+      {
+        "check": "30_same_inputs_each_condition",
+        "kind": "Qwen",
+        "phase": "session2",
+        "methods": 5,
+        "status": "PASS"
+      },
+      {
+        "check": "30_same_inputs_each_condition",
+        "kind": "Qwen",
+        "phase": "refine_session1",
+        "methods": 3,
+        "status": "PASS"
+      },
+      {
+        "check": "30_same_inputs_each_condition",
+        "kind": "Qwen",
+        "phase": "refine_session2",
+        "methods": 3,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "InternVL",
+        "phase": "audit",
+        "count": 5,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "InternVL",
+        "phase": "diagnosis",
+        "count": 2,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "InternVL",
+        "phase": "profile",
+        "count": 18,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "InternVL",
+        "phase": "refine_audit",
+        "count": 2,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "InternVL",
+        "phase": "refine_profile",
+        "count": 14,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "InternVL",
+        "phase": "refine_screen",
+        "count": 118,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "InternVL",
+        "phase": "screen",
+        "count": 231,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "InternVL",
+        "phase": "session1",
+        "count": 138,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "InternVL",
+        "phase": "session2",
+        "count": 138,
+        "status": "PASS"
+      },
+      {
+        "check": "30_same_inputs_each_condition",
+        "kind": "InternVL",
+        "phase": "session1",
+        "methods": 3,
+        "status": "PASS"
+      },
+      {
+        "check": "30_same_inputs_each_condition",
+        "kind": "InternVL",
+        "phase": "session2",
+        "methods": 3,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "LLaVA",
+        "phase": "audit",
+        "count": 8,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "LLaVA",
+        "phase": "profile",
+        "count": 24,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "LLaVA",
+        "phase": "screen",
+        "count": 353,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "LLaVA",
+        "phase": "session1",
+        "count": 330,
+        "status": "PASS"
+      },
+      {
+        "check": "SQLite_SHA256_JSONL_exact",
+        "kind": "LLaVA",
+        "phase": "session2",
+        "count": 330,
+        "status": "PASS"
+      },
+      {
+        "check": "30_same_inputs_each_condition",
+        "kind": "LLaVA",
+        "phase": "session1",
+        "methods": 9,
+        "status": "PASS"
+      },
+      {
+        "check": "30_same_inputs_each_condition",
+        "kind": "LLaVA",
+        "phase": "session2",
+        "methods": 9,
+        "status": "PASS"
+      }
+    ],
+    "protected": [
+      {
+        "manifest": "historical_protected.json",
+        "count": 19,
+        "status": "PASS"
+      },
+      {
+        "manifest": "runtime_source_guard.json",
+        "count": 307,
+        "status": "PASS"
+      },
+      {
+        "manifest": "optimized_source_manifest.json",
+        "count": 1369,
+        "status": "PASS"
+      }
+    ],
+    "numerical_records": 397,
+    "GPU_UUIDs": [
+      "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6"
+    ]
+  },
+  "actual_GPU_UUIDs": [
+    "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6"
+  ],
+  "no_quality_benchmark": true,
+  "no_git_writes": true,
+  "no_original_source_or_history_overwritten": true,
+  "quality_limitation": "B/C matched original30 full32 logits and output regression; no blanket full-Benchmark Accuracy claim; failed D never inherits historical quality",
+  "Audit_order_deviation": "Qwen actual Audit Mode followed Session1, after full30 strict numerical screen and before Session2; disclosed, all passed, no selective retry",
+  "GPU_release": {
+    "status": "RELEASED",
+    "compute_processes": "",
+    "gpu": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6, NVIDIA GeForce RTX 3090, 610.57.04, 1 MiB, 0 %, 350.00 W",
+    "our_inference_tasks_complete": true,
+    "server_not_stopped": true
+  }
+}

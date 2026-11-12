@@ -1,0 +1,57 @@
+{
+  "status": "FROZEN_BEFORE_GPU",
+  "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+  "generated_tokens": 32,
+  "prefill": 1,
+  "decode": 31,
+  "ignore_EOS": true,
+  "batch": 1,
+  "inference_mode": true,
+  "seed": 0,
+  "sessions": 2,
+  "formal_per_condition_session": 30,
+  "formal_maximum": 1080,
+  "preprocessing_H2D_IO_excluded": true,
+  "timing": "Exact old generate boundary; synchronized wall starts before per-request controller/position setup; TTFT after vision+projector+prefill+first argmax/finite enqueue+sync; E2E after32 argmax and controller teardown+sync; KV/token CPU audit outside timer",
+  "TPOT": "(E2E-TTFT)/31",
+  "events": "32 per-forward CUDA events; independent Decode event durations saved",
+  "LLaVA": {
+    "dtype": "float16",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "backend": "eager",
+    "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9"
+  },
+  "Qwen": {
+    "dtype": "bfloat16",
+    "transformers": "4.57.6",
+    "backend": "eager",
+    "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b"
+  },
+  "InternVL": {
+    "dtype": "bfloat16",
+    "transformers": "4.49.0",
+    "backend": "eager",
+    "revision": "853e3a797a661694b1b8ece0cb72dc2b23e3dac9"
+  },
+  "warmup": "12 fixed Native requests then each usable method on same2 fixed probes, no adaptive thermal selection; calibration3 rounds before and2 rounds every5 inputs and at end",
+  "drift": {
+    "threshold": 0.05,
+    "policy": "WARN and keep every measurement; never retry/reset baseline",
+    "metrics": [
+      "E2E_ms",
+      "TPOT_ms"
+    ]
+  },
+  "hard_stop": "Nonfinite/OOM/source or input mismatch/UUID mismatch/structural failure/GPU conflict/temperature>=85C/safety telemetry failure",
+  "ApET_new_adapter_numerical_gate": {
+    "max_abs": 0.1,
+    "mean_abs": 0.005,
+    "top1_exact_first8": true,
+    "reference": "Same official ApET compression, dense late-writer mask vs real exit; auxiliary smoke only"
+  },
+  "no_GPU_settings_changes": true,
+  "no_quality_benchmark": true,
+  "GitHub_writes": false,
+  "source_SHA256": "de065c3300dfd5248df30061174281b48c01f5758f55fce3436ddf9e156711e1"
+}

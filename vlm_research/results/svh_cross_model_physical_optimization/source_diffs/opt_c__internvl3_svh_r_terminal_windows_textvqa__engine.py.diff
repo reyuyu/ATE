@@ -1,0 +1,75 @@
+--- /home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/internvl3_svh_r_terminal_windows_textvqa/engine.py
++++ /home/featurize/ate-experiments/svh-cross-opt-20261113/opt_c/internvl3_svh_r_terminal_windows_textvqa/engine.py
+@@ -15,7 +15,7 @@
+ import torch
+ from transformers.cache_utils import DynamicCache
+ from transformers.modeling_outputs import BaseModelOutputWithPast
+-from vlm_research.internvl3_svh_physical_d_pilot import engine as base
++from ..internvl3_svh_physical_d_pilot import engine as base
+ from vlm_research.internvl3_visual_writing_figure3_3000 import engine as frozen
+ SKIP=set(range(2,6))
+ class CompactCache(DynamicCache):
+@@ -24,7 +24,7 @@
+   self.cutoff=int(cutoff);self.audit=audit;self.original_positions=[[] for _ in range(28)]
+   assert 20<=self.cutoff<=28 and self.K<=set(range(28)) and not self.K&SKIP
+   assert not self.K or max(self.K)<self.cutoff
+-  self.key_cache=[None]*28;self.value_cache=[None]*28;self.prefill=True
++  self.key_cache=[None]*28;self.value_cache=[None]*28;self.prefill=True;self.buffers=[None]*28;self.used=[0]*28;self.capacities=[0]*28
+  def zero_image_scratch(self,k,v):
+   total=k.shape[-2]+256
+   extra=k.shape[-2]-len(self.keep)
+@@ -48,16 +48,30 @@
+     # are never consumers' data or persistent storage, just reduction padding.
+     z=k.new_zeros((*k.shape[:-2],1,k.shape[-1]))
+     return torch.cat((k,z),dim=-2),torch.cat((v,torch.zeros_like(z)),dim=-2)
+-   self.key_cache[i]=k.contiguous() if i in self.K or i>=self.cutoff else k.index_select(-2,self.keep)
+-   self.value_cache[i]=v.contiguous() if i in self.K or i>=self.cutoff else v.index_select(-2,self.keep)
++   stored=tuple(x if i in self.K or i>=self.cutoff else x.index_select(-2,self.keep) for x in (k,v))
++   self.allocate_update(k,v,i,stored)
+    return self.zero_image_scratch(k,v) if i>=self.cutoff else (k,v)
+   assert i not in SKIP and self.key_cache[i] is not None
+-  self.key_cache[i]=torch.cat((self.key_cache[i],k),dim=-2)
+-  self.value_cache[i]=torch.cat((self.value_cache[i],v),dim=-2)
+-  pair=(self.key_cache[i],self.value_cache[i])
++  pair=self.allocate_update(k,v,i,(k,v))
+   return pair if i in self.K else self.zero_image_scratch(*pair)
+  def get_seq_length(self,layer_idx=0):
+   k=self.key_cache[layer_idx];return 0 if k is None else k.shape[-2]
++
++ def allocate_update(self,k,v,i,stored):
++     n=stored[0].shape[-2]
++     if self.buffers[i] is None:
++         cap=n+31
++         pair=[x.new_empty((*x.shape[:-2],cap,x.shape[-1])) for x in stored]
++         for out,x in zip(pair,stored):out[...,:n,:].copy_(x)
++         self.buffers[i]=pair;self.used[i]=n;self.capacities[i]=cap
++     else:
++         n=self.used[i];m=k.shape[-2];assert n+m<=self.capacities[i]
++         for out,x in zip(self.buffers[i],(k,v)):out[...,n:n+m,:].copy_(x)
++         self.used[i]+=m
++     n=self.used[i]
++     self.key_cache[i]=self.buffers[i][0][...,:n,:]
++     self.value_cache[i]=self.buffers[i][1][...,:n,:]
++     return self.key_cache[i],self.value_cache[i]
+ def edit_mask(original,roles,prefill,layer,K):
+  m=original.clone();lo,hi=roles["image"][0],roles["image"][-1]+1
+  if layer not in K:m[:,:,-1 if prefill else 0,lo:hi]=-torch.inf
+@@ -151,7 +165,7 @@
+   cache=past_key_values;assert cache is self.cache and use_cache
+   h=inputs_embeds if inputs_embeds is not None else decoder.embed_tokens(input_ids);pos=cache_position
+   if position_ids is None:position_ids=pos.unsqueeze(0)
+-  mask=decoder._update_causal_mask(attention_mask,h,pos,cache,False)
++  mask=decoder._update_causal_mask(attention_mask,h,pos,cache,False) if self.prefill else self.decode_full[...,:self.roles["n"]+self.step]
+   rope=decoder.rotary_emb(h,position_ids);text=cache.keep
+   if self.prefill:
+    blocked=edit_mask(mask,self.roles,True,0,set())
+@@ -162,8 +176,7 @@
+    late_open[:,:,-1,lo:hi]=mask[:,:,-1,lo:hi]
+    deep=late_blocked.index_select(-2,text)
+   else:
+-   keys=torch.cat((text,torch.arange(self.roles["n"],self.roles["n"]+self.step,device=h.device)))
+-   compact=edit_mask(mask,self.roles,False,0,set())
++   compact=self.decode_blocked[...,:self.roles["n"]+self.step]
+   for i,layer in enumerate(decoder.layers):
+    if i==self.cutoff and self.prefill:
+     before=h.shape[1];h=h.index_select(1,text);pos=text;rope=tuple(x.index_select(1,text) for x in rope)

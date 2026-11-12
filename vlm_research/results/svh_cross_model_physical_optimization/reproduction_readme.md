@@ -1,0 +1,13 @@
+# 复现说明
+
+本目录保留服务器完整实验证据和独立源码。正式结果为原30固定输入、两独立Session、32输出Token；不包含全量质量复测。原始输入Gold与模型Inputs分开，Tensor SHA核对见各阶段input_validation.json。
+
+先读protocol.json及protocol_refinement_addendum.json，再读cross_model_overhead_audit.md、optimization_changes.md、numerical_equivalence_report.md和final_report_zh.md。真实执行命令及Python环境见run_commands.txt；源码版本绑定见execution_runner_versions.json、source_manifest.json及changed_source_manifest.json。
+
+opt_b/c/d/e是独立版本，不覆盖冻结实现。失败候选、零请求启动失败和仪器元数据修正均保留；失败数据不算正式性能。生产包为最终权威源码，初始build脚本仅为过程记录，勿把不含后续补充修正的单个脚本直接覆盖生产包。
+
+原始冻结源按绝对路径保存在frozen_sources/下。新实例应恢复本地SSD模型、图片、原环境及原Runtime resources（input manifest、image mapping、Lt bridge），在新唯一输出路径复制包并一致更新入口A/W/R/O路径和源码清单；不能在既有目录重新覆盖运行。模型Revision与可信完整回执在model_manifest.json，HF及InternVL实际代码另存runtime_source_snapshots/。
+
+Profiler为单个固定中等输入的32Token诊断，只有同步请求边界内事件参与计数。它的墙钟时间不进入正式效率CSV；GPU分配事件与峰值是实测，不把理论KV、总显存或Mask当Persistent KV。InternVL Vision编码位于Language Forward Scope外，但仍计入E2E总窗口。
+
+未推送GitHub，未备份到Windows。服务器完整持久化目录由外部svh_cross_model_physical_optimization_delivery.json回执确认。SHA256SUMS包含evidence_manifest.json，不自包含自身；evidence_manifest不列自身及SHA256SUMS，以避免循环哈希。

@@ -1,0 +1,41 @@
+"""Minimal BF16 attention reduction alignment, with genuine Q/K/V row skip.
+
+Only a causally dead ZERO key/value is appended temporarily in L1-L6
+prefill attention. P-1 projections are never computed and no dummy KV is
+persisted. No late-layer padding, dense restoration, or precision change.
+"""
+from contextlib import contextmanager
+from unittest.mock import patch
+import torch
+from transformers.models.qwen3_vl import modeling_qwen3_vl as qm
+from ..qwen3vl_c3v2_physical import engine as original
+
+def pad_dead_key(k, v, mask):
+    assert k.shape[-2] == v.shape[-2] == mask.shape[-1]
+    return (torch.cat([k, torch.zeros_like(k[..., -1:, :])], dim=-2), torch.cat([v, torch.zeros_like(v[..., -1:, :])], dim=-2), torch.cat([mask, mask.new_full((*mask.shape[:-1], 1), torch.finfo(mask.dtype).min)], dim=-1))
+
+class RepairExecution(original.Execution):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.padding_records = []
+
+    @contextmanager
+    def context(self):
+        eager = qm.eager_attention_forward
+
+        def aligned(module, q, k, v, attention_mask=None, **kw):
+            return eager(module, q, k, v, attention_mask, **kw)
+        with patch.object(qm, 'eager_attention_forward', aligned), super().context():
+            yield self
+
+    def audit(self):
+        d = super().audit()
+        d['minimal_repair'] = 'one_dead_zero_key_prefill_L1_L6'
+        d['padding_records'] = self.padding_records
+        d['actual_language_matrix_flops'] = sum((x['flops'] for x in self.shapes)) + sum((x['extra_QK_AV_flops'] for x in self.padding_records))
+        return d
+
+def generate(*args, **kwargs):
+    with patch.object(original, 'Execution', RepairExecution):
+        return original.generate(*args, **kwargs)

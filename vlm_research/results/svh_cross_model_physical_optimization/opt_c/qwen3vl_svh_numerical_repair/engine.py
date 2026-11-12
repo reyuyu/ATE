@@ -1,0 +1,103 @@
+"""Preserve the SVH graph while aligning compact BF16 reduction kernels.
+
+Historical code is imported without editing it. Dead columns are transient
+zeros, never visual state or persistent KV. All GEMMs still project real rows.
+"""
+from contextlib import contextmanager, ExitStack
+from unittest.mock import patch
+import torch
+from transformers.models.qwen3_vl import modeling_qwen3_vl as qm
+from ..qwen3vl_c3v2_physical import engine as original
+from ..qwen3vl_c3v2_numerical_repair2.repair import Repair2Execution
+from ..qwen3vl_c3v2_l22_kernel_diagnosis.candidates import LtPlan
+
+def restore_columns(k, v, mask, positions, length):
+    if k.shape != v.shape or k.shape[-2] != len(positions):
+        raise ValueError('KV position mapping mismatch')
+    if len(set(positions)) != len(positions) or any((p < 0 or p >= length for p in positions)):
+        raise ValueError('Invalid original positions')
+    ix = torch.as_tensor(positions, device=k.device)
+    kp = k.new_zeros((*k.shape[:-2], length, k.shape[-1]))
+    vp = torch.zeros_like(kp)
+    kp.index_copy_(-2, ix, k)
+    vp.index_copy_(-2, ix, v)
+    mp = mask.new_full((*mask.shape[:-1], length), -torch.inf)
+    mp.index_copy_(-1, ix, mask)
+    return (kp, vp, mp, ix)
+
+class AlignedExecution(Repair2Execution):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, variant='decode-zero-key', **kwargs)
+        self.plans = {}
+        self.workspace = None
+        self.linear_audit = []
+        self.column_audit = []
+
+    @contextmanager
+    def context(self):
+        eager = qm.eager_attention_forward
+
+        def aligned(module, q, k, v, attention_mask=None, **kw):
+            layer = getattr(module, 'layer_idx', -1)
+            if not (self.physical and self.step == 0 and (layer >= 22)):
+                return eager(module, q, k, v, attention_mask, **kw)
+            kp, vp, mp, ix = restore_columns(k, v, attention_mask, self._text_cpu, self.n)
+            out, weights = eager(module, q, kp, vp, mp, **kw)
+            if self.audit_enabled:
+                assert float(weights[..., self.image].abs().max()) == 0
+            if self.audit_enabled:
+                assert torch.equal(mp.index_select(-1, ix), attention_mask)
+            if self.audit_enabled:
+                self.column_audit.append(dict(layer=layer, real_queries=q.shape[-2], real_KV=k.shape[-2], transient_keys=kp.shape[-2], persistent_image_KV=0))
+            return (out, weights.index_select(-1, ix))
+        try:
+            with ExitStack() as stack:
+                stack.enter_context(patch.object(qm, 'eager_attention_forward', aligned))
+                for i in range(22, 36):
+                    block = self.d.layers[i]
+                    for name in ('q_proj', 'k_proj', 'v_proj', 'o_proj', 'gate_proj', 'up_proj', 'down_proj'):
+                        mod = getattr(block.self_attn if name.endswith('proj') and name[0] in 'qkvo' else block.mlp, name)
+                        native = mod.forward
+
+                        def projected(x, mod=mod, native=native, i=i, name=name):
+                            if not (self.physical and self.step == 0):
+                                return native(x)
+                            assert x.dtype == torch.bfloat16 and mod.bias is None
+                            a = x.reshape(-1, x.shape[-1]).contiguous()
+                            m, k = a.shape
+                            n = mod.weight.shape[0]
+                            assert m == len(self.text)
+                            key = (m, n, k)
+                            if self.workspace is None:
+                                self.workspace = torch.empty(8 * 2 ** 20, dtype=torch.uint8, device=x.device)
+                            if key not in self.plans:
+                                dense = LtPlan(self.n, n, k, self.workspace)
+                                compact = LtPlan(m, n, k, self.workspace)
+                                assert compact.select(dense, 0) == 0
+                                self.plans[key] = (dense, compact)
+                            dense, compact = self.plans[key]
+                            out = compact.run(a, mod.weight).reshape(*x.shape[:-1], n)
+                            if self.audit_enabled:
+                                self.linear_audit.append(dict(layer=i, operator=name, real_rows=m, dense_descriptor_rows=self.n, shape=list(out.shape), algorithm=compact.config(), dense_projection_executed=False))
+                            return out
+                        stack.enter_context(patch.object(mod, 'forward', projected))
+                stack.enter_context(super().context())
+                yield self
+        finally:
+            for pair in self.plans.values():
+                for plan in pair:
+                    plan.close()
+            self.plans.clear()
+            self.workspace = None
+
+    def audit(self):
+        out = super().audit()
+        out.update(aligned_linears=self.linear_audit, transient_prefill_columns=self.column_audit)
+        return out
+
+def generate(model, processor, inputs, layout, condition, repaired=False, **kwargs):
+    if not repaired:
+        return original.generate(model, processor, inputs, layout, condition, **kwargs)
+    with patch.object(original, 'Execution', AlignedExecution):
+        return original.generate(model, processor, inputs, layout, condition, **kwargs)

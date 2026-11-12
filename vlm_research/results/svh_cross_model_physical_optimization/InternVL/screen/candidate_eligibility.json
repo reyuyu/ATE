@@ -1,0 +1,25 @@
+{
+  "eligible": {
+    "SVH": {
+      "B": true,
+      "C": false,
+      "D": false
+    },
+    "SVH-R": {
+      "B": true,
+      "C": true,
+      "D": false
+    }
+  },
+  "failures": {
+    "SVH|C": {
+      "reason": "AssertionError(('InternVL', 'SVH', 0, 62, 93))",
+      "first_key": "GQA:201889314",
+      "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v3.py\", line 219, in <module>\n    r,vs,hs=request(key,method,stage,'numerical_candidate',True,hidden=is_smoke,forced=ref['generation']['token_ids'] if stage=='D' else None)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v3.py\", line 156, in request\n    with capture(key,method,stage,hidden,forced,profile_mode) as (vs,hs):g=raw_generate(key,method,stage,audit)\n                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v3.py\", line 68, in raw_generate\n    try:return backend.generate(current_inputs,layouts[key],method,audit)[0]\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/results/rtx3090_unified_efficiency_18conditions/code/cross_runtime.py\", line 104, in generate\n    ids=torch.cat(tokens).tolist();kv=self.kv(cache,layout,method);events=[a.elapsed_time(b) for a,b in ev]\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v3.py\", line 55, in kv\n    result=original_kv(cache,layout,method)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/results/rtx3090_unified_efficiency_18conditions/code/cross_runtime.py\", line 62, in kv\n    assert used==expected,(self.kind,method,i,used,expected)\n           ^^^^^^^^^^^^^^\nAssertionError: ('InternVL', 'SVH', 0, 62, 93)\n"
+    },
+    "SVH-R|D": {
+      "reason": "FROZEN_NUMERICAL_GATE_FAILED",
+      "first_key": "GQA:201889314"
+    }
+  }
+}

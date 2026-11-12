@@ -1,0 +1,24 @@
+FlashAttention2 is not installed.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:03<00:10,  3.36s/it]Loading checkpoint shards:  50%|█████     | 2/4 [00:05<00:04,  2.40s/it]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:06<00:02,  2.05s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:07<00:00,  1.48s/it]Loading checkpoint shards: 100%|██████████| 4/4 [00:07<00:00,  1.83s/it]
+Traceback (most recent call last):
+  File "/home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v2.py", line 202, in <module>
+    k=smoke[0];r,v,h=request(k,'Native','A','native_noop',True)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v2.py", line 156, in request
+    with capture(key,method,stage,hidden,forced,profile_mode) as (vs,hs):g=raw_generate(key,method,stage,audit)
+                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v2.py", line 68, in raw_generate
+    try:return backend.generate(current_inputs,layouts[key],method,audit)[0]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/results/rtx3090_unified_efficiency_18conditions/code/cross_runtime.py", line 104, in generate
+    ids=torch.cat(tokens).tolist();kv=self.kv(cache,layout,method);events=[a.elapsed_time(b) for a,b in ev]
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v2.py", line 58, in kv
+    pair=cache.buffers[r['layer']]
+         ~~~~~~~~~~~~~^^^^^^^^^^^^
+TypeError: 'method' object is not subscriptable
+
+FINAL {"status": "FAILED", "kind": "InternVL", "phase": "screen", "pid": 38556, "completed": 0, "formal_completed": 0, "error": "TypeError(\"'method' object is not subscriptable\")", "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v2.py\", line 202, in <module>\n    k=smoke[0];r,v,h=request(k,'Native','A','native_noop',True)\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v2.py\", line 156, in request\n    with capture(key,method,stage,hidden,forced,profile_mode) as (vs,hs):g=raw_generate(key,method,stage,audit)\n                                                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v2.py\", line 68, in raw_generate\n    try:return backend.generate(current_inputs,layouts[key],method,audit)[0]\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/results/rtx3090_unified_efficiency_18conditions/code/cross_runtime.py\", line 104, in generate\n    ids=torch.cat(tokens).tolist();kv=self.kv(cache,layout,method);events=[a.elapsed_time(b) for a,b in ev]\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v2.py\", line 58, in kv\n    pair=cache.buffers[r['layer']]\n         ~~~~~~~~~~~~~^^^^^^^^^^^^\nTypeError: 'method' object is not subscriptable\n"}

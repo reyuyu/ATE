@@ -1,0 +1,11 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:09,  4.80s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:09<00:04,  4.88s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:13<00:00,  4.56s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:13<00:00,  4.64s/it]
+DONE LLaVA audit 1 audit_reference GQA:201889314 FastV+SVH A 1158.64 65.22
+DONE LLaVA audit 2 audit_mode GQA:201889314 FastV+SVH B 247.54 83.33
+DONE LLaVA audit 3 audit_reference GQA:201889314 SparseVLM+SVH A 338.36 65.01
+DONE LLaVA audit 4 audit_mode GQA:201889314 SparseVLM+SVH B 457.36 84.67
+DONE LLaVA audit 5 audit_reference GQA:201889314 V2Drop+SVH A 189.71 65.74
+DONE LLaVA audit 6 audit_mode GQA:201889314 V2Drop+SVH B 278.08 90.43
+DONE LLaVA audit 7 audit_reference GQA:201889314 ApET+SVH A 325.17 79.1
+DONE LLaVA audit 8 audit_mode GQA:201889314 ApET+SVH B 194.82 73.65
+FINAL {"status": "COMPLETE_AUDIT_MODE", "kind": "LLaVA", "phase": "audit", "pid": 43931, "completed": 8, "formal_completed": 0}

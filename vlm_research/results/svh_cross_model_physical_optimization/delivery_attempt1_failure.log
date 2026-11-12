@@ -1,0 +1,28 @@
+{"changed_source_files": 96, "by_namespace": {"opt_b": 24, "opt_c": 24, "opt_d": 24, "opt_e": 24}, "models": 3}
+{"source_files": 21, "intern_remote_code": 5, "all_cached_model_sources_match": true}
+{"status": "INCREMENTAL_ANALYSIS_COMPLETE", "formal": 1200, "all_requests": 2835, "phases": [["Qwen", "audit", "COMPLETE_AUDIT_MODE"], ["Qwen", "diagnosis", "COMPLETE_DIAGNOSIS"], ["Qwen", "profile", "COMPLETE_PROFILE"], ["Qwen", "refine_audit", "COMPLETE_AUDIT_MODE"], ["Qwen", "refine_profile", "COMPLETE_PROFILE"], ["Qwen", "refine_screen", "COMPLETE_SCREEN"], ["Qwen", "refine_session1", "COMPLETE"], ["Qwen", "refine_session2", "COMPLETE"], ["Qwen", "screen", "COMPLETE_SCREEN"], ["Qwen", "session1", "COMPLETE"], ["Qwen", "session2", "COMPLETE"], ["InternVL", "audit", "COMPLETE_AUDIT_MODE"], ["InternVL", "diagnosis", "COMPLETE_DIAGNOSIS"], ["InternVL", "profile", "COMPLETE_PROFILE"], ["InternVL", "refine_audit", "COMPLETE_AUDIT_MODE"], ["InternVL", "refine_profile", "COMPLETE_PROFILE"], ["InternVL", "refine_screen", "COMPLETE_SCREEN"], ["InternVL", "screen", "COMPLETE_SCREEN"], ["InternVL", "session1", "COMPLETE"], ["InternVL", "session2", "COMPLETE"], ["LLaVA", "audit", "COMPLETE_AUDIT_MODE"], ["LLaVA", "instrumentation_failed_capture_ApET", "FAILED"], ["LLaVA", "profile", "COMPLETE_PROFILE"], ["LLaVA", "screen", "COMPLETE_SCREEN"], ["LLaVA", "session1", "COMPLETE"], ["LLaVA", "session2", "COMPLETE"]], "warnings": 0}
+{"profile_stages": 30, "operator_rows": 11059, "window_count": 30}
+{"summary_rows": 40, "other_process_records": 0}
+Traceback (most recent call last):
+  File "/home/featurize/ate-experiments/svh-cross-opt-20261113/code/validate_all_v1.py", line 18, in <module>
+    assert not fail,(name,fail[:8])
+AssertionError: ('additional_frozen_sources.json', [{'path': '/home/featurize/ate-experiments/svh-cross-opt-20261113/frozen_sources/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/fastp2_bypass_writer/common.py', 'problem': 'SNAPSHOT_MISSING_OR_CHANGED'}, {'path': '/home/featurize/ate-experiments/svh-cross-opt-20261113/frozen_sources/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/physical_visual_handoff/common.py', 'problem': 'SNAPSHOT_MISSING_OR_CHANGED'}, {'path': '/home/featurize/ate-experiments/svh-cross-opt-20261113/frozen_sources/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/semantic_visual_writers/groups.py', 'problem': 'SNAPSHOT_MISSING_OR_CHANGED'}, {'path': '/home/featurize/ate-experiments/svh-cross-opt-20261113/frozen_sources/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/p1_layerwise_accuracy/engine.py', 'problem': 'SNAPSHOT_MISSING_OR_CHANGED'}, {'path': '/home/featurize/ate-experiments/svh-cross-opt-20261113/frozen_sources/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/p1_layerwise_accuracy/common.py', 'problem': 'SNAPSHOT_MISSING_OR_CHANGED'}, {'path': '/home/featurize/ate-experiments/svh-cross-opt-20261113/frozen_sources/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/accuracy_autoresearch/engine.py', 'problem': 'SNAPSHOT_MISSING_OR_CHANGED'}, {'path': '/home/featurize/ate-experiments/svh-cross-opt-20261113/frozen_sources/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/reverse_writer/engine.py', 'problem': 'SNAPSHOT_MISSING_OR_CHANGED'}, {'path': '/home/featurize/ate-experiments/svh-cross-opt-20261113/frozen_sources/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/reverse_writer/common.py', 'problem': 'SNAPSHOT_MISSING_OR_CHANGED'}])
+Traceback (most recent call last):
+  File "/home/featurize/ate-experiments/svh-cross-opt-20261113/code/deliver_validated_artifacts.py", line 33, in <module>
+    subprocess.run([sys.executable,'-B',str(A/'code/validate_all_v1.py')],check=True)
+  File "/environment/miniconda3/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/environment/miniconda3/bin/python', '-B', '/home/featurize/ate-experiments/svh-cross-opt-20261113/code/validate_all_v1.py']' returned non-zero exit status 1.
+Traceback (most recent call last):
+  File "/home/featurize/ate-experiments/svh-cross-opt-20261113/code/coordinate_delivery.py", line 18, in <module>
+    subprocess.run(['/environment/miniconda3/bin/python','-B',str(A/'code/deliver_validated_artifacts.py')],check=True)
+  File "/environment/miniconda3/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/environment/miniconda3/bin/python', '-B', '/home/featurize/ate-experiments/svh-cross-opt-20261113/code/deliver_validated_artifacts.py']' returned non-zero exit status 1.
+
+Traceback (most recent call last):
+  File "/home/featurize/ate-experiments/svh-cross-opt-20261113/code/coordinate_delivery.py", line 18, in <module>
+    subprocess.run(['/environment/miniconda3/bin/python','-B',str(A/'code/deliver_validated_artifacts.py')],check=True)
+  File "/environment/miniconda3/lib/python3.11/subprocess.py", line 571, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['/environment/miniconda3/bin/python', '-B', '/home/featurize/ate-experiments/svh-cross-opt-20261113/code/deliver_validated_artifacts.py']' returned non-zero exit status 1.

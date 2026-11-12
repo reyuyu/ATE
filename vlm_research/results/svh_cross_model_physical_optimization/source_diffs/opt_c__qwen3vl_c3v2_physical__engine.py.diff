@@ -1,0 +1,48 @@
+--- /home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/qwen3vl_c3v2_physical/engine.py
++++ /home/featurize/ate-experiments/svh-cross-opt-20261113/opt_c/qwen3vl_c3v2_physical/engine.py
+@@ -26,10 +26,11 @@
+         assert i not in self.absent
+         self.updates[i]+=1
+         if self.prefill:
+-            stored=[t.index_select(-2,self.text) if t.shape[-2]==self.length else t for t in (k,v)]
+-            n=stored[0].shape[-2]
+-            pair=[t.new_empty((*t.shape[:-2],self.capacity,t.shape[-1])) for t in stored]
+-            for out,t in zip(pair,stored):out[...,:n,:].copy_(t)
++            n=len(self.text) if k.shape[-2]==self.length else k.shape[-2]
++            pair=[t.new_empty((*t.shape[:-2],self.capacity,t.shape[-1])) for t in (k,v)]
++            for out,t in zip(pair,(k,v)):
++                if t.shape[-2]==self.length:torch.index_select(t,-2,self.text,out=out[...,:n,:])
++                else:out[...,:n,:].copy_(t)
+             self.entries[i]=pair;self.used[i]=n
+             return k,v
+         pair=self.entries[i]; assert pair is not None
+@@ -54,7 +55,8 @@
+         self.audit_enabled=audit;self.noop=noop;self.step=0;self.events=[];self.shapes=[];self.probability=[]
+         self.device=next(model.parameters()).device
+         self.n=layout['input_length']; self.I=layout['image_positions']
+-        self.text=torch.tensor([i for i in range(self.n) if i not in set(self.I)],device=self.device)
++        image_set=set(self.I); self._text_cpu=[i for i in range(self.n) if i not in image_set]
++        self.text=torch.tensor(self._text_cpu,device=self.device)
+         self.image=torch.tensor(self.I,device=self.device)
+         self.physical=condition in ('P','C');self.bypass=condition in ('F','B','C','A16-functional')
+         self.skip=condition in ('B','C')
+@@ -68,7 +70,7 @@
+         pre=self.step==0
+         if isinstance(self.cache,CompactKV): self.cache.prefill=pre
+         cp=cache_position
+-        assert cp.tolist()==(list(range(self.n)) if pre else [self.n+self.step-1])
++        if self.audit_enabled: assert cp.tolist()==(list(range(self.n)) if pre else [self.n+self.step-1])
+         textpos=position_ids[0]
+         if position_ids.shape[0]==4:position_ids=position_ids[1:]
+         rotary=self.d.rotary_emb(h,position_ids)
+@@ -96,7 +98,9 @@
+                 textpos=textpos.index_select(-1,self.text)
+                 rotary=tuple(v.index_select(1,self.text) for v in rotary)
+             mask=late if self.late and i>=22 else early
+-            if pre and self.physical and i>=22:mask=mask.index_select(-2,self.text).index_select(-1,self.text)
++            if pre and self.physical and i>=22:
++                if i==22: compact_late=mask.index_select(-2,self.text).index_select(-1,self.text)
++                mask=compact_late
+             if not pre and isinstance(self.cache,CompactKV):mask=None
+             self.current=(i,pre,mask)
+             if self.audit_enabled:self.layers.append(dict(step=self.step,layer=i,hidden_rows=h.shape[1],logical_positions=cp.tolist()))

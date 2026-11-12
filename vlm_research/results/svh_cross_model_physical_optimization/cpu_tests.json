@@ -1,0 +1,24 @@
+{
+  "status": "PASS_CPU_BEFORE_GPU",
+  "tests": [
+    {
+      "name": "Qwen_B_full_allowed_mask_value_equivalence",
+      "checks": 504,
+      "status": "PASS"
+    },
+    {
+      "name": "Qwen_C_real_KV_values_growth_capacity_pointers_late_consumption",
+      "layers": 30,
+      "decode_steps": 31,
+      "status": "PASS"
+    },
+    {
+      "name": "InternVL_C_actual_buffer_values_vs_cat_and_pointer_stability",
+      "layers": 24,
+      "decode_steps": 31,
+      "status": "PASS"
+    }
+  ],
+  "CUDA_initialized": false,
+  "scope": "Exact production mask/KV functions extracted via AST; mock tensors verify semantics independently of GPU timing; model numerical checks still required."
+}

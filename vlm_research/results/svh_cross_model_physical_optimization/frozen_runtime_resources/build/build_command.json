@@ -1,0 +1,20 @@
+[
+  "g++",
+  "-I/home/featurize/ate-build-deps/18conditions-20261113/cccl/nvidia/cuda_cccl/include",
+  "-shared",
+  "-fPIC",
+  "-O2",
+  "-std=c++17",
+  "/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/qwen3vl_c3v2_l22_kernel_diagnosis/lt_bridge.cpp",
+  "-o",
+  "/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/results/rtx3090_unified_efficiency_18conditions/resources/build/liblt_bridge.so",
+  "-I/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/nvidia/cublas/include",
+  "-I/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/nvidia/cuda_runtime/include",
+  "-I/home/featurize/ate-build-deps/18conditions-20261113/deps/nvidia/cuda_nvcc/include",
+  "-L/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/nvidia/cublas/lib",
+  "-L/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/nvidia/cuda_runtime/lib",
+  "-Wl,-rpath,/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/nvidia/cublas/lib",
+  "-Wl,-rpath,/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/nvidia/cuda_runtime/lib",
+  "-l:libcublasLt.so.12",
+  "-l:libcudart.so.12"
+]

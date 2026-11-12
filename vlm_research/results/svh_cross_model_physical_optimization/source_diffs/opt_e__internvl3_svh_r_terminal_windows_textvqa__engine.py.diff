@@ -1,0 +1,30 @@
+--- /home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/internvl3_svh_r_terminal_windows_textvqa/engine.py
++++ /home/featurize/ate-experiments/svh-cross-opt-20261113/opt_e/internvl3_svh_r_terminal_windows_textvqa/engine.py
+@@ -15,7 +15,7 @@
+ import torch
+ from transformers.cache_utils import DynamicCache
+ from transformers.modeling_outputs import BaseModelOutputWithPast
+-from vlm_research.internvl3_svh_physical_d_pilot import engine as base
++from ..internvl3_svh_physical_d_pilot import engine as base
+ from vlm_research.internvl3_visual_writing_figure3_3000 import engine as frozen
+ SKIP=set(range(2,6))
+ class CompactCache(DynamicCache):
+@@ -151,7 +151,7 @@
+   cache=past_key_values;assert cache is self.cache and use_cache
+   h=inputs_embeds if inputs_embeds is not None else decoder.embed_tokens(input_ids);pos=cache_position
+   if position_ids is None:position_ids=pos.unsqueeze(0)
+-  mask=decoder._update_causal_mask(attention_mask,h,pos,cache,False)
++  mask=decoder._update_causal_mask(attention_mask,h,pos,cache,False) if self.prefill else self.decode_full[...,:self.roles["n"]+self.step]
+   rope=decoder.rotary_emb(h,position_ids);text=cache.keep
+   if self.prefill:
+    blocked=edit_mask(mask,self.roles,True,0,set())
+@@ -162,8 +162,7 @@
+    late_open[:,:,-1,lo:hi]=mask[:,:,-1,lo:hi]
+    deep=late_blocked.index_select(-2,text)
+   else:
+-   keys=torch.cat((text,torch.arange(self.roles["n"],self.roles["n"]+self.step,device=h.device)))
+-   compact=edit_mask(mask,self.roles,False,0,set())
++   compact=self.decode_blocked[...,:self.roles["n"]+self.step]
+   for i,layer in enumerate(decoder.layers):
+    if i==self.cutoff and self.prefill:
+     before=h.shape[1];h=h.index_select(1,text);pos=text;rope=tuple(x.index_select(1,text) for x in rope)

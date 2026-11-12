@@ -1,0 +1,31 @@
+# Actual completed commands, one GPU process at a time; model/data reused, no Git writes.
+# Qwen screen uses v1; other Qwen primary phases v2; successful InternVL phases v3, LLaVA phases v4.
+# All method-specific setup remains inside the frozen generate() timing boundary.
+/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v2.py --kind Qwen --phase audit
+/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v2.py --kind Qwen --phase diagnosis
+/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v2.py --kind Qwen --phase profile
+/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_refinement_e.py --kind Qwen --phase audit
+/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_refinement_e.py --kind Qwen --phase profile
+/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_refinement_e.py --kind Qwen --phase screen
+/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_refinement_e.py --kind Qwen --phase session1
+/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_refinement_e.py --kind Qwen --phase session2
+/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization.py --kind Qwen --phase screen
+/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v2.py --kind Qwen --phase session1
+/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v2.py --kind Qwen --phase session2
+/home/featurize/ate-local-envs/internvl3-torch260-tf449/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v3.py --kind InternVL --phase audit
+/home/featurize/ate-local-envs/internvl3-torch260-tf449/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v3.py --kind InternVL --phase diagnosis
+/home/featurize/ate-local-envs/internvl3-torch260-tf449/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v3.py --kind InternVL --phase profile
+/home/featurize/ate-local-envs/internvl3-torch260-tf449/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_refinement_e.py --kind InternVL --phase audit
+/home/featurize/ate-local-envs/internvl3-torch260-tf449/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_refinement_e.py --kind InternVL --phase profile
+/home/featurize/ate-local-envs/internvl3-torch260-tf449/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_refinement_e.py --kind InternVL --phase screen
+/home/featurize/ate-local-envs/internvl3-torch260-tf449/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v3.py --kind InternVL --phase screen
+/home/featurize/ate-local-envs/internvl3-torch260-tf449/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v3.py --kind InternVL --phase session1
+/home/featurize/ate-local-envs/internvl3-torch260-tf449/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v3.py --kind InternVL --phase session2
+/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v4.py --kind LLaVA --phase audit
+/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v4.py --kind LLaVA --phase profile
+/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v4.py --kind LLaVA --phase screen
+/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v4.py --kind LLaVA --phase session1
+/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/run_optimization_v4.py --kind LLaVA --phase session2
+# Existing output directories deliberately reject overwrite. For reproduction, restore the preserved source snapshot and original resource/config bindings to a NEW workspace and update A consistently; never reexecute over completed directories.
+# CPU final validation: /environment/miniconda3/bin/python -B /home/featurize/ate-experiments/svh-cross-opt-20261113/code/validate_all_v1.py
+# No model weights/images are in this artifact. Restore model/data separately via trusted receipts and the previous environment restore template.

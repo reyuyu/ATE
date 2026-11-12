@@ -1,0 +1,25 @@
+--- /home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/internvl3_svh_physical_d_pilot/engine.py
++++ /home/featurize/ate-experiments/svh-cross-opt-20261113/opt_b/internvl3_svh_physical_d_pilot/engine.py
+@@ -64,6 +64,7 @@
+   self.step=0;self.prefill=True;self.masks={};self.hidden={};self.events=[]
+   self.norms=[];self.mlp=[];self.projections=[];self.probability_max=0.;self.zero_events=[]
+   self.positions=[];self.skips=[];self.exits=[];self.finite=True;self.attention_calls=[]
++  n=roles["n"]; ref=next(model.parameters()); self.decode_full=ref.new_zeros((1,1,1,n+31)); self.decode_text=ref.new_zeros((1,1,1,n-256+31)); self.decode_blocked=self.decode_full.clone(); self.decode_blocked[...,roles["image"]]=-torch.inf
+  def capture(self,i,x,positions):
+   if self.audit:
+    assert torch.isfinite(x).all()
+@@ -137,12 +138,12 @@
+   h=inputs_embeds if inputs_embeds is not None else decoder.embed_tokens(input_ids)
+   pos=cache_position
+   if position_ids is None:position_ids=pos.unsqueeze(0)
+-  mask=decoder._update_causal_mask(attention_mask,h,pos,cache,False)
++  mask=decoder._update_causal_mask(attention_mask,h,pos,cache,False) if self.prefill else self.decode_full[...,:self.roles["n"]+self.step]
+   rope=decoder.rotary_emb(h,position_ids)
+   text=cache.keep
+   full_mask=frozen.edit_mask(mask,self.roles,True,False) if self.prefill else None
+   deep_mask=mask.index_select(-1,text).index_select(-2,text) if self.prefill else None
+-  compact_decode=mask.index_select(-1,torch.cat((text,torch.arange(self.roles['n'],self.roles['n']+self.step,device=h.device)))) if not self.prefill else None
++  compact_decode=self.decode_text[...,:self.roles['n']-256+self.step] if not self.prefill else None
+   for i,layer in enumerate(decoder.layers):
+    if i==20 and self.prefill:
+     before=h.shape[1];h=h.index_select(1,text);pos=text

@@ -1,0 +1,68 @@
+--- /home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/internvl3_svh_physical_d_pilot/engine.py
++++ /home/featurize/ate-experiments/svh-cross-opt-20261113/opt_e/internvl3_svh_physical_d_pilot/engine.py
+@@ -20,22 +20,36 @@
+   super().__init__();self.roles=roles
+   self.key_cache=[None]*28;self.value_cache=[None]*28
+   self.keep=text_positions(roles,device)
+-  self.prefill=True
++  self.prefill=True;self.buffers=[None]*28;self.used=[0]*28;self.capacities=[0]*28
+  def update(self,k,v,layer_idx,cache_kwargs=None):
+   i=layer_idx
+   if self.prefill:
+    if i not in SKIP:
+     # index_select allocates compact storage, never a view of dense image KV.
+-    self.key_cache[i]=k.index_select(-2,self.keep) if i<20 else k.contiguous()
+-    self.value_cache[i]=v.index_select(-2,self.keep) if i<20 else v.contiguous()
++    stored=tuple(x.index_select(-2,self.keep) if i<20 else x for x in (k,v))
++    self.allocate_update(k,v,i,stored)
+    return k,v  # transient full prefill K/V remains available to R consumers
+   assert i not in SKIP and self.key_cache[i] is not None
+-  self.key_cache[i]=torch.cat((self.key_cache[i],k),dim=-2)
+-  self.value_cache[i]=torch.cat((self.value_cache[i],v),dim=-2)
+-  return self.key_cache[i],self.value_cache[i]
++  return self.allocate_update(k,v,i,(k,v))
+  def get_seq_length(self,layer_idx=0):
+   x=self.key_cache[layer_idx]
+   return 0 if x is None else x.shape[-2]
++
++ def allocate_update(self,k,v,i,stored):
++     n=stored[0].shape[-2]
++     if self.buffers[i] is None:
++         cap=n+31
++         pair=[x.new_empty((*x.shape[:-2],cap,x.shape[-1])) for x in stored]
++         for out,x in zip(pair,stored):out[...,:n,:].copy_(x)
++         self.buffers[i]=pair;self.used[i]=n;self.capacities[i]=cap
++     else:
++         n=self.used[i];m=k.shape[-2];assert n+m<=self.capacities[i]
++         for out,x in zip(self.buffers[i],(k,v)):out[...,n:n+m,:].copy_(x)
++         self.used[i]+=m
++     n=self.used[i]
++     self.key_cache[i]=self.buffers[i][0][...,:n,:]
++     self.value_cache[i]=self.buffers[i][1][...,:n,:]
++     return self.key_cache[i],self.value_cache[i]
+ 
+ def layout(cache,method,roles,outputs):
+  rows=[];seen=set();total_capacity=0;live=0
+@@ -64,6 +78,7 @@
+   self.step=0;self.prefill=True;self.masks={};self.hidden={};self.events=[]
+   self.norms=[];self.mlp=[];self.projections=[];self.probability_max=0.;self.zero_events=[]
+   self.positions=[];self.skips=[];self.exits=[];self.finite=True;self.attention_calls=[]
++  n=roles["n"]; ref=next(model.parameters()); self.decode_full=ref.new_zeros((1,1,1,n+31)); self.decode_text=ref.new_zeros((1,1,1,n-256+31)); self.decode_blocked=self.decode_full.clone(); self.decode_blocked[...,roles["image"]]=-torch.inf
+  def capture(self,i,x,positions):
+   if self.audit:
+    assert torch.isfinite(x).all()
+@@ -137,12 +152,12 @@
+   h=inputs_embeds if inputs_embeds is not None else decoder.embed_tokens(input_ids)
+   pos=cache_position
+   if position_ids is None:position_ids=pos.unsqueeze(0)
+-  mask=decoder._update_causal_mask(attention_mask,h,pos,cache,False)
++  mask=decoder._update_causal_mask(attention_mask,h,pos,cache,False) if self.prefill else self.decode_full[...,:self.roles["n"]+self.step]
+   rope=decoder.rotary_emb(h,position_ids)
+   text=cache.keep
+   full_mask=frozen.edit_mask(mask,self.roles,True,False) if self.prefill else None
+   deep_mask=mask.index_select(-1,text).index_select(-2,text) if self.prefill else None
+-  compact_decode=mask.index_select(-1,torch.cat((text,torch.arange(self.roles['n'],self.roles['n']+self.step,device=h.device)))) if not self.prefill else None
++  compact_decode=self.decode_text[...,:self.roles['n']-256+self.step] if not self.prefill else None
+   for i,layer in enumerate(decoder.layers):
+    if i==20 and self.prefill:
+     before=h.shape[1];h=h.index_select(1,text);pos=text
