@@ -1,0 +1,53 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:09,  4.89s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:09<00:04,  4.80s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:13<00:00,  4.25s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:13<00:00,  4.41s/it]
+FIXED_WARMUP_DONE Native16 other14 performance_warnings 2
+SMOKE_PASS Native GQA:202121628
+SMOKE_PASS Native TextVQA:38571
+SMOKE_PASS FastV GQA:202121628
+SMOKE_PASS FastV TextVQA:38571
+SMOKE_PASS SparseVLM GQA:202121628
+SMOKE_PASS SparseVLM TextVQA:38571
+SMOKE_PASS V2Drop GQA:202121628
+SMOKE_PASS V2Drop TextVQA:38571
+SMOKE_PASS ApET GQA:202121628
+SMOKE_PASS ApET TextVQA:38571
+SMOKE_PASS DUET GQA:202121628
+SMOKE_PASS DUET TextVQA:38571
+SMOKE_PASS SVH GQA:202121628
+SMOKE_PASS SVH TextVQA:38571
+SMOKE_PASS SVH-R GQA:202121628
+SMOKE_PASS SVH-R TextVQA:38571
+BRIDGE_EXACT GQA:202121628
+BRIDGE_EXACT TextVQA:38571
+NOOP_EXACT FastVNoop
+NOOP_EXACT V2DropNoop
+INPUT_DONE 1 GQA:202121628 8
+INPUT_DONE 2 GQA:20308802 16
+INPUT_DONE 3 GQA:202158870 24
+INPUT_DONE 4 GQA:201759069 32
+INPUT_DONE 5 GQA:20162504 40
+DRIFT {"after_inputs": 5, "requests": 6, "baseline_per_input": {"GQA:202121628": {"E2E_ms": 2193.210502800048, "TPOT_ms": 63.170714832258746}, "TextVQA:38571": {"E2E_ms": 2186.617588400077, "TPOT_ms": 62.92245102580813}}, "measured_per_input": {"GQA:202121628": {"E2E_ms": 2263.860329999867, "TPOT_ms": 65.47762530106176}, "TextVQA:38571": {"E2E_ms": 2313.2244773329753, "TPOT_ms": 66.83664394623392}}, "relative_change": {"GQA:202121628": {"E2E_ms": 0.0322129713995174, "TPOT_ms": 0.03651866968624162}, "TextVQA:38571": {"E2E_ms": 0.05790079143447091, "TPOT_ms": 0.062206618728509966}}, "pooled_relative_change": {"E2E_ms": 0.04503754759896683, "TPOT_ms": 0.049337355810634476}, "threshold": 0.02, "breach": true, "consecutive_breaches": 1, "status": "WARN"}
+INPUT_DONE 6 GQA:20886934 48
+INPUT_DONE 7 GQA:201889314 56
+INPUT_DONE 8 GQA:201455854 64
+INPUT_DONE 9 GQA:20709953 72
+INPUT_DONE 10 GQA:202246655 80
+DRIFT {"after_inputs": 10, "requests": 6, "baseline_per_input": {"GQA:202121628": {"E2E_ms": 2193.210502800048, "TPOT_ms": 63.170714832258746}, "TextVQA:38571": {"E2E_ms": 2186.617588400077, "TPOT_ms": 62.92245102580813}}, "measured_per_input": {"GQA:202121628": {"E2E_ms": 2482.6589376668076, "TPOT_ms": 72.23813316129728}, "TextVQA:38571": {"E2E_ms": 2487.880662666915, "TPOT_ms": 72.15925296775588}}, "relative_change": {"GQA:202121628": {"E2E_ms": 0.13197476233914807, "TPOT_ms": 0.14353832077277962}, "TextVQA:38571": {"E2E_ms": 0.13777583966443308, "TPOT_ms": 0.14679660107580994}}, "pooled_relative_change": {"E2E_ms": 0.13487093484797863, "TPOT_ms": 0.14516425332352978}, "threshold": 0.02, "breach": true, "consecutive_breaches": 2, "status": "WARN"}
+INPUT_DONE 11 GQA:202060056 88
+INPUT_DONE 12 GQA:20644736 96
+INPUT_DONE 13 GQA:20922878 104
+INPUT_DONE 14 GQA:201976841 112
+INPUT_DONE 15 GQA:201959618 120
+DRIFT {"after_inputs": 15, "requests": 6, "baseline_per_input": {"GQA:202121628": {"E2E_ms": 2193.210502800048, "TPOT_ms": 63.170714832258746}, "TextVQA:38571": {"E2E_ms": 2186.617588400077, "TPOT_ms": 62.92245102580813}}, "measured_per_input": {"GQA:202121628": {"E2E_ms": 2512.7872249998595, "TPOT_ms": 73.04098711827915}, "TextVQA:38571": {"E2E_ms": 2519.2491086666755, "TPOT_ms": 73.24281178494779}}, "relative_change": {"GQA:202121628": {"E2E_ms": 0.14571183285499112, "TPOT_ms": 0.1562475953015503}, "TextVQA:38571": {"E2E_ms": 0.15212148755740196, "TPOT_ms": 0.16401714476930795}}, "pooled_relative_change": {"E2E_ms": 0.1489118360094579, "TPOT_ms": 0.16012472133412103}, "threshold": 0.02, "breach": true, "consecutive_breaches": 3, "status": "WARN"}
+INPUT_DONE 16 TextVQA:38571 128
+INPUT_DONE 17 TextVQA:36647 136
+INPUT_DONE 18 TextVQA:34775 144
+Traceback (most recent call last):
+  File "/home/featurize/ate-local-experiments/unified_e2e32_eight_methods_3090_repeatability/session1/code/run_3090.py", line 122, in main
+    for oi,method in enumerate(order):request(s['key'],method,'formal',False,formal_index=state['formal_completed']+1,input_index=pos+1,order_in_input=oi)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-experiments/unified_e2e32_eight_methods_3090_repeatability/session1/code/run_3090.py", line 86, in request
+    assert policy['accepted'],'Historical output policy failure: '+key+' '+method+' '+json.dumps(policy)
+AssertionError: Historical output policy failure: TextVQA:38508 Native {"accepted": false, "rule": "strict_full32_unchanged", "full32_exact": false, "first_difference_0based": 11, "all_differing_positions_0based": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31], "current_EOS_positions_0based": [3, 27, 30], "historical_EOS_positions_0based": [3, 26, 29], "comparison_last_index_0based": 31, "post_EOS_only_difference": false, "current_token_ids": [29871, 29896, 7234, 2, 13, 5618, 338, 278, 2927, 310, 278, 1559, 297, 278, 3239, 29973, 13, 22550, 278, 1139, 773, 263, 2323, 1734, 470, 16549, 29889, 2, 13, 9039, 2, 13], "historical_token_ids": [29871, 29896, 7234, 2, 13, 5618, 338, 278, 2927, 310, 278, 610, 9292, 11134, 29973, 13, 22550, 278, 1139, 773, 263, 2323, 1734, 470, 16549, 29889, 2, 13, 9039, 2, 13, 5618]}
+
+FINAL {"status": "PARTIAL", "phase": "FORMAL_INTERLEAVED_240", "pid": 9127, "session": 1, "formal_completed": 151, "formal_expected": 240, "requests_completed": 240, "requests_attempted": 240, "model_loads": 1, "failure": "AssertionError('Historical output policy failure: TextVQA:38508 Native {\"accepted\": false, \"rule\": \"strict_full32_unchanged\", \"full32_exact\": false, \"first_difference_0based\": 11, \"all_differing_positions_0based\": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31], \"current_EOS_positions_0based\": [3, 27, 30], \"historical_EOS_positions_0based\": [3, 26, 29], \"comparison_last_index_0based\": 31, \"post_EOS_only_difference\": false, \"current_token_ids\": [29871, 29896, 7234, 2, 13, 5618, 338, 278, 2927, 310, 278, 1559, 297, 278, 3239, 29973, 13, 22550, 278, 1139, 773, 263, 2323, 1734, 470, 16549, 29889, 2, 13, 9039, 2, 13], \"historical_token_ids\": [29871, 29896, 7234, 2, 13, 5618, 338, 278, 2927, 310, 278, 610, 9292, 11134, 29973, 13, 22550, 278, 1139, 773, 263, 2323, 1734, 470, 16549, 29889, 2, 13, 9039, 2, 13, 5618]}')", "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/ate-local-experiments/unified_e2e32_eight_methods_3090_repeatability/session1/code/run_3090.py\", line 122, in main\n    for oi,method in enumerate(order):request(s['key'],method,'formal',False,formal_index=state['formal_completed']+1,input_index=pos+1,order_in_input=oi)\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-local-experiments/unified_e2e32_eight_methods_3090_repeatability/session1/code/run_3090.py\", line 86, in request\n    assert policy['accepted'],'Historical output policy failure: '+key+' '+method+' '+json.dumps(policy)\nAssertionError: Historical output policy failure: TextVQA:38508 Native {\"accepted\": false, \"rule\": \"strict_full32_unchanged\", \"full32_exact\": false, \"first_difference_0based\": 11, \"all_differing_positions_0based\": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31], \"current_EOS_positions_0based\": [3, 27, 30], \"historical_EOS_positions_0based\": [3, 26, 29], \"comparison_last_index_0based\": 31, \"post_EOS_only_difference\": false, \"current_token_ids\": [29871, 29896, 7234, 2, 13, 5618, 338, 278, 2927, 310, 278, 1559, 297, 278, 3239, 29973, 13, 22550, 278, 1139, 773, 263, 2323, 1734, 470, 16549, 29889, 2, 13, 9039, 2, 13], \"historical_token_ids\": [29871, 29896, 7234, 2, 13, 5618, 338, 278, 2927, 310, 278, 610, 9292, 11134, 29973, 13, 22550, 278, 1139, 773, 263, 2323, 1734, 470, 16549, 29889, 2, 13, 9039, 2, 13, 5618]}\n", "failed_phase": "FORMAL_INTERLEAVED_240"}

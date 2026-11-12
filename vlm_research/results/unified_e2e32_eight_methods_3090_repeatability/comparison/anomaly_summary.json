@@ -1,0 +1,26 @@
+{
+  "statistical_flags": [
+    {
+      "scope": "within_session",
+      "session": 1,
+      "method": "V2Drop",
+      "key": "GQA:20886934",
+      "ratio": 1.1173921794321953,
+      "median_ratio": 0.9712430674570757,
+      "MAD": 0.00782510580229756,
+      "flag": "paired E2E ratio outlier; retained"
+    },
+    {
+      "scope": "within_session",
+      "session": 1,
+      "method": "ApET",
+      "key": "GQA:20886934",
+      "ratio": 1.148149655286925,
+      "median_ratio": 0.9875587823582415,
+      "MAD": 0.012838030401898237,
+      "flag": "paired E2E ratio outlier; retained"
+    }
+  ],
+  "no_requests_removed": true,
+  "rule": "Paired E2E ratio distance from median > max(0.05,6*1.4826*MAD); fixed exploratory screen, no causal attribution"
+}

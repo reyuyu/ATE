@@ -1,0 +1,16 @@
+"""Pure post-generation output acceptance. No model, torch, I/O or mutation."""
+def compare_history(method,current,reference,eos_token_id):
+ if reference is None:
+  return dict(accepted=method not in ('Native','FastV'),rule='unchanged_no_reference',full32_exact=None)
+ assert len(current)==len(reference)==32
+ c=list(current);r=list(reference)
+ ce=[i for i,t in enumerate(c) if t==eos_token_id];re=[i for i,t in enumerate(r) if t==eos_token_id]
+ diffs=[i for i,(x,y) in enumerate(zip(c,r)) if x!=y]
+ exact=not diffs
+ if method=='FastV':
+  if not ce and not re:accepted=exact;boundary=31;rule='no_EOS_requires_full32'
+  elif bool(ce)!=bool(re):accepted=False;boundary=min((ce or re));rule='EOS_presence_mismatch'
+  else:
+   boundary=min(ce[0],re[0]);accepted=ce[0]==re[0] and c[:boundary+1]==r[:boundary+1];rule='first_EOS_inclusive'
+ else:accepted=exact;boundary=31;rule='strict_full32_unchanged'
+ return dict(accepted=accepted,rule=rule,full32_exact=exact,first_difference_0based=diffs[0] if diffs else None,all_differing_positions_0based=diffs,current_EOS_positions_0based=ce,historical_EOS_positions_0based=re,comparison_last_index_0based=boundary,post_EOS_only_difference=bool(diffs) and accepted and method=='FastV',current_token_ids=c,historical_token_ids=r)

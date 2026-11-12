@@ -1,0 +1,15 @@
+{
+  "status": "PARTIAL",
+  "phase": "FORMAL_INTERLEAVED_240",
+  "pid": 9127,
+  "session": 1,
+  "formal_completed": 151,
+  "formal_expected": 240,
+  "requests_completed": 240,
+  "requests_attempted": 240,
+  "model_loads": 1,
+  "failure": "AssertionError('Historical output policy failure: TextVQA:38508 Native {\"accepted\": false, \"rule\": \"strict_full32_unchanged\", \"full32_exact\": false, \"first_difference_0based\": 11, \"all_differing_positions_0based\": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31], \"current_EOS_positions_0based\": [3, 27, 30], \"historical_EOS_positions_0based\": [3, 26, 29], \"comparison_last_index_0based\": 31, \"post_EOS_only_difference\": false, \"current_token_ids\": [29871, 29896, 7234, 2, 13, 5618, 338, 278, 2927, 310, 278, 1559, 297, 278, 3239, 29973, 13, 22550, 278, 1139, 773, 263, 2323, 1734, 470, 16549, 29889, 2, 13, 9039, 2, 13], \"historical_token_ids\": [29871, 29896, 7234, 2, 13, 5618, 338, 278, 2927, 310, 278, 610, 9292, 11134, 29973, 13, 22550, 278, 1139, 773, 263, 2323, 1734, 470, 16549, 29889, 2, 13, 9039, 2, 13, 5618]}')",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/ate-local-experiments/unified_e2e32_eight_methods_3090_repeatability/session1/code/run_3090.py\", line 122, in main\n    for oi,method in enumerate(order):request(s['key'],method,'formal',False,formal_index=state['formal_completed']+1,input_index=pos+1,order_in_input=oi)\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-local-experiments/unified_e2e32_eight_methods_3090_repeatability/session1/code/run_3090.py\", line 86, in request\n    assert policy['accepted'],'Historical output policy failure: '+key+' '+method+' '+json.dumps(policy)\nAssertionError: Historical output policy failure: TextVQA:38508 Native {\"accepted\": false, \"rule\": \"strict_full32_unchanged\", \"full32_exact\": false, \"first_difference_0based\": 11, \"all_differing_positions_0based\": [11, 12, 13, 14, 15, 16, 17, 18, 19, 20, 21, 22, 23, 24, 25, 26, 27, 28, 29, 30, 31], \"current_EOS_positions_0based\": [3, 27, 30], \"historical_EOS_positions_0based\": [3, 26, 29], \"comparison_last_index_0based\": 31, \"post_EOS_only_difference\": false, \"current_token_ids\": [29871, 29896, 7234, 2, 13, 5618, 338, 278, 2927, 310, 278, 1559, 297, 278, 3239, 29973, 13, 22550, 278, 1139, 773, 263, 2323, 1734, 470, 16549, 29889, 2, 13, 9039, 2, 13], \"historical_token_ids\": [29871, 29896, 7234, 2, 13, 5618, 338, 278, 2927, 310, 278, 610, 9292, 11134, 29973, 13, 22550, 278, 1139, 773, 263, 2323, 1734, 470, 16549, 29889, 2, 13, 9039, 2, 13, 5618]}\n",
+  "failed_phase": "FORMAL_INTERLEAVED_240",
+  "updated_ns": 1794262915528062341
+}

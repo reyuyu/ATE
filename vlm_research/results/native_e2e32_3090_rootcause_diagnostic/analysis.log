@@ -1,0 +1,176 @@
+{
+  "completion": {
+    "attempted": 84,
+    "completed": 84,
+    "planned": 84,
+    "hard_limit": 100,
+    "formal_requests": 0,
+    "profiler_requests": 8,
+    "status": "DIAGNOSTIC_REQUESTS_COMPLETED"
+  },
+  "conditions": [
+    {
+      "phase": "A",
+      "condition": "fixed_warmup",
+      "requests": 12,
+      "state_counts": {
+        "fast_historical_band": 12
+      },
+      "E2E_ms": 2288.562359250136,
+      "TTFT_ms": 276.8870756672186,
+      "TPOT_ms": 64.89275108331992,
+      "CUDA_Event_Decode_TPOT_ms": 64.88720326782556,
+      "main_thread_runqueue_wait_delta_ms": 0.18329241666666668
+    },
+    {
+      "phase": "A",
+      "condition": "continuous_measured",
+      "requests": 28,
+      "state_counts": {
+        "fast_historical_band": 28
+      },
+      "E2E_ms": 2254.8509618213757,
+      "TTFT_ms": 240.04845535728236,
+      "TPOT_ms": 64.99362924077721,
+      "CUDA_Event_Decode_TPOT_ms": 64.98789257278091,
+      "main_thread_runqueue_wait_delta_ms": 0.2575510714285714
+    },
+    {
+      "phase": "B",
+      "condition": "continuous_before",
+      "requests": 4,
+      "state_counts": {
+        "fast_historical_band": 4
+      },
+      "E2E_ms": 2238.3545369993953,
+      "TTFT_ms": 239.0677899993534,
+      "TPOT_ms": 64.4931208709691,
+      "CUDA_Event_Decode_TPOT_ms": 64.48765554735738,
+      "main_thread_runqueue_wait_delta_ms": 0.2070865
+    },
+    {
+      "phase": "B",
+      "condition": "idle15_forward",
+      "requests": 4,
+      "state_counts": {
+        "fast_historical_band": 4
+      },
+      "E2E_ms": 2274.6736514995973,
+      "TTFT_ms": 254.67194474958887,
+      "TPOT_ms": 65.16134537903253,
+      "CUDA_Event_Decode_TPOT_ms": 65.15506369067776,
+      "main_thread_runqueue_wait_delta_ms": 0.20176025
+    },
+    {
+      "phase": "B",
+      "condition": "idle60_forward",
+      "requests": 4,
+      "state_counts": {
+        "slow_historical_band": 1,
+        "fast_historical_band": 3
+      },
+      "E2E_ms": 2354.6584024998083,
+      "TTFT_ms": 263.4595777494724,
+      "TPOT_ms": 67.45802660484955,
+      "CUDA_Event_Decode_TPOT_ms": 67.44103600901943,
+      "main_thread_runqueue_wait_delta_ms": 1.1133665
+    },
+    {
+      "phase": "B",
+      "condition": "continuous_middle",
+      "requests": 4,
+      "state_counts": {
+        "fast_historical_band": 4
+      },
+      "E2E_ms": 2280.702089249189,
+      "TTFT_ms": 243.21064249988922,
+      "TPOT_ms": 65.7255305403,
+      "CUDA_Event_Decode_TPOT_ms": 65.71822289497622,
+      "main_thread_runqueue_wait_delta_ms": 2.205517
+    },
+    {
+      "phase": "B",
+      "condition": "idle60_reverse",
+      "requests": 4,
+      "state_counts": {
+        "fast_historical_band": 4
+      },
+      "E2E_ms": 2289.892176250305,
+      "TTFT_ms": 260.6326204995639,
+      "TPOT_ms": 65.45998566937874,
+      "CUDA_Event_Decode_TPOT_ms": 65.45055407862509,
+      "main_thread_runqueue_wait_delta_ms": 0.47170875
+    },
+    {
+      "phase": "B",
+      "condition": "idle15_reverse",
+      "requests": 4,
+      "state_counts": {
+        "fast_historical_band": 4
+      },
+      "E2E_ms": 2311.753931500334,
+      "TTFT_ms": 258.20701325028494,
+      "TPOT_ms": 66.24344897580804,
+      "CUDA_Event_Decode_TPOT_ms": 66.23515313671481,
+      "main_thread_runqueue_wait_delta_ms": 0.18087575
+    },
+    {
+      "phase": "B",
+      "condition": "continuous_after",
+      "requests": 4,
+      "state_counts": {
+        "fast_historical_band": 4
+      },
+      "E2E_ms": 2263.2518302498283,
+      "TTFT_ms": 239.9582415000623,
+      "TPOT_ms": 65.26753512096019,
+      "CUDA_Event_Decode_TPOT_ms": 65.25621700286865,
+      "main_thread_runqueue_wait_delta_ms": 0.1763855
+    },
+    {
+      "phase": "C",
+      "condition": "unprofiled_scout",
+      "requests": 8,
+      "state_counts": {
+        "fast_historical_band": 1,
+        "slow_historical_band": 7
+      },
+      "E2E_ms": 2965.6946391246493,
+      "TTFT_ms": 250.6209446248704,
+      "TPOT_ms": 87.58302240321868,
+      "CUDA_Event_Decode_TPOT_ms": 87.53331153623519,
+      "main_thread_runqueue_wait_delta_ms": 0.600169375
+    },
+    {
+      "phase": "C",
+      "condition": "profiled_native32",
+      "requests": 8,
+      "state_counts": {
+        "slow_historical_band": 8
+      },
+      "E2E_ms": 3280.8010284995817,
+      "TTFT_ms": 263.2624243747159,
+      "TPOT_ms": 97.33995497176986,
+      "CUDA_Event_Decode_TPOT_ms": 97.26754465410787,
+      "main_thread_runqueue_wait_delta_ms": 0.463999375
+    }
+  ],
+  "states": [
+    {
+      "band": "fast_historical_band",
+      "n": 55
+    },
+    {
+      "band": "intermediate",
+      "n": 0
+    },
+    {
+      "band": "slow_historical_band",
+      "n": 1
+    }
+  ],
+  "transitions": [],
+  "profiler_captures": 8,
+  "profiler_step_mapping": 8,
+  "profiler_errors": []
+}

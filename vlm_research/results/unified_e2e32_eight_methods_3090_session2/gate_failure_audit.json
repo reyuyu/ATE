@@ -1,0 +1,1005 @@
+{
+  "status": "CPU_AUDIT_COMPLETE",
+  "new_GPU_requests": 0,
+  "admission": "FAILED",
+  "evaluations": [
+    {
+      "after_warmup": 60,
+      "status": "NOT_ADMITTED",
+      "summed_E2E_s": 129.8471223070019,
+      "reasons": [
+        "Summed actual generation E2E<180s"
+      ]
+    },
+    {
+      "after_warmup": 80,
+      "status": "NOT_ADMITTED",
+      "summed_E2E_s": 173.0092390580012,
+      "reasons": [
+        "window3 TextVQA:38571 E2E_ms dispersion/single-request anomaly",
+        "window3 TextVQA:38571 TPOT_ms dispersion/single-request anomaly",
+        "window3 TextVQA:38571 CUDA_Event_Decode_TPOT_ms dispersion/single-request anomaly",
+        "Summed actual generation E2E<180s"
+      ]
+    },
+    {
+      "after_warmup": 100,
+      "status": "NOT_ADMITTED",
+      "summed_E2E_s": 216.55394748400073,
+      "reasons": [
+        "window2 TextVQA:38571 E2E_ms dispersion/single-request anomaly",
+        "window2 TextVQA:38571 TPOT_ms dispersion/single-request anomaly",
+        "window2 TextVQA:38571 CUDA_Event_Decode_TPOT_ms dispersion/single-request anomaly",
+        "window3 TextVQA:38571 E2E_ms dispersion/single-request anomaly",
+        "window3 TextVQA:38571 TPOT_ms dispersion/single-request anomaly",
+        "window3 TextVQA:38571 CUDA_Event_Decode_TPOT_ms dispersion/single-request anomaly",
+        "GQA:202121628 E2E_ms adjacent mean shift>1%",
+        "GQA:202121628 TPOT_ms adjacent mean shift>1%",
+        "GQA:202121628 CUDA_Event_Decode_TPOT_ms adjacent mean shift>1%"
+      ]
+    },
+    {
+      "after_warmup": 120,
+      "status": "NOT_ADMITTED",
+      "summed_E2E_s": 259.9514686840012,
+      "reasons": [
+        "window1 TextVQA:38571 E2E_ms dispersion/single-request anomaly",
+        "window1 TextVQA:38571 TPOT_ms dispersion/single-request anomaly",
+        "window1 TextVQA:38571 CUDA_Event_Decode_TPOT_ms dispersion/single-request anomaly",
+        "window2 TextVQA:38571 E2E_ms dispersion/single-request anomaly",
+        "window2 TextVQA:38571 TPOT_ms dispersion/single-request anomaly",
+        "window2 TextVQA:38571 CUDA_Event_Decode_TPOT_ms dispersion/single-request anomaly",
+        "GQA:202121628 E2E_ms adjacent mean shift>1%",
+        "GQA:202121628 TPOT_ms adjacent mean shift>1%",
+        "GQA:202121628 CUDA_Event_Decode_TPOT_ms adjacent mean shift>1%"
+      ]
+    }
+  ],
+  "flagged_windows": [
+    {
+      "first_warmup": 61,
+      "last_warmup": 80,
+      "key": "TextVQA:38571",
+      "window_stats": {
+        "E2E_ms": {
+          "mean": 2161.238652100019,
+          "median": 2160.9460854999725,
+          "stdev": 16.116587821614612,
+          "CV": 0.0074571069724088754,
+          "robust_CV": 0.010785675368629255,
+          "max_abs_deviation_from_median": 0.011203267708746134
+        },
+        "TPOT_ms": {
+          "mean": 62.142021116130394,
+          "median": 62.1703803709689,
+          "stdev": 0.5133143499992279,
+          "CV": 0.008260342048417626,
+          "robust_CV": 0.010881995639593819,
+          "max_abs_deviation_from_median": 0.011610134853431653
+        },
+        "CUDA_Event_Decode_TPOT_ms": {
+          "mean": 62.13529295152234,
+          "median": 62.16343953532557,
+          "stdev": 0.5129426477760056,
+          "CV": 0.00825525435562364,
+          "robust_CV": 0.010885740916380367,
+          "max_abs_deviation_from_median": 0.011606347657309168
+        }
+      },
+      "requests": [
+        {
+          "request_id": 99,
+          "warmup_index": 62,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2152.4067039999863,
+            "TPOT_ms": 61.87701470967553,
+            "CUDA_Event_Decode_TPOT_ms": 61.8700799019106
+          },
+          "relative_to_window_median": {
+            "E2E_ms": -0.003951686512350117,
+            "TPOT_ms": -0.004718736793033362,
+            "CUDA_Event_Decode_TPOT_ms": -0.004719166693603949
+          },
+          "main_thread_runqueue_ms": 0.086652,
+          "main_thread_running_ms": 2153.53865,
+          "within_request_Native_decode_change": -0.011073457648299811,
+          "GPU_samples": 10,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1920,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 60,
+              "max": 61
+            },
+            "power_mW": {
+              "min": 219737,
+              "max": 232858
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        },
+        {
+          "request_id": 101,
+          "warmup_index": 64,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2169.4854669999586,
+            "TPOT_ms": 62.39801777419709,
+            "CUDA_Event_Decode_TPOT_ms": 62.39113087807932
+          },
+          "relative_to_window_median": {
+            "E2E_ms": 0.003951686512350117,
+            "TPOT_ms": 0.0036615089351212937,
+            "CUDA_Event_Decode_TPOT_ms": 0.0036627854645070457
+          },
+          "main_thread_runqueue_ms": 0.148287,
+          "main_thread_running_ms": 2172.974589,
+          "within_request_Native_decode_change": -0.010433226671777152,
+          "GPU_samples": 11,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1815,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 60,
+              "max": 60
+            },
+            "power_mW": {
+              "min": 219613,
+              "max": 234380
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        },
+        {
+          "request_id": 103,
+          "warmup_index": 66,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2150.179200999901,
+            "TPOT_ms": 61.94274296774071,
+            "CUDA_Event_Decode_TPOT_ms": 61.93574819257182
+          },
+          "relative_to_window_median": {
+            "E2E_ms": -0.004982486408299569,
+            "TPOT_ms": -0.0036615089351211827,
+            "CUDA_Event_Decode_TPOT_ms": -0.0036627854645070457
+          },
+          "main_thread_runqueue_ms": 0.071632,
+          "main_thread_running_ms": 2152.38925,
+          "within_request_Native_decode_change": 0.0019463529562768755,
+          "GPU_samples": 11,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1845,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 60,
+              "max": 62
+            },
+            "power_mW": {
+              "min": 220456,
+              "max": 242467
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        },
+        {
+          "request_id": 105,
+          "warmup_index": 68,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2144.5339930000955,
+            "TPOT_ms": 61.575994322582474,
+            "CUDA_Event_Decode_TPOT_ms": 61.569023993707475
+          },
+          "relative_to_window_median": {
+            "E2E_ms": -0.00759486440221846,
+            "TPOT_ms": -0.009560598549337218,
+            "CUDA_Event_Decode_TPOT_ms": -0.00956214048098658
+          },
+          "main_thread_runqueue_ms": 0.076147,
+          "main_thread_running_ms": 2146.909613,
+          "within_request_Native_decode_change": 0.0155164131415233,
+          "GPU_samples": 11,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1935,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 60,
+              "max": 60
+            },
+            "power_mW": {
+              "min": 219708,
+              "max": 234267
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        },
+        {
+          "request_id": 107,
+          "warmup_index": 70,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2144.5915479998803,
+            "TPOT_ms": 61.573418645161105,
+            "CUDA_Event_Decode_TPOT_ms": 61.56720684420678
+          },
+          "relative_to_window_median": {
+            "E2E_ms": -0.0075682302348178965,
+            "TPOT_ms": -0.009602027882823605,
+            "CUDA_Event_Decode_TPOT_ms": -0.009591372285312039
+          },
+          "main_thread_runqueue_ms": 0.042584,
+          "main_thread_running_ms": 2146.785097,
+          "within_request_Native_decode_change": -0.0022928753914301936,
+          "GPU_samples": 11,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1815,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 60,
+              "max": 60
+            },
+            "power_mW": {
+              "min": 219460,
+              "max": 235843
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        },
+        {
+          "request_id": 109,
+          "warmup_index": 72,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2176.0618130001603,
+            "TPOT_ms": 62.59350441936359,
+            "CUDA_Event_Decode_TPOT_ms": 62.586452361076105
+          },
+          "relative_to_window_median": {
+            "E2E_ms": 0.006994958181333111,
+            "TPOT_ms": 0.006805878392088349,
+            "CUDA_Event_Decode_TPOT_ms": 0.006804849102825861
+          },
+          "main_thread_runqueue_ms": 0.086376,
+          "main_thread_running_ms": 2178.655545,
+          "within_request_Native_decode_change": -0.0024810135757084018,
+          "GPU_samples": 10,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1830,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 60,
+              "max": 62
+            },
+            "power_mW": {
+              "min": 219562,
+              "max": 235135
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        },
+        {
+          "request_id": 111,
+          "warmup_index": 74,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2185.1557429999957,
+            "TPOT_ms": 62.89218687096499,
+            "CUDA_Event_Decode_TPOT_ms": 62.88493002614668
+          },
+          "relative_to_window_median": {
+            "E2E_ms": 0.011203267708746134,
+            "TPOT_ms": 0.011610134853431653,
+            "CUDA_Event_Decode_TPOT_ms": 0.011606347657309168
+          },
+          "main_thread_runqueue_ms": 0.064912,
+          "main_thread_running_ms": 2189.625361,
+          "within_request_Native_decode_change": -0.008178310795156851,
+          "GPU_samples": 11,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1935,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 60,
+              "max": 60
+            },
+            "power_mW": {
+              "min": 219127,
+              "max": 232100
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        },
+        {
+          "request_id": 113,
+          "warmup_index": 76,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2177.2714250000718,
+            "TPOT_ms": 62.65989332258604,
+            "CUDA_Event_Decode_TPOT_ms": 62.65327588973507
+          },
+          "relative_to_window_median": {
+            "E2E_ms": 0.007554718560376372,
+            "TPOT_ms": 0.007873732615052864,
+            "CUDA_Event_Decode_TPOT_ms": 0.007879814213483716
+          },
+          "main_thread_runqueue_ms": 0.108779,
+          "main_thread_running_ms": 2180.089987,
+          "within_request_Native_decode_change": 0.012620555725555205,
+          "GPU_samples": 11,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1815,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 60,
+              "max": 60
+            },
+            "power_mW": {
+              "min": 219434,
+              "max": 233606
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        },
+        {
+          "request_id": 115,
+          "warmup_index": 78,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2170.7830600003035,
+            "TPOT_ms": 62.42624538710164,
+            "CUDA_Event_Decode_TPOT_ms": 62.41907611969979
+          },
+          "relative_to_window_median": {
+            "E2E_ms": 0.0045521610031538096,
+            "TPOT_ms": 0.004115545290313438,
+            "CUDA_Event_Decode_TPOT_ms": 0.004112330113730911
+          },
+          "main_thread_runqueue_ms": 0.081528,
+          "main_thread_running_ms": 2173.304557,
+          "within_request_Native_decode_change": -0.0059646102894207464,
+          "GPU_samples": 11,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1815,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 59,
+              "max": 60
+            },
+            "power_mW": {
+              "min": 217066,
+              "max": 234367
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        },
+        {
+          "request_id": 117,
+          "warmup_index": 80,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2141.9175669998367,
+            "TPOT_ms": 61.48119274193079,
+            "CUDA_Event_Decode_TPOT_ms": 61.47600530808972
+          },
+          "relative_to_window_median": {
+            "E2E_ms": -0.008805642411820358,
+            "TPOT_ms": -0.011085465858914567,
+            "CUDA_Event_Decode_TPOT_ms": -0.01105849728352315
+          },
+          "main_thread_runqueue_ms": 0.061667,
+          "main_thread_running_ms": 2145.650496,
+          "within_request_Native_decode_change": 0.0103665113186584,
+          "GPU_samples": 10,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1830,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 60,
+              "max": 62
+            },
+            "power_mW": {
+              "min": 219775,
+              "max": 235240
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0
+          ]
+        }
+      ]
+    },
+    {
+      "first_warmup": 81,
+      "last_warmup": 100,
+      "key": "TextVQA:38571",
+      "window_stats": {
+        "E2E_ms": {
+          "mean": 2176.726563300008,
+          "median": 2171.087929999885,
+          "stdev": 22.108025434462053,
+          "CV": 0.010156546902678198,
+          "robust_CV": 0.0031056347340895755,
+          "max_abs_deviation_from_median": 0.030351569869575323
+        },
+        "TPOT_ms": {
+          "mean": 62.59102778709759,
+          "median": 62.43148712903143,
+          "stdev": 0.6954432507264818,
+          "CV": 0.011110909587425553,
+          "robust_CV": 0.004611594082259878,
+          "max_abs_deviation_from_median": 0.03287282144666137
+        },
+        "CUDA_Event_Decode_TPOT_ms": {
+          "mean": 62.583653382332095,
+          "median": 62.42401492211127,
+          "stdev": 0.6947382216493198,
+          "CV": 0.011100953429565208,
+          "robust_CV": 0.004600501836329165,
+          "max_abs_deviation_from_median": 0.032846276554840736
+        }
+      },
+      "requests": [
+        {
+          "request_id": 119,
+          "warmup_index": 82,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2174.9102740000126,
+            "TPOT_ms": 62.49082951613203,
+            "CUDA_Event_Decode_TPOT_ms": 62.4847792348554
+          },
+          "relative_to_window_median": {
+            "E2E_ms": 0.0017605661877211354,
+            "TPOT_ms": 0.0009505201594501855,
+            "CUDA_Event_Decode_TPOT_ms": 0.0009734124410285538
+          },
+          "main_thread_runqueue_ms": 0.125001,
+          "main_thread_running_ms": 2177.93584,
+          "within_request_Native_decode_change": 0.0011399635182343104,
+          "GPU_samples": 11,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1935,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 60,
+              "max": 60
+            },
+            "power_mW": {
+              "min": 218835,
+              "max": 235012
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        },
+        {
+          "request_id": 121,
+          "warmup_index": 84,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2162.9538659999525,
+            "TPOT_ms": 62.15681367741361,
+            "CUDA_Event_Decode_TPOT_ms": 62.14963174635364
+          },
+          "relative_to_window_median": {
+            "E2E_ms": -0.0037465382620099907,
+            "TPOT_ms": -0.00439959809142676,
+            "CUDA_Event_Decode_TPOT_ms": -0.004395474659872223
+          },
+          "main_thread_runqueue_ms": 0.07534,
+          "main_thread_running_ms": 2166.863462,
+          "within_request_Native_decode_change": -0.011102624435576303,
+          "GPU_samples": 11,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1815,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 59,
+              "max": 60
+            },
+            "power_mW": {
+              "min": 217252,
+              "max": 232175
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        },
+        {
+          "request_id": 123,
+          "warmup_index": 86,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2181.6891359999318,
+            "TPOT_ms": 62.784601032255466,
+            "CUDA_Event_Decode_TPOT_ms": 62.77714686239919
+          },
+          "relative_to_window_median": {
+            "E2E_ms": 0.004882900343905927,
+            "TPOT_ms": 0.005656022617148704,
+            "CUDA_Event_Decode_TPOT_ms": 0.005656988592107393
+          },
+          "main_thread_runqueue_ms": 0.1376,
+          "main_thread_running_ms": 2182.903877,
+          "within_request_Native_decode_change": -0.003680764362551381,
+          "GPU_samples": 11,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1830,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 60,
+              "max": 60
+            },
+            "power_mW": {
+              "min": 218600,
+              "max": 234306
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0
+          ]
+        },
+        {
+          "request_id": 125,
+          "warmup_index": 88,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2170.797737999692,
+            "TPOT_ms": 62.4311064838689,
+            "CUDA_Event_Decode_TPOT_ms": 62.42350239907542
+          },
+          "relative_to_window_median": {
+            "E2E_ms": -0.0001336620208621797,
+            "TPOT_ms": -6.097006174821118e-06,
+            "CUDA_Event_Decode_TPOT_ms": -8.21035039944018e-06
+          },
+          "main_thread_runqueue_ms": 0.060709,
+          "main_thread_running_ms": 2171.613021,
+          "within_request_Native_decode_change": 0.003020694066108609,
+          "GPU_samples": 11,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1830,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 60,
+              "max": 62
+            },
+            "power_mW": {
+              "min": 219456,
+              "max": 233047
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        },
+        {
+          "request_id": 127,
+          "warmup_index": 90,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2236.9838570002685,
+            "TPOT_ms": 64.48378625807362,
+            "CUDA_Event_Decode_TPOT_ms": 64.47441137990644
+          },
+          "relative_to_window_median": {
+            "E2E_ms": 0.030351569869575323,
+            "TPOT_ms": 0.03287282144666137,
+            "CUDA_Event_Decode_TPOT_ms": 0.032846276554840736
+          },
+          "main_thread_runqueue_ms": 0.264853,
+          "main_thread_running_ms": 2237.55639,
+          "within_request_Native_decode_change": 0.010111939999821073,
+          "GPU_samples": 11,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1935,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 60,
+              "max": 60
+            },
+            "power_mW": {
+              "min": 216736,
+              "max": 228249
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        },
+        {
+          "request_id": 129,
+          "warmup_index": 92,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2169.3780309997237,
+            "TPOT_ms": 62.29200806451591,
+            "CUDA_Event_Decode_TPOT_ms": 62.28509706066501
+          },
+          "relative_to_window_median": {
+            "E2E_ms": -0.0007875770375460611,
+            "TPOT_ms": -0.0022341140813648686,
+            "CUDA_Event_Decode_TPOT_ms": -0.0022253913276739645
+          },
+          "main_thread_runqueue_ms": 2.763047,
+          "main_thread_running_ms": 2170.725636,
+          "within_request_Native_decode_change": -0.012450032815358503,
+          "GPU_samples": 11,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1785,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 59,
+              "max": 60
+            },
+            "power_mW": {
+              "min": 218514,
+              "max": 227454
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        },
+        {
+          "request_id": 131,
+          "warmup_index": 94,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2159.208945000046,
+            "TPOT_ms": 62.11735587096207,
+            "CUDA_Event_Decode_TPOT_ms": 62.11035685385427
+          },
+          "relative_to_window_median": {
+            "E2E_ms": -0.005471443526398279,
+            "TPOT_ms": -0.005031615816232682,
+            "CUDA_Event_Decode_TPOT_ms": -0.005024637852088842
+          },
+          "main_thread_runqueue_ms": 0.042624,
+          "main_thread_running_ms": 2162.784445,
+          "within_request_Native_decode_change": 0.0076401083111723445,
+          "GPU_samples": 11,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1830,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 59,
+              "max": 60
+            },
+            "power_mW": {
+              "min": 216798,
+              "max": 234056
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        },
+        {
+          "request_id": 133,
+          "warmup_index": 96,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2174.1510410001865,
+            "TPOT_ms": 62.53932648388077,
+            "CUDA_Event_Decode_TPOT_ms": 62.53155099191973
+          },
+          "relative_to_window_median": {
+            "E2E_ms": 0.0014108645522714625,
+            "TPOT_ms": 0.0017273231795114086,
+            "CUDA_Event_Decode_TPOT_ms": 0.0017226714741536142
+          },
+          "main_thread_runqueue_ms": 0.077556,
+          "main_thread_running_ms": 2174.894257,
+          "within_request_Native_decode_change": -0.009113893936036455,
+          "GPU_samples": 10,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1830,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 59,
+              "max": 61
+            },
+            "power_mW": {
+              "min": 219165,
+              "max": 235741
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0
+          ]
+        },
+        {
+          "request_id": 135,
+          "warmup_index": 98,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2171.3781220000783,
+            "TPOT_ms": 62.43186777419396,
+            "CUDA_Event_Decode_TPOT_ms": 62.42452744514711
+          },
+          "relative_to_window_median": {
+            "E2E_ms": 0.0001336620208620687,
+            "TPOT_ms": 6.097006174821118e-06,
+            "CUDA_Event_Decode_TPOT_ms": 8.210350399329158e-06
+          },
+          "main_thread_runqueue_ms": 0.06022,
+          "main_thread_running_ms": 2174.290088,
+          "within_request_Native_decode_change": -0.01033474463359041,
+          "GPU_samples": 11,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1935,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 59,
+              "max": 61
+            },
+            "power_mW": {
+              "min": 219311,
+              "max": 234151
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        },
+        {
+          "request_id": 137,
+          "warmup_index": 100,
+          "key": "TextVQA:38571",
+          "metrics": {
+            "E2E_ms": 2165.8146230001876,
+            "TPOT_ms": 62.18258270967952,
+            "CUDA_Event_Decode_TPOT_ms": 62.17552984914472
+          },
+          "relative_to_window_median": {
+            "E2E_ms": -0.0024288776731846706,
+            "TPOT_ms": -0.003986841108517547,
+            "CUDA_Event_Decode_TPOT_ms": -0.0039806006274442085
+          },
+          "main_thread_runqueue_ms": 0.055934,
+          "main_thread_running_ms": 2166.705657,
+          "within_request_Native_decode_change": -0.01938171998854632,
+          "GPU_samples": 11,
+          "GPU_ranges": {
+            "SM_MHz": {
+              "min": 1935,
+              "max": 1935
+            },
+            "memory_MHz": {
+              "min": 9501,
+              "max": 9501
+            },
+            "temperature_C": {
+              "min": 59,
+              "max": 60
+            },
+            "power_mW": {
+              "min": 219107,
+              "max": 232976
+            }
+          },
+          "P_states": [
+            2
+          ],
+          "throttle_masks": [
+            0,
+            4
+          ]
+        }
+      ]
+    }
+  ],
+  "interpretation": "Admission dispersion gate failed. Contemporaneous clocks/runqueue and CUDA Events are evidence only; no counterfactual GPU experiment was performed, so no causal root is claimed. The same fixed61-80 window may persist in successive latest60 evaluations; this does not imply three independent anomaly episodes.",
+  "all_raw_records_retained": true
+}

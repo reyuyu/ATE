@@ -1,0 +1,33 @@
+--- preserved_repeatability_v1/run_3090.py
++++ repeatability_v2/run_3090.py
+@@ -88,7 +88,7 @@
+     assert r['FastV_physical_history_evidence']['KV_layout_equal'] and g.get('pruning_events')==h.get('pruning_events'),'FastV physical layout/pruning differs from frozen history'
+    return r
+   state['phase']='FIXED_NATIVE_WARMUP';status();warm=[]
+-  for i in range(16):warm.append(request(plan['smoke_keys'][i%2],'Native','native_warmup',False,warmup_index=i+1))
++  for i in range(40):warm.append(request(plan['smoke_keys'][i%2],'Native','native_warmup',False,warmup_index=i+1))
+   state['phase']='FIXED_OTHER_METHOD_WARMUP';status()
+   others=[m for m in plan['requested_methods'] if m!='Native']
+   for i,key in enumerate(plan['smoke_keys']):
+@@ -99,8 +99,8 @@
+    for metric in ['E2E_ms','TTFT_ms','TPOT_ms','CUDA_Event_Decode_TPOT_ms']:
+     v=[r['generation'][metric] for r in sub];med=statistics.median(v);s=dict(n=len(v),mean=mean(v),median=med,stdev=statistics.stdev(v),robust_CV=robust(v),max_abs_deviation=max(abs(x/med-1) for x in v));warmstats[key][metric]=s
+     if s['robust_CV']>.01 or s['max_abs_deviation']>.03:warnings.append(dict(type='fixed_warmup_dispersion',key=key,metric=metric,statistics=s))
+-  save(L,'warmup_summary.json',dict(status='WARN' if warnings else 'RECORDED',Native_requests=16,other_method_requests_each=2,total_warmup=30,hard_performance_admission=False,statistics=warmstats,warnings=list(warnings)))
+-  print('FIXED_WARMUP_DONE Native16 other14 performance_warnings',len(warnings),flush=True)
++  save(L,'warmup_summary.json',dict(status='WARN' if warnings else 'RECORDED',Native_requests=40,other_method_requests_each=2,total_warmup=54,hard_performance_admission=False,statistics=warmstats,warnings=list(warnings)))
++  print('FIXED_WARMUP_DONE Native40 other14 performance_warnings',len(warnings),flush=True)
+   state['phase']='CORRECTNESS_SMOKE';status()
+   for method in plan['requested_methods']:
+    for key in plan['smoke_keys']:
+@@ -111,7 +111,9 @@
+    key=plan['smoke_keys'][0];r=request(key,method,'smoke',True);base=smokes[key+'|Native']['generation'];assert r['generation']['token_ids']==base['token_ids'] and r['generation']['first_logits']==base['first_logits'];print('NOOP_EXACT',method,flush=True)
+   extra_smoke=request(plan['extra_policy_smoke_key'],'FastV','policy_smoke',True)
+   save(L,'policy_smoke_validation.json',dict(status='PASS',key=extra_smoke['key'],history_acceptance=extra_smoke['history_acceptance'],physical_evidence=extra_smoke['FastV_physical_history_evidence'],frozen_runtime_unchanged=True,timed_call_unchanged=True,request_id=extra_smoke['request_id']))
+-  save(L,'smoke_summary.json',dict(status='PASS',methods=plan['requested_methods'],requests=21,BridgeNative_exact=True,FastV_disabled_exact=True,V2Drop_disabled_exact=True,all_shapes_RoPE_KV_real_decode_finite=True,SVH_attention_skip_layers=[2,3,4,5],observer_steps=[0,1,2,3,4,5,6,7,8,31]))
++  native_policy_smoke=request(plan['extra_Native_policy_smoke_key'],'Native','policy_smoke',True)
++  save(L,'Native_policy_smoke_validation.json',dict(status='PASS',key=native_policy_smoke['key'],history_acceptance=native_policy_smoke['history_acceptance'],same_GPU_Noops_still_strict=True,request_id=native_policy_smoke['request_id'],frozen_runtime_unchanged=True,timed_call_unchanged=True))
++  save(L,'smoke_summary.json',dict(status='PASS',methods=plan['requested_methods'],requests=22,BridgeNative_exact=True,FastV_disabled_exact=True,V2Drop_disabled_exact=True,all_shapes_RoPE_KV_real_decode_finite=True,SVH_attention_skip_layers=[2,3,4,5],observer_steps=[0,1,2,3,4,5,6,7,8,31]))
+   state['phase']='INDEPENDENT_NATIVE_BASELINE';status()
+   for i in range(20):baseline.append(request(plan['smoke_keys'][i%2],'Native','baseline',False,baseline_index=i+1))
+   metrics=plan['drift']['metrics'];base={k:{m:mean(r['generation'][m] for r in baseline if r['key']==k) for m in metrics} for k in plan['smoke_keys']};pooled={m:mean(r['generation'][m] for r in baseline) for m in metrics}

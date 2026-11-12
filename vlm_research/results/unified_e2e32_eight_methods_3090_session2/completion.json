@@ -1,0 +1,21 @@
+{
+  "status": "BLOCKED",
+  "phase": "NATIVE_STABILITY_ADMISSION",
+  "pid": 7207,
+  "session": 2,
+  "formal_completed": 0,
+  "formal_expected": 240,
+  "requests_completed": 157,
+  "requests_attempted": 157,
+  "model_loads": 1,
+  "failure": "RuntimeError('Native stability admission failed within120 warmups; formal240 NOT STARTED')",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/ate-local-experiments/unified_e2e32_eight_methods_3090_session2/code/run_3090.py\", line 132, in main\n    if not admitted:raise RuntimeError('Native stability admission failed within120 warmups; formal240 NOT STARTED')\n                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Native stability admission failed within120 warmups; formal240 NOT STARTED\n",
+  "failed_phase": "NATIVE_STABILITY_ADMISSION",
+  "category_counts": {
+    "equal_warmup": 16,
+    "policy_smoke": 1,
+    "smoke": 20,
+    "stability_warmup": 120
+  },
+  "elapsed_s": 405.72637942
+}

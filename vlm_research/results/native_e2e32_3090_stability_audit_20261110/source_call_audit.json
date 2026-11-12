@@ -1,0 +1,122 @@
+[
+  {
+    "file": "/home/featurize/work/ATE/vlm_research/results/native_e2e32_3090_recheck/code/run_native.py",
+    "line": 125,
+    "call": "gc.collect",
+    "functions": [
+      "session"
+    ],
+    "source": "a=None;gc.collect()"
+  },
+  {
+    "file": "/home/featurize/work/ATE/vlm_research/results/native_e2e32_3090_recheck/code/run_native.py",
+    "line": 72,
+    "call": "torch.manual_seed",
+    "functions": [
+      "request",
+      "session"
+    ],
+    "source": "torch.manual_seed(0);clean();begin=time.time()"
+  },
+  {
+    "file": "/home/featurize/work/ATE/vlm_research/results/native_e2e32_3090_recheck/code/run_native.py",
+    "line": 126,
+    "call": "torch.cuda.empty_cache",
+    "functions": [
+      "session"
+    ],
+    "source": "if torch.cuda.is_initialized():torch.cuda.empty_cache()"
+  },
+  {
+    "file": "/home/featurize/work/ATE/vlm_research/results/native_e2e32_3090_recheck/code/run_native.py",
+    "line": 73,
+    "call": "generate",
+    "functions": [
+      "request",
+      "session"
+    ],
+    "source": "with identity_attention(a) if noop else nullcontext():g=generate(a,layout,'Native',smoke=smoke)"
+  },
+  {
+    "file": "/home/featurize/work/ATE/vlm_research/results/native_e2e32_3090_recheck/code/run_native.py",
+    "line": 77,
+    "call": "torch.cuda.memory_allocated",
+    "functions": [
+      "request",
+      "session"
+    ],
+    "source": "residual=torch.cuda.memory_allocated()-sum(v.numel()*v.element_size() for v in a.inputs.values())"
+  },
+  {
+    "file": "/home/featurize/work/ATE/vlm_research/results/native_e2e32_3090_recheck/code/run_native.py",
+    "line": 65,
+    "call": "torch.ones",
+    "functions": [
+      "session"
+    ],
+    "source": "raw=dict(input_ids=torch.tensor([s['input_ids']],dtype=torch.long),attention_mask=torch.ones((1,len(s['input_ids'])),dtype=torch.long),pixel_values=frozen.paper_pixels(mapping[s['key']],a.image_processor).half())"
+  },
+  {
+    "file": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_runtime.py",
+    "line": 107,
+    "call": "torch.cuda.synchronize",
+    "functions": [
+      "generate"
+    ],
+    "source": "torch.cuda.synchronize();start=time.perf_counter()"
+  },
+  {
+    "file": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_runtime.py",
+    "line": 109,
+    "call": "torch.arange",
+    "functions": [
+      "generate"
+    ],
+    "source": "positions=torch.arange(n+length-1,device=device);mask=torch.ones((1,n+length-1),dtype=torch.long,device=device)"
+  },
+  {
+    "file": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_runtime.py",
+    "line": 109,
+    "call": "torch.ones",
+    "functions": [
+      "generate"
+    ],
+    "source": "positions=torch.arange(n+length-1,device=device);mask=torch.ones((1,n+length-1),dtype=torch.long,device=device)"
+  },
+  {
+    "file": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_runtime.py",
+    "line": 129,
+    "call": "torch.cuda.synchronize",
+    "functions": [
+      "generate"
+    ],
+    "source": "torch.cuda.synchronize();end=time.perf_counter()"
+  },
+  {
+    "file": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_runtime.py",
+    "line": 103,
+    "call": "torch.cuda.Event",
+    "functions": [
+      "generate"
+    ],
+    "source": "events=[(torch.cuda.Event(enable_timing=True),torch.cuda.Event(enable_timing=True)) for _ in range(length)]"
+  },
+  {
+    "file": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_runtime.py",
+    "line": 103,
+    "call": "torch.cuda.Event",
+    "functions": [
+      "generate"
+    ],
+    "source": "events=[(torch.cuda.Event(enable_timing=True),torch.cuda.Event(enable_timing=True)) for _ in range(length)]"
+  },
+  {
+    "file": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_runtime.py",
+    "line": 125,
+    "call": "torch.cuda.synchronize",
+    "functions": [
+      "generate"
+    ],
+    "source": "torch.cuda.synchronize();first=time.perf_counter()"
+  }
+]

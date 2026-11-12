@@ -1,0 +1,23 @@
+{
+  "task": "Two authorized independent sessions, no retries",
+  "sessions": 2,
+  "formal_requests": 480,
+  "model": "llava-hf/llava-1.5-7b-hf",
+  "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "GPU_UUID": "GPU-6c96bba5-5cc6-8be2-b277-5533b4cdab27",
+  "schedule_SHA256": "c8e59b5fcba1c7e6b8b09221948f78f15c37e43b8b8bff7d1493ccd18760cab2",
+  "performance_policy": "WARN and continue",
+  "hard_gates": "Only input/source/model/UUID/correctness/no-op/physical-layout/nonfinite/OOM, GPU conflict, hardware safety or unavailable safety monitoring. All pure performance thresholds WARN and continue. No retries/replacements.",
+  "session_protocol_SHA256": {
+    "session1": "8324a8b23fa5331d3bfec67d3034646b4fe3e8c1db069ad06a5fa829257be8c5",
+    "session2": "bd76dd7696206c81d4504e193545830e9d4668af1bb1f15d3f3ec8c15e551bea"
+  },
+  "coordinator_SHA256": "9d6ceae0b577479176b8f35b9cc3dae9b0007cb34a8e59331ac7bc789446ceaa",
+  "authorization_SHA256": "f2ab1339709b3a14dc699d16232805ce2af0143c9997accc19c7c72b9c6e36de",
+  "bootstrap": {
+    "replicates": 5000,
+    "seed": 309032,
+    "unit": "paired frozen input, stratified GQA15/TextVQA15",
+    "exploratory": true
+  }
+}

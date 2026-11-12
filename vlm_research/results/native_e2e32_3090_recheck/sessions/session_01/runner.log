@@ -1,0 +1,31 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:05<00:10,  5.19s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:10<00:05,  5.05s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:14<00:00,  4.57s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:14<00:00,  4.72s/it]
+WARMUP 1 5 87
+WARMUP 1 10 110
+WARMUP 1 15 135
+WARMUP 1 20 158
+FORMAL 1 1 GQA:202121628 2539.13
+FORMAL 1 2 GQA:20308802 2575.36
+FORMAL 1 3 GQA:202158870 2551.63
+FORMAL 1 4 GQA:201759069 2582.62
+FORMAL 1 5 GQA:20162504 2540.88
+DRIFT 1 {"after_inputs": 5, "baseline": {"E2E_ms": 2567.106462666743, "TPOT_ms": 74.50711807258304}, "measured": {"E2E_ms": 2519.308572999762, "TPOT_ms": 73.06811866126208}, "relative_change": {"E2E_ms": -0.01861936400461084, "TPOT_ms": -0.019313583031343784}, "consecutive_over_2pct": {"E2E_ms": 0, "TPOT_ms": 0}, "status": "PASS"}
+FORMAL 1 6 GQA:20886934 2538.94
+FORMAL 1 7 GQA:201889314 2541.08
+FORMAL 1 8 GQA:201455854 2457.04
+FORMAL 1 9 GQA:20709953 2501.74
+FORMAL 1 10 GQA:202246655 2236.25
+DRIFT 1 {"after_inputs": 10, "baseline": {"E2E_ms": 2567.106462666743, "TPOT_ms": 74.50711807258304}, "measured": {"E2E_ms": 2288.138375000017, "TPOT_ms": 65.68898825807699}, "relative_change": {"E2E_ms": -0.1086702447770439, "TPOT_ms": -0.1183528506083894}, "consecutive_over_2pct": {"E2E_ms": 1, "TPOT_ms": 1}, "status": "PASS"}
+FORMAL 1 11 GQA:202060056 2235.87
+FORMAL 1 12 GQA:20644736 2268.79
+FORMAL 1 13 GQA:20922878 2207.85
+FORMAL 1 14 GQA:201976841 2196.61
+FORMAL 1 15 GQA:201959618 2203.55
+DRIFT 1 {"after_inputs": 15, "baseline": {"E2E_ms": 2567.106462666743, "TPOT_ms": 74.50711807258304}, "measured": {"E2E_ms": 2273.5012550001557, "TPOT_ms": 65.19621164515257}, "relative_change": {"E2E_ms": -0.11437204180522631, "TPOT_ms": -0.12496666987387706}, "consecutive_over_2pct": {"E2E_ms": 2, "TPOT_ms": 2}, "status": "PAUSED_DRIFT"}
+Traceback (most recent call last):
+  File "/home/featurize/work/ATE/vlm_research/results/native_e2e32_3090_recheck/code/run_native.py", line 116, in session
+    if paused:state['status']='PAUSED_DRIFT';raise RuntimeError('Native calibration >2% in two consecutive windows; preserve session and pause remaining sessions')
+                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+RuntimeError: Native calibration >2% in two consecutive windows; preserve session and pause remaining sessions
+
+FINAL {"status": "PAUSED_DRIFT", "session": 1, "pid": 12301, "phase": "FORMAL", "created_at": "2026-11-09T18:08:47.612977+00:00", "formal_completed": 15, "formal_expected": 30, "GPU_UUID": "GPU-6c96bba5-5cc6-8be2-b277-5533b4cdab27", "updated_at": "2026-11-09T18:14:24.525694+00:00", "warmup_cycles": 20, "failure": "RuntimeError('Native calibration >2% in two consecutive windows; preserve session and pause remaining sessions')", "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/work/ATE/vlm_research/results/native_e2e32_3090_recheck/code/run_native.py\", line 116, in session\n    if paused:state['status']='PAUSED_DRIFT';raise RuntimeError('Native calibration >2% in two consecutive windows; preserve session and pause remaining sessions')\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Native calibration >2% in two consecutive windows; preserve session and pause remaining sessions\n", "finished_at": "2026-11-09T18:14:24.525664+00:00"}

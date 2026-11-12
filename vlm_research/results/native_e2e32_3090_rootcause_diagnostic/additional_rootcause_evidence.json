@@ -1,0 +1,175 @@
+{
+  "slow_request49_first5_Event_decode_mean_ms": 65.45285186767578,
+  "slow_request49_step6_Event_ms": 82.20467376708984,
+  "slow_request49_last25_Event_decode_mean_ms": 75.26637298583984,
+  "slow_request49_main_runqueue_wait_ms": 0.276203,
+  "profiler_decode_aggregates": {
+    "Event_sum_ms": {
+      "mean": 3015.2938842773438,
+      "min": 2920.0728302001953,
+      "max": 3079.9337310791016
+    },
+    "traced_GPU_activity_union_sum_ms": {
+      "mean": 683.7638362426758,
+      "min": 682.4185390625,
+      "max": 684.9802094726564
+    },
+    "internal_GPU_gaps_sum_ms": {
+      "mean": 2324.8745485839845,
+      "min": 2231.258241699218,
+      "max": 2388.4531538085944
+    },
+    "GPU_gap_before_next_API_start_ms": {
+      "mean": 2100.3026440429685,
+      "min": 1965.3370834960938,
+      "max": 2187.488462890625
+    },
+    "GPU_gap_during_next_API_ms": {
+      "mean": 219.17880670166014,
+      "min": 164.61303417968747,
+      "max": 356.93874755859366
+    },
+    "GPU_gap_after_next_API_end_ms": {
+      "mean": 5.393097839355469,
+      "min": 4.091357910156251,
+      "max": 12.689586425781249
+    },
+    "CUDA_launch_API_sum_ms": {
+      "mean": 408.310332875,
+      "min": 402.76360099999994,
+      "max": 411.75397100000004
+    }
+  },
+  "telemetry_gaps_over1s": [
+    {
+      "start_UTC": "2026-11-09T19:09:09.245746+00:00",
+      "end_UTC": "2026-11-09T19:09:20.291856+00:00",
+      "gap_s": 11.046109483,
+      "preceding_NVML_query_ms": 0.5088870002509793,
+      "intersected_request_ids": "[]"
+    },
+    {
+      "start_UTC": "2026-11-09T19:11:12.092111+00:00",
+      "end_UTC": "2026-11-09T19:11:17.075476+00:00",
+      "gap_s": 4.983364689,
+      "preceding_NVML_query_ms": 0.5871720004506642,
+      "intersected_request_ids": "[]"
+    },
+    {
+      "start_UTC": "2026-11-09T19:12:13.875681+00:00",
+      "end_UTC": "2026-11-09T19:12:41.893615+00:00",
+      "gap_s": 28.017934439,
+      "preceding_NVML_query_ms": 0.6211159998201765,
+      "intersected_request_ids": "[]"
+    },
+    {
+      "start_UTC": "2026-11-09T19:14:15.493888+00:00",
+      "end_UTC": "2026-11-09T19:14:27.916006+00:00",
+      "gap_s": 12.422118408,
+      "preceding_NVML_query_ms": 0.8024620001378935,
+      "intersected_request_ids": "[57]"
+    },
+    {
+      "start_UTC": "2026-11-09T19:16:16.916314+00:00",
+      "end_UTC": "2026-11-09T19:16:18.723879+00:00",
+      "gap_s": 1.807564525,
+      "preceding_NVML_query_ms": 1.1000159993272973,
+      "intersected_request_ids": "[]"
+    },
+    {
+      "start_UTC": "2026-11-09T19:19:20.524142+00:00",
+      "end_UTC": "2026-11-09T19:19:30.026834+00:00",
+      "gap_s": 9.5026921,
+      "preceding_NVML_query_ms": 0.5379270005505532,
+      "intersected_request_ids": "[76, 77, 78]"
+    }
+  ],
+  "NVML_query_by_request_examples": [
+    {
+      "request": 35,
+      "phase": "A",
+      "condition": "continuous_measured",
+      "samples": 12,
+      "max_NVML_query_ms": 0.7560260000900598
+    },
+    {
+      "request": 49,
+      "phase": "B",
+      "condition": "idle60_forward",
+      "samples": 13,
+      "max_NVML_query_ms": 0.9580569985701004
+    },
+    {
+      "request": 50,
+      "phase": "B",
+      "condition": "idle60_forward",
+      "samples": 12,
+      "max_NVML_query_ms": 0.8325819999299711
+    },
+    {
+      "request": 70,
+      "phase": "C",
+      "condition": "profiled_native32",
+      "samples": 16,
+      "max_NVML_query_ms": 0.6954029995540623
+    },
+    {
+      "request": 84,
+      "phase": "C",
+      "condition": "profiled_native32",
+      "samples": 17,
+      "max_NVML_query_ms": 0.7261149985424709
+    }
+  ],
+  "NVML_max_query_ms": 12.955739999597427,
+  "C_scouts_potentially_contaminated": [
+    {
+      "request": 69,
+      "E2E_ms": 2281.219938999129,
+      "TPOT_ms": 65.87319761286292,
+      "prior_profiler_has_run": false
+    },
+    {
+      "request": 71,
+      "E2E_ms": 2875.3613050012063,
+      "TPOT_ms": 84.57953306453653,
+      "prior_profiler_has_run": true
+    },
+    {
+      "request": 73,
+      "E2E_ms": 2953.2149030001165,
+      "TPOT_ms": 87.11956874192823,
+      "prior_profiler_has_run": true
+    },
+    {
+      "request": 75,
+      "E2E_ms": 3003.791832999923,
+      "TPOT_ms": 88.68978848389112,
+      "prior_profiler_has_run": true
+    },
+    {
+      "request": 77,
+      "E2E_ms": 3108.595981999315,
+      "TPOT_ms": 92.0674027096421,
+      "prior_profiler_has_run": true
+    },
+    {
+      "request": 79,
+      "E2E_ms": 3127.792776000206,
+      "TPOT_ms": 92.83075732257144,
+      "prior_profiler_has_run": true
+    },
+    {
+      "request": 81,
+      "E2E_ms": 3186.830384998757,
+      "TPOT_ms": 94.80392312903977,
+      "prior_profiler_has_run": true
+    },
+    {
+      "request": 83,
+      "E2E_ms": 3188.7499899985414,
+      "TPOT_ms": 94.70000816127727,
+      "prior_profiler_has_run": true
+    }
+  ]
+}

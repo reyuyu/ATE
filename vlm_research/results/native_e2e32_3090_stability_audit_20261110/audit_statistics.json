@@ -1,0 +1,1487 @@
+{
+  "status": "CPU_READONLY_AUDIT",
+  "original_experiment_status": "HISTORICAL_STABILITY_FAILED",
+  "formal_results_preserved": 15,
+  "requests": 85,
+  "table_counts": {
+    "formal": 15,
+    "smoke": 8,
+    "warmup": 44,
+    "probes": 18,
+    "failures": 1
+  },
+  "role_counts": {
+    "native_smoke": 2,
+    "identity_noop_smoke": 2,
+    "allocation_stability": 4,
+    "warmup": 44,
+    "baseline": 12,
+    "formal": 15,
+    "calibration": 6
+  },
+  "all_input_output_path_bindings_exact": true,
+  "source_SHA256_verified": 46,
+  "artifact_reference_mismatches": {},
+  "phase_stats": {
+    "native_smoke": {
+      "requests": 2,
+      "first_begin": 1794247760.6119711,
+      "last_end": 1794247770.7563338,
+      "span_s": 10.144362688064575,
+      "sum_measured_E2E_s": 5.711401892999675,
+      "sum_wrapper_s": 5.720041036605835,
+      "observer_hooks": true,
+      "residual_allocations": [
+        14161698880,
+        14161699312
+      ],
+      "E2E_ms": {
+        "mean": 2855.7009464998373,
+        "median": 2855.7009464998373,
+        "min": 2520.6469879994984,
+        "max": 3190.754905000176
+      },
+      "TTFT_ms": {
+        "mean": 601.2497309998253,
+        "median": 601.2497309998253,
+        "min": 276.22367899948586,
+        "max": 926.2757830001647
+      },
+      "TPOT_ms": {
+        "mean": 72.7242327580649,
+        "median": 72.7242327580649,
+        "min": 72.40075190322621,
+        "max": 73.04771361290359
+      },
+      "CUDA_Event_Decode_TPOT_ms": {
+        "mean": 72.24788124330581,
+        "median": 72.24788124330581,
+        "min": 71.93472191595262,
+        "max": 72.56104057065902
+      },
+      "telemetry": {
+        "samples": 2,
+        "pstates": {
+          "P2": 2
+        },
+        "throttle_masks": {
+          "0x0000000000000000": 2
+        },
+        "clocks.current.sm": {
+          "mean": 1965.0,
+          "min": 1965.0,
+          "max": 1965.0
+        },
+        "clocks.current.memory": {
+          "mean": 9501.0,
+          "min": 9501.0,
+          "max": 9501.0
+        },
+        "temperature.gpu": {
+          "mean": 38.0,
+          "min": 37.0,
+          "max": 39.0
+        },
+        "power.draw": {
+          "mean": 178.92000000000002,
+          "min": 158.55,
+          "max": 199.29
+        },
+        "power.limit": {
+          "mean": 350.0,
+          "min": 350.0,
+          "max": 350.0
+        },
+        "utilization.gpu": {
+          "mean": 31.0,
+          "min": 28.0,
+          "max": 34.0
+        },
+        "memory.used": {
+          "mean": 14414.0,
+          "min": 14358.0,
+          "max": 14470.0
+        },
+        "clocks_throttle_reasons.sw_power_cap": {
+          "Not Active": 2
+        },
+        "clocks_throttle_reasons.hw_slowdown": {
+          "Not Active": 2
+        },
+        "clocks_throttle_reasons.hw_thermal_slowdown": {
+          "Not Active": 2
+        },
+        "clocks_throttle_reasons.hw_power_brake_slowdown": {
+          "Not Active": 2
+        },
+        "clocks_throttle_reasons.sw_thermal_slowdown": {
+          "Not Active": 2
+        },
+        "CPU_load1": {
+          "mean": 1.275,
+          "min": 1.25,
+          "max": 1.3
+        }
+      }
+    },
+    "identity_noop_smoke": {
+      "requests": 2,
+      "first_begin": 1794247765.614012,
+      "last_end": 1794247774.5534503,
+      "span_s": 8.939438343048096,
+      "sum_measured_E2E_s": 5.317174920999605,
+      "sum_wrapper_s": 5.3279712200164795,
+      "observer_hooks": true,
+      "residual_allocations": [
+        14161698880,
+        14161699312
+      ],
+      "E2E_ms": {
+        "mean": 2658.5874604998025,
+        "median": 2658.5874604998025,
+        "min": 2529.725796999628,
+        "max": 2787.449123999977
+      },
+      "TTFT_ms": {
+        "mean": 283.73140250005235,
+        "median": 283.73140250005235,
+        "min": 282.3103720002109,
+        "max": 285.1524329998938
+      },
+      "TPOT_ms": {
+        "mean": 76.60825993547581,
+        "median": 76.60825993547581,
+        "min": 72.4055923870882,
+        "max": 80.81092748386342
+      },
+      "CUDA_Event_Decode_TPOT_ms": {
+        "mean": 76.1236450441422,
+        "median": 76.1236450441422,
+        "min": 71.94087834512034,
+        "max": 80.30641174316406
+      },
+      "telemetry": {
+        "samples": 2,
+        "pstates": {
+          "P2": 2
+        },
+        "throttle_masks": {
+          "0x0000000000000000": 2
+        },
+        "clocks.current.sm": {
+          "mean": 1830.0,
+          "min": 1695.0,
+          "max": 1965.0
+        },
+        "clocks.current.memory": {
+          "mean": 9501.0,
+          "min": 9501.0,
+          "max": 9501.0
+        },
+        "temperature.gpu": {
+          "mean": 38.5,
+          "min": 38.0,
+          "max": 39.0
+        },
+        "power.draw": {
+          "mean": 185.945,
+          "min": 181.04,
+          "max": 190.85
+        },
+        "power.limit": {
+          "mean": 350.0,
+          "min": 350.0,
+          "max": 350.0
+        },
+        "utilization.gpu": {
+          "mean": 33.0,
+          "min": 32.0,
+          "max": 34.0
+        },
+        "memory.used": {
+          "mean": 14414.0,
+          "min": 14358.0,
+          "max": 14470.0
+        },
+        "clocks_throttle_reasons.sw_power_cap": {
+          "Not Active": 2
+        },
+        "clocks_throttle_reasons.hw_slowdown": {
+          "Not Active": 2
+        },
+        "clocks_throttle_reasons.hw_thermal_slowdown": {
+          "Not Active": 2
+        },
+        "clocks_throttle_reasons.hw_power_brake_slowdown": {
+          "Not Active": 2
+        },
+        "clocks_throttle_reasons.sw_thermal_slowdown": {
+          "Not Active": 2
+        },
+        "CPU_load1": {
+          "mean": 1.25,
+          "min": 1.23,
+          "max": 1.27
+        }
+      }
+    },
+    "allocation_stability": {
+      "requests": 4,
+      "first_begin": 1794247775.211911,
+      "last_end": 1794247785.4549425,
+      "span_s": 10.24303150177002,
+      "sum_measured_E2E_s": 10.074196896000103,
+      "sum_wrapper_s": 10.092084884643555,
+      "observer_hooks": false,
+      "residual_allocations": [
+        14161698880,
+        14161699312
+      ],
+      "E2E_ms": {
+        "mean": 2518.549224000026,
+        "median": 2531.291326000428,
+        "min": 2452.365165999254,
+        "max": 2559.2490779999935
+      },
+      "TTFT_ms": {
+        "mean": 252.924641250047,
+        "median": 250.95051900007093,
+        "min": 249.4225020000158,
+        "max": 260.3750250000303
+      },
+      "TPOT_ms": {
+        "mean": 73.08466395967673,
+        "median": 73.55938087097925,
+        "min": 70.70935938707173,
+        "max": 74.5105347096767
+      },
+      "CUDA_Event_Decode_TPOT_ms": {
+        "mean": 73.04476061174947,
+        "median": 73.5164785077495,
+        "min": 70.69081460275957,
+        "max": 74.45527082873929
+      },
+      "telemetry": {
+        "samples": 5,
+        "pstates": {
+          "P2": 5
+        },
+        "throttle_masks": {
+          "0x0000000000000000": 5
+        },
+        "clocks.current.sm": {
+          "mean": 1851.0,
+          "min": 1695.0,
+          "max": 1965.0
+        },
+        "clocks.current.memory": {
+          "mean": 9501.0,
+          "min": 9501.0,
+          "max": 9501.0
+        },
+        "temperature.gpu": {
+          "mean": 41.2,
+          "min": 40.0,
+          "max": 42.0
+        },
+        "power.draw": {
+          "mean": 191.814,
+          "min": 177.55,
+          "max": 202.26
+        },
+        "power.limit": {
+          "mean": 350.0,
+          "min": 350.0,
+          "max": 350.0
+        },
+        "utilization.gpu": {
+          "mean": 43.2,
+          "min": 30.0,
+          "max": 90.0
+        },
+        "memory.used": {
+          "mean": 14470.0,
+          "min": 14470.0,
+          "max": 14470.0
+        },
+        "clocks_throttle_reasons.sw_power_cap": {
+          "Not Active": 5
+        },
+        "clocks_throttle_reasons.hw_slowdown": {
+          "Not Active": 5
+        },
+        "clocks_throttle_reasons.hw_thermal_slowdown": {
+          "Not Active": 5
+        },
+        "clocks_throttle_reasons.hw_power_brake_slowdown": {
+          "Not Active": 5
+        },
+        "clocks_throttle_reasons.sw_thermal_slowdown": {
+          "Not Active": 5
+        },
+        "CPU_load1": {
+          "mean": 1.214,
+          "min": 1.19,
+          "max": 1.23
+        }
+      }
+    },
+    "warmup": {
+      "requests": 44,
+      "first_begin": 1794247785.5120962,
+      "last_end": 1794247968.6665998,
+      "span_s": 183.15450358390808,
+      "sum_measured_E2E_s": 103.35304442499728,
+      "sum_wrapper_s": 103.54525303840637,
+      "observer_hooks": false,
+      "residual_allocations": [
+        14161698880,
+        14161699312
+      ],
+      "E2E_ms": {
+        "mean": 2348.932827840847,
+        "median": 2277.2194120002496,
+        "min": 2247.130455999468,
+        "max": 2587.155422000251
+      },
+      "TTFT_ms": {
+        "mean": 250.5686653635373,
+        "median": 250.55054199947335,
+        "min": 240.88770900016243,
+        "max": 285.90945700034354
+      },
+      "TPOT_ms": {
+        "mean": 67.68916653152613,
+        "median": 65.40839069353868,
+        "min": 64.55199625804286,
+        "max": 75.23605306452679
+      },
+      "CUDA_Event_Decode_TPOT_ms": {
+        "mean": 67.67226250500273,
+        "median": 65.40065100885207,
+        "min": 64.5476429846979,
+        "max": 75.1816157679404
+      },
+      "telemetry": {
+        "samples": 50,
+        "pstates": {
+          "P2": 50
+        },
+        "throttle_masks": {
+          "0x0000000000000000": 48,
+          "0x0000000000000004": 2
+        },
+        "clocks.current.sm": {
+          "mean": 1887.9,
+          "min": 1215.0,
+          "max": 1965.0
+        },
+        "clocks.current.memory": {
+          "mean": 9501.0,
+          "min": 9501.0,
+          "max": 9501.0
+        },
+        "temperature.gpu": {
+          "mean": 50.36,
+          "min": 36.0,
+          "max": 57.0
+        },
+        "power.draw": {
+          "mean": 200.6018,
+          "min": 23.3,
+          "max": 228.2
+        },
+        "power.limit": {
+          "mean": 350.0,
+          "min": 350.0,
+          "max": 350.0
+        },
+        "utilization.gpu": {
+          "mean": 38.58,
+          "min": 0.0,
+          "max": 100.0
+        },
+        "memory.used": {
+          "mean": 14470.0,
+          "min": 14470.0,
+          "max": 14470.0
+        },
+        "clocks_throttle_reasons.sw_power_cap": {
+          "Not Active": 48,
+          "Active": 2
+        },
+        "clocks_throttle_reasons.hw_slowdown": {
+          "Not Active": 50
+        },
+        "clocks_throttle_reasons.hw_thermal_slowdown": {
+          "Not Active": 50
+        },
+        "clocks_throttle_reasons.hw_power_brake_slowdown": {
+          "Not Active": 50
+        },
+        "clocks_throttle_reasons.sw_thermal_slowdown": {
+          "Not Active": 50
+        },
+        "CPU_load1": {
+          "mean": 1.8484,
+          "min": 1.18,
+          "max": 2.55
+        }
+      }
+    },
+    "baseline": {
+      "requests": 12,
+      "first_begin": 1794247968.723414,
+      "last_end": 1794248000.1374254,
+      "span_s": 31.414011478424072,
+      "sum_measured_E2E_s": 30.805277552000916,
+      "sum_wrapper_s": 30.859843969345093,
+      "observer_hooks": false,
+      "residual_allocations": [
+        14161698880,
+        14161699312
+      ],
+      "E2E_ms": {
+        "mean": 2567.106462666743,
+        "median": 2579.298968999865,
+        "min": 2440.414315000453,
+        "max": 2643.474683000022
+      },
+      "TTFT_ms": {
+        "mean": 257.3858024166687,
+        "median": 256.5279739997095,
+        "min": 253.70713899974362,
+        "max": 261.5184890000819
+      },
+      "TPOT_ms": {
+        "mean": 74.50711807258304,
+        "median": 74.85707230646386,
+        "min": 70.47166803227634,
+        "max": 76.83729658064324
+      },
+      "CUDA_Event_Decode_TPOT_ms": {
+        "mean": 74.45690684164724,
+        "median": 74.79875601491621,
+        "min": 70.46510708716607,
+        "max": 76.77509504748929
+      },
+      "telemetry": {
+        "samples": 15,
+        "pstates": {
+          "P2": 15
+        },
+        "throttle_masks": {
+          "0x0000000000000000": 15
+        },
+        "clocks.current.sm": {
+          "mean": 1857.0,
+          "min": 1695.0,
+          "max": 1950.0
+        },
+        "clocks.current.memory": {
+          "mean": 9501.0,
+          "min": 9501.0,
+          "max": 9501.0
+        },
+        "temperature.gpu": {
+          "mean": 56.666666666666664,
+          "min": 55.0,
+          "max": 58.0
+        },
+        "power.draw": {
+          "mean": 198.22466666666668,
+          "min": 188.08,
+          "max": 216.09
+        },
+        "power.limit": {
+          "mean": 350.0,
+          "min": 350.0,
+          "max": 350.0
+        },
+        "utilization.gpu": {
+          "mean": 44.333333333333336,
+          "min": 30.0,
+          "max": 100.0
+        },
+        "memory.used": {
+          "mean": 14470.0,
+          "min": 14470.0,
+          "max": 14470.0
+        },
+        "clocks_throttle_reasons.sw_power_cap": {
+          "Not Active": 15
+        },
+        "clocks_throttle_reasons.hw_slowdown": {
+          "Not Active": 15
+        },
+        "clocks_throttle_reasons.hw_thermal_slowdown": {
+          "Not Active": 15
+        },
+        "clocks_throttle_reasons.hw_power_brake_slowdown": {
+          "Not Active": 15
+        },
+        "clocks_throttle_reasons.sw_thermal_slowdown": {
+          "Not Active": 15
+        },
+        "CPU_load1": {
+          "mean": 1.6853333333333333,
+          "min": 1.52,
+          "max": 1.79
+        }
+      }
+    },
+    "formal": {
+      "requests": 15,
+      "first_begin": 1794248000.1958072,
+      "last_end": 1794248047.009215,
+      "span_s": 46.81340789794922,
+      "sum_measured_E2E_s": 36.1773432229993,
+      "sum_wrapper_s": 36.24300932884216,
+      "observer_hooks": false,
+      "residual_allocations": [
+        14161698304,
+        14161698320,
+        14161698336,
+        14161698352,
+        14161698384,
+        14161698400,
+        14161698416,
+        14161699232,
+        14161699264,
+        14161699280,
+        14161699296,
+        14161699312
+      ],
+      "E2E_ms": {
+        "mean": 2411.8228815332864,
+        "median": 2501.736561999678,
+        "min": 2196.6079199992237,
+        "max": 2582.6235340000494
+      },
+      "TTFT_ms": {
+        "mean": 231.5104124665595,
+        "median": 223.63607099941873,
+        "min": 210.98889299992152,
+        "max": 256.6408570000931
+      },
+      "TPOT_ms": {
+        "mean": 70.33266029247507,
+        "median": 73.48711261291159,
+        "min": 63.435222032269174,
+        "max": 75.26899312905434
+      },
+      "CUDA_Event_Decode_TPOT_ms": {
+        "mean": 70.30070159255817,
+        "median": 73.45086349979523,
+        "min": 63.42728657876292,
+        "max": 75.21134530344317
+      },
+      "telemetry": {
+        "samples": 17,
+        "pstates": {
+          "P2": 17
+        },
+        "throttle_masks": {
+          "0x0000000000000000": 14,
+          "0x0000000000000004": 3
+        },
+        "clocks.current.sm": {
+          "mean": 1894.4117647058824,
+          "min": 1695.0,
+          "max": 1950.0
+        },
+        "clocks.current.memory": {
+          "mean": 9501.0,
+          "min": 9501.0,
+          "max": 9501.0
+        },
+        "temperature.gpu": {
+          "mean": 58.294117647058826,
+          "min": 57.0,
+          "max": 60.0
+        },
+        "power.draw": {
+          "mean": 205.0735294117647,
+          "min": 188.5,
+          "max": 219.21
+        },
+        "power.limit": {
+          "mean": 350.0,
+          "min": 350.0,
+          "max": 350.0
+        },
+        "utilization.gpu": {
+          "mean": 38.294117647058826,
+          "min": 16.0,
+          "max": 100.0
+        },
+        "memory.used": {
+          "mean": 14470.0,
+          "min": 14470.0,
+          "max": 14470.0
+        },
+        "clocks_throttle_reasons.sw_power_cap": {
+          "Not Active": 14,
+          "Active": 3
+        },
+        "clocks_throttle_reasons.hw_slowdown": {
+          "Not Active": 17
+        },
+        "clocks_throttle_reasons.hw_thermal_slowdown": {
+          "Not Active": 17
+        },
+        "clocks_throttle_reasons.hw_power_brake_slowdown": {
+          "Not Active": 17
+        },
+        "clocks_throttle_reasons.sw_thermal_slowdown": {
+          "Not Active": 17
+        },
+        "CPU_load1": {
+          "mean": 1.3888235294117648,
+          "min": 1.29,
+          "max": 1.52
+        }
+      }
+    },
+    "calibration": {
+      "requests": 6,
+      "first_begin": 1794248013.2679574,
+      "last_end": 1794248064.3278275,
+      "span_s": 51.05987000465393,
+      "sum_measured_E2E_s": 14.161896405999869,
+      "sum_wrapper_s": 14.188108444213867,
+      "observer_hooks": false,
+      "residual_allocations": [
+        14161698880,
+        14161699312
+      ],
+      "E2E_ms": {
+        "mean": 2360.316067666645,
+        "median": 2293.2766599997194,
+        "min": 2254.431795000528,
+        "max": 2527.917901999899
+      },
+      "TTFT_ms": {
+        "mean": 252.79844250023112,
+        "median": 253.31380000034187,
+        "min": 242.8035640004964,
+        "max": 262.0338240003548
+      },
+      "TPOT_ms": {
+        "mean": 67.98443952149722,
+        "median": 66.02261419354159,
+        "min": 64.27090229032817,
+        "max": 73.37103561287456
+      },
+      "CUDA_Event_Decode_TPOT_ms": {
+        "mean": 67.97003735778152,
+        "median": 66.0157451014365,
+        "min": 64.26429108650454,
+        "max": 73.33283332086378
+      },
+      "telemetry": {
+        "samples": 7,
+        "pstates": {
+          "P2": 7
+        },
+        "throttle_masks": {
+          "0x0000000000000000": 7
+        },
+        "clocks.current.sm": {
+          "mean": 1860.0,
+          "min": 1695.0,
+          "max": 1950.0
+        },
+        "clocks.current.memory": {
+          "mean": 9501.0,
+          "min": 9501.0,
+          "max": 9501.0
+        },
+        "temperature.gpu": {
+          "mean": 58.0,
+          "min": 57.0,
+          "max": 59.0
+        },
+        "power.draw": {
+          "mean": 207.91714285714286,
+          "min": 193.72,
+          "max": 224.22
+        },
+        "power.limit": {
+          "mean": 350.0,
+          "min": 350.0,
+          "max": 350.0
+        },
+        "utilization.gpu": {
+          "mean": 35.42857142857143,
+          "min": 16.0,
+          "max": 65.0
+        },
+        "memory.used": {
+          "mean": 14470.0,
+          "min": 14470.0,
+          "max": 14470.0
+        },
+        "clocks_throttle_reasons.sw_power_cap": {
+          "Not Active": 7
+        },
+        "clocks_throttle_reasons.hw_slowdown": {
+          "Not Active": 7
+        },
+        "clocks_throttle_reasons.hw_thermal_slowdown": {
+          "Not Active": 7
+        },
+        "clocks_throttle_reasons.hw_power_brake_slowdown": {
+          "Not Active": 7
+        },
+        "clocks_throttle_reasons.sw_thermal_slowdown": {
+          "Not Active": 7
+        },
+        "CPU_load1": {
+          "mean": 1.4014285714285715,
+          "min": 1.29,
+          "max": 1.65
+        }
+      }
+    }
+  },
+  "fixed_probe_comparisons": [
+    {
+      "after_formal_inputs": 5,
+      "E2E_ms": {
+        "baseline": 2567.106462666743,
+        "measured": 2519.308572999762,
+        "delta": -47.797889666981064,
+        "relative_change": -0.01861936400461084
+      },
+      "TTFT_ms": {
+        "baseline": 257.3858024166687,
+        "measured": 254.19689450063743,
+        "delta": -3.188907916031269,
+        "relative_change": -0.012389603024291596
+      },
+      "TPOT_ms": {
+        "baseline": 74.50711807258304,
+        "measured": 73.06811866126208,
+        "delta": -1.4389994113209639,
+        "relative_change": -0.019313583031343784
+      },
+      "CUDA_Event_Decode_TPOT_ms": {
+        "baseline": 74.45690684164724,
+        "measured": 73.03815423288653,
+        "delta": -1.4187526087607125,
+        "relative_change": -0.019054681008681573
+      },
+      "Decode_share_of_E2E_drop": 0.9332834997894459
+    },
+    {
+      "after_formal_inputs": 10,
+      "E2E_ms": {
+        "baseline": 2567.106462666743,
+        "measured": 2288.138375000017,
+        "delta": -278.9680876667262,
+        "relative_change": -0.1086702447770439
+      },
+      "TTFT_ms": {
+        "baseline": 257.3858024166687,
+        "measured": 251.77973899963035,
+        "delta": -5.606063417038342,
+        "relative_change": -0.0217807795317434
+      },
+      "TPOT_ms": {
+        "baseline": 74.50711807258304,
+        "measured": 65.68898825807699,
+        "delta": -8.818129814506051,
+        "relative_change": -0.1183528506083894
+      },
+      "CUDA_Event_Decode_TPOT_ms": {
+        "baseline": 74.45690684164724,
+        "measured": 65.68190445438509,
+        "delta": -8.775002387262148,
+        "relative_change": -0.11785343710187379
+      },
+      "Decode_share_of_E2E_drop": 0.9799042841640869
+    },
+    {
+      "after_formal_inputs": 15,
+      "E2E_ms": {
+        "baseline": 2567.106462666743,
+        "measured": 2273.5012550001557,
+        "delta": -293.6052076665874,
+        "relative_change": -0.11437204180522631
+      },
+      "TTFT_ms": {
+        "baseline": 257.3858024166687,
+        "measured": 252.4186940004256,
+        "delta": -4.967108416243093,
+        "relative_change": -0.019298299943530273
+      },
+      "TPOT_ms": {
+        "baseline": 74.50711807258304,
+        "measured": 65.19621164515257,
+        "delta": -9.310906427430467,
+        "relative_change": -0.12496666987387706
+      },
+      "CUDA_Event_Decode_TPOT_ms": {
+        "baseline": 74.45690684164724,
+        "measured": 65.19005338607296,
+        "delta": -9.266853455574278,
+        "relative_change": -0.12445928589650856
+      },
+      "Decode_share_of_E2E_drop": 0.9830823558760461
+    }
+  ],
+  "warmup_pair_E2E_ms": [
+    2536.27690949952,
+    2537.393517500277,
+    2404.558310000084,
+    2269.927906499561,
+    2261.216581499866,
+    2296.143582500008,
+    2274.990719000016,
+    2264.633655000125,
+    2259.2015634995732,
+    2289.644997999858,
+    2530.1727065002524,
+    2557.717612500255,
+    2579.4145455001853,
+    2262.3077299995202,
+    2251.1564499995984,
+    2252.9848174995095,
+    2278.679986500265,
+    2270.337285000096,
+    2277.215257499847,
+    2274.402008499692,
+    2318.7881770004424,
+    2429.3578930000876
+  ],
+  "baseline_pair_E2E_ms": [
+    2593.15007899977,
+    2582.9444780001722,
+    2497.8110175002257,
+    2586.894523999945,
+    2576.5728235001006,
+    2565.265854000245
+  ],
+  "baseline_pair_TPOT_ms": [
+    75.28255366128911,
+    75.11928812903446,
+    72.23341270968552,
+    75.2396987742002,
+    74.70973340322152,
+    74.45802175806743
+  ],
+  "warmup_span_s": 183.15450358390808,
+  "warmup_E2E_sum_s": 103.35304442499728,
+  "old_field_warmup_seconds": 214.67914123600076,
+  "telemetry_summary": {
+    "samples": 133,
+    "pstates": {
+      "P8": 26,
+      "P2": 107
+    },
+    "throttle_masks": {
+      "0x0000000000000001": 11,
+      "0x0000000000000004": 20,
+      "0x0000000000000000": 102
+    },
+    "clocks.current.sm": {
+      "mean": 1541.6165413533834,
+      "min": 210.0,
+      "max": 1965.0
+    },
+    "clocks.current.memory": {
+      "mean": 7722.834586466165,
+      "min": 405.0,
+      "max": 9501.0
+    },
+    "temperature.gpu": {
+      "mean": 48.07518796992481,
+      "min": 29.0,
+      "max": 60.0
+    },
+    "power.draw": {
+      "mean": 158.9724060150376,
+      "min": 22.35,
+      "max": 228.2
+    },
+    "power.limit": {
+      "mean": 350.0,
+      "min": 350.0,
+      "max": 350.0
+    },
+    "utilization.gpu": {
+      "mean": 29.263157894736842,
+      "min": 0.0,
+      "max": 100.0
+    },
+    "memory.used": {
+      "mean": 13540.36090225564,
+      "min": 1.0,
+      "max": 14470.0
+    },
+    "clocks_throttle_reasons.sw_power_cap": {
+      "Not Active": 113,
+      "Active": 20
+    },
+    "clocks_throttle_reasons.hw_slowdown": {
+      "Not Active": 133
+    },
+    "clocks_throttle_reasons.hw_thermal_slowdown": {
+      "Not Active": 133
+    },
+    "clocks_throttle_reasons.hw_power_brake_slowdown": {
+      "Not Active": 133
+    },
+    "clocks_throttle_reasons.sw_thermal_slowdown": {
+      "Not Active": 133
+    },
+    "CPU_load1": {
+      "mean": 1.6738345864661655,
+      "min": 0.49,
+      "max": 2.55
+    }
+  },
+  "telemetry_gap_s": {
+    "median": 2.1000001430511475,
+    "maximum": 20.935999870300293,
+    "over5": 4
+  },
+  "telemetry_collector_lag_s": {
+    "median": 0.06361579895019531,
+    "max": 0.4132711887359619
+  },
+  "other_GPU_process_events": 0,
+  "same_probe_correlations_descriptive_not_causal": {
+    "GQA:202121628": {
+      "SM_clock_mean_MHz": {
+        "n": 34,
+        "Pearson_with_TPOT": -0.06184543399924885
+      },
+      "temperature_mean_C": {
+        "n": 34,
+        "Pearson_with_TPOT": -0.0031173053283261205
+      },
+      "power_mean_W": {
+        "n": 34,
+        "Pearson_with_TPOT": -0.6841384500197102
+      },
+      "utilization_mean_pct": {
+        "n": 34,
+        "Pearson_with_TPOT": 0.15459047896832
+      },
+      "CPU_load1_mean": {
+        "n": 34,
+        "Pearson_with_TPOT": -0.3671116854477282
+      }
+    },
+    "TextVQA:38571": {
+      "SM_clock_mean_MHz": {
+        "n": 33,
+        "Pearson_with_TPOT": -0.1483289437415513
+      },
+      "temperature_mean_C": {
+        "n": 33,
+        "Pearson_with_TPOT": 0.060296926897393445
+      },
+      "power_mean_W": {
+        "n": 33,
+        "Pearson_with_TPOT": -0.17347896982985886
+      },
+      "utilization_mean_pct": {
+        "n": 33,
+        "Pearson_with_TPOT": 0.0685608703404786
+      },
+      "CPU_load1_mean": {
+        "n": 33,
+        "Pearson_with_TPOT": -0.4068126370365662
+      }
+    }
+  },
+  "baseline_and_calibration_hardware": [
+    {
+      "phase": "baseline",
+      "telemetry": {
+        "samples": 15,
+        "pstates": {
+          "P2": 15
+        },
+        "throttle_masks": {
+          "0x0000000000000000": 15
+        },
+        "clocks.current.sm": {
+          "mean": 1857.0,
+          "min": 1695.0,
+          "max": 1950.0
+        },
+        "clocks.current.memory": {
+          "mean": 9501.0,
+          "min": 9501.0,
+          "max": 9501.0
+        },
+        "temperature.gpu": {
+          "mean": 56.666666666666664,
+          "min": 55.0,
+          "max": 58.0
+        },
+        "power.draw": {
+          "mean": 198.22466666666668,
+          "min": 188.08,
+          "max": 216.09
+        },
+        "power.limit": {
+          "mean": 350.0,
+          "min": 350.0,
+          "max": 350.0
+        },
+        "utilization.gpu": {
+          "mean": 44.333333333333336,
+          "min": 30.0,
+          "max": 100.0
+        },
+        "memory.used": {
+          "mean": 14470.0,
+          "min": 14470.0,
+          "max": 14470.0
+        },
+        "clocks_throttle_reasons.sw_power_cap": {
+          "Not Active": 15
+        },
+        "clocks_throttle_reasons.hw_slowdown": {
+          "Not Active": 15
+        },
+        "clocks_throttle_reasons.hw_thermal_slowdown": {
+          "Not Active": 15
+        },
+        "clocks_throttle_reasons.hw_power_brake_slowdown": {
+          "Not Active": 15
+        },
+        "clocks_throttle_reasons.sw_thermal_slowdown": {
+          "Not Active": 15
+        },
+        "CPU_load1": {
+          "mean": 1.6853333333333333,
+          "min": 1.52,
+          "max": 1.79
+        }
+      }
+    },
+    {
+      "phase": "after5",
+      "telemetry": {
+        "samples": 3,
+        "pstates": {
+          "P2": 3
+        },
+        "throttle_masks": {
+          "0x0000000000000000": 3
+        },
+        "clocks.current.sm": {
+          "mean": 1795.0,
+          "min": 1695.0,
+          "max": 1950.0
+        },
+        "clocks.current.memory": {
+          "mean": 9501.0,
+          "min": 9501.0,
+          "max": 9501.0
+        },
+        "temperature.gpu": {
+          "mean": 58.0,
+          "min": 57.0,
+          "max": 59.0
+        },
+        "power.draw": {
+          "mean": 197.84666666666666,
+          "min": 193.72,
+          "max": 205.84
+        },
+        "power.limit": {
+          "mean": 350.0,
+          "min": 350.0,
+          "max": 350.0
+        },
+        "utilization.gpu": {
+          "mean": 42.333333333333336,
+          "min": 30.0,
+          "max": 65.0
+        },
+        "memory.used": {
+          "mean": 14470.0,
+          "min": 14470.0,
+          "max": 14470.0
+        },
+        "clocks_throttle_reasons.sw_power_cap": {
+          "Not Active": 3
+        },
+        "clocks_throttle_reasons.hw_slowdown": {
+          "Not Active": 3
+        },
+        "clocks_throttle_reasons.hw_thermal_slowdown": {
+          "Not Active": 3
+        },
+        "clocks_throttle_reasons.hw_power_brake_slowdown": {
+          "Not Active": 3
+        },
+        "clocks_throttle_reasons.sw_thermal_slowdown": {
+          "Not Active": 3
+        },
+        "CPU_load1": {
+          "mean": 1.4133333333333333,
+          "min": 1.4,
+          "max": 1.44
+        }
+      }
+    },
+    {
+      "phase": "after10",
+      "telemetry": {
+        "samples": 2,
+        "pstates": {
+          "P2": 2
+        },
+        "throttle_masks": {
+          "0x0000000000000000": 2
+        },
+        "clocks.current.sm": {
+          "mean": 1950.0,
+          "min": 1950.0,
+          "max": 1950.0
+        },
+        "clocks.current.memory": {
+          "mean": 9501.0,
+          "min": 9501.0,
+          "max": 9501.0
+        },
+        "temperature.gpu": {
+          "mean": 59.0,
+          "min": 59.0,
+          "max": 59.0
+        },
+        "power.draw": {
+          "mean": 218.85,
+          "min": 213.48,
+          "max": 224.22
+        },
+        "power.limit": {
+          "mean": 350.0,
+          "min": 350.0,
+          "max": 350.0
+        },
+        "utilization.gpu": {
+          "mean": 35.0,
+          "min": 35.0,
+          "max": 35.0
+        },
+        "memory.used": {
+          "mean": 14470.0,
+          "min": 14470.0,
+          "max": 14470.0
+        },
+        "clocks_throttle_reasons.sw_power_cap": {
+          "Not Active": 2
+        },
+        "clocks_throttle_reasons.hw_slowdown": {
+          "Not Active": 2
+        },
+        "clocks_throttle_reasons.hw_thermal_slowdown": {
+          "Not Active": 2
+        },
+        "clocks_throttle_reasons.hw_power_brake_slowdown": {
+          "Not Active": 2
+        },
+        "clocks_throttle_reasons.sw_thermal_slowdown": {
+          "Not Active": 2
+        },
+        "CPU_load1": {
+          "mean": 1.3,
+          "min": 1.29,
+          "max": 1.31
+        }
+      }
+    },
+    {
+      "phase": "after15",
+      "telemetry": {
+        "samples": 2,
+        "pstates": {
+          "P2": 2
+        },
+        "throttle_masks": {
+          "0x0000000000000000": 2
+        },
+        "clocks.current.sm": {
+          "mean": 1867.5,
+          "min": 1785.0,
+          "max": 1950.0
+        },
+        "clocks.current.memory": {
+          "mean": 9501.0,
+          "min": 9501.0,
+          "max": 9501.0
+        },
+        "temperature.gpu": {
+          "mean": 57.0,
+          "min": 57.0,
+          "max": 57.0
+        },
+        "power.draw": {
+          "mean": 212.08999999999997,
+          "min": 209.98,
+          "max": 214.2
+        },
+        "power.limit": {
+          "mean": 350.0,
+          "min": 350.0,
+          "max": 350.0
+        },
+        "utilization.gpu": {
+          "mean": 25.5,
+          "min": 16.0,
+          "max": 35.0
+        },
+        "memory.used": {
+          "mean": 14470.0,
+          "min": 14470.0,
+          "max": 14470.0
+        },
+        "clocks_throttle_reasons.sw_power_cap": {
+          "Not Active": 2
+        },
+        "clocks_throttle_reasons.hw_slowdown": {
+          "Not Active": 2
+        },
+        "clocks_throttle_reasons.hw_thermal_slowdown": {
+          "Not Active": 2
+        },
+        "clocks_throttle_reasons.hw_power_brake_slowdown": {
+          "Not Active": 2
+        },
+        "clocks_throttle_reasons.sw_thermal_slowdown": {
+          "Not Active": 2
+        },
+        "CPU_load1": {
+          "mean": 1.4849999999999999,
+          "min": 1.32,
+          "max": 1.65
+        }
+      }
+    }
+  ],
+  "CPU_settings": {
+    "CPU_models": [
+      "Intel(R) Xeon(R) Gold 6142 CPU @ 2.60GHz"
+    ],
+    "CPU_affinity": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      5
+    ],
+    "torch_num_threads": 1,
+    "torch_num_interop_threads": 6,
+    "cgroup_settings": {
+      "/sys/fs/cgroup/user.slice/user-1000.slice/session-161.scope/cpu.stat": "usage_usec 32340677\nuser_usec 15417417\nsystem_usec 16923259\n",
+      "/sys/fs/cgroup/user.slice/user-1000.slice/cpu.stat": "usage_usec 32687167\nuser_usec 15590254\nsystem_usec 17096912\n",
+      "/sys/fs/cgroup/user.slice/cpu.max": "max 100000\n",
+      "/sys/fs/cgroup/user.slice/cpu.stat": "usage_usec 985352889\nuser_usec 793839883\nsystem_usec 191513006\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\n",
+      "/sys/fs/cgroup/user.slice/cpuset.cpus.effective": "0-5\n",
+      "/sys/fs/cgroup/cpu.stat": "usage_usec 1086067893\nuser_usec 825013615\nsystem_usec 260736988\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\n",
+      "/sys/fs/cgroup/cpuset.cpus.effective": "0-5\n"
+    },
+    "env": {
+      "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+      "OMP_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "CUDA_VISIBLE_DEVICES": "GPU-6c96bba5-5cc6-8be2-b277-5533b4cdab27",
+      "CUDA_MODULE_LOADING": "LAZY",
+      "LD_LIBRARY_PATH": null,
+      "PYTHONPATH": null
+    },
+    "cpu_pressure": "some avg10=0.00 avg60=0.00 avg300=0.00 total=8935033\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+    "loadavg": "1.30 0.74 0.71 3/261 12430\n"
+  },
+  "inputs": {
+    "GQA:202121628": {
+      "input_hashes": {
+        "input_ids": "167c92a504e3cf483861fc16bbda052f7788d4a60f5621804113c37cf273e978",
+        "attention_mask": "eee92b770b22f8491b3e11424449591f9f8b2567d587f422b7f3b5433204aad6",
+        "pixel_values": "c96020c039489127c003db057cb89b23e4631887d93c3c430d9616ad54aceaf2"
+      },
+      "output32_SHA256": "893874f712ab3e6c99f6c521cabbdbf14687ffa694e5d659fed76f6d739585c2",
+      "sample_SHA256": "3883e5562fc8d04c5429c1b32a7d14d29360002336af40ea3057ab927cb8f02a",
+      "KV_live_bytes": 352321536,
+      "observed_requests": 36
+    },
+    "TextVQA:38571": {
+      "input_hashes": {
+        "input_ids": "6533bbc1e68b0c4e67f4f9d967d43f81419cc1e69ce35b7d7723cda7ad470ea7",
+        "attention_mask": "79883c30d11e08638eaf38406c99e78beecdaa0517c9ae9912c5ae5327d8c954",
+        "pixel_values": "f7552c60c84282f7c09a019bd4621825269d717b119e1fc91a9f2c772eab88ff"
+      },
+      "output32_SHA256": "377263c020c8be8162e263b33f1aa9dc969a27b36139199bc63b4a1645e3dbe9",
+      "sample_SHA256": "6bdffb2ba996f2ed3ff8d6bff9ec3a60cf9d6e92299cb0c2f525b2a279efbdf1",
+      "KV_live_bytes": 366477312,
+      "observed_requests": 35
+    },
+    "GQA:20308802": {
+      "input_hashes": {
+        "input_ids": "30f275aeb87f1ec5fb206af55a501874dfcb39620b4964afe8d6b4a223430804",
+        "attention_mask": "eee92b770b22f8491b3e11424449591f9f8b2567d587f422b7f3b5433204aad6",
+        "pixel_values": "e19533bba13563cf99683dd63817358ef73238c2d7460a37e0179ea7c07e687d"
+      },
+      "output32_SHA256": "795e88916352be53ffa0c901ff78b0003c5381d3da0e144c864a05b24f797648",
+      "sample_SHA256": "8383a5cb9292185e83e67e7ec5463ebdfe7a5dc2d431334b33cdf1d0d84672e0",
+      "KV_live_bytes": 352321536,
+      "observed_requests": 1
+    },
+    "GQA:202158870": {
+      "input_hashes": {
+        "input_ids": "96f4221c536ff2a114aae03da12c2ba2fb761a28342c22b73a865576a7b10ec5",
+        "attention_mask": "6135f3d2a362e521f6e6920474326f6bdf71ceb5a8acc0754da621067db33cfa",
+        "pixel_values": "353d066eff54c8c86e98149c9fe936029cddd9afba61280618fa565d7d0b416e"
+      },
+      "output32_SHA256": "122411477ad7bcbc0607d149648a375fe784036ef06a0b88bef7fae62e2042ab",
+      "sample_SHA256": "56f1c78fadcded095a8fe8e5f472fb5ae125c7aa63966e34f21a6c4cd798067c",
+      "KV_live_bytes": 354942976,
+      "observed_requests": 1
+    },
+    "GQA:201759069": {
+      "input_hashes": {
+        "input_ids": "fb9f70e3ee057ffe47aa3520e07ef2f083dc67f2deb4c4992513150c22503c88",
+        "attention_mask": "2860a66638b3d8d2ff1fbde69e60554e28e1137b27fa92c0333a0a8c902570af",
+        "pixel_values": "a85acae1086e3b3e406df4d84e95246198ce3d11488ad2b2107aa60c2cc009da"
+      },
+      "output32_SHA256": "7a3c433d9e4696863e7d08661c5fa4464df3b40cb68f49ccd3bd03b3efb49e1e",
+      "sample_SHA256": "4f00db441e1f8fdf9d89f48b5211847e22893a51290e7ad4587f2fe248569f59",
+      "KV_live_bytes": 353894400,
+      "observed_requests": 1
+    },
+    "GQA:20162504": {
+      "input_hashes": {
+        "input_ids": "ee1c5dbfbcd12443d36bc83ae2a1ee4f4075354ec5fce88829cc33a86f73d881",
+        "attention_mask": "3c42bbb8052788c34b46d1eb50baa89d16316de016b500363685d9559024003c",
+        "pixel_values": "948d63bb2cf3825916cb2fbcaa98903d7dc703a80ae54f690da5c468b0bb5e49"
+      },
+      "output32_SHA256": "e9f13e5a712160b515b5e9004eae0dd150fe8c2def9d1333a9835d0d21eab7a9",
+      "sample_SHA256": "5eb1c3872fa7a26897fadc93bb8e8a132ed146898ad2020e61596125d0d042e8",
+      "KV_live_bytes": 348651520,
+      "observed_requests": 1
+    },
+    "GQA:20886934": {
+      "input_hashes": {
+        "input_ids": "e898683379e74fcceb9e6d9dc71db2fe102a2166f7cd0c5c94bfe3df5389ef8b",
+        "attention_mask": "f216f6e1479e22ad5a9b24be2cf8e02a65d732d94a99079c6226debe106a1f4f",
+        "pixel_values": "39d60d50a3dde59d809d1c0277f1c667cc3a6e3741af8aae627f026e93f871a3"
+      },
+      "output32_SHA256": "a5911304c19a06f329045fdfe80d42def6317ec44e80fdcbbceb3b0c82501de6",
+      "sample_SHA256": "aaf1cf731a830fee0c9ad0e5c61e0941a53ae13e0840eeb547a30e896ea4c83d",
+      "KV_live_bytes": 353370112,
+      "observed_requests": 1
+    },
+    "GQA:201889314": {
+      "input_hashes": {
+        "input_ids": "42af9396de729bc69f698d25c69fb782f689294155525bc3e6cd4614de7e1e99",
+        "attention_mask": "d3736b4656f25be47abd4dd8109d3baaa552a87efbb1f953ce9f7f72ad40cfaa",
+        "pixel_values": "d880f849c16d7c5658fb640d5a273e5239b0e4c2c07879276ed194694c70d0e1"
+      },
+      "output32_SHA256": "851b18d41c14fbacceabdbe9515fe094486d74f7399efcd74cb52b78ed8c9c6a",
+      "sample_SHA256": "2f5f05afdeed145b36aa0f04ae9be693d4437b0187df8a6d678c849ea726d9b7",
+      "KV_live_bytes": 348127232,
+      "observed_requests": 1
+    },
+    "GQA:201455854": {
+      "input_hashes": {
+        "input_ids": "cc1e1c1ef37001f6be7e27c67300df07920e279a21ad971845a710fc6e39d5c1",
+        "attention_mask": "4f789dbb6f2f77fb9f2347f58d1dbf702d9982b085781f627f10ce1e64033aef",
+        "pixel_values": "325d20ea7e13e7fa3f1ef87f98e95f84038049998834072e4d2e419d5b5777c1"
+      },
+      "output32_SHA256": "ef342d5825aba1f753aa63e33b130649f29806c494745ae2f36e46c5f976dd0a",
+      "sample_SHA256": "8fb4c99046aec12328484448ad665a1432c29782a09a06df0eea6a5d5cc9699b",
+      "KV_live_bytes": 350748672,
+      "observed_requests": 1
+    },
+    "GQA:20709953": {
+      "input_hashes": {
+        "input_ids": "a46a06e35d691ce9bd1ec3da03c7d1d021bff96d86e9aee6e97877698f5cd447",
+        "attention_mask": "c062a406cb8c3cc73a58c513f6256c42ff2b410d33233730f27a42a9ce705d8c",
+        "pixel_values": "6790d14858ddfbfea1e48d154a7088beba2c885e3c9dfdaf8fa2c0d51f900fc5"
+      },
+      "output32_SHA256": "460d16b1064d9474dddcec4125622fca4d7ce656a17a2a0dff9e6c2dea9c90b4",
+      "sample_SHA256": "312066912af34eba2c18ac7736d630245b53fe7d9cca80e11e55cc9a56fac899",
+      "KV_live_bytes": 349175808,
+      "observed_requests": 1
+    },
+    "GQA:202246655": {
+      "input_hashes": {
+        "input_ids": "2ee93a33210390d33b8cbf65ed1734024fb01fb0965dc0f6a7c2f722741bca6a",
+        "attention_mask": "606ae2f7b86942b82c12dbd0c6619d7d0f64614c67eac776b6556e329f997150",
+        "pixel_values": "db891c72f9aa3b7befba11c87ac24173225edf2cde8e982384b19e2593640610"
+      },
+      "output32_SHA256": "d7ae032e96ebc7a2fd4cbae8f89592b622f04fb3912153c4c12cf6d6dd944f9d",
+      "sample_SHA256": "4e644ee6a67712f30db9e0b409b95f66bdaf67a090a64d6076386afa5888f790",
+      "KV_live_bytes": 351272960,
+      "observed_requests": 1
+    },
+    "GQA:202060056": {
+      "input_hashes": {
+        "input_ids": "76bb7b265687da07e0d2bb0c269e74532fa081dfab6c4cf7c1f2cbd73274e22d",
+        "attention_mask": "4f789dbb6f2f77fb9f2347f58d1dbf702d9982b085781f627f10ce1e64033aef",
+        "pixel_values": "347cd4fc8643507fc121193fe964567debaa5332c1545dd083091495fdfb6e04"
+      },
+      "output32_SHA256": "dbdeda0b54ac0b6956815abb6df6622848618df2fd5828ba19ab3499ba8b0957",
+      "sample_SHA256": "bf8a6d515971fe8aa26cbc6bc43e2fc4668ebd86ab2da1a0a2c22557176e1fe1",
+      "KV_live_bytes": 350748672,
+      "observed_requests": 1
+    },
+    "GQA:20644736": {
+      "input_hashes": {
+        "input_ids": "b7c134fb2d36b8e4457a76c5f483d836a62671f7fd0abc6e663c2d03eb21c014",
+        "attention_mask": "e0375192fc5daa5f641849f7758c04680827142f0def0e4587069ecb82b5a24f",
+        "pixel_values": "71ad7024f2827d8943ac704e6459e66497e1af2b5ff3af531b1d6ea57308a9e6"
+      },
+      "output32_SHA256": "13a1848b6f3c2c678099bb9d0bc85903e784b8713dfa5c85eb1253cdaa1618af",
+      "sample_SHA256": "131f7a4b9d1d7d8a80cd8c5bd09b3fe14687d654f9f6128c0b1d8aba74e19457",
+      "KV_live_bytes": 350224384,
+      "observed_requests": 1
+    },
+    "GQA:20922878": {
+      "input_hashes": {
+        "input_ids": "94d707cbf7da76fa8fbff38146ee03604b0f39071e1e7cdaf881f1bb380d60c9",
+        "attention_mask": "ec15892e62280ec5951a95a50f6c5379b71a5f552bcecc3b0bf5fc1cc42cf704",
+        "pixel_values": "a6e88fa292cb5d7ecb88d0ab1462ec99ef5f4f08c6ec43b76d0d06b4e9c2e805"
+      },
+      "output32_SHA256": "d6ff3ff1d27d84f1e8cae8209dde9851f2b2a14336471255b187208e57b19282",
+      "sample_SHA256": "d8d85ee080b3451782e8e32d5848242eb9c4e7922f49ea7412a6ca6c02837fb0",
+      "KV_live_bytes": 352845824,
+      "observed_requests": 1
+    },
+    "GQA:201976841": {
+      "input_hashes": {
+        "input_ids": "47e806e3ba4129c2848774b519c9bad20fb8f1611cac711b13f33c1711de0c7c",
+        "attention_mask": "853212f1df61e7057527a3730ed0252c9b7c6774bd4fb5b1003da50cac5d0e7e",
+        "pixel_values": "6fdfb22ab7a8949afeba5cecdad5250864458d4eb2751d9cdd21d9a9ff962436"
+      },
+      "output32_SHA256": "3899f7b447cea063983afa7f3f9bc99ca69cfd1439737c06322ad14f57120c9c",
+      "sample_SHA256": "ce943e45f3063e86fa68ab5b7ee96a134b5e1d5a78f1556d1b39add854e08984",
+      "KV_live_bytes": 351797248,
+      "observed_requests": 1
+    },
+    "GQA:201959618": {
+      "input_hashes": {
+        "input_ids": "88d4c69b4a99b37d197d3a9cb7bd1dbfa411443a73b81cc7f01bd921ff9bf21f",
+        "attention_mask": "e0375192fc5daa5f641849f7758c04680827142f0def0e4587069ecb82b5a24f",
+        "pixel_values": "78d6015eab78e9d73a7d1e7626cee4bb585c81505800b29d0bea73526413ecbf"
+      },
+      "output32_SHA256": "b8e266e1987e0a5cb8969d0dae542393ad334f9e56d3eff3dbe0d27e3d80f35d",
+      "sample_SHA256": "5227fbe2f2e4a097a3d8ff0e95e270bfec10a5d149e9b497d5fab1da0351cdb7",
+      "KV_live_bytes": 350224384,
+      "observed_requests": 1
+    }
+  },
+  "no_torch_import": true,
+  "GPU_calls_or_generation_performed": false
+}

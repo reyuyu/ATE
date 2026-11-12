@@ -1,0 +1,17 @@
+"""CPU-only audit of the preserved FastV cross-GPU token mismatch; no model loading."""
+import os
+os.environ.update(CUDA_VISIBLE_DEVICES='',HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',USE_TF='0',USE_FLAX='0',PYTHONDONTWRITEBYTECODE='1')
+from pathlib import Path
+import json,gzip,sqlite3,hashlib
+from transformers import AutoTokenizer
+D=Path('/home/featurize/work/ATE/vlm_research/results/unified_e2e32_eight_methods_3090');U=D.parent/'unified_e2e32_4090';M=Path('/home/featurize/ate-local-models/llava-1.5-7b-hf')
+db=sqlite3.connect('file:'+str(D/'checkpoint.sqlite')+'?mode=ro&immutable=1',uri=True);rows=[json.loads(p) for (p,) in db.execute('SELECT payload FROM records ORDER BY id')];db.close()
+with gzip.open(U/'formal_requests.jsonl.gz','rt') as f:history={(r['key'],r['method']):r for r in map(json.loads,f)}
+tokenizer=AutoTokenizer.from_pretrained(M,local_files_only=True);diffs=[]
+for r in rows:
+ if r.get('historical_tokens_exact') is not False:continue
+ old=history[r['key'],r['method']];actual=r['generation']['token_ids'];expected=old['generation']['token_ids'];indices=[i for i,(a,b) in enumerate(zip(actual,expected)) if a!=b]
+ item=dict(key=r['key'],method=r['method'],request_id=r['request_id'],category=r['category'],formal_index=r.get('formal_index'),first_differing_token_index_0based=indices[0],matching_prefix_tokens=indices[0],differing_indices=indices,current_tokens=actual,historical_tokens=expected,current_text=tokenizer.decode(actual,skip_special_tokens=False),historical_text=tokenizer.decode(expected,skip_special_tokens=False),current_E2E_ms=r['generation']['E2E_ms'],historical_E2E_ms=old['generation']['E2E_ms'],inputs_exact=r['input_hashes']==old['input_hashes'],sample_SHA256_exact=r['sample_sha256']==old['sample_sha256'],current_KV_live_bytes=r['generation']['cache']['live_bytes'],historical_KV_live_bytes=old['generation']['cache']['live_bytes'],KV_layout_shapes_and_used_tokens_equal=[(v['K_shape'],v['V_shape'],v['used_tokens'],v['visual_tokens']) for v in r['generation']['cache']['layers']]==[(v['K_shape'],v['V_shape'],v['used_tokens'],v['visual_tokens']) for v in old['generation']['cache']['layers']],current_pruning_events=r['generation'].get('pruning_events'),historical_pruning_events=old['generation'].get('pruning_events'))
+ diffs.append(item)
+result=dict(status='CPU_AUDIT_COMPLETE',GPU_generations_added=0,mismatches=diffs,Native_completed_requests=sum(r['method']=='Native' for r in rows),Native_mismatches=sum(r['method']=='Native' and r.get('historical_tokens_exact') is False for r in rows),algorithm_core_sources_changed=False,stop_policy_origin='Additional FastV full32 equality assertion inherited from the original4090 runner; current user explicitly requires full32 equality for Native, and physical/no-op correctness for other algorithms.',cause='Unresolved. Cross-GPU FP16/attention-selector numerical differences are possible, but this CPU audit cannot establish the cause.',interpretation='Output disagreement alone does not establish incorrect FastV layout or a changed algorithm. Original failure and all31 formal records are retained. No automatic reload or new session authorized by the single-session task.',future_protocol_note='A future separately authorized session should decide the FastV cross-GPU output policy before starting; preserve physical/no-op/source/input gates and mandatory Native exact output gate.')
+(D/'stop_audit.json').write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');print(json.dumps(result,ensure_ascii=False,indent=2))

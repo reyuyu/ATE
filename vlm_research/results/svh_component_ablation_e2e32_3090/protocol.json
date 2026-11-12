@@ -1,0 +1,58 @@
+{
+  "status": "FROZEN",
+  "created_ns": 1794518391033569491,
+  "GPU_UUID": "GPU-4612d0cb-a47a-674d-b647-3f4065f1627f",
+  "model": "llava-hf/llava-1.5-7b-hf",
+  "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "precision": "FP16",
+  "attention": "eager",
+  "batch": 1,
+  "greedy": true,
+  "conditions": [
+    "Native",
+    "wo_selective",
+    "wo_bypass",
+    "SVH"
+  ],
+  "length": 32,
+  "ignore_eos": true,
+  "use_cache": true,
+  "logits_to_keep": 1,
+  "real_decode_calls": 31,
+  "sessions": 2,
+  "formal_per_session": 120,
+  "total_formal": 240,
+  "inputs": {
+    "GQA": 15,
+    "TextVQA_Paper_OCR": 15,
+    "source": "/home/featurize/work/ATE/vlm_research/results/svh_ablation_efficiency_3090/generation_length/input_manifest.jsonl.gz",
+    "source_sha256": "db95b23ba22fe09da8459d15b0ec23ed5f1c03a582b8e371cf01a01321506c46"
+  },
+  "quality_scores_source": "/home/featurize/work/ATE/vlm_research/results/svh_ablation_efficiency_3090/ablation/summary.csv",
+  "quality_not_rerun": true,
+  "warmup": {
+    "Native32": 40,
+    "each_condition": 2,
+    "baseline_each_of_two_probes": 10
+  },
+  "calibration": {
+    "every_inputs": 5,
+    "each_of_two_probes": 3,
+    "windows_per_session": 6,
+    "threshold": 0.02,
+    "action": "WARN only; no resets/retries/deletions"
+  },
+  "schedule": "Per input cyclic four-condition rotation by input_index%4, same frozen schedule in both independent model-load sessions",
+  "timing": "Original frozen e2e32_runtime.generate function object; controller init included; after context cleanup and CUDA sync; CPU/H2D/logs/post-timer physical KV audit excluded",
+  "KV": "Actual live and unique storage bytes of K/V tensors at output32;31 Decode inputs cached; not total GPU memory",
+  "physical_components": "Exactly reuse old s55_ablation_engine classes from accuracy experiment; no algorithm/Attention/model/timer edits",
+  "patch_scope": [
+    "MiddleWriter",
+    "kv_snapshot",
+    "Observer"
+  ],
+  "no_other_benchmarks": true,
+  "no_training": true,
+  "no_history_overwrite": true,
+  "no_automatic_GitHub_push": true
+}

@@ -1,0 +1,339 @@
+{
+  "status": "PASS",
+  "GPU_release": {
+    "at_ns": 1794505665823730359,
+    "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+    "all_compute_apps": "",
+    "released": true,
+    "server_closed": false,
+    "nvidia_smi": "NVIDIA GeForce RTX 3090, GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6, 1 MiB, 0 %, 35, 23.32 W"
+  },
+  "formal_completed": 1080,
+  "all_UUID_exact": true,
+  "independent_SQLite_and_payload_SHA": [
+    {
+      "backbone": "LLaVA",
+      "session": "session1",
+      "SQLite_integrity": "PASS",
+      "payload_SHA256_verified": 426
+    },
+    {
+      "backbone": "LLaVA",
+      "session": "session2",
+      "SQLite_integrity": "PASS",
+      "payload_SHA256_verified": 426
+    },
+    {
+      "backbone": "Qwen",
+      "session": "session1",
+      "SQLite_integrity": "PASS",
+      "payload_SHA256_verified": 138
+    },
+    {
+      "backbone": "Qwen",
+      "session": "session2",
+      "SQLite_integrity": "PASS",
+      "payload_SHA256_verified": 138
+    },
+    {
+      "backbone": "InternVL",
+      "session": "session1",
+      "SQLite_integrity": "PASS",
+      "payload_SHA256_verified": 138
+    },
+    {
+      "backbone": "InternVL",
+      "session": "session2",
+      "SQLite_integrity": "PASS",
+      "payload_SHA256_verified": 138
+    }
+  ],
+  "timing_identity_and_31_events_exact": true,
+  "physical_KV_bytes_recomputed": true,
+  "duplicate_formal_records": 0,
+  "session_states": {
+    "LLaVA_session1": {
+      "status": "COMPLETE",
+      "phase": "COMPLETE",
+      "model": "LLaVA",
+      "session": "session1",
+      "pid": 8540,
+      "formal_completed": 360,
+      "formal_expected": 360
+    },
+    "LLaVA_session2": {
+      "status": "COMPLETE",
+      "phase": "COMPLETE",
+      "model": "LLaVA",
+      "session": "session2",
+      "pid": 10765,
+      "formal_completed": 360,
+      "formal_expected": 360
+    },
+    "Qwen_session1": {
+      "status": "COMPLETE_WITH_PERFORMANCE_WARNINGS",
+      "phase": "COMPLETE",
+      "backbone": "Qwen",
+      "session": "session1",
+      "pid": 13187,
+      "formal_completed": 90,
+      "formal_expected": 90
+    },
+    "Qwen_session2": {
+      "status": "COMPLETE",
+      "phase": "COMPLETE",
+      "backbone": "Qwen",
+      "session": "session2",
+      "pid": 14389,
+      "formal_completed": 90,
+      "formal_expected": 90
+    },
+    "InternVL_session1": {
+      "status": "COMPLETE",
+      "phase": "COMPLETE",
+      "backbone": "InternVL",
+      "session": "session1",
+      "pid": 15582,
+      "formal_completed": 90,
+      "formal_expected": 90
+    },
+    "InternVL_session2": {
+      "status": "COMPLETE_WITH_PERFORMANCE_WARNINGS",
+      "phase": "COMPLETE",
+      "backbone": "InternVL",
+      "session": "session2",
+      "pid": 16257,
+      "formal_completed": 90,
+      "formal_expected": 90
+    },
+    "LLaVA_smoke": {
+      "status": "PASS",
+      "backbone": "LLaVA",
+      "usable": [
+        "Native",
+        "SVH",
+        "SVH-R",
+        "FastV",
+        "SparseVLM",
+        "V2Drop",
+        "ApET",
+        "DUET",
+        "FastV+SVH",
+        "SparseVLM+SVH",
+        "V2Drop+SVH",
+        "ApET+SVH"
+      ],
+      "blocked": {},
+      "checks": {
+        "GQA:202121628|BridgeNative": "STRICT_EXACT",
+        "GQA:202121628|FastVNoop": "STRICT_EXACT",
+        "GQA:202121628|V2DropNoop": "STRICT_EXACT",
+        "TextVQA:38571|BridgeNative": "STRICT_EXACT",
+        "TextVQA:38571|FastVNoop": "STRICT_EXACT",
+        "TextVQA:38571|V2DropNoop": "STRICT_EXACT",
+        "TextVQA:35999|BridgeNative": "STRICT_EXACT",
+        "TextVQA:35999|FastVNoop": "STRICT_EXACT",
+        "TextVQA:35999|V2DropNoop": "STRICT_EXACT",
+        "GQA:202121628|SVH": "PASS",
+        "TextVQA:38571|SVH": "PASS",
+        "TextVQA:35999|SVH": "PASS",
+        "GQA:202121628|SVH-R": "PASS",
+        "TextVQA:38571|SVH-R": "PASS",
+        "TextVQA:35999|SVH-R": "PASS",
+        "GQA:202121628|FastV": "PASS",
+        "TextVQA:38571|FastV": "PASS",
+        "TextVQA:35999|FastV": "PASS",
+        "GQA:202121628|SparseVLM": "PASS",
+        "TextVQA:38571|SparseVLM": "PASS",
+        "TextVQA:35999|SparseVLM": "PASS",
+        "GQA:202121628|V2Drop": "PASS",
+        "TextVQA:38571|V2Drop": "PASS",
+        "TextVQA:35999|V2Drop": "PASS",
+        "GQA:202121628|ApET": "PASS",
+        "TextVQA:38571|ApET": "PASS",
+        "TextVQA:35999|ApET": "PASS",
+        "GQA:202121628|DUET": "PASS",
+        "TextVQA:38571|DUET": "PASS",
+        "TextVQA:35999|DUET": "PASS",
+        "GQA:202121628|FastV+SVH": "PASS",
+        "TextVQA:38571|FastV+SVH": "PASS",
+        "TextVQA:35999|FastV+SVH": "PASS",
+        "GQA:202121628|V2Drop+SVH": "PASS",
+        "TextVQA:38571|V2Drop+SVH": "PASS",
+        "TextVQA:35999|V2Drop+SVH": "PASS",
+        "GQA:202121628|ApET+SVH": "PASS",
+        "GQA:202121628|ApET_physical_vs_dense": {
+          "max_abs": 0.015625,
+          "mean_abs": 0.0021989336237311363,
+          "top1_exact": true
+        },
+        "TextVQA:38571|ApET+SVH": "PASS",
+        "TextVQA:38571|ApET_physical_vs_dense": {
+          "max_abs": 0.01953125,
+          "mean_abs": 0.0022836127318441868,
+          "top1_exact": true
+        },
+        "TextVQA:35999|ApET+SVH": "PASS",
+        "TextVQA:35999|ApET_physical_vs_dense": {
+          "max_abs": 0.015625,
+          "mean_abs": 0.001906534656882286,
+          "top1_exact": true
+        },
+        "GQA:202121628|SparseVLM+SVH": "PASS",
+        "TextVQA:38571|SparseVLM+SVH": "PASS",
+        "TextVQA:35999|SparseVLM+SVH": "PASS"
+      },
+      "all_gates_frozen_before_GPU": true,
+      "backbones": {
+        "LLaVA": {
+          "status": "PASS",
+          "backbone": "LLaVA",
+          "usable": [
+            "Native",
+            "SVH",
+            "SVH-R",
+            "FastV",
+            "SparseVLM",
+            "V2Drop",
+            "ApET",
+            "DUET",
+            "FastV+SVH",
+            "SparseVLM+SVH",
+            "V2Drop+SVH",
+            "ApET+SVH"
+          ],
+          "blocked": {},
+          "checks": {
+            "GQA:202121628|BridgeNative": "STRICT_EXACT",
+            "GQA:202121628|FastVNoop": "STRICT_EXACT",
+            "GQA:202121628|V2DropNoop": "STRICT_EXACT",
+            "TextVQA:38571|BridgeNative": "STRICT_EXACT",
+            "TextVQA:38571|FastVNoop": "STRICT_EXACT",
+            "TextVQA:38571|V2DropNoop": "STRICT_EXACT",
+            "TextVQA:35999|BridgeNative": "STRICT_EXACT",
+            "TextVQA:35999|FastVNoop": "STRICT_EXACT",
+            "TextVQA:35999|V2DropNoop": "STRICT_EXACT",
+            "GQA:202121628|SVH": "PASS",
+            "TextVQA:38571|SVH": "PASS",
+            "TextVQA:35999|SVH": "PASS",
+            "GQA:202121628|SVH-R": "PASS",
+            "TextVQA:38571|SVH-R": "PASS",
+            "TextVQA:35999|SVH-R": "PASS",
+            "GQA:202121628|FastV": "PASS",
+            "TextVQA:38571|FastV": "PASS",
+            "TextVQA:35999|FastV": "PASS",
+            "GQA:202121628|SparseVLM": "PASS",
+            "TextVQA:38571|SparseVLM": "PASS",
+            "TextVQA:35999|SparseVLM": "PASS",
+            "GQA:202121628|V2Drop": "PASS",
+            "TextVQA:38571|V2Drop": "PASS",
+            "TextVQA:35999|V2Drop": "PASS",
+            "GQA:202121628|ApET": "PASS",
+            "TextVQA:38571|ApET": "PASS",
+            "TextVQA:35999|ApET": "PASS",
+            "GQA:202121628|DUET": "PASS",
+            "TextVQA:38571|DUET": "PASS",
+            "TextVQA:35999|DUET": "PASS",
+            "GQA:202121628|FastV+SVH": "PASS",
+            "TextVQA:38571|FastV+SVH": "PASS",
+            "TextVQA:35999|FastV+SVH": "PASS",
+            "GQA:202121628|V2Drop+SVH": "PASS",
+            "TextVQA:38571|V2Drop+SVH": "PASS",
+            "TextVQA:35999|V2Drop+SVH": "PASS",
+            "GQA:202121628|ApET+SVH": "PASS",
+            "GQA:202121628|ApET_physical_vs_dense": {
+              "max_abs": 0.015625,
+              "mean_abs": 0.0021989336237311363,
+              "top1_exact": true
+            },
+            "TextVQA:38571|ApET+SVH": "PASS",
+            "TextVQA:38571|ApET_physical_vs_dense": {
+              "max_abs": 0.01953125,
+              "mean_abs": 0.0022836127318441868,
+              "top1_exact": true
+            },
+            "TextVQA:35999|ApET+SVH": "PASS",
+            "TextVQA:35999|ApET_physical_vs_dense": {
+              "max_abs": 0.015625,
+              "mean_abs": 0.001906534656882286,
+              "top1_exact": true
+            },
+            "GQA:202121628|SparseVLM+SVH": "PASS",
+            "TextVQA:38571|SparseVLM+SVH": "PASS",
+            "TextVQA:35999|SparseVLM+SVH": "PASS"
+          },
+          "all_gates_frozen_before_GPU": true
+        },
+        "Qwen": {
+          "status": "PASS",
+          "usable": [
+            "Native",
+            "SVH",
+            "SVH-R"
+          ],
+          "blocked": {},
+          "checks": {
+            "GQA:201759069|Native": "PASS",
+            "TextVQA:39047|Native": "PASS",
+            "TextVQA:35999|Native": "PASS",
+            "GQA:201759069|SVH": "PASS",
+            "TextVQA:39047|SVH": "PASS",
+            "TextVQA:35999|SVH": "PASS",
+            "GQA:201759069|SVH-R": "PASS",
+            "TextVQA:39047|SVH-R": "PASS",
+            "TextVQA:35999|SVH-R": "PASS"
+          },
+          "waivers": "InternVL frozen Physical-D numerical waiver retained; Qwen validated aligned BF16 path and SVHR causal prefix construction fully charged"
+        },
+        "InternVL": {
+          "status": "PASS",
+          "usable": [
+            "Native",
+            "SVH",
+            "SVH-R"
+          ],
+          "blocked": {},
+          "checks": {
+            "GQA:201889314|Native": "PASS",
+            "GQA:202158870|Native": "PASS",
+            "TextVQA:35999|Native": "PASS",
+            "GQA:201889314|SVH": "PASS",
+            "GQA:202158870|SVH": "PASS",
+            "TextVQA:35999|SVH": "PASS",
+            "GQA:201889314|SVH-R": "PASS",
+            "GQA:202158870|SVH-R": "PASS",
+            "TextVQA:35999|SVH-R": "PASS"
+          },
+          "waivers": "InternVL frozen Physical-D numerical waiver retained; Qwen validated aligned BF16 path and SVHR causal prefix construction fully charged"
+        }
+      },
+      "all_18_conditions_smoke_status": "PASS"
+    },
+    "Qwen_smoke": {
+      "status": "COMPLETE",
+      "phase": "COMPLETE",
+      "backbone": "Qwen",
+      "session": "smoke",
+      "pid": 12914,
+      "formal_completed": 0,
+      "usable": [
+        "Native",
+        "SVH",
+        "SVH-R"
+      ]
+    },
+    "InternVL_smoke": {
+      "status": "COMPLETE",
+      "phase": "COMPLETE",
+      "backbone": "InternVL",
+      "session": "smoke",
+      "pid": 15442,
+      "formal_completed": 0,
+      "usable": [
+        "Native",
+        "SVH",
+        "SVH-R"
+      ]
+    }
+  }
+}

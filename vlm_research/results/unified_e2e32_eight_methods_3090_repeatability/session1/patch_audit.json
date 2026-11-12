@@ -1,0 +1,181 @@
+{
+  "status": "PASS",
+  "GPU_requests": 0,
+  "test_cases": [
+    {
+      "name": "exact FastV",
+      "accepted": true,
+      "rule": "first_EOS_inclusive"
+    },
+    {
+      "name": "post EOS FastV allowed",
+      "accepted": true,
+      "rule": "first_EOS_inclusive"
+    },
+    {
+      "name": "Native post EOS still rejected",
+      "accepted": false,
+      "rule": "strict_full32_unchanged"
+    },
+    {
+      "name": "pre EOS rejected",
+      "accepted": false,
+      "rule": "first_EOS_inclusive"
+    },
+    {
+      "name": "first EOS displaced rejected",
+      "accepted": false,
+      "rule": "first_EOS_inclusive"
+    },
+    {
+      "name": "one EOS missing rejected",
+      "accepted": false,
+      "rule": "EOS_presence_mismatch"
+    },
+    {
+      "name": "no EOS exact accepted",
+      "accepted": true,
+      "rule": "no_EOS_requires_full32"
+    },
+    {
+      "name": "no EOS difference rejected",
+      "accepted": false,
+      "rule": "no_EOS_requires_full32"
+    },
+    {
+      "name": "other historical differences recorded only",
+      "accepted": true,
+      "rule": "historical_difference_diagnostic_only"
+    },
+    {
+      "name": "first token EOS tail allowed",
+      "accepted": true,
+      "rule": "first_EOS_inclusive"
+    }
+  ],
+  "old_stop_only_full32_history_assertion": true,
+  "old_failed_request_policy": {
+    "accepted": true,
+    "rule": "first_EOS_inclusive",
+    "full32_exact": false,
+    "first_difference_0based": 5,
+    "all_differing_positions_0based": [
+      5,
+      6,
+      7,
+      8,
+      9,
+      10,
+      11,
+      12,
+      13,
+      14,
+      15,
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      29,
+      30,
+      31
+    ],
+    "current_EOS_positions_0based": [
+      1,
+      10,
+      22,
+      25
+    ],
+    "historical_EOS_positions_0based": [
+      1,
+      23,
+      25
+    ],
+    "comparison_last_index_0based": 1,
+    "post_EOS_only_difference": true,
+    "current_token_ids": [
+      1939,
+      2,
+      13,
+      3624,
+      278,
+      3474,
+      1754,
+      310,
+      12917,
+      29973,
+      2,
+      13,
+      22550,
+      278,
+      1139,
+      773,
+      263,
+      2323,
+      1734,
+      470,
+      16549,
+      29889,
+      2,
+      13,
+      3782,
+      2,
+      13,
+      3624,
+      278,
+      3474,
+      1754,
+      310
+    ],
+    "historical_token_ids": [
+      1939,
+      2,
+      13,
+      3624,
+      278,
+      3578,
+      5713,
+      15546,
+      1754,
+      310,
+      11915,
+      29973,
+      13,
+      22550,
+      278,
+      1139,
+      773,
+      263,
+      2323,
+      1734,
+      470,
+      16549,
+      29889,
+      2,
+      29889,
+      2,
+      13,
+      3624,
+      278,
+      3578,
+      5713,
+      15546
+    ]
+  },
+  "original_completion_SHA256": "798428bc5aa8fef8228778f308c5a1cdfa891f83afd7c5a3399219becd501b2e",
+  "original_checkpoint_SHA256": "0c74a9bf37b611117c0da18da9c3ab7753e161148979a86e40d78a51de8ff522",
+  "old_entry_SHA256": "f035447b20fa7bb0c66be55cc6a8f15e490e827a3abde952f4711d23e427fd04",
+  "new_entry_SHA256": "9775421ee7569acc65f4fceb5b612090d256874436d2613847d3c6f80c409ae2",
+  "frozen_runtime_SHA256": "513a122ff5f4da008b74e4d5560b0b6ef50baf8ccf7feb2fa766a0cdcdc51a3b",
+  "request_prefix_AST_unchanged": true,
+  "clean_AST_unchanged": true,
+  "performance_gates_warn_only": true,
+  "measurements_and_generation_not_mutated": true,
+  "patch_scope": "Output acceptance after generate returned, plus Session2 identity and one extra correctness Smoke. Frozen algorithms/timing unchanged.",
+  "old_prepared_proposal_replaced": "Latest authorization: all pure performance gates warn; Native full32, FastV first-EOS and physical/No-op safety gates hard.",
+  "FastV_previous_KV_layout_and_pruning_exact": true
+}

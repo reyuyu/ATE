@@ -1,0 +1,22 @@
+{
+  "status": "PARTIAL",
+  "phase": "FORMAL_INTERLEAVED_240",
+  "pid": 4931,
+  "session": 1,
+  "formal_completed": 31,
+  "formal_expected": 240,
+  "requests_completed": 187,
+  "requests_attempted": 187,
+  "model_loads": 1,
+  "failure": "AssertionError('Historical token mismatch: GQA:201759069 FastV')",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/ate-local-experiments/unified_e2e32_eight_methods_3090/code/run_3090.py\", line 132, in main\n    for oi,method in enumerate(order):request(s['key'],method,'formal',False,formal_index=state['formal_completed']+1,input_index=pos+1,order_in_input=oi)\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-local-experiments/unified_e2e32_eight_methods_3090/code/run_3090.py\", line 73, in request\n    assert exact is not False,'Historical token mismatch: '+key+' '+method\n           ^^^^^^^^^^^^^^^^^^\nAssertionError: Historical token mismatch: GQA:201759069 FastV\n",
+  "failed_phase": "FORMAL_INTERLEAVED_240",
+  "category_counts": {
+    "baseline": 20,
+    "equal_warmup": 16,
+    "formal": 31,
+    "smoke": 20,
+    "stability_warmup": 100
+  },
+  "elapsed_s": 473.789442014
+}

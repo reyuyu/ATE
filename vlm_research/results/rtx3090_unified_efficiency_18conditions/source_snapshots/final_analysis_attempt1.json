@@ -1,0 +1,6 @@
+{
+  "stage": "CPU independent audit",
+  "error": "sqlite3.OperationalError: no such column: id",
+  "cause": "LLaVA schema primary key request_id vs cross-backbone id",
+  "fix": "Order by SQLite rowid; no raw record or GPU runtime changed"
+}

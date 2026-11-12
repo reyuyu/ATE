@@ -1,0 +1,315 @@
+[
+  {
+    "ID": "L01",
+    "backbone": "LLaVA-1.5-7B",
+    "method": "Native Full",
+    "runner": "code/run_llava_v2.py",
+    "runtime": "code/unified_llava.py",
+    "checkpoint": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+    "status": "COMPLETE",
+    "fusion_adapter": "frozen existing",
+    "implementation": "e2e32_runtime.generate Native",
+    "source_commit": "5ee2a0dbe78df336229b55fed14a4a6d0d880bed",
+    "config": "576 visual; unmodified HF 4.49",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  },
+  {
+    "ID": "L02",
+    "backbone": "LLaVA-1.5-7B",
+    "method": "SVH",
+    "runner": "code/run_llava_v2.py",
+    "runtime": "code/unified_llava.py",
+    "checkpoint": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+    "status": "COMPLETE",
+    "fusion_adapter": "frozen existing",
+    "implementation": "MiddleWriter cutoff20",
+    "source_commit": "5ee2a0dbe78df336229b55fed14a4a6d0d880bed",
+    "config": "writer0..19; exit20; zero visual KV; skip2..5",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  },
+  {
+    "ID": "L03",
+    "backbone": "LLaVA-1.5-7B",
+    "method": "SVH-R",
+    "runner": "code/run_llava_v2.py",
+    "runtime": "code/unified_llava.py",
+    "checkpoint": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+    "status": "COMPLETE",
+    "fusion_adapter": "frozen existing",
+    "implementation": "MiddleWriter cutoff25 keep11..24",
+    "source_commit": "5ee2a0dbe78df336229b55fed14a4a6d0d880bed",
+    "config": "writer0..19; exit25; keep11..24; skip2..5",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  },
+  {
+    "ID": "L04",
+    "backbone": "LLaVA-1.5-7B",
+    "method": "FastV",
+    "runner": "code/run_llava_v2.py",
+    "runtime": "code/unified_llava.py",
+    "checkpoint": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+    "status": "COMPLETE",
+    "fusion_adapter": "frozen existing",
+    "implementation": "FastV K3 R2/3 staticKV",
+    "source_commit": "d1659729b5bf1be225e99ee15783deeea80f63b1",
+    "config": "576->192 enteringL3",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  },
+  {
+    "ID": "L05",
+    "backbone": "LLaVA-1.5-7B",
+    "method": "SparseVLM",
+    "runner": "code/run_llava_v2.py",
+    "runtime": "code/unified_llava.py",
+    "checkpoint": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+    "status": "COMPLETE",
+    "fusion_adapter": "frozen existing",
+    "implementation": "OfficialCompat SparseVLM",
+    "source_commit": "734d9003879689713a132b83297dfad060a5c9af",
+    "config": "576/309/204/113; mean206.5",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  },
+  {
+    "ID": "L06",
+    "backbone": "LLaVA-1.5-7B",
+    "method": "V²Drop",
+    "runner": "code/run_llava_v2.py",
+    "runtime": "code/unified_llava.py",
+    "checkpoint": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+    "status": "COMPLETE",
+    "fusion_adapter": "frozen existing",
+    "implementation": "V2Drop frozen hf_adapter",
+    "source_commit": "0c94eaa451a6000e2a7e0bec5570278a1de12292",
+    "config": "576->288->144->1 before3/17/22; not paper192",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  },
+  {
+    "ID": "L07",
+    "backbone": "LLaVA-1.5-7B",
+    "method": "ApET",
+    "runner": "code/run_llava_v2.py",
+    "runtime": "code/unified_llava.py",
+    "checkpoint": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+    "status": "COMPLETE",
+    "fusion_adapter": "frozen existing",
+    "implementation": "OfficialCompat ApET",
+    "source_commit": "70cc01b215f4d74c5661c699919fe3aeda48bed0",
+    "config": "288->96 entering16; mean192",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  },
+  {
+    "ID": "L08",
+    "backbone": "LLaVA-1.5-7B",
+    "method": "DUET-VLM (C+all)",
+    "runner": "code/run_llava_v2.py",
+    "runtime": "code/unified_llava.py",
+    "checkpoint": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+    "status": "COMPLETE",
+    "fusion_adapter": "frozen existing",
+    "implementation": "OfficialCompat DUET",
+    "source_commit": "cd69e489f39a2a51e3b278a470dc8dc32c00e0fb",
+    "config": "C+all 307->153->0 before16/24; mean191.75",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  },
+  {
+    "ID": "L09",
+    "backbone": "LLaVA-1.5-7B",
+    "method": "FastV+SVH",
+    "runner": "code/run_llava_v2.py",
+    "runtime": "code/unified_llava.py",
+    "checkpoint": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+    "status": "COMPLETE",
+    "fusion_adapter": "frozen existing",
+    "implementation": "fastv_svh.engine.Fusion",
+    "source_commit": "7570ded8b431ea53accbb349ef51c04b94a4faf7",
+    "config": "576->192 before3; exit20; zero visualKV; skip2..5; selector extra QK charged",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  },
+  {
+    "ID": "L10",
+    "backbone": "LLaVA-1.5-7B",
+    "method": "SparseVLM+SVH",
+    "runner": "code/run_llava_v2.py",
+    "runtime": "code/unified_llava.py",
+    "checkpoint": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+    "status": "COMPLETE",
+    "fusion_adapter": "frozen existing",
+    "implementation": "sparsevlm_svh.engine.Fusion",
+    "source_commit": "95a37ae3fbdbb1aae08cfbe2427c04b4619d094a",
+    "config": "576/309/204/113 prefix; exit20; zero visualKV; skip2..5; original/hybrid RoPE",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  },
+  {
+    "ID": "L11",
+    "backbone": "LLaVA-1.5-7B",
+    "method": "V²Drop+SVH",
+    "runner": "code/run_llava_v2.py",
+    "runtime": "code/unified_llava.py",
+    "checkpoint": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+    "status": "COMPLETE",
+    "fusion_adapter": "frozen existing",
+    "implementation": "fusion_engine.PrefixSVH",
+    "source_commit": "453f96fc5bf061ea51e6e1f5eab705b7144fcc6f",
+    "config": "L3/L17 prefix576->288->144, exit20; noL22 stage; zero visualKV; skip2..5",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  },
+  {
+    "ID": "L12",
+    "backbone": "LLaVA-1.5-7B",
+    "method": "ApET+SVH",
+    "runner": "code/run_llava_v2.py",
+    "runtime": "code/unified_llava.py",
+    "checkpoint": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+    "status": "COMPLETE",
+    "fusion_adapter": "new independent ApETFusion",
+    "implementation": "code/apet_fusion.ApETFusion",
+    "source_commit": "NEW_ADAPTER_FROM_PINNED_OFFICIAL_AND_SVH",
+    "config": "288->96 at16; exit20; zero visualKV; skip2..5; official compact RoPE retained upon SVH exit",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS",
+    "new_adapter_SHA256": "e944b84b906c764881ebef1149f59d7e42ddf94d6b4c2dd89b14ff1cf9bd35be"
+  },
+  {
+    "ID": "Q01",
+    "backbone": "Qwen3-VL-8B-Instruct",
+    "method": "Native Full",
+    "checkpoint": "/home/featurize/ate-local-models/Qwen3-VL-8B-Instruct",
+    "status": "COMPLETE",
+    "runner": "code/run_cross.py --kind Qwen",
+    "source_commit": "f21254f7c9d371b0f2cd48cf25a8ac81cc9a2760",
+    "implementation": "unmodified HF Qwen3VL",
+    "config": "BF16/Eager TF4.57.6; all36 native layers; native dynamic visual tokens; full visual KV; no exit/bypass",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  },
+  {
+    "ID": "Q02",
+    "backbone": "Qwen3-VL-8B-Instruct",
+    "method": "SVH",
+    "checkpoint": "/home/featurize/ate-local-models/Qwen3-VL-8B-Instruct",
+    "status": "COMPLETE",
+    "runner": "code/run_cross.py --kind Qwen",
+    "source_commit": "f21254f7c9d371b0f2cd48cf25a8ac81cc9a2760",
+    "implementation": "EarlyAlignedExecution, frozen cuBLASLt descriptor alignment plus transient zero-key/query alignment",
+    "config": "BF16/Eager TF4.57.6; writer0..21; exit22; skip1..6; zero persistent image KV; frozen temporary numeric alignment cost charged",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  },
+  {
+    "ID": "Q03",
+    "backbone": "Qwen3-VL-8B-Instruct",
+    "method": "SVH-R",
+    "checkpoint": "/home/featurize/ate-local-models/Qwen3-VL-8B-Instruct",
+    "status": "COMPLETE",
+    "runner": "code/run_cross.py --kind Qwen",
+    "source_commit": "f21254f7c9d371b0f2cd48cf25a8ac81cc9a2760",
+    "implementation": "qwen3vl_svhr_search.physical.Physical, late causal prefix KV builder",
+    "config": "BF16/Eager TF4.57.6; writer0..21; main hidden exit22; skip1..6; ImageKV19..35; causal-prefix visual KV construction fully charged",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  },
+  {
+    "ID": "I01",
+    "backbone": "InternVL3-8B",
+    "method": "Native Full",
+    "checkpoint": "/home/featurize/ate-local-models/InternVL3-8B",
+    "status": "COMPLETE",
+    "runner": "code/run_cross.py --kind InternVL",
+    "source_commit": "c60a9919112a3cf5bec8c494a533cba56a97f29b",
+    "implementation": "official remote-code InternVL with base embeddings",
+    "config": "BF16/Eager TF4.49; single448 block/256 visual; all28 native layers; full visual KV; no exit/bypass",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  },
+  {
+    "ID": "I02",
+    "backbone": "InternVL3-8B",
+    "method": "SVH",
+    "checkpoint": "/home/featurize/ate-local-models/InternVL3-8B",
+    "status": "COMPLETE",
+    "runner": "code/run_cross.py --kind InternVL",
+    "source_commit": "c60a9919112a3cf5bec8c494a533cba56a97f29b",
+    "implementation": "internvl3_svh_physical_d_pilot.engine.Control Physical-D",
+    "config": "BF16/Eager TF4.49; writer0..19; physical exit20; skip2..5; zero persistent image KV; frozen numerical waiver",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  },
+  {
+    "ID": "I03",
+    "backbone": "InternVL3-8B",
+    "method": "SVH-R",
+    "checkpoint": "/home/featurize/ate-local-models/InternVL3-8B",
+    "status": "COMPLETE",
+    "runner": "code/run_cross.py --kind InternVL",
+    "source_commit": "c60a9919112a3cf5bec8c494a533cba56a97f29b",
+    "implementation": "internvl3_svh_r_terminal_windows_textvqa.engine.Control late9",
+    "config": "BF16/Eager TF4.49; writer0..19; keepImageKV19..27; terminal hidden exit28; skip2..5; temporary reduction padding fully charged",
+    "formal_counts": {
+      "session1": 30,
+      "session2": 30
+    },
+    "smoke_status": "PASS"
+  }
+]

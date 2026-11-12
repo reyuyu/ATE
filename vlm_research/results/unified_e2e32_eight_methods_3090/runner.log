@@ -1,0 +1,43 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:05<00:10,  5.05s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:09<00:04,  4.90s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:13<00:00,  4.30s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:13<00:00,  4.48s/it]
+SMOKE_PASS Native GQA:202121628
+SMOKE_PASS Native TextVQA:38571
+SMOKE_PASS FastV GQA:202121628
+SMOKE_PASS FastV TextVQA:38571
+SMOKE_PASS SparseVLM GQA:202121628
+SMOKE_PASS SparseVLM TextVQA:38571
+SMOKE_PASS V2Drop GQA:202121628
+SMOKE_PASS V2Drop TextVQA:38571
+SMOKE_PASS ApET GQA:202121628
+SMOKE_PASS ApET TextVQA:38571
+SMOKE_PASS DUET GQA:202121628
+SMOKE_PASS DUET TextVQA:38571
+SMOKE_PASS SVH GQA:202121628
+SMOKE_PASS SVH TextVQA:38571
+SMOKE_PASS SVH-R GQA:202121628
+SMOKE_PASS SVH-R TextVQA:38571
+BRIDGE_EXACT GQA:202121628
+BRIDGE_EXACT TextVQA:38571
+NOOP_EXACT FastVNoop
+NOOP_EXACT V2DropNoop
+WARMUP 20 summed_E2E_s 43.42
+WARMUP 40 summed_E2E_s 87.04
+WARMUP 60 summed_E2E_s 130.81
+ADMISSION 60 NOT_ADMITTED seconds 130.81 reasons ["Summed actual generation E2E<180s"]
+WARMUP 80 summed_E2E_s 174.87
+ADMISSION 80 NOT_ADMITTED seconds 174.87 reasons ["Summed actual generation E2E<180s"]
+WARMUP 100 summed_E2E_s 218.97
+ADMISSION 100 PASS seconds 218.97 reasons []
+INPUT_DONE 1 GQA:202121628 8
+INPUT_DONE 2 GQA:20308802 16
+INPUT_DONE 3 GQA:202158870 24
+Traceback (most recent call last):
+  File "/home/featurize/ate-local-experiments/unified_e2e32_eight_methods_3090/code/run_3090.py", line 132, in main
+    for oi,method in enumerate(order):request(s['key'],method,'formal',False,formal_index=state['formal_completed']+1,input_index=pos+1,order_in_input=oi)
+                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-experiments/unified_e2e32_eight_methods_3090/code/run_3090.py", line 73, in request
+    assert exact is not False,'Historical token mismatch: '+key+' '+method
+           ^^^^^^^^^^^^^^^^^^
+AssertionError: Historical token mismatch: GQA:201759069 FastV
+
+FINAL {"status": "PARTIAL", "phase": "FORMAL_INTERLEAVED_240", "pid": 4931, "session": 1, "formal_completed": 31, "formal_expected": 240, "requests_completed": 187, "requests_attempted": 187, "model_loads": 1, "failure": "AssertionError('Historical token mismatch: GQA:201759069 FastV')", "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/ate-local-experiments/unified_e2e32_eight_methods_3090/code/run_3090.py\", line 132, in main\n    for oi,method in enumerate(order):request(s['key'],method,'formal',False,formal_index=state['formal_completed']+1,input_index=pos+1,order_in_input=oi)\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-local-experiments/unified_e2e32_eight_methods_3090/code/run_3090.py\", line 73, in request\n    assert exact is not False,'Historical token mismatch: '+key+' '+method\n           ^^^^^^^^^^^^^^^^^^\nAssertionError: Historical token mismatch: GQA:201759069 FastV\n", "failed_phase": "FORMAL_INTERLEAVED_240"}

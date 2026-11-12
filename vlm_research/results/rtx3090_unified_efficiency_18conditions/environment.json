@@ -1,0 +1,905 @@
+{
+  "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+  "GPU_settings_modified": false,
+  "sessions": {
+    "LLaVA_smoke": {
+      "at": "2026-11-12T16:37:00.225187+00:00",
+      "python": "3.11.8 (main, Feb 26 2024, 21:39:34) [GCC 11.2.0]",
+      "python_executable": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/bin/python",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.49.0",
+      "cuda_runtime": "12.4",
+      "GPU": "NVIDIA GeForce RTX 3090, GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6, 610.57.04, 24576 MiB, 350.00 W",
+      "torch_num_threads": 1,
+      "torch_num_interop_threads": 6,
+      "deterministic": true,
+      "TF32_matmul": false,
+      "FP16_reduced_precision_reduction": true,
+      "env": {
+        "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "CUDA_VISIBLE_DEVICES": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+        "CUDA_MODULE_LOADING": "LAZY",
+        "LD_LIBRARY_PATH": null,
+        "PYTHONPATH": "/home/featurize/work/ATE/vlm_research/results/featurize_23137-20261113_resource_restore:/home/featurize/work/ATE:/home/featurize/work/ATE/vlm_research"
+      },
+      "sys_path": [
+        "/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/results/rtx3090_unified_efficiency_18conditions/code",
+        "/home/featurize/ate-experiments/rtx3090-18conditions-20261113",
+        "/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research",
+        "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code",
+        "/home/featurize/work/ATE/vlm_research/external_baselines/fastv/compatibility",
+        "/home/featurize/work/ATE/vlm_research/external_baselines/v2drop/compatibility",
+        "/home/featurize/work/ATE/vlm_research/external_baselines/e2e32_compatibility",
+        "/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/results/rtx3090_unified_efficiency_18conditions/code",
+        "/home/featurize/work/ATE/vlm_research/results/featurize_23137-20261113_resource_restore",
+        "/home/featurize/work/ATE",
+        "/home/featurize/work/ATE/vlm_research",
+        "/environment/miniconda3/lib/python311.zip",
+        "/environment/miniconda3/lib/python3.11",
+        "/environment/miniconda3/lib/python3.11/lib-dynload",
+        "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages",
+        "/tmp/tmpg446ihy1"
+      ],
+      "sources": {
+        "torch_init": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/__init__.py",
+          "sha256": "5a190666c3853aa236c4d48ed64e2d4bbcd23bd32c21e64c0867646a6852e43f",
+          "bytes": 100239
+        },
+        "torch_version": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/version.py",
+          "sha256": "fb37823f3a4c3c29cd008fac7d3ce5aeb8e7da6f883b17aa9ea6d73ce6eecbfd",
+          "bytes": 274
+        },
+        "torch_C": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/_C.cpython-311-x86_64-linux-gnu.so",
+          "sha256": "847b41689dbe98e134c8a2eebc499a88d4fbd72d4661f0427aa6a0c2b4fce51f",
+          "bytes": 37881
+        },
+        "transformers_init": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/__init__.py",
+          "sha256": "be46187d22bb6a6f9dc087f204ce2a18370093b30a0ddf0c3a3d8caf39dca164",
+          "bytes": 320563
+        },
+        "installed_llama": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py",
+          "sha256": "d313bd9b9565638f0780fbd8158ddf69ff77334b38462f50945efdd64140bbfb",
+          "bytes": 51822
+        },
+        "installed_llava": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/llava/modeling_llava.py",
+          "sha256": "ab4ea7eb5ee124fd0dace5e09eb0a93dcf332690d4cfb4b48d870bee79a44489",
+          "bytes": 25597
+        },
+        "installed_cache": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/cache_utils.py",
+          "sha256": "637a5e39e717f99ef2ce6d7775a3ab077d62b1e1c1f841f4e246e8f22ab0a2a5",
+          "bytes": 104108
+        },
+        "frozen_loader": {
+          "path": "/home/featurize/work/ATE/vlm_research/mme_seed_quality/engine.py",
+          "sha256": "f7f41d523c926354cf18bd7e4fbcfbd7aa46bb17bccf37b2fd8ce468ab0fc100",
+          "bytes": 10941
+        },
+        "frozen_image_prompt": {
+          "path": "/home/featurize/work/ATE/vlm_research/information_horizon_alignment/engine.py",
+          "sha256": "edc2b8331512af12cdb881c4b0269c7fd744ebc3580e125a68afff11cd5df929",
+          "bytes": 11499
+        },
+        "calibration/e2e32_preserve.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_preserve.py",
+          "sha256": "fb775880fb7c4c662cf6259c355d28d2c705f93d3d06330d010f352d3254d97c",
+          "bytes": 7572
+        },
+        "calibration/e2e32_run.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_run.py",
+          "sha256": "bf1b6f2e6b02019d2923ed4a7782570999dcf0b75000fe93697269f29d0adc74",
+          "bytes": 13030
+        },
+        "calibration/e2e32_prepare.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_prepare.py",
+          "sha256": "436271850bc7289ddefa48dcd56cc2e099e425bd256cfea372f7da50d54c20a0",
+          "bytes": 9835
+        },
+        "calibration/e2e32_runtime.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_runtime.py",
+          "sha256": "513a122ff5f4da008b74e4d5560b0b6ef50baf8ccf7feb2fa766a0cdcdc51a3b",
+          "bytes": 9857
+        },
+        "calibration/e2e32_analyze.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_analyze.py",
+          "sha256": "039e99cd9e808c8c47d30f387427db1bcac731a636d8770f86eabb3c4c1ba9ce",
+          "bytes": 16914
+        },
+        "calibration/e2e32_environment.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_environment.py",
+          "sha256": "d71e7611e0a4f76e51b7be388ddc5cc633a8c786f3cc172d3af4c3259c37747d",
+          "bytes": 3166
+        },
+        "calibration/e2e32_archive.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_archive.py",
+          "sha256": "d6c4367eb7c5678ad323356aaf6f7d0fb12b403dd281f3c38409a5bdf4440d6d",
+          "bytes": 1103
+        },
+        "calibration/e2e32_monitor.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_monitor.py",
+          "sha256": "1167766b874c2f69203fe5e0fcb8af0ba9f6cab70b1ac018b9fe0fc8a5bca6b8",
+          "bytes": 1409
+        },
+        "old_runtime": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/v2drop_quick_reproduction/runtime.py",
+          "sha256": "ea7df088ed6d5a9709225813f48cf1d598d0a066fd355ec57280a68141e82db5",
+          "bytes": 9033
+        },
+        "new_runtime": {
+          "path": "/home/featurize/work/ATE/vlm_research/external_baselines/fastv/compatibility/fastv_runtime.py",
+          "sha256": "b7a0d0f91d0bc0bb38260d7950299d91ac3b3c804ebef60bdbf65bd9da922661",
+          "bytes": 3251
+        }
+      },
+      "CPU_models": [
+        "Intel(R) Xeon(R) Gold 6142 CPU @ 2.60GHz"
+      ],
+      "CPU_affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "os_cpu_count": 6,
+      "cgroup": "0::/user.slice/user-1000.slice/session-74.scope\n",
+      "cgroup_settings": {
+        "/sys/fs/cgroup/user.slice/user-1000.slice/session-74.scope/cpu.stat": "usage_usec 34447130\nuser_usec 14045435\nsystem_usec 20401694\n",
+        "/sys/fs/cgroup/user.slice/user-1000.slice/cpu.stat": "usage_usec 35533698\nuser_usec 14739671\nsystem_usec 20794026\n",
+        "/sys/fs/cgroup/user.slice/cpu.max": "max 100000\n",
+        "/sys/fs/cgroup/user.slice/cpu.stat": "usage_usec 531325489\nuser_usec 354973229\nsystem_usec 176352259\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\n",
+        "/sys/fs/cgroup/user.slice/cpuset.cpus.effective": "0-5\n",
+        "/sys/fs/cgroup/cpu.stat": "usage_usec 648171037\nuser_usec 379989856\nsystem_usec 268009747\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\n",
+        "/sys/fs/cgroup/cpuset.cpus.effective": "0-5\n"
+      },
+      "loadavg": "1.04 0.65 0.53 1/266 7213\n",
+      "cpu_pressure": "some avg10=0.01 avg60=0.02 avg300=0.03 total=5154995\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+      "torch_build": "PyTorch built with:\n  - GCC 9.3\n  - C++ Version: 201703\n  - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications\n  - Intel(R) MKL-DNN v3.5.3 (Git Hash 66f0cb9eb66affd2da3bf5f8d897376f04aae6af)\n  - OpenMP 201511 (a.k.a. OpenMP 4.5)\n  - LAPACK is enabled (usually provided by MKL)\n  - NNPACK is enabled\n  - CPU capability usage: AVX512\n  - CUDA Runtime 12.4\n  - NVCC architecture flags: -gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90\n  - CuDNN 90.1\n  - Magma 2.6.1\n  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=2236df1770800ffea5697b11b0bb0d910b2e59e1, CUDA_VERSION=12.4, CUDNN_VERSION=9.1.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DLIBKINETO_NOXPUPTI=ON -DUSE_FBGEMM -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.6.0, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=1, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, \n",
+      "shared_model_object_id": 139893966321808,
+      "model_class": "<class 'transformers.models.llava.modeling_llava.LlavaForConditionalGeneration'>",
+      "model_eval": true,
+      "dtype": "float16",
+      "attention": "eager",
+      "hf_device_map": {
+        "": "cuda:0"
+      },
+      "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+      "torch_import": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/__init__.py",
+      "transformers_import": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/__init__.py"
+    },
+    "LLaVA_session1": {
+      "at": "2026-11-12T16:42:37.553398+00:00",
+      "python": "3.11.8 (main, Feb 26 2024, 21:39:34) [GCC 11.2.0]",
+      "python_executable": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/bin/python",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.49.0",
+      "cuda_runtime": "12.4",
+      "GPU": "NVIDIA GeForce RTX 3090, GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6, 610.57.04, 24576 MiB, 350.00 W",
+      "torch_num_threads": 1,
+      "torch_num_interop_threads": 6,
+      "deterministic": true,
+      "TF32_matmul": false,
+      "FP16_reduced_precision_reduction": true,
+      "env": {
+        "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "CUDA_VISIBLE_DEVICES": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+        "CUDA_MODULE_LOADING": "LAZY",
+        "LD_LIBRARY_PATH": null,
+        "PYTHONPATH": "/home/featurize/work/ATE/vlm_research/results/featurize_23137-20261113_resource_restore:/home/featurize/work/ATE:/home/featurize/work/ATE/vlm_research"
+      },
+      "sys_path": [
+        "/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/results/rtx3090_unified_efficiency_18conditions/code",
+        "/home/featurize/ate-experiments/rtx3090-18conditions-20261113",
+        "/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research",
+        "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code",
+        "/home/featurize/work/ATE/vlm_research/external_baselines/fastv/compatibility",
+        "/home/featurize/work/ATE/vlm_research/external_baselines/v2drop/compatibility",
+        "/home/featurize/work/ATE/vlm_research/external_baselines/e2e32_compatibility",
+        "/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/results/rtx3090_unified_efficiency_18conditions/code",
+        "/home/featurize/work/ATE/vlm_research/results/featurize_23137-20261113_resource_restore",
+        "/home/featurize/work/ATE",
+        "/home/featurize/work/ATE/vlm_research",
+        "/environment/miniconda3/lib/python311.zip",
+        "/environment/miniconda3/lib/python3.11",
+        "/environment/miniconda3/lib/python3.11/lib-dynload",
+        "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages",
+        "/tmp/tmp6bamydkh"
+      ],
+      "sources": {
+        "torch_init": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/__init__.py",
+          "sha256": "5a190666c3853aa236c4d48ed64e2d4bbcd23bd32c21e64c0867646a6852e43f",
+          "bytes": 100239
+        },
+        "torch_version": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/version.py",
+          "sha256": "fb37823f3a4c3c29cd008fac7d3ce5aeb8e7da6f883b17aa9ea6d73ce6eecbfd",
+          "bytes": 274
+        },
+        "torch_C": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/_C.cpython-311-x86_64-linux-gnu.so",
+          "sha256": "847b41689dbe98e134c8a2eebc499a88d4fbd72d4661f0427aa6a0c2b4fce51f",
+          "bytes": 37881
+        },
+        "transformers_init": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/__init__.py",
+          "sha256": "be46187d22bb6a6f9dc087f204ce2a18370093b30a0ddf0c3a3d8caf39dca164",
+          "bytes": 320563
+        },
+        "installed_llama": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py",
+          "sha256": "d313bd9b9565638f0780fbd8158ddf69ff77334b38462f50945efdd64140bbfb",
+          "bytes": 51822
+        },
+        "installed_llava": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/llava/modeling_llava.py",
+          "sha256": "ab4ea7eb5ee124fd0dace5e09eb0a93dcf332690d4cfb4b48d870bee79a44489",
+          "bytes": 25597
+        },
+        "installed_cache": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/cache_utils.py",
+          "sha256": "637a5e39e717f99ef2ce6d7775a3ab077d62b1e1c1f841f4e246e8f22ab0a2a5",
+          "bytes": 104108
+        },
+        "frozen_loader": {
+          "path": "/home/featurize/work/ATE/vlm_research/mme_seed_quality/engine.py",
+          "sha256": "f7f41d523c926354cf18bd7e4fbcfbd7aa46bb17bccf37b2fd8ce468ab0fc100",
+          "bytes": 10941
+        },
+        "frozen_image_prompt": {
+          "path": "/home/featurize/work/ATE/vlm_research/information_horizon_alignment/engine.py",
+          "sha256": "edc2b8331512af12cdb881c4b0269c7fd744ebc3580e125a68afff11cd5df929",
+          "bytes": 11499
+        },
+        "calibration/e2e32_preserve.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_preserve.py",
+          "sha256": "fb775880fb7c4c662cf6259c355d28d2c705f93d3d06330d010f352d3254d97c",
+          "bytes": 7572
+        },
+        "calibration/e2e32_run.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_run.py",
+          "sha256": "bf1b6f2e6b02019d2923ed4a7782570999dcf0b75000fe93697269f29d0adc74",
+          "bytes": 13030
+        },
+        "calibration/e2e32_prepare.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_prepare.py",
+          "sha256": "436271850bc7289ddefa48dcd56cc2e099e425bd256cfea372f7da50d54c20a0",
+          "bytes": 9835
+        },
+        "calibration/e2e32_runtime.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_runtime.py",
+          "sha256": "513a122ff5f4da008b74e4d5560b0b6ef50baf8ccf7feb2fa766a0cdcdc51a3b",
+          "bytes": 9857
+        },
+        "calibration/e2e32_analyze.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_analyze.py",
+          "sha256": "039e99cd9e808c8c47d30f387427db1bcac731a636d8770f86eabb3c4c1ba9ce",
+          "bytes": 16914
+        },
+        "calibration/e2e32_environment.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_environment.py",
+          "sha256": "d71e7611e0a4f76e51b7be388ddc5cc633a8c786f3cc172d3af4c3259c37747d",
+          "bytes": 3166
+        },
+        "calibration/e2e32_archive.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_archive.py",
+          "sha256": "d6c4367eb7c5678ad323356aaf6f7d0fb12b403dd281f3c38409a5bdf4440d6d",
+          "bytes": 1103
+        },
+        "calibration/e2e32_monitor.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_monitor.py",
+          "sha256": "1167766b874c2f69203fe5e0fcb8af0ba9f6cab70b1ac018b9fe0fc8a5bca6b8",
+          "bytes": 1409
+        },
+        "old_runtime": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/v2drop_quick_reproduction/runtime.py",
+          "sha256": "ea7df088ed6d5a9709225813f48cf1d598d0a066fd355ec57280a68141e82db5",
+          "bytes": 9033
+        },
+        "new_runtime": {
+          "path": "/home/featurize/work/ATE/vlm_research/external_baselines/fastv/compatibility/fastv_runtime.py",
+          "sha256": "b7a0d0f91d0bc0bb38260d7950299d91ac3b3c804ebef60bdbf65bd9da922661",
+          "bytes": 3251
+        }
+      },
+      "CPU_models": [
+        "Intel(R) Xeon(R) Gold 6142 CPU @ 2.60GHz"
+      ],
+      "CPU_affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "os_cpu_count": 6,
+      "cgroup": "0::/user.slice/user-1000.slice/session-93.scope\n",
+      "cgroup_settings": {
+        "/sys/fs/cgroup/user.slice/user-1000.slice/session-93.scope/cpu.stat": "usage_usec 29391018\nuser_usec 13521112\nsystem_usec 15869905\n",
+        "/sys/fs/cgroup/user.slice/user-1000.slice/cpu.stat": "usage_usec 31587185\nuser_usec 15186736\nsystem_usec 16400449\n",
+        "/sys/fs/cgroup/user.slice/cpu.max": "max 100000\n",
+        "/sys/fs/cgroup/user.slice/cpu.stat": "usage_usec 755777577\nuser_usec 533097608\nsystem_usec 222679969\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\n",
+        "/sys/fs/cgroup/user.slice/cpuset.cpus.effective": "0-5\n",
+        "/sys/fs/cgroup/cpu.stat": "usage_usec 879625820\nuser_usec 559907923\nsystem_usec 319532656\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\n",
+        "/sys/fs/cgroup/cpuset.cpus.effective": "0-5\n"
+      },
+      "loadavg": "0.62 0.67 0.59 1/264 8668\n",
+      "cpu_pressure": "some avg10=0.01 avg60=0.02 avg300=0.00 total=5497367\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+      "torch_build": "PyTorch built with:\n  - GCC 9.3\n  - C++ Version: 201703\n  - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications\n  - Intel(R) MKL-DNN v3.5.3 (Git Hash 66f0cb9eb66affd2da3bf5f8d897376f04aae6af)\n  - OpenMP 201511 (a.k.a. OpenMP 4.5)\n  - LAPACK is enabled (usually provided by MKL)\n  - NNPACK is enabled\n  - CPU capability usage: AVX512\n  - CUDA Runtime 12.4\n  - NVCC architecture flags: -gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90\n  - CuDNN 90.1\n  - Magma 2.6.1\n  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=2236df1770800ffea5697b11b0bb0d910b2e59e1, CUDA_VERSION=12.4, CUDNN_VERSION=9.1.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DLIBKINETO_NOXPUPTI=ON -DUSE_FBGEMM -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.6.0, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=1, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, \n",
+      "shared_model_object_id": 140311889273296,
+      "model_class": "<class 'transformers.models.llava.modeling_llava.LlavaForConditionalGeneration'>",
+      "model_eval": true,
+      "dtype": "float16",
+      "attention": "eager",
+      "hf_device_map": {
+        "": "cuda:0"
+      },
+      "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+      "torch_import": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/__init__.py",
+      "transformers_import": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/__init__.py"
+    },
+    "LLaVA_session2": {
+      "at": "2026-11-12T16:59:47.438780+00:00",
+      "python": "3.11.8 (main, Feb 26 2024, 21:39:34) [GCC 11.2.0]",
+      "python_executable": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/bin/python",
+      "torch": "2.6.0+cu124",
+      "transformers": "4.49.0",
+      "cuda_runtime": "12.4",
+      "GPU": "NVIDIA GeForce RTX 3090, GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6, 610.57.04, 24576 MiB, 350.00 W",
+      "torch_num_threads": 1,
+      "torch_num_interop_threads": 6,
+      "deterministic": true,
+      "TF32_matmul": false,
+      "FP16_reduced_precision_reduction": true,
+      "env": {
+        "CUBLAS_WORKSPACE_CONFIG": ":4096:8",
+        "OMP_NUM_THREADS": "1",
+        "MKL_NUM_THREADS": "1",
+        "OPENBLAS_NUM_THREADS": "1",
+        "CUDA_VISIBLE_DEVICES": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+        "CUDA_MODULE_LOADING": "LAZY",
+        "LD_LIBRARY_PATH": null,
+        "PYTHONPATH": "/home/featurize/work/ATE/vlm_research/results/featurize_23137-20261113_resource_restore:/home/featurize/work/ATE:/home/featurize/work/ATE/vlm_research"
+      },
+      "sys_path": [
+        "/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/results/rtx3090_unified_efficiency_18conditions/code",
+        "/home/featurize/ate-experiments/rtx3090-18conditions-20261113",
+        "/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research",
+        "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code",
+        "/home/featurize/work/ATE/vlm_research/external_baselines/fastv/compatibility",
+        "/home/featurize/work/ATE/vlm_research/external_baselines/v2drop/compatibility",
+        "/home/featurize/work/ATE/vlm_research/external_baselines/e2e32_compatibility",
+        "/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/results/rtx3090_unified_efficiency_18conditions/code",
+        "/home/featurize/work/ATE/vlm_research/results/featurize_23137-20261113_resource_restore",
+        "/home/featurize/work/ATE",
+        "/home/featurize/work/ATE/vlm_research",
+        "/environment/miniconda3/lib/python311.zip",
+        "/environment/miniconda3/lib/python3.11",
+        "/environment/miniconda3/lib/python3.11/lib-dynload",
+        "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages",
+        "/tmp/tmp5h04teey"
+      ],
+      "sources": {
+        "torch_init": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/__init__.py",
+          "sha256": "5a190666c3853aa236c4d48ed64e2d4bbcd23bd32c21e64c0867646a6852e43f",
+          "bytes": 100239
+        },
+        "torch_version": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/version.py",
+          "sha256": "fb37823f3a4c3c29cd008fac7d3ce5aeb8e7da6f883b17aa9ea6d73ce6eecbfd",
+          "bytes": 274
+        },
+        "torch_C": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/_C.cpython-311-x86_64-linux-gnu.so",
+          "sha256": "847b41689dbe98e134c8a2eebc499a88d4fbd72d4661f0427aa6a0c2b4fce51f",
+          "bytes": 37881
+        },
+        "transformers_init": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/__init__.py",
+          "sha256": "be46187d22bb6a6f9dc087f204ce2a18370093b30a0ddf0c3a3d8caf39dca164",
+          "bytes": 320563
+        },
+        "installed_llama": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/llama/modeling_llama.py",
+          "sha256": "d313bd9b9565638f0780fbd8158ddf69ff77334b38462f50945efdd64140bbfb",
+          "bytes": 51822
+        },
+        "installed_llava": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/llava/modeling_llava.py",
+          "sha256": "ab4ea7eb5ee124fd0dace5e09eb0a93dcf332690d4cfb4b48d870bee79a44489",
+          "bytes": 25597
+        },
+        "installed_cache": {
+          "path": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/cache_utils.py",
+          "sha256": "637a5e39e717f99ef2ce6d7775a3ab077d62b1e1c1f841f4e246e8f22ab0a2a5",
+          "bytes": 104108
+        },
+        "frozen_loader": {
+          "path": "/home/featurize/work/ATE/vlm_research/mme_seed_quality/engine.py",
+          "sha256": "f7f41d523c926354cf18bd7e4fbcfbd7aa46bb17bccf37b2fd8ce468ab0fc100",
+          "bytes": 10941
+        },
+        "frozen_image_prompt": {
+          "path": "/home/featurize/work/ATE/vlm_research/information_horizon_alignment/engine.py",
+          "sha256": "edc2b8331512af12cdb881c4b0269c7fd744ebc3580e125a68afff11cd5df929",
+          "bytes": 11499
+        },
+        "calibration/e2e32_preserve.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_preserve.py",
+          "sha256": "fb775880fb7c4c662cf6259c355d28d2c705f93d3d06330d010f352d3254d97c",
+          "bytes": 7572
+        },
+        "calibration/e2e32_run.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_run.py",
+          "sha256": "bf1b6f2e6b02019d2923ed4a7782570999dcf0b75000fe93697269f29d0adc74",
+          "bytes": 13030
+        },
+        "calibration/e2e32_prepare.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_prepare.py",
+          "sha256": "436271850bc7289ddefa48dcd56cc2e099e425bd256cfea372f7da50d54c20a0",
+          "bytes": 9835
+        },
+        "calibration/e2e32_runtime.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_runtime.py",
+          "sha256": "513a122ff5f4da008b74e4d5560b0b6ef50baf8ccf7feb2fa766a0cdcdc51a3b",
+          "bytes": 9857
+        },
+        "calibration/e2e32_analyze.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_analyze.py",
+          "sha256": "039e99cd9e808c8c47d30f387427db1bcac731a636d8770f86eabb3c4c1ba9ce",
+          "bytes": 16914
+        },
+        "calibration/e2e32_environment.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_environment.py",
+          "sha256": "d71e7611e0a4f76e51b7be388ddc5cc633a8c786f3cc172d3af4c3259c37747d",
+          "bytes": 3166
+        },
+        "calibration/e2e32_archive.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_archive.py",
+          "sha256": "d6c4367eb7c5678ad323356aaf6f7d0fb12b403dd281f3c38409a5bdf4440d6d",
+          "bytes": 1103
+        },
+        "calibration/e2e32_monitor.py": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_monitor.py",
+          "sha256": "1167766b874c2f69203fe5e0fcb8af0ba9f6cab70b1ac018b9fe0fc8a5bca6b8",
+          "bytes": 1409
+        },
+        "old_runtime": {
+          "path": "/home/featurize/work/ATE/vlm_research/results/v2drop_quick_reproduction/runtime.py",
+          "sha256": "ea7df088ed6d5a9709225813f48cf1d598d0a066fd355ec57280a68141e82db5",
+          "bytes": 9033
+        },
+        "new_runtime": {
+          "path": "/home/featurize/work/ATE/vlm_research/external_baselines/fastv/compatibility/fastv_runtime.py",
+          "sha256": "b7a0d0f91d0bc0bb38260d7950299d91ac3b3c804ebef60bdbf65bd9da922661",
+          "bytes": 3251
+        }
+      },
+      "CPU_models": [
+        "Intel(R) Xeon(R) Gold 6142 CPU @ 2.60GHz"
+      ],
+      "CPU_affinity": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "os_cpu_count": 6,
+      "cgroup": "0::/user.slice/user-1000.slice/session-93.scope\n",
+      "cgroup_settings": {
+        "/sys/fs/cgroup/user.slice/user-1000.slice/session-93.scope/cpu.stat": "usage_usec 1047852120\nuser_usec 995864929\nsystem_usec 51987190\n",
+        "/sys/fs/cgroup/user.slice/user-1000.slice/cpu.stat": "usage_usec 1056708736\nuser_usec 1002183399\nsystem_usec 54525336\n",
+        "/sys/fs/cgroup/user.slice/cpu.max": "max 100000\n",
+        "/sys/fs/cgroup/user.slice/cpu.stat": "usage_usec 1780899128\nuser_usec 1520476586\nsystem_usec 260422541\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\n",
+        "/sys/fs/cgroup/user.slice/cpuset.cpus.effective": "0-5\n",
+        "/sys/fs/cgroup/cpu.stat": "usage_usec 1916754231\nuser_usec 1550645955\nsystem_usec 365882761\nnr_periods 0\nnr_throttled 0\nthrottled_usec 0\n",
+        "/sys/fs/cgroup/cpuset.cpus.effective": "0-5\n"
+      },
+      "loadavg": "1.17 1.18 1.02 1/263 10880\n",
+      "cpu_pressure": "some avg10=0.00 avg60=0.01 avg300=0.00 total=6208787\nfull avg10=0.00 avg60=0.00 avg300=0.00 total=0\n",
+      "torch_build": "PyTorch built with:\n  - GCC 9.3\n  - C++ Version: 201703\n  - Intel(R) oneAPI Math Kernel Library Version 2024.2-Product Build 20240605 for Intel(R) 64 architecture applications\n  - Intel(R) MKL-DNN v3.5.3 (Git Hash 66f0cb9eb66affd2da3bf5f8d897376f04aae6af)\n  - OpenMP 201511 (a.k.a. OpenMP 4.5)\n  - LAPACK is enabled (usually provided by MKL)\n  - NNPACK is enabled\n  - CPU capability usage: AVX512\n  - CUDA Runtime 12.4\n  - NVCC architecture flags: -gencode;arch=compute_50,code=sm_50;-gencode;arch=compute_60,code=sm_60;-gencode;arch=compute_70,code=sm_70;-gencode;arch=compute_75,code=sm_75;-gencode;arch=compute_80,code=sm_80;-gencode;arch=compute_86,code=sm_86;-gencode;arch=compute_90,code=sm_90\n  - CuDNN 90.1\n  - Magma 2.6.1\n  - Build settings: BLAS_INFO=mkl, BUILD_TYPE=Release, COMMIT_SHA=2236df1770800ffea5697b11b0bb0d910b2e59e1, CUDA_VERSION=12.4, CUDNN_VERSION=9.1.0, CXX_COMPILER=/opt/rh/devtoolset-9/root/usr/bin/c++, CXX_FLAGS= -D_GLIBCXX_USE_CXX11_ABI=0 -fabi-version=11 -fvisibility-inlines-hidden -DUSE_PTHREADPOOL -DNDEBUG -DUSE_KINETO -DLIBKINETO_NOROCTRACER -DLIBKINETO_NOXPUPTI=ON -DUSE_FBGEMM -DUSE_PYTORCH_QNNPACK -DUSE_XNNPACK -DSYMBOLICATE_MOBILE_DEBUG_HANDLE -O2 -fPIC -Wall -Wextra -Werror=return-type -Werror=non-virtual-dtor -Werror=bool-operation -Wnarrowing -Wno-missing-field-initializers -Wno-type-limits -Wno-array-bounds -Wno-unknown-pragmas -Wno-unused-parameter -Wno-strict-overflow -Wno-strict-aliasing -Wno-stringop-overflow -Wsuggest-override -Wno-psabi -Wno-error=old-style-cast -Wno-missing-braces -fdiagnostics-color=always -faligned-new -Wno-unused-but-set-variable -Wno-maybe-uninitialized -fno-math-errno -fno-trapping-math -Werror=format -Wno-stringop-overflow, LAPACK_INFO=mkl, PERF_WITH_AVX=1, PERF_WITH_AVX2=1, TORCH_VERSION=2.6.0, USE_CUDA=ON, USE_CUDNN=ON, USE_CUSPARSELT=1, USE_EXCEPTION_PTR=1, USE_GFLAGS=OFF, USE_GLOG=OFF, USE_GLOO=ON, USE_MKL=ON, USE_MKLDNN=ON, USE_MPI=OFF, USE_NCCL=1, USE_NNPACK=ON, USE_OPENMP=ON, USE_ROCM=OFF, USE_ROCM_KERNEL_ASSERT=OFF, \n",
+      "shared_model_object_id": 139679619708816,
+      "model_class": "<class 'transformers.models.llava.modeling_llava.LlavaForConditionalGeneration'>",
+      "model_eval": true,
+      "dtype": "float16",
+      "attention": "eager",
+      "hf_device_map": {
+        "": "cuda:0"
+      },
+      "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+      "torch_import": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/__init__.py",
+      "transformers_import": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/__init__.py"
+    },
+    "Qwen_smoke": {
+      "python": "3.11.8 (main, Feb 26 2024, 21:39:34) [GCC 11.2.0]",
+      "executable": "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python",
+      "torch": "2.6.0+cu124",
+      "torch_import": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/__init__.py",
+      "transformers": "4.57.6",
+      "transformers_import": "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/__init__.py",
+      "CUDA": "12.4",
+      "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+      "nvidia_smi": "\n==============NVSMI LOG==============\n\nTimestamp                                              : Thu Nov 12 17:16:35 2026\nDriver Version                                         : 610.57.04 [Deprecated; will be removed in CUDA 14.0. Use KMD Version instead]\nCUDA Version                                           : 13.3 [Deprecated; will be removed in CUDA 14.0. Use CUDA UMD Version instead]\nKMD Version                                            : 610.57.04\nCUDA UMD Version                                       : 13.3\n\nAttached GPUs                                          : 1\nGPU 00000000:09:00.0\n    Product Name                                       : NVIDIA GeForce RTX 3090\n    Product Brand                                      : GeForce\n    Product Architecture                               : Ampere\n    Display Mode                                       : Requested functionality has been deprecated\n    Display Attached                                   : No\n    Display Active                                     : Disabled\n    Persistence Mode                                   : Disabled\n    Addressing Mode                                    : None\n    MIG Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    Accounting Mode                                    : Disabled\n    Accounting Mode Buffer Size                        : 4000\n    Driver Model\n        Current                                        : N/A\n        Pending                                        : N/A\n    Serial Number                                      : N/A\n    GPU UUID                                           : GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6\n    GPU PDI                                            : 0x95cb4e04f16edf8b\n    Minor Number                                       : 0\n    VBIOS Version                                      : 94.02.42.00.3E\n    MultiGPU Board                                     : No\n    Board ID                                           : 0x900\n    Board Part Number                                  : N/A\n    GPU Part Number                                    : 2204-300-A1\n    FRU Part Number                                    : N/A\n    Platform Info\n        Chassis Serial Number                          : N/A\n        Slot Number                                    : N/A\n        Tray Index                                     : N/A\n        Host ID                                        : N/A\n        Peer Type                                      : N/A\n        Module Id                                      : 1\n        GPU Fabric GUID                                : N/A\n    Inforom Version\n        Image Version                                  : G001.0000.03.03\n        OEM Object                                     : 2.0\n        ECC Object                                     : N/A\n        Power Management Object                        : N/A\n    Inforom BBX Object Flush\n        Latest Timestamp                               : N/A\n        Latest Duration                                : N/A\n    Inforom Time Data\n        Time Run                                       : N/A\n    GPU Operation Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    GPU C2C Mode                                       : N/A\n    GPU Virtualization Mode\n        Virtualization Mode                            : Pass-Through\n        Host VGPU Mode                                 : N/A\n        vGPU Heterogeneous Mode                        : N/A\n    GPU Recovery Action                                : None\n    GSP Firmware Version                               : 610.57.04\n    IBMNPU\n        Relaxed Ordering Mode                          : N/A\n    PCI\n        Bus                                            : 0x09\n        Device                                         : 0x00\n        Domain                                         : 0x0000\n        Base Classcode                                 : 0x3\n        Sub Classcode                                  : 0x0\n        Device Id                                      : 0x220410DE\n        Bus Id                                         : 00000000:09:00.0\n        Sub System Id                                  : 0x145410DE\n        GPU Link Info\n            PCIe Generation\n                Max                                    : 3\n                Current                                : 3\n                Device Current                         : 3\n                Device Max                             : 4\n                Host Max                               : N/A\n            Link Width\n                Max                                    : 16x\n                Current                                : 16x\n        Bridge Chip\n            Type                                       : N/A\n            Firmware                                   : N/A\n        Replays Since Reset                            : 0\n        Replay Number Rollovers                        : 0\n        Tx Throughput                                  : 439 KB/s\n        Rx Throughput                                  : 292 KB/s\n        Atomic Caps Outbound                           : N/A\n        Atomic Caps Inbound                            : N/A\n    Fan Speed                                          : 39 %\n    Performance State                                  : P2\n    Clocks Event Reasons\n        Idle                                           : Not Active\n        Applications Clocks Setting                    : Not Active\n        SW Power Cap                                   : Not Active\n        HW Slowdown                                    : Not Active\n            HW Thermal Slowdown                        : Not Active\n            HW Power Brake Slowdown                    : Not Active\n        Sync Boost                                     : Not Active\n        SW Thermal Slowdown                            : Not Active\n        Display Clock Setting                          : Not Active\n    Clocks Event Reasons Counters\n        SW Power Capping                               : 55995398 us\n        Sync Boost                                     : 0 us\n        SW Thermal Slowdown                            : 0 us\n        HW Thermal Slowdown                            : 0 us\n        HW Power Braking                               : 0 us\n    Sparse Operation Mode                              : N/A\n    FB Memory Usage\n        Total                                          : 24576 MiB\n        Reserved                                       : 453 MiB\n        Used                                           : 17032 MiB\n        Free                                           : 7093 MiB\n    BAR1 Memory Usage\n        Total                                          : 256 MiB\n        Used                                           : 4 MiB\n        Free                                           : 252 MiB\n    Conf Compute Protected Memory Usage\n        Total                                          : 0 MiB\n        Used                                           : 0 MiB\n        Free                                           : 0 MiB\n    Compute Mode                                       : Default\n    Utilization\n        GPU                                            : 0 %\n        Memory                                         : 0 %\n        Encoder                                        : 0 %\n        Decoder                                        : 0 %\n        JPEG                                           : 0 %\n        OFA                                            : 0 %\n    Encoder Stats\n        Active Sessions                                : 0\n        Average FPS                                    : 0\n        Average Latency                                : 0\n    FBC Stats\n        Active Sessions                                : 0\n        Average FPS                                    : 0\n        Average Latency                                : 0\n    DRAM Encryption Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    ECC Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    ECC Errors\n        Volatile\n            SRAM Correctable                           : N/A\n            SRAM Uncorrectable Parity                  : N/A\n            SRAM Uncorrectable SEC-DED                 : N/A\n            DRAM Correctable                           : N/A\n            DRAM Uncorrectable                         : N/A\n        Aggregate\n            SRAM Correctable                           : N/A\n            SRAM Uncorrectable Parity                  : N/A\n            SRAM Uncorrectable SEC-DED                 : N/A\n            DRAM Correctable                           : N/A\n            DRAM Uncorrectable                         : N/A\n            SRAM Threshold Exceeded                    : N/A\n        Aggregate Uncorrectable SRAM Sources\n            SRAM L2                                    : N/A\n            SRAM SM                                    : N/A\n            SRAM Microcontroller                       : N/A\n            SRAM PCIE                                  : N/A\n            SRAM Other                                 : N/A\n        Channel Repair Pending                         : No\n        TPC Repair Pending                             : No\n        Unrepairable Memory                            : N/A\n    Retired Pages\n        Single Bit ECC                                 : N/A\n        Double Bit ECC                                 : N/A\n        Pending Page Blacklist                         : N/A\n    Remapped Rows                                      : N/A\n    Temperature\n        GPU Current Temp                               : 45 C\n        GPU Current T.Limit Temp                       : N/A\n        GPU Shutdown Temp                              : 98 C\n        GPU Slowdown Temp                              : 95 C\n        GPU Max Operating Temp                         : 93 C\n        GPU Target Temperature Specification           : 83 C\n        Memory Current Temp                            : N/A\n        Memory Max Operating Temp                      : N/A\n    GPU Power Readings\n        Average Power Draw                             : 113.31 W\n        Instantaneous Power Draw                       : 113.75 W\n        GPU Ceiling Power Limit\n            Current Power Limit                        : 350.00 W\n            Requested Power Limit                      : 350.00 W\n            Default Power Limit                        : 350.00 W\n        GPU Base Power\n            Current Base Power                         : N/A\n            Requested Base Power                       : N/A\n            Default Base Power                         : N/A\n        Min Power Limit                                : 100.00 W\n        Max Power Limit                                : 350.00 W\n    GPU Memory Power Readings \n        Average Power Draw                             : N/A\n        Instantaneous Power Draw                       : N/A\n    Module Power Readings\n        Average Power Draw                             : N/A\n        Instantaneous Power Draw                       : N/A\n        Current Power Limit                            : N/A\n        Requested Power Limit                          : N/A\n        Default Power Limit                            : N/A\n        Min Power Limit                                : N/A\n        Max Power Limit                                : N/A\n    Power Smoothing                                    : N/A\n    Workload Power Profiles\n        Requested Profiles                             : N/A\n        Enforced Profiles                              : N/A\n    EDPp Multiplier                                    : N/A\n    Clocks\n        Graphics                                       : 1695 MHz\n        SM                                             : 1695 MHz\n        Memory                                         : 9501 MHz\n        Video                                          : 1485 MHz\n    Applications Clocks\n        Graphics                                       : Requested functionality has been deprecated\n        Memory                                         : Requested functionality has been deprecated\n    Default Applications Clocks\n        Graphics                                       : Requested functionality has been deprecated\n        Memory                                         : Requested functionality has been deprecated\n    Deferred Clocks\n        Memory                                         : N/A\n    Max Clocks\n        Graphics                                       : 2100 MHz\n        SM                                             : 2100 MHz\n        Memory                                         : 9751 MHz\n        Video                                          : 1950 MHz\n    Max Customer Boost Clocks\n        Graphics                                       : N/A\n    Clock Policy\n        Auto Boost                                     : N/A\n        Auto Boost Default                             : N/A\n    Fabric\n        State                                          : N/A\n        Status                                         : N/A\n        CliqueId                                       : N/A\n        ClusterUUID                                    : N/A\n        Health\n            Summary                                    : N/A\n            Bandwidth                                  : N/A\n            Route Recovery in progress                 : N/A\n            Route Unhealthy                            : N/A\n            Access Timeout Recovery                    : N/A\n            Incorrect Configuration                    : N/A\n            Partition Assigned                         : N/A\n    Processes\n        GPU instance ID                   : N/A\n        Compute instance ID               : N/A\n        Process ID                        : 12914\n            Type                          : C\n            Name                          : /home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python\n            Used GPU Memory               : 17022 MiB\n    Capabilities\n        EGM                                            : disabled\n\n",
+      "dtype": "bfloat16",
+      "backend": "eager",
+      "layers": 36
+    },
+    "Qwen_session1": {
+      "python": "3.11.8 (main, Feb 26 2024, 21:39:34) [GCC 11.2.0]",
+      "executable": "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python",
+      "torch": "2.6.0+cu124",
+      "torch_import": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/__init__.py",
+      "transformers": "4.57.6",
+      "transformers_import": "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/__init__.py",
+      "CUDA": "12.4",
+      "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+      "nvidia_smi": "\n==============NVSMI LOG==============\n\nTimestamp                                              : Thu Nov 12 17:17:54 2026\nDriver Version                                         : 610.57.04 [Deprecated; will be removed in CUDA 14.0. Use KMD Version instead]\nCUDA Version                                           : 13.3 [Deprecated; will be removed in CUDA 14.0. Use CUDA UMD Version instead]\nKMD Version                                            : 610.57.04\nCUDA UMD Version                                       : 13.3\n\nAttached GPUs                                          : 1\nGPU 00000000:09:00.0\n    Product Name                                       : NVIDIA GeForce RTX 3090\n    Product Brand                                      : GeForce\n    Product Architecture                               : Ampere\n    Display Mode                                       : Requested functionality has been deprecated\n    Display Attached                                   : No\n    Display Active                                     : Disabled\n    Persistence Mode                                   : Disabled\n    Addressing Mode                                    : None\n    MIG Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    Accounting Mode                                    : Disabled\n    Accounting Mode Buffer Size                        : 4000\n    Driver Model\n        Current                                        : N/A\n        Pending                                        : N/A\n    Serial Number                                      : N/A\n    GPU UUID                                           : GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6\n    GPU PDI                                            : 0x95cb4e04f16edf8b\n    Minor Number                                       : 0\n    VBIOS Version                                      : 94.02.42.00.3E\n    MultiGPU Board                                     : No\n    Board ID                                           : 0x900\n    Board Part Number                                  : N/A\n    GPU Part Number                                    : 2204-300-A1\n    FRU Part Number                                    : N/A\n    Platform Info\n        Chassis Serial Number                          : N/A\n        Slot Number                                    : N/A\n        Tray Index                                     : N/A\n        Host ID                                        : N/A\n        Peer Type                                      : N/A\n        Module Id                                      : 1\n        GPU Fabric GUID                                : N/A\n    Inforom Version\n        Image Version                                  : G001.0000.03.03\n        OEM Object                                     : 2.0\n        ECC Object                                     : N/A\n        Power Management Object                        : N/A\n    Inforom BBX Object Flush\n        Latest Timestamp                               : N/A\n        Latest Duration                                : N/A\n    Inforom Time Data\n        Time Run                                       : N/A\n    GPU Operation Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    GPU C2C Mode                                       : N/A\n    GPU Virtualization Mode\n        Virtualization Mode                            : Pass-Through\n        Host VGPU Mode                                 : N/A\n        vGPU Heterogeneous Mode                        : N/A\n    GPU Recovery Action                                : None\n    GSP Firmware Version                               : 610.57.04\n    IBMNPU\n        Relaxed Ordering Mode                          : N/A\n    PCI\n        Bus                                            : 0x09\n        Device                                         : 0x00\n        Domain                                         : 0x0000\n        Base Classcode                                 : 0x3\n        Sub Classcode                                  : 0x0\n        Device Id                                      : 0x220410DE\n        Bus Id                                         : 00000000:09:00.0\n        Sub System Id                                  : 0x145410DE\n        GPU Link Info\n            PCIe Generation\n                Max                                    : 3\n                Current                                : 3\n                Device Current                         : 3\n                Device Max                             : 4\n                Host Max                               : N/A\n            Link Width\n                Max                                    : 16x\n                Current                                : 16x\n        Bridge Chip\n            Type                                       : N/A\n            Firmware                                   : N/A\n        Replays Since Reset                            : 0\n        Replay Number Rollovers                        : 0\n        Tx Throughput                                  : 488 KB/s\n        Rx Throughput                                  : 292 KB/s\n        Atomic Caps Outbound                           : N/A\n        Atomic Caps Inbound                            : N/A\n    Fan Speed                                          : 35 %\n    Performance State                                  : P2\n    Clocks Event Reasons\n        Idle                                           : Not Active\n        Applications Clocks Setting                    : Not Active\n        SW Power Cap                                   : Not Active\n        HW Slowdown                                    : Not Active\n            HW Thermal Slowdown                        : Not Active\n            HW Power Brake Slowdown                    : Not Active\n        Sync Boost                                     : Not Active\n        SW Thermal Slowdown                            : Not Active\n        Display Clock Setting                          : Not Active\n    Clocks Event Reasons Counters\n        SW Power Capping                               : 59654506 us\n        Sync Boost                                     : 0 us\n        SW Thermal Slowdown                            : 0 us\n        HW Thermal Slowdown                            : 0 us\n        HW Power Braking                               : 0 us\n    Sparse Operation Mode                              : N/A\n    FB Memory Usage\n        Total                                          : 24576 MiB\n        Reserved                                       : 453 MiB\n        Used                                           : 17032 MiB\n        Free                                           : 7093 MiB\n    BAR1 Memory Usage\n        Total                                          : 256 MiB\n        Used                                           : 4 MiB\n        Free                                           : 252 MiB\n    Conf Compute Protected Memory Usage\n        Total                                          : 0 MiB\n        Used                                           : 0 MiB\n        Free                                           : 0 MiB\n    Compute Mode                                       : Default\n    Utilization\n        GPU                                            : 23 %\n        Memory                                         : 0 %\n        Encoder                                        : 0 %\n        Decoder                                        : 0 %\n        JPEG                                           : 0 %\n        OFA                                            : 0 %\n    Encoder Stats\n        Active Sessions                                : 0\n        Average FPS                                    : 0\n        Average Latency                                : 0\n    FBC Stats\n        Active Sessions                                : 0\n        Average FPS                                    : 0\n        Average Latency                                : 0\n    DRAM Encryption Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    ECC Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    ECC Errors\n        Volatile\n            SRAM Correctable                           : N/A\n            SRAM Uncorrectable Parity                  : N/A\n            SRAM Uncorrectable SEC-DED                 : N/A\n            DRAM Correctable                           : N/A\n            DRAM Uncorrectable                         : N/A\n        Aggregate\n            SRAM Correctable                           : N/A\n            SRAM Uncorrectable Parity                  : N/A\n            SRAM Uncorrectable SEC-DED                 : N/A\n            DRAM Correctable                           : N/A\n            DRAM Uncorrectable                         : N/A\n            SRAM Threshold Exceeded                    : N/A\n        Aggregate Uncorrectable SRAM Sources\n            SRAM L2                                    : N/A\n            SRAM SM                                    : N/A\n            SRAM Microcontroller                       : N/A\n            SRAM PCIE                                  : N/A\n            SRAM Other                                 : N/A\n        Channel Repair Pending                         : No\n        TPC Repair Pending                             : No\n        Unrepairable Memory                            : N/A\n    Retired Pages\n        Single Bit ECC                                 : N/A\n        Double Bit ECC                                 : N/A\n        Pending Page Blacklist                         : N/A\n    Remapped Rows                                      : N/A\n    Temperature\n        GPU Current Temp                               : 46 C\n        GPU Current T.Limit Temp                       : N/A\n        GPU Shutdown Temp                              : 98 C\n        GPU Slowdown Temp                              : 95 C\n        GPU Max Operating Temp                         : 93 C\n        GPU Target Temperature Specification           : 83 C\n        Memory Current Temp                            : N/A\n        Memory Max Operating Temp                      : N/A\n    GPU Power Readings\n        Average Power Draw                             : 114.00 W\n        Instantaneous Power Draw                       : 114.21 W\n        GPU Ceiling Power Limit\n            Current Power Limit                        : 350.00 W\n            Requested Power Limit                      : 350.00 W\n            Default Power Limit                        : 350.00 W\n        GPU Base Power\n            Current Base Power                         : N/A\n            Requested Base Power                       : N/A\n            Default Base Power                         : N/A\n        Min Power Limit                                : 100.00 W\n        Max Power Limit                                : 350.00 W\n    GPU Memory Power Readings \n        Average Power Draw                             : N/A\n        Instantaneous Power Draw                       : N/A\n    Module Power Readings\n        Average Power Draw                             : N/A\n        Instantaneous Power Draw                       : N/A\n        Current Power Limit                            : N/A\n        Requested Power Limit                          : N/A\n        Default Power Limit                            : N/A\n        Min Power Limit                                : N/A\n        Max Power Limit                                : N/A\n    Power Smoothing                                    : N/A\n    Workload Power Profiles\n        Requested Profiles                             : N/A\n        Enforced Profiles                              : N/A\n    EDPp Multiplier                                    : N/A\n    Clocks\n        Graphics                                       : 1695 MHz\n        SM                                             : 1695 MHz\n        Memory                                         : 9501 MHz\n        Video                                          : 1485 MHz\n    Applications Clocks\n        Graphics                                       : Requested functionality has been deprecated\n        Memory                                         : Requested functionality has been deprecated\n    Default Applications Clocks\n        Graphics                                       : Requested functionality has been deprecated\n        Memory                                         : Requested functionality has been deprecated\n    Deferred Clocks\n        Memory                                         : N/A\n    Max Clocks\n        Graphics                                       : 2100 MHz\n        SM                                             : 2100 MHz\n        Memory                                         : 9751 MHz\n        Video                                          : 1950 MHz\n    Max Customer Boost Clocks\n        Graphics                                       : N/A\n    Clock Policy\n        Auto Boost                                     : N/A\n        Auto Boost Default                             : N/A\n    Fabric\n        State                                          : N/A\n        Status                                         : N/A\n        CliqueId                                       : N/A\n        ClusterUUID                                    : N/A\n        Health\n            Summary                                    : N/A\n            Bandwidth                                  : N/A\n            Route Recovery in progress                 : N/A\n            Route Unhealthy                            : N/A\n            Access Timeout Recovery                    : N/A\n            Incorrect Configuration                    : N/A\n            Partition Assigned                         : N/A\n    Processes\n        GPU instance ID                   : N/A\n        Compute instance ID               : N/A\n        Process ID                        : 13187\n            Type                          : C\n            Name                          : /home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python\n            Used GPU Memory               : 17022 MiB\n    Capabilities\n        EGM                                            : disabled\n\n",
+      "dtype": "bfloat16",
+      "backend": "eager",
+      "layers": 36
+    },
+    "Qwen_session2": {
+      "python": "3.11.8 (main, Feb 26 2024, 21:39:34) [GCC 11.2.0]",
+      "executable": "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python",
+      "torch": "2.6.0+cu124",
+      "torch_import": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/__init__.py",
+      "transformers": "4.57.6",
+      "transformers_import": "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/__init__.py",
+      "CUDA": "12.4",
+      "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+      "nvidia_smi": "\n==============NVSMI LOG==============\n\nTimestamp                                              : Thu Nov 12 17:26:20 2026\nDriver Version                                         : 610.57.04 [Deprecated; will be removed in CUDA 14.0. Use KMD Version instead]\nCUDA Version                                           : 13.3 [Deprecated; will be removed in CUDA 14.0. Use CUDA UMD Version instead]\nKMD Version                                            : 610.57.04\nCUDA UMD Version                                       : 13.3\n\nAttached GPUs                                          : 1\nGPU 00000000:09:00.0\n    Product Name                                       : NVIDIA GeForce RTX 3090\n    Product Brand                                      : GeForce\n    Product Architecture                               : Ampere\n    Display Mode                                       : Requested functionality has been deprecated\n    Display Attached                                   : No\n    Display Active                                     : Disabled\n    Persistence Mode                                   : Disabled\n    Addressing Mode                                    : None\n    MIG Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    Accounting Mode                                    : Disabled\n    Accounting Mode Buffer Size                        : 4000\n    Driver Model\n        Current                                        : N/A\n        Pending                                        : N/A\n    Serial Number                                      : N/A\n    GPU UUID                                           : GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6\n    GPU PDI                                            : 0x95cb4e04f16edf8b\n    Minor Number                                       : 0\n    VBIOS Version                                      : 94.02.42.00.3E\n    MultiGPU Board                                     : No\n    Board ID                                           : 0x900\n    Board Part Number                                  : N/A\n    GPU Part Number                                    : 2204-300-A1\n    FRU Part Number                                    : N/A\n    Platform Info\n        Chassis Serial Number                          : N/A\n        Slot Number                                    : N/A\n        Tray Index                                     : N/A\n        Host ID                                        : N/A\n        Peer Type                                      : N/A\n        Module Id                                      : 1\n        GPU Fabric GUID                                : N/A\n    Inforom Version\n        Image Version                                  : G001.0000.03.03\n        OEM Object                                     : 2.0\n        ECC Object                                     : N/A\n        Power Management Object                        : N/A\n    Inforom BBX Object Flush\n        Latest Timestamp                               : N/A\n        Latest Duration                                : N/A\n    Inforom Time Data\n        Time Run                                       : N/A\n    GPU Operation Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    GPU C2C Mode                                       : N/A\n    GPU Virtualization Mode\n        Virtualization Mode                            : Pass-Through\n        Host VGPU Mode                                 : N/A\n        vGPU Heterogeneous Mode                        : N/A\n    GPU Recovery Action                                : None\n    GSP Firmware Version                               : 610.57.04\n    IBMNPU\n        Relaxed Ordering Mode                          : N/A\n    PCI\n        Bus                                            : 0x09\n        Device                                         : 0x00\n        Domain                                         : 0x0000\n        Base Classcode                                 : 0x3\n        Sub Classcode                                  : 0x0\n        Device Id                                      : 0x220410DE\n        Bus Id                                         : 00000000:09:00.0\n        Sub System Id                                  : 0x145410DE\n        GPU Link Info\n            PCIe Generation\n                Max                                    : 3\n                Current                                : 3\n                Device Current                         : 3\n                Device Max                             : 4\n                Host Max                               : N/A\n            Link Width\n                Max                                    : 16x\n                Current                                : 16x\n        Bridge Chip\n            Type                                       : N/A\n            Firmware                                   : N/A\n        Replays Since Reset                            : 0\n        Replay Number Rollovers                        : 0\n        Tx Throughput                                  : 537 KB/s\n        Rx Throughput                                  : 292 KB/s\n        Atomic Caps Outbound                           : N/A\n        Atomic Caps Inbound                            : N/A\n    Fan Speed                                          : 43 %\n    Performance State                                  : P2\n    Clocks Event Reasons\n        Idle                                           : Not Active\n        Applications Clocks Setting                    : Not Active\n        SW Power Cap                                   : Not Active\n        HW Slowdown                                    : Not Active\n            HW Thermal Slowdown                        : Not Active\n            HW Power Brake Slowdown                    : Not Active\n        Sync Boost                                     : Not Active\n        SW Thermal Slowdown                            : Not Active\n        Display Clock Setting                          : Not Active\n    Clocks Event Reasons Counters\n        SW Power Capping                               : 63421695 us\n        Sync Boost                                     : 0 us\n        SW Thermal Slowdown                            : 0 us\n        HW Thermal Slowdown                            : 0 us\n        HW Power Braking                               : 0 us\n    Sparse Operation Mode                              : N/A\n    FB Memory Usage\n        Total                                          : 24576 MiB\n        Reserved                                       : 453 MiB\n        Used                                           : 17032 MiB\n        Free                                           : 7093 MiB\n    BAR1 Memory Usage\n        Total                                          : 256 MiB\n        Used                                           : 4 MiB\n        Free                                           : 252 MiB\n    Conf Compute Protected Memory Usage\n        Total                                          : 0 MiB\n        Used                                           : 0 MiB\n        Free                                           : 0 MiB\n    Compute Mode                                       : Default\n    Utilization\n        GPU                                            : 27 %\n        Memory                                         : 0 %\n        Encoder                                        : 0 %\n        Decoder                                        : 0 %\n        JPEG                                           : 0 %\n        OFA                                            : 0 %\n    Encoder Stats\n        Active Sessions                                : 0\n        Average FPS                                    : 0\n        Average Latency                                : 0\n    FBC Stats\n        Active Sessions                                : 0\n        Average FPS                                    : 0\n        Average Latency                                : 0\n    DRAM Encryption Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    ECC Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    ECC Errors\n        Volatile\n            SRAM Correctable                           : N/A\n            SRAM Uncorrectable Parity                  : N/A\n            SRAM Uncorrectable SEC-DED                 : N/A\n            DRAM Correctable                           : N/A\n            DRAM Uncorrectable                         : N/A\n        Aggregate\n            SRAM Correctable                           : N/A\n            SRAM Uncorrectable Parity                  : N/A\n            SRAM Uncorrectable SEC-DED                 : N/A\n            DRAM Correctable                           : N/A\n            DRAM Uncorrectable                         : N/A\n            SRAM Threshold Exceeded                    : N/A\n        Aggregate Uncorrectable SRAM Sources\n            SRAM L2                                    : N/A\n            SRAM SM                                    : N/A\n            SRAM Microcontroller                       : N/A\n            SRAM PCIE                                  : N/A\n            SRAM Other                                 : N/A\n        Channel Repair Pending                         : No\n        TPC Repair Pending                             : No\n        Unrepairable Memory                            : N/A\n    Retired Pages\n        Single Bit ECC                                 : N/A\n        Double Bit ECC                                 : N/A\n        Pending Page Blacklist                         : N/A\n    Remapped Rows                                      : N/A\n    Temperature\n        GPU Current Temp                               : 49 C\n        GPU Current T.Limit Temp                       : N/A\n        GPU Shutdown Temp                              : 98 C\n        GPU Slowdown Temp                              : 95 C\n        GPU Max Operating Temp                         : 93 C\n        GPU Target Temperature Specification           : 83 C\n        Memory Current Temp                            : N/A\n        Memory Max Operating Temp                      : N/A\n    GPU Power Readings\n        Average Power Draw                             : 116.34 W\n        Instantaneous Power Draw                       : 116.39 W\n        GPU Ceiling Power Limit\n            Current Power Limit                        : 350.00 W\n            Requested Power Limit                      : 350.00 W\n            Default Power Limit                        : 350.00 W\n        GPU Base Power\n            Current Base Power                         : N/A\n            Requested Base Power                       : N/A\n            Default Base Power                         : N/A\n        Min Power Limit                                : 100.00 W\n        Max Power Limit                                : 350.00 W\n    GPU Memory Power Readings \n        Average Power Draw                             : N/A\n        Instantaneous Power Draw                       : N/A\n    Module Power Readings\n        Average Power Draw                             : N/A\n        Instantaneous Power Draw                       : N/A\n        Current Power Limit                            : N/A\n        Requested Power Limit                          : N/A\n        Default Power Limit                            : N/A\n        Min Power Limit                                : N/A\n        Max Power Limit                                : N/A\n    Power Smoothing                                    : N/A\n    Workload Power Profiles\n        Requested Profiles                             : N/A\n        Enforced Profiles                              : N/A\n    EDPp Multiplier                                    : N/A\n    Clocks\n        Graphics                                       : 1695 MHz\n        SM                                             : 1695 MHz\n        Memory                                         : 9501 MHz\n        Video                                          : 1485 MHz\n    Applications Clocks\n        Graphics                                       : Requested functionality has been deprecated\n        Memory                                         : Requested functionality has been deprecated\n    Default Applications Clocks\n        Graphics                                       : Requested functionality has been deprecated\n        Memory                                         : Requested functionality has been deprecated\n    Deferred Clocks\n        Memory                                         : N/A\n    Max Clocks\n        Graphics                                       : 2100 MHz\n        SM                                             : 2100 MHz\n        Memory                                         : 9751 MHz\n        Video                                          : 1950 MHz\n    Max Customer Boost Clocks\n        Graphics                                       : N/A\n    Clock Policy\n        Auto Boost                                     : N/A\n        Auto Boost Default                             : N/A\n    Fabric\n        State                                          : N/A\n        Status                                         : N/A\n        CliqueId                                       : N/A\n        ClusterUUID                                    : N/A\n        Health\n            Summary                                    : N/A\n            Bandwidth                                  : N/A\n            Route Recovery in progress                 : N/A\n            Route Unhealthy                            : N/A\n            Access Timeout Recovery                    : N/A\n            Incorrect Configuration                    : N/A\n            Partition Assigned                         : N/A\n    Processes\n        GPU instance ID                   : N/A\n        Compute instance ID               : N/A\n        Process ID                        : 14389\n            Type                          : C\n            Name                          : /home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/bin/python\n            Used GPU Memory               : 17022 MiB\n    Capabilities\n        EGM                                            : disabled\n\n",
+      "dtype": "bfloat16",
+      "backend": "eager",
+      "layers": 36
+    },
+    "InternVL_smoke": {
+      "python": "3.11.8 (main, Feb 26 2024, 21:39:34) [GCC 11.2.0]",
+      "executable": "/home/featurize/ate-local-envs/internvl3-torch260-tf449/bin/python",
+      "torch": "2.6.0+cu124",
+      "torch_import": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/__init__.py",
+      "transformers": "4.49.0",
+      "transformers_import": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/__init__.py",
+      "CUDA": "12.4",
+      "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+      "nvidia_smi": "\n==============NVSMI LOG==============\n\nTimestamp                                              : Thu Nov 12 17:34:24 2026\nDriver Version                                         : 610.57.04 [Deprecated; will be removed in CUDA 14.0. Use KMD Version instead]\nCUDA Version                                           : 13.3 [Deprecated; will be removed in CUDA 14.0. Use CUDA UMD Version instead]\nKMD Version                                            : 610.57.04\nCUDA UMD Version                                       : 13.3\n\nAttached GPUs                                          : 1\nGPU 00000000:09:00.0\n    Product Name                                       : NVIDIA GeForce RTX 3090\n    Product Brand                                      : GeForce\n    Product Architecture                               : Ampere\n    Display Mode                                       : Requested functionality has been deprecated\n    Display Attached                                   : No\n    Display Active                                     : Disabled\n    Persistence Mode                                   : Disabled\n    Addressing Mode                                    : None\n    MIG Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    Accounting Mode                                    : Disabled\n    Accounting Mode Buffer Size                        : 4000\n    Driver Model\n        Current                                        : N/A\n        Pending                                        : N/A\n    Serial Number                                      : N/A\n    GPU UUID                                           : GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6\n    GPU PDI                                            : 0x95cb4e04f16edf8b\n    Minor Number                                       : 0\n    VBIOS Version                                      : 94.02.42.00.3E\n    MultiGPU Board                                     : No\n    Board ID                                           : 0x900\n    Board Part Number                                  : N/A\n    GPU Part Number                                    : 2204-300-A1\n    FRU Part Number                                    : N/A\n    Platform Info\n        Chassis Serial Number                          : N/A\n        Slot Number                                    : N/A\n        Tray Index                                     : N/A\n        Host ID                                        : N/A\n        Peer Type                                      : N/A\n        Module Id                                      : 1\n        GPU Fabric GUID                                : N/A\n    Inforom Version\n        Image Version                                  : G001.0000.03.03\n        OEM Object                                     : 2.0\n        ECC Object                                     : N/A\n        Power Management Object                        : N/A\n    Inforom BBX Object Flush\n        Latest Timestamp                               : N/A\n        Latest Duration                                : N/A\n    Inforom Time Data\n        Time Run                                       : N/A\n    GPU Operation Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    GPU C2C Mode                                       : N/A\n    GPU Virtualization Mode\n        Virtualization Mode                            : Pass-Through\n        Host VGPU Mode                                 : N/A\n        vGPU Heterogeneous Mode                        : N/A\n    GPU Recovery Action                                : None\n    GSP Firmware Version                               : 610.57.04\n    IBMNPU\n        Relaxed Ordering Mode                          : N/A\n    PCI\n        Bus                                            : 0x09\n        Device                                         : 0x00\n        Domain                                         : 0x0000\n        Base Classcode                                 : 0x3\n        Sub Classcode                                  : 0x0\n        Device Id                                      : 0x220410DE\n        Bus Id                                         : 00000000:09:00.0\n        Sub System Id                                  : 0x145410DE\n        GPU Link Info\n            PCIe Generation\n                Max                                    : 3\n                Current                                : 3\n                Device Current                         : 3\n                Device Max                             : 4\n                Host Max                               : N/A\n            Link Width\n                Max                                    : 16x\n                Current                                : 16x\n        Bridge Chip\n            Type                                       : N/A\n            Firmware                                   : N/A\n        Replays Since Reset                            : 0\n        Replay Number Rollovers                        : 0\n        Tx Throughput                                  : 439 KB/s\n        Rx Throughput                                  : 292 KB/s\n        Atomic Caps Outbound                           : N/A\n        Atomic Caps Inbound                            : N/A\n    Fan Speed                                          : 40 %\n    Performance State                                  : P2\n    Clocks Event Reasons\n        Idle                                           : Not Active\n        Applications Clocks Setting                    : Not Active\n        SW Power Cap                                   : Not Active\n        HW Slowdown                                    : Not Active\n            HW Thermal Slowdown                        : Not Active\n            HW Power Brake Slowdown                    : Not Active\n        Sync Boost                                     : Not Active\n        SW Thermal Slowdown                            : Not Active\n        Display Clock Setting                          : Not Active\n    Clocks Event Reasons Counters\n        SW Power Capping                               : 66040875 us\n        Sync Boost                                     : 0 us\n        SW Thermal Slowdown                            : 0 us\n        HW Thermal Slowdown                            : 0 us\n        HW Power Braking                               : 0 us\n    Sparse Operation Mode                              : N/A\n    FB Memory Usage\n        Total                                          : 24576 MiB\n        Reserved                                       : 453 MiB\n        Used                                           : 15574 MiB\n        Free                                           : 8551 MiB\n    BAR1 Memory Usage\n        Total                                          : 256 MiB\n        Used                                           : 4 MiB\n        Free                                           : 252 MiB\n    Conf Compute Protected Memory Usage\n        Total                                          : 0 MiB\n        Used                                           : 0 MiB\n        Free                                           : 0 MiB\n    Compute Mode                                       : Default\n    Utilization\n        GPU                                            : 31 %\n        Memory                                         : 1 %\n        Encoder                                        : 0 %\n        Decoder                                        : 0 %\n        JPEG                                           : 0 %\n        OFA                                            : 0 %\n    Encoder Stats\n        Active Sessions                                : 0\n        Average FPS                                    : 0\n        Average Latency                                : 0\n    FBC Stats\n        Active Sessions                                : 0\n        Average FPS                                    : 0\n        Average Latency                                : 0\n    DRAM Encryption Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    ECC Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    ECC Errors\n        Volatile\n            SRAM Correctable                           : N/A\n            SRAM Uncorrectable Parity                  : N/A\n            SRAM Uncorrectable SEC-DED                 : N/A\n            DRAM Correctable                           : N/A\n            DRAM Uncorrectable                         : N/A\n        Aggregate\n            SRAM Correctable                           : N/A\n            SRAM Uncorrectable Parity                  : N/A\n            SRAM Uncorrectable SEC-DED                 : N/A\n            DRAM Correctable                           : N/A\n            DRAM Uncorrectable                         : N/A\n            SRAM Threshold Exceeded                    : N/A\n        Aggregate Uncorrectable SRAM Sources\n            SRAM L2                                    : N/A\n            SRAM SM                                    : N/A\n            SRAM Microcontroller                       : N/A\n            SRAM PCIE                                  : N/A\n            SRAM Other                                 : N/A\n        Channel Repair Pending                         : No\n        TPC Repair Pending                             : No\n        Unrepairable Memory                            : N/A\n    Retired Pages\n        Single Bit ECC                                 : N/A\n        Double Bit ECC                                 : N/A\n        Pending Page Blacklist                         : N/A\n    Remapped Rows                                      : N/A\n    Temperature\n        GPU Current Temp                               : 48 C\n        GPU Current T.Limit Temp                       : N/A\n        GPU Shutdown Temp                              : 98 C\n        GPU Slowdown Temp                              : 95 C\n        GPU Max Operating Temp                         : 93 C\n        GPU Target Temperature Specification           : 83 C\n        Memory Current Temp                            : N/A\n        Memory Max Operating Temp                      : N/A\n    GPU Power Readings\n        Average Power Draw                             : 115.61 W\n        Instantaneous Power Draw                       : 115.94 W\n        GPU Ceiling Power Limit\n            Current Power Limit                        : 350.00 W\n            Requested Power Limit                      : 350.00 W\n            Default Power Limit                        : 350.00 W\n        GPU Base Power\n            Current Base Power                         : N/A\n            Requested Base Power                       : N/A\n            Default Base Power                         : N/A\n        Min Power Limit                                : 100.00 W\n        Max Power Limit                                : 350.00 W\n    GPU Memory Power Readings \n        Average Power Draw                             : N/A\n        Instantaneous Power Draw                       : N/A\n    Module Power Readings\n        Average Power Draw                             : N/A\n        Instantaneous Power Draw                       : N/A\n        Current Power Limit                            : N/A\n        Requested Power Limit                          : N/A\n        Default Power Limit                            : N/A\n        Min Power Limit                                : N/A\n        Max Power Limit                                : N/A\n    Power Smoothing                                    : N/A\n    Workload Power Profiles\n        Requested Profiles                             : N/A\n        Enforced Profiles                              : N/A\n    EDPp Multiplier                                    : N/A\n    Clocks\n        Graphics                                       : 1695 MHz\n        SM                                             : 1695 MHz\n        Memory                                         : 9501 MHz\n        Video                                          : 1485 MHz\n    Applications Clocks\n        Graphics                                       : Requested functionality has been deprecated\n        Memory                                         : Requested functionality has been deprecated\n    Default Applications Clocks\n        Graphics                                       : Requested functionality has been deprecated\n        Memory                                         : Requested functionality has been deprecated\n    Deferred Clocks\n        Memory                                         : N/A\n    Max Clocks\n        Graphics                                       : 2100 MHz\n        SM                                             : 2100 MHz\n        Memory                                         : 9751 MHz\n        Video                                          : 1950 MHz\n    Max Customer Boost Clocks\n        Graphics                                       : N/A\n    Clock Policy\n        Auto Boost                                     : N/A\n        Auto Boost Default                             : N/A\n    Fabric\n        State                                          : N/A\n        Status                                         : N/A\n        CliqueId                                       : N/A\n        ClusterUUID                                    : N/A\n        Health\n            Summary                                    : N/A\n            Bandwidth                                  : N/A\n            Route Recovery in progress                 : N/A\n            Route Unhealthy                            : N/A\n            Access Timeout Recovery                    : N/A\n            Incorrect Configuration                    : N/A\n            Partition Assigned                         : N/A\n    Processes\n        GPU instance ID                   : N/A\n        Compute instance ID               : N/A\n        Process ID                        : 15442\n            Type                          : C\n            Name                          : /home/featurize/ate-local-envs/internvl3-torch260-tf449/bin/python\n            Used GPU Memory               : 15564 MiB\n    Capabilities\n        EGM                                            : disabled\n\n",
+      "dtype": "bfloat16",
+      "backend": "eager",
+      "layers": 28
+    },
+    "InternVL_session1": {
+      "python": "3.11.8 (main, Feb 26 2024, 21:39:34) [GCC 11.2.0]",
+      "executable": "/home/featurize/ate-local-envs/internvl3-torch260-tf449/bin/python",
+      "torch": "2.6.0+cu124",
+      "torch_import": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/__init__.py",
+      "transformers": "4.49.0",
+      "transformers_import": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/__init__.py",
+      "CUDA": "12.4",
+      "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+      "nvidia_smi": "\n==============NVSMI LOG==============\n\nTimestamp                                              : Thu Nov 12 17:35:20 2026\nDriver Version                                         : 610.57.04 [Deprecated; will be removed in CUDA 14.0. Use KMD Version instead]\nCUDA Version                                           : 13.3 [Deprecated; will be removed in CUDA 14.0. Use CUDA UMD Version instead]\nKMD Version                                            : 610.57.04\nCUDA UMD Version                                       : 13.3\n\nAttached GPUs                                          : 1\nGPU 00000000:09:00.0\n    Product Name                                       : NVIDIA GeForce RTX 3090\n    Product Brand                                      : GeForce\n    Product Architecture                               : Ampere\n    Display Mode                                       : Requested functionality has been deprecated\n    Display Attached                                   : No\n    Display Active                                     : Disabled\n    Persistence Mode                                   : Disabled\n    Addressing Mode                                    : None\n    MIG Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    Accounting Mode                                    : Disabled\n    Accounting Mode Buffer Size                        : 4000\n    Driver Model\n        Current                                        : N/A\n        Pending                                        : N/A\n    Serial Number                                      : N/A\n    GPU UUID                                           : GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6\n    GPU PDI                                            : 0x95cb4e04f16edf8b\n    Minor Number                                       : 0\n    VBIOS Version                                      : 94.02.42.00.3E\n    MultiGPU Board                                     : No\n    Board ID                                           : 0x900\n    Board Part Number                                  : N/A\n    GPU Part Number                                    : 2204-300-A1\n    FRU Part Number                                    : N/A\n    Platform Info\n        Chassis Serial Number                          : N/A\n        Slot Number                                    : N/A\n        Tray Index                                     : N/A\n        Host ID                                        : N/A\n        Peer Type                                      : N/A\n        Module Id                                      : 1\n        GPU Fabric GUID                                : N/A\n    Inforom Version\n        Image Version                                  : G001.0000.03.03\n        OEM Object                                     : 2.0\n        ECC Object                                     : N/A\n        Power Management Object                        : N/A\n    Inforom BBX Object Flush\n        Latest Timestamp                               : N/A\n        Latest Duration                                : N/A\n    Inforom Time Data\n        Time Run                                       : N/A\n    GPU Operation Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    GPU C2C Mode                                       : N/A\n    GPU Virtualization Mode\n        Virtualization Mode                            : Pass-Through\n        Host VGPU Mode                                 : N/A\n        vGPU Heterogeneous Mode                        : N/A\n    GPU Recovery Action                                : None\n    GSP Firmware Version                               : 610.57.04\n    IBMNPU\n        Relaxed Ordering Mode                          : N/A\n    PCI\n        Bus                                            : 0x09\n        Device                                         : 0x00\n        Domain                                         : 0x0000\n        Base Classcode                                 : 0x3\n        Sub Classcode                                  : 0x0\n        Device Id                                      : 0x220410DE\n        Bus Id                                         : 00000000:09:00.0\n        Sub System Id                                  : 0x145410DE\n        GPU Link Info\n            PCIe Generation\n                Max                                    : 3\n                Current                                : 3\n                Device Current                         : 3\n                Device Max                             : 4\n                Host Max                               : N/A\n            Link Width\n                Max                                    : 16x\n                Current                                : 16x\n        Bridge Chip\n            Type                                       : N/A\n            Firmware                                   : N/A\n        Replays Since Reset                            : 0\n        Replay Number Rollovers                        : 0\n        Tx Throughput                                  : 439 KB/s\n        Rx Throughput                                  : 341 KB/s\n        Atomic Caps Outbound                           : N/A\n        Atomic Caps Inbound                            : N/A\n    Fan Speed                                          : 38 %\n    Performance State                                  : P2\n    Clocks Event Reasons\n        Idle                                           : Not Active\n        Applications Clocks Setting                    : Not Active\n        SW Power Cap                                   : Not Active\n        HW Slowdown                                    : Not Active\n            HW Thermal Slowdown                        : Not Active\n            HW Power Brake Slowdown                    : Not Active\n        Sync Boost                                     : Not Active\n        SW Thermal Slowdown                            : Not Active\n        Display Clock Setting                          : Not Active\n    Clocks Event Reasons Counters\n        SW Power Capping                               : 68620539 us\n        Sync Boost                                     : 0 us\n        SW Thermal Slowdown                            : 0 us\n        HW Thermal Slowdown                            : 0 us\n        HW Power Braking                               : 0 us\n    Sparse Operation Mode                              : N/A\n    FB Memory Usage\n        Total                                          : 24576 MiB\n        Reserved                                       : 453 MiB\n        Used                                           : 15574 MiB\n        Free                                           : 8551 MiB\n    BAR1 Memory Usage\n        Total                                          : 256 MiB\n        Used                                           : 4 MiB\n        Free                                           : 252 MiB\n    Conf Compute Protected Memory Usage\n        Total                                          : 0 MiB\n        Used                                           : 0 MiB\n        Free                                           : 0 MiB\n    Compute Mode                                       : Default\n    Utilization\n        GPU                                            : 33 %\n        Memory                                         : 1 %\n        Encoder                                        : 0 %\n        Decoder                                        : 0 %\n        JPEG                                           : 0 %\n        OFA                                            : 0 %\n    Encoder Stats\n        Active Sessions                                : 0\n        Average FPS                                    : 0\n        Average Latency                                : 0\n    FBC Stats\n        Active Sessions                                : 0\n        Average FPS                                    : 0\n        Average Latency                                : 0\n    DRAM Encryption Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    ECC Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    ECC Errors\n        Volatile\n            SRAM Correctable                           : N/A\n            SRAM Uncorrectable Parity                  : N/A\n            SRAM Uncorrectable SEC-DED                 : N/A\n            DRAM Correctable                           : N/A\n            DRAM Uncorrectable                         : N/A\n        Aggregate\n            SRAM Correctable                           : N/A\n            SRAM Uncorrectable Parity                  : N/A\n            SRAM Uncorrectable SEC-DED                 : N/A\n            DRAM Correctable                           : N/A\n            DRAM Uncorrectable                         : N/A\n            SRAM Threshold Exceeded                    : N/A\n        Aggregate Uncorrectable SRAM Sources\n            SRAM L2                                    : N/A\n            SRAM SM                                    : N/A\n            SRAM Microcontroller                       : N/A\n            SRAM PCIE                                  : N/A\n            SRAM Other                                 : N/A\n        Channel Repair Pending                         : No\n        TPC Repair Pending                             : No\n        Unrepairable Memory                            : N/A\n    Retired Pages\n        Single Bit ECC                                 : N/A\n        Double Bit ECC                                 : N/A\n        Pending Page Blacklist                         : N/A\n    Remapped Rows                                      : N/A\n    Temperature\n        GPU Current Temp                               : 46 C\n        GPU Current T.Limit Temp                       : N/A\n        GPU Shutdown Temp                              : 98 C\n        GPU Slowdown Temp                              : 95 C\n        GPU Max Operating Temp                         : 93 C\n        GPU Target Temperature Specification           : 83 C\n        Memory Current Temp                            : N/A\n        Memory Max Operating Temp                      : N/A\n    GPU Power Readings\n        Average Power Draw                             : 113.50 W\n        Instantaneous Power Draw                       : 114.27 W\n        GPU Ceiling Power Limit\n            Current Power Limit                        : 350.00 W\n            Requested Power Limit                      : 350.00 W\n            Default Power Limit                        : 350.00 W\n        GPU Base Power\n            Current Base Power                         : N/A\n            Requested Base Power                       : N/A\n            Default Base Power                         : N/A\n        Min Power Limit                                : 100.00 W\n        Max Power Limit                                : 350.00 W\n    GPU Memory Power Readings \n        Average Power Draw                             : N/A\n        Instantaneous Power Draw                       : N/A\n    Module Power Readings\n        Average Power Draw                             : N/A\n        Instantaneous Power Draw                       : N/A\n        Current Power Limit                            : N/A\n        Requested Power Limit                          : N/A\n        Default Power Limit                            : N/A\n        Min Power Limit                                : N/A\n        Max Power Limit                                : N/A\n    Power Smoothing                                    : N/A\n    Workload Power Profiles\n        Requested Profiles                             : N/A\n        Enforced Profiles                              : N/A\n    EDPp Multiplier                                    : N/A\n    Clocks\n        Graphics                                       : 1695 MHz\n        SM                                             : 1695 MHz\n        Memory                                         : 9501 MHz\n        Video                                          : 1485 MHz\n    Applications Clocks\n        Graphics                                       : Requested functionality has been deprecated\n        Memory                                         : Requested functionality has been deprecated\n    Default Applications Clocks\n        Graphics                                       : Requested functionality has been deprecated\n        Memory                                         : Requested functionality has been deprecated\n    Deferred Clocks\n        Memory                                         : N/A\n    Max Clocks\n        Graphics                                       : 2100 MHz\n        SM                                             : 2100 MHz\n        Memory                                         : 9751 MHz\n        Video                                          : 1950 MHz\n    Max Customer Boost Clocks\n        Graphics                                       : N/A\n    Clock Policy\n        Auto Boost                                     : N/A\n        Auto Boost Default                             : N/A\n    Fabric\n        State                                          : N/A\n        Status                                         : N/A\n        CliqueId                                       : N/A\n        ClusterUUID                                    : N/A\n        Health\n            Summary                                    : N/A\n            Bandwidth                                  : N/A\n            Route Recovery in progress                 : N/A\n            Route Unhealthy                            : N/A\n            Access Timeout Recovery                    : N/A\n            Incorrect Configuration                    : N/A\n            Partition Assigned                         : N/A\n    Processes\n        GPU instance ID                   : N/A\n        Compute instance ID               : N/A\n        Process ID                        : 15582\n            Type                          : C\n            Name                          : /home/featurize/ate-local-envs/internvl3-torch260-tf449/bin/python\n            Used GPU Memory               : 15564 MiB\n    Capabilities\n        EGM                                            : disabled\n\n",
+      "dtype": "bfloat16",
+      "backend": "eager",
+      "layers": 28
+    },
+    "InternVL_session2": {
+      "python": "3.11.8 (main, Feb 26 2024, 21:39:34) [GCC 11.2.0]",
+      "executable": "/home/featurize/ate-local-envs/internvl3-torch260-tf449/bin/python",
+      "torch": "2.6.0+cu124",
+      "torch_import": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/__init__.py",
+      "transformers": "4.49.0",
+      "transformers_import": "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/__init__.py",
+      "CUDA": "12.4",
+      "GPU_UUID": "GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6",
+      "nvidia_smi": "\n==============NVSMI LOG==============\n\nTimestamp                                              : Thu Nov 12 17:40:39 2026\nDriver Version                                         : 610.57.04 [Deprecated; will be removed in CUDA 14.0. Use KMD Version instead]\nCUDA Version                                           : 13.3 [Deprecated; will be removed in CUDA 14.0. Use CUDA UMD Version instead]\nKMD Version                                            : 610.57.04\nCUDA UMD Version                                       : 13.3\n\nAttached GPUs                                          : 1\nGPU 00000000:09:00.0\n    Product Name                                       : NVIDIA GeForce RTX 3090\n    Product Brand                                      : GeForce\n    Product Architecture                               : Ampere\n    Display Mode                                       : Requested functionality has been deprecated\n    Display Attached                                   : No\n    Display Active                                     : Disabled\n    Persistence Mode                                   : Disabled\n    Addressing Mode                                    : None\n    MIG Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    Accounting Mode                                    : Disabled\n    Accounting Mode Buffer Size                        : 4000\n    Driver Model\n        Current                                        : N/A\n        Pending                                        : N/A\n    Serial Number                                      : N/A\n    GPU UUID                                           : GPU-0c68c509-f592-aff4-73ff-40a5d798ffd6\n    GPU PDI                                            : 0x95cb4e04f16edf8b\n    Minor Number                                       : 0\n    VBIOS Version                                      : 94.02.42.00.3E\n    MultiGPU Board                                     : No\n    Board ID                                           : 0x900\n    Board Part Number                                  : N/A\n    GPU Part Number                                    : 2204-300-A1\n    FRU Part Number                                    : N/A\n    Platform Info\n        Chassis Serial Number                          : N/A\n        Slot Number                                    : N/A\n        Tray Index                                     : N/A\n        Host ID                                        : N/A\n        Peer Type                                      : N/A\n        Module Id                                      : 1\n        GPU Fabric GUID                                : N/A\n    Inforom Version\n        Image Version                                  : G001.0000.03.03\n        OEM Object                                     : 2.0\n        ECC Object                                     : N/A\n        Power Management Object                        : N/A\n    Inforom BBX Object Flush\n        Latest Timestamp                               : N/A\n        Latest Duration                                : N/A\n    Inforom Time Data\n        Time Run                                       : N/A\n    GPU Operation Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    GPU C2C Mode                                       : N/A\n    GPU Virtualization Mode\n        Virtualization Mode                            : Pass-Through\n        Host VGPU Mode                                 : N/A\n        vGPU Heterogeneous Mode                        : N/A\n    GPU Recovery Action                                : None\n    GSP Firmware Version                               : 610.57.04\n    IBMNPU\n        Relaxed Ordering Mode                          : N/A\n    PCI\n        Bus                                            : 0x09\n        Device                                         : 0x00\n        Domain                                         : 0x0000\n        Base Classcode                                 : 0x3\n        Sub Classcode                                  : 0x0\n        Device Id                                      : 0x220410DE\n        Bus Id                                         : 00000000:09:00.0\n        Sub System Id                                  : 0x145410DE\n        GPU Link Info\n            PCIe Generation\n                Max                                    : 3\n                Current                                : 3\n                Device Current                         : 3\n                Device Max                             : 4\n                Host Max                               : N/A\n            Link Width\n                Max                                    : 16x\n                Current                                : 16x\n        Bridge Chip\n            Type                                       : N/A\n            Firmware                                   : N/A\n        Replays Since Reset                            : 0\n        Replay Number Rollovers                        : 0\n        Tx Throughput                                  : 537 KB/s\n        Rx Throughput                                  : 292 KB/s\n        Atomic Caps Outbound                           : N/A\n        Atomic Caps Inbound                            : N/A\n    Fan Speed                                          : 36 %\n    Performance State                                  : P2\n    Clocks Event Reasons\n        Idle                                           : Not Active\n        Applications Clocks Setting                    : Not Active\n        SW Power Cap                                   : Not Active\n        HW Slowdown                                    : Not Active\n            HW Thermal Slowdown                        : Not Active\n            HW Power Brake Slowdown                    : Not Active\n        Sync Boost                                     : Not Active\n        SW Thermal Slowdown                            : Not Active\n        Display Clock Setting                          : Not Active\n    Clocks Event Reasons Counters\n        SW Power Capping                               : 78656321 us\n        Sync Boost                                     : 0 us\n        SW Thermal Slowdown                            : 0 us\n        HW Thermal Slowdown                            : 0 us\n        HW Power Braking                               : 0 us\n    Sparse Operation Mode                              : N/A\n    FB Memory Usage\n        Total                                          : 24576 MiB\n        Reserved                                       : 453 MiB\n        Used                                           : 15574 MiB\n        Free                                           : 8551 MiB\n    BAR1 Memory Usage\n        Total                                          : 256 MiB\n        Used                                           : 4 MiB\n        Free                                           : 252 MiB\n    Conf Compute Protected Memory Usage\n        Total                                          : 0 MiB\n        Used                                           : 0 MiB\n        Free                                           : 0 MiB\n    Compute Mode                                       : Default\n    Utilization\n        GPU                                            : 32 %\n        Memory                                         : 1 %\n        Encoder                                        : 0 %\n        Decoder                                        : 0 %\n        JPEG                                           : 0 %\n        OFA                                            : 0 %\n    Encoder Stats\n        Active Sessions                                : 0\n        Average FPS                                    : 0\n        Average Latency                                : 0\n    FBC Stats\n        Active Sessions                                : 0\n        Average FPS                                    : 0\n        Average Latency                                : 0\n    DRAM Encryption Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    ECC Mode\n        Current                                        : N/A\n        Pending                                        : N/A\n    ECC Errors\n        Volatile\n            SRAM Correctable                           : N/A\n            SRAM Uncorrectable Parity                  : N/A\n            SRAM Uncorrectable SEC-DED                 : N/A\n            DRAM Correctable                           : N/A\n            DRAM Uncorrectable                         : N/A\n        Aggregate\n            SRAM Correctable                           : N/A\n            SRAM Uncorrectable Parity                  : N/A\n            SRAM Uncorrectable SEC-DED                 : N/A\n            DRAM Correctable                           : N/A\n            DRAM Uncorrectable                         : N/A\n            SRAM Threshold Exceeded                    : N/A\n        Aggregate Uncorrectable SRAM Sources\n            SRAM L2                                    : N/A\n            SRAM SM                                    : N/A\n            SRAM Microcontroller                       : N/A\n            SRAM PCIE                                  : N/A\n            SRAM Other                                 : N/A\n        Channel Repair Pending                         : No\n        TPC Repair Pending                             : No\n        Unrepairable Memory                            : N/A\n    Retired Pages\n        Single Bit ECC                                 : N/A\n        Double Bit ECC                                 : N/A\n        Pending Page Blacklist                         : N/A\n    Remapped Rows                                      : N/A\n    Temperature\n        GPU Current Temp                               : 46 C\n        GPU Current T.Limit Temp                       : N/A\n        GPU Shutdown Temp                              : 98 C\n        GPU Slowdown Temp                              : 95 C\n        GPU Max Operating Temp                         : 93 C\n        GPU Target Temperature Specification           : 83 C\n        Memory Current Temp                            : N/A\n        Memory Max Operating Temp                      : N/A\n    GPU Power Readings\n        Average Power Draw                             : 113.63 W\n        Instantaneous Power Draw                       : 114.34 W\n        GPU Ceiling Power Limit\n            Current Power Limit                        : 350.00 W\n            Requested Power Limit                      : 350.00 W\n            Default Power Limit                        : 350.00 W\n        GPU Base Power\n            Current Base Power                         : N/A\n            Requested Base Power                       : N/A\n            Default Base Power                         : N/A\n        Min Power Limit                                : 100.00 W\n        Max Power Limit                                : 350.00 W\n    GPU Memory Power Readings \n        Average Power Draw                             : N/A\n        Instantaneous Power Draw                       : N/A\n    Module Power Readings\n        Average Power Draw                             : N/A\n        Instantaneous Power Draw                       : N/A\n        Current Power Limit                            : N/A\n        Requested Power Limit                          : N/A\n        Default Power Limit                            : N/A\n        Min Power Limit                                : N/A\n        Max Power Limit                                : N/A\n    Power Smoothing                                    : N/A\n    Workload Power Profiles\n        Requested Profiles                             : N/A\n        Enforced Profiles                              : N/A\n    EDPp Multiplier                                    : N/A\n    Clocks\n        Graphics                                       : 1695 MHz\n        SM                                             : 1695 MHz\n        Memory                                         : 9501 MHz\n        Video                                          : 1485 MHz\n    Applications Clocks\n        Graphics                                       : Requested functionality has been deprecated\n        Memory                                         : Requested functionality has been deprecated\n    Default Applications Clocks\n        Graphics                                       : Requested functionality has been deprecated\n        Memory                                         : Requested functionality has been deprecated\n    Deferred Clocks\n        Memory                                         : N/A\n    Max Clocks\n        Graphics                                       : 2100 MHz\n        SM                                             : 2100 MHz\n        Memory                                         : 9751 MHz\n        Video                                          : 1950 MHz\n    Max Customer Boost Clocks\n        Graphics                                       : N/A\n    Clock Policy\n        Auto Boost                                     : N/A\n        Auto Boost Default                             : N/A\n    Fabric\n        State                                          : N/A\n        Status                                         : N/A\n        CliqueId                                       : N/A\n        ClusterUUID                                    : N/A\n        Health\n            Summary                                    : N/A\n            Bandwidth                                  : N/A\n            Route Recovery in progress                 : N/A\n            Route Unhealthy                            : N/A\n            Access Timeout Recovery                    : N/A\n            Incorrect Configuration                    : N/A\n            Partition Assigned                         : N/A\n    Processes\n        GPU instance ID                   : N/A\n        Compute instance ID               : N/A\n        Process ID                        : 16257\n            Type                          : C\n            Name                          : /home/featurize/ate-local-envs/internvl3-torch260-tf449/bin/python\n            Used GPU Memory               : 15564 MiB\n    Capabilities\n        EGM                                            : disabled\n\n",
+      "dtype": "bfloat16",
+      "backend": "eager",
+      "layers": 28
+    }
+  },
+  "telemetry_summary": {
+    "LLaVA_smoke": {
+      "samples": 855,
+      "active_samples": 721,
+      "active_stats": {
+        "SM_MHz": {
+          "min": 210,
+          "median": 1905,
+          "max": 1995
+        },
+        "memory_MHz": {
+          "min": 405,
+          "median": 9501,
+          "max": 9501
+        },
+        "temperature_C": {
+          "min": 25,
+          "median": 47,
+          "max": 53
+        },
+        "power_mW": {
+          "min": 12505,
+          "median": 187062,
+          "max": 218670
+        },
+        "GPU_util": {
+          "min": 1,
+          "median": 28,
+          "max": 93
+        }
+      },
+      "other_compute_events": []
+    },
+    "LLaVA_session1": {
+      "samples": 5087,
+      "active_samples": 4821,
+      "active_stats": {
+        "SM_MHz": {
+          "min": 1140,
+          "median": 1980,
+          "max": 1995
+        },
+        "memory_MHz": {
+          "min": 9501,
+          "median": 9501,
+          "max": 9501
+        },
+        "temperature_C": {
+          "min": 33,
+          "median": 55,
+          "max": 59
+        },
+        "power_mW": {
+          "min": 26541,
+          "median": 216027,
+          "max": 241388
+        },
+        "GPU_util": {
+          "min": 2,
+          "median": 32,
+          "max": 100
+        }
+      },
+      "other_compute_events": []
+    },
+    "LLaVA_session2": {
+      "samples": 4942,
+      "active_samples": 4791,
+      "active_stats": {
+        "SM_MHz": {
+          "min": 1695,
+          "median": 1980,
+          "max": 1995
+        },
+        "memory_MHz": {
+          "min": 9501,
+          "median": 9501,
+          "max": 9751
+        },
+        "temperature_C": {
+          "min": 43,
+          "median": 55,
+          "max": 58
+        },
+        "power_mW": {
+          "min": 30123,
+          "median": 218532,
+          "max": 247567
+        },
+        "GPU_util": {
+          "min": 1,
+          "median": 33,
+          "max": 100
+        }
+      },
+      "other_compute_events": []
+    },
+    "Qwen_smoke": {
+      "samples": 425,
+      "active_samples": 380,
+      "active_stats": {
+        "SM_MHz": {
+          "min": 1695,
+          "median": 1695.0,
+          "max": 1995
+        },
+        "memory_MHz": {
+          "min": 9501,
+          "median": 9501.0,
+          "max": 9501
+        },
+        "temperature_C": {
+          "min": 45,
+          "median": 49.0,
+          "max": 56
+        },
+        "power_mW": {
+          "min": 48067,
+          "median": 154462.0,
+          "max": 301470
+        },
+        "GPU_util": {
+          "min": 1,
+          "median": 26.0,
+          "max": 100
+        }
+      },
+      "other_compute_events": []
+    },
+    "Qwen_session1": {
+      "samples": 2554,
+      "active_samples": 2439,
+      "active_stats": {
+        "SM_MHz": {
+          "min": 1695,
+          "median": 1965,
+          "max": 1995
+        },
+        "memory_MHz": {
+          "min": 9501,
+          "median": 9501,
+          "max": 9501
+        },
+        "temperature_C": {
+          "min": 46,
+          "median": 55,
+          "max": 59
+        },
+        "power_mW": {
+          "min": 55745,
+          "median": 200071,
+          "max": 305204
+        },
+        "GPU_util": {
+          "min": 1,
+          "median": 29,
+          "max": 100
+        }
+      },
+      "other_compute_events": []
+    },
+    "Qwen_session2": {
+      "samples": 2381,
+      "active_samples": 2309,
+      "active_stats": {
+        "SM_MHz": {
+          "min": 1695,
+          "median": 1980,
+          "max": 1980
+        },
+        "memory_MHz": {
+          "min": 9501,
+          "median": 9501,
+          "max": 9501
+        },
+        "temperature_C": {
+          "min": 49,
+          "median": 54,
+          "max": 58
+        },
+        "power_mW": {
+          "min": 48572,
+          "median": 199520,
+          "max": 309426
+        },
+        "GPU_util": {
+          "min": 2,
+          "median": 30,
+          "max": 100
+        }
+      },
+      "other_compute_events": []
+    },
+    "InternVL_smoke": {
+      "samples": 260,
+      "active_samples": 230,
+      "active_stats": {
+        "SM_MHz": {
+          "min": 1695,
+          "median": 1695.0,
+          "max": 1980
+        },
+        "memory_MHz": {
+          "min": 9501,
+          "median": 9501.0,
+          "max": 9501
+        },
+        "temperature_C": {
+          "min": 48,
+          "median": 50.0,
+          "max": 52
+        },
+        "power_mW": {
+          "min": 59479,
+          "median": 172560.5,
+          "max": 203244
+        },
+        "GPU_util": {
+          "min": 2,
+          "median": 27.0,
+          "max": 64
+        }
+      },
+      "other_compute_events": []
+    },
+    "InternVL_session1": {
+      "samples": 1574,
+      "active_samples": 1399,
+      "active_stats": {
+        "SM_MHz": {
+          "min": 1695,
+          "median": 1965,
+          "max": 1980
+        },
+        "memory_MHz": {
+          "min": 9501,
+          "median": 9501,
+          "max": 9501
+        },
+        "temperature_C": {
+          "min": 46,
+          "median": 57,
+          "max": 60
+        },
+        "power_mW": {
+          "min": 45417,
+          "median": 238185,
+          "max": 256669
+        },
+        "GPU_util": {
+          "min": 2,
+          "median": 36,
+          "max": 100
+        }
+      },
+      "other_compute_events": []
+    },
+    "InternVL_session2": {
+      "samples": 1810,
+      "active_samples": 1443,
+      "active_stats": {
+        "SM_MHz": {
+          "min": 1695,
+          "median": 1980,
+          "max": 1995
+        },
+        "memory_MHz": {
+          "min": 9501,
+          "median": 9501,
+          "max": 9501
+        },
+        "temperature_C": {
+          "min": 42,
+          "median": 55,
+          "max": 60
+        },
+        "power_mW": {
+          "min": 45441,
+          "median": 232095,
+          "max": 260281
+        },
+        "GPU_util": {
+          "min": 1,
+          "median": 36,
+          "max": 100
+        }
+      },
+      "other_compute_events": []
+    }
+  }
+}

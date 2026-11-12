@@ -1,0 +1,16 @@
+Proposed outer-entry change for a separately authorized new session.
+Not applied to the executed run; no change to e2e32_runtime or algorithms.
+Use a new output/spool directory and newly frozen protocol; never resume the
+31 old formal records as though the model had stayed loaded.
+
+--- executed/run_3090.py
++++ proposed/run_3090.py
+@@
+-   assert exact is not False,'Historical token mismatch: '+key+' '+method
++   if method == 'Native':
++    assert exact is True,'Historical Native token mismatch: '+key
+
+The existing historical_tokens_exact field continues recording differences
+for FastV and other referenced Smoke methods. BridgeNative, disabled FastV,
+disabled V2Drop comparisons against Native logits/tokens remain unchanged.
+All source/input/finite/RoPE/KV/attention-bypass/timing/stability gates remain.

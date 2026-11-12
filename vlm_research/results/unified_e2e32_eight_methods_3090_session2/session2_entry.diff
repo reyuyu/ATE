@@ -1,0 +1,63 @@
+--- preserved_session1/run_3090.py
++++ new_session2/run_3090.py
+@@ -3,6 +3,7 @@
+ os.environ.update(HF_HUB_OFFLINE='1',TRANSFORMERS_OFFLINE='1',HF_DATASETS_OFFLINE='1',CUDA_VISIBLE_DEVICES='GPU-6c96bba5-5cc6-8be2-b277-5533b4cdab27',USE_TF='0',USE_FLAX='0',OMP_NUM_THREADS='1',MKL_NUM_THREADS='1',OPENBLAS_NUM_THREADS='1',TOKENIZERS_PARALLELISM='false',PYTHONDONTWRITEBYTECODE='1',CUBLAS_WORKSPACE_CONFIG=':4096:8',CUDA_MODULE_LOADING='LAZY')
+ sys.dont_write_bytecode=True
+ from prepare_3090 import *
++from history_policy import compare_history
+ sys.path[:0]=[str(R),str(U/'code'),str(R/'vlm_research/external_baselines/fastv/compatibility'),str(R/'vlm_research/external_baselines/v2drop/compatibility'),str(R/'vlm_research/external_baselines/e2e32_compatibility')]
+ import torch,transformers,gc,sqlite3,statistics,time,traceback,fcntl
+ from vlm_research.information_horizon_alignment import engine as frozen
+@@ -20,7 +21,7 @@
+  plan=read(L/'protocol.json');lock=(L/'run.lock').open('a');fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+  assert not (L/'checkpoint.sqlite').exists(),'No automatic restart or repeated session'
+  db=sqlite3.connect(L/'checkpoint.sqlite');db.execute('PRAGMA journal_mode=WAL');db.execute('PRAGMA synchronous=FULL');db.execute('CREATE TABLE records (id INTEGER PRIMARY KEY, category TEXT, key TEXT, method TEXT, payload TEXT, sha256 TEXT, UNIQUE(category,key,method,id))');db.execute('CREATE UNIQUE INDEX formal_unique ON records(key,method) WHERE category="formal"');db.commit()
+- state=dict(status='RUNNING',phase='PRECHECK',pid=os.getpid(),session=1,formal_completed=0,formal_expected=240,requests_completed=0,requests_attempted=0,model_loads=0)
++ state=dict(status='RUNNING',phase='PRECHECK',pid=os.getpid(),session=2,formal_completed=0,formal_expected=240,requests_completed=0,requests_attempted=0,model_loads=0)
+  monitors=[];a=None;records=[];attempts=(L/'attempts.jsonl').open('x');start=time.time_ns();previous_end=None;gate_results=[];drifts=[];smokes={};baseline=[]
+  def status():save(L,'progress.json',dict(state,updated_ns=time.time_ns()))
+  def verify_sources():
+@@ -42,9 +43,10 @@
+   state['phase']='MODEL_LOAD';state['model_loads']=1;status();loader.MODELS=dict(loader.MODELS,llava=M);a=frozen.load('B')
+   assert {str(v.device) for v in a.model.parameters()}=={'cuda:0'} and {v.dtype for v in a.model.parameters()}=={torch.float16}
+   assert not a.model.training and a.model.config.text_config._attn_implementation==a.model.config.vision_config._attn_implementation=='eager'
++  assert a.tokenizer.eos_token_id==2 and a.model.generation_config.eos_token_id==2
+   env=static_environment(a);env.update(actual_GPU_UUID=UUID,single_model_load=True,new_entry_SHA256=plan['entry_source_SHA256'],model_revision=plan['revision'],reference_commit=plan['reference_commit'],Profiler_used=False);save(L,'environment.json',env)
+   rows=lines(L/'input_manifest.jsonl.gz');bykey={r['key']:r for r in rows};questions=read(L/'question_positions.json');mapping=read(L/'input_path_mapping.json');refs=read(L/'historical_token_references.json')
+-  fullrefs={r['key']+'|'+r['method']:r['generation']['token_ids'] for r in lines(U/'formal_requests.jsonl.gz')};assert all(len(fullrefs[r['key']+'|Native'])==32 for r in rows);prepared={};checks=[]
++  history_records={r['key']+'|'+r['method']:r for r in lines(U/'formal_requests.jsonl.gz')};fullrefs={k:r['generation']['token_ids'] for k,r in history_records.items()};assert all(len(fullrefs[r['key']+'|Native'])==32 for r in rows);prepared={};checks=[]
+   for s in rows:
+    path=mapping[s['key']];assert sha(path)==s['image_sha256'] and hashlib.sha256(s['prompt'].encode()).hexdigest()==s['prompt_sha256']
+    raw=dict(input_ids=torch.tensor([s['input_ids']],dtype=torch.long),attention_mask=torch.ones((1,len(s['input_ids'])),dtype=torch.long),pixel_values=frozen.paper_pixels(path,a.image_processor).half());hashes={k:tensor_hash(v) for k,v in raw.items()};assert hashes==s['input_hashes']
+@@ -68,9 +70,17 @@
+    ref=fullrefs.get(key+'|'+method) if method in ['Native','FastV'] else refs.get(key+'|'+method) if smoke else None
+    exact=None if ref is None else g['token_ids']==ref
+    early=statistics.median(g['step_event_ms'][1:6]);late=statistics.median(g['step_event_ms'][6:]);jump=late/early-1
+-   r=dict(request_id=rid,category=category,key=key,benchmark=s['benchmark'],method=method,session=1,GPU_UUID=UUID,seed=0,input_tokens=len(ids),sample_sha256=s['sample_sha256'],input_hashes=s['input_hashes'],begin_ns=begin,end_ns=end,gap_s=None if previous_end is None else (begin-previous_end)/1e9,main_thread_runqueue_ms=(cpu1['schedstat'][1]-cpu0['schedstat'][1])/1e6,main_thread_running_ms=(cpu1['schedstat'][0]-cpu0['schedstat'][0])/1e6,early5_vs_late26_decode_median_change=jump,historical_tokens_exact=exact,CUDA_allocated=torch.cuda.memory_allocated(),CUDA_reserved=torch.cuda.memory_reserved(),generation=g,**extra)
+-   previous_end=end;store(r)
+-   assert exact is not False,'Historical token mismatch: '+key+' '+method
++   r=dict(request_id=rid,category=category,key=key,benchmark=s['benchmark'],method=method,session=2,GPU_UUID=UUID,seed=0,input_tokens=len(ids),sample_sha256=s['sample_sha256'],input_hashes=s['input_hashes'],begin_ns=begin,end_ns=end,gap_s=None if previous_end is None else (begin-previous_end)/1e9,main_thread_runqueue_ms=(cpu1['schedstat'][1]-cpu0['schedstat'][1])/1e6,main_thread_running_ms=(cpu1['schedstat'][0]-cpu0['schedstat'][0])/1e6,early5_vs_late26_decode_median_change=jump,historical_tokens_exact=exact,CUDA_allocated=torch.cuda.memory_allocated(),CUDA_reserved=torch.cuda.memory_reserved(),generation=g,**extra)
++   previous_end=end
++   policy=compare_history(method,g['token_ids'],ref,2)
++   r['history_acceptance']=policy
++   if method=='FastV':
++    h=history_records[key+'|FastV']['generation'];fields=['layer','used_tokens','capacity_tokens','visual_tokens','live_bytes','storage_bytes','K_shape','V_shape','dtype']
++    r['FastV_physical_history_evidence']=dict(KV_layout_equal=all({k:x.get(k) for k in fields}=={k:y.get(k) for k in fields} for x,y in zip(g['cache']['layers'],h['cache']['layers'])),KV_live_bytes_current=g['cache']['live_bytes'],KV_live_bytes_historical=h['cache']['live_bytes'],pruning_events_current=g.get('pruning_events'),pruning_events_historical=h.get('pruning_events'),current_E2E_ms=g['E2E_ms'],historical_E2E_ms=h['E2E_ms'])
++   store(r)
++   assert policy['accepted'],'Historical output policy failure: '+key+' '+method+' '+json.dumps(policy)
++   if method=='FastV':
++    assert r['FastV_physical_history_evidence']['KV_layout_equal'] and g.get('pruning_events')==h.get('pruning_events'),'FastV physical layout/pruning differs from frozen history'
+    if category in ['formal','calibration','baseline'] and method=='Native' and abs(jump)>.05:raise RuntimeError('Abrupt within-request Native decode transition: '+str(rid))
+    return r
+   state['phase']='CORRECTNESS_SMOKE';status()
+@@ -81,7 +91,9 @@
+    r=request(key,'BridgeNative','smoke',True);base=smokes[key+'|Native']['generation'];assert r['generation']['token_ids']==base['token_ids'] and r['generation']['first_logits']==base['first_logits'];print('BRIDGE_EXACT',key,flush=True)
+   for method in ['FastVNoop','V2DropNoop']:
+    key=plan['smoke_keys'][0];r=request(key,method,'smoke',True);base=smokes[key+'|Native']['generation'];assert r['generation']['token_ids']==base['token_ids'] and r['generation']['first_logits']==base['first_logits'];print('NOOP_EXACT',method,flush=True)
+-  save(L,'smoke_summary.json',dict(status='PASS',methods=plan['requested_methods'],requests=20,BridgeNative_exact=True,FastV_disabled_exact=True,V2Drop_disabled_exact=True,all_shapes_RoPE_KV_real_decode_finite=True,SVH_attention_skip_layers=[2,3,4,5],observer_steps=[0,1,2,3,4,5,6,7,8,31]))
++  extra_smoke=request(plan['extra_policy_smoke_key'],'FastV','policy_smoke',True)
++  save(L,'policy_smoke_validation.json',dict(status='PASS',key=extra_smoke['key'],history_acceptance=extra_smoke['history_acceptance'],physical_evidence=extra_smoke['FastV_physical_history_evidence'],frozen_runtime_unchanged=True,timed_call_unchanged=True,request_id=extra_smoke['request_id']))
++  save(L,'smoke_summary.json',dict(status='PASS',methods=plan['requested_methods'],requests=21,BridgeNative_exact=True,FastV_disabled_exact=True,V2Drop_disabled_exact=True,all_shapes_RoPE_KV_real_decode_finite=True,SVH_attention_skip_layers=[2,3,4,5],observer_steps=[0,1,2,3,4,5,6,7,8,31]))
+   state['phase']='EQUAL_METHOD_WARMUP';status()
+   for k,key in enumerate(plan['smoke_keys']):
+    order=plan['requested_methods'][k:]+plan['requested_methods'][:k]

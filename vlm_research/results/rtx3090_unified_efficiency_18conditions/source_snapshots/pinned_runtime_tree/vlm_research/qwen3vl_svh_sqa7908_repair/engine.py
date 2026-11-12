@@ -1,0 +1,60 @@
+"""Preserve compact early QKV/O rows while matching the original-M Lt descriptor."""
+from contextlib import ExitStack,contextmanager
+from unittest.mock import patch
+
+import torch
+
+from ..qwen3vl_svh_qk_repair.engine import QKAlignedExecution
+from ..qwen3vl_svh_numerical_repair.engine import original
+from ..qwen3vl_c3v2_l22_kernel_diagnosis.candidates import LtPlan
+
+
+class EarlyAlignedExecution(QKAlignedExecution):
+    def __init__(self,*args,**kwargs):
+        super().__init__(*args,**kwargs)
+        self.early_linears=[]
+
+    @contextmanager
+    def context(self):
+        with ExitStack() as stack:
+            for layer in original.SKIP:
+                for name in ['q_proj','k_proj','v_proj','o_proj']:
+                    mod=getattr(self.d.layers[layer].self_attn,name)
+                    native=mod.forward
+                    def projected(x,mod=mod,native=native,layer=layer,name=name):
+                        if not (self.physical and self.step==0):
+                            return native(x)
+                        assert x.dtype==torch.bfloat16 and mod.bias is None
+                        a=x.reshape(-1,x.shape[-1]).contiguous()
+                        m,k=a.shape
+                        assert m==self.n-1,'Only the physically skipped P-1 projection row is absent'
+                        n=mod.weight.shape[0]
+                        if self.workspace is None:
+                            self.workspace=torch.empty(8*2**20,dtype=torch.uint8,device=x.device)
+                        key=(m,n,k)
+                        if key not in self.plans:
+                            dense=LtPlan(self.n,n,k,self.workspace)
+                            compact=LtPlan(m,n,k,self.workspace)
+                            assert compact.select(dense,0)==0
+                            self.plans[key]=(dense,compact)
+                        dense,compact=self.plans[key]
+                        out=compact.run(a,mod.weight).reshape(*x.shape[:-1],n)
+                        self.early_linears.append(dict(layer=layer,operator=name,real_rows=m,
+                            dense_descriptor_rows=self.n,original_shape=list(x.shape),output_shape=list(out.shape),
+                            algorithm=compact.config(),P_minus_1_projected=False,precision='bfloat16',
+                            actual_flops=2*m*n*k))
+                        return out
+                    stack.enter_context(patch.object(mod,'forward',projected))
+            stack.enter_context(super().context())
+            yield self
+
+    def audit(self):
+        out=super().audit()
+        out['early_aligned_linears']=self.early_linears
+        return out
+
+
+def generate(model,processor,inputs,layout,condition='C',**kwargs):
+    assert condition=='C'
+    with patch.object(original,'Execution',EarlyAlignedExecution):
+        return original.generate(model,processor,inputs,layout,condition,**kwargs)

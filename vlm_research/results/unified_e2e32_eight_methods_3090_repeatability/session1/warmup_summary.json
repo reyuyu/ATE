@@ -1,0 +1,105 @@
+{
+  "status": "WARN",
+  "Native_requests": 16,
+  "other_method_requests_each": 2,
+  "total_warmup": 30,
+  "hard_performance_admission": false,
+  "statistics": {
+    "GQA:202121628": {
+      "E2E_ms": {
+        "n": 8,
+        "mean": 2279.7219242499978,
+        "median": 2223.172000499744,
+        "stdev": 178.40973112225268,
+        "robust_CV": 0.008880139937129956,
+        "max_abs_deviation": 0.22320575843365686
+      },
+      "TTFT_ms": {
+        "n": 8,
+        "mean": 295.13510012486677,
+        "median": 237.42632099992989,
+        "stdev": 161.70739974029064,
+        "robust_CV": 0.010408908727146388,
+        "max_abs_deviation": 1.9284837379079929
+      },
+      "TPOT_ms": {
+        "n": 8,
+        "mean": 64.01892981048809,
+        "median": 64.01750827419693,
+        "stdev": 0.7048622581477885,
+        "robust_CV": 0.008293617947114813,
+        "max_abs_deviation": 0.019931501284353947
+      },
+      "CUDA_Event_Decode_TPOT_ms": {
+        "n": 8,
+        "mean": 64.01327953030986,
+        "median": 64.01177633962322,
+        "stdev": 0.7046136884230303,
+        "robust_CV": 0.00828456973409767,
+        "max_abs_deviation": 0.019939343400225962
+      }
+    },
+    "TextVQA:38571": {
+      "E2E_ms": {
+        "n": 8,
+        "mean": 2234.947767875042,
+        "median": 2235.868331000347,
+        "stdev": 23.30386404926967,
+        "robust_CV": 0.007731782642046854,
+        "max_abs_deviation": 0.017959738255980184
+      },
+      "TTFT_ms": {
+        "n": 8,
+        "mean": 237.95175725001627,
+        "median": 238.00873000027423,
+        "stdev": 2.2490786505709397,
+        "robust_CV": 0.007712843915584224,
+        "max_abs_deviation": 0.01725008153991814
+      },
+      "TPOT_ms": {
+        "n": 8,
+        "mean": 64.41922614919437,
+        "median": 64.41877264515207,
+        "stdev": 0.7267757679903675,
+        "robust_CV": 0.008727789090386387,
+        "max_abs_deviation": 0.02091611241574931
+      },
+      "CUDA_Event_Decode_TPOT_ms": {
+        "n": 8,
+        "mean": 64.41243690060031,
+        "median": 64.41316813807333,
+        "stdev": 0.726382716340787,
+        "robust_CV": 0.008732101581096144,
+        "max_abs_deviation": 0.02088862548838666
+      }
+    }
+  },
+  "warnings": [
+    {
+      "type": "fixed_warmup_dispersion",
+      "key": "GQA:202121628",
+      "metric": "E2E_ms",
+      "statistics": {
+        "n": 8,
+        "mean": 2279.7219242499978,
+        "median": 2223.172000499744,
+        "stdev": 178.40973112225268,
+        "robust_CV": 0.008880139937129956,
+        "max_abs_deviation": 0.22320575843365686
+      }
+    },
+    {
+      "type": "fixed_warmup_dispersion",
+      "key": "GQA:202121628",
+      "metric": "TTFT_ms",
+      "statistics": {
+        "n": 8,
+        "mean": 295.13510012486677,
+        "median": 237.42632099992989,
+        "stdev": 161.70739974029064,
+        "robust_CV": 0.010408908727146388,
+        "max_abs_deviation": 1.9284837379079929
+      }
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:11<00:23, 11.72s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:25<00:12, 12.66s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:28<00:00,  8.63s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:28<00:00,  9.62s/it]
+SMOKE_PASS SVH GQA:202121628
+SMOKE_PASS SVH TextVQA:38571
+SMOKE_PASS SVH TextVQA:35999
+SMOKE_PASS SVH-R GQA:202121628
+SMOKE_PASS SVH-R TextVQA:38571
+SMOKE_PASS SVH-R TextVQA:35999
+SMOKE_PASS FastV GQA:202121628
+SMOKE_PASS FastV TextVQA:38571
+SMOKE_PASS FastV TextVQA:35999
+SMOKE_PASS SparseVLM GQA:202121628
+SMOKE_PASS SparseVLM TextVQA:38571
+SMOKE_PASS SparseVLM TextVQA:35999
+SMOKE_PASS V2Drop GQA:202121628
+SMOKE_PASS V2Drop TextVQA:38571
+SMOKE_PASS V2Drop TextVQA:35999
+SMOKE_PASS ApET GQA:202121628
+SMOKE_PASS ApET TextVQA:38571
+SMOKE_PASS ApET TextVQA:35999
+SMOKE_PASS DUET GQA:202121628
+SMOKE_PASS DUET TextVQA:38571
+SMOKE_PASS DUET TextVQA:35999
+SMOKE_PASS FastV+SVH GQA:202121628
+SMOKE_PASS FastV+SVH TextVQA:38571
+SMOKE_PASS FastV+SVH TextVQA:35999
+SMOKE_BLOCKED SparseVLM+SVH FileNotFoundError(2, 'No such file or directory')
+SMOKE_PASS V2Drop+SVH GQA:202121628
+SMOKE_PASS V2Drop+SVH TextVQA:38571
+SMOKE_PASS V2Drop+SVH TextVQA:35999
+SMOKE_PASS ApET+SVH GQA:202121628
+SMOKE_PASS ApET+SVH TextVQA:38571
+SMOKE_PASS ApET+SVH TextVQA:35999
+FINAL {"status": "PARTIAL", "phase": "COMPLETE", "model": "LLaVA", "session": "smoke", "pid": 6923, "formal_completed": 0, "usable": ["Native", "SVH", "SVH-R", "FastV", "SparseVLM", "V2Drop", "ApET", "DUET", "FastV+SVH", "V2Drop+SVH", "ApET+SVH"], "blocked": {"SparseVLM+SVH": {"reason": "FileNotFoundError(2, 'No such file or directory')", "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/results/rtx3090_unified_efficiency_18conditions/code/run_llava.py\", line 76, in main\n    r=request(key,method,'smoke',True);checks[key+'|'+method]='PASS';print('SMOKE_PASS',method,key,flush=True)\n      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/results/rtx3090_unified_efficiency_18conditions/code/run_llava.py\", line 59, in request\n    torch.manual_seed(0);torch.cuda.reset_peak_memory_stats();begin=time.time_ns();g=generate(a,layout,method,smoke);end=time.time_ns();clean()\n                                                                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/utils/_contextlib.py\", line 116, in decorate_context\n    return func(*args, **kwargs)\n           ^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/results/rtx3090_unified_efficiency_18conditions/code/unified_llava.py\", line 65, in generate\n    elif method=='SparseVLM+SVH':ctrl=SparseFusion(a,layout,32,audit=smoke,verify_reference=smoke)\n                                      ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/sparsevlm_svh/engine.py\", line 28, in __init__\n    self.ns, self.official_prune, self.provenance = kernels()\n                                                    ^^^^^^^^^\n  File \"/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/sparsevlm_svh/official.py\", line 18, in kernels\n    manifest = read(OFFICIAL.parent / 'official_source_manifest.json')\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/fastv_svh/common.py\", line 30, in read\n    return json.loads(Path(path).read_text())\n                      ^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/pathlib.py\", line 1058, in read_text\n    with self.open(mode='r', encoding=encoding, errors=errors) as f:\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/environment/miniconda3/lib/python3.11/pathlib.py\", line 1044, in open\n    return io.open(self, mode, buffering, encoding, errors, newline)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nFileNotFoundError: [Errno 2] No such file or directory: '/home/featurize/ate-experiments/rtx3090-18conditions-20261113/vlm_research/external_baselines/sparsevlm_icml2025/official_source_manifest.json'\n"}}}

@@ -1,0 +1,15 @@
+{
+  "status": "PAUSED_DRIFT",
+  "session": 1,
+  "pid": 12301,
+  "phase": "FORMAL",
+  "created_at": "2026-11-09T18:08:47.612977+00:00",
+  "formal_completed": 15,
+  "formal_expected": 30,
+  "GPU_UUID": "GPU-6c96bba5-5cc6-8be2-b277-5533b4cdab27",
+  "updated_at": "2026-11-09T18:14:24.525694+00:00",
+  "warmup_cycles": 20,
+  "failure": "RuntimeError('Native calibration >2% in two consecutive windows; preserve session and pause remaining sessions')",
+  "traceback": "Traceback (most recent call last):\n  File \"/home/featurize/work/ATE/vlm_research/results/native_e2e32_3090_recheck/code/run_native.py\", line 116, in session\n    if paused:state['status']='PAUSED_DRIFT';raise RuntimeError('Native calibration >2% in two consecutive windows; preserve session and pause remaining sessions')\n                                             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nRuntimeError: Native calibration >2% in two consecutive windows; preserve session and pause remaining sessions\n",
+  "finished_at": "2026-11-09T18:14:24.525664+00:00"
+}

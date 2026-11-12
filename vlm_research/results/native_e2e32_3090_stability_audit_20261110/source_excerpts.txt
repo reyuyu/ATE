@@ -1,0 +1,189 @@
+
+run_native.py:25
+25:  rows=lines(U/'input_manifest.jsonl.gz');assert [s['key'] for s in rows]==p['keys'];bykey={s['key']:s for s in rows};questions=read(U/'question_positions.json')
+26:  seg=O/'sessions'/('session_%02d'%index);seg.mkdir(parents=True,exist_ok=True)
+27:  if (seg/'progress.json').exists():raise RuntimeError('Refuse silently repeating a started session; inspect its preserved state')
+28:  db=sqlite3.connect(O/'checkpoint.sqlite',timeout=30);db.execute('PRAGMA journal_mode=WAL');db.execute('PRAGMA synchronous=FULL')
+29:  for table in ['formal','smoke','warmup','probes','failures']:db.execute('CREATE TABLE IF NOT EXISTS '+table+' (key TEXT PRIMARY KEY,payload TEXT,sha256 TEXT)')
+30:  db.commit()
+31:  def put(table,key,r):
+32:   with db:db.execute('INSERT INTO '+table+' VALUES(?,?,?)',(str(index)+'|'+key,json.dumps(r,ensure_ascii=False,separators=(',',':')),digest(r)))
+33:  state=dict(status='RUNNING',session=index,pid=os.getpid(),phase='PRECHECK',created_at=now(),formal_completed=0,formal_expected=30,GPU_UUID=UUID)
+34:  def status():state['updated_at']=now();save(str(seg.relative_to(O)/'progress.json'),state);save('progress.json',state)
+35:  a=None;stop=threading.Event();thread=None
+36:  def monitor():
+37:   fields='timestamp,uuid,pstate,temperature.gpu,power.draw,power.limit,clocks.current.sm,clocks.current.memory,utilization.gpu,memory.used,clocks_throttle_reasons.active,clocks_throttle_reasons.gpu_idle,clocks_throttle_reasons.sw_power_cap,clocks_throttle_reasons.hw_slowdown,clocks_throttle_reasons.hw_thermal_slowdown,clocks_throttle_reasons.hw_power_brake_slowdown,clocks_throttle_reasons.sw_thermal_slowdown'
+38:   with (seg/'telemetry.jsonl').open('a') as f:
+39:    while not stop.is_set():
+40:     try:
+41:      gpu=cmd('nvidia-smi','--query-gpu='+fields,'--format=csv,noheader,nounits');processes=cmd('nvidia-smi','--query-compute-apps=pid,process_name,used_gpu_memory','--format=csv,noheader');others=[l for l in processes.splitlines() if l and l.split(',')[0].strip()!=str(os.getpid())]
+42:      r=dict(at=now(),query_fields=fields,GPU=gpu,compute_processes=processes,other_processes=others,loadavg=Path('/proc/loadavg').read_text(),cpu_pressure=Path('/proc/pressure/cpu').read_text())
+43:      if others:save(str(seg.relative_to(O)/'gpu_conflict.json'),r)
+44:     except Exception as e:r=dict(at=now(),error=repr(e))
+45:     f.write(json.dumps(r)+'\n');f.flush();stop.wait(2)
+
+run_native.py:51
+51:   thread=threading.Thread(target=monitor,daemon=True);thread.start();state['phase']='GPU_LOAD';status()
+52:   loader.MODELS=dict(loader.MODELS,llava=M);a=frozen.load('B')
+53:   assert {str(v.device) for v in a.model.parameters()}=={'cuda:0'} and {v.dtype for v in a.model.parameters()}=={torch.float16}
+54:   assert a.model.config.text_config._attn_implementation==a.model.config.vision_config._attn_implementation=='eager' and not a.model.training
+55:   env=static_environment(a);env.update(actual_GPU_UUID=UUID,session=index,new_entry_sources=p['entry_sources_SHA256'],protocol_SHA256=digest(p),model_receipt_SHA256=p['model_receipt_sha256'],single_model_load_this_session=True)
+56:   save(str(seg.relative_to(O)/'environment.json'),env)
+57:   forward=[l.forward.__func__ for l in a.layers];att=[l.self_attn.forward.__func__ for l in a.layers];decoder=a.model.language_model.model;dec=decoder.forward.__func__;top=a.model.forward.__func__
+58:   def clean():
+59:    assert decoder.forward.__func__ is dec and a.model.forward.__func__ is top
+60:    assert all(l.forward.__func__ is f for l,f in zip(a.layers,forward)) and all(l.self_attn.forward.__func__ is f for l,f in zip(a.layers,att))
+61:    assert all(not l._forward_hooks and not l._forward_pre_hooks for l in a.layers)
+62:    assert all(not getattr(l.self_attn,k+'_proj')._forward_pre_hooks for l in a.layers for k in ['q','k','v'])
+63:   prepared={}
+64:   for s in rows:
+65:    raw=dict(input_ids=torch.tensor([s['input_ids']],dtype=torch.long),attention_mask=torch.ones((1,len(s['input_ids'])),dtype=torch.long),pixel_values=frozen.paper_pixels(mapping[s['key']],a.image_processor).half())
+66:    assert {k:tensor_hash(v) for k,v in raw.items()}==s['input_hashes'];prepared[s['key']]=raw
+67:   ceiling=None
+68:   def request(s,role,smoke=False,noop=False):
+69:    assert not (seg/'gpu_conflict.json').exists(),'Other GPU process detected'
+70:    assert cmd('nvidia-smi','--query-gpu=uuid','--format=csv,noheader')==UUID
+71:    a.inputs={k:v.to('cuda:0') for k,v in prepared[s['key']].items()};ids=s['input_ids'];image=tuple(i for i,v in enumerate(ids) if v==32000);text=tuple(i for i,v in enumerate(ids) if v!=32000);relay=tuple(range(image[-1]+1,len(ids)-1));q=tuple(questions[s['key']]) if s['benchmark']=='GQA' else relay;layout=Layout(len(ids),image,text,relay,q,20)
+72:    torch.manual_seed(0);clean();begin=time.time()
+73:    with identity_attention(a) if noop else nullcontext():g=generate(a,layout,'Native',smoke=smoke)
+74:    end=time.time();clean();assert g['token_ids']==refs[s['key']],'Historical Native 32-token mismatch '+s['key']
+75:    assert g['output_tokens']==32 and g['real_decode_calls']==31 and g['prefill_calls']==g['vision_forward_calls']==1 and g['all_logits_finite']
+76:    assert abs(g['E2E_ms']-g['TTFT_ms']-31*g['TPOT_ms'])<1e-6 and g['cache']['cached_decode_inputs']==31
+77:    residual=torch.cuda.memory_allocated()-sum(v.numel()*v.element_size() for v in a.inputs.values())
+78:    if ceiling is not None:assert residual<=ceiling+2**20,('Persistent CUDA allocation growth',residual,ceiling)
+79:    return dict(session=index,key=s['key'],benchmark=s['benchmark'],method='Native Full',role=role,GPU_UUID=UUID,at=now(),begin_unix_time=begin,end_unix_time=end,protocol_SHA256=digest(p),sample_SHA256=s['sample_sha256'],input_hashes=s['input_hashes'],model_receipt_SHA256=p['model_receipt_sha256'],runtime_SHA256=p['sources'][str(U/'code/e2e32_runtime.py')],entry_SHA256=p['entry_sources_SHA256'],historical_32_tokens_exact=True,persistent_allocated_excluding_input=residual,generation=g)
+80:   state['phase']='NATIVE_AND_IDENTITY_NOOP_SMOKE';status();smokes=[]
+
+run_native.py:92
+92:   save(str(seg.relative_to(O)/'smoke_validation.json'),dict(status='PASS',representatives=smokes,full_32_tokens=True,prefill=1,real_decode=31,physical_hidden_mask_RoPE_KV_32_layers_checked=True,no_nonfinite=True,allocation_cycles=allocation,allocation_ceiling=ceiling,other_algorithms_run=False))
+93:   state['phase']='WARMUP';status();begin=time.monotonic();cycle=0
+94:   while cycle==0 or time.monotonic()-begin<p['warmup']['minimum_seconds']:
+95:    for key in p['probe_keys']:
+96:     r=request(bykey[key],'warmup');put('warmup',str(cycle)+'|'+key,r)
+97:    cycle+=1
+98:    if cycle%5==0:state['warmup_cycles']=cycle;status();print('WARMUP',index,cycle,round(time.monotonic()-begin),flush=True)
+99:   state['phase']='BASELINE';status();baseline=[]
+100:   for repeat in range(p['drift']['baseline_rounds']):
+101:    for key in p['probe_keys']:
+102:     r=request(bykey[key],'baseline');put('probes','baseline|'+str(repeat)+'|'+key,r);baseline.append(r)
+103:   metrics=p['drift']['metrics'];means={m:statistics.mean(r['generation'][m] for r in baseline) for m in metrics}
+104:   save(str(seg.relative_to(O)/'drift_baseline.json'),dict(status='PASS',at=now(),means=means,requests=len(baseline),keys=p['probe_keys'],warmup_cycles=cycle,warmup_seconds=time.monotonic()-begin))
+105:   state['phase']='FORMAL';status();streak={m:0 for m in metrics};checks=[]
+106:   for position,s in enumerate(rows,1):
+107:    r=request(s,'formal');r['formal_index']=position;put('formal',s['key'],r);state['formal_completed']=position;status();print('FORMAL',index,position,s['key'],round(r['generation']['E2E_ms'],2),flush=True)
+108:    if position%5==0:
+109:     probes=[]
+110:     for key in p['probe_keys']:
+111:      r=request(bykey[key],'calibration');put('probes','after_'+str(position)+'|'+key,r);probes.append(r)
+112:     measured={m:statistics.mean(r['generation'][m] for r in probes) for m in metrics};change={m:measured[m]/means[m]-1 for m in metrics}
+113:     for m in metrics:streak[m]=streak[m]+1 if abs(change[m])>p['drift']['threshold'] else 0
+114:     paused=any(v>=p['drift']['consecutive_windows'] for v in streak.values());check=dict(after_inputs=position,baseline=means,measured=measured,relative_change=change,consecutive_over_2pct=dict(streak),status='PAUSED_DRIFT' if paused else 'PASS');checks.append(check)
+115:     save(str(seg.relative_to(O)/'drift_summary.json'),dict(status=check['status'],checks=checks));print('DRIFT',index,json.dumps(check),flush=True)
+116:     if paused:state['status']='PAUSED_DRIFT';raise RuntimeError('Native calibration >2% in two consecutive windows; preserve session and pause remaining sessions')
+
+run_native.py:120
+120:   if state['status']!='PAUSED_DRIFT':state['status']='BLOCKED'
+121:   state.update(failure=repr(e),traceback=traceback.format_exc());put('failures','fatal',dict(at=now(),failure=repr(e),traceback=traceback.format_exc()));print(state['traceback'],flush=True)
+122:  finally:
+123:   stop.set()
+124:   if thread:thread.join(timeout=25)
+125:   a=None;gc.collect()
+126:   if torch.cuda.is_initialized():torch.cuda.empty_cache()
+127:   state['finished_at']=now();status();db.execute('PRAGMA wal_checkpoint(TRUNCATE)');db.close();print('FINAL',json.dumps(state),flush=True)
+
+e2e32_runtime.py:95
+95:   assert len(self.rows)==320;return list(self.rows.values())
+96: 
+97: @torch.inference_mode()
+98: def generate(a,layout,method,smoke=False):
+99:  assert method in METHODS+['BridgeNative','FastVNoop','V2DropNoop'] and len(layout.image)==576
+100:  requested=method
+101:  if requested.endswith('Noop'):method='Native'
+102:  length=32;n=layout.length;device=a.inputs['input_ids'].device
+103:  events=[(torch.cuda.Event(enable_timing=True),torch.cuda.Event(enable_timing=True)) for _ in range(length)]
+104:  cache=ctrl=out=None;tokens=[];finite=[];vision_calls=[0];smoke_cache={};observer=None;first_logits=None
+105:  original=a.model.get_image_features
+106:  def vision(*args,**kwargs):vision_calls[0]+=1;return original(*args,**kwargs)
+107:  torch.cuda.synchronize();start=time.perf_counter()
+108:  try:
+109:   positions=torch.arange(n+length-1,device=device);mask=torch.ones((1,n+length-1),dtype=torch.long,device=device)
+110:   if method=='FastV' or requested=='FastVNoop':ctrl=FastV(a.model,SOURCE,layout.image,n,enabled=requested!='FastVNoop',trace=smoke)
+111:   elif method=='V2Drop' or requested=='V2DropNoop':ctrl=V2Drop(a,layout.image,VSOURCE,enabled=requested!='V2DropNoop',trace=smoke,reference=smoke,selection_timing=True)
+112:   elif method in ('SVH','SVH-R'):
+113:    layout=replace(layout,cutoff=20 if method=='SVH' else 25);ctrl=MiddleWriter(a,layout,tuple(range(11,25)) if method=='SVH-R' else (),length,False,False)
+114:   elif method in ('ApET','DUET','SparseVLM','BridgeNative'):ctrl=OfficialCompat(a,layout,method,trace=smoke)
+115:   if smoke:observer=Observer(a,layout,method,ctrl)
+116:   with ctrl.context() if ctrl else nullcontext():
+117:    new=method in ('ApET','DUET','SparseVLM','BridgeNative')
+118:    with observer.context() if observer else nullcontext(),nullcontext() if new else patch.object(a.model,'get_image_features',vision):
+119:     for step in range(length):
+120:      if observer:observer.step=step
+121:      kw=dict(a.inputs) if step==0 else dict(input_ids=tokens[-1].reshape(1,1),attention_mask=mask[:,:n+step])
+122:      kw.update(use_cache=True,return_dict=True,past_key_values=cache,cache_position=positions[:n] if step==0 else positions[n+step-1:n+step],logits_to_keep=1)
+123:      events[step][0].record();out=a.model(**kw);last=out.logits[:,-1];token=last.argmax(-1);tokens.append(token);finite.append(torch.isfinite(last).all());events[step][1].record();cache=out.past_key_values
+124:      if step==0:
+125:       torch.cuda.synchronize();first=time.perf_counter()
+126:       if smoke:first_logits=last.detach().cpu().tolist()
+127:      if smoke and step in (0,1,8,31):smoke_cache[str(step+1)]=kv_snapshot(cache,ctrl,layout,method,step+1)
+128:      del out,last;out=None
+129:   torch.cuda.synchronize();end=time.perf_counter()
+130:   assert torch.stack(finite).all().item(),'Nonfinite logits'
+131:   calls=ctrl.vision_calls if new else vision_calls[0];ids=torch.cat(tokens).tolist();assert len(ids)==32 and calls==1
+132:   kv=kv_snapshot(cache,ctrl,layout,method,32);assert kv['storage_bytes']==kv['live_bytes']
+133:   ms=[b.elapsed_time(e) for b,e in events]
+134:   result=dict(method=requested,token_ids=ids,output_tokens=32,real_decode_calls=31,prefill_calls=1,vision_forward_calls=calls,all_logits_finite=True,
+135:    TTFT_ms=(first-start)*1000,E2E_ms=(end-start)*1000,TPOT_ms=(end-first)*1000/31,CUDA_Event_Decode_TPOT_ms=sum(ms[1:])/31,
+136:    step_event_ms=ms,cache=kv,logits_to_keep=1,use_cache=True,smoke=smoke,formal_layer_observer_hooks=smoke)
+137:   if ctrl is not None:
+138:    result['pruning_events']=getattr(ctrl,'events',None);result['selector_provenance']=getattr(ctrl,'provenance',None)
+139:   if smoke:result.update(smoke_layer_shapes=observer.finish(),smoke_cache_checkpoints=smoke_cache,first_logits=first_logits)
+140:   return result
+141:  finally:del cache,ctrl,out,tokens,finite
+
+transformers4.49.0/cache_utils.py:398
+398:     def update(
+399:         self,
+400:         key_states: torch.Tensor,
+401:         value_states: torch.Tensor,
+402:         layer_idx: int,
+403:         cache_kwargs: Optional[Dict[str, Any]] = None,
+404:     ) -> Tuple[torch.Tensor, torch.Tensor]:
+405:         """
+406:         Updates the cache with the new `key_states` and `value_states` for the layer `layer_idx`.
+407: 
+408:         Parameters:
+409:             key_states (`torch.Tensor`):
+410:                 The new key states to cache.
+411:             value_states (`torch.Tensor`):
+412:                 The new value states to cache.
+413:             layer_idx (`int`):
+414:                 The index of the layer to cache the states for.
+415:             cache_kwargs (`Dict[str, Any]`, `optional`):
+416:                 Additional arguments for the cache subclass. No additional arguments are used in `DynamicCache`.
+417: 
+418:         Return:
+419:             A tuple containing the updated key and value states.
+420:         """
+421:         # Update the number of seen tokens
+422:         if layer_idx == 0:
+423:             self._seen_tokens += key_states.shape[-2]
+424: 
+425:         # Update the cache
+426:         if key_states is not None:
+427:             if len(self.key_cache) <= layer_idx:
+428:                 # There may be skipped layers, fill them with empty lists
+429:                 for _ in range(len(self.key_cache), layer_idx):
+430:                     self.key_cache.append([])
+431:                     self.value_cache.append([])
+432:                 self.key_cache.append(key_states)
+433:                 self.value_cache.append(value_states)
+434:             elif (
+435:                 len(self.key_cache[layer_idx]) == 0
+436:             ):  # fills previously skipped layers; checking for tensor causes errors
+437:                 self.key_cache[layer_idx] = key_states
+438:                 self.value_cache[layer_idx] = value_states
+439:             else:
+440:                 self.key_cache[layer_idx] = torch.cat([self.key_cache[layer_idx], key_states], dim=-2)
+441:                 self.value_cache[layer_idx] = torch.cat([self.value_cache[layer_idx], value_states], dim=-2)
+442: 
+443:         return self.key_cache[layer_idx], self.value_cache[layer_idx]

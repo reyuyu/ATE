@@ -1,0 +1,60 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]Loading checkpoint shards:  33%|███▎      | 1/3 [00:04<00:09,  4.84s/it]Loading checkpoint shards:  67%|██████▋   | 2/3 [00:09<00:04,  4.77s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:13<00:00,  4.25s/it]Loading checkpoint shards: 100%|██████████| 3/3 [00:13<00:00,  4.39s/it]
+FIXED_WARMUP_DONE Native40 other14 performance_warnings 8
+SMOKE_PASS Native GQA:202121628
+SMOKE_PASS Native TextVQA:38571
+SMOKE_PASS FastV GQA:202121628
+SMOKE_PASS FastV TextVQA:38571
+SMOKE_PASS SparseVLM GQA:202121628
+SMOKE_PASS SparseVLM TextVQA:38571
+SMOKE_PASS V2Drop GQA:202121628
+SMOKE_PASS V2Drop TextVQA:38571
+SMOKE_PASS ApET GQA:202121628
+SMOKE_PASS ApET TextVQA:38571
+SMOKE_PASS DUET GQA:202121628
+SMOKE_PASS DUET TextVQA:38571
+SMOKE_PASS SVH GQA:202121628
+SMOKE_PASS SVH TextVQA:38571
+SMOKE_PASS SVH-R GQA:202121628
+SMOKE_PASS SVH-R TextVQA:38571
+BRIDGE_EXACT GQA:202121628
+BRIDGE_EXACT TextVQA:38571
+NOOP_EXACT FastVNoop
+NOOP_EXACT V2DropNoop
+INPUT_DONE 1 GQA:202121628 8
+INPUT_DONE 2 GQA:20308802 16
+INPUT_DONE 3 GQA:202158870 24
+INPUT_DONE 4 GQA:201759069 32
+INPUT_DONE 5 GQA:20162504 40
+DRIFT {"after_inputs": 5, "requests": 6, "baseline_per_input": {"GQA:202121628": {"E2E_ms": 2206.330246200014, "TPOT_ms": 63.54783177419801}, "TextVQA:38571": {"E2E_ms": 2210.0278596000862, "TPOT_ms": 63.652632519364076}}, "measured_per_input": {"GQA:202121628": {"E2E_ms": 2498.1382939992423, "TPOT_ms": 72.58149640858724}, "TextVQA:38571": {"E2E_ms": 2488.7032199997825, "TPOT_ms": 72.2117319784898}}, "relative_change": {"GQA:202121628": {"E2E_ms": 0.13225946038758818, "TPOT_ms": 0.14215535577182536}, "TextVQA:38571": {"E2E_ms": 0.12609585856086158, "TPOT_ms": 0.13446575766559077}}, "pooled_relative_change": {"E2E_ms": 0.1291750792241455, "TPOT_ms": 0.1383073889802251}, "threshold": 0.02, "breach": true, "consecutive_breaches": 1, "status": "WARN"}
+INPUT_DONE 6 GQA:20886934 48
+INPUT_DONE 7 GQA:201889314 56
+INPUT_DONE 8 GQA:201455854 64
+INPUT_DONE 9 GQA:20709953 72
+INPUT_DONE 10 GQA:202246655 80
+DRIFT {"after_inputs": 10, "requests": 6, "baseline_per_input": {"GQA:202121628": {"E2E_ms": 2206.330246200014, "TPOT_ms": 63.54783177419801}, "TextVQA:38571": {"E2E_ms": 2210.0278596000862, "TPOT_ms": 63.652632519364076}}, "measured_per_input": {"GQA:202121628": {"E2E_ms": 2518.201720666184, "TPOT_ms": 73.1389964193338}, "TextVQA:38571": {"E2E_ms": 2489.596558000509, "TPOT_ms": 72.33223366666186}}, "relative_change": {"GQA:202121628": {"E2E_ms": 0.14135303407244204, "TPOT_ms": 0.15092827524337404}, "TextVQA:38571": {"E2E_ms": 0.12650007880489422, "TPOT_ms": 0.13635887164065563}}, "pooled_relative_change": {"E2E_ms": 0.13392033859071395, "TPOT_ms": 0.14363757156001444}, "threshold": 0.02, "breach": true, "consecutive_breaches": 2, "status": "WARN"}
+INPUT_DONE 11 GQA:202060056 88
+INPUT_DONE 12 GQA:20644736 96
+INPUT_DONE 13 GQA:20922878 104
+INPUT_DONE 14 GQA:201976841 112
+INPUT_DONE 15 GQA:201959618 120
+DRIFT {"after_inputs": 15, "requests": 6, "baseline_per_input": {"GQA:202121628": {"E2E_ms": 2206.330246200014, "TPOT_ms": 63.54783177419801}, "TextVQA:38571": {"E2E_ms": 2210.0278596000862, "TPOT_ms": 63.652632519364076}}, "measured_per_input": {"GQA:202121628": {"E2E_ms": 2408.0844009992384, "TPOT_ms": 69.72721319353666}, "TextVQA:38571": {"E2E_ms": 2396.666387334335, "TPOT_ms": 69.38597063440626}}, "relative_change": {"GQA:202121628": {"E2E_ms": 0.09144331640592251, "TPOT_ms": 0.09723984669210428}, "TextVQA:38571": {"E2E_ms": 0.08445075790493517, "TPOT_ms": 0.09007228590738992}}, "pooled_relative_change": {"E2E_ms": 0.08794410988171197, "TPOT_ms": 0.09365311361511885}, "threshold": 0.02, "breach": true, "consecutive_breaches": 3, "status": "WARN"}
+INPUT_DONE 16 TextVQA:38571 128
+INPUT_DONE 17 TextVQA:36647 136
+INPUT_DONE 18 TextVQA:34775 144
+INPUT_DONE 19 TextVQA:38508 152
+INPUT_DONE 20 TextVQA:36458 160
+DRIFT {"after_inputs": 20, "requests": 6, "baseline_per_input": {"GQA:202121628": {"E2E_ms": 2206.330246200014, "TPOT_ms": 63.54783177419801}, "TextVQA:38571": {"E2E_ms": 2210.0278596000862, "TPOT_ms": 63.652632519364076}}, "measured_per_input": {"GQA:202121628": {"E2E_ms": 2508.7187040001786, "TPOT_ms": 72.87904464513998}, "TextVQA:38571": {"E2E_ms": 2516.309304999595, "TPOT_ms": 73.10607407525431}}, "relative_change": {"GQA:202121628": {"E2E_ms": 0.13705493922361422, "TPOT_ms": 0.14683762782179888}, "TextVQA:38571": {"E2E_ms": 0.13858714227020275, "TPOT_ms": 0.14851611287269795}}, "pooled_relative_change": {"E2E_ms": 0.1378216821684577, "TPOT_ms": 0.14767756180102976}, "threshold": 0.02, "breach": true, "consecutive_breaches": 4, "status": "WARN"}
+INPUT_DONE 21 TextVQA:36282 168
+INPUT_DONE 22 TextVQA:35999 176
+INPUT_DONE 23 TextVQA:35026 184
+INPUT_DONE 24 TextVQA:36136 192
+INPUT_DONE 25 TextVQA:37087 200
+DRIFT {"after_inputs": 25, "requests": 6, "baseline_per_input": {"GQA:202121628": {"E2E_ms": 2206.330246200014, "TPOT_ms": 63.54783177419801}, "TextVQA:38571": {"E2E_ms": 2210.0278596000862, "TPOT_ms": 63.652632519364076}}, "measured_per_input": {"GQA:202121628": {"E2E_ms": 2198.713305999869, "TPOT_ms": 63.35169392475099}, "TextVQA:38571": {"E2E_ms": 2197.1106703337377, "TPOT_ms": 63.22457313978302}}, "relative_change": {"GQA:202121628": {"E2E_ms": -0.003452311916252504, "TPOT_ms": -0.0030864601351616727}, "TextVQA:38571": {"E2E_ms": -0.005844808340418783, "TPOT_ms": -0.006724928139473785}}, "pooled_relative_change": {"E2E_ms": -0.004649561691911996, "TPOT_ms": -0.0049071930082543735}, "threshold": 0.02, "breach": false, "consecutive_breaches": 0, "status": "WITHIN_2PCT"}
+INPUT_DONE 26 TextVQA:37765 208
+INPUT_DONE 27 TextVQA:39047 216
+INPUT_DONE 28 TextVQA:39166 224
+INPUT_DONE 29 TextVQA:35607 232
+INPUT_DONE 30 TextVQA:36477 240
+DRIFT {"after_inputs": 30, "requests": 6, "baseline_per_input": {"GQA:202121628": {"E2E_ms": 2206.330246200014, "TPOT_ms": 63.54783177419801}, "TextVQA:38571": {"E2E_ms": 2210.0278596000862, "TPOT_ms": 63.652632519364076}}, "measured_per_input": {"GQA:202121628": {"E2E_ms": 2477.552721666143, "TPOT_ms": 71.76567629031396}, "TextVQA:38571": {"E2E_ms": 2483.916555000178, "TPOT_ms": 72.11558609677952}}, "relative_change": {"GQA:202121628": {"E2E_ms": 0.12292922871961642, "TPOT_ms": 0.12931746507600916}, "TextVQA:38571": {"E2E_ms": 0.12392997409980766, "TPOT_ms": 0.13295527996962098}}, "pooled_relative_change": {"E2E_ms": 0.12343002034873818, "TPOT_ms": 0.131137871124702}, "threshold": 0.02, "breach": true, "consecutive_breaches": 1, "status": "WARN"}
+FINAL {"status": "COMPLETE_WITH_PERFORMANCE_WARNINGS", "phase": "COMPLETE", "pid": 13202, "session": 2, "formal_completed": 240, "formal_expected": 240, "requests_completed": 372, "requests_attempted": 372, "model_loads": 1, "correctness": "PASS", "finished_ns": 1794266271397171876}

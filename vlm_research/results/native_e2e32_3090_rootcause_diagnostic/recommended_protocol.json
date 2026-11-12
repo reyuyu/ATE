@@ -1,0 +1,49 @@
+{
+  "status": "RECOMMENDED_NOT_EXECUTED_FORMAL",
+  "formal90_resumed": false,
+  "original15_remain_stability_failed": true,
+  "selected_actions": [
+    "A_strict_prewarm_and_admission",
+    "B_local_durable_spooling_and_minimize_unnecessary_idle",
+    "D_native_bracketed_paired_measurement_and_independent_sessions",
+    "E_root_cause_not_uniquely_resolved"
+  ],
+  "C_fixed_GPU_CPU_conditions": "Not changed. Seek separate authorization only if later evidence identifies frequency/CPU conditions as decisive.",
+  "minimum_warmup_full32": 60,
+  "minimum_sum_actual_generation_E2E_s": 180,
+  "per_input_window_repetitions": 10,
+  "window_full32_requests": 20,
+  "consecutive_nonoverlapping_windows": 3,
+  "window_robust_CV_limit": 0.01,
+  "adjacent_window_median_change_limit": 0.01,
+  "three_window_median_range_limit": 0.02,
+  "independent_baseline_requests": 20,
+  "calibration_every_formal": 5,
+  "calibration_requests": 6,
+  "drift_threshold": 0.02,
+  "consecutive_drift_windows": 2,
+  "unexpected_gap_s": 1,
+  "telemetry_gap_s": 5,
+  "warmup_max_requests": 180,
+  "warmup_max_wall_s": 900,
+  "formal_sessions": 3,
+  "formal_inputs_per_session": 30,
+  "report_each_session_and_median_of_means": true,
+  "pairing_rule": "For future eight-method comparison, measure fixed Native before and after each method block on the same hardware and matched input; reject drifting blocks without choosing fastest Native. No such methods were run here.",
+  "proof_limit": "Current diagnostic uses one fixed GQA input, one model load. It does not validate all30 inputs,3 formal sessions,or eliminate every historical drift mechanism.",
+  "profiler_process_isolation_required": true,
+  "telemetry_split_independent_GPU_CPU_and_process_inventory_collectors": true,
+  "monitoring_overhead_and_gaps_must_be_reported": true,
+  "stability_statistics": {
+    "metrics": [
+      "E2E_ms",
+      "TPOT_ms",
+      "CUDA_Event_Decode_TPOT_ms"
+    ],
+    "per_input": true,
+    "robust_CV": "1.4826*MAD/median",
+    "three_window_range": "(max(window_medians)-min(window_medians))/median(window_medians)",
+    "calibration": "Alternating fixed GQA and TextVQA probes, three repeats per input; compare per-input medians to its admitted baseline, never merge the two input scales."
+  },
+  "warmup_execution": "Alternate the two original frozen probes; require >=60 full32 calls AND >=180 seconds summed measured E2E, then the latest three complete nonoverlapping windows must pass. Stop without formal requests at the warmup budget limit."
+}
