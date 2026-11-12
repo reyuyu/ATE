@@ -1,0 +1,14 @@
+{
+  "configuration_name": "interVL-SVH-R-new",
+  "base_configuration_sha256": "80d0a2e80c56d1ad9f8c3d7b22ef5d55f68cc2e83d12b47d4e4e23b716b279a5",
+  "benchmark": "TextVQA v0.5.1 validation",
+  "sample_count": 5000,
+  "input_protocol": "ATE_SVH_1TILE_SCORER_ALIGNED",
+  "image_only": true,
+  "OCR_text_in_prompt": false,
+  "max_new_tokens": 32,
+  "eos_token_id": 151645,
+  "greedy": true,
+  "scorer": "Frozen official InternVL TextVQAAccuracyEvaluator:10-answer leave-one-out VQA soft accuracy",
+  "override_note": "Benchmark-specific cap32 and historical TextVQA prompt; the base named configuration was registered with OCRBench cap128. Physical algorithm unchanged."
+}

@@ -1,0 +1,90 @@
+{
+  "status": "COMPLETE_FULL_COVERAGE_WITH_NUMERICAL_WAIVER",
+  "configuration_name": "interVL-SVH-R-new",
+  "benchmark": "TextVQA v0.5.1 validation",
+  "coverage": 5000,
+  "expected": 5000,
+  "unique_images": 3166,
+  "accuracy_percent": 64.51200000000019,
+  "scores": [
+    {
+      "method": "Native",
+      "coverage": 5000,
+      "score_sum": 3317.1000000000113,
+      "accuracy_percent": 66.34200000000023,
+      "empty": 0,
+      "truncated": 8,
+      "source": "3297559f21d3de55a6630a5491c9ecf66301c4b7"
+    },
+    {
+      "method": "Physical-D",
+      "coverage": 5000,
+      "score_sum": 529.9000000000011,
+      "accuracy_percent": 10.598000000000022,
+      "empty": 0,
+      "truncated": 1,
+      "source": "3297559f21d3de55a6630a5491c9ecf66301c4b7"
+    },
+    {
+      "method": "Late9",
+      "coverage": 5000,
+      "score_sum": 2800.2,
+      "accuracy_percent": 56.004,
+      "empty": null,
+      "truncated": null,
+      "source": "PUBLISHED_AGGREGATE_ONLY@c60a9919112a3cf5bec8c494a533cba56a97f29b"
+    },
+    {
+      "method": "interVL-SVH-R-new",
+      "coverage": 5000,
+      "score_sum": 3225.6000000000095,
+      "accuracy_percent": 64.51200000000019,
+      "empty": 0,
+      "truncated": 5,
+      "source": "NEW5000"
+    }
+  ],
+  "paired": [
+    {
+      "method": "interVL-SVH-R-new",
+      "reference": "Native",
+      "n": 5000,
+      "delta_pp": -1.83,
+      "soft_score_improved": 227,
+      "soft_score_declined": 331,
+      "equal": 4442,
+      "zero_to_positive": 180,
+      "positive_to_zero": 277,
+      "ci95_low_pp": -2.62545153261988,
+      "ci95_high_pp": -1.0302665864902787,
+      "image_clusters": 3166,
+      "bootstrap_replicates": 10000,
+      "seed": 20261113
+    },
+    {
+      "method": "interVL-SVH-R-new",
+      "reference": "Physical-D",
+      "n": 5000,
+      "delta_pp": 53.913999999999994,
+      "soft_score_improved": 2981,
+      "soft_score_declined": 149,
+      "equal": 1870,
+      "zero_to_positive": 2908,
+      "positive_to_zero": 119,
+      "ci95_low_pp": 52.41655658662451,
+      "ci95_high_pp": 55.420912301161124,
+      "image_clusters": 3166,
+      "bootstrap_replicates": 10000,
+      "seed": 20261113
+    }
+  ],
+  "delta_vs_published_late9_pp": 8.508000000000187,
+  "independent_scoring_checks": 15000,
+  "cpu_token_decode_checks": 5000,
+  "empty": 0,
+  "truncated": 5,
+  "new_generations": 5000,
+  "baseline_generations": 0,
+  "numerical_status": "EXPLORATORY_QUALITY_WITH_NUMERICAL_WAIVER; historical strict failures remain; naming does not certify global numerical equivalence",
+  "GPU_after": "NVIDIA GeForce RTX 3090, GPU-6c96bba5-5cc6-8be2-b277-5533b4cdab27, 1 MiB, 24123 MiB"
+}
