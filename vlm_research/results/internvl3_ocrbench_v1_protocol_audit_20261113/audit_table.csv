@@ -1,0 +1,17 @@
+item,status,observed,official_reference,evidence
+原始标注与题目映射,PASS,1000题逐项核对Question ID、原ID、问题、Gold、分类、数据集、相对图片路径；零差异。,OCRBench v1原始JSON；SHA df75957e75ea052e9f38f2c67a4f6676103998517345cf49ef7d03b62c835864,cpu/dataset_validation.json
+原始图片SHA,PASS,930张唯一图片逐一SHA256核验，覆盖1000题全部匹配历史原图Manifest；未换图、未重编码。,原始Google Drive ZIP历史回执SHA c82acb33a2f00cdb499ea13a3cee7f3d1584269af339aed3fcb4e381d5a9f975,cpu/image_integrity.csv; historical/OCRBench_bundle_SOURCE.json
+动态切块及缩略图,FAIL,固定max_num=1、448x448、256视觉Token；与官方动态配置不符。,VLMEvalKit OCRBench max_num=24，RGB动态448切块，多块额外thumbnail，最多25块/6400视觉Token。按同一原图947题会多块。,cpu/official_dynamic_tile_plan.csv; cpu/cpu_smoke.json; official/VLMEvalKit_baseline_pinned/vlmeval/vlm/internvl/internvl_chat.py:316
+RGB、插值、归一化,PASS,4题CPU Smoke：历史像素哈希复现；同样max_num=1时官方预处理Tensor完全一致。,RGB、448、BICUBIC及ImageNet mean/std；动态切块差异另列。,cpu/cpu_smoke.json
+问题Prompt后缀,FAIL,Give only the requested text or answer. Do not explain.；1000题均不同于官方问题后缀。,Answer the question using a single word or phrase.；OCRBench公开默认不启用MPO改写。,cpu/official_path_and_late9_closure.json; official/VLMEvalKit_baseline_pinned/vlmeval/vlm/internvl/internvl_chat.py:242
+原生Chat Template及Tokenizer,PASS,internvl2_5/ChatML、原生中文system；1000题完整Prompt和input_ids复现，无Vicuna混用。,冻结模型官方conversation.py；EOS=<|im_end|>、151645。,cpu/cpu_smoke.json; model_reference/conversation.py
+生成上限,FAIL,max_new_tokens=128；Native 1000题均EOS，最长55 Token，截断0。,VLMEvalKit公开默认max_new_tokens=4096；作者880原始run的完整参数未公开核验。该差异没有截断本批Native答案。,cpu/scoring_validation.json; historical/native_stopv2/OCRBench/output_monitor_v2.json
+Greedy、EOS和数值配置,PASS,BF16/Eager、Batch1、Greedy、use_cache、logits_to_keep=1；独立Cache、原生EOS。,公开wrapper使用BF16与Greedy；精确作者backend/软件版本另列UNVERIFIED。,historical/native_stopv2/protocol.json; historical/native_stopv2/environment_v2.json; cpu/cpu_smoke.json
+Native前向及源码绑定,PASS,9个冻结执行源码SHA全部匹配；Native不安装Physical干预；2000条历史记录使用同一个协议及源码Manifest SHA。,历史Native/No-op/official logits严格相等Smoke 3题：0418、0007、0686；本轮只读取该GPU证据。,cpu/source_integrity.json; historical/native_stopv2/OCRBench/smoke_validation.json
+答案解码及规范化,PASS,2000条Token IDs重解码与历史答案一致；raw_decode与计分文本零评分差。,普通答案小写、去外侧空白、换行替空格；HME100k大小写敏感且去空格；accepted-answer子串，非exact match/ANLS。,cpu/cpu_smoke.json; cpu/rescored_predictions.csv
+官方0–1000评分,PASS,Native独立重算751；原始官方循环、VLMEvalKit utility及OCRBench实际class evaluator全部一致；10类计分保留。,1000题每题至多1分，原始总分751/1000。VLMEvalKit附加Final Score Norm=75.1不能冒充原始分。,cpu/scoring_validation.json; cpu/official_path_and_late9_closure.json; cpu/category_scores.csv
+Late9历史完整性,FAIL,仅3题，2分；997题BLOCKED_IMAGE_SHA_UNAVAILABLE，不能报全量成绩。,只接受冻结SHA匹配原图；缺图不允许替换或补零。,historical/late9/blocked_requests.csv; historical/late9/data_recovery_attempts.json; historical/late9_source/worker.py:164; cpu/official_path_and_late9_closure.json
+Late9当前输入恢复,PASS,原997条阻塞题所需原图现全部匹配；CPU数据阻塞已解除。本轮新增Late9生成0。,原有单图块协议可在将来独立恢复；不等于已补完或通过新GPU生成。,cpu/dataset_validation.json; late9_resume_readiness.json
+作者880发布值,PASS,原论文Table3与官方项目页均列InternVL3-8B OCRBench=880。,https://arxiv.org/html/2504.10479v1#S3.T3,references.json
+作者880原始运行快照,UNVERIFIED,尚无可验证的880逐题预测、原始运行Commit、完整flags、软件/backend及图片打包SHA。,当前/历史固定VLMEvalKit默认配置是可核对的公开参考，不能冒充880原始run的完整快照。,references.json; source_manifest.json
+129分差距的定量归因,UNVERIFIED,单图块/Prompt错配已确认；动态切块是最有证据的主要候选，未做消融，不能给出各项贡献或保证修复后880。,880-751=129原始分；128上限未造成Native截断；计分错误和缺题已排除。,cpu/scoring_validation.json; cpu/official_dynamic_tile_plan.csv

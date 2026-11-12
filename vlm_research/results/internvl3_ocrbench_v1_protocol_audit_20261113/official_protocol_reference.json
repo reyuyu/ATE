@@ -1,0 +1,49 @@
+{
+  "reference_scope": "Public pinned VLMEvalKit defaults, NOT verified complete provenance of authors 880 run",
+  "model_id": "OpenGVLab/InternVL3-8B",
+  "model_revision": "853e3a797a661694b1b8ece0cb72dc2b23e3dac9",
+  "source_commits": {
+    "VLMEvalKit_pinned": "3c192143007e4eb3f5c1a36558a4f8c1451980cb",
+    "VLMEvalKit_current": "c247c4d61d92be5643802aa9be5f2bc34d913d2a",
+    "MultimodalOCR_pinned": "6ddb0a570419ce7ccb6913cf1c5ed84930320e7e",
+    "MultimodalOCR_current": "d1901a9500c7232040b5b5806df77a15312a3509"
+  },
+  "dataset": {
+    "name": "OCRBench v1",
+    "questions": 1000,
+    "unique_images": 930,
+    "annotation_sha256": "df75957e75ea052e9f38f2c67a4f6676103998517345cf49ef7d03b62c835864"
+  },
+  "public_reference": {
+    "max_num": 24,
+    "thumbnail": true,
+    "maximum_total_tiles": 25,
+    "image_size": 448,
+    "visual_tokens_per_tile": 256,
+    "normalization": "ImageNet",
+    "interpolation": "BICUBIC",
+    "question_suffix": "Answer the question using a single word or phrase.",
+    "chat_template": "internvl2_5 / native ChatML",
+    "max_new_tokens": 4096,
+    "do_sample": false,
+    "eos_token": "<|im_end|>",
+    "eos_token_id": 151645
+  },
+  "historical_ATE": {
+    "max_num": 1,
+    "maximum_total_tiles": 1,
+    "visual_tokens": 256,
+    "question_suffix": "Give only the requested text or answer. Do not explain.",
+    "max_new_tokens": 128,
+    "dtype": "BF16",
+    "attention": "Eager",
+    "normal_eos": true,
+    "raw_native_score": 751
+  },
+  "score": {
+    "unit": "integer raw points /1000",
+    "official_implementation": "official/Yuliang-Liu__MultimodalOCR/OCRBench/example.py",
+    "normalization": "Keep the original official loop, including HME100k special handling; do not replace with TextVQA soft scoring."
+  },
+  "generation_authorization": "NO NEW GENERATION IN THIS PUBLICATION"
+}

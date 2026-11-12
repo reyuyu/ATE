@@ -1,0 +1,47 @@
+[
+  {
+    "id": "paper_880",
+    "url": "https://arxiv.org/html/2504.10479v1#S3.T3",
+    "evidence": "Table3 InternVL3-8B OCRBench 880"
+  },
+  {
+    "id": "official_project",
+    "url": "https://internvl.github.io/blog/2025-04-11-InternVL-3.0/",
+    "evidence": "OCR chart document results InternVL3-8B 880"
+  },
+  {
+    "id": "official_eval_documentation",
+    "url": "https://internvl.readthedocs.io/en/latest/internvl3.0/evaluation.html",
+    "evidence": "VLMEvalKit evaluation guidance"
+  },
+  {
+    "id": "VLMEvalKit_baseline",
+    "url": "https://github.com/open-compass/VLMEvalKit/tree/3c192143007e4eb3f5c1a36558a4f8c1451980cb",
+    "evidence": "Pinned prior official reference; source copied for audit"
+  },
+  {
+    "id": "VLMEvalKit_current",
+    "url": "https://github.com/open-compass/VLMEvalKit/tree/c247c4d61d92be5643802aa9be5f2bc34d913d2a",
+    "evidence": "Current snapshot; InternVL wrapper/preprocessing/scorer byte-identical to pinned baseline files"
+  },
+  {
+    "id": "OCRBench_original",
+    "url": "https://github.com/Yuliang-Liu/MultimodalOCR/tree/6ddb0a570419ce7ccb6913cf1c5ed84930320e7e/OCRBench",
+    "evidence": "Original annotation and source of historical scorer/image archive receipt"
+  },
+  {
+    "id": "OCRBench_current",
+    "url": "https://github.com/Yuliang-Liu/MultimodalOCR/tree/d1901a9500c7232040b5b5806df77a15312a3509/OCRBench",
+    "evidence": "Current official JSON unchanged SHA; independent original scoring loop in example.py"
+  },
+  {
+    "id": "native_full_commit",
+    "url": "https://github.com/reyuyu/ATE/tree/3297559f21d3de55a6630a5491c9ecf66301c4b7/vlm_research/results/internvl3_svh_physical_d_seven_benchmarks_3090",
+    "evidence": "1000 paired Native/Physical-D records; stop-policy-v2 does not change inference recipe"
+  },
+  {
+    "id": "late9_partial_commit",
+    "url": "https://github.com/reyuyu/ATE/tree/c60a9919112a3cf5bec8c494a533cba56a97f29b/vlm_research/results/internvl3_svhr_late9_sevenbench_2x3090",
+    "evidence": "3 completed OCRBench questions plus997 SHA-unavailable blocked records"
+  }
+]

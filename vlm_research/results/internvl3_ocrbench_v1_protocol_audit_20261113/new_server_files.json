@@ -1,0 +1,40 @@
+{
+  "status": "ARCHIVE_READY_CPU_ONLY",
+  "required_publication": "Entire result directory to retain exact SHA256SUMS; 90 original evidence files plus publication supplements",
+  "key_files": [
+    "README_REPRODUCE_zh.md",
+    "report_zh.md",
+    "audit_table.csv",
+    "official_protocol_reference.json",
+    "source_manifest.json",
+    "model_reference/",
+    "question_image_sha256.csv",
+    "unique_images_sha256.csv",
+    "official/",
+    "historical/",
+    "cpu/",
+    "code/reproduce_cpu.py",
+    "PUBLICATION_SHA256SUMS"
+  ],
+  "external_assets_not_uploaded": [
+    {
+      "name": "Original OCRBench v1 images",
+      "directory": "OCRBench_Images",
+      "unique_files": 930,
+      "question_count": 1000,
+      "verification": "unique_images_sha256.csv"
+    },
+    {
+      "name": "OCRBench.json",
+      "sha256": "df75957e75ea052e9f38f2c67a4f6676103998517345cf49ef7d03b62c835864"
+    },
+    {
+      "name": "OpenGVLab/InternVL3-8B",
+      "revision": "853e3a797a661694b1b8ece0cb72dc2b23e3dac9",
+      "needed_for": "Only optional original tokenizer/processor CPU Smoke or separately authorized inference; portable archive/scoring check needs no model"
+    }
+  ],
+  "portable_cpu_dependencies": "Python 3 standard library only",
+  "original_cpu_smoke_environment": "Python 3.11.8, torch 2.6.0+cu124, transformers 4.49.0, Pillow, pandas; archived, not installed by reproduction script",
+  "gpu_generation": "NOT_RUN"
+}

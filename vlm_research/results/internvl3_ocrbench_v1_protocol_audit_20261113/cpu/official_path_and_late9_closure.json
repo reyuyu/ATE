@@ -1,0 +1,70 @@
+{
+  "status": "PASS",
+  "official_class_scoring": [
+    {
+      "method": "native",
+      "official_class_scores": {
+        "Text Recognition": 281,
+        "Scene Text-centric VQA": 164,
+        "Doc-oriented VQA": 110,
+        "Key Information Extraction": 122,
+        "Handwritten Mathematical Expression Recognition": 74,
+        "Final Score": 751,
+        "Final Score Norm": 75.1
+      }
+    },
+    {
+      "method": "physical_d",
+      "official_class_scores": {
+        "Text Recognition": 0,
+        "Scene Text-centric VQA": 13,
+        "Doc-oriented VQA": 17,
+        "Key Information Extraction": 1,
+        "Handwritten Mathematical Expression Recognition": 1,
+        "Final Score": 32,
+        "Final Score Norm": 3.2
+      }
+    }
+  ],
+  "official_max_num": 24,
+  "official_total_max_num": 64,
+  "official_prompt_difference_count": 1000,
+  "official_prompt_examples": [
+    {
+      "question_id": "0000",
+      "historical_user_text": "<image>\nwhat is written in the image?\nGive only the requested text or answer. Do not explain.",
+      "official_message": [
+        {
+          "type": "text",
+          "value": "what is written in the image?\nAnswer the question using a single word or phrase."
+        },
+        {
+          "type": "image",
+          "value": "audit_image.png"
+        }
+      ]
+    },
+    {
+      "question_id": "0001",
+      "historical_user_text": "<image>\nwhat is written in the image?\nGive only the requested text or answer. Do not explain.",
+      "official_message": [
+        {
+          "type": "text",
+          "value": "what is written in the image?\nAnswer the question using a single word or phrase."
+        },
+        {
+          "type": "image",
+          "value": "audit_image.png"
+        }
+      ]
+    }
+  ],
+  "late9_map_unavailable_count": 997,
+  "late9_map_unavailable_exact_blocked_set": true,
+  "late9_available_ids": [
+    "0053",
+    "0963",
+    "0988"
+  ],
+  "gpu_inference": "NOT_RUN"
+}
