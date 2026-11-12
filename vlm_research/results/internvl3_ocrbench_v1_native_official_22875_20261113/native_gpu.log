@@ -1,0 +1,211 @@
+FlashAttention2 is not installed.
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]Loading checkpoint shards:  25%|██▌       | 1/4 [00:00<00:00,  4.04it/s]Loading checkpoint shards:  50%|█████     | 2/4 [00:00<00:00,  4.25it/s]Loading checkpoint shards:  75%|███████▌  | 3/4 [00:00<00:00,  4.34it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.45it/s]Loading checkpoint shards: 100%|██████████| 4/4 [00:00<00:00,  4.37it/s]
+dynamic ViT batch size: 1
+/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/generation/configuration_utils.py:629: UserWarning: `do_sample` is set to `False`. However, `temperature` is set to `0.6` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `temperature`.
+  warnings.warn(
+/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/generation/configuration_utils.py:634: UserWarning: `do_sample` is set to `False`. However, `top_p` is set to `0.95` -- this flag is only used in sample-based generation modes. You should set `do_sample=True` or unset `top_p`.
+  warnings.warn(
+Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+<|im_start|>system
+你是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。<|im_end|>
+<|im_start|>user
+<image>
+what is written in the image?
+Answer the question using a single word or phrase.<|im_end|>
+<|im_start|>assistant
+ bakery
+PREDICTION 0098 tiles 1 tokens 3 score 1 seconds 1.06
+dynamic ViT batch size: 11
+Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+<|im_start|>system
+你是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。<|im_end|>
+<|im_start|>user
+<image>
+what is the total amount of this receipt? Answer this question using the text in the image directly.
+Answer the question using a single word or phrase.<|im_end|>
+<|im_start|>assistant
+ 1.00
+PREDICTION 0759 tiles 11 tokens 5 score 1 seconds 1.53
+dynamic ViT batch size: 16
+Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+<|im_start|>system
+你是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。<|im_end|>
+<|im_start|>user
+<image>
+what is written in the image?
+Answer the question using a single word or phrase.<|im_end|>
+<|im_start|>assistant
+ experience
+PREDICTION 0053 tiles 16 tokens 2 score 1 seconds 2.28
+dynamic ViT batch size: 25
+Setting `pad_token_id` to `eos_token_id`:151645 for open-end generation.
+Traceback (most recent call last):
+  File "/home/featurize/ate-experiments/internvl3-ocrbench-native-official-22875-20261113/native_official.py", line 266, in run
+    for qid in SMOKE_IDS:infer(qid,'SMOKE')
+                         ^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/internvl3-ocrbench-native-official-22875-20261113/native_official.py", line 253, in infer
+    with torch.inference_mode():text=wrapper.generate_v2(message,'OCRBench')
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/internvl3-ocrbench-native-official-22875-20261113/audit/official/VLMEvalKit_baseline_pinned/vlmeval/vlm/internvl/internvl_chat.py", line 430, in generate_v2
+    response = self.model.chat(
+               ^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-cache/huggingface/modules/transformers_modules/InternVL3-8B/modeling_internvl_chat.py", line 291, in chat
+    generation_output = self.generate(
+                        ^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/internvl3-ocrbench-native-official-22875-20261113/native_official.py", line 228, in generate
+    out=orig_gen(*args,**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-cache/huggingface/modules/transformers_modules/InternVL3-8B/modeling_internvl_chat.py", line 340, in generate
+    outputs = self.language_model.generate(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/generation/utils.py", line 2223, in generate
+    result = self._sample(
+             ^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/generation/utils.py", line 3211, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1845, in _call_impl
+    return inner()
+           ^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1793, in inner
+    result = forward_call(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 856, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 579, in forward
+    layer_outputs = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 260, in forward
+    hidden_states, self_attn_weights = self.self_attn(
+                                       ^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 192, in forward
+    attn_output, attn_weights = attention_interface(
+                                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 125, in eager_attention_forward
+    attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query.dtype)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/functional.py", line 2142, in softmax
+    ret = input.softmax(dim, dtype=dtype)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.38 GiB. GPU 0 has a total capacity of 23.56 GiB of which 1.20 GiB is free. Including non-PyTorch memory, this process has 22.35 GiB memory in use. Of the allocated memory 21.80 GiB is allocated by PyTorch, and 247.14 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+EXPERIMENT_FINISHED_GPU_RELEASE_ON_PROCESS_EXIT
+Traceback (most recent call last):
+  File "/home/featurize/ate-experiments/internvl3-ocrbench-native-official-22875-20261113/native_official.py", line 301, in <module>
+    prepare() if args.mode=='prepare' else run()
+                                           ^^^^^
+  File "/home/featurize/ate-experiments/internvl3-ocrbench-native-official-22875-20261113/native_official.py", line 266, in run
+    for qid in SMOKE_IDS:infer(qid,'SMOKE')
+                         ^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/internvl3-ocrbench-native-official-22875-20261113/native_official.py", line 253, in infer
+    with torch.inference_mode():text=wrapper.generate_v2(message,'OCRBench')
+                                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/internvl3-ocrbench-native-official-22875-20261113/audit/official/VLMEvalKit_baseline_pinned/vlmeval/vlm/internvl/internvl_chat.py", line 430, in generate_v2
+    response = self.model.chat(
+               ^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-cache/huggingface/modules/transformers_modules/InternVL3-8B/modeling_internvl_chat.py", line 291, in chat
+    generation_output = self.generate(
+                        ^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/internvl3-ocrbench-native-official-22875-20261113/native_official.py", line 228, in generate
+    out=orig_gen(*args,**kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-cache/huggingface/modules/transformers_modules/InternVL3-8B/modeling_internvl_chat.py", line 340, in generate
+    outputs = self.language_model.generate(
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/generation/utils.py", line 2223, in generate
+    result = self._sample(
+             ^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/generation/utils.py", line 3211, in _sample
+    outputs = self(**model_inputs, return_dict=True)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1845, in _call_impl
+    return inner()
+           ^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1793, in inner
+    result = forward_call(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 856, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 579, in forward
+    layer_outputs = decoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 260, in forward
+    hidden_states, self_attn_weights = self.self_attn(
+                                       ^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 192, in forward
+    attn_output, attn_weights = attention_interface(
+                                ^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/qwen2/modeling_qwen2.py", line 125, in eager_attention_forward
+    attn_weights = nn.functional.softmax(attn_weights, dim=-1, dtype=torch.float32).to(query.dtype)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/functional.py", line 2142, in softmax
+    ret = input.softmax(dim, dtype=dtype)
+          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 4.38 GiB. GPU 0 has a total capacity of 23.56 GiB of which 1.20 GiB is free. Including non-PyTorch memory, this process has 22.35 GiB memory in use. Of the allocated memory 21.80 GiB is allocated by PyTorch, and 247.14 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

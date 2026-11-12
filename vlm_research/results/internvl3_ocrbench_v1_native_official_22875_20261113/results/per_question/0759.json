@@ -1,0 +1,82 @@
+{
+  "question_id": "0759",
+  "status": "OK",
+  "protocol_sha256": "fdd77466c979865af4ba3519acd230a3d68efa7a1b992509d4b2a8d5446a4fe5",
+  "input": {
+    "question_id": "0759",
+    "official_id": 275,
+    "image_id": "SROIE/image/X51005288570.jpg",
+    "image_sha256": "d3db7ba3592f32d823821a386da090b94ea7b3ae4698583445d618370e83cc43",
+    "image_size": [
+      447,
+      1127
+    ],
+    "grid": [
+      2,
+      5
+    ],
+    "tiles": 11,
+    "visual_tokens": 2816,
+    "question": "what is the total amount of this receipt? Answer this question using the text in the image directly.",
+    "prompt": "<image>\nwhat is the total amount of this receipt? Answer this question using the text in the image directly.\nAnswer the question using a single word or phrase.",
+    "prompt_sha256": "595242cf709f07fd9c3a5fa6e289cb0ff148ed023e723259bdd1ed64b26f817c",
+    "chat_query_sha256": "473e42e8c796edcc6fd4dabb01ae86b2fa9228e6b606ed946e25d7942015147d",
+    "input_ids_sha256": "64bc428f7dd56e8221b871d6b5b315a76a8bddf0615929fd58a4744940392b20",
+    "attention_mask_sha256": "8e7c65496e9a766466065fa880fa643f0d1c219fb5a838dc8e38215b13d14b4f",
+    "input_tokens": 2894,
+    "eos_token_id": 151645,
+    "cpu_smoke_pixel_values_bf16_sha256": "a2835abc94e6b26f58a1343a67bdeeeb9552edc93bb8ce96c981ef52bf678699"
+  },
+  "text": "1.00",
+  "official_score": 1,
+  "independent_score": 1,
+  "empty_output": false,
+  "generated_tokens": 5,
+  "stopped_on_eos": true,
+  "truncated": false,
+  "observation": {
+    "question_id": "0759",
+    "tiles": 11,
+    "pixel_values_bf16_sha256": "a2835abc94e6b26f58a1343a67bdeeeb9552edc93bb8ce96c981ef52bf678699",
+    "input_ids_sha256": "64bc428f7dd56e8221b871d6b5b315a76a8bddf0615929fd58a4744940392b20",
+    "attention_mask_sha256": "8e7c65496e9a766466065fa880fa643f0d1c219fb5a838dc8e38215b13d14b4f",
+    "image_context_tokens": 2816,
+    "actual_generation_kwargs": {
+      "do_sample": false,
+      "max_new_tokens": 4096,
+      "top_p": 0.95,
+      "temperature": 0.6,
+      "eos_token_id": 151645
+    },
+    "visual_feature_shape": [
+      11,
+      256,
+      3584
+    ],
+    "feature_finite": true,
+    "lm_forward_calls": 5,
+    "prefill_logits_shape": [
+      1,
+      1,
+      151674
+    ],
+    "prefill_input_embeds_shape": [
+      1,
+      2894,
+      3584
+    ],
+    "all_logits_finite": true,
+    "generated_token_ids": [
+      16,
+      13,
+      15,
+      15,
+      151645
+    ],
+    "raw_decode_with_special_tokens": "1.00<|im_end|>"
+  },
+  "elapsed_s": 1.5321907997131348,
+  "peak_allocated_MiB": 17771.814453125,
+  "peak_reserved_MiB": 18990.0,
+  "phase": "SMOKE"
+}

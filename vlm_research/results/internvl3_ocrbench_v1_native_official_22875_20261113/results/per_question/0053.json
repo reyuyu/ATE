@@ -1,0 +1,79 @@
+{
+  "question_id": "0053",
+  "status": "OK",
+  "protocol_sha256": "fdd77466c979865af4ba3519acd230a3d68efa7a1b992509d4b2a8d5446a4fe5",
+  "input": {
+    "question_id": "0053",
+    "official_id": 1660,
+    "image_id": "IC15_1811/imgs/000001661.jpg",
+    "image_sha256": "2725942a13ce5b3f8dfdd0ed769454895ba91f285e84630b19ccaa1401738d4d",
+    "image_size": [
+      87,
+      49
+    ],
+    "grid": [
+      5,
+      3
+    ],
+    "tiles": 16,
+    "visual_tokens": 4096,
+    "question": "what is written in the image?",
+    "prompt": "<image>\nwhat is written in the image?\nAnswer the question using a single word or phrase.",
+    "prompt_sha256": "a2a77a959a7a043ce963139e485eec1c5cd6f22200383cffda0203911935e4d7",
+    "chat_query_sha256": "895878c9036ad9e89e0285560a5e4e69d01012efcac5d036a07e4748056e3d63",
+    "input_ids_sha256": "f0649d5a9d361c7b254dcafcbd450fe994a4a2222ed7831f3af789ac26f9e417",
+    "attention_mask_sha256": "e3e7ed3a1df6b6d7c1de33cb76433f9755fd3f840ee784f8a12e540e380dc9b0",
+    "input_tokens": 4161,
+    "eos_token_id": 151645,
+    "cpu_smoke_pixel_values_bf16_sha256": "577d7ce756722c3c8da73aacb2563d521d08e202ae24b177c8d7f15c128dc7cc"
+  },
+  "text": "experience",
+  "official_score": 1,
+  "independent_score": 1,
+  "empty_output": false,
+  "generated_tokens": 2,
+  "stopped_on_eos": true,
+  "truncated": false,
+  "observation": {
+    "question_id": "0053",
+    "tiles": 16,
+    "pixel_values_bf16_sha256": "577d7ce756722c3c8da73aacb2563d521d08e202ae24b177c8d7f15c128dc7cc",
+    "input_ids_sha256": "f0649d5a9d361c7b254dcafcbd450fe994a4a2222ed7831f3af789ac26f9e417",
+    "attention_mask_sha256": "e3e7ed3a1df6b6d7c1de33cb76433f9755fd3f840ee784f8a12e540e380dc9b0",
+    "image_context_tokens": 4096,
+    "actual_generation_kwargs": {
+      "do_sample": false,
+      "max_new_tokens": 4096,
+      "top_p": 0.95,
+      "temperature": 0.6,
+      "eos_token_id": 151645
+    },
+    "visual_feature_shape": [
+      16,
+      256,
+      3584
+    ],
+    "feature_finite": true,
+    "lm_forward_calls": 2,
+    "prefill_logits_shape": [
+      1,
+      1,
+      151674
+    ],
+    "prefill_input_embeds_shape": [
+      1,
+      4161,
+      3584
+    ],
+    "all_logits_finite": true,
+    "generated_token_ids": [
+      49559,
+      151645
+    ],
+    "raw_decode_with_special_tokens": "experience<|im_end|>"
+  },
+  "elapsed_s": 2.2801878452301025,
+  "peak_allocated_MiB": 20314.35693359375,
+  "peak_reserved_MiB": 22692.0,
+  "phase": "SMOKE"
+}

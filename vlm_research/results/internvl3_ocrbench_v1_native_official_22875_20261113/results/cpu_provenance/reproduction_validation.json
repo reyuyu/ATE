@@ -1,0 +1,191 @@
+{
+  "status": "PASS",
+  "checks": {
+    "PUBLICATION_SHA256SUMS": {
+      "status": "PASS",
+      "files": 99
+    },
+    "SHA256SUMS": {
+      "status": "PASS",
+      "files": 89
+    },
+    "annotation_and_sha_lists": {
+      "status": "PASS",
+      "questions": 1000,
+      "unique_images": 930
+    },
+    "late9_blocking_partition": {
+      "status": "PASS",
+      "completed": 3,
+      "blocked": 997
+    },
+    "fresh_annotation": {
+      "status": "PASS"
+    },
+    "fresh_original_images": {
+      "status": "PASS",
+      "unique_images_hashed": 930,
+      "questions_covered": 1000
+    }
+  },
+  "scoring": [
+    {
+      "source": "native_stop_v2",
+      "method": "native",
+      "N": 1000,
+      "official_score": 751,
+      "stored_score": 751.0,
+      "mismatch_ids": [],
+      "categories": {
+        "Regular Text Recognition": [
+          49,
+          50
+        ],
+        "Irregular Text Recognition": [
+          45,
+          50
+        ],
+        "Artistic Text Recognition": [
+          47,
+          50
+        ],
+        "Handwriting Recognition": [
+          45,
+          50
+        ],
+        "Digit String Recognition": [
+          48,
+          50
+        ],
+        "Non-Semantic Text Recognition": [
+          47,
+          50
+        ],
+        "Scene Text-centric VQA": [
+          164,
+          200
+        ],
+        "Doc-oriented VQA": [
+          110,
+          200
+        ],
+        "Key Information Extraction": [
+          122,
+          200
+        ],
+        "Handwritten Mathematical Expression Recognition": [
+          74,
+          100
+        ]
+      }
+    },
+    {
+      "source": "native_stop_v2",
+      "method": "physical_d",
+      "N": 1000,
+      "official_score": 32,
+      "stored_score": 32.0,
+      "mismatch_ids": [],
+      "categories": {
+        "Regular Text Recognition": [
+          0,
+          50
+        ],
+        "Irregular Text Recognition": [
+          0,
+          50
+        ],
+        "Artistic Text Recognition": [
+          0,
+          50
+        ],
+        "Handwriting Recognition": [
+          0,
+          50
+        ],
+        "Digit String Recognition": [
+          0,
+          50
+        ],
+        "Non-Semantic Text Recognition": [
+          0,
+          50
+        ],
+        "Scene Text-centric VQA": [
+          13,
+          200
+        ],
+        "Doc-oriented VQA": [
+          17,
+          200
+        ],
+        "Key Information Extraction": [
+          1,
+          200
+        ],
+        "Handwritten Mathematical Expression Recognition": [
+          1,
+          100
+        ]
+      }
+    },
+    {
+      "source": "late9_partial",
+      "method": "late9",
+      "N": 3,
+      "official_score": 2,
+      "stored_score": 2.0,
+      "mismatch_ids": [],
+      "categories": {
+        "Irregular Text Recognition": [
+          1,
+          1
+        ],
+        "Handwritten Mathematical Expression Recognition": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "source": "late9_partial",
+      "method": "native",
+      "N": 3,
+      "official_score": 2,
+      "stored_score": 2.0,
+      "mismatch_ids": [],
+      "categories": {
+        "Irregular Text Recognition": [
+          1,
+          1
+        ],
+        "Handwritten Mathematical Expression Recognition": [
+          1,
+          2
+        ]
+      }
+    },
+    {
+      "source": "late9_partial",
+      "method": "physical_d",
+      "N": 3,
+      "official_score": 0,
+      "stored_score": 0.0,
+      "mismatch_ids": [],
+      "categories": {
+        "Irregular Text Recognition": [
+          0,
+          1
+        ],
+        "Handwritten Mathematical Expression Recognition": [
+          0,
+          2
+        ]
+      }
+    }
+  ],
+  "new_generations": 0,
+  "model_loaded": false,
+  "gpu_initialized": false,
+  "scope": "Archive integrity, exact official CPU rescoring, annotation/SHA mappings; no fresh processor/tokenizer or inference smoke"
+}

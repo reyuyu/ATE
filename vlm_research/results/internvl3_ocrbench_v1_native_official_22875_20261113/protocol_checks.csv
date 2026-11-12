@@ -1,0 +1,14 @@
+item,status,evidence
+模型与权重,PASS,"OpenGVLab/InternVL3-8B@853e3a797a661694b1b8ece0cb72dc2b23e3dac9；21文件15,901,094,763 bytes；4分片下载流SHA256与17小文件Git blob哈希通过"
+数据与顺序,PASS,1000题、930原图；Question/Gold/official_id/Image ID/原始顺序逐项一致；930图片SHA全部匹配
+Prompt,PASS,执行固定官方build_prompt/reorganize_prompt AST；原题+换行+Answer the question using a single word or phrase.
+动态切块,PASS_CPU_AND_3_GPU_CASES,执行固定官方load_image/dynamic_preprocess；max_num=24，448，RGB，ImageNet；多图块加缩略图，最大25块
+Chat Template,PASS_4_INPUTS,原模型internvl2_5/ChatML与中文System；GPU实际input_ids/attention_mask及BF16 pixels哈希匹配CPU；EOS151645
+生成,PASS_3_CASES,原生model.chat、贪心、max_new_tokens=4096；官方generate_v2实际传temperature=0.6/top_p=0.95（do_sample=False时不采样）；正常EOS
+视觉Token映射,PASS_4_PREFILLS_PARTIAL,1/11/16/25块对应256/2816/4096/6400个IMG_CONTEXT；ViT输出形状正确、有限；25块LLM Prefill OOM
+GPU Smoke,FAIL_OOM,0098/0759/0053成功；0743在6478-token原生Eager Prefill申请4.38GiB失败；立即停止
+评分器,PASS_3_CASES,官方OCRBench example.py评分循环、固定VLMEvalKit OCRBench_eval与独立CPU逻辑三方一致；数学分支保持HME100k原规则
+1000题Native得分,NOT_VALIDATED,未进入全量评测；3个成功Smoke不换算或冒充正式分数，失败与未运行均无分数
+与880分差距,NOT_COMPUTABLE,本轮无1000题得分，不能计算差距；旧751是不同单图块协议，不混入本轮
+论文原880 run完全一致,UNVERIFIED,公开固定VLMEvalKit协议可核验，但作者880的完整原运行flags/精确快照来源并未全部公开
+资源释放,PASS,唯一模型进程4697退出；无GPU compute进程；3090使用1MiB、空闲24123MiB、利用率0%

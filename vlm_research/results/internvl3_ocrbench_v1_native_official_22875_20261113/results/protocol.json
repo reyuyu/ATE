@@ -1,0 +1,142 @@
+{
+  "model": "OpenGVLab/InternVL3-8B",
+  "revision": "853e3a797a661694b1b8ece0cb72dc2b23e3dac9",
+  "audit_commit": "93ff60f839644fabf81f202d699bbc0638484f42",
+  "vlmevalkit_commit": "3c192143007e4eb3f5c1a36558a4f8c1451980cb",
+  "method": "Native",
+  "dtype": "bfloat16",
+  "attention": "eager",
+  "model_all_on_gpu": true,
+  "quantization": false,
+  "cpu_offload": false,
+  "batch_size": 1,
+  "model_max_dynamic_patch_config": 12,
+  "effective_max_num": 24,
+  "image_size": 448,
+  "use_thumbnail": true,
+  "max_total_tiles": 25,
+  "visual_tokens_per_tile": 256,
+  "rgb": true,
+  "upscale": false,
+  "imagenet_mean": [
+    0.485,
+    0.456,
+    0.406
+  ],
+  "imagenet_std": [
+    0.229,
+    0.224,
+    0.225
+  ],
+  "use_custom_prompt": true,
+  "use_cot": false,
+  "use_mpo_prompt": false,
+  "best_of_n": 1,
+  "version": "V2.0",
+  "kwargs_at_wrapper_init": {
+    "do_sample": false,
+    "max_new_tokens": 4096,
+    "top_p": null
+  },
+  "kwargs_at_chat": {
+    "do_sample": false,
+    "max_new_tokens": 4096,
+    "temperature": 0.6,
+    "top_p": 0.95
+  },
+  "template": "internvl2_5",
+  "system_prompt": "你是书生·万象，英文名是InternVL，是由上海人工智能实验室、清华大学及多家合作单位联合开发的多模态大语言模型。",
+  "eos_token_id": 151645,
+  "annotation_sha256": "df75957e75ea052e9f38f2c67a4f6676103998517345cf49ef7d03b62c835864",
+  "sample_order": "original OCRBench.json, 0000..0999",
+  "samples": 1000,
+  "unique_original_images": 930,
+  "smoke_ids": [
+    "0098",
+    "0759",
+    "0053",
+    "0743"
+  ],
+  "smoke_reuse": "Successful smoke predictions reused for identical formal inputs; final rows in original order",
+  "ast_extraction": [
+    {
+      "file": "utils.py",
+      "name": "build_transform",
+      "ast_sha256": "75be3b9dba48299b3a4e47a5faa8b0c77e0b5a063d7428b1705ca6e835d0166f"
+    },
+    {
+      "file": "utils.py",
+      "name": "find_closest_aspect_ratio",
+      "ast_sha256": "04515e91b63056716bbdd0cd8f44a66efd402c4b8de70b2b1bac1f8711d4b24e"
+    },
+    {
+      "file": "utils.py",
+      "name": "dynamic_preprocess",
+      "ast_sha256": "b64aebed4a2cbface6257789c79bdd89ee8a536f245bb2091db12f05b36a2da5"
+    },
+    {
+      "file": "utils.py",
+      "name": "load_image",
+      "ast_sha256": "aacf72618c3e052b8804ac938ead2639dd3cae2008fefa49da00c4498fdba31a"
+    },
+    {
+      "file": "utils.py",
+      "name": "reorganize_prompt",
+      "ast_sha256": "62df9062ee52775a35d9c08010cbf416fa00861b846f275699b061ee06b3fe82"
+    },
+    {
+      "file": "internvl_chat.py",
+      "name": "use_custom_prompt",
+      "ast_sha256": "b824d317cbb752e91b32c8d868dda762a448d91163defcd66f5bee788624ca0b"
+    },
+    {
+      "file": "internvl_chat.py",
+      "name": "build_prompt",
+      "ast_sha256": "089a5c0b329f55031e986a90a484a60d1f33d15d8f4d28ca5a67d8117f443029"
+    },
+    {
+      "file": "internvl_chat.py",
+      "name": "set_max_num",
+      "ast_sha256": "3639988bce58ae5595e581fc8634d130aec598efd31508edb53995e2b024152a"
+    },
+    {
+      "file": "internvl_chat.py",
+      "name": "generate_v2",
+      "ast_sha256": "a63f88eee4ebc100b3828dad38237bf4338a1e222168c418d456eb07b3bf64e1"
+    }
+  ],
+  "tile_histogram": {
+    "1": 53,
+    "3": 49,
+    "4": 58,
+    "5": 44,
+    "6": 19,
+    "7": 199,
+    "8": 18,
+    "9": 24,
+    "10": 8,
+    "11": 36,
+    "12": 2,
+    "13": 159,
+    "14": 1,
+    "15": 41,
+    "16": 56,
+    "17": 4,
+    "19": 24,
+    "21": 92,
+    "22": 46,
+    "23": 20,
+    "25": 47
+  },
+  "dependency_shim": "Only OCRBench DATASET_TYPE=VQA, modality=IMAGE, dump_image returns byte-identical local original; unmodified official AST",
+  "model_source_sha256": {
+    "conversation.py": "b1b9f280e9cb9211e519e2b8071002b57cc742aadb2f49b05fa674ee3c7d83ee",
+    "modeling_intern_vit.py": "d3e0f68f29e86be1f3e6e101dc45303ec24e5115e0034de101665972576eb348",
+    "modeling_internvl_chat.py": "76fe595f04acd077d168f038a15c697d1c66093a0c000bffb0568dfa90095ba8",
+    "configuration_intern_vit.py": "22dd687a5f142985407675fc6b1dc688c2ded93e54192543ecf28ef495a6efa8",
+    "configuration_internvl_chat.py": "6524e6deae6c318543d1022a599f011120f5a970eaa25f1118e7f5d0e346710c"
+  },
+  "harness_sha256": "2a151b8d98619e6700df0dc5e6ac7f057a99f0b5fa47f798926782df94e19f4f",
+  "inputs_manifest_sha256": "0e2a418313badf9580f99fcf98ee7e259ebf9f7dcf37b003171a97b5e2a46550",
+  "gold_manifest_sha256": "f389cda7de27bc0d0f7ec0ab8258b692a1c6730063fce194ad21bbc6fabf9b7a"
+}

@@ -1,0 +1,80 @@
+{
+  "question_id": "0098",
+  "status": "OK",
+  "protocol_sha256": "fdd77466c979865af4ba3519acd230a3d68efa7a1b992509d4b2a8d5446a4fe5",
+  "input": {
+    "question_id": "0098",
+    "official_id": 360,
+    "image_id": "totaltext/imgs/000000361.jpg",
+    "image_sha256": "21b239fcdf8d5c25c2b93b61814dcae52515ac16e699bef8159a39ffe5225359",
+    "image_size": [
+      44,
+      43
+    ],
+    "grid": [
+      1,
+      1
+    ],
+    "tiles": 1,
+    "visual_tokens": 256,
+    "question": "what is written in the image?",
+    "prompt": "<image>\nwhat is written in the image?\nAnswer the question using a single word or phrase.",
+    "prompt_sha256": "a2a77a959a7a043ce963139e485eec1c5cd6f22200383cffda0203911935e4d7",
+    "chat_query_sha256": "6a0af2eb9b1a7f8c92a12ab59e7d807eefa2f96be650012319bd784c6fdfb6c5",
+    "input_ids_sha256": "2e82164a2b10e27377969a5e94c09073851f32869b8b937dc8356ba68efee2be",
+    "attention_mask_sha256": "3e3057bea9eb445cdd7d3650d2a018acd229050450a72f3167c6267ebf7255f4",
+    "input_tokens": 321,
+    "eos_token_id": 151645,
+    "cpu_smoke_pixel_values_bf16_sha256": "5abcf72f3df5777e0c37e1b456ac1915934c7d2be6e49277681feb43e887dc5b"
+  },
+  "text": "bakery",
+  "official_score": 1,
+  "independent_score": 1,
+  "empty_output": false,
+  "generated_tokens": 3,
+  "stopped_on_eos": true,
+  "truncated": false,
+  "observation": {
+    "question_id": "0098",
+    "tiles": 1,
+    "pixel_values_bf16_sha256": "5abcf72f3df5777e0c37e1b456ac1915934c7d2be6e49277681feb43e887dc5b",
+    "input_ids_sha256": "2e82164a2b10e27377969a5e94c09073851f32869b8b937dc8356ba68efee2be",
+    "attention_mask_sha256": "3e3057bea9eb445cdd7d3650d2a018acd229050450a72f3167c6267ebf7255f4",
+    "image_context_tokens": 256,
+    "actual_generation_kwargs": {
+      "do_sample": false,
+      "max_new_tokens": 4096,
+      "top_p": 0.95,
+      "temperature": 0.6,
+      "eos_token_id": 151645
+    },
+    "visual_feature_shape": [
+      1,
+      256,
+      3584
+    ],
+    "feature_finite": true,
+    "lm_forward_calls": 3,
+    "prefill_logits_shape": [
+      1,
+      1,
+      151674
+    ],
+    "prefill_input_embeds_shape": [
+      1,
+      321,
+      3584
+    ],
+    "all_logits_finite": true,
+    "generated_token_ids": [
+      69822,
+      722,
+      151645
+    ],
+    "raw_decode_with_special_tokens": "bakery<|im_end|>"
+  },
+  "elapsed_s": 1.0618534088134766,
+  "peak_allocated_MiB": 15285.83837890625,
+  "peak_reserved_MiB": 15418.0,
+  "phase": "SMOKE"
+}
