@@ -1,0 +1,95 @@
+{
+  "status": "COMPLETE_FULL_COVERAGE_WITH_NUMERICAL_WAIVER",
+  "configuration_name": "interVL-SVH-R-new",
+  "coverage": 1000,
+  "expected": 1000,
+  "unique_images": 930,
+  "new_quality_generations": 900,
+  "inherited_predictions": 100,
+  "score_0_1000": 717,
+  "accuracy_percent": 71.7,
+  "scores": [
+    {
+      "method": "Native",
+      "n": 1000,
+      "score_0_1000": 751,
+      "accuracy_percent": 75.1,
+      "empty": 0,
+      "truncated": 0,
+      "new_generations": 0,
+      "reused": 1000
+    },
+    {
+      "method": "Physical_D",
+      "n": 1000,
+      "score_0_1000": 32,
+      "accuracy_percent": 3.2,
+      "empty": 0,
+      "truncated": 3,
+      "new_generations": 0,
+      "reused": 1000
+    },
+    {
+      "method": "Late9",
+      "n": 1000,
+      "score_0_1000": 563,
+      "accuracy_percent": 56.3,
+      "empty": 0,
+      "truncated": 0,
+      "new_generations": 0,
+      "reused": 1000
+    },
+    {
+      "method": "interVL-SVH-R-new",
+      "n": 1000,
+      "score_0_1000": 717,
+      "accuracy_percent": 71.7,
+      "empty": 0,
+      "truncated": 0,
+      "new_generations": 900,
+      "reused": 100
+    }
+  ],
+  "paired": [
+    {
+      "method": "interVL-SVH-R-new",
+      "reference": "Native",
+      "n": 1000,
+      "delta_points": -34,
+      "delta_pp": -3.4,
+      "wrong_to_right": 11,
+      "right_to_wrong": 45,
+      "changed_text": 220,
+      "ci95_low_pp": -4.903087537677735,
+      "ci95_high_pp": -2.002002002002002,
+      "image_clusters": 930,
+      "bootstrap_replicates": 10000,
+      "seed": 20261113,
+      "multiplicity": "unadjusted exploratory; configuration selected using100 overlapping questions"
+    },
+    {
+      "method": "interVL-SVH-R-new",
+      "reference": "Late9",
+      "n": 1000,
+      "delta_points": 154,
+      "delta_pp": 15.4,
+      "wrong_to_right": 165,
+      "right_to_wrong": 11,
+      "changed_text": 412,
+      "ci95_low_pp": 13.095238095238095,
+      "ci95_high_pp": 17.786561264822133,
+      "image_clusters": 930,
+      "bootstrap_replicates": 10000,
+      "seed": 20261113,
+      "multiplicity": "unadjusted exploratory; configuration selected using100 overlapping questions"
+    }
+  ],
+  "independent_scoring_checks": 4000,
+  "cpu_token_decode_checks": 1000,
+  "empty": 0,
+  "truncated": 0,
+  "GPU_after": "NVIDIA GeForce RTX 3090, GPU-6c96bba5-5cc6-8be2-b277-5533b4cdab27, 1 MiB, 24123 MiB",
+  "numerical_status": "EXPLORATORY_QUALITY_WITH_NUMERICAL_WAIVER; historical strict failures remain; naming does not certify global numerical equivalence",
+  "official_dynamic24_protocol": false,
+  "preregistration_commit": "4b5b1f7899a8a60c17a1d48280a1ad25f76d60c9"
+}

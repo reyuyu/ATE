@@ -1,7 +1,5 @@
-# interVL-SVH-R-new：OCRBench v1全集
+# interVL-SVH-R-new
 
-用户命名的配置：InternVL3-8B，Late14=L14–L27（0-based），其余冻结ATE协议不变。配置见../../configs/interVL-SVH-R-new.json。
+当前状态：COMPLETE_FULL_COVERAGE_WITH_NUMERICAL_WAIVER。OCRBench v1覆盖1000/1000，得分717/1000；继承100、新增900。
 
-预注册状态：PARTIAL，100/1000题继承上一轮完整预测；仅授权生成缺失900题。未填写或推测全量分数。先做4道未完成题的Physical结构Smoke，失败即停止。
-
-该命名与完整覆盖不代表已通过历史全局数值等价门禁，EXPLORATORY_QUALITY_WITH_NUMERICAL_WAIVER继续保留。沿用单448图块/256视觉Token的ATE协议，不混入官方动态24图块协议。
+完整证据见[中文报告](report_zh.md)、[汇总](summary.json)、[运行前协议](protocol.json)及[命名配置](../../configs/interVL-SVH-R-new.json)。历史数值等价豁免保留；不是官方动态24图块协议。
