@@ -1,0 +1,33 @@
+test_dynamic_masks_keep_late9_and_R_boundary (__main__.DynamicCache.test_dynamic_masks_keep_late9_and_R_boundary) ... ok
+test_dynamic_persistent_and_scratch (__main__.DynamicCache.test_dynamic_persistent_and_scratch) ... ok
+test_no_legacy_global_mutation (__main__.DynamicCache.test_no_legacy_global_mutation) ... ok
+test_chat_dynamic_positions (__main__.OfficialInputs.test_chat_dynamic_positions) ... ok
+test_exact_official_prompt (__main__.OfficialInputs.test_exact_official_prompt) ... ok
+test_official_dynamic_tiles (__main__.OfficialInputs.test_official_dynamic_tiles) ... ok
+test_official_soft_score (__main__.OfficialInputs.test_official_soft_score) ... ERROR
+
+======================================================================
+ERROR: test_official_soft_score (__main__.OfficialInputs.test_official_soft_score)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/data/lk/ATE-worktrees/internvl3-textvqa-official-alignment/vlm_research/internvl3_textvqa_official/cpu_tests.py", line 25, in test_official_soft_score
+    value, _ = score(self.scope, 'cat', ['cat']*count + ['dog']*(10-count))
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/internvl3-textvqa-official-alignment/vlm_research/internvl3_textvqa_official/common.py", line 133, in score
+    value = scope['process_line']({'prediction': prediction, 'answer': repr(gold)}, method='vqa_score')
+            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/internvl3-textvqa-official-alignment/vlm_research/results/internvl3_textvqa_official_alignment/release_sources/vlmeval/dataset/utils/vqa_eval.py", line 255, in process_line
+    ret['gt'] = [process_answer(x) for x in answers]
+                ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/internvl3-textvqa-official-alignment/vlm_research/results/internvl3_textvqa_official_alignment/release_sources/vlmeval/dataset/utils/vqa_eval.py", line 255, in <listcomp>
+    ret['gt'] = [process_answer(x) for x in answers]
+                 ^^^^^^^^^^^^^^^^^
+  File "/data/lk/ATE-worktrees/internvl3-textvqa-official-alignment/vlm_research/results/internvl3_textvqa_official_alignment/release_sources/vlmeval/dataset/utils/vqa_eval.py", line 243, in process_answer
+    answer = process_punctuation(answer)
+             ^^^^^^^^^^^^^^^^^^^
+NameError: name 'process_punctuation' is not defined
+
+----------------------------------------------------------------------
+Ran 7 tests in 2.460s
+
+FAILED (errors=1)

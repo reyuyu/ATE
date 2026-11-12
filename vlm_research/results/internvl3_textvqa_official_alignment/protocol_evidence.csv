@@ -1,0 +1,14 @@
+parameter,value,commit,path,lines,evidence_scope
+model_registration,InternVL3-8B HF V2.0,1cc6d16d34b8f164523388edb0a9642ef8ab7314,release_sources/vlmeval/config.py,742-743,Official release-time implementation not unpublished leaderboard lock
+later_runtime,LMDeploy True,cb1b907680808ffb3c314b8a34e0c90a7a3db1de,sources/vlmeval/config.py,827-828,Audited only not executed
+dataset,TextVQA_VAL 5000,1cc6d16d34b8f164523388edb0a9642ef8ab7314,release_sources/vlmeval/dataset/image_vqa.py,20-32,Official URL and MD5
+model_dtype,BF16,1cc6d16d34b8f164523388edb0a9642ef8ab7314,release_sources/vlmeval/vlm/internvl/internvl_chat.py,65-82,Official HF initialization
+max_grid_tiles,6,1cc6d16d34b8f164523388edb0a9642ef8ab7314,release_sources/vlmeval/vlm/internvl/internvl_chat.py,182-201,TextVQA-specific effective default
+thumbnail,True and at most 7 actual tiles,1cc6d16d34b8f164523388edb0a9642ef8ab7314,release_sources/vlmeval/vlm/internvl/utils.py,83-95,Official image path
+preprocessing,448 RGB dynamic tiles ImageNet normalization,1cc6d16d34b8f164523388edb0a9642ef8ab7314,release_sources/vlmeval/vlm/internvl/utils.py,23-97,Executed exact pinned functions on CPU
+prompt,Question followed by single-word-or-phrase instruction,1cc6d16d34b8f164523388edb0a9642ef8ab7314,release_sources/vlmeval/vlm/internvl/internvl_chat.py,135-180,No external OCR
+generation,Greedy cap4096 temperature0.7 top_p0.95,1cc6d16d34b8f164523388edb0a9642ef8ab7314,release_sources/vlmeval/vlm/internvl/internvl_chat.py,118-120 and 274-298,Effective first candidate generation
+score,VQA ten-answer consensus Soft Accuracy,1cc6d16d34b8f164523388edb0a9642ef8ab7314,release_sources/vlmeval/dataset/utils/vqa_eval.py,239-268,Primary frozen scorer
+official_reference,80.2 percent,author_public_blog,sources/internvl3_blog.html,1172-1175,Published reference not our measured result
+leaderboard_exact_runtime,UNPUBLISHED_UNRESOLVED,not_known,sources/internvl3_evaluation.html,483-486,Do not invent exact authors run lock
+chat_template,internvl2_5,853e3a797a661694b1b8ece0cb72dc2b23e3dac9,modeling_internvl_chat.py,253-298,Model cache frozen in protocol.json
