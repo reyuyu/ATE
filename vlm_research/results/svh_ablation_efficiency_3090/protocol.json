@@ -1,0 +1,75 @@
+{
+  "status": "FROZEN",
+  "created_ns": 1794502530371788505,
+  "gpu_uuid": "GPU-4612d0cb-a47a-674d-b647-3f4065f1627f",
+  "model": "llava-hf/llava-1.5-7b-hf",
+  "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "precision": "FP16",
+  "attention": "eager",
+  "batch": 1,
+  "greedy": true,
+  "quality": {
+    "conditions": [
+      "Native",
+      "wo_selective",
+      "wo_bypass",
+      "SVH"
+    ],
+    "new_conditions": [
+      "Native",
+      "wo_selective",
+      "wo_bypass"
+    ],
+    "reuse": "Full SVH only; all10927 image/Prompt/Processor/ID/Gold/input hashes and source/generation/scorer checked",
+    "counts": {
+      "ScienceQA-IMG": 2017,
+      "POPE": 8910
+    },
+    "pope_subsets": {
+      "random": 2910,
+      "popular": 3000,
+      "adversarial": 3000
+    },
+    "caps": {
+      "ScienceQA-IMG": 1024,
+      "POPE": 128
+    },
+    "stop": "official EOS2, no forced output length; independent per-request KV",
+    "no_selective": "Text relays read image at ALL32Prefill layers; no early exit; answer noimage and L2..5 physical bypass unchanged",
+    "no_bypass": "TransferL0..19/exit20/removal unchanged; normal answer Attention and real text KV restored L2..5"
+  },
+  "length": {
+    "methods": [
+      "Native",
+      "SVH",
+      "SVH-R"
+    ],
+    "lengths": [
+      16,
+      32,
+      64,
+      128
+    ],
+    "sessions": 2,
+    "inputs": 30,
+    "formal_per_session": 360,
+    "ignore_eos": true,
+    "timing": "Frozen4090 generate lifecycle; GPU tensors ready; controller/positions/mask initialization included; after context cleanup+CUDA sync; CPUlogs/KVaudit excluded",
+    "tpot": "(E2E-TTFT)/(N-1)",
+    "kv": "Actual live K/V tensor bytes after Nth output; N-1 decode inputs; NOT total GPU memory",
+    "warmup_native32": 40,
+    "warmup_each_length_method": 2,
+    "baseline_dual_probes_each": 10,
+    "calibration_every_inputs": 5,
+    "calibration_dual_probes_each": 3,
+    "probe_length": 32,
+    "performance_gate": "WARN only >2%; no resets/deletions/retries; correctness/OOM/hardware safety hard stop",
+    "schedule": "For each input: rotate/reverse four length groups by input index; cyclic method rotation by input+length index; Session2 exactly same schedule"
+  },
+  "history_32_reuse": false,
+  "history_32_reason": "OldGPU UUID differs and session2 drift15.09%; rerun only Native/SVH/SVHR on current GPU with all lengths",
+  "no_training": true,
+  "no_other_benchmarks": true,
+  "no_paper_edit": true,
+  "no_push": true
+}

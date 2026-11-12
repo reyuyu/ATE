@@ -1,0 +1,15 @@
+{
+  "stage": "CPU artifact finalization, after all GPU sessions and CPU correctness validation completed",
+  "status": "FAILED_AUXILIARY_RELEASE_ASSERTION",
+  "error": "AssertionError at assert read(p/'resource_release.json')['allocated_bytes']==0",
+  "session1_pre_exit_allocated_bytes": 33554432,
+  "session2_pre_exit_allocated_bytes": 33554432,
+  "observed_after_worker_exit": {
+    "GPU_memory_used_MiB": 1,
+    "NVML_compute_processes": []
+  },
+  "correction": "Verify worker processes have exited and NVML has no compute processes; retain the original pre-exit memory measurements unchanged. Do not claim they were zero before exit.",
+  "formal_requests_changed_or_rerun": 0,
+  "measurement_correctness_status_unchanged": "PASS",
+  "performance_status_unchanged": "COMPLETE_WITH_PERFORMANCE_WARNINGS"
+}

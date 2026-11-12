@@ -1,0 +1,32 @@
+--- /home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_runtime.py
++++ new_independent_length_runtime.py
+@@ -95,11 +95,11 @@
+   assert len(self.rows)==320;return list(self.rows.values())
+ 
+ @torch.inference_mode()
+-def generate(a,layout,method,smoke=False):
++def generate(a,layout,method,smoke=False,length=32):
+  assert method in METHODS+['BridgeNative','FastVNoop','V2DropNoop'] and len(layout.image)==576
+  requested=method
+  if requested.endswith('Noop'):method='Native'
+- length=32;n=layout.length;device=a.inputs['input_ids'].device
++ n=layout.length;device=a.inputs['input_ids'].device
+  events=[(torch.cuda.Event(enable_timing=True),torch.cuda.Event(enable_timing=True)) for _ in range(length)]
+  cache=ctrl=out=None;tokens=[];finite=[];vision_calls=[0];smoke_cache={};observer=None;first_logits=None
+  original=a.model.get_image_features
+@@ -128,11 +128,11 @@
+      del out,last;out=None
+   torch.cuda.synchronize();end=time.perf_counter()
+   assert torch.stack(finite).all().item(),'Nonfinite logits'
+-  calls=ctrl.vision_calls if new else vision_calls[0];ids=torch.cat(tokens).tolist();assert len(ids)==32 and calls==1
+-  kv=kv_snapshot(cache,ctrl,layout,method,32);assert kv['storage_bytes']==kv['live_bytes']
++  calls=ctrl.vision_calls if new else vision_calls[0];ids=torch.cat(tokens).tolist();assert len(ids)==length and calls==1
++  kv=kv_snapshot(cache,ctrl,layout,method,length);assert kv['storage_bytes']==kv['live_bytes']
+   ms=[b.elapsed_time(e) for b,e in events]
+-  result=dict(method=requested,token_ids=ids,output_tokens=32,real_decode_calls=31,prefill_calls=1,vision_forward_calls=calls,all_logits_finite=True,
+-   TTFT_ms=(first-start)*1000,E2E_ms=(end-start)*1000,TPOT_ms=(end-first)*1000/31,CUDA_Event_Decode_TPOT_ms=sum(ms[1:])/31,
++  result=dict(method=requested,token_ids=ids,output_tokens=length,real_decode_calls=length-1,prefill_calls=1,vision_forward_calls=calls,all_logits_finite=True,
++   TTFT_ms=(first-start)*1000,E2E_ms=(end-start)*1000,TPOT_ms=(end-first)*1000/(length-1),CUDA_Event_Decode_TPOT_ms=sum(ms[1:])/(length-1),
+    step_event_ms=ms,cache=kv,logits_to_keep=1,use_cache=True,smoke=smoke,formal_layer_observer_hooks=smoke)
+   if ctrl is not None:
+    result['pruning_events']=getattr(ctrl,'events',None);result['selector_provenance']=getattr(ctrl,'provenance',None)
