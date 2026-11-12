@@ -1,0 +1,172 @@
+
+Loading checkpoint shards:   0%|          | 0/4 [00:00<?, ?it/s]
+Loading checkpoint shards:  25%|██▌       | 1/4 [00:08<00:24,  8.31s/it]
+Loading checkpoint shards:  50%|█████     | 2/4 [00:16<00:16,  8.44s/it]
+Loading checkpoint shards:  75%|███████▌  | 3/4 [00:21<00:06,  6.83s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:22<00:00,  4.47s/it]
+Loading checkpoint shards: 100%|██████████| 4/4 [00:22<00:00,  5.65s/it]
+QWEN_PROGRESS Native 1 /1000 0308
+QWEN_PROGRESS Physical-Original 1 /1000 0308
+QWEN_PROGRESS Native 2 /1000 0993
+QWEN_PROGRESS Physical-Original 2 /1000 0993
+QWEN_PROGRESS Native 3 /1000 0601
+QWEN_PROGRESS Physical-Original 3 /1000 0601
+Traceback (most recent call last):
+  File "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/qwen_run.py", line 52, in <module>
+    if q not in reuse[m]:infer(q,m,True,x,l)
+                         ^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/qwen_run.py", line 29, in infer
+    g,_=generate(model,proc,x,l,m,audit=audit,capture=False,max_tokens=128)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/qwen_frozen_runtime.py", line 29, in generate
+    start,end=torch.cuda.Event(enable_timing=True),torch.cuda.Event(enable_timing=True);start.record();out=model(**kw);end.record();events.append((start,end))
+                                                                                                           ^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1344, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1138, in forward
+    image_embeds, deepstack_image_embeds = self.get_image_features(pixel_values, image_grid_thw)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/qwen_frozen_runtime.py", line 21, in image_features
+    start.record();v=original(*a,**kw);end.record();vision.append((start,end));return v
+                     ^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1061, in get_image_features
+    image_embeds, deepstack_image_embeds = self.visual(pixel_values, grid_thw=image_grid_thw)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 739, in forward
+    hidden_states = blk(
+                    ^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/modeling_layers.py", line 94, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 267, in forward
+    hidden_states = hidden_states + self.attn(
+                                    ^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 230, in forward
+    attn_outputs = [
+                   ^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 231, in <listcomp>
+    attention_interface(
+  File "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/sources/qwen/vlm_research/qwen3vl_c3v2_physical/engine.py", line 120, in observed_eager
+    return eager(module,q,k,v,attention_mask,**kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 155, in eager_attention_forward
+    attn_weights = torch.matmul(query, key_states.transpose(2, 3)) * scaling
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 126.13 GiB. GPU 0 has a total capacity of 23.56 GiB of which 4.76 GiB is free. Including non-PyTorch memory, this process has 18.79 GiB memory in use. Of the allocated memory 18.23 GiB is allocated by PyTorch, and 220.29 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)
+QWEN_GPU_RELEASE_ON_PROCESS_EXIT
+Traceback (most recent call last):
+  File "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/qwen_run.py", line 52, in <module>
+    if q not in reuse[m]:infer(q,m,True,x,l)
+                         ^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/qwen_run.py", line 29, in infer
+    g,_=generate(model,proc,x,l,m,audit=audit,capture=False,max_tokens=128)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/qwen_frozen_runtime.py", line 29, in generate
+    start,end=torch.cuda.Event(enable_timing=True),torch.cuda.Event(enable_timing=True);start.record();out=model(**kw);end.record();events.append((start,end))
+                                                                                                           ^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1344, in forward
+    outputs = self.model(
+              ^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/utils/generic.py", line 1072, in wrapper
+    outputs = func(self, *args, **kwargs)
+              ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1138, in forward
+    image_embeds, deepstack_image_embeds = self.get_image_features(pixel_values, image_grid_thw)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/qwen_frozen_runtime.py", line 21, in image_features
+    start.record();v=original(*a,**kw);end.record();vision.append((start,end));return v
+                     ^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 1061, in get_image_features
+    image_embeds, deepstack_image_embeds = self.visual(pixel_values, grid_thw=image_grid_thw)
+                                           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 739, in forward
+    hidden_states = blk(
+                    ^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/modeling_layers.py", line 94, in __call__
+    return super().__call__(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 267, in forward
+    hidden_states = hidden_states + self.attn(
+                                    ^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 230, in forward
+    attn_outputs = [
+                   ^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 231, in <listcomp>
+    attention_interface(
+  File "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/sources/qwen/vlm_research/qwen3vl_c3v2_physical/engine.py", line 120, in observed_eager
+    return eager(module,q,k,v,attention_mask,**kw)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/qwen3vl-torch260-tf4576/lib/python3.11/site-packages/transformers/models/qwen3_vl/modeling_qwen3_vl.py", line 155, in eager_attention_forward
+    attn_weights = torch.matmul(query, key_states.transpose(2, 3)) * scaling
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+torch.OutOfMemoryError: CUDA out of memory. Tried to allocate 126.13 GiB. GPU 0 has a total capacity of 23.56 GiB of which 4.76 GiB is free. Including non-PyTorch memory, this process has 18.79 GiB memory in use. Of the allocated memory 18.23 GiB is allocated by PyTorch, and 220.29 MiB is reserved by PyTorch but unallocated. If reserved but unallocated memory is large try setting PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True to avoid fragmentation.  See documentation for Memory Management  (https://pytorch.org/docs/stable/notes/cuda.html#environment-variables)

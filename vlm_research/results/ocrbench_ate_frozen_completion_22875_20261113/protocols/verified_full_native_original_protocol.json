@@ -1,0 +1,161 @@
+{
+  "status": "FROZEN",
+  "task": "ATE FastV K3-192-KV reproduction",
+  "ATE_code_commit": "e281754ef17b3accc09d6938b5b9f020048b2aec",
+  "official_repository": "https://github.com/pkunlp-icler/FastV",
+  "official_commit": "d1659729b5bf1be225e99ee15783deeea80f63b1",
+  "official_tree": "d0fdb44ec67ac95c74136adc867562068c616102",
+  "official_tracked_files": 6854,
+  "official_source_path": "/home/featurize/work/ATE/vlm_research/external_baselines/fastv/official_source",
+  "official_selection": {
+    "source_sha256": "48dfd9351aafede82ccc15bbb772571293a0669e0b7051572dc344c8a40e0726",
+    "selection_AST_sha256": "4c84f929fd49e08941104d2e0509541f4fb1414e715f87a0425f60f64ee2109a",
+    "selection_AST_changes": 0,
+    "official_lines": [
+      1040,
+      1052
+    ],
+    "prune_before_zero_based_layer": 3,
+    "ranking_layer": 2,
+    "ranking": "torch.mean(attention, dim=1)[0][-1][dynamic_image_span].topk(round(576*(1-2/3)))",
+    "cache_semantics": "Official use_cache=True: frozen visual selection after initial prefill; original re-prunes each full forward"
+  },
+  "model": "llava-hf/llava-1.5-7b-hf",
+  "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "model_path": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+  "environment": {
+    "torch": "2.6.0+cu124",
+    "transformers": "4.49.0",
+    "precision": "FP16",
+    "attention": "eager",
+    "batch": 1,
+    "greedy": true,
+    "use_cache": true
+  },
+  "FastV": {
+    "K": 3,
+    "R": 0.6666666666666666,
+    "original_visual_tokens": 576,
+    "retained": 192,
+    "removed": 384,
+    "prune_before_zero_based_layer": 3,
+    "ranking_layer": 2,
+    "dynamic_image_start": true,
+    "ranking_query": "last prefill query",
+    "head_reduction": "official arithmetic mean",
+    "sorted_original_positions": true,
+    "cache_policy": "Select once during prefill; retain full KV in L0-L2; selected visual KV in L3-L31; original position_ids for RoPE"
+  },
+  "efficiency": {
+    "source_protocol": "/home/featurize/work/ATE/vlm_research/results/v2drop_quick_reproduction/protocol.json",
+    "source_protocol_sha256": "63f20510d45738a9da66a4488f7f36c2bbd204598a155b5be2aa82c215302cf4",
+    "source_manifest_sha256": "a2fc346eecb1dc023e3762d921d3682e324c2bcb7ca3b88ef0becab6ea295e2d",
+    "keys": [
+      "GQA:202121628",
+      "GQA:20308802",
+      "GQA:202158870",
+      "GQA:201759069",
+      "GQA:20162504",
+      "GQA:20886934",
+      "GQA:201889314",
+      "GQA:201455854",
+      "GQA:20709953",
+      "GQA:202246655",
+      "GQA:202060056",
+      "GQA:20644736",
+      "GQA:20922878",
+      "GQA:201976841",
+      "GQA:201959618",
+      "TextVQA:38571",
+      "TextVQA:36647",
+      "TextVQA:34775",
+      "TextVQA:38508",
+      "TextVQA:36458",
+      "TextVQA:36282",
+      "TextVQA:35999",
+      "TextVQA:35026",
+      "TextVQA:36136",
+      "TextVQA:37087",
+      "TextVQA:37765",
+      "TextVQA:39047",
+      "TextVQA:39166",
+      "TextVQA:35607",
+      "TextVQA:36477"
+    ],
+    "inputs": 30,
+    "GQA": 15,
+    "TextVQA_Paper_OCR": 15,
+    "generated_tokens": 128,
+    "real_decode_calls": 127,
+    "ignore_EOS": true,
+    "timing": "cuda.synchronize + perf_counter at request start, first generated token, last generated token; no per-decode synchronization; preprocessing and H2D excluded",
+    "TPOT": "(E2E_ms-TTFT_ms)/127",
+    "KV": "Actual final K/V CUDA tensor numel*element_size after 127 decode inputs appended; storage bytes also recorded",
+    "warmup": "2x128 tokens per method; interleaved methods, order alternates by input; one measured repetition per input, all retained",
+    "methods": [
+      "Native",
+      "FastV"
+    ],
+    "aggregation": "Unweighted mean across same 30 requests; benchmark means separately"
+  },
+  "OCRBench": {
+    "protocol": {
+      "id": "OCRBench-v1-official-LLaVA1.5-HF-physical-20261108",
+      "model": "llava-hf/llava-1.5-7b-hf",
+      "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+      "template": "vicuna_v1",
+      "prompt_suffix": "\nAnswer the question using a single word or phrase.",
+      "generation": {
+        "greedy": true,
+        "temperature": 0,
+        "top_p": null,
+        "num_beams": 1,
+        "max_new_tokens": 128
+      },
+      "preprocessing": "Original RGB and official LLaVA pad-to-square mean background, CLIP processor 336; no external OCR.",
+      "scorer": {
+        "source": {
+          "url": "https://raw.githubusercontent.com/Yuliang-Liu/MultimodalOCR/6ddb0a570419ce7ccb6913cf1c5ed84930320e7e/OCRBench/scripts/LLaVA1_5.py",
+          "bytes": 11377,
+          "sha256": "c480b271cf71e18848aa637c9f6e5d5f8b22fdcd3b969cb63167b4fbeb450a68"
+        },
+        "rules": "Official answer substring match: HME100k strips spaces and newlines case-sensitively; other datasets lowercase, strip outer whitespace and replace newline with space. Any accepted answer gives one point.",
+        "scale": "Raw summed score 0–1000, not a percentage or VQA soft score.",
+        "categories": {
+          "Regular Text Recognition": 50,
+          "Irregular Text Recognition": 50,
+          "Artistic Text Recognition": 50,
+          "Handwriting Recognition": 50,
+          "Digit String Recognition": 50,
+          "Non-Semantic Text Recognition": 50,
+          "Scene Text-centric VQA": 200,
+          "Doc-oriented VQA": 200,
+          "Key Information Extraction": 200,
+          "Handwritten Mathematical Expression Recognition": 100
+        }
+      }
+    },
+    "protocol_sha256": "688ae030b6b4380c3706718b66ab885004804a14245b8bb0ea12f0fb979273d9",
+    "normalized_inputs_sha256": "9472ae40763151ad4d53c3f3e77d8df8427f83abcf5ab5beeb8cf00eedfdf98c",
+    "annotation_sha256": "df75957e75ea052e9f38f2c67a4f6676103998517345cf49ef7d03b62c835864",
+    "questions": 1000,
+    "images": 930,
+    "methods": [
+      "Native",
+      "FastV"
+    ],
+    "normal_EOS": true,
+    "max_new_tokens": 128,
+    "new_same_machine_native_control": true,
+    "score_unit": "Raw sum /1000, not percent"
+  },
+  "compatibility": [
+    "Use official cached-HF selector AST unchanged, not original no-cache per-forward re-pruning.",
+    "HF4.49 hoists RoPE outside layers; gather cos/sin at selected original positions, matching official position_ids=keep_indexs.",
+    "Official prefill cache_position prefix retained. Native DynamicCache append ignores cache_position; decode mask cropped to actual layer K length.",
+    "Original HF attention/QKV/MLP/residual/vision weights and forward functions remain installed native; only layer boundary hooks gather hidden and matching mask/positions.",
+    "Official README quality ablations use dense masking and latency examples use other K/R/models and no-cache; these are not the same joint quality/efficiency point."
+  ],
+  "forbidden_methods_executed": [],
+  "GitHub_writes": false
+}

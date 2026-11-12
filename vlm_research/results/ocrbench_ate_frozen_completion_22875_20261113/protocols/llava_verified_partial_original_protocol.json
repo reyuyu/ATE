@@ -1,0 +1,240 @@
+{
+  "status": "FROZEN",
+  "seed": 20261110,
+  "rounds": 1,
+  "reference_commit": "5ee2a0dbe78df336229b55fed14a4a6d0d880bed",
+  "retain128_reference_only": "3f51c84bd469dd6a240fd2bedaec9ca1af361d55",
+  "model": "llava-hf/llava-1.5-7b-hf",
+  "revision": "b234b804b114d9e37bb655e11cbbb5f5e971b7a9",
+  "model_path": "/home/featurize/ate-local-models/llava-1.5-7b-hf",
+  "model_integrity_receipt_sha256": "a3f0a749cf0e304dfa2d443afc4ca78db051824d10b979219c1a89666b89becc",
+  "model_SHA_validation": "Existing current-instance download-stream LFS SHA256 acceptance reused; sizes and pinned receipt checked again; no full weight reread.",
+  "GPU_UUID": "GPU-6c96bba5-5cc6-8be2-b277-5533b4cdab27",
+  "methods": [
+    "Native",
+    "FastV",
+    "SparseVLM",
+    "V2Drop",
+    "ApET",
+    "DUET",
+    "SVH",
+    "SVH-R"
+  ],
+  "labels": {
+    "Native": "Native Full",
+    "FastV": "FastV",
+    "SparseVLM": "SparseVLM",
+    "V2Drop": "V²Drop",
+    "ApET": "ApET",
+    "DUET": "DUET-VLM (C+all)",
+    "SVH": "llava-SVH",
+    "SVH-R": "llava-SVH-R"
+  },
+  "algorithms": {
+    "Native": "576 visual tokens, 32 layers; calibrated unmodified HF 4.49 forward",
+    "FastV": "Pinned official static KV selector K3 R2/3; 576 -> 192 entering L3; original gathered RoPE",
+    "V2Drop": "Byte-identical historical adapter/selector: entering L3/L17/L22, 576 -> 288 -> 144 -> 1; NOT paper 192-token quality operating point",
+    "SVH": "Frozen MiddleWriter cutoff20, zero persistent visual KV, answer Attention physically bypassed L2..5",
+    "SVH-R": "Frozen MiddleWriter cutoff25, visual KV only L11..24, same L2..5 bypass",
+    "ApET": "Official unchanged AST encode_images, FPS, both token_merging functions, layer_prune; vision 288, basis10, 96 entering L16; compact RoPE; average192",
+    "DUET": "Official unchanged AST CLIP Attention/EncoderLayer/local clustering/pdrop_rank_drop; dominant300 incl CLS + contextual7, cluster_width4; 307 -> 153 entering L16 -> 0 entering L24. Current source ranks ALL post-image text (C+all), not paper main C last-token ranking. Average191.75; no trained weights.",
+    "SparseVLM": "ICML v1.5 nominal192 schedule [300,200,110], prune AFTER zero-based L2/L6/L15, official recycling adds 9/4/3 clustered tokens: real visual layouts 576 (L0..2),309 (L3..6),204 (L7..15),113 (L16..31), mean206.5. Official scaled_dot_product_attention is actually explicit eager QK, FP16 softmax, AV; this exact function and original ranking/pruning/merging AST are called unchanged. Bridge bypasses broken old sdpa-only class wiring and deprecated APIs without using fused SDPA/Flash or changing core math. Compact RoPE and per-layer real cache Decode."
+  },
+  "caps": {
+    "GQA": 32,
+    "ScienceQA-IMG": 1024,
+    "TextVQA": 128,
+    "POPE": 128,
+    "MME": 128,
+    "MMBench": 1024,
+    "OCRBench-v1": 128
+  },
+  "generation": "Batch1 FP16 eager greedy; stop on official EOS or frozen per-benchmark cap; EOS included; no ignore_eos, no added stop strings.",
+  "rules": {
+    "GQA": "4 each of structural choose/compare/logical/query/verify; official testdev_balanced 12578; original HF crop/USER template.",
+    "ScienceQA-IMG": {
+      "subject_quotas": {
+        "language science": 7,
+        "natural science": 7,
+        "social science": 6
+      },
+      "protocol": "Original Paper Prompt, pad, cap1024"
+    },
+    "TextVQA": "5 per quartile of reference OCR character count (text clutter proxy, not measured recognition error); Paper-OCR 5000; cap128.",
+    "POPE": {
+      "population": 8910,
+      "strategy_gold_quotas": {
+        "random:yes": 4,
+        "random:no": 3,
+        "popular:yes": 3,
+        "popular:no": 4,
+        "adversarial:yes": 3,
+        "adversarial:no": 3
+      },
+      "Gold_used": "Predeclared Yes/No stratification only; never model input."
+    },
+    "MME": {
+      "tasks": [
+        "position",
+        "commonsense_reasoning",
+        "count",
+        "existence",
+        "text_translation",
+        "artwork",
+        "posters",
+        "OCR",
+        "scene",
+        "landmark"
+      ],
+      "unit": "One complete image pair from each of 10 seeded selected tasks, 20 requests; no pair split."
+    },
+    "MMBench": {
+      "unit": "20 uniformly seeded full official Circular groups; retain every original rotation (2/3/4).",
+      "group_ids": [
+        "394",
+        "1538",
+        "885",
+        "1783",
+        "984",
+        "101",
+        "1354",
+        "559",
+        "1908",
+        "1159",
+        "1003",
+        "1056",
+        "1816",
+        "1109",
+        "1959",
+        "72",
+        "348",
+        "1951",
+        "640",
+        "1276"
+      ]
+    },
+    "OCRBench-v1": "2 per official v1 category, all 10 categories, official annotation-order IDs, substring/HME100k scorer, cap128."
+  },
+  "counts": {
+    "MMBench": 77,
+    "GQA": 20,
+    "OCRBench-v1": 20,
+    "MME": 20,
+    "TextVQA": 20,
+    "POPE": 20,
+    "ScienceQA-IMG": 20
+  },
+  "units": {
+    "GQA": 20,
+    "ScienceQA-IMG": 20,
+    "TextVQA": 20,
+    "POPE": 20,
+    "MME": 10,
+    "MMBench": 20,
+    "OCRBench-v1": 20
+  },
+  "smoke_keys": [
+    "GQA:20461875",
+    "TextVQA:36080",
+    "MMBench:1001538",
+    "OCRBench-v1:0482"
+  ],
+  "probe_keys": [
+    "GQA:20461875",
+    "TextVQA:36080"
+  ],
+  "expected_formal_requests": 1576,
+  "expected_native_after": 197,
+  "sources": {
+    "/home/featurize/work/ATE/vlm_research/accuracy_autoresearch/common.py": "01a68cc5b739a3d9172e351d5d68250e33d997639c35ecbf84376b8bbf0f9d58",
+    "/home/featurize/work/ATE/vlm_research/accuracy_autoresearch/engine.py": "4a381e87cd69b5b1e20eb10f3b52a9e1470f6662d845daafba6639bfe7c7974e",
+    "/home/featurize/work/ATE/vlm_research/ate_fulljoint_v2/engine.py": "ef59447163c47528be2fde44751c124df3d550a6e89244046c3d40d99b4e9e44",
+    "/home/featurize/work/ATE/vlm_research/benchmarks/protocols.py": "c80e8011f8ba3f7f627398ec2a3bff300d479db46ccb04a564d5ed525abd4f48",
+    "/home/featurize/work/ATE/vlm_research/c3v2_middle_reaccess/common.py": "a765d0731ef5e230c705e3c516353953869352f68cd5cc0054a7708226f1e6c1",
+    "/home/featurize/work/ATE/vlm_research/c3v2_middle_reaccess/engine.py": "e541c9122636205aeaeb752346ea08aa1c1aff6a06cfd40a60319a1cfc2763ff",
+    "/home/featurize/work/ATE/vlm_research/gqa_testdev_c3/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+    "/home/featurize/work/ATE/vlm_research/gqa_testdev_c3/analyze.py": "c2d58bb75fe9c9edd51083aeeaa347cde45e998184a3ac2f91b5c628e80fbac5",
+    "/home/featurize/work/ATE/vlm_research/gqa_testdev_c3/common.py": "79f734f25225e08e2cceaad17af900a41417f1861f4789dfcdd71f37c8b7cc83",
+    "/home/featurize/work/ATE/vlm_research/gqa_testdev_c3/download.py": "e5b0ec33eeb24f04f52e0c9920b2b11b94839b9732c581efd7a6baffb4abf73a",
+    "/home/featurize/work/ATE/vlm_research/gqa_testdev_c3/download_via_local.py": "b61771d52b53f57769f4ce5810eee97a954dd715c062f8de48c24d3d424f3796",
+    "/home/featurize/work/ATE/vlm_research/gqa_testdev_c3/engine.py": "390786063d1b9a9d719f91a7398e4a55c0433287ba4b486f0de1e3729b1d0f96",
+    "/home/featurize/work/ATE/vlm_research/gqa_testdev_c3/finish.py": "199cea030ff350cefd1f7e3a904043b278365de5fa65eedc66608e825e9cba4a",
+    "/home/featurize/work/ATE/vlm_research/gqa_testdev_c3/import_verified_images.py": "5e6643a568906356dba2a7ec6981d78438fc30496597e5d7eb297f355b7bbc74",
+    "/home/featurize/work/ATE/vlm_research/gqa_testdev_c3/prepare.py": "a03a0c6ddaaf7a20443115b54e6902cd207090f07484df4ae375ac778af43160",
+    "/home/featurize/work/ATE/vlm_research/gqa_testdev_c3/run.py": "60cf134959dea2339df034226337342545085bf7b9d14d9b9aae30ce91692464",
+    "/home/featurize/work/ATE/vlm_research/gqa_testdev_c3/tests.py": "017dbe0cb3286b40a6bee633c3fd80375db76e5eac3d0c78b9926fd8b22df333",
+    "/home/featurize/work/ATE/vlm_research/p1_layerwise_accuracy/common.py": "cb87d6c1f3f6156a14ae22ef3a1cb60304ec90bcc328faa239bf4481a138328c",
+    "/home/featurize/work/ATE/vlm_research/p1_layerwise_accuracy/engine.py": "3cbf506f506c33fe34a636d2a3b5f19f751e2831b3bb299aae460ae8a5add46a",
+    "/home/featurize/work/ATE/vlm_research/physical_handoff_fastpath/engine.py": "6e8abb7e04517678c189a896589abb97774652313ecedb57d58f97bd718b74a0",
+    "/home/featurize/work/ATE/vlm_research/physical_visual_handoff/common.py": "071f04ecb8cbc07c03251da236a371843a217536917494914aee55cc5162fcf3",
+    "/home/featurize/work/ATE/vlm_research/physical_visual_handoff/engine.py": "e46dd347bc5d4763c179a02459b7bd09ab87e45e7499107930928df3c98f295b",
+    "/home/featurize/work/ATE/vlm_research/reverse_writer/common.py": "b49eb59480189742bf3caf126c01d9ddb05661d7c4eef1f489cb50a5d011b3b8",
+    "/home/featurize/work/ATE/vlm_research/reverse_writer/engine.py": "e7a8d0e5d853cbddd21286ef690e3b8abbaaa34107cdd71e55c0107739b7709c",
+    "/home/featurize/work/ATE/vlm_research/knockout_probe.py": "f388d3eab58c9ba09c8d59fea4098239c7afc1a28ed3c181e7aecc11e69ee76a",
+    "/home/featurize/work/ATE/vlm_research/vlm_common.py": "85f91cfd530dc64d861b7600416943786b45d4ef188c6642cb97a9975f002e6d",
+    "/home/featurize/work/ATE/vlm_research/results/v2drop_quick_reproduction/runtime.py": "ea7df088ed6d5a9709225813f48cf1d598d0a066fd355ec57280a68141e82db5",
+    "/home/featurize/work/ATE/vlm_research/external_baselines/fastv/compatibility/fastv_hf_adapter.py": "b5a19e541082e4349db5c0ea2a9013ae31c397bda46fdb6458a5d74434d36e9d",
+    "/home/featurize/work/ATE/vlm_research/external_baselines/fastv/official_source/src/FastV/llava-hf/transformers/src/transformers/models/llama/modeling_llama.py": "48dfd9351aafede82ccc15bbb772571293a0669e0b7051572dc344c8a40e0726",
+    "/home/featurize/work/ATE/vlm_research/external_baselines/v2drop/compatibility/hf_adapter.py": "b172ded154847b3f9bdfa4d46b48708d12f9b0e469d109af35e347e666aad4ae",
+    "/home/featurize/work/ATE/vlm_research/external_baselines/v2drop/official_source/V2Drop.py": "e39ed8d99c3e1f23bd156067bfd28179827771df3556631b6daed4427a7b8b61",
+    "/home/featurize/work/ATE/vlm_research/external_baselines/e2e32_compatibility/e2e32_official_compat.py": "85e551420aafc49adddcf42bce71636089923fe9001abe91127cf336b63bdcb9",
+    "/home/featurize/work/ATE/vlm_research/external_baselines/apet/official_source/llava/model/llava_arch.py": "d0839597b52cb41e007852ebda24336b646ceb414b8e085579e51383ca8b8457",
+    "/home/featurize/work/ATE/vlm_research/external_baselines/apet/official_source/llava/model/modeling_llama_x.py": "1c7c8c947045d65d193c3ec5ee4b849f285081f93b1edf15a1bd469ccccf79c8",
+    "/home/featurize/work/ATE/vlm_research/external_baselines/apet/official_source/llava/model/utils.py": "a861abc58d7323893ef36347c7030c4659d846ff5d156e49789e4b2983a03edb",
+    "/home/featurize/work/ATE/vlm_research/external_baselines/duet_vlm/official_source/visionzip/utils.py": "947c474e8f5187c435f89234a8f548819a72812b9acbcaeff6a4c415082f1c86",
+    "/home/featurize/work/ATE/vlm_research/external_baselines/duet_vlm/official_source/visionzip/clip_encoder_cw.py": "014abf6c01dd0f6f9a55b3a9fb6b5e63e5c4c2bc65208f672bddc418c195dafd",
+    "/home/featurize/work/ATE/vlm_research/external_baselines/duet_vlm/official_source/llava/model/modeling_llama_pdrop.py": "82b01af209fb72967e7d458dc5d01f9c84c659e38bcc04e8cdee82926d5ba826",
+    "/home/featurize/work/ATE/vlm_research/external_baselines/sparsevlm_icml2025/official_source/llava/model/language_model/modelling_sparse_llama.py": "a0f437b8f40ff2504c0afa38498838dcb6f6a087baa8de6783ccdc23aaa755b8",
+    "/home/featurize/work/ATE/vlm_research/external_baselines/sparsevlm_icml2025/official_source/llava/model/language_model/utils.py": "aa35971f2aa9addfd8057910950a50fab432bda48f8f070873eefc7c1e824078",
+    "/home/featurize/work/ATE/vlm_research/external_baselines/sparsevlm_icml2025/official_source/llava/model/language_model/score.py": "1a89f27468311999e63877e2d93689d3d2d2b3ab254ccbfb910d8fcadfed44e8",
+    "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_environment.py": "d71e7611e0a4f76e51b7be388ddc5cc633a8c786f3cc172d3af4c3259c37747d",
+    "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_monitor.py": "1167766b874c2f69203fe5e0fcb8af0ba9f6cab70b1ac018b9fe0fc8a5bca6b8",
+    "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_prepare.py": "436271850bc7289ddefa48dcd56cc2e099e425bd256cfea372f7da50d54c20a0",
+    "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_run.py": "bf1b6f2e6b02019d2923ed4a7782570999dcf0b75000fe93697269f29d0adc74",
+    "/home/featurize/work/ATE/vlm_research/results/unified_e2e32_4090/code/e2e32_runtime.py": "513a122ff5f4da008b74e4d5560b0b6ef50baf8ccf7feb2fa766a0cdcdc51a3b",
+    "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_c3v2_reaccess_sevenbench/paper_protocol.json": "5ab87f8d8690843cd01143bc3f2e865c3ccf9f242900ede894639beeaede3105",
+    "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_c3v2_reaccess_sevenbench/gqa_protocol.json": "169b2f6a9b0c3e3206cea5a86b0cabf45d77f7e2f08201c67100f8ce5a6d6728",
+    "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_c3v2_reaccess_sevenbench/ocr_protocol.json": "688ae030b6b4380c3706718b66ab885004804a14245b8bb0ea12f0fb979273d9",
+    "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_c3v2_reaccess_sevenbench/seven_runner.py": "f938ea5f3ab8edae93147dddc911b056ba21a4ef532278e3f9cf399a2eacc7c1",
+    "/home/featurize/work/ATE/vlm_research/results/featurize_new3090_c3v2_reaccess_sevenbench/mapped_manifest.jsonl.gz": "3f1c505da807c72ade18d3fdac085ead0f0e8705e22fb249b2f2a1f562c0a7c4",
+    "/home/featurize/work/ATE/vlm_research/information_horizon_alignment/score.py": "50bc02bb5376af0f2aec9d32e0ce507e050b54f5b78137e1bd1ac8c8549a47f7",
+    "/home/featurize/work/ATE-natural-eos-sevenbench-20-3090/vlm_research/results/natural_eos_7bench_20_3090/official_scoring/Information-Horizon/llava/eval/m4c_evaluator.py": "aa1d450ac2717da6c41dd86cd5fdafb0b1f3fd49fbd7c4bb6482e857f4e479c2"
+  },
+  "model_implementation": "HF transformers.LlavaForConditionalGeneration; native liuhaotian is not used",
+  "timing": "Synchronized GPU-resident inputs; start before controller/positions/mask creation; end after final EOS/cap token and controller cleanup then CUDA sync. Includes vision, projector, prefill, real decode and selection/KV; excludes H2D, preprocessing, disk/model load, offline audits.",
+  "native": "Before is the sole formal Native record; After is calibration only; neither After nor probes are included in formal statistics.",
+  "warmup": "Four smoke cases per method; then all available methods, both fixed probe inputs per full cycle, repeat complete cycles until at least 180 seconds; all warmups retained and excluded.",
+  "drift": {
+    "threshold": 0.02,
+    "baseline_rounds": 6,
+    "window_probe_rounds": 3,
+    "consecutive_windows": 3,
+    "after_each_cases": 5,
+    "metric": "E2E_ms",
+    "action": "PAUSE and preserve all requests; no automatic rebaseline/resume after drift failure."
+  },
+  "bootstrap": {
+    "replicates": 10000,
+    "seed": 20261111,
+    "unit": "Paired complete MME image pair and MMBench Circular group; other datasets paired by sampled case; exploratory 95% percentile intervals."
+  },
+  "resume": "Unique immutable SQLite keys + sample/protocol/model/algorithm/code SHA; smoke/warmup repeated for a new process; no automatic resume after drift pause.",
+  "CPU_input_checks": "Every selected image SHA, complete groups, original Prompt/Gold and per-input tensor SHA validated; no CUDA initialization.",
+  "GitHub_push": false,
+  "Windows_backup": false,
+  "runtime_source_SHA256": {
+    "natural_run.py": "328e0e08ffac902ee9c48e7206aefc14482793e6b833bdeb943ae250bc91cabd",
+    "natural_scoring.py": "e737089c99f2926d9a352696451f35edb20cd572a286d0b515ba37566c45815b",
+    "natural_runtime.py": "2007c61c2b703146f5809584d5ca9614bd83b5b3e6c9f1ead3ad1ef58e2f0f15",
+    "natural_prepare.py": "5d69c3dcd623cbce3fcfdf0368a49c427d0c305c08e9eb96d8444094ad522c72"
+  },
+  "sample_manifest_sha256": "6dcae2e6091a5d53cfd341062c285dd3f089e0902343bff1acaaa3cf9db2d7a5",
+  "answers_sha256": "f62df8179a9e1aef302289f627972b6ed9721c7d77f9ecb321376c1327b61bcd",
+  "previous_protocol_file_sha256": "e0d7d98b52c43e56e834ca56ee459bdc0d1f54debf4d232b83470ee7171fb16f",
+  "runtime_revision": 2,
+  "memory_gate": {
+    "definition": "Two complete cycles of available methods on both fixed probes must have stable corresponding residual allocations (excluding current inputs); all subsequent requests must stay within the maximum stable residual plus tolerance.",
+    "tolerance_bytes": 1048576,
+    "repair_reason": "Initial cold-model 16MiB guard rejected a one-time approximately32MiB runtime allocation; zero formal requests existed. Frozen algorithms, samples, timing and drift rules unchanged."
+  }
+}

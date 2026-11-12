@@ -1,0 +1,200 @@
+Using a slow image processor as `use_fast` is unset and a slow processor was saved with this model. `use_fast=True` will be the default behavior in v4.48, even if the model was saved with a slow processor. This will result in minor differences in outputs. You'll still be able to use a slow processor with `use_fast=False`.
+
+Loading checkpoint shards:   0%|          | 0/3 [00:00<?, ?it/s]
+Loading checkpoint shards:  33%|███▎      | 1/3 [00:13<00:27, 13.58s/it]
+Loading checkpoint shards:  67%|██████▋   | 2/3 [00:25<00:12, 12.75s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:33<00:00, 10.34s/it]
+Loading checkpoint shards: 100%|██████████| 3/3 [00:33<00:00, 11.08s/it]
+LLAVA_PROGRESS Native 11 /1000 0000
+LLAVA_PROGRESS Native 12 /1000 0336
+LLAVA_PROGRESS Native 13 /1000 0668
+LLAVA_PROGRESS Native 14 /1000 0999
+LLAVA_PROGRESS Physical-C3 11 /1000 0000
+LLAVA_PROGRESS Physical-C3 12 /1000 0336
+LLAVA_PROGRESS Physical-C3 13 /1000 0668
+LLAVA_PROGRESS Physical-C3 14 /1000 0999
+LLAVA_PROGRESS Native 60 /1000 0047
+LLAVA_PROGRESS Physical-C3 60 /1000 0047
+LLAVA_PROGRESS Native 110 /1000 0098
+LLAVA_PROGRESS Physical-C3 110 /1000 0098
+LLAVA_PROGRESS Native 160 /1000 0149
+LLAVA_PROGRESS Physical-C3 160 /1000 0149
+LLAVA_PROGRESS Native 210 /1000 0201
+LLAVA_PROGRESS Physical-C3 210 /1000 0201
+LLAVA_PROGRESS Native 260 /1000 0252
+LLAVA_PROGRESS Physical-C3 260 /1000 0252
+LLAVA_PROGRESS Native 310 /1000 0302
+LLAVA_PROGRESS Physical-C3 310 /1000 0302
+LLAVA_PROGRESS Native 360 /1000 0353
+LLAVA_PROGRESS Physical-C3 360 /1000 0353
+LLAVA_PROGRESS Native 410 /1000 0403
+LLAVA_PROGRESS Physical-C3 410 /1000 0403
+LLAVA_PROGRESS Native 460 /1000 0453
+LLAVA_PROGRESS Physical-C3 460 /1000 0453
+LLAVA_PROGRESS Native 510 /1000 0504
+LLAVA_PROGRESS Physical-C3 510 /1000 0504
+LLAVA_PROGRESS Native 560 /1000 0555
+LLAVA_PROGRESS Physical-C3 560 /1000 0555
+LLAVA_PROGRESS Native 610 /1000 0605
+LLAVA_PROGRESS Physical-C3 610 /1000 0605
+LLAVA_PROGRESS Native 660 /1000 0655
+LLAVA_PROGRESS Physical-C3 660 /1000 0655
+LLAVA_PROGRESS Native 710 /1000 0706
+LLAVA_PROGRESS Physical-C3 710 /1000 0706
+LLAVA_PROGRESS Native 760 /1000 0756
+LLAVA_PROGRESS Physical-C3 760 /1000 0756
+LLAVA_PROGRESS Native 810 /1000 0807
+LLAVA_PROGRESS Physical-C3 810 /1000 0807
+LLAVA_PROGRESS Native 860 /1000 0857
+LLAVA_PROGRESS Physical-C3 860 /1000 0857
+LLAVA_PROGRESS Native 910 /1000 0907
+LLAVA_PROGRESS Physical-C3 910 /1000 0907
+Traceback (most recent call last):
+  File "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/llava_run.py", line 40, in <module>
+    if s['question_id'] not in reuse[m]:infer(s['question_id'],m,False)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/llava_run.py", line 26, in infer
+    g,_=f.hf_generate(adapter,layout,'HF-Native' if m=='Native' else 'Physical-C3',128,audit=audit)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/sources/llava/vlm_research/information_horizon_alignment/engine.py", line 226, in hf_generate
+    output = a.model(**kw)
+             ^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/llava/modeling_llava.py", line 415, in forward
+    image_features = self.get_image_features(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/llava/modeling_llava.py", line 309, in get_image_features
+    image_outputs = self.vision_tower(pixel_values, output_hidden_states=True, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/clip/modeling_clip.py", line 1177, in forward
+    return self.vision_model(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/clip/modeling_clip.py", line 1103, in forward
+    encoder_outputs = self.encoder(
+                      ^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/clip/modeling_clip.py", line 883, in forward
+    layer_outputs = encoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/clip/modeling_clip.py", line 614, in forward
+    hidden_states, attn_weights = self.self_attn(
+                                  ^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/clip/modeling_clip.py", line 347, in forward
+    attn_weights = torch.bmm(query_states, key_states.transpose(1, 2))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
+LLAVA_GPU_RELEASE_ON_PROCESS_EXIT
+Traceback (most recent call last):
+  File "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/llava_run.py", line 40, in <module>
+    if s['question_id'] not in reuse[m]:infer(s['question_id'],m,False)
+                                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/llava_run.py", line 26, in infer
+    g,_=f.hf_generate(adapter,layout,'HF-Native' if m=='Native' else 'Physical-C3',128,audit=audit)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/utils/_contextlib.py", line 116, in decorate_context
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/sources/llava/vlm_research/information_horizon_alignment/engine.py", line 226, in hf_generate
+    output = a.model(**kw)
+             ^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/utils/deprecation.py", line 172, in wrapped_func
+    return func(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/llava/modeling_llava.py", line 415, in forward
+    image_features = self.get_image_features(
+                     ^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/llava/modeling_llava.py", line 309, in get_image_features
+    image_outputs = self.vision_tower(pixel_values, output_hidden_states=True, **kwargs)
+                    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/clip/modeling_clip.py", line 1177, in forward
+    return self.vision_model(
+           ^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/clip/modeling_clip.py", line 1103, in forward
+    encoder_outputs = self.encoder(
+                      ^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/clip/modeling_clip.py", line 883, in forward
+    layer_outputs = encoder_layer(
+                    ^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/clip/modeling_clip.py", line 614, in forward
+    hidden_states, attn_weights = self.self_attn(
+                                  ^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1739, in _wrapped_call_impl
+    return self._call_impl(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/torch/nn/modules/module.py", line 1750, in _call_impl
+    return forward_call(*args, **kwargs)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/home/featurize/ate-local-envs/ate-torch260-cu124-tf449/lib/python3.11/site-packages/transformers/models/clip/modeling_clip.py", line 347, in forward
+    attn_weights = torch.bmm(query_states, key_states.transpose(1, 2))
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+KeyboardInterrupt
