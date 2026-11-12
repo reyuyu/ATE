@@ -1,0 +1,166 @@
+{
+  "status": "COMPLETE_EXPLORATORY_QUALITY",
+  "scores": [
+    {
+      "method": "Native",
+      "n": 100,
+      "correct": 79,
+      "accuracy_percent": 79,
+      "empty": 0,
+      "truncated": 0,
+      "new_generations": 0
+    },
+    {
+      "method": "Physical_D",
+      "n": 100,
+      "correct": 5,
+      "accuracy_percent": 5,
+      "empty": 0,
+      "truncated": 0,
+      "new_generations": 0
+    },
+    {
+      "method": "Late9",
+      "n": 100,
+      "correct": 57,
+      "accuracy_percent": 57,
+      "empty": 0,
+      "truncated": 0,
+      "new_generations": 0
+    },
+    {
+      "method": "Late16_L12_27",
+      "n": 100,
+      "correct": 76,
+      "accuracy_percent": 76,
+      "empty": 0,
+      "truncated": 0,
+      "new_generations": 100
+    },
+    {
+      "method": "Late20_L8_27",
+      "n": 100,
+      "correct": 77,
+      "accuracy_percent": 77,
+      "empty": 0,
+      "truncated": 0,
+      "new_generations": 100
+    },
+    {
+      "method": "All24_ExceptL2_5",
+      "n": 100,
+      "correct": 77,
+      "accuracy_percent": 77,
+      "empty": 0,
+      "truncated": 0,
+      "new_generations": 100
+    }
+  ],
+  "paired": [
+    {
+      "method": "Late16_L12_27",
+      "reference": "Late9",
+      "n": 100,
+      "delta_pp": 19,
+      "wrong_to_right": 21,
+      "right_to_wrong": 2,
+      "changed_text": 45,
+      "image_clusters": 98,
+      "bootstrap_replicates": 10000,
+      "seed": 20261113,
+      "ci95_low_pp": 10.679611650485437,
+      "ci95_high_pp": 27.722772277227723,
+      "multiplicity": "unadjusted exploratory"
+    },
+    {
+      "method": "Late16_L12_27",
+      "reference": "Native",
+      "n": 100,
+      "delta_pp": -3,
+      "wrong_to_right": 0,
+      "right_to_wrong": 3,
+      "changed_text": 13,
+      "image_clusters": 98,
+      "bootstrap_replicates": 10000,
+      "seed": 20261113,
+      "ci95_low_pp": -7.0,
+      "ci95_high_pp": 0.0,
+      "multiplicity": "unadjusted exploratory"
+    },
+    {
+      "method": "Late20_L8_27",
+      "reference": "Late9",
+      "n": 100,
+      "delta_pp": 20,
+      "wrong_to_right": 21,
+      "right_to_wrong": 1,
+      "changed_text": 43,
+      "image_clusters": 98,
+      "bootstrap_replicates": 10000,
+      "seed": 20261113,
+      "ci95_low_pp": 11.881188118811881,
+      "ci95_high_pp": 28.282828282828284,
+      "multiplicity": "unadjusted exploratory"
+    },
+    {
+      "method": "Late20_L8_27",
+      "reference": "Native",
+      "n": 100,
+      "delta_pp": -2,
+      "wrong_to_right": 0,
+      "right_to_wrong": 2,
+      "changed_text": 11,
+      "image_clusters": 98,
+      "bootstrap_replicates": 10000,
+      "seed": 20261113,
+      "ci95_low_pp": -5.05050505050505,
+      "ci95_high_pp": 0.0,
+      "multiplicity": "unadjusted exploratory"
+    },
+    {
+      "method": "All24_ExceptL2_5",
+      "reference": "Late9",
+      "n": 100,
+      "delta_pp": 20,
+      "wrong_to_right": 21,
+      "right_to_wrong": 1,
+      "changed_text": 42,
+      "image_clusters": 98,
+      "bootstrap_replicates": 10000,
+      "seed": 20261113,
+      "ci95_low_pp": 11.881188118811881,
+      "ci95_high_pp": 28.282828282828284,
+      "multiplicity": "unadjusted exploratory"
+    },
+    {
+      "method": "All24_ExceptL2_5",
+      "reference": "Native",
+      "n": 100,
+      "delta_pp": -2,
+      "wrong_to_right": 0,
+      "right_to_wrong": 2,
+      "changed_text": 11,
+      "image_clusters": 98,
+      "bootstrap_replicates": 10000,
+      "seed": 20261113,
+      "ci95_low_pp": -5.05050505050505,
+      "ci95_high_pp": 0.0,
+      "multiplicity": "unadjusted exploratory"
+    }
+  ],
+  "new_quality_generations": 300,
+  "reused_predictions": 300,
+  "dense_reference_requests": 3,
+  "smoke_quality_predictions_included": 12,
+  "independent_scoring_checks": 600,
+  "cpu_token_decode_checks": 300,
+  "unique_images": 98,
+  "historical_full_OCRBench1000": {
+    "Native": 751,
+    "Physical_D": 32,
+    "Late9": 563
+  },
+  "GPU_after": "NVIDIA GeForce RTX 3090, GPU-6c96bba5-5cc6-8be2-b277-5533b4cdab27, 1 MiB, 24123 MiB",
+  "official_protocol_alignment": false,
+  "scope": "ATE frozen 1-tile protocol; not official dynamic24, not a full OCRBench score or efficiency study"
+}
