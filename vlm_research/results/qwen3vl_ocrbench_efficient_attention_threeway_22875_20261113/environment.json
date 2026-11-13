@@ -1,0 +1,50 @@
+{
+  "gpu": "NVIDIA GeForce RTX 3090, GPU-6c96bba5-5cc6-8be2-b277-5533b4cdab27, 24123 MiB",
+  "torch": "2.6.0+cu124",
+  "transformers": "4.57.6",
+  "model": "Qwen/Qwen3-VL-8B-Instruct",
+  "revision": "0c351dd01ed87e9c1b53cbc748cba10e6187ff3b",
+  "dtype": "BF16",
+  "backend": "SDPA_EFFICIENT_ATTENTION_ONLY",
+  "model_loads": 1,
+  "base_model_reused_from_local": true,
+  "processor": {
+    "_processor_class": "Qwen3VLProcessor",
+    "size": {
+      "longest_edge": 16777216,
+      "shortest_edge": 65536
+    },
+    "min_pixels": null,
+    "max_pixels": null,
+    "patch_size": 16,
+    "temporal_patch_size": 2,
+    "merge_size": 2,
+    "image_mean": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "image_std": [
+      0.5,
+      0.5,
+      0.5
+    ],
+    "image_processor_type": "Qwen2VLImageProcessorFast",
+    "crop_size": null,
+    "pad_size": null,
+    "do_resize": true,
+    "default_to_square": true,
+    "resample": 3,
+    "do_center_crop": null,
+    "do_rescale": true,
+    "rescale_factor": 0.00392156862745098,
+    "do_normalize": true,
+    "do_pad": null,
+    "do_convert_rgb": true,
+    "return_tensors": null,
+    "data_format": "channels_first",
+    "input_data_format": null,
+    "device": null,
+    "disable_grouping": null
+  }
+}

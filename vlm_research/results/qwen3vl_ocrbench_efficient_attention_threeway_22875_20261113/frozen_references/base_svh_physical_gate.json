@@ -1,0 +1,172 @@
+{
+  "status": "PASS_STRUCTURAL_AND_GREEDY_WITH_NUMERICAL_WARNING",
+  "completed": 3,
+  "expected": 3,
+  "complete_Physical_0738": true,
+  "cases": [
+    {
+      "question_id": "0308",
+      "input_length": 89,
+      "image_tokens": 64,
+      "success": true,
+      "text": "6th avenue",
+      "token_ids": [
+        21,
+        339,
+        61703,
+        151645
+      ],
+      "eos": true,
+      "peak_allocated": 17605032960,
+      "live_KV_bytes": 3440640,
+      "capacity_KV_bytes": 18677760,
+      "structure": true,
+      "mask": true,
+      "RoPE": true,
+      "DeepStack": true,
+      "physical_bypass": true,
+      "physical_visual_KV_zero": true,
+      "finite": true,
+      "dense_F_comparison": {
+        "question_id": "0308",
+        "comparison": "Physical_vs_Dense_F_same_prefix_same_SDPA",
+        "steps": 4,
+        "max_abs": 0.28125,
+        "max_step_mean_abs": 0.04989877715706825,
+        "mean_abs": 0.0388331706635654,
+        "top1_equal": true,
+        "full_tokens_equal": true,
+        "all_logits_torch_equal": false,
+        "legacy_strict_gate": "NUMERICAL_EQUIVALENCE_FAILED",
+        "per_step_max_abs": [
+          0.28125,
+          0.25,
+          0.25,
+          0.18701171875
+        ],
+        "per_step_mean_abs": [
+          0.02996719814836979,
+          0.0401034839451313,
+          0.04989877715706825,
+          0.035363223403692245
+        ],
+        "reference_natural_greedy_equivalence_proven": true
+      }
+    },
+    {
+      "question_id": "0601",
+      "input_length": 463,
+      "image_tokens": 425,
+      "success": true,
+      "text": "100",
+      "token_ids": [
+        16,
+        15,
+        15,
+        151645
+      ],
+      "eos": true,
+      "peak_allocated": 17683302912,
+      "live_KV_bytes": 5038080,
+      "capacity_KV_bytes": 20275200,
+      "structure": true,
+      "mask": true,
+      "RoPE": true,
+      "DeepStack": true,
+      "physical_bypass": true,
+      "physical_visual_KV_zero": true,
+      "finite": true,
+      "dense_F_comparison": {
+        "question_id": "0601",
+        "comparison": "Physical_vs_Dense_F_same_prefix_same_SDPA",
+        "steps": 4,
+        "max_abs": 0.5,
+        "max_step_mean_abs": 0.04979934170842171,
+        "mean_abs": 0.0450412780046463,
+        "top1_equal": true,
+        "full_tokens_equal": true,
+        "all_logits_torch_equal": false,
+        "legacy_strict_gate": "NUMERICAL_EQUIVALENCE_FAILED",
+        "per_step_max_abs": [
+          0.375,
+          0.25,
+          0.2109375,
+          0.5
+        ],
+        "per_step_mean_abs": [
+          0.049276579171419144,
+          0.04084526002407074,
+          0.04979934170842171,
+          0.040243931114673615
+        ],
+        "reference_natural_greedy_equivalence_proven": true
+      }
+    },
+    {
+      "question_id": "0738",
+      "input_length": 16307,
+      "image_tokens": 16264,
+      "success": true,
+      "text": " company that issued this receipt",
+      "token_ids": [
+        2813,
+        429,
+        10897,
+        419,
+        22567,
+        151645
+      ],
+      "eos": true,
+      "peak_allocated": 21478503936,
+      "live_KV_bytes": 5898240,
+      "capacity_KV_bytes": 20889600,
+      "structure": true,
+      "mask": true,
+      "RoPE": true,
+      "DeepStack": true,
+      "physical_bypass": true,
+      "physical_visual_KV_zero": true,
+      "finite": true,
+      "dense_F_comparison": {
+        "question_id": "0738",
+        "comparison": "Physical_vs_Dense_F_same_prefix_same_SDPA",
+        "steps": 6,
+        "max_abs": 0.75,
+        "max_step_mean_abs": 0.16792194545269012,
+        "mean_abs": 0.07908240053802729,
+        "top1_equal": true,
+        "full_tokens_equal": true,
+        "all_logits_torch_equal": false,
+        "legacy_strict_gate": "NUMERICAL_EQUIVALENCE_FAILED",
+        "per_step_max_abs": [
+          0.1875,
+          0.25,
+          0.3125,
+          0.75,
+          0.5,
+          0.3125
+        ],
+        "per_step_mean_abs": [
+          0.02821541391313076,
+          0.031516414135694504,
+          0.06711772084236145,
+          0.16792194545269012,
+          0.13987033069133759,
+          0.039852578192949295
+        ],
+        "reference_natural_greedy_equivalence_proven": true
+      }
+    }
+  ],
+  "protocol_sha256": "28ed30387523332ef96f8ff46da6d8b735cba596b7caa8e03c060665f42d028e",
+  "actual_backend": "SDPA_EFFICIENT_ATTENTION_ONLY",
+  "no_math_fallback": true,
+  "unchanged_inputs": true,
+  "frozen_core_noop_torch_equal": true,
+  "mask_position_deepstack_bypass_KV_PASS": true,
+  "historical_NUMERICAL_EQUIVALENCE_FAILED_preserved": true,
+  "legacy_strict_numerical_gate": "NUMERICAL_EQUIVALENCE_FAILED",
+  "review_decision_sha256": "b1193baaa41a9c2b732be0721f299e69379292f022c93703ffa7cb87be0bc46b",
+  "formal_not_started_at_gate_creation": true,
+  "formal_started_only_after_separate_review": true
+}

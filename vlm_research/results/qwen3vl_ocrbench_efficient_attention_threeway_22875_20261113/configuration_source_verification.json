@@ -1,0 +1,47 @@
+{
+  "status": "LOCAL_HISTORICAL_SNAPSHOT_CONFIGURATION",
+  "algorithm_source_commit": "f21254f7c9d371b0f2cd48cf25a8ac81cc9a2760",
+  "path": "vlm_research/results/rtx3090_unified_efficiency_18conditions/code/cross_runtime.py",
+  "sha256": "14a19c24b33f2693d7cd1e69d4d09562b69fda5b6ba8343109fc81ebcb67460c",
+  "configuration_controller_at_algorithm_commit": "NOT_FOUND_HTTP_404",
+  "configuration_controller_source": "qwen_svhr_physical_overhead_audit/source_snapshots/home/featurize/ate-experiments/rtx3090-18conditions-20261113",
+  "algorithm_physical_and_engine_equals_GitHub": true,
+  "Qwen_read_layers": [
+    19,
+    20,
+    21,
+    22,
+    23,
+    24,
+    25,
+    26,
+    27,
+    28,
+    29,
+    30,
+    31,
+    32,
+    33,
+    34,
+    35
+  ],
+  "source_lines": [
+    {
+      "line": 23,
+      "text": "   self.base=base;self.R=Physical;self.S=EarlyAlignedExecution"
+    },
+    {
+      "line": 26,
+      "text": "   self.layers=self.model.model.language_model.layers;self.skip=set(range(1,7));self.keep=set(range(19,36));self.cutoff=22"
+    },
+    {
+      "line": 35,
+      "text": "   self.layers=self.model.language_model.model.layers;self.skip=set(range(2,6));self.keep=set(range(19,28));self.cutoff=20"
+    },
+    {
+      "line": 77,
+      "text": "    elif method=='SVH-R':control=self.R(self.model,layout,'C',32,audit=smoke,layers=tuple(sorted(self.keep)))"
+    }
+  ],
+  "note": "Controller provenance is the prior saved audit snapshot, not a claim that this controller path is tracked at the algorithm commit."
+}

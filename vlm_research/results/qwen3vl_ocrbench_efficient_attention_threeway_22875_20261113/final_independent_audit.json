@@ -1,0 +1,114 @@
+{
+  "status": "PASS",
+  "coverage_each": 1000,
+  "unique_original_images": 930,
+  "SVHR_scores_official_independent_equal": 1000,
+  "SVHR_text_token_decode_exact": 1000,
+  "matched_input_hashes_all_three": 1000,
+  "independent_KV_per_request": true,
+  "SVHR_main_and_auxiliary_structure_all_PASS": true,
+  "protected_base_and_frozen_files_unchanged": 43,
+  "new_Native_or_Original_generation": 0,
+  "summaries": [
+    {
+      "method": "Native",
+      "score_out_of_1000": 868,
+      "coverage": 1000,
+      "expected": 1000,
+      "empty_outputs": 0,
+      "truncated": 0,
+      "natural_EOS": 1000,
+      "peak_allocated_GiB": 21.108943939208984,
+      "generation_source": "reused_completed_new_backend"
+    },
+    {
+      "method": "Physical-Original",
+      "score_out_of_1000": 38,
+      "coverage": 1000,
+      "expected": 1000,
+      "empty_outputs": 0,
+      "truncated": 88,
+      "natural_EOS": 912,
+      "peak_allocated_GiB": 20.00341558456421,
+      "generation_source": "reused_completed_new_backend"
+    },
+    {
+      "method": "SVH-R",
+      "score_out_of_1000": 835,
+      "coverage": 1000,
+      "expected": 1000,
+      "empty_outputs": 0,
+      "truncated": 5,
+      "natural_EOS": 995,
+      "peak_allocated_GiB": 21.084924697875977,
+      "generation_source": "new_SVHR_only"
+    }
+  ],
+  "paired": [
+    {
+      "comparison": "Physical-Original - Native",
+      "score_delta": -830,
+      "accuracy_delta_pp": -83.0,
+      "improved": 3,
+      "worsened": 833,
+      "both_correct": 35,
+      "both_wrong": 129
+    },
+    {
+      "comparison": "SVH-R - Native",
+      "score_delta": -33,
+      "accuracy_delta_pp": -3.3,
+      "improved": 17,
+      "worsened": 50,
+      "both_correct": 818,
+      "both_wrong": 115
+    },
+    {
+      "comparison": "SVH-R - Physical-Original",
+      "score_delta": 797,
+      "accuracy_delta_pp": 79.7,
+      "improved": 798,
+      "worsened": 1,
+      "both_correct": 37,
+      "both_wrong": 164
+    }
+  ],
+  "SVHR_physical_gate": "PASS_STRUCTURAL_AND_GREEDY_WITH_NUMERICAL_WARNING",
+  "SVHR_strict_numerical_gate": "FAIL",
+  "base_Original_strict_numerical_gate": "FAIL_UNCHANGED",
+  "CUDA_initialized": false,
+  "SVHR_top_repeated_outputs": [
+    [
+      "2016",
+      8
+    ],
+    [
+      "UNIHAKKA INTERNATIONAL SDN BHD",
+      5
+    ],
+    [
+      "2013",
+      4
+    ],
+    [
+      "times",
+      3
+    ],
+    [
+      "Lorillard Tobacco Company",
+      3
+    ],
+    [
+      "under",
+      2
+    ],
+    [
+      "coffee",
+      2
+    ],
+    [
+      "world",
+      2
+    ]
+  ]
+}

@@ -1,0 +1,149 @@
+[
+  {
+    "question_id": "0308",
+    "comparison": "new_mask_storage_vs_unmodified_frozen_Physical_same_SDPA",
+    "steps": 4,
+    "max_abs": 0.0,
+    "max_step_mean_abs": 0.0,
+    "mean_abs": 0.0,
+    "top1_equal": true,
+    "full_tokens_equal": true,
+    "all_logits_torch_equal": true,
+    "legacy_strict_gate": "PASS",
+    "per_step_max_abs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "per_step_mean_abs": [
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ]
+  },
+  {
+    "question_id": "0308",
+    "comparison": "Physical_vs_Dense_F_same_prefix_same_SDPA",
+    "steps": 4,
+    "max_abs": 0.28125,
+    "max_step_mean_abs": 0.04989877715706825,
+    "mean_abs": 0.0388331706635654,
+    "top1_equal": true,
+    "full_tokens_equal": true,
+    "all_logits_torch_equal": false,
+    "legacy_strict_gate": "NUMERICAL_EQUIVALENCE_FAILED",
+    "per_step_max_abs": [
+      0.28125,
+      0.25,
+      0.25,
+      0.18701171875
+    ],
+    "per_step_mean_abs": [
+      0.02996719814836979,
+      0.0401034839451313,
+      0.04989877715706825,
+      0.035363223403692245
+    ],
+    "reference_natural_greedy_equivalence_proven": true
+  },
+  {
+    "question_id": "0308",
+    "comparison": "Native_vs_Physical_different_algorithms",
+    "native_text": "5th Avenue",
+    "physical_text": "6th avenue",
+    "full_tokens_equal": false,
+    "not_an_equivalence_gate": true
+  },
+  {
+    "question_id": "0308",
+    "comparison": "historical_Eager_Native_vs_new_SDPA_Native",
+    "old_prediction_path": "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/results/qwen/predictions/Native/0308.json",
+    "old_text": "5th Avenue",
+    "new_text": "5th Avenue",
+    "full_tokens_equal": true,
+    "effective_logits_error": null,
+    "limitation": "Historical effective logits were not saved; output-only comparison, no Eager rerun"
+  },
+  {
+    "question_id": "0601",
+    "comparison": "Physical_vs_Dense_F_same_prefix_same_SDPA",
+    "steps": 4,
+    "max_abs": 0.5,
+    "max_step_mean_abs": 0.04979934170842171,
+    "mean_abs": 0.0450412780046463,
+    "top1_equal": true,
+    "full_tokens_equal": true,
+    "all_logits_torch_equal": false,
+    "legacy_strict_gate": "NUMERICAL_EQUIVALENCE_FAILED",
+    "per_step_max_abs": [
+      0.375,
+      0.25,
+      0.2109375,
+      0.5
+    ],
+    "per_step_mean_abs": [
+      0.049276579171419144,
+      0.04084526002407074,
+      0.04979934170842171,
+      0.040243931114673615
+    ],
+    "reference_natural_greedy_equivalence_proven": true
+  },
+  {
+    "question_id": "0601",
+    "comparison": "Native_vs_Physical_different_algorithms",
+    "native_text": "213.3",
+    "physical_text": "100",
+    "full_tokens_equal": false,
+    "not_an_equivalence_gate": true
+  },
+  {
+    "question_id": "0601",
+    "comparison": "historical_Eager_Native_vs_new_SDPA_Native",
+    "old_prediction_path": "/home/featurize/ate-experiments/ocrbench-ate-frozen-completion-22875-20261113/results/qwen/predictions/Native/0601.json",
+    "old_text": "213.3",
+    "new_text": "213.3",
+    "full_tokens_equal": true,
+    "effective_logits_error": null,
+    "limitation": "Historical effective logits were not saved; output-only comparison, no Eager rerun"
+  },
+  {
+    "question_id": "0738",
+    "comparison": "Physical_vs_Dense_F_same_prefix_same_SDPA",
+    "steps": 6,
+    "max_abs": 0.75,
+    "max_step_mean_abs": 0.16792194545269012,
+    "mean_abs": 0.07908240053802729,
+    "top1_equal": true,
+    "full_tokens_equal": true,
+    "all_logits_torch_equal": false,
+    "legacy_strict_gate": "NUMERICAL_EQUIVALENCE_FAILED",
+    "per_step_max_abs": [
+      0.1875,
+      0.25,
+      0.3125,
+      0.75,
+      0.5,
+      0.3125
+    ],
+    "per_step_mean_abs": [
+      0.02821541391313076,
+      0.031516414135694504,
+      0.06711772084236145,
+      0.16792194545269012,
+      0.13987033069133759,
+      0.039852578192949295
+    ],
+    "reference_natural_greedy_equivalence_proven": true
+  },
+  {
+    "question_id": "0738",
+    "comparison": "Native_vs_Physical_different_algorithms",
+    "native_text": " UNIHAKKA INTERNATIONAL SDN BHD",
+    "physical_text": " company that issued this receipt",
+    "full_tokens_equal": false,
+    "not_an_equivalence_gate": true
+  }
+]
